@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 
+import Filter from "./modal";
+
 import cardimg from "./assets/Rectangle1.png";
 import cardimg2 from "./assets/Rectangle2.png";
 import cardimg3 from "./assets/Rectangle3.png";
@@ -17,19 +19,24 @@ import addicon from "./assets/add-square.svg";
 import "./template.style.scss";
 
 export default function Template() {
-  const [modalState, setmModalState] = useState("false");
+  const [modalState, setModalState] = useState(false);
 
   return (
     <div className="template-wrapper">
       <header>
         <h1>Templates</h1>
         <p>All results</p>
-        <button className="filter-btn">
+        <button
+          className="filter-btn"
+          onClick={() => setModalState(!modalState)}
+        >
           Filters{" "}
           <span>
             <img src={filtericon} alt="" />
           </span>
         </button>
+        {/* modal popup */}
+        <Filter open={modalState} />
       </header>
       <div className="cards-container">
         {/* cards start */}
