@@ -2,14 +2,16 @@
 
 .template-wrapper {
   max-width: $containerWidth;
-  margin-inline: 90px;
   background-color: rgba(255, 255, 255, 1);
-  position: relative;
+
+  header {
+    position: relative;
+  }
 
   h1 {
     color: rgba(34, 34, 34, 1);
     text-align: center;
-    font-size: 47px;
+    font-size: 20px;
     font-weight: 600;
     margin: 0;
   }
@@ -46,10 +48,9 @@
 
   .cards-container {
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    grid-template-rows: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    grid-template-rows: repeat(6, minmax(0, 1fr));
     gap: 10px;
-    padding: 10px;
 
     .template-card {
       border: 1px solid rgba(108, 108, 112, 1);
@@ -57,6 +58,7 @@
       border-radius: 8px;
       overflow: hidden;
       color: rgba(255, 255, 255, 1);
+      margin-inline: auto;
 
       &__header {
         background-color: rgba(108, 108, 112, 1);
@@ -110,6 +112,41 @@
         border: 1px solid #08372f;
         opacity: 80%;
       }
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .template-wrapper {
+    margin-inline: 90px;
+
+    h1 {
+      font-size: 30px;
+    }
+
+    .cards-container {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-rows: repeat(6, minmax(0, 1fr));
+      gap: 10px;
+      padding: 10px;
+    }
+  }
+}
+
+@media (min-width: 1024px) {
+  .template-wrapper {
+    margin-inline: 90px;
+
+    h1 {
+      font-size: 47px;
+    }
+
+    .cards-container {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      grid-template-rows: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      padding: 10px;
     }
   }
 }
