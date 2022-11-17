@@ -1,0 +1,15 @@
+@mixin flexContainer($direction) {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: $direction;
+}
+
+.header {
+	background-color: red;
+	@include flexContainer(column);
+	color: white;
+	h1 {
+		background-color: blue;
+	}
+}
