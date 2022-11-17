@@ -3,6 +3,7 @@
 .template-wrapper {
   max-width: $containerWidth;
   background-color: rgba(255, 255, 255, 1);
+  padding-block: 32px;
 
   header {
     position: relative;
@@ -137,6 +138,7 @@
 @media (min-width: 1024px) {
   .template-wrapper {
     margin-inline: 90px;
+    padding-block: 64px;
 
     h1 {
       font-size: 47px;
