@@ -1,0 +1,67 @@
+@import "../../Style/variables";
+
+.modal-card {
+  width: 354px;
+  border: 1px solid rgba(108, 108, 112, 1);
+  text-align: left;
+  padding: 12px;
+
+  h2 {
+    color: rgba(34, 34, 34, 1);
+    font-weight: 400;
+    font-size: 16px;
+    margin-block: 10px;
+  }
+
+  &__type,
+  &__layout {
+    border-bottom: 1px solid rgba(169, 169, 169, 1);
+    padding-bottom: 14px;
+  }
+
+  .filter-btn-wrapper {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-rows: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+
+    .sort-btn {
+      border-radius: 8px;
+      border: 1px solid rgba(169, 169, 169, 1);
+      color: rgba(169, 169, 169, 1);
+      padding: 4px 8px;
+      cursor: pointer;
+    }
+  }
+
+  .color-box-wrapper {
+    display: flex;
+    justify-content: flex-start;
+    gap: 8px;
+    align-items: center;
+  }
+
+  &__submit {
+    padding-block: 10px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+
+    .btn-submit {
+      border: 2px solid $successGreenColor;
+      border-radius: 6px;
+      padding: 6px 16px;
+      color: #fff;
+      cursor: pointer;
+
+      &--apply {
+        background-color: $successGreenColor;
+      }
+
+      &--cancel {
+        background-color: #fff;
+        color: $successGreenColor;
+      }
+    }
+  }
+}
