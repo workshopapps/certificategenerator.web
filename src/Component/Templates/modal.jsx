@@ -16,32 +16,121 @@ export default function Filter() {
           <button className="sort-btn">Achievement</button>
         </div>
         <div className="modal-card__layout">
+          <h2>Layout</h2>
           <input type="checkbox" name="landscape" id="landscape" />
           <label htmlFor="landscape"></label>
           <input type="checkbox" name="portrait" id="portrait" />
           <label htmlFor="portrait"></label>
         </div>
         <div className="modal-card__color">
+          <h2>Colour</h2>
+
           <div className="color-box">
-            <span></span>
+            <span>
+              <svg
+                width="30"
+                height="30"
+                viewBox="0 0 30 30"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <rect
+                  x="0.5"
+                  y="0.5"
+                  width="29"
+                  height="29"
+                  rx="3.5"
+                  fill="#C73434"
+                  stroke="#C73434"
+                />
+              </svg>
+            </span>
           </div>
           <div className="color-box">
-            <span></span>
+            <span>
+              <svg
+                width="30"
+                height="30"
+                viewBox="0 0 30 30"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <rect width="30" height="30" rx="4" fill="#964B00" />
+              </svg>
+            </span>
           </div>
           <div className="color-box">
-            <span></span>
+            <span>
+              <svg
+                width="30"
+                height="30"
+                viewBox="0 0 30 30"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <rect width="30" height="30" rx="4" fill="#FFA500" />
+              </svg>
+            </span>
           </div>
           <div className="color-box">
-            <span></span>
+            <span>
+              <svg
+                width="30"
+                height="30"
+                viewBox="0 0 30 30"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <rect width="30" height="30" rx="4" fill="#3C7D36" />
+              </svg>
+            </span>
           </div>
           <div className="color-box">
-            <span></span>
+            <span>
+              <svg
+                width="30"
+                height="30"
+                viewBox="0 0 30 30"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <rect width="30" height="30" rx="4" fill="#3438AD" />
+              </svg>
+            </span>
           </div>
           <div className="color-box">
-            <span></span>
+            <span>
+              <svg
+                width="30"
+                height="30"
+                viewBox="0 0 30 30"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <rect width="30" height="30" rx="4" fill="#222222" />
+              </svg>
+            </span>
           </div>
           <div className="color-box">
-            <span></span>
+            <span>
+              <svg
+                width="30"
+                height="30"
+                viewBox="0 0 30 30"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <rect
+                  x="0.5"
+                  y="0.5"
+                  width="29"
+                  height="29"
+                  rx="3.5"
+                  fill="white"
+                  stroke="#A9A9A9"
+                />
+              </svg>
+            </span>
           </div>
         </div>
       </div>
