@@ -1,7 +1,8 @@
 import React from "react";
 import "./modal.style.scss";
 
-export default function Filter() {
+export default function Filter({ open }) {
+  if (!open) return null;
   return (
     <div>
       <div className="modal-card">
