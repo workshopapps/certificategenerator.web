@@ -82,6 +82,10 @@ h3 {
       font-size: 1rem;
       font-weight: 500;
       cursor: pointer;
+      transition: 0.3s ease;
+    }
+    button:hover {
+      background-color: #127867;
     }
   }
   .error-msg {
