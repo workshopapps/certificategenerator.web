@@ -106,7 +106,6 @@ export default function Template() {
     setCategory(categories);
   };
 
-  console.log(category);
   return (
     <div className="template-wrapper">
       <header>
