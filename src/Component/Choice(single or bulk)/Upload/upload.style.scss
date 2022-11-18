@@ -1,0 +1,54 @@
+@import "../../../Style/variables";
+.uploadContainer {
+	div {
+		display: block;
+	}
+	padding: 25px 106px;
+
+	/* Auto layout */
+
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 25px 106px;
+	gap: 15px;
+
+	position: absolute !important;
+	top: 19em;
+
+	width: 200px;
+	height: 125px;
+
+	background: #ffffff;
+	/* Accent/Regular */
+
+	border: 1px dashed #7b41b4;
+	border-radius: 10px;
+	div.percentage {
+		display: block;
+	}
+
+	button {
+		width: fit-content;
+		min-width: auto !important;
+		&.cancel {
+			background-color: $errorRedColor;
+		}
+	}
+	div.progessBar {
+		height: 7px;
+		width: 163%;
+		background-color: #d9d9d9;
+		border-radius: 20px;
+
+		div {
+			height: 100%;
+			// width: 59%;
+
+			// width: `${completed}%`,
+			background-color: $successGreenColor;
+			border-radius: inherit;
+			text-align: right;
+		}
+	}
+}
