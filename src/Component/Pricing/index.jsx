@@ -5,7 +5,7 @@ import { data } from "./data";
 function Pricing() {
     const [value, setValue] = useState(0);
 
-    const { id, plan, subscription, per } = data[value];
+    const { plan, subscription, per } = data[value];
 
     return(
         <main>
@@ -32,7 +32,34 @@ function Pricing() {
                         })}
                     </div>
 
-                    
+                    <div className="plansContainer">
+                        {data[value].subscription.map((item)=>{
+                            const { id, sub } = item;
+                            return(
+                                <div className={sub.subType} key={id}>
+                                    <h4>{plan}</h4>
+
+                                    <p>{sub.header}</p>
+
+                                    <h3>{sub.amount}<span>{per}</span></h3>
+
+                                    <p>{sub.text}</p>
+
+                                    <article>
+                                        {sub.subText.map((item)=>{
+                                            const { id, img, txt } = item;
+                                            return(
+                                                <div key={id}>
+                                                    <img src={img} alt={txt} />
+                                                    <span>{txt}</span>   
+                                                </div>
+                                            );
+                                        })}
+                                    </article>
+                                </div>
+                            );
+                        })}
+                    </div>
                 </article>
 
 

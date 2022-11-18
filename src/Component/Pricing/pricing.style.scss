@@ -8,14 +8,9 @@ $pricingBackground: rgba(178, 225, 217, 0.25);
 $h3Text: 'Open Sans', sans-serif;
 $pricingText: 'Work Sans', sans-serif;
 
-*, ::before, ::after {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
 main {
     .pricing{
-        background: $pricingBackground;
+        background-color: $pricingBackground;
         font-family: $pricingText;
         
         .text {
@@ -83,9 +78,10 @@ main {
                 border-radius: 50px;
                 color: #FFFFFF;
                 font-weight: 600;
+                transition: 300ms ease-in;
             }
         }
-        
+
     }
 }
 
