@@ -158,23 +158,32 @@ $viewLetterSpacing: -0.004em;
 
 // Tablet styling
 @media only screen and (min-width: 481px) and (max-width: 1000px) {
-  $margin: 24px 92px;
+  $width: 233px;
+  $margin: 24px 30px;
   $containerHeight: 100%;
+
   .container {
     margin: $margin;
   }
   section {
     max-height: $containerHeight;
+  }
+  figure {
+    width: $width;
   }
 }
 
 @media only screen and (min-width: 0px) and (max-width: 480px) {
-  $margin: 24px 55px;
+  $width: 327px;
+  $margin: 24px 33px;
   $containerHeight: 100%;
   .container {
     margin: $margin;
   }
   section {
     max-height: $containerHeight;
+  }
+  figure {
+    width: $width;
   }
 }
