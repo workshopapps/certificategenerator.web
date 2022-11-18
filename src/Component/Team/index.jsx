@@ -174,8 +174,8 @@ const Team = () => {
             <figcaption className="name">{member.name}</figcaption>
             <figcaption className="title">{member.title}</figcaption>
             <div className="icon">
-              <img src={member.socialMediaIcon1} alt="Social media icon 1" height='19.94px' width='19.96px' />
-              <img src={member.socialMediaIcon2} alt="Social media icon 2" height='19.94px' width='19.96px' />
+              <img src={member.socialMediaIcon1} alt="Social media icon 1" height='19.94px' width='19.96px' className="right_margin" />
+              <img src={member.socialMediaIcon2} alt="Social media icon 2" height='19.94px' width='19.96px' className="right_margin" />
               <img src={member.socialMediaIcon3} alt="Social media icon 3" height='19.94px' width='19.96px' />
             </div>
           </figure>
