@@ -14,7 +14,7 @@ export default function Filter({
       <div className="modal-card">
         <div className="modal-card__type">
           <h2>Certificate Type</h2>
-          <div className="filter-btn-wrapper">
+          <div className="filter-btn-wrappermodal">
             <button
               onClick={() => selectedCategory("completion")}
               className="sort-btnmodal"
