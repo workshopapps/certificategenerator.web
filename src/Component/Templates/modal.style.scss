@@ -20,11 +20,11 @@
 
   &__type,
   &__layout {
-    border-bottom: 1px solid rgba(169, 169, 169, 1);
+    border-bottom: 1px solid #a9a9a9;
     padding-bottom: 14px;
   }
 
-  .filter-btn-wrapper {
+  .filter-btn-wrappermodal {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     grid-template-rows: repeat(3, minmax(0, 1fr));
