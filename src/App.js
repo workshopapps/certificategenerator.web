@@ -1,5 +1,7 @@
 import { Route, Routes } from "react-router-dom";
+
 import "./App.css";
+import Team from "./Component/Team";
 import Layout from "./Component/Layout";
 import Navbar from "./Component/Navbar";
 // import Navbar from './Component/Navbar';
