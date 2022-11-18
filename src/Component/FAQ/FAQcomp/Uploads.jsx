@@ -3,9 +3,9 @@ import Style from "../faq.module.scss";
 
 import { FaqItems } from "./FaqItems";
 
-import { FaqList } from "./FaqModule";
+import { UploadsItems } from "./FaqModule";
 
-export const FaqContainer = ({ header }) => {
+export const Uploads = ({ header }) => {
 	const [clicked, setclicked] = useState("0");
 	const handleToggle = (index) => {
 		console.log(index);
@@ -20,7 +20,7 @@ export const FaqContainer = ({ header }) => {
 			<section className={Style.faqContainer}>
 				<h2>{header}</h2>
 
-				{FaqList.map((faq, index) => {
+				{UploadsItems.map((faq, index) => {
 					return (
 						<FaqItems
 							key={index}

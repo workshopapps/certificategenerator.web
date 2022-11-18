@@ -28,7 +28,9 @@ export const FaqItems = ({ faq, onToggle, active }) => {
 				</div>
 				{active ? (
 					<ul className={Style.faqAnswers}>
-						<li>{body.item1}</li>
+						{body.map((item) => {
+							return <li>{item}</li>;
+						})}
 					</ul>
 				) : null}
 			</div>
