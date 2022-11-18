@@ -24,13 +24,13 @@ export default function Template() {
     {
       id: 1,
       url: cardimg,
-      type: "completion",
+      type: "recognition",
       layout: "landscape",
     },
     {
       id: 2,
       url: cardimg2,
-      type: "excellence",
+      type: "recognition",
       layout: "landscape",
     },
     {
@@ -42,7 +42,7 @@ export default function Template() {
     {
       id: 4,
       url: cardimg4,
-      type: "appreciation",
+      type: "completion",
       layout: "landscape",
     },
     {
@@ -54,37 +54,37 @@ export default function Template() {
     {
       id: 6,
       url: cardimg6,
-      type: "achievement",
+      type: "appreciation",
       layout: "landscape",
     },
     {
       id: 7,
       url: cardimg7,
-      type: "attendance",
+      type: "completion",
       layout: "landscape",
     },
     {
       id: 8,
       url: cardimg8,
-      type: "attendance",
+      type: "completion",
       layout: "landscape",
     },
     {
       id: 9,
       url: cardimg9,
-      type: "achievement",
+      type: "appreciation",
       layout: "landscape",
     },
     {
       id: 10,
       url: cardimg10,
-      type: "appreciation",
+      type: "completion",
       layout: "landscape",
     },
     {
       id: 11,
       url: cardimg11,
-      type: "achievement",
+      type: "completion",
       layout: "landscape",
     },
   ];
@@ -111,62 +111,15 @@ export default function Template() {
       <header>
         <h1>Templates</h1>
 
-        <div className="filter-btn-wrapper">
-          <button
-            onClick={() => setCategory("completion")}
-            className="sort-btn"
-          >
-            Completion
-            <img src={closeicon} alt="close icon" />
-          </button>
-          <button
-            onClick={() => setCategory("participation")}
-            className="sort-btn"
-          >
-            Participation
-            <img src={closeicon} alt="close icon" />
-          </button>
-          <button
-            onClick={() => setCategory("appreciation")}
-            className="sort-btn"
-          >
-            Appreciation
-            <img src={closeicon} alt="close icon" />
-          </button>
-          <button
-            onClick={() => setCategory("recognition")}
-            className="sort-btn"
-          >
-            Recognition
-            <img src={closeicon} alt="close icon" />
-          </button>
-          <button
-            onClick={() => setCategory("attendance")}
-            className="sort-btn"
-          >
-            Attendance
-            <img src={closeicon} alt="close icon" />
-          </button>
-          <button
-            onClick={() => setCategory("excellence")}
-            className="sort-btn"
-          >
-            Excellence
-            <img src={closeicon} alt="close icon" />
-          </button>
-          <button
-            onClick={() => setCategory("achievement")}
-            className="sort-btn"
-          >
-            Achievement
-            <img src={closeicon} alt="close icon" />
-          </button>
-        </div>
         <div className="top-container-div">
           <p>All results</p>
-          <button onClick={() => setCategory("")} className="clear-btn">
-            Clear All Filters
-          </button>
+
+          {/* hide clear button if no filter is selected */}
+          {categories.length === 0 ? null : (
+            <button onClick={() => setCategory([])} className="clear-btn">
+              Clear All Filters
+            </button>
+          )}
         </div>
         <button
           className="filter-btn"
