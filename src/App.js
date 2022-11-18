@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import Layout from "./Component/Layout";
+import Terms from "./Component/Terms";
 // import Navbar from './Component/Navbar';
 
 function App() {
@@ -10,6 +11,7 @@ function App() {
 				<Route path="/" element={<Layout />}>
 					{/* <Route path="/genetrate" element={<Generate />} /> */}
 				</Route>
+				<Route path="/terms" element={<Terms />} />
 			</Routes>
 		</div>
 	);
