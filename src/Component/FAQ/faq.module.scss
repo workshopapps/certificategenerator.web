@@ -33,12 +33,16 @@
 	@include container();
 	width: 80%;
 	margin-top: 3rem;
+	h2 {
+		font-size: 1.2rem;
+	}
 
 	.faqWrapper {
 		box-shadow: 0px 4px 14px rgba(82, 77, 77, 0.2);
 		background-color: #fff;
 		border-radius: 10px;
 		padding: 1rem 2rem;
+		margin-bottom: 1rem;
 		.faqQuestions {
 			@include flexContainer(row, 100%, space-between);
 			gap: 20px;
@@ -50,6 +54,7 @@
 				h3 {
 					line-height: 1.5;
 					font-weight: 500;
+					font-size: 0.75rem;
 				}
 
 				.faqIcon {
@@ -68,12 +73,159 @@
 			width: 80%;
 			margin: 0 auto;
 			color: #656565;
-			line-height: 2;
+			li {
+				line-height: 1.5;
+				font-size: 0.9rem;
+			}
+		}
+	}
+}
+
+@media screen and (min-width: 481px) {
+	.header {
+		// max-width: 1440px;
+		// @include flexContainer(column, 70%);
+		// @include container();
+		// text-align: center;
+		// font-family: "Roboto", sans-serif;
+
+		h2 {
+			font-size: 1.5rem;
+			font-weight: 600;
+		}
+		p {
+			font-size: 1rem;
+			font-weight: 400;
+			padding: 0.5rem 5rem;
+		}
+	}
+
+	// Question cards
+	.faqContainer {
+		@include container();
+		width: 80%;
+		margin-top: 3rem;
+		h2 {
+			font-size: 1.5rem;
+		}
+
+		.faqWrapper {
+			box-shadow: 0px 4px 14px rgba(82, 77, 77, 0.2);
+			background-color: #fff;
+			border-radius: 10px;
+			padding: 1rem 2rem;
+			.faqQuestions {
+				@include flexContainer(row, 100%, space-between);
+				gap: 20px;
+
+				.question {
+					display: flex;
+					align-items: center;
+					gap: 10px;
+					h3 {
+						line-height: 1.5;
+						font-weight: 500;
+						font-size: 1rem;
+					}
+
+					.faqIcon {
+						width: 50px;
+						height: 50px;
+						img {
+							width: 100%;
+						}
+					}
+				}
+				.icon {
+					font-size: 2.5rem;
+				}
+			}
+			.faqAnswers {
+				width: 80%;
+				margin: 0 auto;
+				color: #656565;
+
+				li {
+					line-height: 1.5;
+					font-size: 1rem;
+				}
+			}
 		}
 	}
 }
 
 @media screen and (min-width: 769px) {
+	.header {
+		max-width: 1440px;
+		// @include flexContainer(column, 70%);
+		// @include container();
+		// text-align: center;
+		// font-family: "Roboto", sans-serif;
+
+		h2 {
+			font-size: 2.5rem;
+			font-weight: 600;
+		}
+		p {
+			font-size: 1.2rem;
+			font-weight: 400;
+			padding: 0.5rem 5rem;
+		}
+	}
+
+	.faqContainer {
+		@include container();
+		width: 80%;
+		margin-top: 3rem;
+		h2 {
+			font-size: 2rem;
+		}
+
+		.faqWrapper {
+			box-shadow: 0px 4px 14px rgba(82, 77, 77, 0.2);
+			background-color: #fff;
+			border-radius: 10px;
+			padding: 1rem 2rem;
+			.faqQuestions {
+				@include flexContainer(row, 100%, space-between);
+				gap: 20px;
+
+				.question {
+					display: flex;
+					align-items: center;
+					gap: 10px;
+					h3 {
+						line-height: 1.5;
+						font-weight: 500;
+						font-size: 1.5rem;
+					}
+
+					.faqIcon {
+						width: 50px;
+						height: 50px;
+						img {
+							width: 100%;
+						}
+					}
+				}
+				.icon {
+					font-size: 2.5rem;
+				}
+			}
+			.faqAnswers {
+				width: 80%;
+				margin: 0 auto;
+				color: #656565;
+				li {
+					line-height: 1.5;
+					font-size: 1.2rem;
+				}
+			}
+		}
+	}
+}
+
+@media screen and (min-width: 1025px) {
 	.header {
 		max-width: 1440px;
 		// @include flexContainer(column, 70%);
@@ -89,6 +241,57 @@
 			font-size: 1.7rem;
 			font-weight: 400;
 			padding: 0.5rem 5rem;
+		}
+	}
+
+	.faqContainer {
+		@include container();
+		width: 80%;
+		margin-top: 3rem;
+		h2 {
+			font-size: 2rem;
+		}
+
+		.faqWrapper {
+			box-shadow: 0px 4px 14px rgba(82, 77, 77, 0.2);
+			background-color: #fff;
+			border-radius: 10px;
+			padding: 1rem 2rem;
+			.faqQuestions {
+				@include flexContainer(row, 100%, space-between);
+				gap: 20px;
+
+				.question {
+					display: flex;
+					align-items: center;
+					gap: 10px;
+					h3 {
+						line-height: 1.5;
+						font-weight: 500;
+						font-size: 1.4rem;
+					}
+
+					.faqIcon {
+						width: 50px;
+						height: 50px;
+						img {
+							width: 100%;
+						}
+					}
+				}
+				.icon {
+					font-size: 2.5rem;
+				}
+			}
+			.faqAnswers {
+				width: 80%;
+				margin: 0 auto;
+				color: #656565;
+				li {
+					line-height: 1.5;
+					font-size: 1rem;
+				}
+			}
 		}
 	}
 }
