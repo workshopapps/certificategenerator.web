@@ -11,7 +11,7 @@ export const data = [
     },
     {
         id: 2,
-        plan: "Annualy",
+        plan: "Annually",
         subscription: {
             basic: "$0",
             standard: "$239.99",

@@ -10,7 +10,7 @@ function Pricing() {
     return(
         <main>
             <section className="pricing">
-                <article>
+                <article className="text">
                     <p>PRICING</p>
 
                     <h3>Choose a plan tailored to your needs</h3>
@@ -31,6 +31,8 @@ function Pricing() {
                             );
                         })}
                     </div>
+
+                    
                 </article>
 
 
