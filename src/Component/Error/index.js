@@ -12,17 +12,15 @@ const index = () => {
         you to go.
       </p>
       <div className="error-buttons">
-        <button className="btn-solid">
-          <Link className="link" to="/">
-            Go to Certawi Home
-          </Link>
-        </button>
-        <button className="btn-outline">
-          <Link className="link">
+        <Link className="link" to="/">
+          <button className="btn-solid">Go to Certawi Home</button>
+        </Link>
+        <Link className="link">
+          <button className="btn-outline" onClick={() => window.history.back()}>
             <BsArrowLeft className="arrow-left" />
             Go Back
-          </Link>
-        </button>
+          </button>
+        </Link>
       </div>
       <div className="error-image">
         <img src={errorImg} alt="error 404" />

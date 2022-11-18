@@ -39,23 +39,22 @@
     background-color: white;
     font-size: 1rem;
   }
-  .btn-solid {
-    background-color: #19a68e;
-    .link {
-      text-decoration: none;
-      color: white;
-    }
-  }
-  .btn-outline {
-    background-color: white;
-    border: 2px solid #19a68e;
-    .link {
-      text-decoration: none;
+  .link {
+    text-decoration: none;
+    .btn-outline {
+      cursor: pointer;
+      border: 2px solid #19a68e;
+      background-color: white;
       color: #19a68e;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 10px;
+    }
+    .btn-solid {
+      cursor: pointer;
+      background-color: #19a68e;
+      color: white;
     }
   }
 }
@@ -70,9 +69,28 @@
   width: 100%;
 }
 
-@media only screen and (min-width: 1023px) {
+@media only screen and (min-width: 768px) {
   .error-page {
     max-width: 730px;
+    margin-top: 3.5rem;
+    h1 {
+      font-size: 3rem;
+    }
+    p {
+      font-size: 20px;
+    }
+  }
+  .error-page .error-buttons {
+    flex-direction: row;
+    gap: 40px;
+  }
+  .error-image {
+    margin-top: calc(6.5rem - 20px);
+  }
+}
+
+@media only screen and (min-width: 1023px) {
+  .error-page {
     margin-top: 4rem;
     h1 {
       font-size: 57px;
@@ -81,9 +99,8 @@
       font-size: 27px;
     }
   }
-  .error-page .error-buttons {
-    flex-direction: row;
-    gap: 40px;
+  .error-image {
+    margin-top: 20px;
   }
   .error-image img {
     width: 75%;
