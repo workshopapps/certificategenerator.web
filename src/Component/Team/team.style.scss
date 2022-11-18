@@ -58,7 +58,7 @@ section {
 $width: 292px;
 $height: 333px;
 $flexWrap: wrap;
-$margin: 0px 120px;
+$margin: 24px 120px;
 $figureMargin: 6px;
 $flexDirection: row;
 $boxSizing: border-box;
@@ -137,7 +137,6 @@ button {
 }
 
 $viewFontSize: 16px;
-$viewMarginTop: 24px;
 $viewLineHeight: 19px;
 $viewColor: #FFFFFF;
 $viewMarginBottom: 64px;
@@ -147,11 +146,14 @@ $viewLetterSpacing: -0.004em;
   color: $viewColor;
   font-weight: $normal;
   font-size: $viewFontSize;
-  margin-top: $viewMarginTop;
   line-height: $viewLineHeight;
   align-items: $titleAlignItems;
   margin-bottom: $viewMarginBottom;
   letter-spacing: $viewLetterSpacing;
+}
+
+.right_margin {
+  margin-right: 11.04px;
 }
 
 // Tablet styling
