@@ -65,12 +65,14 @@ $height: 333px;
 $background: #FDFDFD;
 $figureBorder: 1px solid #6C6C70;
 $figureBorderRadius: 24px;
+$flexWrap: wrap;
+$margin: 0px 120px;
 
 .container {
   display: $display;
   flex-direction: $flexDirection;
-  flex-wrap: wrap;
-  margin: 0px 120px;
+  flex-wrap: $flexWrap;
+  margin: $margin;
 }
 
 figure {
@@ -133,7 +135,7 @@ button {
 }
 
 $viewFontSize: 16px;
-$viewLineHeight: 20px;
+$viewLineHeight: 19px;
 $viewLetterSpacing: -0.004em;
 $viewColor: #FFFFFF;
 $viewMarginBottom: 64px;
