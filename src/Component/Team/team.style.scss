@@ -55,10 +55,11 @@ section {
   letter-spacing: $teamLetterSpacing;
 }
 // members styling
-$width: 228px;
+$width: 292px;
 $height: 333px;
 $flexWrap: wrap;
 $margin: 0px 120px;
+$figureMargin: 6px;
 $flexDirection: row;
 $boxSizing: border-box;
 $background: #FDFDFD;
@@ -79,12 +80,13 @@ figure {
   width: $width;
   max-height: $height;
   border: $figureBorder;
+  margin: $figureMargin;
   box-sizing: $boxSizing;
   padding: $figurePadding;
   background: $background;
   align-items: $figureAlignItems;
   justify-content: $justifyContent;
-  border-radius: $figureBorderRadius
+  border-radius: $figureBorderRadius;
 }
 
 $nameFontSize: 19px;
@@ -106,7 +108,7 @@ $titleLineHeight: 20px;
 }
 
 $marginTop: 10px;
-$iconJustifyContent: space-evenly;
+$iconJustifyContent: center;
 
 .icon {
   display: $display;
@@ -135,6 +137,7 @@ button {
 }
 
 $viewFontSize: 16px;
+$viewMarginTop: 24px;
 $viewLineHeight: 19px;
 $viewColor: #FFFFFF;
 $viewMarginBottom: 64px;
@@ -144,6 +147,7 @@ $viewLetterSpacing: -0.004em;
   color: $viewColor;
   font-weight: $normal;
   font-size: $viewFontSize;
+  margin-top: $viewMarginTop;
   line-height: $viewLineHeight;
   align-items: $titleAlignItems;
   margin-bottom: $viewMarginBottom;
@@ -152,7 +156,7 @@ $viewLetterSpacing: -0.004em;
 
 // Tablet styling
 @media only screen and (min-width: 0px) and (max-width: 1000px) {
-  $margin: 0px 85px;
+  $margin: 0px 90px;
   $containerHeight: 100%;
   .container {
     margin: $margin;
