@@ -19,7 +19,7 @@ $meetLineHeight: 29px;
 
 $display: flex;
 $titleAlignItems: center;
-$letterSpacing: -0.5px;
+$teamLetterSpacing: -0.5px;
 $titleColor: #000000;
 
 $teamMarginTop: 44px;
@@ -39,7 +39,7 @@ section {
   font-size: $teamFontSize;
   line-height: $teamLineHeight;
   align-items: $titleAlignItems;
-  letter-spacing: $letterSpacing;
+  letter-spacing: $teamLetterSpacing;
   color: $titleColor;
   margin-top: $teamMarginTop;
 }
@@ -50,7 +50,7 @@ section {
   font-size: $meetFontSize;
   line-height: $meetLineHeight;
   align-items: $titleAlignItems;
-  letter-spacing: $letterSpacing;
+  letter-spacing: $teamLetterSpacing;
   color: $titleColor;
   margin-top: $meetMarginTop;
 }
@@ -63,7 +63,7 @@ $figurePadding: 24px 23px;
 $width: 228px;
 $height: 333px;
 $background: #FDFDFD;
-$border: 1px solid #6C6C70;
+$figureBorder: 1px solid #6C6C70;
 $figureBorderRadius: 24px;
 
 .container {
@@ -81,7 +81,7 @@ figure {
   width: $width;
   max-height: $height;
   background: $background;
-  border: $border;
+  border: $figureBorder;
   border-radius: $figureBorderRadius
 }
 
@@ -114,13 +114,36 @@ $marginTop: 10px;
   margin-top: $marginTop;
 }
 
+// button styling
 $buttonPadding: 12px 20px;
 $buttonBackground: #19A68E;
 $buttonBorderRadius: 10px;
+$buttonBorder: 1px solid #19A68E;
+$buttonHeight: 138px;
+$buttonWidth: 48px;
 
 button {
   justify-content: $justifyContent;
   align-items: $titleAlignItems;
   background: $buttonBackground;
   border-radius: $buttonBorderRadius;
+  border: $buttonBorder;
+  width: $buttonHeight;
+  height: $buttonWidth;
+}
+
+$viewFontSize: 16px;
+$viewLineHeight: 20px;
+$viewLetterSpacing: -0.004em;
+$viewColor: #FFFFFF;
+$viewMarginBottom: 64px;
+
+.view {
+  font-weight: $normal;
+  font-size: $viewFontSize;
+  line-height: $viewLineHeight;
+  align-items: $titleAlignItems;
+  letter-spacing: $viewLetterSpacing;
+  color: $viewColor;
+  margin-bottom: $viewMarginBottom;
 }

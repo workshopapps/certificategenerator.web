@@ -5,6 +5,7 @@ import Anees from "./images/anees.svg";
 import Icon1 from "./images/icon_1.svg";
 import Icon2 from "./images/icon_2.svg";
 import Icon3 from "./images/icon_3.svg";
+import ArrowDown from "./images/arrow_down.svg";
 
 const Team = () => {
   return (
@@ -176,7 +177,10 @@ const Team = () => {
         </figure>
       </div>
       {/* button */}
-      <button></button>
+      <button className="view">
+        View more
+        <img src={ArrowDown} alt="" />
+      </button>
     </section>
   );
 };
