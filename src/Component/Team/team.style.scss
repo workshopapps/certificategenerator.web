@@ -1,0 +1,126 @@
+@import "../../Style/variables";
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;700&display=swap');
+
+$containerHeight: 1832px;
+$containerBackground: #F8FFFE;
+$sectionWidth: 100%;
+
+$fontFamily: 'Sora';
+$fontStyle: normal;
+
+$bold: 700;
+$normal: 400;
+
+$teamFontSize: 57px;
+$teamLineHeight: 72px;
+
+$meetFontSize: 23px;
+$meetLineHeight: 29px;
+
+$display: flex;
+$titleAlignItems: center;
+$letterSpacing: -0.5px;
+$titleColor: #000000;
+
+$teamMarginTop: 44px;
+$meetMarginTop: 24px;
+
+// container styling
+section {
+  width: $sectionWidth;
+  max-height: $containerHeight;
+  background: $containerBackground;
+}
+// title styling
+.team {
+  font-family: $fontFamily;
+  font-style: $fontStyle;
+  font-weight: $bold;
+  font-size: $teamFontSize;
+  line-height: $teamLineHeight;
+  align-items: $titleAlignItems;
+  letter-spacing: $letterSpacing;
+  color: $titleColor;
+  margin-top: $teamMarginTop;
+}
+.meet {
+  font-family: $fontFamily;
+  font-style: $fontStyle;
+  font-weight: $normal;
+  font-size: $meetFontSize;
+  line-height: $meetLineHeight;
+  align-items: $titleAlignItems;
+  letter-spacing: $letterSpacing;
+  color: $titleColor;
+  margin-top: $meetMarginTop;
+}
+// members styling
+$boxSizing: border-box;
+$flexDirection: row;
+$justifyContent: center;
+$figureAlignItems: flex-start;
+$figurePadding: 24px 23px;
+$width: 228px;
+$height: 333px;
+$background: #FDFDFD;
+$border: 1px solid #6C6C70;
+$figureBorderRadius: 24px;
+
+.container {
+  display: $display;
+  flex-direction: $flexDirection;
+  flex-wrap: wrap;
+  margin: 0px 120px;
+}
+
+figure {
+  box-sizing: $boxSizing;
+  justify-content: $justifyContent;
+  align-items: $figureAlignItems;
+  padding: $figurePadding;
+  width: $width;
+  max-height: $height;
+  background: $background;
+  border: $border;
+  border-radius: $figureBorderRadius
+}
+
+$nameFontSize: 19px;
+$nameLineHeight: 24px;
+
+.name {
+  font-weight: $bold;
+  font-size: $nameFontSize;
+  line-height: $nameLineHeight;
+}
+
+$titleFontSize: 16px;
+$titleLineHeight: 20px;
+
+.title {
+  font-weight: $normal;
+  font-size: $titleFontSize;
+  line-height: $titleLineHeight;
+}
+
+$iconJustifyContent: space-evenly;
+$marginTop: 10px;
+
+.icon {
+  display: $display;
+  flex-direction: $flexDirection;
+  justify-content: $iconJustifyContent;
+  align-items: $titleAlignItems;
+  margin-top: $marginTop;
+}
+
+$buttonPadding: 12px 20px;
+$buttonBackground: #19A68E;
+$buttonBorderRadius: 10px;
+
+button {
+  justify-content: $justifyContent;
+  align-items: $titleAlignItems;
+  background: $buttonBackground;
+  border-radius: $buttonBorderRadius;
+}
