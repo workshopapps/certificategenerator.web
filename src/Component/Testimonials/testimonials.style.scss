@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;700&family=Work+Sans:wght@400;700&display=swap');
+@import "../../Style/variables";
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    max-width: $containerWidth;
+    color: #222222;
+}
+
+.flex {
+    display: flex;
+}
+.justify-between {
+    justify-content: space-between;
+}
+
+.grid {
+    display: grid;
+}
+
+.work-sans {
+    font-family: 'Work sans';
+}
+
+.sora {
+    font-family: 'Sora';
+}
+
+.line-height {
+    line-height: 24px;
+}
+
+.emphasized {
+    color: #19A68E;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.items-center {
+    align-items: center;
+}
+
+.center {
+    width: 90%;
+    margin: auto;
+}
