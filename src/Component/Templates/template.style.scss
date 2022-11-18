@@ -26,33 +26,6 @@
     text-align: left;
   }
 
-  .filter-btn-wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 10px;
-    padding-bottom: 10px;
-
-    .sort-btn {
-      background-color: #f4f4f4;
-      border: 1px solid #a9a9a9;
-      color: #6c6c70;
-      border-radius: 6px;
-      padding: 3px 5px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: space-evenly;
-      gap: 2px;
-
-      img {
-        width: 15%;
-        opacity: 40%;
-      }
-    }
-  }
-
   .top-container-div {
     display: flex;
     justify-content: space-between;
@@ -90,13 +63,14 @@
 
   .cards-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 10px;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    column-gap: 38px;
+    row-gap: 34px;
 
     .template-card {
-      border: 1px solid rgba(108, 108, 112, 1);
-      width: 298px;
-      height: 231px;
+      border: 1px solid rgba(108, 108, 112, 0.8);
+      width: 280px;
+      height: 193px;
       border-radius: 8px;
       overflow: hidden;
       color: rgba(255, 255, 255, 1);
@@ -134,7 +108,7 @@
         height: 60%;
         padding-block: 8px;
         display: flex;
-        align-items: center;
+        align-items: flex-start;
         justify-content: center;
 
         img {
@@ -172,7 +146,7 @@
       color: #6c6c70;
       padding: 12px 18px;
       border-radius: 8px;
-      background-color: #efefef;
+      background-color: #fff;
       rotate: 0deg;
       top: 4px;
     }
