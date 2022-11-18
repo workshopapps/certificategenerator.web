@@ -56,7 +56,7 @@ export const payments = [
     name: <>Fees may be paid by bank transfer, credit card or debit card, as well as other payment orders made through payment institutions or electronic money institutions operating in accordance with the Payment Services Act of 19 August 2011. The service provider undertakes to enable so-called fast payments through <a href="https://www.certawi.com/" style={{color: '#19A68E', textDecoration: 'underline'}}>https://www.certawi.com/</a>.</>,
   },
   {
-    name: <>The fee for individual variants of the Service is specified in the Price List at <a href="https://certifier.me" style={{color: '#6C6C70', textDecoration: 'underline'}}>https://certifier.me</a>, which is an integral part of these Terms and Conditions. These are each time net prices for the monthly period of using the Service.</>,
+    name: <>The fee for individual variants of the Service is specified in the Price List at <a href="https://www.certawi.com/" style={{color: '#19A68E', textDecoration: 'underline'}}>https://www.certawi.com/</a>, which is an integral part of these Terms and Conditions. These are each time net prices for the monthly period of using the Service.</>,
   },
   {
     name: 'The Service Provider reserves the right to make changes to the Price List at any time.',

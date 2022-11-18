@@ -5,9 +5,11 @@
     text-align: left;
     padding: 3rem 4rem;
     line-height: 36px;
-    //p {margin: 0;}
     a {color: unset; text-decoration: unset; &:hover{color: #19a68fc7;}}
     @media screen and (max-width: 768px) {
+        padding: 3rem 44px;
+    }
+    @media screen and (max-width: 568px) {
         padding: 3rem 32px;
     }
     .header {
