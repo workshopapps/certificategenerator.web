@@ -19,13 +19,141 @@ import addicon from "./assets/add-square.svg";
 import "./template.style.scss";
 
 export default function Template() {
+  const cardImages = [
+    {
+      id: 1,
+      url: cardimg,
+      type: "completion",
+      layout: "landscape",
+    },
+    {
+      id: 2,
+      url: cardimg2,
+      type: "excellence",
+      layout: "landscape",
+    },
+    {
+      id: 3,
+      url: cardimg3,
+      type: "completion",
+      layout: "landscape",
+    },
+    {
+      id: 4,
+      url: cardimg4,
+      type: "appreciation",
+      layout: "landscape",
+    },
+    {
+      id: 5,
+      url: cardimg5,
+      type: "appreciation",
+      layout: "landscape",
+    },
+    {
+      id: 6,
+      url: cardimg6,
+      type: "achievement",
+      layout: "landscape",
+    },
+    {
+      id: 7,
+      url: cardimg7,
+      type: "attendance",
+      layout: "landscape",
+    },
+    {
+      id: 8,
+      url: cardimg8,
+      type: "attendance",
+      layout: "landscape",
+    },
+    {
+      id: 9,
+      url: cardimg9,
+      type: "achievement",
+      layout: "landscape",
+    },
+    {
+      id: 10,
+      url: cardimg10,
+      type: "appreciation",
+      layout: "landscape",
+    },
+    {
+      id: 11,
+      url: cardimg11,
+      type: "achievement",
+      layout: "landscape",
+    },
+  ];
   const [modalState, setModalState] = useState(false);
 
+  const [category, setCategory] = useState([]);
+
+  let categories = category;
+
+  const childToParent = (clickedCategory) => {
+    categories.push(clickedCategory);
+  };
+
+  const applySelectCategories = () => {
+    setCategory(categories);
+  };
+
+  console.log(category);
   return (
     <div className="template-wrapper">
       <header>
         <h1>Templates</h1>
         <p>All results</p>
+        <div className="filter-btn-wrapper">
+          <button
+            onClick={() => setCategory("completion")}
+            className="sort-btn"
+          >
+            Completion
+          </button>
+          <button
+            onClick={() => setCategory("participation")}
+            className="sort-btn"
+          >
+            Participation
+          </button>
+          <button
+            onClick={() => setCategory("appreciation")}
+            className="sort-btn"
+          >
+            Appreciation
+          </button>
+          <button
+            onClick={() => setCategory("recognition")}
+            className="sort-btn"
+          >
+            Recognition
+          </button>
+          <button
+            onClick={() => setCategory("attendance")}
+            className="sort-btn"
+          >
+            Attendance
+          </button>
+          <button
+            onClick={() => setCategory("excellence")}
+            className="sort-btn"
+          >
+            Excellence
+          </button>
+          <button
+            onClick={() => setCategory("achievement")}
+            className="sort-btn"
+          >
+            Achievement
+          </button>
+          <button onClick={() => setCategory("")} className="sort-btn">
+            Clear All Filters
+          </button>
+        </div>
         <button
           className="filter-btn"
           onClick={() => setModalState(!modalState)}
@@ -36,7 +164,11 @@ export default function Template() {
           </span>
         </button>
         {/* modal popup */}
-        <Filter open={modalState} />
+        <Filter
+          open={modalState}
+          selectedCategory={childToParent}
+          applyCategories={applySelectCategories}
+        />
       </header>
       <div className="cards-container">
         {/* cards start */}
@@ -55,93 +187,21 @@ export default function Template() {
           </div>
         </div>
 
-        <div className="template-card">
-          <div className="template-card__img">
-            <a href="#">
-              <img src={cardimg} alt="card" />
-            </a>
-          </div>
-        </div>
-
-        <div className="template-card">
-          <div className="template-card__img">
-            <a href="#">
-              <img src={cardimg2} alt="card" />
-            </a>
-          </div>
-        </div>
-
-        <div className="template-card">
-          <div className="template-card__img">
-            <a href="#">
-              <img src={cardimg3} alt="card" />
-            </a>
-          </div>
-        </div>
-
-        <div className="template-card">
-          <div className="template-card__img">
-            <a href="#">
-              <img src={cardimg4} alt="card" />
-            </a>
-          </div>
-        </div>
-
-        <div className="template-card">
-          <div className="template-card__img">
-            <a href="#">
-              <img src={cardimg5} alt="card" />
-            </a>
-          </div>
-        </div>
-
-        <div className="template-card">
-          <div className="template-card__img">
-            <a href="#">
-              <img src={cardimg6} alt="card" />
-            </a>
-          </div>
-        </div>
-
-        <div className="template-card">
-          <div className="template-card__img">
-            <a href="#">
-              <img src={cardimg7} alt="card" />
-            </a>
-          </div>
-        </div>
-
-        <div className="template-card">
-          <div className="template-card__img">
-            <a href="#">
-              <img src={cardimg8} alt="card" />
-            </a>
-          </div>
-        </div>
-
-        <div className="template-card">
-          <div className="template-card__img">
-            <a href="#">
-              <img src={cardimg9} alt="card" />
-            </a>
-          </div>
-        </div>
-
-        <div className="template-card">
-          <div className="template-card__img">
-            <a href="#">
-              <img src={cardimg10} alt="card" />
-            </a>
-          </div>
-        </div>
-
-        <div className="template-card">
-          <div className="template-card__img">
-            <a href="#">
-              <img src={cardimg11} alt="card" />
-            </a>
-          </div>
-        </div>
+        {cardImages
+          .filter((item) => {
+            return category.length === 0 ? item : category.includes(item.type);
+          })
+          .map((item) => {
+            return (
+              <div key={item.id} className="template-card">
+                <div className="template-card__img">
+                  <a href="#">
+                    <img src={item.url} alt="card" />
+                  </a>
+                </div>
+              </div>
+            );
+          })}
       </div>
     </div>
   );

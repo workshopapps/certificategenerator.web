@@ -1,7 +1,7 @@
 import React from "react";
 import "./modal.style.scss";
 
-export default function Filter({ open }) {
+export default function Filter({ open, selectedCategory, applyCategories }) {
   if (!open) return null;
   return (
     <div>
@@ -9,13 +9,48 @@ export default function Filter({ open }) {
         <div className="modal-card__type">
           <h2>Certificate Type</h2>
           <div className="filter-btn-wrapper">
-            <button className="sort-btn">Completion</button>
-            <button className="sort-btn">Participation</button>
-            <button className="sort-btn">Appreciation</button>
-            <button className="sort-btn">Recognition</button>
-            <button className="sort-btn">Attendance</button>
-            <button className="sort-btn">Excellence</button>
-            <button className="sort-btn">Achievement</button>
+            <button
+              onClick={() => selectedCategory("completion")}
+              className="sort-btn"
+            >
+              Completion
+            </button>
+            <button
+              onClick={() => selectedCategory("participation")}
+              className="sort-btn"
+            >
+              Participation
+            </button>
+            <button
+              onClick={() => selectedCategory("appreciation")}
+              className="sort-btn"
+            >
+              Appreciation
+            </button>
+            <button
+              onClick={() => selectedCategory("recognition")}
+              className="sort-btn"
+            >
+              Recognition
+            </button>
+            <button
+              onClick={() => selectedCategory("attendance")}
+              className="sort-btn"
+            >
+              Attendance
+            </button>
+            <button
+              onClick={() => selectedCategory("excellence")}
+              className="sort-btn"
+            >
+              Excellence
+            </button>
+            <button
+              onClick={() => selectedCategory("achievement")}
+              className="sort-btn"
+            >
+              Achievement
+            </button>
           </div>
         </div>
         <div className="modal-card__layout">
@@ -137,7 +172,7 @@ export default function Filter({ open }) {
             </div>
           </div>
         </div>
-        <div className="modal-card__submit">
+        <div onClick={() => applyCategories()} className="modal-card__submit">
           <button className="btn-submit btn-submit--apply">Apply</button>
           <button className="btn-submit btn-submit--cancel">Cancel</button>
         </div>
