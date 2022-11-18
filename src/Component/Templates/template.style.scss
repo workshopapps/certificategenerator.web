@@ -15,6 +15,7 @@
     font-size: 20px;
     font-weight: 600;
     margin: 0;
+    padding-bottom: 16px;
   }
 
   p {
@@ -36,7 +37,7 @@
       border: 1px solid #a9a9a9;
       color: #6c6c70;
       border-radius: 6px;
-      padding: 2px 1px;
+      padding: 3px 5px;
       cursor: pointer;
       display: flex;
       align-items: center;
@@ -47,6 +48,19 @@
         width: 15%;
         opacity: 40%;
       }
+    }
+  }
+
+  .top-container-div {
+    display: flex;
+    justify-content: space-between;
+
+    .clear-btn {
+      padding: 0;
+      color: #19a68e;
+      border: none;
+      background-color: transparent;
+      cursor: pointer;
     }
   }
 

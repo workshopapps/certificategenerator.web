@@ -17,43 +17,43 @@ export default function Filter({
           <div className="filter-btn-wrapper">
             <button
               onClick={() => selectedCategory("completion")}
-              className="sort-btn"
+              className="sort-btnmodal"
             >
               Completion
             </button>
             <button
               onClick={() => selectedCategory("participation")}
-              className="sort-btn"
+              className="sort-btnmodal"
             >
               Participation
             </button>
             <button
               onClick={() => selectedCategory("appreciation")}
-              className="sort-btn"
+              className="sort-btnmodal"
             >
               Appreciation
             </button>
             <button
               onClick={() => selectedCategory("recognition")}
-              className="sort-btn"
+              className="sort-btnmodal"
             >
               Recognition
             </button>
             <button
               onClick={() => selectedCategory("attendance")}
-              className="sort-btn"
+              className="sort-btnmodal"
             >
               Attendance
             </button>
             <button
               onClick={() => selectedCategory("excellence")}
-              className="sort-btn"
+              className="sort-btnmodal"
             >
               Excellence
             </button>
             <button
               onClick={() => selectedCategory("achievement")}
-              className="sort-btn"
+              className="sort-btnmodal"
             >
               Achievement
             </button>

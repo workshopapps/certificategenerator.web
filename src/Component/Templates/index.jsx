@@ -111,7 +111,7 @@ export default function Template() {
     <div className="template-wrapper">
       <header>
         <h1>Templates</h1>
-        <p>All results</p>
+
         <div className="filter-btn-wrapper">
           <button
             onClick={() => setCategory("completion")}
@@ -162,7 +162,10 @@ export default function Template() {
             Achievement
             <img src={closeicon} alt="close icon" />
           </button>
-          <button onClick={() => setCategory("")} className="sort-btn">
+        </div>
+        <div className="top-container-div">
+          <p>All results</p>
+          <button onClick={() => setCategory("")} className="clear-btn">
             Clear All Filters
           </button>
         </div>
