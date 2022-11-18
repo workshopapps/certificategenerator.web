@@ -1,12 +1,12 @@
 @import "../../Style/variables";
 @import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;700&display=swap');
 
+$sectionWidth: 100%;
 $containerHeight: 1832px;
 $containerBackground: #F8FFFE;
-$sectionWidth: 100%;
 
-$fontFamily: 'Sora';
 $fontStyle: normal;
+$fontFamily: 'Sora';
 
 $bold: 700;
 $normal: 400;
@@ -18,9 +18,9 @@ $meetFontSize: 23px;
 $meetLineHeight: 29px;
 
 $display: flex;
+$titleColor: #000000;
 $titleAlignItems: center;
 $teamLetterSpacing: -0.5px;
-$titleColor: #000000;
 
 $teamMarginTop: 44px;
 $meetMarginTop: 24px;
@@ -33,57 +33,57 @@ section {
 }
 // title styling
 .team {
-  font-family: $fontFamily;
-  font-style: $fontStyle;
   font-weight: $bold;
+  color: $titleColor;
+  font-style: $fontStyle;
+  font-family: $fontFamily;
   font-size: $teamFontSize;
+  margin-top: $teamMarginTop;
   line-height: $teamLineHeight;
   align-items: $titleAlignItems;
   letter-spacing: $teamLetterSpacing;
-  color: $titleColor;
-  margin-top: $teamMarginTop;
 }
 .meet {
-  font-family: $fontFamily;
-  font-style: $fontStyle;
+  color: $titleColor;
   font-weight: $normal;
+  font-style: $fontStyle;
+  font-family: $fontFamily;
   font-size: $meetFontSize;
+  margin-top: $meetMarginTop;
   line-height: $meetLineHeight;
   align-items: $titleAlignItems;
   letter-spacing: $teamLetterSpacing;
-  color: $titleColor;
-  margin-top: $meetMarginTop;
 }
 // members styling
-$boxSizing: border-box;
-$flexDirection: row;
-$justifyContent: center;
-$figureAlignItems: flex-start;
-$figurePadding: 24px 23px;
 $width: 228px;
 $height: 333px;
-$background: #FDFDFD;
-$figureBorder: 1px solid #6C6C70;
-$figureBorderRadius: 24px;
 $flexWrap: wrap;
 $margin: 0px 120px;
+$flexDirection: row;
+$boxSizing: border-box;
+$background: #FDFDFD;
+$justifyContent: center;
+$figurePadding: 24px 23px;
+$figureBorderRadius: 24px;
+$figureAlignItems: flex-start;
+$figureBorder: 1px solid #6C6C70;
 
 .container {
-  display: $display;
-  flex-direction: $flexDirection;
-  flex-wrap: $flexWrap;
   margin: $margin;
+  display: $display;
+  flex-wrap: $flexWrap;
+  flex-direction: $flexDirection;
 }
 
 figure {
-  box-sizing: $boxSizing;
-  justify-content: $justifyContent;
-  align-items: $figureAlignItems;
-  padding: $figurePadding;
   width: $width;
   max-height: $height;
-  background: $background;
   border: $figureBorder;
+  box-sizing: $boxSizing;
+  padding: $figurePadding;
+  background: $background;
+  align-items: $figureAlignItems;
+  justify-content: $justifyContent;
   border-radius: $figureBorderRadius
 }
 
@@ -105,47 +105,70 @@ $titleLineHeight: 20px;
   line-height: $titleLineHeight;
 }
 
-$iconJustifyContent: space-evenly;
 $marginTop: 10px;
+$iconJustifyContent: space-evenly;
 
 .icon {
   display: $display;
+  margin-top: $marginTop;
+  align-items: $titleAlignItems;
   flex-direction: $flexDirection;
   justify-content: $iconJustifyContent;
-  align-items: $titleAlignItems;
-  margin-top: $marginTop;
 }
 
 // button styling
-$buttonPadding: 12px 20px;
-$buttonBackground: #19A68E;
-$buttonBorderRadius: 10px;
-$buttonBorder: 1px solid #19A68E;
-$buttonHeight: 138px;
 $buttonWidth: 48px;
+$buttonHeight: 138px;
+$buttonPadding: 12px 20px;
+$buttonBorderRadius: 10px;
+$buttonBackground: #19A68E;
+$buttonBorder: 1px solid #19A68E;
 
 button {
-  justify-content: $justifyContent;
-  align-items: $titleAlignItems;
-  background: $buttonBackground;
-  border-radius: $buttonBorderRadius;
-  border: $buttonBorder;
   width: $buttonHeight;
   height: $buttonWidth;
+  border: $buttonBorder;
+  align-items: $titleAlignItems;
+  background: $buttonBackground;
+  justify-content: $justifyContent;
+  border-radius: $buttonBorderRadius;
 }
 
 $viewFontSize: 16px;
 $viewLineHeight: 19px;
-$viewLetterSpacing: -0.004em;
 $viewColor: #FFFFFF;
 $viewMarginBottom: 64px;
+$viewLetterSpacing: -0.004em;
 
 .view {
+  color: $viewColor;
   font-weight: $normal;
   font-size: $viewFontSize;
   line-height: $viewLineHeight;
   align-items: $titleAlignItems;
-  letter-spacing: $viewLetterSpacing;
-  color: $viewColor;
   margin-bottom: $viewMarginBottom;
+  letter-spacing: $viewLetterSpacing;
+}
+
+// Tablet styling
+@media only screen and (min-width: 0px) and (max-width: 1000px) {
+  $margin: 0px 85px;
+  $containerHeight: 100%;
+  .container {
+    margin: $margin;
+  }
+  section {
+    max-height: $containerHeight;
+  }
+}
+
+@media only screen and (min-width: 0px) and (max-width: 480px) {
+  $margin: 0px 45px;
+  $containerHeight: 100%;
+  .container {
+    margin: $margin;
+  }
+  section {
+    max-height: $containerHeight;
+  }
 }

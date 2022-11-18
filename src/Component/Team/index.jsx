@@ -2,161 +2,162 @@ import React from "react";
 
 import "./team.style.scss";
 // pictures
+import Joy from "./images/joy.svg";
+import Zed from "./images/zed.svg";
+import Ben from "./images/ben.svg";
+import Moyo from "./images/moyo.svg";
+import Ehis from "./images/ehis.svg";
 import Anees from "./images/anees.svg";
 import Ajayi from "./images/ajayi.svg";
-import Joy from "./images/joy.svg";
-import Prosper from "./images/prosper.svg";
-import Moyo from "./images/moyo.svg";
-import Muminat from "./images/muminat.svg";
+import Rhoda from "./images/rhoda.svg";
 import Samuel from "./images/samuel.svg";
 import Abiola from "./images/abiola.svg";
-import Rhoda from "./images/rhoda.svg";
-import Ehis from "./images/ehis.svg";
-import Zed from "./images/zed.svg";
 import Joseph from "./images/joseph.svg";
 import Luqman from "./images/luqman.svg";
 import Asanze from "./images/asanze.svg";
 import Andrew from "./images/andrew.svg";
-import Ben from "./images/ben.svg";
+import Prosper from "./images/prosper.svg";
+import Muminat from "./images/muminat.svg";
 // icons
 import Web from "./images/web.svg";
-import LinkedIn from "./images/linkedin.svg";
-import Twitter from "./images/twitter.svg";
-import Facebook from "./images/facebook.svg";
-import Behance from "./images/behance.svg";
-import Instagram from "./images/instagram.svg";
 import Github from "./images/github.svg";
+import Twitter from "./images/twitter.svg";
+import Behance from "./images/behance.svg";
+import LinkedIn from "./images/linkedin.svg";
+import Facebook from "./images/facebook.svg";
+import Instagram from "./images/instagram.svg";
 import ArrowDown from "./images/arrow_down.svg";
 
+// members data
 const members = [
   {
     picture: Anees,
     name: "Anees Adeyinka",
     title: "Product designer",
-    socialMediaIcon1: Web, 
-    socialMediaIcon2: LinkedIn, 
-    socialMediaIcon3: Twitter, 
+    socialMediaIcon1: Web,
+    socialMediaIcon2: LinkedIn,
+    socialMediaIcon3: Twitter,
   },
   {
     picture: Ajayi,
     name: "Ajayi Abiola",
     title: "Product Manager",
-    socialMediaIcon1: LinkedIn, 
-    socialMediaIcon2: Twitter, 
-    socialMediaIcon3: Facebook, 
+    socialMediaIcon1: LinkedIn,
+    socialMediaIcon2: Twitter,
+    socialMediaIcon3: Facebook,
   },
   {
     picture: Joy,
     name: "Joy Ngozi Irabor",
     title: "Product designer",
-    socialMediaIcon1: Web, 
-    socialMediaIcon2: LinkedIn, 
-    socialMediaIcon3: Twitter, 
+    socialMediaIcon1: Web,
+    socialMediaIcon2: LinkedIn,
+    socialMediaIcon3: Twitter,
   },
   {
     picture: Prosper,
     name: "Prosper Gabriel",
     title: "Product designer",
-    socialMediaIcon1: Web, 
-    socialMediaIcon2: LinkedIn, 
-    socialMediaIcon3: Twitter, 
+    socialMediaIcon1: Web,
+    socialMediaIcon2: LinkedIn,
+    socialMediaIcon3: Twitter,
   },
   {
     picture: Moyo,
     name: "Moyo",
     title: "Product designer",
-    socialMediaIcon1: LinkedIn, 
-    socialMediaIcon2: Twitter, 
-    socialMediaIcon3: Behance, 
+    socialMediaIcon1: LinkedIn,
+    socialMediaIcon2: Twitter,
+    socialMediaIcon3: Behance,
   },
   {
     picture: Muminat,
     name: "Muminat",
     title: "Product designer",
-    socialMediaIcon1: Web, 
-    socialMediaIcon2: Instagram, 
-    socialMediaIcon3: Twitter, 
+    socialMediaIcon1: Web,
+    socialMediaIcon2: Instagram,
+    socialMediaIcon3: Twitter,
   },
   {
     picture: Samuel,
     name: "Samuel Adeyemi",
     title: "Frontend developer",
-    socialMediaIcon1: Web, 
-    socialMediaIcon2: Twitter, 
-    socialMediaIcon3: Github, 
+    socialMediaIcon1: Web,
+    socialMediaIcon2: Twitter,
+    socialMediaIcon3: Github,
   },
   {
     picture: Abiola,
     name: "Abiola Olanrewaju",
     title: "Product designer",
-    socialMediaIcon1: Web, 
-    socialMediaIcon2: LinkedIn, 
-    socialMediaIcon3: Github, 
+    socialMediaIcon1: Web,
+    socialMediaIcon2: LinkedIn,
+    socialMediaIcon3: Github,
   },
   {
     picture: Rhoda,
     name: "Folayemi Rhoda",
     title: "Product designer",
-    socialMediaIcon1: Web, 
-    socialMediaIcon2: Instagram, 
-    socialMediaIcon3: LinkedIn, 
+    socialMediaIcon1: Web,
+    socialMediaIcon2: Instagram,
+    socialMediaIcon3: LinkedIn,
   },
   {
     picture: Ehis,
     name: "Aigbiluese Ehidiamhen",
     title: "Product designer",
-    socialMediaIcon1: LinkedIn, 
-    socialMediaIcon2: Twitter, 
-    socialMediaIcon3: Web, 
+    socialMediaIcon1: LinkedIn,
+    socialMediaIcon2: Twitter,
+    socialMediaIcon3: Web,
   },
   {
     picture: Zed,
     name: "Zedekiah Ambogo",
     title: "Product designer",
-    socialMediaIcon1: Web, 
-    socialMediaIcon2: LinkedIn, 
-    socialMediaIcon3: Twitter, 
+    socialMediaIcon1: Web,
+    socialMediaIcon2: LinkedIn,
+    socialMediaIcon3: Twitter,
   },
   {
     picture: Joseph,
     name: "Joseph Olukunle",
     title: "Frontend developer",
-    socialMediaIcon1: Web, 
-    socialMediaIcon2: LinkedIn, 
-    socialMediaIcon3: Github, 
+    socialMediaIcon1: Web,
+    socialMediaIcon2: LinkedIn,
+    socialMediaIcon3: Github,
   },
   {
     picture: Luqman,
     name: "Luqman Adeniyi",
     title: "Frontend developer",
-    socialMediaIcon1: Web, 
-    socialMediaIcon2: LinkedIn, 
-    socialMediaIcon3: Github, 
+    socialMediaIcon1: Web,
+    socialMediaIcon2: LinkedIn,
+    socialMediaIcon3: Github,
   },
   {
     picture: Asanze,
     name: "Asanze",
     title: "Product designer",
-    socialMediaIcon1: LinkedIn, 
-    socialMediaIcon2: Twitter, 
-    socialMediaIcon3: Web, 
+    socialMediaIcon1: LinkedIn,
+    socialMediaIcon2: Twitter,
+    socialMediaIcon3: Web,
   },
   {
     picture: Andrew,
     name: "Andrew Alalibo",
     title: "Product designer",
-    socialMediaIcon1: Web, 
-    socialMediaIcon2: LinkedIn, 
-    socialMediaIcon3: Twitter, 
+    socialMediaIcon1: Web,
+    socialMediaIcon2: LinkedIn,
+    socialMediaIcon3: Twitter,
   },
   {
     picture: Ben,
     name: "Bennett Ben",
     title: "Product designer",
-    socialMediaIcon1: Web, 
-    socialMediaIcon2: LinkedIn, 
-    socialMediaIcon3: Twitter, 
-  },
+    socialMediaIcon1: Web,
+    socialMediaIcon2: LinkedIn,
+    socialMediaIcon3: Twitter,
+  }
 ];
 
 const Team = () => {
@@ -181,7 +182,7 @@ const Team = () => {
         )}
       </div>
       {/* button */}
-      <button className="view">
+      <button type="button" className="view">
         View more{" "}
         <img src={ArrowDown} alt="" />
       </button>
