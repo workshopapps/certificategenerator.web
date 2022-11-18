@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import "./template.style.scss";
 
 import Filter from "./modal";
 
+// template card images
 import cardimg from "./assets/Rectangle1.png";
 import cardimg2 from "./assets/Rectangle2.png";
 import cardimg3 from "./assets/Rectangle3.png";
@@ -16,10 +18,12 @@ import cardimg11 from "./assets/Rectangle11.png";
 import premiumicon from "./assets/Vector.svg";
 import filtericon from "./assets/setting.svg";
 import addicon from "./assets/add-square.svg";
-import closeicon from "./assets/close.png";
-import "./template.style.scss";
 
 export default function Template() {
+  const [modalState, setModalState] = useState(false);
+
+  const [category, setCategory] = useState([]);
+
   const cardImages = [
     {
       id: 1,
@@ -88,9 +92,6 @@ export default function Template() {
       layout: "landscape",
     },
   ];
-  const [modalState, setModalState] = useState(false);
-
-  const [category, setCategory] = useState([]);
 
   let categories = category;
 
