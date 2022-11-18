@@ -16,6 +16,7 @@ import cardimg11 from "./assets/Rectangle11.png";
 import premiumicon from "./assets/Vector.svg";
 import filtericon from "./assets/setting.svg";
 import addicon from "./assets/add-square.svg";
+import closeicon from "./assets/close.png";
 import "./template.style.scss";
 
 export default function Template() {
@@ -117,42 +118,49 @@ export default function Template() {
             className="sort-btn"
           >
             Completion
+            <img src={closeicon} alt="close icon" />
           </button>
           <button
             onClick={() => setCategory("participation")}
             className="sort-btn"
           >
             Participation
+            <img src={closeicon} alt="close icon" />
           </button>
           <button
             onClick={() => setCategory("appreciation")}
             className="sort-btn"
           >
             Appreciation
+            <img src={closeicon} alt="close icon" />
           </button>
           <button
             onClick={() => setCategory("recognition")}
             className="sort-btn"
           >
             Recognition
+            <img src={closeicon} alt="close icon" />
           </button>
           <button
             onClick={() => setCategory("attendance")}
             className="sort-btn"
           >
             Attendance
+            <img src={closeicon} alt="close icon" />
           </button>
           <button
             onClick={() => setCategory("excellence")}
             className="sort-btn"
           >
             Excellence
+            <img src={closeicon} alt="close icon" />
           </button>
           <button
             onClick={() => setCategory("achievement")}
             className="sort-btn"
           >
             Achievement
+            <img src={closeicon} alt="close icon" />
           </button>
           <button onClick={() => setCategory("")} className="sort-btn">
             Clear All Filters
