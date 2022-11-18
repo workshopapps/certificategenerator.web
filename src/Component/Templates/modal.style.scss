@@ -1,7 +1,7 @@
 @import "../../Style/variables";
 
 .modal-card {
-  width: 354px;
+  width: 330px;
   background-color: rgba(255, 255, 255, 1);
   box-shadow: 1px 1px 6px 0px rgba(0, 0, 0, 0.1);
   text-align: left;
@@ -16,12 +16,6 @@
     font-weight: 400;
     font-size: 16px;
     margin-block: 10px;
-  }
-
-  &__type,
-  &__layout {
-    border-bottom: 1px solid #a9a9a9;
-    padding-bottom: 14px;
   }
 
   .filter-btn-wrappermodal {
