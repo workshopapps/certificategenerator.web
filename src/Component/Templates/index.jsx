@@ -93,6 +93,10 @@ export default function Template() {
 
   let categories = category;
 
+  const closeModal = () => {
+    setModalState(false);
+  };
+
   const childToParent = (clickedCategory) => {
     categories.push(clickedCategory);
   };
@@ -165,9 +169,11 @@ export default function Template() {
         </button>
         {/* modal popup */}
         <Filter
+          modalClose={closeModal}
           open={modalState}
           selectedCategory={childToParent}
           applyCategories={applySelectCategories}
+          setCategory={setCategory}
         />
       </header>
       <div className="cards-container">

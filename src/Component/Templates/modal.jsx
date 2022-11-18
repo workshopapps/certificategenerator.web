@@ -1,7 +1,13 @@
 import React from "react";
 import "./modal.style.scss";
 
-export default function Filter({ open, selectedCategory, applyCategories }) {
+export default function Filter({
+  modalClose,
+  open,
+  selectedCategory,
+  applyCategories,
+  setCategory,
+}) {
   if (!open) return null;
   return (
     <div>
@@ -172,9 +178,25 @@ export default function Filter({ open, selectedCategory, applyCategories }) {
             </div>
           </div>
         </div>
-        <div onClick={() => applyCategories()} className="modal-card__submit">
-          <button className="btn-submit btn-submit--apply">Apply</button>
-          <button className="btn-submit btn-submit--cancel">Cancel</button>
+        <div className="modal-card__submit">
+          <button
+            onClick={() => {
+              applyCategories();
+              modalClose();
+            }}
+            className="btn-submit btn-submit--apply"
+          >
+            Apply
+          </button>
+          <button
+            onClick={() => {
+              setCategory("");
+              modalClose();
+            }}
+            className="btn-submit btn-submit--cancel"
+          >
+            Cancel
+          </button>
         </div>
       </div>
     </div>
