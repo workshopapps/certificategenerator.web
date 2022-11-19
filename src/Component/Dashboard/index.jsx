@@ -83,7 +83,7 @@ const Dashboard = () => {
     {
       title: "Total Number Issued",
       icon: "",
-      count: 0,
+      count: 1,
     },
     {
       title: "Drafts",
