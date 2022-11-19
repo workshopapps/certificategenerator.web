@@ -2,9 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./singlepreview.style.scss";
 //import ".../Style/_variables.scss"
-import certificate from "./Completion - Portrait (2).png";
-import certificate3 from "./Completion - Portrait (3).png";
-import certificate2 from "./Completion - Portrait.png";
+import certificate from "./images/Completion - Portrait (2).png";
+import certificate3 from "./images/Completion - Portrait (3).png";
+import certificate2 from "./images/Completion - Portrait.png";
 
 function Index() {
   return (

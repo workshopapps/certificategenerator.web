@@ -5,29 +5,22 @@ import Layout from "./Component/Layout";
 import SinglePreview from "./Component/SinglePreview";
 import BulkPreview from "./Component/BulkPreview";
 import EditBulk from "./Component/EditBulk";
+
 // import Navbar from './Component/Navbar';
 
 function App() {
-	return (
-		<div className="App">
-			
-		
-		
-			<Routes>
-				<Route exact path="/" element={<Layout />}>
+  return (
+    <div className="App">
+      <Routes>
+        <Route exact path="/" element={<Layout />}></Route>
 
-				</Route>
-				
-				<Route path="/single_preview" element={<SinglePreview />} />
-				<Route path="/bulk_preview" element={<BulkPreview />} />
+        <Route path="/single_preview" element={<SinglePreview />} />
+        <Route path="/bulk_preview" element={<BulkPreview />} />
+        <Route path="/edit_bulk" element={<EditBulk />} />
 
-				
-				<Route path="/edit_bulk" element={<EditBulk />} />
-
-				
-			</Routes>
-		</div>
-	);
+      </Routes>
+    </div>
+  );
 }
 
 export default App;

@@ -1,12 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import certificate from "./Completion - Portrait (2).png";
+import certificate from "./images/Completion - Portrait (2).png";
 import "./bulk.style.scss";
-
 
 function Index() {
   return (
-    <div className = "bulk">
+    <div className="bulk">
       {/* BUTTONS TO TOGGLE BETWEEN SINGLE AND BULK CERTIFICATE */}
 
       <div className="button-container">
@@ -33,12 +32,11 @@ function Index() {
       </div>
 
       {/* BUTTONS TO DOWNLOAD OR SHARE THE CRETIFICATES */}
-    
+
       <div className="buttons">
         <button className="download-button">Download Certificates</button>
         <button className="send-button">Send Certificates</button>
       </div>
-      
     </div>
   );
 }

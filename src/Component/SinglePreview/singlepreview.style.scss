@@ -1,32 +1,35 @@
+@import "../../Style/variables";
+
 // BUTTON CONTAINER FOR THE TOGGLE BUTTONS
 
 .button-container button {
   margin: 35px 10px;
-  height:37px;
+  height: 37px;
   width: 150px;
   border-radius: 10px;
+  font-family: "Work Sans", sans-serif;
 
   &.not-active {
     background: transparent;
-    border: 1px solid #19a6be;
+    border: 1px solid $primaryGreenColor;
 
     &:hover {
       color: #fff;
-      background: #19a6be;
+      background: $primaryGreenColor;
       border: none;
       transition: 500ms ease-in-out;
     }
   }
 
   &.active {
-    background: #19a6be;
+    background: $primaryGreenColor;
     color: #fff;
     border: none;
 
     &:hover {
-      color: #19a6be;
+      color: $primaryGreenColor;
       background: #fff;
-      border: 1px solid #19a6be;
+      border: 1px solid $primaryGreenColor;
       transition: 500ms ease-in-out;
     }
   }
@@ -41,32 +44,32 @@
 .certificate button {
   margin: 35px 20px 45px 20px;
   border-radius: 5px;
-  color: #19a6be;
+  color: $primaryGreenColor;
   width: 140px;
   height: 35px;
   font-size: 12px;
 
   &.download-button {
     background: transparent;
-    border: 1px solid #19a6be;
-    color: #19a6be;
+    border: 1px solid $primaryGreenColor;
+    color: $primaryGreenColor;
     &:hover {
       color: #fff;
-      background: #19a6be;
+      background: $primaryGreenColor;
       border: none;
       transition: 500ms ease-in-out;
     }
   }
 
   &.send-button {
-    background: #19a6be;
+    background: $primaryGreenColor;
     color: #fff;
     border: none;
 
     &:hover {
-      color: #19a6be;
+      color: $primaryGreenColor;
       background: #fff;
-      border: 1px solid #19a6be;
+      border: 1px solid $primaryGreenColor;
       transition: 500ms ease-in-out;
     }
   }
@@ -77,11 +80,12 @@
   padding: 10px;
   border-radius: 8px;
   background: transparent;
-  border: 1px solid #19a6be;
+  border: 1px solid $primaryGreenColor;
+  font-family: "Work Sans", sans-serif;
 
   &:hover {
     color: #fff;
-    background: #19a6be;
+    background: $primaryGreenColor;
     border: none;
     transition: 500ms ease-in-out;
   }
@@ -102,9 +106,9 @@
 
   &.single-images img {
     margin: 15px;
-    width:80%;
-      
-      height: auto;
+    width: 80%;
+
+    height: auto;
   }
 }
 
@@ -120,20 +124,15 @@
   .single-images {
     flex-direction: row;
     justify-content: center;
-
-   
   }
-  .single-images img{
+  .single-images img {
     width: 100%;
     max-width: 200px;
-
   }
 }
 
-
-@media screen and (min-width:1000px){
-  .single-images img{
+@media screen and (min-width: 1000px) {
+  .single-images img {
     max-width: 300px;
-
   }
 }
