@@ -52,7 +52,7 @@ form {
   }
 
   button {
-    background: $primaryGreenColor;
+    background: $primaryColor;
     color: #fff;
     border: none;
 
@@ -62,9 +62,9 @@ form {
     margin: 0px;
 
     &:hover {
-      color: $primaryGreenColor;
+      color: $primaryColor;
       background: #fff;
-      border: 1px solid $primaryGreenColor;
+      border: 1px solid $primaryColor;
       transition: 500ms ease-in-out;
     }
   }

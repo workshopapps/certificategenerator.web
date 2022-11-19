@@ -5,7 +5,7 @@
 button {
   margin: 15px 10px 25px 10px;
   border-radius: 5px;
-  color: $primaryGreenColor;
+  color: $primaryColor;
   width: 160px;
   height: 40px;
   font-size: 12px;
@@ -13,25 +13,25 @@ button {
 
   &.send-button {
     background: transparent;
-    border: 1px solid $primaryGreenColor;
-    color: $primaryGreenColor;
+    border: 1px solid $primaryColor;
+    color: $primaryColor;
     &:hover {
       color: #fff;
-      background: $primaryGreenColor;
+      background: $primaryColor;
       border: none;
       transition: 500ms ease-in-out;
     }
   }
 
   &.download-button {
-    background: $primaryGreenColor;
+    background: $primaryColor;
     color: #fff;
     border: none;
 
     &:hover {
-      color: $primaryGreenColor;
+      color: $primaryColor;
       background: #fff;
-      border: 1px solid $primaryGreenColor;
+      border: 1px solid $primaryColor;
       transition: 500ms ease-in-out;
     }
   }
