@@ -25,7 +25,7 @@ export default function Certificate () {
             <img src={demo_3} alt="certificate-3" />
           </div>
 
-          <form action="" className="form text-left work-sans">
+          <form action="" className="cert-form text-left work-sans">
             <label for='img'>Logo</label>
             <input type="file" name="uploadfile" id="img" style={{ display:"none"}}/>
             <label for="img" className="upload">Upload logo</label>

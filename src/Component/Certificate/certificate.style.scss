@@ -82,7 +82,7 @@ body {
     font-weight: 500;
 }
 
-.form {
+.cert-form {
     background-color: #fafafb;
     margin: 5.5% 10% 12%;
     border: 0.8px solid #545454;
@@ -144,13 +144,17 @@ input::-webkit-calendar-picker-indicator{
     .cert-img {
         overflow-x: scroll;
     }
+
+    .form {
+        margin: 5.5% 10% 12%;
+    }
 }
 
 @media screen  and (max-width: 480px) {
     .cert-img {
         flex-direction: column;
     }
-    .form {
+    .cert-form {
         background-color: #ffffff;
         border: none;
     }
