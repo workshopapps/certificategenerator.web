@@ -33,7 +33,7 @@ function Index() {
 
       {/* BUTTONS TO DOWNLOAD OR SHARE THE CRETIFICATES */}
 
-      <div className="buttons">
+      <div className="bulk-buttons">
         <button className="download-button">Download Certificates</button>
         <button className="send-button">Send Certificates</button>
       </div>

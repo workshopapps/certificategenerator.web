@@ -3,10 +3,10 @@
 //BUTTONS
 
 button {
-  margin: 35px 20px 45px 20px;
+  margin: 15px 10px 25px 10px;
   border-radius: 5px;
   color: $primaryGreenColor;
-  width: 140px;
+  width: 160px;
   height: 40px;
   font-size: 12px;
   font-family: "Work Sans", sans-serif;
@@ -40,6 +40,13 @@ button {
   margin: 40px;
 }
 
+.bulk-buttons{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0px!important;
+}
+
 // CERTIFICATE IMAGES
 
 .bulk-images {
@@ -64,6 +71,13 @@ button {
       width: 100%;
       max-width: 200px;
     }
+  }
+
+  .bulk-buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 0px!important;
   }
 }
 

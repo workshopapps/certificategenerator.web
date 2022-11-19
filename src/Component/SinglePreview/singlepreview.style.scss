@@ -11,7 +11,7 @@
 
   &.not-active {
     background: transparent;
-    border: 1px solid $primaryGreenColor;
+    border: none;
 
     &:hover {
       color: #fff;
