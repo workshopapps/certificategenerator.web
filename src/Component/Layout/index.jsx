@@ -1,15 +1,14 @@
 import "./layout.style.scss";
-
 import React from "react";
-import { Outlet } from "react-router-dom";
-const Layout = () => {
-	return (
-		<div>
-			Nav
-			<Outlet />
-			Footer
-		</div>
-	);
+
+import Navbar from "../Navbar";
+const Layout = ({ children }) => {
+  return (
+    <>
+      <Navbar />
+      <main>{children}</main>
+    </>
+  );
 };
 
 export default Layout;
