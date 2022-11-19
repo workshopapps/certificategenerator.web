@@ -4,7 +4,7 @@ import logo from "./assets/icon.png";
 import "./footer.style.scss";
 import { BsInstagram, BsLinkedin, BsTwitter, BsGithub } from "react-icons/bs";
 
-const Index = () => {
+const Footer = () => {
   const year = new Date().getFullYear();
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
@@ -96,4 +96,4 @@ const Index = () => {
   );
 };
 
-export default Index;
+export default Footer;
