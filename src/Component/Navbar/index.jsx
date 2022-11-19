@@ -26,7 +26,7 @@ function Navbar() {
     },
     {
       id: 3,
-      url: "/pricing",
+      url: "/",
       text: "pricing",
     },
     {
