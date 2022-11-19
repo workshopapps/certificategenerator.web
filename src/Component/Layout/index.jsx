@@ -1,13 +1,22 @@
-import "./layout.style.scss";
-import React from "react";
+import './layout.style.scss';
+import Footer from '../Footer';
+import React from 'react';
+import Hero from '../Hero';
+import Certificate from '../Certificate';
+import BulkStep from '../BulkStep';
+import Testimonials from '../Testimonials';
+import { Outlet } from 'react-router-dom';
 
-import Navbar from "../Navbar";
-const Layout = ({ children }) => {
+const Layout = () => {
   return (
-    <>
-      <Navbar />
-      <main>{children}</main>
-    </>
+    <div>
+      <Outlet />
+      <Hero />
+      <Certificate />
+      <BulkStep />
+      <Testimonials />
+      <Footer />
+    </div>
   );
 };
 

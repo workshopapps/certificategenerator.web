@@ -1,0 +1,56 @@
+.modal-card {
+  width: 330px;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 1px 1px 6px 0px rgba(0, 0, 0, 0.1);
+  text-align: left;
+  padding: 12px;
+  position: absolute;
+  top: 70px;
+  right: 0;
+  z-index: 100;
+}
+.modal-card h2 {
+  color: rgb(34, 34, 34);
+  font-weight: 400;
+  font-size: 16px;
+  margin-block: 10px;
+}
+.modal-card .filter-btn-wrappermodal {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-rows: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+.modal-card .filter-btn-wrappermodal .sort-btnmodal {
+  border-radius: 8px;
+  border: 1px solid rgb(169, 169, 169);
+  color: rgb(169, 169, 169);
+  padding: 4px 8px;
+  cursor: pointer;
+}
+.modal-card .color-box-wrapper {
+  display: flex;
+  justify-content: flex-start;
+  gap: 8px;
+  align-items: center;
+}
+.modal-card__submit {
+  padding-block: 10px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+.modal-card__submit .btn-submit {
+  border: 2px solid #01d489;
+  border-radius: 6px;
+  padding: 6px 16px;
+  color: #fff;
+  cursor: pointer;
+}
+.modal-card__submit .btn-submit--apply {
+  background-color: #01d489;
+}
+.modal-card__submit .btn-submit--cancel {
+  background-color: #fff;
+  color: #01d489;
+}/*# sourceMappingURL=modal.style.css.map */
