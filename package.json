@@ -11,11 +11,13 @@
     "husky": "^8.0.2",
     "prettier": "2.7.1"
   },
+  "homepage": "https://zuri.chat/",
   "scripts": {
     "prepare": "husky install"
   },
   "dependencies": {
     "eslint": "^8.28.0",
+    "eslint-plugin-react": "^7.31.11",
     "lint-staged": "^13.0.3"
   }
 }
