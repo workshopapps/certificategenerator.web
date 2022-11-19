@@ -9,9 +9,9 @@ export default function Testimonials () {
         <>
           <p className="sora testimonial-header">Testimonials</p>
           <p className="testimonial-caption">What our users have to say about us</p>
-          <div className="flex justify-between center testimonials" style={{marginBottom: '120px'}}>
-            <div className="container text-left sora">
-              <div className="flex items-center">
+          <div className="flex testimonials center justify-between gap" style={{marginBottom: '120px'}}>
+            <div className="container text-left sora test">
+              <div className="flex items-center" style={{width: '343px'}}>
                 <img src={person_1} alt="user" />
                 <div style={{paddingLeft: '20px'}}>
                     <p style={{fontWeight: '600'}}>Lindsay Favazza</p>
@@ -24,8 +24,8 @@ export default function Testimonials () {
               </p>
             </div>
 
-            <div className="container text-left sora">
-              <div className="flex items-center">
+            <div className="container text-left sora test">
+              <div className="flex items-center" style={{width: '343px'}}>
                 <img src={person_2} alt="user" />
                 <div style={{paddingLeft: '20px'}}>
                     <p style={{fontWeight: '600'}}>Valerie Tan</p>
@@ -38,8 +38,8 @@ export default function Testimonials () {
               </p>
             </div>
 
-            <div className="container text-left sora">
-              <div className="flex items-center">
+            <div className="container text-left sora test">
+              <div className="flex items-center" style={{width: '343px'}}>
                 <img src={person_3} alt="user" />
                 <div style={{paddingLeft: '20px'}}>
                     <p style={{fontWeight: '600'}}>Lea Botha</p>

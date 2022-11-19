@@ -75,13 +75,6 @@ body {
 
 @media screen  and (max-width: 768px) and (min-width: 481px) {
     .testimonials {
-        width: 90%;
-        height: 100%;
-        overflow: scroll;
-        gap: 100px;
-    }
-    .container {
-        width: 343px;
-        height: 329px;
+        overflow-x: scroll;
     }
 }
