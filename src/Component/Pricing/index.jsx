@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./pricing.style.scss";
 import Feature from "./feature";
+import Slider from "./slider";
 import { Link } from "react-router-dom";
 import { data, testimonials } from "./data";
 
@@ -34,7 +35,7 @@ function Pricing() {
                         })}
                     </div>
 
-                    <div className="plansContainer">
+                    <div className="plansContainer" id="pc">
                         {data[value].subscription.map((item)=>{
                             const { id, sub } = item;
                             return(
@@ -65,6 +66,10 @@ function Pricing() {
                                 </div>
                             );
                         })}
+                    </div>
+                    
+                    <div className="sliderContainer">
+                        <Slider value={value} />
                     </div>
                 </article>
             </section>
