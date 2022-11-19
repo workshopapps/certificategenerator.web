@@ -322,7 +322,7 @@ const Sidebar = () => {
 								<span>or</span>
 								<hr />
 							</div>
-							<label className="fileUpload">
+							<label htmlFor="issuerLogo" className="fileUpload">
 								<input
 									type="file"
 									id="issuerLogo"
@@ -349,7 +349,10 @@ const Sidebar = () => {
 								<span>or</span>
 								<hr />
 							</div>
-							<label className="fileUpload">
+							<label
+								htmlFor="issuerSignature"
+								className="fileUpload"
+							>
 								<input
 									type="file"
 									id="issuerSignature"

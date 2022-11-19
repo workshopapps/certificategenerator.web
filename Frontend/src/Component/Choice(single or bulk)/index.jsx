@@ -29,12 +29,21 @@ const Choice = () => {
 						<img src={Info} alt="Info Icon" />
 					</i>
 				</p>
-				<button type="button">
+				<label htmlFor="csvUpload" className="csvUpload">
+					{/* <button type="button"> */}
+					<input
+						type="file"
+						id="csvUpload"
+						name="csvUpload"
+						accept=".csv"
+						className="box"
+					/>
 					<i>
 						<img src={UploadIcon} alt="Upload Icon" />
 					</i>
 					<span>Upload</span>
-				</button>
+					{/* </button> */}
+				</label>
 				<div>
 					<a href="/">Download</a> sample CSV file
 				</div>

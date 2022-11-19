@@ -35,21 +35,17 @@
 
 			text-align: left;
 		}
+		label,
 		button {
 			position: relative;
 			min-height: 42px;
 			min-width: 10em;
 			width: fit-content;
-			// left: 107.68px;
-			// right: 107.68px;
-			// top: 103px;
-
-			/* Green/Regular */
 
 			background: $uploadBtn;
 
 			border-radius: 10px;
-			font-family: Montserrat;
+
 			font-size: 14px;
 			font-weight: 700;
 			line-height: 17px;
@@ -117,6 +113,9 @@
 				color: #6c6c70;
 			}
 		}
+	}
+	input[type="file"] {
+		display: none;
 	}
 }
 
