@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./pricing.style.scss";
+import Feature from "./feature";
 import { Link } from "react-router-dom";
 import { data } from "./data";
 
@@ -68,7 +69,7 @@ function Pricing() {
                 </article>
             </section>
 
-            
+            <Feature />
         </main>
     );
 }

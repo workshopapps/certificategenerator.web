@@ -2,16 +2,19 @@
 
 @import "~bootstrap/scss/bootstrap";
 
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Work+Sans:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=Sora:wght@700&family=Work+Sans:wght@400;600;700&display=swap');
 
 $pricingBackground: rgba(178, 225, 217, 0.25);
 $h3Text: 'Open Sans', sans-serif;
-$pricingText: 'Work Sans', sans-serif;
+$text: 'Work Sans', sans-serif;
+
+$featureBackground: #FFFFFF;
+$featureHeader: 'Sora', sans-serif;
 
 main {
     .pricing{
         background-color: $pricingBackground;
-        font-family: $pricingText;
+        font-family: $text;
         
         .text {
             text-align: center;
@@ -95,7 +98,7 @@ main {
                 display: flex;
                 gap: 20px;
                 justify-content: center;
-                padding-bottom: 80px;
+                padding-bottom: 60px;
 
                 .Basic, .Premium, .Standard {
                     padding: 20px;
@@ -217,7 +220,99 @@ main {
         }
     }
 
-    
+// Feature Styles
+    .feature {
+        background-color: $featureBackground;
+        font-family: $text;
+
+        article {
+            max-width: 100%;
+            width: 90%;
+            text-align: center;
+            margin: auto;
+
+            h3 {
+                padding-top: 60px;
+                font-weight: 600;
+                font-size: 40px;
+                line-height: 50px;
+                font-family: $featureHeader;
+                color: #222222;
+            }
+        }
+
+        .tableContainer {
+            box-shadow: 0px 4px 14px rgba(66, 69, 71, 0.1);
+            border-radius: 8px;
+            padding: 40px 20px;
+            width: 942px;
+            height: 962px;
+            margin: 30px auto;
+        
+            table {
+                thead {
+                    background-color: #19A68E;
+                    padding: 20px 16px 20px 22px;
+                    font-weight: 700;
+                    font-size: 16px;
+                    line-height: 26px;
+                    color: $featureBackground;
+                    font-family: $h3Text;
+                    height: 64px;
+
+                    th:nth-of-type(1) {
+                        border-radius: 4px 0px 0px 4px;
+                        text-align: justify;
+                    }
+                    
+                    th:nth-of-type(4) {
+                        border-radius: 0px 4px 4px 0px;
+                    }
+                }
+            
+                tbody {
+                    tr {
+                        height: 66px;
+                        font-weight: 400;
+                        font-size: 16px;
+                        line-height: 26px;
+                        color: #6C6C70;
+
+                        td:nth-of-type(1) {
+                            text-align: justify;
+                        }
+                    }
+                    tr:nth-of-type(odd) {
+                        background-color: $featureBackground !important;
+                    }
+                    tr:nth-child(even) {
+                        background-color: rgba(178, 225, 217, 0.1);
+                    }
+                }
+            }
+        }
+
+        .featureEnd {
+
+            h3 {
+                width: 829px;
+                font-family: $h3Text;
+                font-weight: 700;
+                font-size: 40px;
+                line-height: 54px;
+                color: #222222;
+                margin: 0px auto 70px;
+            }
+
+            div {
+                cursor: pointer;
+                display: flex;
+                justify-content: space-evenly;
+                align-items: center;
+            }
+        }
+        
+    }
 }
 
 
