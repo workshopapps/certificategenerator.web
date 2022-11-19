@@ -6,7 +6,7 @@ import { Featured } from "./FAQcomp/Featured";
 import { GettingStarted } from "./FAQcomp/GettingStarted";
 import { Uploads } from "./FAQcomp/Uploads";
 
-export const FAQ = () => {
+const FAQ = () => {
 	return (
 		<>
 			<FaqHeader />
@@ -17,3 +17,5 @@ export const FAQ = () => {
 		</>
 	);
 };
+
+export default FAQ

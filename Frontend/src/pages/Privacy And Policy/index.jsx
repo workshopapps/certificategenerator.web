@@ -1,4 +1,4 @@
-import "../Privacy And Policy/privacy-policy.css"
+import "./privacy-policy.css"
 
 import React from 'react'
 import { Outlet } from "react-router-dom"
