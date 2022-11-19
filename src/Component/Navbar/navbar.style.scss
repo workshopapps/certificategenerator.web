@@ -1,7 +1,10 @@
+@import url("https://fonts.googleapis.com/css2?family=Sora:wght@600&family=Work+Sans:wght@400;500&display=swap");
+
 h2,
 h3,
 p {
   margin: 0;
+  font-family: "Work Sans", sans-serif;
 }
 .navbar {
   text-align: start;
@@ -27,6 +30,7 @@ p {
       color: #19a68e;
       font-size: 26px;
       margin: 0;
+      font-family: "Sora", sans-serif;
       span {
         color: #ad2fd0;
       }
