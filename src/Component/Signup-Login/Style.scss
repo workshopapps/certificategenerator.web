@@ -1,11 +1,9 @@
 .container{
     width: 100vw;
-    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 128px;
-    padding-top: 127px;
 }
 .formDiv{
     display: flex;
@@ -14,6 +12,17 @@
     width: 503px;
     text-align: start;
 }
+.logo-div{
+    width: 100%;
+    height: 40px;
+    margin: 29px 64px 58px 100px;
+    display: flex;   
+}
+.logo{
+    width: 150px;
+    height: 40px;
+}
+.menu{display: none;}
 .emptySpace{
     width: 608px;
     height: 583px;  
@@ -29,7 +38,7 @@
     overflow: hidden;
     text-align: center;
   }
-  #or{margin: 22px;}
+  #or{margin: 22px; color: #6C6C70;}
   #hrLine:before, #hrLine:after {
     position: absolute;
     top: 51%;
@@ -70,9 +79,9 @@
     justify-content: center;
     align-items: center;
     gap: 8px;    
-    border: 1.2px solid #19A68E;;
+    border: 1.2px solid #19A68E;
     border-radius: 10px;
-    font-family: 'Work Sans';
+    font-family: 'Sora';
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
@@ -106,6 +115,11 @@ form{
     width: 80%;
     height: 48px;    
 }
+.email_input{
+    border: none;
+    width: 90%;
+    height: 48px;    
+}
 input:focus{
     outline: none;
 }
@@ -137,12 +151,12 @@ a{text-decoration: none; color: #222222;}
 }
 #acceptTerms{height: 24px; width: 24px;}
 #btn{
-    width: 503px;
+    width: 100%px;
     height: 43px;
     background: #19A68E;
     border-radius: 10px;
     border: none; 
-    font-family: 'Work Sans';
+    font-family: 'Sora';
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
@@ -161,6 +175,53 @@ a{text-decoration: none; color: #222222;}
     color: #222222;    
 }
 .cert_img{
-    width: 608px;
-    height: 348px;
+    width: 100%;
+    height: 56%;
+}
+.haveAccount{
+    font-family: 'Sora';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 19px;    
+    color: #6C6C70;
+}
+.forgotPwd{
+    width: 100%;
+    display: flex;
+    justify-content: end;
+    font-family: 'Sora';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    letter-spacing: -0.5px;
+    color: #19A68E;
+}
+@media all and (max-width: 1200px) {
+    .container{ gap: 90px;  }
+    .formDiv{ width: 450px;}
+    .emptySpace{ width: 520px; height: 543px; }
+    #heading{font-size: 43px;}
+}
+@media all and (max-width: 1024px) {
+    .container{ gap: 60px;  }
+    .formDiv{ width: 380px;}
+    .emptySpace{ width: 450px; height: 490px; }
+    #heading{font-size: 32px;}
+}
+@media all and (max-width: 768px) {
+    .formDiv{ width: 400px;}
+    .emptySpace{ display: none;}
+    #heading{font-size: 38px; font-weight: 600;}
+    #startGenerating{margin-bottom: 56px; color: #6C6C70;}
+    .haveAccount{font-size: 12px;}
+    .logo-div{ margin: 29px 64px 58px 64px; width: auto;justify-content: space-between; }
+    .menu{display: block;}
+}
+@media all and(max-width: 480px) {
+    .formDiv{ width: 327px;}
+    #heading{font-size: 23px; line-height: 29px;}
+    #startGenerating{margin-bottom: 20px;}
+    .haveAccount{font-size: 12px;}
+    .logo-div{ margin: 29px 20px 58px 24px;}
 }
