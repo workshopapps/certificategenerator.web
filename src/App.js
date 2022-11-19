@@ -12,6 +12,7 @@ import { FAQ } from "./Component/FAQ/index";
 import Navbar from "./Component/Navbar";
 import Templates from "./Component/Templates"
 import AboutUs from "./Component/AboutUs";
+import Comingsoon from "./Component/Coming/Comingsoon";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
           <Route path="/edit_bulk" element={<EditBulk />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="*" element={<Error />} />
+          <Route path="/" element={<Comingsoon />}></Route>
         </Route>
       </Routes>
     </div>
