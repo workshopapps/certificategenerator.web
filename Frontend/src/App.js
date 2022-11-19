@@ -1,4 +1,4 @@
-import './App.css';
+import './Style/App.css';
 import Dashboard from './Component/Dashboard';
 import Team from './Component/Team';
 import Error from './Component/Error';
