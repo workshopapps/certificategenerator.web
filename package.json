@@ -11,7 +11,7 @@
     "husky": "^8.0.2",
     "prettier": "2.7.1"
   },
-  "homepage": "https://zuri.chat/",
+  "homepage": "/",
   "scripts": {
     "prepare": "husky install"
   },
