@@ -1,5 +1,4 @@
 import { Route, Routes } from "react-router-dom";
-
 import "./App.css";
 import Dashboard from "./Component/Dashboard";
 import Team from "./Component/Team";
@@ -12,6 +11,7 @@ import EditBulk from "./Component/EditBulk";
 import { FAQ } from "./Component/FAQ/index";
 import Navbar from "./Component/Navbar";
 import Templates from "./Component/Templates"
+import AboutUs from "./Component/AboutUs";
 
 function App() {
   return (
@@ -23,6 +23,7 @@ function App() {
           <Route path="/terms" element={<Terms />} />
           <Route path="/templates" element={<Templates />} />
           <Route path='/FAQ' element={<FAQ />} />
+          <Route path="/aboutUs" element={<AboutUs />}>
           <Route path="/single_preview" element={<SinglePreview />} />
           <Route path="/bulk_preview" element={<BulkPreview />} />
           <Route path="/edit_bulk" element={<EditBulk />} />
