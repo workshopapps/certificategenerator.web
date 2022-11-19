@@ -24,7 +24,6 @@ $size-sm: 12px;
   box-sizing: border-box;
   font-family: "Work Sans";
 }
-
 .dashboard {
   background: #fff;
   &__hero-section {
@@ -108,13 +107,11 @@ $size-sm: 12px;
       .null-table-data{
         display: grid;
         place-items: center;
-        // min-height: 350px;
-        border: 2px solid black;
-        width: 100% !important;
+        min-height: 350px;
         > div{
             text-align: center;
             p{
-                margin: 1.5rem 0 0 0;
+                margin: 1.5rem 0 .5rem 0;
             }
         }
         button{
@@ -178,13 +175,21 @@ $size-sm: 12px;
 @media screen and (min-width: 780px) {
   
   .dashboard {
+    &__title{
+      font-size: $size-lg;
+      margin-bottom: .5rem;
+      margin-top: .1rem;
+    }
+    &__description{
+      font-size: $size-md;
+    }
     &__hero-section {
       width: 90%;
       margin: 0 auto 1rem auto;
       .flexx {
         flex-direction: row;
         justify-content: space-between;
-        align-items: cen;
+        align-items: flex-end;
       }
     }
     &__cards {

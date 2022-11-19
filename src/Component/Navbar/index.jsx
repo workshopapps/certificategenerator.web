@@ -1,4 +1,5 @@
 import "./navbar.style.scss";
+import menu from '../Coming/images/menu.svg'
 
 import React, { useRef } from "react";
 import logo from "./assets/icon.png";

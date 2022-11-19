@@ -6,7 +6,7 @@ import person_3 from '../../assets/images/person-3.png'
 
 export default function Testimonials () {
     return (
-        <>
+        <div id='testimonials'>
           <p className="sora testimonial-header">Testimonials</p>
           <p className="testimonial-caption">What our users have to say about us</p>
           <div className="flex testimonials center justify-between gap" style={{marginBottom: '120px'}}>
@@ -52,6 +52,6 @@ export default function Testimonials () {
               </p>
             </div>
           </div>
-        </>
+        </div>
     )
 }

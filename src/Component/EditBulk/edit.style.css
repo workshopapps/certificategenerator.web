@@ -1,0 +1,69 @@
+@import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@500&display=swap");
+#edit body h1 {
+  font-size: 30px;
+  font-weight: 500;
+}
+#edit .form {
+  border: 1px solid #545454;
+  padding: 30px;
+  margin: 30px;
+  border-radius: 10px;
+  text-align: left;
+  background: #fafafb;
+  margin-bottom: 50px !important;
+}
+#edit .form .logo input {
+  padding: 5px !important;
+  border-radius: 5px !important;
+  border: 1px solid #545454;
+  width: 26% !important;
+  margin-top: 15px !important;
+  margin-bottom: 0px !important;
+}
+#edit .form .logo h6 {
+  margin-bottom: 30px;
+  margin-top: 5px;
+}
+#edit .form label {
+  font-weight: bolder;
+}
+#edit .form input,
+#edit .form select {
+  padding: 18px;
+  border-radius: 10px;
+  border: 1px solid grey;
+  width: 95%;
+  margin-top: 15px !important;
+  margin-bottom: 30px !important;
+  background: #fff;
+}
+#edit .form select {
+  width: 100%;
+}
+#edit .form button {
+  background: #19a6be;
+  color: #fff;
+  border: none;
+  width: 130px;
+  height: 43px;
+  text-align: center;
+  margin: 0px;
+}
+#edit .form button:hover {
+  color: #19a6be;
+  background: #fff;
+  border: 1px solid #19a6be;
+  transition: 500ms ease-in-out;
+}
+@media screen and (min-width: 768px) {
+  #edit .modify-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  #edit form {
+    width: 100%;
+    max-width: 700px;
+    height: auto;
+  }
+}/*# sourceMappingURL=edit.style.css.map */
