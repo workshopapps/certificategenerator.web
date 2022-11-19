@@ -9,7 +9,7 @@ export default function Testimonials () {
         <>
           <p className="sora testimonial-header">Testimonials</p>
           <p className="testimonial-caption">What our users have to say about us</p>
-          <div className="flex justify-between center" style={{marginBottom: '120px'}}>
+          <div className="flex justify-between center testimonials" style={{marginBottom: '120px'}}>
             <div className="container text-left sora">
               <div className="flex items-center">
                 <img src={person_1} alt="user" />
