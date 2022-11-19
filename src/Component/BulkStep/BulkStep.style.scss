@@ -82,3 +82,29 @@ body {
     margin: 79px 0 48px 0;
     cursor: pointer;
 }
+
+@media screen  and (max-width: 768px) and (min-width: 481px) {
+    .heading{
+        font-size: 32px;
+    }
+    .example {
+        width: 46%;
+        height: 21%;
+    }
+    .space{
+        gap: 5%;
+    }
+    .process {
+        display: flex;
+        align-items: center;
+        .steps {
+            padding-left: 5%;
+        }
+        img {
+            height: 100%;
+        }
+    }
+    .bulk-button {
+        margin: 60px 0 32px 0;
+    }
+}
