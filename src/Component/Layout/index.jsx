@@ -1,4 +1,6 @@
 import "./layout.style.scss";
+import Footer from "../Footer";
+
 import React from "react";
 import Hero from "../Hero";
 import Certificate from "../Certificate";
@@ -10,9 +12,10 @@ const Layout = () => {
 		<div>
 			<Outlet />
 			<Hero />
-            <Certificate />
-            <BulkStep />
-            <Testimonials />
+      <Certificate />
+      <BulkStep />
+      <Testimonials />
+      <Footer />
 		</div>
 	);
 };
