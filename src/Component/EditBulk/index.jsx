@@ -4,7 +4,7 @@ import "./edit.style.scss";
 
 function EditBulk() {
   return (
-    <div>
+    <div id="edit">
       {/* BUTTONS TO TOGGLE BETWEEN SINGLE AND BULK CERTIFICATE */}
 
       <div className="button-container">

@@ -8,7 +8,7 @@ import certificate2 from "./images/Completion - Portrait.png";
 
 function SinglePreview() {
   return (
-    <div>
+    <div id="singlePreview">
       {/* BUTTONS TO TOGGLE BETWEEN SINGLE AND BULK CERTIFICATE */}
 
       <div className="button-container">

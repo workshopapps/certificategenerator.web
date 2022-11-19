@@ -24,11 +24,7 @@ import Gallery6 from '../../assets/gallery6.png'
 
 const aboutUs = () => {
   return (
-    <div className="about">
-      <div className="aboutNav">
-        nav
-      </div>
-      
+    <div id="aboutUs" className="about">     
       <div className="aboutHero">
         <div className="aboutHeroL">
           <h1>We are a team of Creators and Innovators </h1>
@@ -42,7 +38,7 @@ const aboutUs = () => {
 
       <div className="aboutAbout">
         <div className="aboutAboutImg">
-          <img src={Gallery1} alt="" />
+          <img src={Gallery2} alt="" />
         </div>
         <div className="aboutAboutD">
           <h3>About Certawi</h3>
@@ -149,9 +145,9 @@ const aboutUs = () => {
           </div>
         </div>
 
-        <div className="aboutFooter">
+        {/* <div className="aboutFooter">
           footer
-        </div>
+        </div> */}
 
 
       <Outlet/>

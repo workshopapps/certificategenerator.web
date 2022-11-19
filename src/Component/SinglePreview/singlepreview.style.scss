@@ -2,6 +2,7 @@
 
 // BUTTON CONTAINER FOR THE TOGGLE BUTTONS
 
+#singlePreview{
 .button-container button {
   margin: 35px 10px;
   height: 37px;
@@ -135,4 +136,5 @@
   .single-images img {
     max-width: 300px;
   }
+}
 }

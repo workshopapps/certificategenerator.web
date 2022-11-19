@@ -16,7 +16,7 @@ import Comingsoon from "./Component/Coming/Comingsoon";
 
 function App() {
   return (
-    <div className="App">
+    <div>
       <Navbar />
       <Routes>
         <Route path="/" element={<Layout />} />

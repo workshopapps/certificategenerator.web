@@ -5,7 +5,7 @@ import "./bulk.style.scss";
 
 function BulkPreview() {
   return (
-    <div className="bulk">
+    <div id="bulkPreview" className="bulk">
       {/* BUTTONS TO TOGGLE BETWEEN SINGLE AND BULK CERTIFICATE */}
 
       <div className="button-container">
