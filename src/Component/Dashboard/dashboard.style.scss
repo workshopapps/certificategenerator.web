@@ -27,7 +27,6 @@ $size-sm: 12px;
 
 .dashboard {
   background: #fff;
-  height: 100vh;
   &__hero-section {
     background-color: $dashboard-primary-light;
     color: black;
@@ -109,7 +108,7 @@ $size-sm: 12px;
       .null-table-data{
         display: grid;
         place-items: center;
-        min-height: 350px;
+        // min-height: 350px;
         border: 2px solid black;
         width: 100% !important;
         > div{
