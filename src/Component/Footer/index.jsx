@@ -52,6 +52,7 @@ const Index = () => {
           <div className="footer-form">
             <h3>Stay up to date with Product</h3>
             <form noValidate>
+              <p className="error-msg">{message}</p>
               <div className="footer-input">
                 <input
                   type="email"
@@ -63,7 +64,6 @@ const Index = () => {
                 />
                 <button onClick={handleSubmit}>Subscribe</button>
               </div>
-              <p className="error-msg">{message}</p>
             </form>
           </div>
         </div>

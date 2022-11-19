@@ -90,10 +90,11 @@ h3 {
   }
   .error-msg {
     text-align: center;
-    letter-spacing: 1px;
+    letter-spacing: 1.5px;
     color: rgb(140, 11, 11);
     background-color: rgb(230, 103, 103);
-    border-radius: 10px;
+    border-radius: 5px;
+    margin-bottom: 0;
   }
 }
 
@@ -158,6 +159,9 @@ h3 {
         flex: 1;
         max-width: 240px;
       }
+    }
+    .error-msg {
+      max-width: 63%;
     }
   }
   .footer-info {
