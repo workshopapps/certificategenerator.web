@@ -15,6 +15,10 @@
 		justify-content: space-around;
 		align-items: center;
 		position: relative;
+		&.bulk,
+		&.single {
+			height: 200px;
+		}
 		h2 {
 			font-family: Sora;
 			font-size: 33px;
@@ -35,6 +39,7 @@
 			position: relative;
 			min-height: 42px;
 			min-width: 10em;
+			width: fit-content;
 			// left: 107.68px;
 			// right: 107.68px;
 			// top: 103px;
@@ -52,7 +57,7 @@
 			text-align: left;
 			color: #ffffff;
 			padding: 1em 1.4em;
-			margin-bottom: auto;
+
 			border: none;
 			letter-spacing: 1.4px;
 			i {
@@ -75,6 +80,10 @@
 					text-decoration: none;
 					color: #006642;
 				}
+			}
+			&:hover {
+				cursor: pointer;
+				opacity: 0.8;
 			}
 		}
 

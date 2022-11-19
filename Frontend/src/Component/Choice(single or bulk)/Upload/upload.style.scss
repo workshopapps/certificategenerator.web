@@ -11,7 +11,7 @@
 	flex-direction: column;
 	align-items: center;
 	padding: 25px 106px;
-	gap: 15px;
+	gap: 7px;
 
 	position: absolute !important;
 	top: 19em;
@@ -37,12 +37,12 @@
 	}
 	div.progessBar {
 		height: 7px;
-		width: 163%;
+		width: 8em;
 		background-color: #d9d9d9;
 		border-radius: 20px;
 
 		div {
-			height: 100%;
+			height: 7px;
 			// width: 59%;
 
 			// width: `${completed}%`,

@@ -10,7 +10,7 @@ import Upload from "./Upload";
 
 const Choice = () => {
 	return (
-		<div className="container choiceContainer">
+		<div className="choiceContainer">
 			<div className="single">
 				<h2>Single certificate</h2>
 				<p>Generate a single certificate within a few clicks</p>
