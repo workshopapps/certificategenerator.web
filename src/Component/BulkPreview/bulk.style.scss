@@ -1,0 +1,74 @@
+@import "../../Style/variables";
+
+//BUTTONS
+
+button {
+  margin: 35px 20px 45px 20px;
+  border-radius: 5px;
+  color: $primaryGreenColor;
+  width: 140px;
+  height: 40px;
+  font-size: 12px;
+  font-family: "Work Sans", sans-serif;
+
+  &.send-button {
+    background: transparent;
+    border: 1px solid $primaryGreenColor;
+    color: $primaryGreenColor;
+    &:hover {
+      color: #fff;
+      background: $primaryGreenColor;
+      border: none;
+      transition: 500ms ease-in-out;
+    }
+  }
+
+  &.download-button {
+    background: $primaryGreenColor;
+    color: #fff;
+    border: none;
+
+    &:hover {
+      color: $primaryGreenColor;
+      background: #fff;
+      border: 1px solid $primaryGreenColor;
+      transition: 500ms ease-in-out;
+    }
+  }
+}
+.bulk h2 {
+  margin: 40px;
+}
+
+// CERTIFICATE IMAGES
+
+.bulk-images {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &.bulk-images img {
+    margin: 10px;
+    margin: 15px;
+    width: 80%;
+    height: auto;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .bulk-images {
+    flex-direction: row;
+    justify-content: center;
+
+    &.bulk-images img {
+      width: 100%;
+      max-width: 200px;
+    }
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .bulk-images img {
+    max-width: 300px !important;
+  }
+}

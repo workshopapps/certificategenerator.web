@@ -1,0 +1,187 @@
+@import "../../Style/variables";
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;700&display=swap');
+
+$sectionWidth: 100%;
+$containerHeight: 1832px;
+$containerBackground: #F8FFFE;
+
+$fontStyle: normal;
+$fontFamily: 'Sora';
+
+$bold: 700;
+$normal: 400;
+
+$teamFontSize: 57px;
+$teamLineHeight: 72px;
+
+$meetFontSize: 23px;
+$meetLineHeight: 29px;
+
+$display: flex;
+$titleColor: #000000;
+$titleAlignItems: center;
+$teamLetterSpacing: -0.5px;
+
+$meetMarginTop: 24px;
+
+// container styling
+section {
+  width: $sectionWidth;
+  max-height: $containerHeight;
+  background: $containerBackground;
+}
+// title styling
+.team {
+  font-weight: $bold;
+  color: $titleColor;
+  font-style: $fontStyle;
+  font-family: $fontFamily;
+  font-size: $teamFontSize;
+  line-height: $teamLineHeight;
+  align-items: $titleAlignItems;
+  letter-spacing: $teamLetterSpacing;
+}
+.meet {
+  color: $titleColor;
+  font-weight: $normal;
+  font-style: $fontStyle;
+  font-family: $fontFamily;
+  font-size: $meetFontSize;
+  margin-top: $meetMarginTop;
+  line-height: $meetLineHeight;
+  align-items: $titleAlignItems;
+  letter-spacing: $teamLetterSpacing;
+}
+// members styling
+$width: 292px;
+$height: 333px;
+$flexWrap: wrap;
+$margin: 24px 120px;
+$figureMargin: 6px;
+$flexDirection: row;
+$boxSizing: border-box;
+$background: #FDFDFD;
+$justifyContent: center;
+$figurePadding: 24px 23px;
+$figureBorderRadius: 24px;
+$figureAlignItems: flex-start;
+$figureBorder: 1px solid #6C6C70;
+
+.containers {
+  margin: $margin;
+  display: $display;
+  flex-wrap: $flexWrap;
+  flex-direction: $flexDirection;
+}
+
+figure {
+  width: $width;
+  max-height: $height;
+  border: $figureBorder;
+  margin: $figureMargin;
+  box-sizing: $boxSizing;
+  padding: $figurePadding;
+  background: $background;
+  align-items: $figureAlignItems;
+  justify-content: $justifyContent;
+  border-radius: $figureBorderRadius;
+}
+
+$nameFontSize: 19px;
+$nameLineHeight: 24px;
+
+.name {
+  font-weight: $bold;
+  font-size: $nameFontSize;
+  line-height: $nameLineHeight;
+}
+
+$titleFontSize: 16px;
+$titleLineHeight: 20px;
+
+.title {
+  font-weight: $normal;
+  font-size: $titleFontSize;
+  line-height: $titleLineHeight;
+}
+
+$marginTop: 10px;
+$iconJustifyContent: center;
+
+.icon {
+  display: $display;
+  margin-top: $marginTop;
+  align-items: $titleAlignItems;
+  flex-direction: $flexDirection;
+  justify-content: $iconJustifyContent;
+}
+
+// button styling
+$buttonWidth: 48px;
+$buttonHeight: 138px;
+$buttonPadding: 12px 20px;
+$buttonBorderRadius: 10px;
+$buttonBackground: #19A68E;
+$buttonBorder: 1px solid #19A68E;
+
+button {
+  width: $buttonHeight;
+  height: $buttonWidth;
+  border: $buttonBorder;
+  align-items: $titleAlignItems;
+  background: $buttonBackground;
+  justify-content: $justifyContent;
+  border-radius: $buttonBorderRadius;
+}
+
+$viewFontSize: 16px;
+$viewLineHeight: 19px;
+$viewColor: #FFFFFF;
+$viewMarginBottom: 64px;
+$viewLetterSpacing: -0.004em;
+
+.view {
+  color: $viewColor;
+  font-weight: $normal;
+  font-size: $viewFontSize;
+  line-height: $viewLineHeight;
+  align-items: $titleAlignItems;
+  margin-bottom: $viewMarginBottom;
+  letter-spacing: $viewLetterSpacing;
+}
+
+.right_margin {
+  margin-right: 11.04px;
+}
+
+// Tablet styling
+@media only screen and (min-width: 481px) and (max-width: 1000px) {
+  $width: 233px;
+  $margin: 24px 28px;
+  $containerHeight: 100%;
+
+  .containers {
+    margin: $margin;
+  }
+  section {
+    max-height: $containerHeight;
+  }
+  figure {
+    width: $width;
+  }
+}
+
+@media only screen and (min-width: 0px) and (max-width: 480px) {
+  $width: 327px;
+  $margin: 24px 33px;
+  $containerHeight: 100%;
+  .containers {
+    margin: $margin;
+  }
+  section {
+    max-height: $containerHeight;
+  }
+  figure {
+    width: $width;
+  }
+}
