@@ -1,7 +1,7 @@
 import "./upload.style.scss";
 // import ProgressBar from "react-bootstrap/ProgressBar";
 
-const Upload = ({ completed = 50 }) => {
+const Upload = ({ completed = 60 }) => {
 	const progessBarInnerStyle = { width: `${completed}%` };
 	return (
 		<div className="uploadContainer">

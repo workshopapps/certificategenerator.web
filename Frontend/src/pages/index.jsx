@@ -1,6 +1,8 @@
 //Pages
 
 export { default as Layout } from "./Layout";
+export { default as Choice } from "./Choice(single or bulk)";
+export { default as Modify } from "./Modify";
 export { default as ComingSoon } from "./ComingSoon";
 export { default as Dashboard } from "./Dashboard";
 export { default as Team } from "./Team";
