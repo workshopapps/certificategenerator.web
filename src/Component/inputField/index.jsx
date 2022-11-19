@@ -1,9 +1,21 @@
 import React from 'react'
+import './input.scss'
 
-const Inputfield = () => {
+
+const Inputfield = ({label,type, placeholder}) => {
   return (
-    <div>Inputfield</div>
-  )
+    <div className="inputContainer">
+      <label htmlFor={label} className="inputContainer__label">
+        {label}
+      </label>
+      <input
+        type={type}
+        className="inputContainer__input"
+        placeholder={placeholder}
+        aria-placeholder={placeholder}
+      />
+    </div>
+  );
 }
 
 export default Inputfield
