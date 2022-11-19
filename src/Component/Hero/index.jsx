@@ -21,7 +21,7 @@ export default function Hero () {
                   <p className="work-sans line-height">Generate professionally designed certificates for your staff, students etc.</p>
                   <button className="hero-button">Create a certificate now</button>
                </div>
-               <img src={hero} alt='hero'></img>
+               <img src={hero} alt='hero' className="hero-img"></img>
            </div>
 
            <div className="line-height flex justify-between center text-left work-sans" style={{padding: "20px 0 0 0"}}>
@@ -40,7 +40,7 @@ export default function Hero () {
            </div>
            <p className="partner-head sora">Trusted by  schools and institutions; big and small</p>
            <div className="partners">
-              <img src={google} alt="google" />
+              <img src={google} alt="google"/>
               <img src={udemy} alt="udemy" />
               <img src={coursera} alt="cousera" />
               <img src={skillshare} alt="skillshare" />
