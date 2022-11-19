@@ -1,70 +1,65 @@
-# Getting Started with Create React App
+# Certificategenerator.web
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is the Certificategenerator application built with [React](https://reactjs.org/) (Frontend) and  [Node](https://nodejs.org/) (Backend)
 
-## Available Scripts
+## Getting Started.
 
-In the project directory, you can run:
+Make sure you have nodejs installed by running the following command:
 
-### `npm start`
+```bash
+node -v
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+If the output is not the version of your nodejs installation, install nodejs from [here](https://nodejs.org/en/download/)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+After installing nodejs install [yarn](https://www.npmjs.com/package/yarn)
+if you have it then install the project's dependencies:
 
-### `npm test`
+```bash
+npm install
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## STARTING THE SERVER
 
-### `npm run build`
+To start the whole application server
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```bash
+npm start
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### **Building**
 
-### `npm run eject`
+```bash
+npm run build
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+To remove dist folder
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```bash
+npm clean
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+To remove all node_modules
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```bash
+npm clean-fresh
+```
 
-## Learn More
+## Editor setup
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+We're using eslint for js linting, and prettier for code formating, make sure you install eslint and prettier plugins in your editor so you can
+see linting errors as you code and have your code formatted on save by prettier. If formatOnSave doesn't work please google how to set up
+format on save for the eslint & prettier plugins in your editor 🙃
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+**Before send PR or making a merge make sure you code is properly formatted.** You can easily do that by running
 
-### Code Splitting
+```bash
+npm lint # to lint all files # in project directory
+npm lint:js # to lint only js,jsx files # in project directory
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+npm prettify # to prettify files # in project directory
+```
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+you can also lint for all files in the repo by running that command in the root folder.
