@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 
 import "./App.css";
+import Dashboard from "./Component/Dashboard";
 import Team from "./Component/Team";
 import Terms from "./Component/Terms";
 import Layout from "./Component/Layout";
@@ -24,6 +25,7 @@ function App() {
           <Route path="/single_preview" element={<SinglePreview />} />
           <Route path="/bulk_preview" element={<BulkPreview />} />
           <Route path="/edit_bulk" element={<EditBulk />} />
+          <Route path="/dashboard" element={<Dashboard />} />
         </Route>
       </Routes>
     </div>
