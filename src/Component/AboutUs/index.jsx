@@ -53,7 +53,7 @@ const aboutUs = () => {
       
       <div className="aboutValue">
         <h2>Testiomonial</h2>
-        <h4 id="vh4">What our customers have to say about const first = useContext(second)</h4>
+        <h4 id="vh4">What our customers have to say about us</h4>
         <div className="aboutValueS">
           <div  className="aboutValueCard">
             <h4 id="v1h4">“I needed it for a bulk generation of my student’s certificate, and it worked quite well. It is easy to use and I was able to create certificate for my students within minutes”.</h4>
