@@ -1,9 +1,10 @@
 import "./error.style.scss";
 import { BsArrowLeft } from "react-icons/bs";
 import errorImg from "./assets/page-not-found.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
-const index = () => {
+const Error = () => {
+  const navigate = useNavigate();
   return (
     <div className="error-page">
       <h1>We lost this page</h1>
@@ -16,7 +17,7 @@ const index = () => {
           <button className="btn-solid">Go to Certawi Home</button>
         </Link>
         <Link className="link">
-          <button className="btn-outline" onClick={() => window.history.back()}>
+          <button className="btn-outline" onClick={() => navigate(-1)}>
             <BsArrowLeft className="arrow-left" />
             Go Back
           </button>
@@ -29,4 +30,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default Error;
