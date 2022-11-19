@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import "./pricing.style.scss";
+import { Link } from "react-router-dom";
 import { data } from "./data";
 
 function Pricing() {
     const [value, setValue] = useState(0);
 
-    const { plan, subscription, per } = data[value];
+    const { per } = data[value];
 
     return(
         <main>
@@ -37,7 +38,7 @@ function Pricing() {
                             const { id, sub } = item;
                             return(
                                 <div className={sub.subType} key={id}>
-                                    <h4>{plan}</h4>
+                                    <h4>{sub.subType}</h4>
 
                                     <p>{sub.header}</p>
 
@@ -49,21 +50,25 @@ function Pricing() {
                                         {sub.subText.map((item)=>{
                                             const { id, img, txt } = item;
                                             return(
-                                                <div key={id}>
+                                                <div className="others" key={id}>
                                                     <img src={img} alt={txt} />
                                                     <span>{txt}</span>   
                                                 </div>
                                             );
                                         })}
                                     </article>
+
+                                    <Link to={sub.linkTo}>
+                                        {sub.linkText}
+                                    </Link>
                                 </div>
                             );
                         })}
                     </div>
                 </article>
-
-
             </section>
+
+            
         </main>
     );
 }

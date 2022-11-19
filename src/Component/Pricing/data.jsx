@@ -10,6 +10,8 @@ export const data = [
                     header: "Get started for free",
                     amount: "$0",
                     text: "Key Features",
+                    linkTo: "/signup",
+                    linkText: "Get started",
                     subText: [
                         {
                             id: 1,
@@ -41,6 +43,8 @@ export const data = [
                     header: "More features customised for you",
                     amount: "$23.99",
                     text: "Everything in Lite +",
+                    linkTo: "/payment",
+                    linkText: "Choose plan",
                     subText: [
                         {
                             id: 1,
@@ -82,6 +86,8 @@ export const data = [
                     header: "Best for professionals",
                     amount: "$35.99",
                     text: "Everything in Basic +",
+                    linkTo: "/payment",
+                    linkText: "Choose plan",
                     subText: [
                         {
                             id: 1,
@@ -135,6 +141,8 @@ export const data = [
                     header: "Get started for free",
                     amount: "$0",
                     text: "Key Features",
+                    linkTo: "/signup",
+                    linkText: "Get started",
                     subText: [
                         {
                             id: 1,
@@ -166,6 +174,8 @@ export const data = [
                     header: "More features customised for you",
                     amount: "$239.99",
                     text: "Everything in Lite +",
+                    linkTo: "/payment",
+                    linkText: "Choose plan",
                     subText: [
                         {
                             id: 1,
@@ -207,6 +217,8 @@ export const data = [
                     header: "Best for professionals",
                     amount: "$359.99",
                     text: "Everything in Basic +",
+                    linkTo: "/payment",
+                    linkText: "Choose plan",
                     subText: [
                         {
                             id: 1,
@@ -247,6 +259,6 @@ export const data = [
                 }
             }
         ],
-        per: "/month"
+        per: "/year"
     }
 ]
