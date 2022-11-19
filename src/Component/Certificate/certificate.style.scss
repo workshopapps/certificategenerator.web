@@ -145,3 +145,13 @@ input::-webkit-calendar-picker-indicator{
         overflow-x: scroll;
     }
 }
+
+@media screen  and (max-width: 480px) {
+    .cert-img {
+        flex-direction: column;
+    }
+    .form {
+        background-color: #ffffff;
+        border: none;
+    }
+}

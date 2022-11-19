@@ -24,7 +24,7 @@ export default function Hero () {
                <img src={hero} alt='hero' className="hero-img"></img>
            </div>
 
-           <div className="line-height flex justify-between center text-left work-sans" style={{padding: "20px 0 0 0"}}>
+           <div className="line-height flex justify-between center text-left work-sans perks" style={{padding: "20px 0 0 0"}}>
                <div className="flex items-center" style={{width: "447px"}}>
                   <img src={tick} alt='tick' className="tick"></img>
                   <p>No design skill needed. Choose from a variety of stunning templates.</p>

@@ -124,4 +124,13 @@ body {
     .hero-img {
         display: none;
     }
+    .hero-left {
+        width: 100vw;
+    }
+    .perks {
+        flex-direction: column;
+    }
+    .partners {
+        overflow: scroll;
+    }
 }

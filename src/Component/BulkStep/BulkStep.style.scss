@@ -108,3 +108,23 @@ body {
         margin: 60px 0 32px 0;
     }
 }
+
+@media screen  and (max-width: 480px) {
+    .wrap {
+        flex-wrap: wrap;
+    }
+    .example {
+        width: 327px;
+        height: 218px;
+    }
+    .process {
+        display: flex;
+        align-items: center;
+        .steps {
+            padding-left: 5%;
+        }
+        img {
+            height: 100%;
+        }
+    }
+}
