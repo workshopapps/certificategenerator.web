@@ -1,6 +1,6 @@
 # Certificategenerator.web
 
-This is the Certificategenerator application built with [React](https://reactjs.org/) (Frontend) and  [Node](https://nodejs.org/)
+This is the Certificategenerator application built with [React](https://reactjs.org/) (Frontend) and  [Node](https://nodejs.org/) (Backend)
 
 ## Getting Started.
 
