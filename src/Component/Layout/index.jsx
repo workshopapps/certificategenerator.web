@@ -7,7 +7,7 @@ const Layout = () => {
 		<div>
 			Nav
 			<Outlet />
-			Footer
+			{/* Footer */}
 		</div>
 	);
 };
