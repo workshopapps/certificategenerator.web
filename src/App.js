@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import Dashboard from "./Component/Dashboard";
 import Team from "./Component/Team";
+import Error from "./Component/Error";
 import Terms from "./Component/Terms";
 import Layout from "./Component/Layout";
 import SinglePreview from "./Component/SinglePreview";
@@ -26,6 +27,7 @@ function App() {
           <Route path="/bulk_preview" element={<BulkPreview />} />
           <Route path="/edit_bulk" element={<EditBulk />} />
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="*" element={<Error />} />
         </Route>
       </Routes>
     </div>
