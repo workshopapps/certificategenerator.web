@@ -2,8 +2,9 @@ import "./choice.style.scss";
 
 import React from "react";
 // img
-import UploadIcon from "../../Asset/img/upload.svg";
-import Info from "../../Asset/img/info.svg";
+
+import UploadIcon from "../../assets/img/upload.svg";
+import Info from "../../assets/img/info.svg";
 // componenet
 import Upload from "./Upload";
 
