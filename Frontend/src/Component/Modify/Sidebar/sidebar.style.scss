@@ -1,0 +1,144 @@
+@import "../../../Style/variables";
+
+.sidebar {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	text-align: left;
+	padding-left: 2.25em;
+	max-width: 22%;
+	// position: fixed;
+	// left: 0;
+
+	color: #333;
+	background: #ffffff;
+	box-shadow: 0px 0.5px 5px rgba(34, 34, 34, 0.25);
+	h5 {
+		font-size: 14px;
+		font-weight: 400;
+		line-height: 18px;
+	}
+	.colorScheme {
+		width: 85%;
+		div {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			width: 100%;
+			margin-bottom: 9px;
+			&.selection {
+				height: 2em;
+			}
+			&.secondaryColor .colorHex {
+				margin-left: 24px;
+			}
+			span.colorCircle {
+				height: 20px;
+				width: 20px;
+
+				display: inline-block;
+				border-radius: 50%;
+			}
+			span.colorHex {
+				width: 6em;
+				height: 27px;
+				border: 1px solid #808080;
+				border-radius: 5px;
+				padding-left: 12px;
+				// padding: 5px 10px;
+			}
+		}
+	}
+	form {
+		width: 85%;
+	}
+	ul {
+		list-style-type: none;
+		// padding: none;
+		label {
+			margin-top: 1.5em;
+			font-size: 13px;
+			font-weight: 400;
+			line-height: 16px;
+			display: block;
+		}
+		input,
+		select,
+		textarea {
+			height: 35px;
+			border: 1px solid #222222;
+			border-radius: 5px;
+			padding: 10px;
+		}
+		textarea {
+			height: 4.5em;
+		}
+		input,
+		textarea {
+			margin: 5px 0 1em 0;
+
+			width: 100%;
+			&.long {
+				display: block;
+			}
+		}
+		select {
+			display: inline-block;
+			&.medium {
+				width: 65%;
+				margin-right: 10%;
+			}
+			&.short {
+				width: 25%;
+			}
+			input[type="reset"] {
+				background: none;
+				border: none;
+				padding-right: 0;
+				width: fit-content;
+				float: right;
+				color: $errorRedColor;
+			}
+		}
+	}
+}
+
+.dragBox {
+	// position: ;
+	width: 100%;
+	height: 10em;
+	margin-top: 0.6em;
+	border: 1px dashed #7b41b4;
+
+	border-radius: 1rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	align-items: center;
+	.or {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		width: 100%;
+		margin-bottom: -1em;
+		hr {
+			width: 40%;
+			display: inline;
+			height: 1px;
+			margin: 0 1em;
+		}
+	}
+	.fileUpload {
+		background-color: $uploadBtn;
+		color: #fff;
+		border-radius: 10px;
+		padding: 1em 1.25em;
+		input[type="file"] {
+			display: none;
+		}
+		cursor: inherit;
+	}
+	&:hover {
+		cursor: pointer;
+	}
+}
