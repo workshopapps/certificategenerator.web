@@ -1,0 +1,84 @@
+@import "../../Style/variables";
+@import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@500&display=swap");
+body {
+  background: #fafafb;
+  font-family: "Work Sans", sans-serif;
+
+  h1 {
+    font-size: 30px;
+    font-weight: 500;
+  }
+}
+
+form {
+  border: 1px solid #545454;
+  padding: 30px;
+  margin: 30px;
+  border-radius: 10px;
+  text-align: left;
+  background: #fafafb;
+  margin-bottom: 50px !important;
+
+  .logo input {
+    padding: 5px !important;
+    border-radius: 5px !important;
+    border: 1px solid #545454;
+    width: 26% !important;
+    margin-top: 15px !important;
+    margin-bottom: 0px !important;
+  }
+
+  .logo h6 {
+    margin-bottom: 30px;
+    margin-top: 5px;
+  }
+  label {
+    font-weight: bolder;
+  }
+
+  input,
+  select {
+    padding: 18px;
+    border-radius: 10px;
+    border: 1px solid grey;
+    width: 95%;
+    margin-top: 15px !important;
+    margin-bottom: 30px !important;
+    background: #fff;
+  }
+
+  select {
+    width: 100%;
+  }
+
+  button {
+    background: $primaryGreenColor;
+    color: #fff;
+    border: none;
+
+    width: 130px;
+    height: 43px;
+    text-align: center;
+    margin: 0px;
+
+    &:hover {
+      color: $primaryGreenColor;
+      background: #fff;
+      border: 1px solid $primaryGreenColor;
+      transition: 500ms ease-in-out;
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .modify-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  form {
+    width: 100%;
+    max-width: 700px;
+    height: auto;
+  }
+}
