@@ -52,7 +52,7 @@ body {
     margin: auto;
 }
 
-.heading {
+.header {
     padding: 120px 0 0 0;
     font-size: 48px;
     font-weight: 700;
@@ -84,10 +84,10 @@ body {
 
 .form {
     background-color: #fafafb;
-    margin: 56px 100px 120px;
+    margin: 5.5% 10% 12%;
     border: 0.8px solid #545454;
     border-radius: 16px;
-    padding: 80px;
+    padding: 8%;
 }
 
 label {
@@ -133,4 +133,15 @@ input::-webkit-calendar-picker-indicator{
     color: #FFFFFF;
     margin-top: 32px;
     cursor: pointer;
+}
+
+@media screen  and (max-width: 768px) and (min-width: 481px) {
+    .header {
+        font-size: 32px;
+        line-height: 40px;
+    }
+
+    .cert-img {
+        overflow-x: scroll;
+    }
 }

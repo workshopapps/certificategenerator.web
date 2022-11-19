@@ -7,7 +7,7 @@ import demo_3 from '../../assets/images/demo-3.png'
 export default function Certificate () {
     return (
         <>
-          <p className="sora heading">
+          <p className="sora header">
             Create your <span className="emphasized">certificate </span> 
             with <span className="emphasized">ease</span>
           </p>
@@ -19,7 +19,7 @@ export default function Certificate () {
             <button className="select" style={{color: '#222222', backgroundColor: '#ffffff'}}>Bulk Certificate</button>
           </div>
 
-          <div className="flex center justify-between gap">
+          <div className="flex center justify-between gap cert-img">
             <img src={demo} alt="certificate-1" />
             <img src={demo_2} alt="certificate-2" />
             <img src={demo_3} alt="certificate-3" />
