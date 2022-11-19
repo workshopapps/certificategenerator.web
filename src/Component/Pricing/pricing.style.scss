@@ -709,3 +709,34 @@ main {
         }
     }
 }
+
+@media (max-width: 360px) {
+    main {
+        .pricing{
+            
+            .text {
+    
+                p {
+                    font-size: 14px;
+                    line-height: 22px;
+                }
+                h3 {
+                    font-size: 24px;
+                    line-height: 30px;
+                }
+            }
+
+            .plans {
+                .plansContainer {
+                    .Basic, .Premium, .Standard {
+                        max-width: 90vw;
+                        width: 100%;
+                        height: 604px;
+                        position: relative;
+                    }
+                }
+            }
+        }
+    }
+
+}
