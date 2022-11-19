@@ -1,7 +1,7 @@
 import './layout.style.scss';
-import Footer from '../Footer';
+import Footer from '../../component/Footer';
 import React from 'react';
-import Hero from '../Hero';
+import Hero from '../../component/Hero';
 import Certificate from '../Certificate';
 import BulkStep from '../BulkStep';
 import Testimonials from '../Testimonials';
