@@ -25,15 +25,15 @@ export default function Hero () {
            </div>
 
            <div className="line-height flex justify-between center text-left work-sans perks" style={{padding: "20px 0 0 0"}}>
-               <div className="flex items-center" style={{width: "447px"}}>
+               <div className="flex items-center" style={{width: "447px", gap: '10px'}}>
                   <img src={tick} alt='tick' className="tick"></img>
                   <p>No design skill needed. Choose from a variety of stunning templates.</p>
                </div>
-               <div className="flex items-center" style={{width: "325px"}}>
+               <div className="flex items-center" style={{width: "325px", gap: '10px'}}>
                   <img src={tick} alt='tick' className="tick"></img>
                   <p>Edit template to your preferred look and feel.</p>
                </div>
-               <div className="flex items-center" style={{width: "294px"}}>
+               <div className="flex items-center" style={{width: "294px", gap: '10px'}}>
                   <img src={tick} alt='tick' className="tick"></img>
                   <p>Create and Send single and bulk certificate.</p>
                </div>
