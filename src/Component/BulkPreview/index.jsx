@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import certificate from "./images/Completion - Portrait (2).png";
 import "./bulk.style.scss";
 
-function Index() {
+function BulkPreview() {
   return (
     <div className="bulk">
       {/* BUTTONS TO TOGGLE BETWEEN SINGLE AND BULK CERTIFICATE */}
@@ -41,4 +41,4 @@ function Index() {
   );
 }
 
-export default Index;
+export default BulkPreview;

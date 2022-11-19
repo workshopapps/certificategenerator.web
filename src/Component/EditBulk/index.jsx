@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./edit.style.scss";
 
-function Index() {
+function EditBulk() {
   return (
     <div>
       {/* BUTTONS TO TOGGLE BETWEEN SINGLE AND BULK CERTIFICATE */}
@@ -80,4 +80,4 @@ function Index() {
   );
 }
 
-export default Index;
+export default EditBulk;
