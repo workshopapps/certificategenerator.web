@@ -24,7 +24,7 @@ import Gallery6 from '../../assets/gallery6.png'
 
 const aboutUs = () => {
   return (
-    <div className="about">
+    <div id="aboutUs" className="about">
       <div className="aboutNav">
         nav
       </div>

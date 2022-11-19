@@ -1,16 +1,16 @@
 @import "../../Style/variables";
 @import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@500&display=swap");
-body {
-  background: #fafafb;
-  font-family: "Work Sans", sans-serif;
 
+#edit {
+  
+body {
   h1 {
     font-size: 30px;
     font-weight: 500;
   }
 }
 
-form {
+.form {
   border: 1px solid #545454;
   padding: 30px;
   margin: 30px;
@@ -81,4 +81,6 @@ form {
     max-width: 700px;
     height: auto;
   }
+}
+
 }

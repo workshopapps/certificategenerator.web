@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "./assets/icon.png";
 import "./footer.style.scss";
-// import { BsInstagram, BsLinkedin, BsTwitter, BsGithub } from "react-icons/bs";
+import { BsInstagram, BsLinkedin, BsTwitter, BsGithub } from "react-icons/bs";
 
 const Footer = () => {
   const year = new Date().getFullYear();
@@ -25,7 +25,7 @@ const Footer = () => {
     }
   };
   return (
-    <div className="footer">
+    <div id="footerId" className="footer">
       <div className="footer-container">
         <div className="footer-flex">
           <div className="footer-lists">
@@ -77,10 +77,10 @@ const Footer = () => {
           <div className="footer-socials">
             <h3>We are social</h3>
             <div>
-              {/* <BsInstagram className="social" />
+              <BsInstagram className="social" />
               <BsLinkedin className="social" />
               <BsTwitter className="social" />
-              <BsGithub className="social" /> */}
+              <BsGithub className="social" />
             </div>
           </div>
         </div>
