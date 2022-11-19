@@ -22,7 +22,6 @@ $titleColor: #000000;
 $titleAlignItems: center;
 $teamLetterSpacing: -0.5px;
 
-$teamMarginTop: 44px;
 $meetMarginTop: 24px;
 
 // container styling
@@ -38,7 +37,6 @@ section {
   font-style: $fontStyle;
   font-family: $fontFamily;
   font-size: $teamFontSize;
-  margin-top: $teamMarginTop;
   line-height: $teamLineHeight;
   align-items: $titleAlignItems;
   letter-spacing: $teamLetterSpacing;
@@ -69,7 +67,7 @@ $figureBorderRadius: 24px;
 $figureAlignItems: flex-start;
 $figureBorder: 1px solid #6C6C70;
 
-.container {
+.containers {
   margin: $margin;
   display: $display;
   flex-wrap: $flexWrap;
@@ -159,10 +157,10 @@ $viewLetterSpacing: -0.004em;
 // Tablet styling
 @media only screen and (min-width: 481px) and (max-width: 1000px) {
   $width: 233px;
-  $margin: 24px 30px;
+  $margin: 24px 28px;
   $containerHeight: 100%;
 
-  .container {
+  .containers {
     margin: $margin;
   }
   section {
@@ -177,7 +175,7 @@ $viewLetterSpacing: -0.004em;
   $width: 327px;
   $margin: 24px 33px;
   $containerHeight: 100%;
-  .container {
+  .containers {
     margin: $margin;
   }
   section {
