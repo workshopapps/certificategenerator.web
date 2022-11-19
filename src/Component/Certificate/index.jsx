@@ -12,7 +12,7 @@ export default function Certificate () {
             with <span className="emphasized">ease</span>
           </p>
 
-          <p style={{padding: '10px'}}>Select a template, input values and Create a Certificate right away.</p>
+          <p style={{padding: '10px'}} className="prompt">Select a template, input values and Create a Certificate right away.</p>
 
           <div className="flex justify-between mode">
             <button className="select" >Single Certificate</button>

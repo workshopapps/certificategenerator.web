@@ -52,17 +52,20 @@ body {
     margin: auto;
 }
 
-.hero-text {
-    font-weight: 700;
-    font-size: 48px;
-    line-height: 60px;
-    margin-bottom: 20px;
-}
+.hero {
+    padding-top: 80px;
+    .hero-left {
+        width: 533px;
+        height: 328px;
+        text-align: left;
+        .hero-text {
+            font-weight: 700;
+            font-size: 48px;
+            line-height: 60px;
+            margin-bottom: 20px;
+        }
 
-.hero-left {
-    width: 533px;
-    height: 328px;
-    text-align: left;
+    }
 }
 
 .gap {
@@ -77,6 +80,10 @@ body {
     border-radius: 10px;
     color: #FFFFFF;
     margin-top: 32px;
+}
+
+.perks {
+    padding: 20px 0 0 0;
 }
 
 .tick {
@@ -97,9 +104,14 @@ body {
 }
 
 @media screen  and (max-width: 768px) and (min-width: 481px) {
-    .hero-text {
-        font-size: 32px;
-        line-height: 40px;
+    .hero {
+        padding-top: 40px;
+    }
+    .hero-left {
+        .hero-text {
+            font-size: 32px;
+            line-height: 40px;
+        }
     }
 
     .hero-img{
@@ -124,11 +136,32 @@ body {
     .hero-img {
         display: none;
     }
+    .hero{
+        padding-top: 40px;
+        text-align: center;
+    }
     .hero-left {
         width: 100vw;
+        height: 20% !important;
+        text-align: center;        
+    }
+    .hero-text {
+        font-size: 24px !important;
+        line-height: 30px !important;
+        text-align: center;
+    }
+    .hero-caption {
+        text-align: center;
+    }
+    .hero-button {
+        width: 90%;
     }
     .perks {
         flex-direction: column;
+        padding-top: 50px;
+    }
+    .partner-head {
+        padding: 60px 0 25px 0;
     }
     .partners {
         overflow: scroll;

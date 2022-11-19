@@ -10,7 +10,7 @@ import skillshare from '../../assets/images/skillshare.png'
 export default function Hero () {
     return (
         <>
-          <div className="flex center justify-between">
+          <div className="flex center justify-between hero">
                <div className="hero-left">
                   <p className="hero-text sora">
                     Create and download
@@ -18,13 +18,13 @@ export default function Hero () {
                     certificates</span> for 
                     <span className="emphasized"> free</span>
                   </p>
-                  <p className="work-sans line-height">Generate professionally designed certificates for your staff, students etc.</p>
+                  <p className="work-sans line-height hero-caption">Generate professionally designed certificates for your staff, students etc.</p>
                   <button className="hero-button">Create a certificate now</button>
                </div>
                <img src={hero} alt='hero' className="hero-img"></img>
            </div>
 
-           <div className="line-height flex justify-between center text-left work-sans perks" style={{padding: "20px 0 0 0"}}>
+           <div className="line-height flex justify-between center text-left work-sans perks">
                <div className="flex items-center" style={{width: "447px", gap: '10px'}}>
                   <img src={tick} alt='tick' className="tick"></img>
                   <p>No design skill needed. Choose from a variety of stunning templates.</p>
