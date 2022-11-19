@@ -6,13 +6,16 @@
     "type": "git",
     "url": "https://github.com/workshopapps/certificategenerator.web"
   },
-  "dependencies": {
-    "prettier": "^2.7.1"
-  },
   "devDependencies": {
-    "husky": "^8.0.2"
+    "eslint-config-prettier": "^8.5.0",
+    "husky": "^8.0.2",
+    "prettier": "2.7.1"
   },
   "scripts": {
     "prepare": "husky install"
+  },
+  "dependencies": {
+    "eslint": "^8.28.0",
+    "lint-staged": "^13.0.3"
   }
 }
