@@ -13,10 +13,16 @@
 	color: #333;
 	background: #ffffff;
 	box-shadow: 0px 0.5px 5px rgba(34, 34, 34, 0.25);
+	h1,
+	h3,
+	h5 {
+		margin: 0.3em 0;
+	}
 	h5 {
 		font-size: 14px;
 		font-weight: 400;
 		line-height: 18px;
+		margin-bottom: 1em;
 	}
 	.colorScheme {
 		width: 85%;
@@ -91,13 +97,17 @@
 			&.short {
 				width: 25%;
 			}
-			input[type="reset"] {
-				background: none;
-				border: none;
-				padding-right: 0;
-				width: fit-content;
-				float: right;
-				color: $errorRedColor;
+		}
+		input[type="reset"] {
+			background: none;
+			border: none;
+			padding-right: 0;
+			width: fit-content;
+			float: right;
+			color: $errorRedColor;
+			&:hover {
+				cursor: pointer;
+				opacity: 0.6;
 			}
 		}
 	}
@@ -140,5 +150,6 @@
 	}
 	&:hover {
 		cursor: pointer;
+		opacity: 0.8;
 	}
 }
