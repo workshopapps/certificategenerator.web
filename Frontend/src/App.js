@@ -2,6 +2,7 @@ import './Style/App.css';
 import Navbar from './component/Navbar';
 import { Route, Routes } from 'react-router-dom';
 import { AboutUs, BulkPreview, BulkStep, ComingSoon, Dashboard, EditBulk, Error, FAQ, Layout, SinglePreview, Team, Templates, Terms } from './pages';
+import Footer from './component/Footer';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route path='*' element={<Error />} />
         </Routes>
       </div>
+      <Footer />
     </>
   );
 }
