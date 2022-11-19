@@ -1,4 +1,6 @@
 import "./layout.style.scss";
+import Footer from "../Footer";
+
 import React from "react";
 
 import { Outlet } from "react-router-dom";
@@ -8,7 +10,7 @@ const Layout = () => {
       Nav
       
       <Outlet />
-      Footer
+      <Footer />
     </div>
   );
 };
