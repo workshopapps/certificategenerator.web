@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./pricing.style.scss";
 import Feature from "./feature";
 import { Link } from "react-router-dom";
-import { data } from "./data";
+import { data, testimonials } from "./data";
 
 function Pricing() {
     const [value, setValue] = useState(0);
@@ -70,6 +70,39 @@ function Pricing() {
             </section>
 
             <Feature />
+
+            <section className="testimonials">
+                <article className="text">
+                    <p>TESTIMONIALS</p>
+
+                    <h3>What our clients say about us</h3>
+
+                    <div className="testimonialContainer">
+                        {testimonials.map((item)=>{
+                            const { id, text, img, name, position } = item;
+
+                            return(
+                                <div key={id}>
+                                    <img src="/assets/Frame.svg" alt="quote" />
+
+                                    <p className="txt">{text}</p>
+
+                                    <div>
+                                        <img src={img} alt={name} />
+
+                                        <div>
+                                            <p>{name}</p>
+                                            <p>{position}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            );
+                        })}
+                    </div>
+                </article>
+            </section>
+
+            <section className="bg"></section>
         </main>
     );
 }
