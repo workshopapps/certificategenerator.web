@@ -5,6 +5,7 @@ import {
   AboutUs,
   BulkPreview,
   BulkStep,
+  Career,
   Choice,
   ComingSoon,
   Dashboard,
@@ -19,7 +20,7 @@ import {
   Templates,
   Terms,
 } from "./pages";
-import Footer from "./Component/Footer";
+// import Footer from './Component/Footer';
 
 import Home from "./pages/Home";
 
@@ -34,6 +35,7 @@ function App() {
             <Route path="/comingsoon" element={<ComingSoon />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/templates" element={<Templates />} />
+            <Route path="/career" element={<Career />} />
             <Route path="choice" element={<Choice />} />
             <Route path="modify" element={<Modify />} />
             <Route path="/team" element={<Team />} />
