@@ -26,6 +26,10 @@ $medium: 912px;
     text-align: initial;
     margin-top: -3rem;
 }
+a{
+    cursor: pointer;
+    text-decoration: none;
+}
 .section{
     padding: 0 5rem;
 
@@ -194,9 +198,24 @@ p{
          }
     .flex__wrapper{
         display: flex;
+        position: relative;
         flex-direction: row-reverse;
         align-items: center;
         justify-content: center;
+        #arrow{
+            display: flex;
+            position: absolute;
+            top: -20px;
+            right: 0;
+            .arrow{
+                padding: 8px;
+                width: 32px;
+                height: 32px;
+                background: rgba(8, 55, 47, 0.5);
+                margin: 2px;
+                border-radius: 50px;
+            }
+        }
          @media screen and (max-width: $small) {
             flex-direction: column;
             // align-items: initial;
@@ -278,6 +297,9 @@ p{
         width: 834px;
         margin-left: 2rem;
          @media screen and (max-width: $small) {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             width: 340px;
             margin-left: 0;
          }
@@ -298,7 +320,7 @@ p{
             font-family: $fontFamily2;
             margin-top: $mt-2;
           @media screen and (max-width: $small) {
-            font-size: 1rem;
+            font-size: .8rem;
             width: 100%;
          }
         }

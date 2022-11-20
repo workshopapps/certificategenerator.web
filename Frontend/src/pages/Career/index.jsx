@@ -7,6 +7,8 @@ import Frame from './assets/Frame 16353.png'
 import Briefcase from './assets/candidate resumes and briefcase.png'
 import Lead from './assets/design-lead.webp'
 import Search from './assets/search-icon.svg'
+import ArrowLeft from './assets/arrow-left.svg'
+import ArrowRight from './assets/arrow-right.svg'
 
 function Career() {
   return (
@@ -15,7 +17,7 @@ function Career() {
         <div className='hero__content'>
           <h2>Accelerate your career, make impact, and fulfill your dream with us</h2>
           <p>Join our amazing team as we make magic happen for businesses that are strivining to make magic happen for their teams.</p>
-          <Button name='See open positions' />
+          <a href='#positions'><Button name='See open positions' /></a>
         </div>
         <div className='hero__image'>
             <img src={Rocket} alt="rocket" />
@@ -47,6 +49,10 @@ function Career() {
 
       <section className=' section2'>
         <div className='flex__wrapper'>
+          <div id='arrow'>
+            <img src={ArrowLeft} alt='arrow-left' className='arrow' />
+            <img src={ArrowRight} alt='arrow-right' className='arrow'/>
+          </div>
           <div className='image__container'>
              <img src={Lead} alt='design-lead' />
           </div>
@@ -68,11 +74,12 @@ function Career() {
           <div className='text__container'>
             <h2>Our staff are the geese and our products are the golden eggs</h2>
             <p>Because we understand that the success of our team rests solely on our staff, we pride ourselves in making our hiring process as short and smooth as possible. We take away all forms of anxiety by making our process as transparent as possible. We are very clear about expection and rewards for contribution. We don’t leave you guessing.</p>
+          <a href='#positions'><Button name='See careers' /></a>
           </div>
         </div>
       </section>
 
-      <section className='section4'>
+      <section id='positions' className='section4'>
          <h2>Open Positions</h2>
         <form >
             <div className='search__wrapper'>
