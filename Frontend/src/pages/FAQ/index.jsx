@@ -6,6 +6,7 @@ import { Featured } from "./FAQcomp/Featured";
 import { GettingStarted } from "./FAQcomp/GettingStarted";
 import { Uploads } from "./FAQcomp/Uploads";
 import Style from "./faq.module.scss";
+import Button from "../../Component/button";
 
 const FAQ = () => {
   return (
@@ -16,6 +17,9 @@ const FAQ = () => {
       <Downloads header={"Downloads"} />
       <Uploads header={"Uploads"} />
       <Featured header={"Featured"} />
+      <div className={Style.faqBtn}>
+        <Button name={"Have more questions?"} />
+      </div>
     </>
   );
 };
