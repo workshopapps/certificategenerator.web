@@ -3,6 +3,7 @@ import './certificate.style.scss'
 import demo from '../../../assets/images/demo.png'
 import demo_2 from '../../../assets/images/demo-2.png'
 import demo_3 from '../../../assets/images/demo-3.png'
+import {Link} from "react-router-dom"
 
 export default function Certificate () {
     const [bulkCertificate, setBulkCertificate] = useState(false);
@@ -73,27 +74,30 @@ export default function Certificate () {
           <form action="" className="cert-form text-left work-sans">
             <label for='img'>Logo</label>
             <input type="file" name="uploadfile" id="img" style={{ display:"none"}}/>
-            <label for="img" className="upload">Upload logo</label>
+            <label htmlFor="img" className="upload">Upload logo</label>
             <p style={{fontSize: '12px'}}>Max image upload size: 8mb</p>
 
-            <label for='text' className="label">Certificate Title</label>
+            <label htmlFor='text' className="label">Certificate Title</label>
             <input type="text" placeholder="Certificate of completion"/>
 
-            <label for='text' className="label">Awardee Names</label>
+            <label htmlFor='text' className="label">Awardee Names</label>
             <input type="text" placeholder="Gabriel Prosper"/>
 
-            <label for='text' className="label">Dedication or message</label>
+            <label htmlFor='text' className="label">Dedication or message</label>
             <input type="text" placeholder="For your exceptional performance this month, 
             in appreciation for your loyalty and the desire to fulfil our goals, 
             in recognition of your leadership and dedication "/>
 
-            <label for='text' className="label">Issued by</label>
+            <label htmlFor='text' className="label">Issued by</label>
             <input type="text" placeholder="Name of organisation or issuer"/>
 
-            <label for='date' className="label">Issue Date</label>
+            <label htmlFor='date' className="label">Issue Date</label>
             <input type="date" />
 
+            <Link to = "single_preview">
             <input type="submit" value="Create Certificate" className="submit-btn"/>
+
+            </Link>
           </form>
             </div>}
         </>

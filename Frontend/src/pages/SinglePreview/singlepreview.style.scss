@@ -1,6 +1,9 @@
 @import "../../Style/variables";
 
 // BUTTON CONTAINER FOR THE TOGGLE BUTTONS
+body{
+  text-align:center;
+}
 
 #singlePreview{
 .button-container button {
@@ -12,25 +15,25 @@
 
   &.not-active {
     background: transparent;
-    border: 1px solid $primaryGreenColor;
+    border: none;
 
     &:hover {
       color: #fff;
-      background: $primaryGreenColor;
+      background: $primaryColor;
       border: none;
       transition: 500ms ease-in-out;
     }
   }
 
   &.active {
-    background: $primaryGreenColor;
+    background: $primaryColor;
     color: #fff;
     border: none;
 
     &:hover {
-      color: $primaryGreenColor;
+      color: $primaryColor;
       background: #fff;
-      border: 1px solid $primaryGreenColor;
+      border: 1px solid $primaryColor;
       transition: 500ms ease-in-out;
     }
   }
@@ -45,32 +48,32 @@
 .certificate button {
   margin: 35px 20px 45px 20px;
   border-radius: 5px;
-  color: $primaryGreenColor;
+  color: $primaryColor;
   width: 140px;
   height: 35px;
   font-size: 12px;
 
   &.download-button {
     background: transparent;
-    border: 1px solid $primaryGreenColor;
-    color: $primaryGreenColor;
+    border: 1px solid $primaryColor;
+    color: $primaryColor;
     &:hover {
       color: #fff;
-      background: $primaryGreenColor;
+      background: $primaryColor;
       border: none;
       transition: 500ms ease-in-out;
     }
   }
 
   &.send-button {
-    background: $primaryGreenColor;
+    background: $primaryColor;
     color: #fff;
     border: none;
 
     &:hover {
-      color: $primaryGreenColor;
+      color: $primaryColor;
       background: #fff;
-      border: 1px solid $primaryGreenColor;
+      border: 1px solid $primaryColor;
       transition: 500ms ease-in-out;
     }
   }
@@ -81,12 +84,12 @@
   padding: 10px;
   border-radius: 8px;
   background: transparent;
-  border: 1px solid $primaryGreenColor;
+  border: 1px solid $primaryColor;
   font-family: "Work Sans", sans-serif;
 
   &:hover {
     color: #fff;
-    background: $primaryGreenColor;
+    background: $primaryColor;
     border: none;
     transition: 500ms ease-in-out;
   }

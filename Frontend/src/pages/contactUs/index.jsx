@@ -73,7 +73,7 @@ const ContactUs = () => {
               type="tel"
             />
             <TextArea placeholder="type message here" label="Message" />
-            <Button width='100%'>Send Message</Button>
+            <Button width="100%">Send Message</Button>
           </form>
         </div>
       </div>
