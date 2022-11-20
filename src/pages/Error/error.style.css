@@ -1,0 +1,115 @@
+@import url("https://fonts.googleapis.com/css2?family=Sora:wght@400;700&family=Work+Sans:wght@500&display=swap");
+.error-page {
+  font-family: "Sora", sans-serif;
+  box-sizing: border-box;
+  width: 90%;
+  max-width: 500px;
+  margin: 3rem auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.error-page h1 {
+  font-size: 23px;
+  font-weight: 700;
+  margin-bottom: 0;
+}
+.error-page p {
+  font-size: 1rem;
+}
+
+.error-page .error-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.error-page .error-buttons button {
+  font-family: "Work Sans", sans-serif;
+  display: block;
+  padding: 14.5px 20px;
+  width: 200px;
+  height: 48px;
+  max-width: 200px;
+  border: none;
+  border-radius: 10px;
+  background-color: white;
+  font-size: 1rem;
+}
+.error-page .error-buttons .link {
+  text-decoration: none;
+}
+.error-page .error-buttons .link .btn-outline {
+  cursor: pointer;
+  border: 2px solid #19a68e;
+  background-color: white;
+  color: #19a68e;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.error-page .error-buttons .link .btn-solid {
+  cursor: pointer;
+  background-color: #19a68e;
+  color: white;
+}
+
+.arrow-left {
+  font-size: 23px;
+}
+
+.error-image {
+  margin-top: 20px;
+}
+
+.error-image img {
+  width: 100%;
+}
+
+@media only screen and (min-width: 768px) {
+  .error-page {
+    max-width: 730px;
+    margin-top: 3.5rem;
+  }
+  .error-page h1 {
+    font-size: 3rem;
+  }
+  .error-page p {
+    font-size: 20px;
+  }
+  .error-page .error-buttons {
+    flex-direction: row;
+    gap: 40px;
+  }
+  .error-image {
+    margin-top: calc(6.5rem - 20px);
+  }
+}
+@media only screen and (min-width: 1023px) {
+  .error-page {
+    margin-top: 4rem;
+  }
+  .error-page h1 {
+    font-size: 57px;
+  }
+  .error-page p {
+    font-size: 27px;
+  }
+  .error-image {
+    margin-top: 20px;
+  }
+  .error-image img {
+    width: 75%;
+  }
+}
+@media only screen and (min-width: 1400px) {
+  .error-page {
+    margin-top: 6rem;
+  }
+  .error-image img {
+    width: 100%;
+  }
+}/*# sourceMappingURL=error.style.css.map */

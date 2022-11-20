@@ -1,0 +1,31 @@
+.main-page {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    padding: 50px 100px 180px 100px;
+    }
+    
+    p, li {
+        font-size: 19px;
+    }
+    
+    li {
+        margin-bottom: 20px;
+        list-style-type: square;
+    }
+
+  
+    
+    ul {
+        padding-left: 25px;
+    }
+    
+  
+    @media (max-width: 550px) {
+        .main-page {
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            padding: 50px 10px 180px 10px;
+            }
+    }
