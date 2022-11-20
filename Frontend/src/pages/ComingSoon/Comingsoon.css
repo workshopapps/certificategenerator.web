@@ -45,7 +45,7 @@
   gap: 44px;
 }
 #comingsoon .f1 {
-  width: 400px;
+  width: 500px;
   font-family: "Sora";
   font-style: normal;
   font-weight: 700;
@@ -76,8 +76,14 @@
   flex-direction: column;
   max-width: 1240px;
 }
+#comingsoon .emyform {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+}
 #comingsoon .email {
-  height: 43px;
+  height: 49px;
   width: 388px;
   background: #FFFFFF;
   border: 1.2px solid 0.01AA6E;
@@ -106,6 +112,7 @@
   align-items: center;
   letter-spacing: -0.004em;
   color: #ffffff;
+  margin-bottom: 15px;
 }
 #comingsoon .spam {
   font-family: "Work Sans";
@@ -169,7 +176,7 @@
   #comingsoon .p,
 #comingsoon .f1,
 #comingsoon .welcomeHead {
-    width: 400px;
+    width: 500px;
   }
 }
 @media screen and (max-width: 1024px) {
@@ -177,7 +184,7 @@
     width: 400px;
   }
   #comingsoon .f1 {
-    font-size: 48px;
+    font-size: 36px;
     width: 300px;
   }
   #comingsoon .p {
@@ -195,12 +202,13 @@
   }
 }
 @media screen and (max-width: 768px) {
-  #comingsoon .f1,
-#comingsoon .welcomeHead {
-    width: 250px;
+  #comingsoon .welcomeHead {
+    width: 100%;
   }
   #comingsoon .f1 {
+    width: 300px;
     font-size: 24px;
+    font-weight: 500px;
   }
   #comingsoon .p {
     font-size: 12px;
@@ -213,7 +221,7 @@
     width: 300px;
   }
   #comingsoon .cons_img {
-    width: 300px;
+    width: 200px;
     display: flex;
   }
 }
@@ -223,6 +231,8 @@
 #comingsoon .formdat,
 #comingsoon footer {
     display: flex;
+    justify-content: center;
+    align-items: center;
   }
   #comingsoon .cons_img {
     width: 300px;
@@ -232,16 +242,29 @@
     flex-direction: column;
   }
   #comingsoon .f1 {
-    font-size: 24px;
-    width: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 36px;
+    width: 100%;
   }
   #comingsoon .p {
-    font-size: 14px;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    margin-left: 50px;
+    font-size: 16px;
   }
   #comingsoon .email {
-    width: 200px;
+    width: 150px;
   }
   #comingsoon footer > ul {
     width: 60%;
+  }
+  #comingsoon .welcomeHead {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }/*# sourceMappingURL=Comingsoon.css.map */

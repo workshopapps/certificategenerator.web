@@ -4,9 +4,11 @@
 #edit {
   
 body {
+  text-align:'center';
   h1 {
     font-size: 30px;
     font-weight: 500;
+    
   }
 }
 
@@ -52,7 +54,7 @@ body {
   }
 
   button {
-    background: $primaryGreenColor;
+    background: $primaryColor;
     color: #fff;
     border: none;
 
@@ -62,9 +64,9 @@ body {
     margin: 0px;
 
     &:hover {
-      color: $primaryGreenColor;
+      color: $primaryColor;
       background: #fff;
-      border: 1px solid $primaryGreenColor;
+      border: 1px solid $primaryColor;
       transition: 500ms ease-in-out;
     }
   }

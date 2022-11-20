@@ -1,4 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@500&display=swap");
+#edit body {
+  text-align: "center";
+}
 #edit body h1 {
   font-size: 30px;
   font-weight: 500;
@@ -41,7 +44,7 @@
   width: 100%;
 }
 #edit .form button {
-  background: #19a6be;
+  background: #19a68e;
   color: #fff;
   border: none;
   width: 130px;
@@ -50,9 +53,9 @@
   margin: 0px;
 }
 #edit .form button:hover {
-  color: #19a6be;
+  color: #19a68e;
   background: #fff;
-  border: 1px solid #19a6be;
+  border: 1px solid #19a68e;
   transition: 500ms ease-in-out;
 }
 @media screen and (min-width: 768px) {

@@ -59,7 +59,7 @@ section {
 $width: 292px;
 $height: 333px;
 $flexWrap: wrap;
-$margin: 24px 120px;
+$margin: 24px 100px;
 $figureMargin: 6px;
 $flexDirection: row;
 $boxSizing: border-box;
@@ -75,6 +75,7 @@ $figureBorder: 1px solid #6C6C70;
   display: $display;
   flex-wrap: $flexWrap;
   flex-direction: $flexDirection;
+  justify-content: center;
 }
 
 figure {
