@@ -1,4 +1,12 @@
 import React from 'react';
+import './Comingsoon.css'
+import arrowRight from './images/arrowRight.png'
+import github from './images/github.png'
+import instagra from './images/instagra.png'
+import linkedin from './images/linkedin.png'
+import under_construction from './images/under_construction.png'
+import twitter from './images/twitter.png'
+
 
 
 function Comingsoon() {
@@ -9,7 +17,7 @@ function Comingsoon() {
           <div className='welcome'>
             <div className='welcomeHead'>
               <div className='back'>
-                <img src='images/arrowRight.PNG' className='arrow' alt='arrow right'></img>
+                <img src={arrowRight} className='arrow' alt='arrow right'></img>
                 Back to Home
               </div>
               <div className='f1'>Coming Soon!</div>
@@ -20,7 +28,7 @@ function Comingsoon() {
             </div>
             <div className='construction'>
               <img
-                src='images/under_construction.png'
+                src={under_construction}
                 className='cons_img'
                 alt=''></img>
             </div>
@@ -40,10 +48,10 @@ function Comingsoon() {
           <div className='social'>
             <div className='socail_des'>We are social</div>
             <div className='socail_logo'>
-              <img src='images/instagra.png' alt=''></img>
-              <img src='images/Linkedin.png' alt='linkedin'></img>
-              <img src='images/twitter.png' alt='tiwitter'></img>
-              <img src='images/github.png' alt='github'></img>
+              <img src={instagra} alt=''></img>
+              <img src={linkedin} alt='linkedin'></img>
+              <img src={twitter} alt='tiwitter'></img>
+              <img src={github} alt='github'></img>
             </div>
           </div>
           <ul>
