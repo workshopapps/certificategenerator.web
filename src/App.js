@@ -30,8 +30,8 @@ function App() {
             <Route path='/bulk_preview' element={<BulkPreview />} />
             <Route path='/bulk_step' element={<BulkStep />} />
             <Route path='/edit_bulk' element={<EditBulk />} />
-            <Route path='/pricing' element={<Pricing />} />
-            <Route path='/privacy_policy' element={<LegalDocuments />} />
+            <Route path='/pricing' element={<Pricing />} /> 
+            <Route path='/privacy' element={<LegalDocuments />} />
           </Route>
             <Route path='*' element={<Error />} />
             
