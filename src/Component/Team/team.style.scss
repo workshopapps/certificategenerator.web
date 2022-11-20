@@ -22,6 +22,10 @@ $titleColor: #000000;
 $titleAlignItems: center;
 $teamLetterSpacing: -0.5px;
 
+<<<<<<< HEAD
+=======
+$teamMarginTop: 44px;
+>>>>>>> e7ceb53136fa88191230916d9ff3b9ddc40cdb66
 $meetMarginTop: 24px;
 
 // container styling
@@ -37,6 +41,10 @@ section {
   font-style: $fontStyle;
   font-family: $fontFamily;
   font-size: $teamFontSize;
+<<<<<<< HEAD
+=======
+  margin-top: $teamMarginTop;
+>>>>>>> e7ceb53136fa88191230916d9ff3b9ddc40cdb66
   line-height: $teamLineHeight;
   align-items: $titleAlignItems;
   letter-spacing: $teamLetterSpacing;
@@ -67,7 +75,11 @@ $figureBorderRadius: 24px;
 $figureAlignItems: flex-start;
 $figureBorder: 1px solid #6C6C70;
 
+<<<<<<< HEAD
 .containers {
+=======
+.container {
+>>>>>>> e7ceb53136fa88191230916d9ff3b9ddc40cdb66
   margin: $margin;
   display: $display;
   flex-wrap: $flexWrap;
@@ -157,10 +169,17 @@ $viewLetterSpacing: -0.004em;
 // Tablet styling
 @media only screen and (min-width: 481px) and (max-width: 1000px) {
   $width: 233px;
+<<<<<<< HEAD
   $margin: 24px 28px;
   $containerHeight: 100%;
 
   .containers {
+=======
+  $margin: 24px 30px;
+  $containerHeight: 100%;
+
+  .container {
+>>>>>>> e7ceb53136fa88191230916d9ff3b9ddc40cdb66
     margin: $margin;
   }
   section {
@@ -175,7 +194,11 @@ $viewLetterSpacing: -0.004em;
   $width: 327px;
   $margin: 24px 33px;
   $containerHeight: 100%;
+<<<<<<< HEAD
   .containers {
+=======
+  .container {
+>>>>>>> e7ceb53136fa88191230916d9ff3b9ddc40cdb66
     margin: $margin;
   }
   section {
