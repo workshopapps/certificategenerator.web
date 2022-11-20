@@ -131,7 +131,7 @@ function Career() {
                   ) : null
               })}
             </div>
-       </section>
+      </section>
     </div>
   )
 }
