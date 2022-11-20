@@ -9,6 +9,10 @@
     padding: 0;
     box-sizing: border-box;
 }
+body, html {
+    position: relative;
+    overflow-x: hidden;
+}
 body {
 	background: #fafafb;
 	font-family: "Work Sans", sans-serif;
