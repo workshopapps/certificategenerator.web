@@ -137,4 +137,12 @@ input::-webkit-calendar-picker-indicator{
     }
 }
 
-}
+@media screen  and (max-width: 480px) {
+    .cert-img {
+        flex-direction: column;
+    }
+    .form {
+        background-color: #ffffff;
+        border: none;
+    }
+}}
