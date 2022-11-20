@@ -38,6 +38,7 @@ function App() {
             <Route path="/single_preview" element={<SinglePreview />} />
             <Route path="/bulk_preview" element={<BulkPreview />} />
             <Route path="/edit_bulk" element={<EditBulk />} />
+            <Route path="/bulkstep" element={<BulkStep />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="*" element={<Error />} />
           </Routes>

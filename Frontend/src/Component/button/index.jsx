@@ -1,11 +1,11 @@
 import React from 'react'
 import './button.scss'
 
-const Button = ({children, width}) => {
+const Button = ({children, name, width}) => {
   return (
       <button className='btn' style={{
         width: width
-    }}>{children}</button>
+    }}>{children} {name}</button>
   )
 }
 
