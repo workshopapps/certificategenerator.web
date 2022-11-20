@@ -2,8 +2,8 @@
 import './Style/App.scss';
 import Navbar from './Component/Navbar';
 import { Route, Routes } from 'react-router-dom';
-import { AboutUs, BulkPreview, BulkStep, Choice,ComingSoon, Dashboard, EditBulk, Error, FAQ, Layout, Modify, Pricing, SinglePreview, Team, Templates, Terms } from './pages';
-import Footer from './Component/Footer';
+import { AboutUs, BulkPreview, BulkStep, Career,  Choice, ComingSoon, Dashboard, EditBulk, Error, FAQ, Layout, Modify, Pricing, SinglePreview, Team, Templates, Terms } from './pages';
+// import Footer from './Component/Footer';
 
 import Home from './pages/Home'
 
@@ -18,6 +18,7 @@ function App() {
             <Route path='/comingsoon' element={<ComingSoon />} />
             <Route path='/dashboard' element={<Dashboard />} />
             <Route path='/templates' element={<Templates />} />
+            <Route path='/career' element={<Career />} />
             <Route path="choice" element={<Choice />}/>
 					  <Route path="modify" element={<Modify />} />
             <Route path='/team' element={<Team />} />
