@@ -5,7 +5,7 @@ import Button from "../../Component/button";
 import Rocket from "./assets/rocket-launcher.webp";
 import Frame from "./assets/Frame 16353.png";
 import Briefcase from "./assets/candidate resumes and briefcase.png";
-import Lead from "./assets/design-lead.webp";
+import Lead from "/assets/design-lead.webp";
 import Search from "./assets/search-icon.svg";
 import ArrowLeft from "./assets/arrow-left.svg";
 import ArrowRight from "./assets/arrow-right.svg";
