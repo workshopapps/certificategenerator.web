@@ -17,6 +17,7 @@ import {
   Templates,
   Terms,
   Home,
+  Pricing
 } from "./pages";
 
 import { Layout } from "./component";
@@ -41,6 +42,7 @@ function App() {
             <Route path="/edit_bulk" element={<EditBulk />} />
             <Route path="/bulkstep" element={<BulkStep />} />
             <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/pricing" element={<Pricing />} />
             <Route path="*" element={<Error />} />
           </Routes>
         </main>
