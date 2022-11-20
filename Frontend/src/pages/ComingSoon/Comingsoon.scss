@@ -13,6 +13,7 @@
     align-items: center;
     flex-direction: column;
     justify-content: center;
+    
   }
   .welcome {
     width: 100%;
@@ -48,7 +49,7 @@
     gap: 44px;
   }
   .f1 {
-    width: 400px;
+    width: 500px;
     font-family: 'Sora';
     font-style: normal;
     font-weight: 700;
@@ -79,8 +80,14 @@
     flex-direction: column;
     max-width: 1240px;
   }
+  .emyform{
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+  }
   .email {
-    height: 43px;
+    height: 49px;
     width: 388px;
     background: #FFFFFF;
     border: 1.2px solid 0.01AA6E;
@@ -95,7 +102,6 @@
     justify-content: center;
     background: 0.19A68E;
     border-radius: 10px;
-
     height: 49px;
     border: none;
     flex: none;
@@ -110,6 +116,7 @@
     align-items: center;
     letter-spacing: -0.004em;
     color: #ffffff;
+    margin-bottom: 15px;
   }
   // .form{
   //     display: flex;
@@ -179,7 +186,7 @@
     .p,
     .f1,
     .welcomeHead {
-      width: 400px;
+      width: 500px;
     }
   }
   @media screen and (max-width: 1024px) {
@@ -187,7 +194,7 @@
       width: 400px;
     }
     .f1 {
-      font-size: 48px;
+      font-size: 36px;
       width: 300px;
     }
     .p {
@@ -206,12 +213,14 @@
     }
   }
   @media screen and (max-width: 768px) {
-    .f1,
-    .welcomeHead {
-      width: 250px;
-    }
+    
+    .welcomeHead {  width: 100%;
+      
+          }
     .f1 {
+      width: 300px;
       font-size: 24px;
+      font-weight: 500px;
     }
     .p {
       font-size: 12px;
@@ -224,7 +233,7 @@
       width: 300px;
     }
     .cons_img {
-      width: 300px;
+      width: 200px;
       display: flex;
     }
   }
@@ -234,6 +243,8 @@
     .formdat,
     footer {
       display: flex;
+      justify-content: center;
+      align-items: center;
     }
     .cons_img {
       width: 300px;
@@ -242,18 +253,30 @@
     footer {
       flex-direction: column;
     }
-    .f1 {
-      font-size: 24px;
-      width: 150px;
+    .f1 {display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 36px;
+      width: 100%;
+      
     }
     .p {
-      font-size: 14px;
+      width: 100%;
+      justify-content: center;
+      align-items: center;
+      margin-left: 50px;
+      font-size: 16px;
     }
     .email {
-      width: 200px;
+      width: 150px;
     }
     footer > ul {
       width: 60%;
     }
+    .welcomeHead{
+      width: 100%;
+      display: flex; justify-content: center; align-items: center;
+    }
+    
   }
 }
