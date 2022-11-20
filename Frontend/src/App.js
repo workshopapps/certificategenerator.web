@@ -7,6 +7,7 @@ import {
   BulkStep,
   ComingSoon,
   ContactUs,
+  Career,
   Dashboard,
   EditBulk,
   Error,
@@ -33,6 +34,7 @@ function App() {
             <Route path="/FAQ" element={<FAQ />} />
             <Route path="/aboutUs" element={<AboutUs />} />
             <Route path="/contact-us" element={<ContactUs />} />
+            <Route path="/career" element={<Career />} />
             <Route path="/single_preview" element={<SinglePreview />} />
             <Route path="/bulk_preview" element={<BulkPreview />} />
             <Route path="/edit_bulk" element={<EditBulk />} />
