@@ -1,7 +1,7 @@
 import React from 'react'
 import './career.style.scss'
 import { Persons, Positions, Positions2 } from './data'
-import Button from '../../component/Button'
+import Button from '../../Component/Button'
 import Rocket from './assets/rocket-launcher.webp'
 import Frame from './assets/Frame 16353.png'
 import Briefcase from './assets/candidate resumes and briefcase.png'
@@ -30,9 +30,12 @@ function Career() {
              <img src={Frame} alt='frame' />
           </div>
           <div className='team'>
-            {Persons.map(person => {
+            <div className='image'>
+               {Persons.map(person => {
             return <img key={person.id} src={person.img} alt=''/>
           })}
+            </div>
+           
           </div>
           <div className='text__container'>
             <h2>We move <b>fast</b>, we shoot <b>sharp</b></h2>

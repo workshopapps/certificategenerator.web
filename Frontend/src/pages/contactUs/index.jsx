@@ -4,9 +4,9 @@ import {
   ContactLocationIcon,
   ContactPhoneIcon,
 } from "../../assets";
-import Button from "../../component/Button";
-import Inputfield from "../../component/inputField";
-import TextArea from "../../component/textarea";
+import Button from "../../Component/Button";
+import Inputfield from "../../Component/inputField";
+import TextArea from "../../Component/textarea";
 import "./contact.scss";
 
 const ContactUs = () => {
