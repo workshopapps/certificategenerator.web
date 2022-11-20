@@ -1,4 +1,3 @@
-import 'bootstrap/dist/css/bootstrap.min.css'
 import SecurePay from '../icons/Secure Pay.svg'
 import CreditCard from '../icons/Credit Card.svg'
 import BankTransfer from '../icons/Bank Transfer.svg'

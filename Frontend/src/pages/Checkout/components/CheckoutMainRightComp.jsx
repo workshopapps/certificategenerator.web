@@ -1,4 +1,3 @@
-import 'bootstrap/dist/css/bootstrap.min.css'
 import Good from '../icons/Good.svg'
 
 function CheckoutMainRightComp(props) {

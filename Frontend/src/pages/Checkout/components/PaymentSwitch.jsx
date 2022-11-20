@@ -1,4 +1,3 @@
-import 'bootstrap/dist/css/bootstrap.min.css'
 import CheckoutMainLeftInput from './CheckoutMainLeftInput'
 
 function PaymentSwitch(props) {

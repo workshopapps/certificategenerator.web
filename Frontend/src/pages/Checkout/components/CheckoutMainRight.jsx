@@ -1,4 +1,3 @@
-import 'bootstrap/dist/css/bootstrap.min.css'
 import CheckoutMainRightComp from './CheckoutMainRightComp'
 
 function CheckoutMainRight() {

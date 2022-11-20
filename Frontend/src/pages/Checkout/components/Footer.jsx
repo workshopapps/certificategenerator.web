@@ -1,4 +1,3 @@
-import 'bootstrap/dist/css/bootstrap.min.css'
 import Logo2 from '../icons/Logo 2.svg'
 import Instagram from '../icons/Instagram.svg'
 import Linkedin from '../icons/Linkedin.svg'

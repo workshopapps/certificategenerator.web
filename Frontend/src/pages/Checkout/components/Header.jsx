@@ -1,4 +1,3 @@
-import 'bootstrap/dist/css/bootstrap.min.css'
 import { Navbar, Nav, NavLink, Container } from 'react-bootstrap'
 import Logo from '../icons/Logo.svg'
 import Profile from '../icons/Profile.svg'
