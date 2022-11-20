@@ -1,6 +1,6 @@
 //Pages
 
-export { default as Layout } from "./Layout";
+// export { default as Layout } from "./Layout";
 export { default as ComingSoon } from "./ComingSoon";
 export { default as Dashboard } from "./Dashboard";
 export { default as Team } from "./Team";
@@ -13,3 +13,4 @@ export { default as BulkPreview } from "./BulkPreview";
 export { default as BulkStep } from "./BulkStep";
 export { default as EditBulk } from "./EditBulk";
 export { default as Error } from "./Error";
+export {default as ContactUs} from './contactUs'
