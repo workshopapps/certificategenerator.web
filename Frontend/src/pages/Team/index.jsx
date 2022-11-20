@@ -165,11 +165,15 @@ const Team = () => {
     <section>
       {/* title */}
       <div className="team">Our Team</div>
-      <div className="meet">Meet our innovative and creative team behind the vision of our software</div>
+      <div className="meet">
+        Experience, skill and creativity all come together to build our software
+        - one that's innovative, visionary, and inclusive. The team behind
+        Certawi Certificate Generator consist of:
+      </div>
       {/* members */}
       <div className="containers">
         {members.map((member, id) =>
-          <figure key={id}>
+          <figure className="figures" key={id}>
             <img src={member.picture} alt="A team member photograph" />
             <figcaption className="name">{member.name}</figcaption>
             <figcaption className="title">{member.title}</figcaption>

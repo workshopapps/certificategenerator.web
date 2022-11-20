@@ -12,10 +12,10 @@ $bold: 700;
 $normal: 400;
 
 $teamFontSize: 57px;
-$teamLineHeight: 72px;
+$teamLineHeight: auto;
 
 $meetFontSize: 23px;
-$meetLineHeight: 29px;
+$meetLineHeight: auto;
 
 $display: flex;
 $titleColor: #000000;
@@ -29,6 +29,7 @@ section {
   width: $sectionWidth;
   max-height: $containerHeight;
   background: $containerBackground;
+  text-align: center;
 }
 // title styling
 .team {
@@ -42,7 +43,9 @@ section {
   letter-spacing: $teamLetterSpacing;
 }
 .meet {
+  margin-left: 100px;
   color: $titleColor;
+  margin-right: 120px;
   font-weight: $normal;
   font-style: $fontStyle;
   font-family: $fontFamily;
@@ -169,11 +172,15 @@ $viewLetterSpacing: -0.004em;
   figure {
     width: $width;
   }
+  .meet {
+    margin-left: 28px;
+    margin-right: 28px;
+  }
 }
 
 @media only screen and (min-width: 0px) and (max-width: 480px) {
   $width: 327px;
-  $margin: 24px 33px;
+  $margin: 8px 33px;
   $containerHeight: 100%;
   .containers {
     margin: $margin;
@@ -183,5 +190,16 @@ $viewLetterSpacing: -0.004em;
   }
   figure {
     width: $width;
+  }
+  .meet {
+    margin-left: 28px;
+    margin-right: 28px;
+    font-size: 16px;
+    margin-top: 8px;
+    margin-bottom: 24px;
+  }
+  .team {
+    font-size: 36px;
+    margin-top: 32px;
   }
 }
