@@ -20,11 +20,8 @@
   height: 40px;
   margin: 29px 64px 58px 100px;
   display: flex;
-}
-
-.logo {
-  width: 150px;
-  height: 40px;
+  max-width: 1240;
+  justify-content: space-between;
 }
 
 .menu {
@@ -179,6 +176,8 @@ a {
   display: flex;
   height: 32px;
   gap: 8px;
+  display: flex;
+  align-items: center;
 }
 
 #acceptTerms {
@@ -199,6 +198,9 @@ a {
   line-height: 19px;
   letter-spacing: -0.004em;
   color: #FFFFFF;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #coloredTerms {
@@ -226,6 +228,10 @@ a {
   font-weight: 500;
   font-size: 16px;
   line-height: 19px;
+  color: #6C6C70;
+}
+
+.eye {
   color: #6C6C70;
 }
 

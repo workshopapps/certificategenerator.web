@@ -66,7 +66,7 @@ const Signup = () => {
                             <img alt="" src={keySVG}/>
                             <input id="input_id" placeholder="Create a password" type={type} required/>
                             <span onClick={handleToggle}>
-                            {type==="text" ? <AiOutlineEye size={25}/> : <AiOutlineEyeInvisible size={25} />}
+                            {type==="text" ? <AiOutlineEye size={25} className="eye"/> : <AiOutlineEyeInvisible size={25} className="eye" />}
                             </span>
                         </div>
                         <div id="checkTerms">
@@ -76,7 +76,7 @@ const Signup = () => {
                             read and accepted Certawi’s <span id="coloredTerms"> Terms of Use</span> and 
                             <span id="coloredTerms"> Privacy Policy</span></div>
                         </div>
-                        <button id="btn">Create Account</button>
+                        <div id="btn">Create Account</div>
                     </form>   
                     <p className="haveAccount">Already have an account? <Link to="/login" id="coloredTerms">Login</Link></p>
                 </div>   

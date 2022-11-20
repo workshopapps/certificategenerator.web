@@ -15,6 +15,8 @@ function App() {
       <Navbar />
       <div className='App'>
         <Routes>
+          <Route path="/signup" element={<Signup />} /> 
+				  <Route path="/login" element={<Login />} />
           <Route path='/' element={<Layout />} >
             <Route index element={<Home />} />
             <Route path='/comingsoon' element={<ComingSoon />} />
@@ -29,8 +31,6 @@ function App() {
             <Route path='/FAQ' element={<FAQ />} />
             <Route path='/bulk_preview' element={<BulkPreview />} />
             <Route path='/bulk_step' element={<BulkStep />} />
-            <Route path="/signup" element={<Signup />} /> 
-				    <Route path="/login" element={<Login />} />
             <Route path='/edit_bulk' element={<EditBulk />} />
             <Route path='/pricing' element={<Pricing />} />
           </Route>

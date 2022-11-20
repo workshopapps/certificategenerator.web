@@ -59,7 +59,7 @@ const Login = () => {
                             <img alt="" src={keySVG}/>
                             <input id="input_id" placeholder="Create a password" type={type} required/>
                             <span onClick={handleToggle}>
-                            {type==="text" ? <AiOutlineEye size={25}/> : <AiOutlineEyeInvisible size={25} />}</span>
+                            {type==="text" ? <AiOutlineEye size={25}className="eye"/> : <AiOutlineEyeInvisible size={25} className="eye" />}</span>
                         </div>
                         <div className="forgotPwd">Forgot password?</div>
                         <div id="checkTerms">
@@ -67,7 +67,7 @@ const Login = () => {
                             onChange={handleChange} name="acceptTerms"/>
                             <label id="labels" htmlFor="acceptTerms">Remember me</label>
                         </div>
-                        <button id="btn">Login</button>
+                        <div id="btn">Login</div>
                     </form>   
                     <p className="haveAccount">Don’t have a Certawi account? <Link to="/signup" id="coloredTerms">Create an account </Link></p>
                 </div>
