@@ -150,7 +150,7 @@ p {
   font-size: 39px;
 }
 .career__container .section1 h2 b {
-  color: #7B41B4;
+  color: #7b41b4;
 }
 @media screen and (max-width: 912px) {
   .career__container .section1 h2 {
@@ -241,7 +241,7 @@ p {
   }
 }
 .career__container .section2 {
-  background: #E8F6F4;
+  background: #e8f6f4;
   margin-top: 3rem;
   padding: 2rem 3rem;
 }
@@ -295,7 +295,7 @@ p {
 }
 .career__container .section2 .flex__wrapper .text__container h5 {
   font-size: 1.2rem;
-  color: #08372F;
+  color: #08372f;
   margin-top: 1rem;
 }
 @media screen and (max-width: 912px) {
@@ -438,7 +438,7 @@ p {
   width: 100%;
 }
 .career__container .section4 {
-  background: #E8F6F4;
+  background: #e8f6f4;
   padding: 3rem 5rem;
 }
 @media screen and (max-width: 650px) {
@@ -447,7 +447,7 @@ p {
   }
 }
 .career__container .section4 h2 {
-  color: #08372F;
+  color: #08372f;
   font-size: 3rem;
   margin-bottom: 3rem;
 }
@@ -512,7 +512,7 @@ p {
   width: 25px;
   height: 25px;
   color: #ffffff;
-  background: #6C6C70;
+  background: #6c6c70;
   border-radius: 22rem;
   margin-left: 10px;
 }
@@ -545,5 +545,5 @@ p {
   margin: 1rem 0;
 }
 .career__container .section4 .jobs .job__desc h4 b {
-  color: #6C6C70;
+  color: #6c6c70;
 }/*# sourceMappingURL=career.style.css.map */

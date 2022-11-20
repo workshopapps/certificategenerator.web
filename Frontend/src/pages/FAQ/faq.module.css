@@ -24,10 +24,10 @@
   margin: 0 auto;
   width: 80%;
   margin-top: 3rem;
-  margin-bottom: 3rem;
 }
 .faqContainer h2 {
   font-size: 1.2rem;
+  margin-bottom: 1rem;
 }
 .faqContainer .faqWrapper {
   box-shadow: 0px 4px 14px rgba(82, 77, 77, 0.2);
@@ -136,6 +136,13 @@
     font-size: 1rem;
   }
 }
+.faqBtn {
+  margin: 3rem auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 @media screen and (min-width: 769px) {
   .header {
     max-width: 1440px;
@@ -265,4 +272,4 @@
     line-height: 1.5;
     font-size: 1.4rem;
   }
-} /*# sourceMappingURL=faq.module.css.map */
+}/*# sourceMappingURL=faq.module.css.map */
