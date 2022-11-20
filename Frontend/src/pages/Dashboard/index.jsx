@@ -1,7 +1,7 @@
 import React from "react";
 import "./dashboard.style.scss";
 import profilePic from "./assets/Ellipse3.jpg";
-import Card from "../Dashboard/Card";
+import Card from "./Card";
 import {actionIcon, tableData, cardData, nullDataIcon} from "./utils"
 
 const Dashboard = () => {
