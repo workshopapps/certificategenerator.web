@@ -21,11 +21,6 @@ $smaller: 430px;
 $small: 650px;
 $medium: 912px;
 
-* {
-    text-align: center;
-  // text-align: initial;
-  margin: 0;
-}
 .flex {
   display: flex;
 }
@@ -60,6 +55,7 @@ p {
   margin-top: -3rem;
 
   .hero__section {
+    text-align: initial;
     @media screen and (max-width: $small) {
       flex-direction: column;
       justify-content: center;
@@ -139,6 +135,7 @@ p {
 
   .section1 {
     margin-top: 3rem;
+    text-align: initial;
 
     h2 {
       margin-bottom: 2rem;
@@ -230,6 +227,7 @@ p {
   .section2 {
     background: $containerBackground;
     margin-top: 3rem;
+    text-align: initial;
     padding: 2rem 3rem;
     @media screen and (max-width: $small) {
       padding: 2rem 1rem;
@@ -330,6 +328,7 @@ p {
   .section3 {
     margin-top: 3rem;
     padding: 2rem 6.25rem;
+    text-align: initial;
     @media screen and (max-width: $small) {
       padding: 2rem 1rem;
     }
@@ -398,6 +397,7 @@ p {
   .section4 {
     background: $containerBackground;
     padding: 3rem 5rem;
+    text-align: initial;
     @media screen and (max-width: $small) {
       padding: 3rem 2rem;
     }
