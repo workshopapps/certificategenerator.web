@@ -9,7 +9,7 @@ function CheckoutMainRight() {
 
           <h3 id='CheckoutMainRight-text-1'>Order Summary</h3>
 
-          <h4 id='CheckoutMainRight-text-2'>Basic</h4>
+          <h4 id='CheckoutMainRight-text-2'>Standard</h4>
 
           <p id='CheckoutMainRight-text-3'>More features customised for you</p>
 
