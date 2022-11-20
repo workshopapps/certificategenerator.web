@@ -1,6 +1,6 @@
 import React from 'react'
 import './term.style.scss'
-import { generalProvisions, services, useOfService, technicalRequirements, payments, unauthorizedPractices, customerServices, otherUseOfService } from '../../Data/TermsOfService'
+import { generalProvisions, services, useOfService, technicalRequirements, payments, unauthorizedPractices, customerServices, otherUseOfService } from '../../data/TermsOfService'
 
 const Terms = () => {
     const indexlist = [{name: 'General Provisions', link: '#general'}, {name: 'Services', link: '#services'}, {name: 'Technical Requirements', link: '#technical'}, {name: 'Use Of The Service', link: '#use_of_service'}, {name: 'Payments ', link: '#payments'}, {name: 'Unauthorised Practices', link: '#unauthorised_practices'}, {name: 'Customer Service And Complaints', link: '#customer_service'}]
