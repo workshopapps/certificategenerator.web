@@ -8,7 +8,7 @@ export default function Certificate () {
     const [bulkCertificate, setBulkCertificate] = useState(false);
   
     return (
-        <div id="certificate">
+        <>
           <p className="sora header">
             Create your <span className="emphasized">certificate </span> 
             with <span className="emphasized">ease</span>
@@ -96,6 +96,6 @@ export default function Certificate () {
             <input type="submit" value="Create Certificate" className="submit-btn"/>
           </form>
             </div>}
-        </div>
+        </>
     )
 }
