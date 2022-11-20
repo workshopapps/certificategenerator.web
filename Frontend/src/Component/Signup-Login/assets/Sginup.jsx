@@ -46,7 +46,7 @@ const Signup = () => {
                     <img className="menu" alt="" src={menuSVG}/>
                 </div>
             </div>
-            <div className="container">
+            <div className="authContainer">
                 <div className="formDiv">
                     <div id="heading">Welcome to Certawi</div>    
                     <span id="startGenerating">Start generating certificates by creating a Certawi account</span>

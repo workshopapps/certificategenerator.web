@@ -32,9 +32,10 @@ function App() {
       <Navbar />
       <div className="App">
         <Routes>
-          <Route path="/signup" element={<Signup />} />
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/login" element={<Login />} />
             <Route path="/comingsoon" element={<ComingSoon />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/templates" element={<Templates />} />

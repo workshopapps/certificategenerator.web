@@ -43,7 +43,7 @@ const Login = () => {
                 <img className="logo" alt="" src={logoSVG}/>
                 <img className="menu" alt="" src={menuSVG}/>
             </div>
-            <div className="container">
+            <div className="authContainer">
                 <div className="formDiv">
                     <form>
                         <div id="heading">Welcome to Certawi</div>    
