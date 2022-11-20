@@ -1,7 +1,6 @@
 import "../Legal Documents/legal-documents.css"
 
 import React from 'react'
-import { Link, Outlet } from "react-router-dom"
 import { useState } from "react"
 
 
@@ -11,16 +10,16 @@ export const LegalDocuments = () => {
     return (
       <div className="main-page">
           <section>
-         <h2>Privacy Policy</h2>
+         <h2>Privacy policy</h2>
           <p>Shall apply from November 23, 2022.</p>   
   <p>Certawi is a certificate generator  committed to protecting the privacy and accuracy of your confidential information to the extent 
   possible, subject to provisions of state and federal law. Other than as required by laws that guarantee public access to certain types of 
   information, or in response to subpoenas or other legal instruments that authorize access, personally-identifiable information is not 
   actively shared. In particular, we do not re-distribute or sell personal information collected on our web servers.</p>
          </section>
-          <h2>Information Collected</h2>
+          <h2>Information collected</h2>
           <h3 id="green">Types of data collected</h3>
-          <p className="green">Personal Data</p>
+          <p className="green">Personal data</p>
           <p>While using Our Service, We may ask you to provide  us with certain personally identifiable information that can be used to contact or 
   identify you. Personally identifiable information may include, but is not limited to:</p>
           <ul>
@@ -156,7 +155,6 @@ export const LegalDocuments = () => {
       However, the website may not function properly without cookies being enabled. Switching cookies off will usually result in limiting or
        blocking some functionalities of the Website.</p>
          </section>
-      <Outlet />
       </div>
     )
   }
@@ -184,7 +182,6 @@ export const LegalDocuments = () => {
       <div className="content">
         {content}
       </div>
-    <Outlet />
     </div>
   )
 }
