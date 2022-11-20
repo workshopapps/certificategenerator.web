@@ -1,8 +1,8 @@
 @import "../../Style/variables";
 @import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400&display=swap');
+
 $sectionWidth: 100%;
-$containerHeight: 1832px;
 $containerBackground: #E8F6F4;
 
 $fontStyle: normal;
@@ -16,17 +16,32 @@ $light: 300;
 $mt-2: 2rem;
 $mt-1: 1rem;
 
-$small: 755px;
+$sm: 340px;
+$smaller: 430px;
+$small: 650px;
 $medium: 912px;
 
-
-.career__container{
-    background: #ffffff;
-    font-family: $fontFamily;
+*{
     text-align: initial;
+    margin: 0;
+}
+.flex{
+    display: flex;
+}
+.justify-between{
+    justify-content: space-between;
+}
+
+.items-center{
+    align-items: center;
+}
+
+a{
+    cursor: pointer;
+    text-decoration: none;
 }
 .section{
-    padding: 0 5rem;
+    padding: 0 6.25rem;
 
      @media screen and (max-width: $medium) {
           padding: 0 2rem;
@@ -38,11 +53,12 @@ $medium: 912px;
 p{
     margin: $mt-1 0;
 }
-
+.career__container{
+    background: #ffffff;
+    font-family: $fontFamily;
+    margin-top: -3rem;
+    
 .hero__section{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
     @media screen and (max-width: $small) {
         flex-direction: column;
         justify-content: center;
@@ -57,21 +73,33 @@ p{
          @media screen and (max-width: $small) {
           width: 280px;
        }
+        @media screen and (max-width: $sm) {
+          width: 210px;
+       }
         h2{
             font-family: $fontFamily;
             font-size: 40px;
             font-weight: $bold;
-            line-height: 60px;
+            line-height: 60.48px;
             display: flex;
             align-items: center;
             letter-spacing: -0.004em;
             text-transform: capitalize;
             color: #222222;
+             @media screen and (max-width: $medium) {
+                font-size: 1.8rem;
+                line-height: 40px;
+                width: 400px;
+         }
              @media screen and (max-width: $small) {
                 font-size: 1.8rem;
                 line-height: 30px;
                 width: 360px;
          }
+            @media screen and (max-width: $sm) {
+            width: 290px;
+            font-size: 1.2rem;
+        }
         }
         p{
             font-family: $fontFamily2;
@@ -81,6 +109,7 @@ p{
             width: 460px;
             margin-top: $mt-2;
             @media screen and (max-width: $medium) {
+                font-size: 18px;
                  width: 410px;
             }
              @media screen and (max-width: $small) {
@@ -88,6 +117,10 @@ p{
                  width: 336px;
                  font-size: 1.3rem;
        }
+         @media screen and (max-width: $sm) {
+            width: 300px;
+            font-size: 1rem;
+        }
         }
     }
     .hero__image{
@@ -104,15 +137,18 @@ p{
 }
 
 
-.section1{
+.section1{ 
     margin-top: 3rem;
 
     h2{
         margin-bottom: 2rem;
-        font-size: 3rem;
+        font-size: 39px;
          b{
             color: #7B41B4;
            }
+         @media screen and (max-width: $medium) {
+           font-size: 1.8rem;  
+       }
          @media screen and (max-width: $small) {
            text-align: center;
            font-size: 1.3rem;  
@@ -129,6 +165,11 @@ p{
             align-items: initial;
          }
         .desktop__image{
+             @media screen and (max-width: $medium) {
+                img{
+                  width: 300px;
+                }
+             }
              @media screen and (max-width: $small) {
                 display: none;
              }
@@ -137,32 +178,52 @@ p{
             display: none;
             @media screen and (max-width: $small) {
                  display: flex;
-                 width: 89px;
-                 height: 68px;
+                 width: 90px;
+                 height: 80px;  
+                 align-items: center; 
             }
+            @media screen and (max-width: $smaller) {
+                width: 60px;
+                height: 50px;
+            }
+            
            
             img{
              width: 100%;
              height: 100%;
-             margin: .99rem;
+             margin: 1rem;
              border-radius: 8px;
             }
         }  
 
         .text__container{
             margin-left: 2rem;
-             @media screen and (max-width: $small) {
+             h2{
+                font-size: 49px;
+             }
+            p{
+                margin-top: $mt-1;
+                font-family: $fontFamily2;
+                font-size: 19px;
+            }
+              @media screen and (max-width: $medium) {
+                 h2{
+                    font-size: 35px;
+                 }
+                 p{
+                    font-size: 18px;
+                 }
+             }
+              @media screen and (max-width: $small) {
                  text-align: center;
                  margin-left: 0;
+                 h2{
+                    font-size: 20px;
+                 }
+                 p{
+                    font-size: 16px;
+                 }
              }
-           
-                h2{
-                    margin-top: $mt-2;
-                }
-                p{
-                    margin-top: $mt-1;
-                    font-family: $fontFamily2;
-                }
         } 
     }
 }
@@ -177,44 +238,39 @@ p{
          }
     .flex__wrapper{
         display: flex;
+        position: relative;
         flex-direction: row-reverse;
-        align-items: center;
         justify-content: center;
+        #arrow{
+            display: flex;
+            position: absolute;
+            top: -20px;
+            right: 0;
+            .arrow{
+                padding: 8px;
+                width: 32px;
+                height: 32px;
+                background: rgba(8, 55, 47, 0.5);
+                margin: 2px;
+                border-radius: 50px;
+            }
+        }
          @media screen and (max-width: $small) {
             flex-direction: column;
-            align-items: initial;
+            align-items: center;
+            // align-items: initial;
          }
       .text__container{
         width: 834px;
-          @media screen and (max-width: $medium) {
-            width: 500px;
-          }
-         @media screen and (max-width: $small) {
-            width: 330px;
-         }
         h2{
             font-weight: $bold;
             font-size: 2.5rem;
-        @media screen and (max-width: $medium) {
-            width: 390px;
-            font-size: 2.2rem;
-        }
-        @media screen and (max-width: $small) {
-            text-align: center;
-            font-size: .9rem;
-            width: fit-content;
-         } 
         }
         p{
             width: 630px;
             font-family: $fontFamily2;
             margin-top: $mt-2;
-              @media screen and (max-width: $medium) {
-                width: 410px;
-              }
-         @media screen and (max-width: $small) {
-            width: 320px;
-         } 
+            font-size: 19px;
         }
         h4{
             font-size: 1.6rem;
@@ -225,27 +281,57 @@ p{
             color: #08372F;
             margin-top: $mt-1;
         }
+            @media screen and (max-width: $medium) {
+            width: 500px;
+            h2{
+                 width: 340px;
+                 font-size: 1.6rem;
+            }
+            p{
+                 width: 330px;
+                 font-size: 16px;
+            }
+          }
+         @media screen and (max-width: $small) {
+            width: 330px;
+            h2{
+                text-align: center;
+                font-size: 1.2rem;
+                width: fit-content;
+            }
+            P{
+                width: 340px;
+            }
+         }
+        @media screen and (max-width: $sm) {
+                width: 300px;
+                P{
+                   font-size: 15px; 
+                   width: 290px;
+                }
+        }
       }
          .image__container{
           width: 316px;
           height: 316px;
-            @media screen and (max-width: $small) {
+         img{
+            border-radius: 22rem;
+            transform: matrix(-1, 0, 0, 1, 0, 0);
+            width: 100%;
+         }
+         @media screen and (max-width: $small) {
                 display: block;
                 margin: 0 auto;
                 width: 116px;
                 height: 116px;
         }
-            img{
-                border-radius: 22rem;
-                transform: matrix(-1, 0, 0, 1, 0, 0);
-                width: 100%;
-            }
          }
      }
 }
+
 .section3{
     margin-top: 3rem;
-    padding: 2rem 3rem;
+    padding: 2rem 6.25rem;
         @media screen and (max-width: $small) {
             padding: 2rem 1rem;
          }
@@ -255,30 +341,44 @@ p{
         justify-content: center;
          @media screen and (max-width: $small) {
             flex-direction: column;
-            align-items: initial;
+            align-items: center;
+            
          }
       .text__container{
         width: 834px;
         margin-left: 2rem;
          @media screen and (max-width: $small) {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             width: 340px;
-            margin-left: 0;
+            margin: initial;
+         }
+           @media screen and (max-width: $sm) {
+            width: 290px;
          }
         h2{
             font-weight: $bold;
             font-size: 2.5rem;
-        @media screen and (max-width: $small) {
+            @media screen and (max-width: $medium){
+                font-size: 1.8em;
+                width: 100%;
+              }
+           @media screen and (max-width: $small) {
             text-align: center;
             font-size: 1.1rem;
             width: 340px;
+         }
+           @media screen and (max-width: $sm) {
+            width: 210px;
          }
         }
         p{
             font-family: $fontFamily2;
             margin-top: $mt-2;
+            width: 100%; 
           @media screen and (max-width: $small) {
-            font-size: 1rem;
-            width: 300px;
+            font-size: .8rem;
          }
         }
       }
@@ -326,6 +426,7 @@ p{
             height: 3rem;
             width: 100%;
             border-radius: 10px;
+            margin-top: 1rem;
             img{
                 width: 1.5rem;
             }
@@ -367,9 +468,9 @@ p{
                 justify-content: center;
                 font-weight: $bold;
                 font-size: 19px;
-                padding: 1px;
-                width: 20px;
-                height: 20px;
+                padding: 2px;
+                width: 25px;
+                height: 25px;
                 color: #ffffff;
                 background: #6C6C70;
                 border-radius: 22rem;
@@ -406,4 +507,5 @@ p{
             }
         }
     }
+}
 }

@@ -4,7 +4,7 @@ import {
   ContactLocationIcon,
   ContactPhoneIcon,
 } from "../../assets";
-import Button from "../../Component/button/index";
+import Button from "../../Component/button";
 import Inputfield from "../../Component/inputField";
 import TextArea from "../../Component/textarea";
 import "./contact.scss";
