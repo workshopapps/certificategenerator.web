@@ -3,9 +3,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import {useState} from 'react'
-import { Icon } from 'react-icons-kit'
-import {eye} from 'react-icons-kit/feather/eye'
-import {eyeOff} from 'react-icons-kit/feather/eyeOff'
+import {AiOutlineEye, AiOutlineEyeInvisible} from 'react-icons/ai'
 import './Style.css'
 import appleSVG from "./assets/apple.svg"
 import googleSVG from "./assets/google.svg"
@@ -17,16 +15,16 @@ import menuSVG from "./assets/menu.svg"
 
 const Login = () => {
     const [type, setType]=useState('password');
-    const [icon, setIcon]=useState(eyeOff);
+    //const [isVisible, setisVisible]=useState(false);
     const [formData, setFormData] = React.useState({ email: "",  acceptTerms: false})
   
     const handleToggle=()=>{    
       if(type==='password'){
-        setIcon(eye);      
+       // setisVisible(AiOutlineEye);      
         setType('text');
       }
       else{
-        setIcon(eyeOff);     
+      //  setisVisible(AiOutlineEyeInvisible);     
         setType('password');
       }
     }
@@ -60,7 +58,8 @@ const Login = () => {
                         <div id="pwd">
                             <img alt="" src={keySVG}/>
                             <input id="input_id" placeholder="Create a password" type={type} required/>
-                            <span onClick={handleToggle}><Icon icon={icon} size={25}/></span>
+                            <span onClick={handleToggle}>
+                            {type==="text" ? <AiOutlineEye size={25}/> : <AiOutlineEyeInvisible size={25} />}</span>
                         </div>
                         <div className="forgotPwd">Forgot password?</div>
                         <div id="checkTerms">
