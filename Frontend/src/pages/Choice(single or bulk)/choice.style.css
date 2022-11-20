@@ -1,0 +1,127 @@
+.choiceContainer {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin: 16em 11em;
+  letter-spacing: 2px;
+  transition: all 2s;
+}
+.choiceContainer div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  position: relative;
+}
+.choiceContainer div.bulk, .choiceContainer div.single {
+  height: 200px;
+}
+.choiceContainer div h2 {
+  font-family: Sora;
+  font-size: 33px;
+  font-weight: 700;
+  line-height: 42px;
+  text-align: left;
+}
+.choiceContainer div p {
+  font-family: Work Sans;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19px;
+  text-align: left;
+}
+.choiceContainer div label,
+.choiceContainer div button {
+  position: relative;
+  min-height: 42px;
+  min-width: 10em;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  background: #19a68e;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 17px;
+  text-align: left;
+  color: #ffffff;
+  padding: 1em 1.4em;
+  border: none;
+  letter-spacing: 1.4px;
+}
+.choiceContainer div label i,
+.choiceContainer div button i {
+  position: absolute;
+  top: 10px;
+  left: 25px;
+}
+.choiceContainer div label span,
+.choiceContainer div button span {
+  position: absolute;
+  top: 14px;
+  right: 25px;
+  text-transform: uppercase;
+}
+.choiceContainer div label + div,
+.choiceContainer div button + div {
+  display: block;
+  /* margin-top: 26px; */
+  position: absolute;
+  bottom: -30px;
+}
+.choiceContainer div label + div a,
+.choiceContainer div button + div a {
+  text-decoration: none;
+  color: #006642;
+}
+.choiceContainer div label:hover,
+.choiceContainer div button:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+.choiceContainer div.bulk p {
+  position: relative;
+  padding-left: 1em;
+}
+.choiceContainer div.bulk p i {
+  position: absolute;
+  right: -28px;
+  top: -2px;
+}
+.choiceContainer div.or div {
+  height: 8em;
+  border-right: 0.5px solid #6c6c70;
+}
+.choiceContainer div.or span {
+  width: 32px;
+  height: 39px;
+  margin: 0.1em;
+  font-family: "Work Sans";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 33px;
+  line-height: 39px;
+  /* identical to box height */
+  color: #6c6c70;
+}
+.choiceContainer input[type=file] {
+  display: none;
+}
+
+@media screen and (max-width: 900px) {
+  .choiceContainer {
+    flex-direction: column;
+    margin-top: auto;
+    justify-content: space-around;
+    min-height: 500px;
+  }
+  .choiceContainer .or {
+    flex-direction: row;
+  }
+  .choiceContainer .or div {
+    height: 0 !important;
+    width: 8em;
+    border-right: 0 !important;
+    border-bottom: 0.5px solid #6c6c70;
+  }
+}/*# sourceMappingURL=choice.style.css.map */

@@ -11,10 +11,11 @@ p, li {
 
 li {
   margin-bottom: 20px;
+  list-style-type: square;
 }
 
 ul {
-  padding-left: 0;
+  padding: 25px;
 }
 
 .green {

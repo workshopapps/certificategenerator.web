@@ -1,64 +1,42 @@
 @import url("https://fonts.googleapis.com/css2?family=Sora:wght@400;700&family=Work+Sans:wght@400;500;700&display=swap");
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  max-width: 100%;
-  color: #222222;
-}
-
-.flex {
+#certificate .flex {
   display: flex;
 }
-
-.justify-between {
+#certificate .justify-between {
   justify-content: space-between;
 }
-
-.grid {
+#certificate .grid {
   display: grid;
 }
-
-.work-sans {
+#certificate .work-sans {
   font-family: "Work sans";
 }
-
-.sora {
+#certificate .sora {
   font-family: "Sora";
 }
-
-.line-height {
+#certificate .line-height {
   line-height: 24px;
 }
-
-.emphasized {
+#certificate .emphasized {
   color: #19A68E;
 }
-
-.text-left {
+#certificate .text-left {
   text-align: left;
 }
-
-.items-center {
+#certificate .items-center {
   align-items: center;
 }
-
-.center {
+#certificate .center {
   width: 90%;
   margin: auto;
 }
-
-.header {
+#certificate .header {
   padding: 120px 0 0 0;
   font-size: 48px;
   font-weight: 700;
   line-height: 60.48px;
 }
-
-.mode {
+#certificate .mode {
   width: 422px;
   margin: auto;
   border-radius: 20px;
@@ -68,8 +46,7 @@ body {
   font-weight: 500;
   margin-block: 56px;
 }
-
-.select {
+#certificate .select {
   border: none;
   background: none;
   height: 35px;
@@ -80,21 +57,18 @@ body {
   width: 207px;
   font-weight: 500;
 }
-
-.form {
+#certificate .form {
   background-color: #fafafb;
   margin: 5.5% 10% 12%;
   border: 0.8px solid #545454;
   border-radius: 16px;
   padding: 8%;
 }
-
-label {
+#certificate label {
   display: block;
   font-weight: 700;
 }
-
-input {
+#certificate input {
   width: 100%;
   height: 70px;
   outline: none;
@@ -102,12 +76,10 @@ input {
   border-radius: 10px;
   padding: 15px;
 }
-
-input::-webkit-calendar-picker-indicator {
+#certificate input::-webkit-calendar-picker-indicator {
   display: none;
 }
-
-.upload {
+#certificate .upload {
   font-weight: 500;
   line-height: 19px;
   border: 1px solid #CCCCCC;
@@ -117,12 +89,10 @@ input::-webkit-calendar-picker-indicator {
   width: 129px;
   cursor: pointer;
 }
-
-.label {
+#certificate .label {
   margin: 48px 0 16px 0;
 }
-
-.submit-btn {
+#certificate .submit-btn {
   display: block;
   width: 202px;
   height: 64px;
@@ -133,13 +103,12 @@ input::-webkit-calendar-picker-indicator {
   margin-top: 32px;
   cursor: pointer;
 }
-
 @media screen and (max-width: 768px) and (min-width: 481px) {
-  .header {
+  #certificate .header {
     font-size: 32px;
     line-height: 40px;
   }
-  .cert-img {
+  #certificate .cert-img {
     overflow-x: scroll;
   }
 }/*# sourceMappingURL=certificate.style.css.map */
