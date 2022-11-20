@@ -1,8 +1,10 @@
 //Pages
 
-export { default as Home } from "./Home";
+export { default as Layout } from "../Component/Layout";
 export { default as ComingSoon } from "./ComingSoon";
 export { default as Dashboard } from "./Dashboard";
+export { default as Choice } from "./Choice(single or bulk)";
+export { default as Modify } from "./Modify";
 export { default as Team } from "./Team";
 export { default as Terms } from "./Terms";
 export { default as Templates } from "./Templates";

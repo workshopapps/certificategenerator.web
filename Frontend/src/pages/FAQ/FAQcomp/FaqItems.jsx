@@ -13,16 +13,22 @@ export const FaqItems = ({ faq, onToggle, active }) => {
 						<div className={Style.faqIcon}>
 							{/* <RiQuestionnaireLine className={Style.icon} /> */}
 
-							<img src={Question} alt='' />
+							<img src={Question} alt="" />
 						</div>
 
 						<h3>{title}</h3>
 					</div>
 					<div className={Style.dropdowmIcon}>
 						{active ? (
-							<RiArrowDropRightLine className={Style.icon} onClick={onToggle} />
+							<RiArrowDropRightLine
+								className={Style.icon}
+								onClick={onToggle}
+							/>
 						) : (
-							<RiArrowDropDownLine className={Style.icon} onClick={onToggle} />
+							<RiArrowDropDownLine
+								className={Style.icon}
+								onClick={onToggle}
+							/>
 						)}
 					</div>
 				</div>

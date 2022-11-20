@@ -1,6 +1,6 @@
 @use "../../Style/variables";
 
-@import "~bootstrap/scss/bootstrap";
+// @import "~bootstrap/scss/bootstrap";
 
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=Sora:wght@700&family=Work+Sans:wght@400;600;700&display=swap');
 
@@ -406,8 +406,6 @@ main {
         background-color: $featureBackground;
     }
 }
-
-
 @media (max-width: 1439px) {
     main {
         .testimonials {
@@ -442,7 +440,6 @@ main {
         }
     }
 }
-
 @media (max-width: 1300px) {
     main {
         .pricing{
@@ -517,8 +514,6 @@ main {
         }
     }
 }
-
-
 @media (max-width: 991px) {
 main {
     .feature {
@@ -633,7 +628,6 @@ main {
     }
 }
 }
-
 @media (max-width: 767px) {
     main {
         .pricing{
@@ -709,7 +703,6 @@ main {
         }
     }
 }
-
 @media (max-width: 360px) {
     main {
         .pricing{

@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 function Comingsoon() {
   return (
     <div id='comingsoon'>
@@ -8,7 +9,7 @@ function Comingsoon() {
           <div className='welcome'>
             <div className='welcomeHead'>
               <div className='back'>
-                <img src='images/arrowRight.PNG' className='arrow' alt=''></img>
+                <img src='images/arrowRight.PNG' className='arrow' alt='arrow right'></img>
                 Back to Home
               </div>
               <div className='f1'>Coming Soon!</div>
@@ -40,9 +41,9 @@ function Comingsoon() {
             <div className='socail_des'>We are social</div>
             <div className='socail_logo'>
               <img src='images/instagra.png' alt=''></img>
-              <img src='images/Linkedin.png' alt=''></img>
-              <img src='images/twitter.png' alt=''></img>
-              <img src='images/github.png' alt=''></img>
+              <img src='images/Linkedin.png' alt='linkedin'></img>
+              <img src='images/twitter.png' alt='tiwitter'></img>
+              <img src='images/github.png' alt='github'></img>
             </div>
           </div>
           <ul>
