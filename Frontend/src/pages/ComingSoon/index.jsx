@@ -34,7 +34,7 @@ function Comingsoon() {
             </div>
           </div>
           <div className='formdat'>
-            <form className='form'>
+            <form className='emyform'>
               <input
                 type='email'
                 placeholder='Your email'

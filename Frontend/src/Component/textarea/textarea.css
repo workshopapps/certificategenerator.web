@@ -1,0 +1,36 @@
+.textareaContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+  width: 100%;
+}
+.textareaContainer__label {
+  font-weight: 400;
+  font-size: 1.125rem;
+  text-transform: capitalize;
+  color: #222222;
+}
+.textareaContainer__input {
+  border: 1.50376px solid rgba(34, 34, 34, 0.2);
+  border-radius: 0.625rem;
+  outline: none;
+  padding: 0.825rem;
+  min-height: 6.85rem;
+  font-size: 1.125rem;
+  width: 100%;
+}
+.textareaContainer__input::-moz-placeholder {
+  font-weight: 400;
+  font-size: 1.125rem;
+  color: rgba(34, 34, 34, 0.5);
+}
+.textareaContainer__input:-ms-input-placeholder {
+  font-weight: 400;
+  font-size: 1.125rem;
+  color: rgba(34, 34, 34, 0.5);
+}
+.textareaContainer__input::placeholder {
+  font-weight: 400;
+  font-size: 1.125rem;
+  color: rgba(34, 34, 34, 0.5);
+}/*# sourceMappingURL=textarea.css.map */

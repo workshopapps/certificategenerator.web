@@ -1,0 +1,37 @@
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+  width: 100%;
+}
+.inputContainer__label {
+  font-weight: 400;
+  font-size: 1.125rem;
+  text-transform: capitalize;
+  color: #222222;
+}
+.inputContainer__input {
+  border: 1.50376px solid rgba(34, 34, 34, 0.2);
+  border-radius: 0.625rem;
+  outline: none;
+  padding: 0.825rem;
+  height: -webkit-max-content;
+  height: -moz-max-content;
+  height: max-content;
+  font-size: 1.125rem;
+}
+.inputContainer__input::-moz-placeholder {
+  font-weight: 400;
+  font-size: 1.125rem;
+  color: rgba(34, 34, 34, 0.5);
+}
+.inputContainer__input:-ms-input-placeholder {
+  font-weight: 400;
+  font-size: 1.125rem;
+  color: rgba(34, 34, 34, 0.5);
+}
+.inputContainer__input::placeholder {
+  font-weight: 400;
+  font-size: 1.125rem;
+  color: rgba(34, 34, 34, 0.5);
+}/*# sourceMappingURL=input.css.map */
