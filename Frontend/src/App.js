@@ -2,9 +2,10 @@
 import './Style/App.scss';
 import Navbar from './Component/Navbar';
 import { Route, Routes } from 'react-router-dom';
+import Footer from './Component/Footer';
+import Signup from "./Component/Signup-Login/Signup";
+import Login from "./Component/Signup-Login/Login";
 import { AboutUs, BulkPreview, BulkStep, Career,  Choice, ComingSoon, Dashboard, EditBulk, Error, FAQ, Layout, Modify, Pricing, SinglePreview, Team, Templates, Terms } from './pages';
-// import Footer from './Component/Footer';
-
 import Home from './pages/Home'
 
 function App() {
@@ -28,6 +29,8 @@ function App() {
             <Route path='/FAQ' element={<FAQ />} />
             <Route path='/bulk_preview' element={<BulkPreview />} />
             <Route path='/bulk_step' element={<BulkStep />} />
+            <Route path="/signup" element={<Signup />} /> 
+				    <Route path="/login" element={<Login />} />
             <Route path='/edit_bulk' element={<EditBulk />} />
             <Route path='/pricing' element={<Pricing />} />
           </Route>
