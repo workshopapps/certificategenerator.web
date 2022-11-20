@@ -16,8 +16,10 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "bootstrap": "^5.2.2",
     "eslint": "^8.28.0",
     "eslint-plugin-react": "^7.31.11",
-    "lint-staged": "^13.0.3"
+    "lint-staged": "^13.0.3",
+    "react-bootstrap": "^2.6.0"
   }
 }
