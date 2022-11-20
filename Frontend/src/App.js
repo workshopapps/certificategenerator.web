@@ -16,9 +16,10 @@ import {
   Team,
   Templates,
   Terms,
+  Home,
 } from "./pages";
 
-import { Layout } from "./Component";
+import { Layout } from "./component";
 
 function App() {
   return (
@@ -26,7 +27,7 @@ function App() {
       <Layout>
         <main className="App">
           <Routes>
-            {/* <Route path='/' element={<Layout />} /> */}
+            <Route path='/' element={<Home />} />
             <Route path="/comingsoon" element={<ComingSoon />} />
             <Route path="/team" element={<Team />} />
             <Route path="/terms" element={<Terms />} />

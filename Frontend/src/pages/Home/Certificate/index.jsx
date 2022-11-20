@@ -1,12 +1,12 @@
 import React from "react";
 import './certificate.style.scss'
-import demo from '../../assets/images/demo.png'
-import demo_2 from '../../assets/images/demo-2.png'
-import demo_3 from '../../assets/images/demo-3.png'
+import demo from '../../../assets/images/demo.png'
+import demo_2 from '../../../assets/images/demo-2.png'
+import demo_3 from '../../../assets/images/demo-3.png'
 
 export default function Certificate () {
     return (
-        <>
+        <div id="certificate">
           <p className="sora header">
             Create your <span className="emphasized">certificate </span> 
             with <span className="emphasized">ease</span>
@@ -50,6 +50,6 @@ export default function Certificate () {
 
             <input type="submit" value="Create Certificate" className="submit-btn"/>
           </form>
-        </>
+        </div>
     )
 }

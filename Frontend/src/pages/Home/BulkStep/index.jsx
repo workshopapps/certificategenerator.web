@@ -1,9 +1,9 @@
 import React from "react";
 import './BulkStep.style.scss'
-import example from '../../assets/images/example.png'
-import one from '../../assets/images/step-one.png'
-import two from '../../assets/images/step-two.png'
-import three from '../../assets/images/step-three.png'
+import example from '../../../assets/images/example.png'
+import one from '../../../assets/images/step-one.png'
+import two from '../../../assets/images/step-two.png'
+import three from '../../../assets/images/step-three.png'
 
 export default function BulkStep () {
     return (

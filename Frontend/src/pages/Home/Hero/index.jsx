@@ -1,11 +1,11 @@
 import React from "react";
 import './hero.style.scss'
-import hero from '../../assets/images/hero.png'
-import tick from '../../assets/images/tick.png'
-import google from '../../assets/images/google.png'
-import udemy from '../../assets/images/udemy.png'
-import coursera from '../../assets/images/coursera.png'
-import skillshare from '../../assets/images/skillshare.png'
+import hero from '../../../assets/images/hero.png'
+import tick from '../../../assets/images/tick.png'
+import google from '../../../assets/images/google.png'
+import udemy from '../../../assets/images/udemy.png'
+import coursera from '../../../assets/images/coursera.png'
+import skillshare from '../../../assets/images/skillshare.png'
 
 export default function Hero () {
     return (
