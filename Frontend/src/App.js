@@ -1,9 +1,9 @@
 
 import './Style/App.scss';
-import Navbar from './component/Navbar';
+import Navbar from './Component/Navbar';
 import { Route, Routes } from 'react-router-dom';
 import { AboutUs, BulkPreview, BulkStep, Choice,ComingSoon, Dashboard, EditBulk, Error, FAQ, Layout, Modify, SinglePreview, Team, Templates, Terms } from './pages';
-import Footer from './component/Footer';
+import Footer from './Component/Footer';
 
 import Home from './pages/Home'
 
@@ -28,9 +28,9 @@ function App() {
           <Route path='/bulk_preview' element={<BulkPreview />} />
           <Route path='/bulk_step' element={<BulkStep />} />
           <Route path='/edit_bulk' element={<EditBulk />} />
-          </Route>
+         
             <Route path='*' element={<Error />} />
-            
+            </Route>
         </Routes>
       </div>
       {/* <Footer /> */}
