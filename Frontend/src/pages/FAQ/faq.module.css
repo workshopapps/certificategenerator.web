@@ -24,6 +24,7 @@
   margin: 0 auto;
   width: 80%;
   margin-top: 3rem;
+  margin-bottom: 3rem;
 }
 .faqContainer h2 {
   font-size: 1.2rem;
@@ -264,4 +265,4 @@
     line-height: 1.5;
     font-size: 1.4rem;
   }
-}/*# sourceMappingURL=faq.module.css.map */
+} /*# sourceMappingURL=faq.module.css.map */
