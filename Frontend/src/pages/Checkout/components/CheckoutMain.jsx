@@ -1,4 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
+import '../pagescss/CheckoutPage.css'
+import '../pagesresponsivecss/CheckoutPageResponsive.css'
 import CheckoutMainLeft from './CheckoutMainLeft'
 import CheckoutMainRight from './CheckoutMainRight'
 
