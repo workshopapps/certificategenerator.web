@@ -1,6 +1,8 @@
 import "./Style/App.scss";
 import Navbar from "./Component/Navbar";
 import { Route, Routes } from "react-router-dom";
+import Signup from "./Component/Signup-Login/assets/Sginup";
+import Login from "./Component/Signup-Login/assets/Login";
 import {
   AboutUs,
   BulkPreview,
@@ -30,6 +32,7 @@ function App() {
       <Navbar />
       <div className="App">
         <Routes>
+          <Route path="/signup" element={<Signup />} />
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
             <Route path="/comingsoon" element={<ComingSoon />} />
