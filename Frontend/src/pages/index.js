@@ -1,6 +1,6 @@
 //Pages
 
-export { default as Layout } from "../component/Layout";
+export { default as Layout } from "../Component/Layout";
 export { default as ComingSoon } from "./ComingSoon";
 export { default as Dashboard } from "./Dashboard";
 export { default as Choice } from "./Choice(single or bulk)";
@@ -15,6 +15,6 @@ export { default as BulkPreview } from "./BulkPreview";
 export { default as BulkStep } from "./Home/BulkStep";
 export { default as EditBulk } from "./EditBulk";
 export { default as Error } from "./Error";
-export {default as ContactUs} from './contactUs';
-export { default as Career } from './Career';
+export { default as ContactUs } from "./contactUs";
+export { default as Career } from "./Career";
 export { default as Pricing } from "./Pricing";
