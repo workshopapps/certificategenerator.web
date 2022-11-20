@@ -1,54 +1,36 @@
-import "./Style/App.scss";
+import './Style/App.css';
 
-import { Route, Routes } from "react-router-dom";
-import {
-  AboutUs,
-  BulkPreview,
-  BulkStep,
-  ComingSoon,
-  ContactUs,
-  Career,
-  Dashboard,
-  EditBulk,
-  Error,
-  FAQ,
-  SinglePreview,
-  Team,
-  Templates,
-  Terms,
-  Home,
-  Pricing
-} from "./pages";
-
-import { Layout } from "./component";
+import { Route, Routes } from 'react-router-dom';
+import { AboutUs, BulkPreview, BulkStep, Choice,ComingSoon, Dashboard, EditBulk, Error, FAQ, Layout, Modify, SinglePreview, Team, Templates, Terms } from './pages';
+import Footer from './component/Footer';
 
 function App() {
   return (
     <>
-      <Layout>
-        <main className="App">
-          <Routes>
-            <Route path='/' element={<Home />} />
-            <Route path="/comingsoon" element={<ComingSoon />} />
-            <Route path="/team" element={<Team />} />
-            <Route path="/terms" element={<Terms />} />
-            <Route path="/templates" element={<Templates />} />
-            <Route path="/FAQ" element={<FAQ />} />
-            <Route path="/aboutUs" element={<AboutUs />} />
-            <Route path="/contact-us" element={<ContactUs />} />
-            <Route path="/career" element={<Career />} />
-            <Route path="/single_preview" element={<SinglePreview />} />
-            <Route path="/bulk_preview" element={<BulkPreview />} />
-            <Route path="/edit_bulk" element={<EditBulk />} />
-            <Route path="/bulkstep" element={<BulkStep />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/pricing" element={<Pricing />} />
-            <Route path="*" element={<Error />} />
-          </Routes>
-        </main>
-      </Layout>
+      
+      <div className='App'>
+        <Routes>
+          <Route path='/' element={<Layout />} />
+          <Route path="choice" element={<Choice />}></Route>
+          <Route path='/comingsoon' element={<ComingSoon />} />
+          <Route path='/dashboard' element={<Dashboard />} />
+          <Route path='/templates' element={<Templates />} />
+          <Route path='/team' element={<Team />} />
+          <Route path='/terms' element={<Terms />} />
+          <Route path='/single_preview' element={<SinglePreview />} />
+          <Route path='/aboutUs' element={<AboutUs />} />
+          <Route path='/FAQ' element={<FAQ />} />
+          <Route path='/bulk_preview' element={<BulkPreview />} />
+          <Route path='/bulk_step' element={<BulkStep />} />
+          <Route path='/edit_bulk' element={<EditBulk />} />
+          <Route path="modify" element={<Modify />} />
+          <Route path='*' element={<Error />} />
+        </Routes>
+      </div>
+      <Footer />
     </>
   );
+
 }
 
 export default App;
