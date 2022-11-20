@@ -1,4 +1,5 @@
-@use "../../Style/variables" as *;
+// @use "../../Style/variables" as *;
+@import "../../Style/variables";
 @import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap");
 
 // colors
@@ -59,6 +60,7 @@ $size-sm: 12px;
     font-size: $size-sm;
     color: #6c6c70;
     line-height: 20px;
+    margin: 0;
   }
   &__btn > button {
     all: unset;
@@ -175,6 +177,7 @@ $size-sm: 12px;
 @media screen and (min-width: 780px) {
   
   .dashboard {
+    padding: 4rem 0;
     &__title{
       font-size: $size-lg;
       margin-bottom: .5rem;
@@ -186,11 +189,10 @@ $size-sm: 12px;
     &__hero-section {
       width: 90%;
       margin: 0 auto 1rem auto;
-      .flexx {
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: flex-end;
-      }
+    }
+    &__profile-pic{
+      border-radius: 50%;
+      overflow: hidden;
     }
     &__cards {
       width: 90%;
@@ -199,7 +201,7 @@ $size-sm: 12px;
     }
     .table-wrapper{
         width: 90%;
-        margin: 0 auto 1rem auto;
+        margin: 0 auto 0rem auto;
         .table-header {
           flex-direction: row;
           justify-content: space-between;
@@ -215,6 +217,17 @@ $size-sm: 12px;
               width: 100% !important;
             }
           }
+    }
+  }
+  @media screen and (min-width: 1090px){
+    .dashboard{
+      &__hero-section{
+        .flexx {
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: flex-end;
+        }
+      }
     }
   }
 }
