@@ -1,0 +1,113 @@
+.active-btn {
+  background-color: #19A68E;
+  height: 37px;
+  border-radius: 10px;
+  padding: 12px 20px;
+  border: none;
+  color: white;
+  margin: 8px;
+  text-decoration: none;
+  cursor: pointer;
+  width: 145px;
+  height: 43px;
+}
+
+p {
+  font-size: 58px;
+}
+
+.legal-btns {
+  margin-top: 42px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main-page {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  padding: 50px 100px 180px 100px;
+}
+
+p, li {
+  font-size: 19px;
+}
+
+.content h2 {
+  font-size: 38px;
+}
+
+li {
+  margin-bottom: 20px;
+  list-style-type: square;
+}
+
+ul {
+  padding-left: 25px;
+}
+
+.inactive-btn {
+  background-color: rgba(25, 166, 143, 0.5490196078);
+  height: 37px;
+  border-radius: 10px;
+  padding: 12px 20px;
+  border: none;
+  color: white;
+  margin: 8px;
+  text-decoration: none;
+  cursor: pointer;
+  width: 145px;
+  height: 43px;
+}
+
+.green {
+  color: #19A68E;
+  font-size: 17px;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+#green {
+  font-size: 19px;
+  color: #19A68E;
+}
+
+.title {
+  text-align: center;
+}
+
+@media (max-width: 834px) {
+  .main-page {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    padding: 50px 10px 180px 10px;
+  }
+  h2 {
+    font-size: 39px;
+  }
+}
+@media (max-width: 375px) {
+  h2 {
+    font-size: 23px;
+    font-weight: 700;
+  }
+  .green {
+    font-weight: 400;
+  }
+  #green {
+    font-weight: 400;
+  }
+}
+@media (max-width: 515px) {
+  .legal-btns {
+    display: flex;
+  }
+  button {
+    width: 106px;
+    height: 36px;
+    font-weight: 400;
+    font-size: 10px;
+  }
+}/*# sourceMappingURL=legal-documents.css.map */
