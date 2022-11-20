@@ -9,7 +9,7 @@ const Sidebar = () => {
 		color: { primary: "#366168", secondary: "#8FDAC0", accent: "#F7C794" },
 		nameOfIssuer: { value: "qwerty", fontSize: 22, fontFamily: "sans" },
 		nameofRecipient: {
-			value: "qwerty",
+			value: "",
 			fontSize: 22,
 			fontFamily: "sans",
 		},
@@ -83,6 +83,22 @@ const Sidebar = () => {
 			// handleFiles(e.dataTransfer.files);
 		}
 	};
+	const handleReset = (e) => {
+		e.preventDefault()
+setState(prev => {return {
+		color: { primary: "#366168", secondary: "#8FDAC0", accent: "#F7C794" },
+		nameOfIssuer: { value: "", fontSize: 22, fontFamily: "sans" },
+		nameofRecipient: {
+			value: "",
+			fontSize: 22,
+			fontFamily: "sans",
+		},
+		title: { value: "", fontSize: 22, fontFamily: "sans" },
+		purpose: { value: "", fontSize: 22, fontFamily: "sans" },
+		dateOfIssue: { value: "", fontSize: 22, fontFamily: "sans" },
+		nameOfIssuer2: { value: "", fontSize: 22, fontFamily: "sans" },
+	}})
+	}
 
 	// triggers when file is selected with click
 	// const handleChange = function (e) {
@@ -367,9 +383,10 @@ const Sidebar = () => {
 					<li>
 						<input
 							value="Reset"
-							type="reset"
+							type='reset'
 							name="reset"
 							className="long"
+							onClick={handleReset}
 						/>
 					</li>
 					<li></li>
