@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import certificate from "./images/Completion - Portrait (2).png";
 import "./bulk.style.scss";
 
-function Index() {
+function BulkPreview() {
   return (
     <div id="bulkPreview" className="bulk">
       {/* BUTTONS TO TOGGLE BETWEEN SINGLE AND BULK CERTIFICATE */}
@@ -33,7 +33,7 @@ function Index() {
 
       {/* BUTTONS TO DOWNLOAD OR SHARE THE CRETIFICATES */}
 
-      <div className="buttons">
+      <div className="bulk-buttons">
         <button className="download-button">Download Certificates</button>
         <button className="send-button">Send Certificates</button>
       </div>
@@ -41,4 +41,4 @@ function Index() {
   );
 }
 
-export default Index;
+export default BulkPreview;

@@ -1,44 +1,53 @@
 @import "../../Style/variables";
-
+body{
+  text-align:center;
+}
 //BUTTONS
 #bulkPreview {
   
 button {
-  margin: 35px 20px 45px 20px;
+  margin: 15px 10px 25px 10px;
   border-radius: 5px;
-  color: $primaryGreenColor;
-  width: 140px;
+  color: $primaryColor;
+  width: 160px;
   height: 40px;
   font-size: 12px;
   font-family: "Work Sans", sans-serif;
 
   &.send-button {
     background: transparent;
-    border: 1px solid $primaryGreenColor;
-    color: $primaryGreenColor;
+    border: 1px solid $primaryColor;
+    color: $primaryColor;
     &:hover {
       color: #fff;
-      background: $primaryGreenColor;
+      background: $primaryColor;
       border: none;
       transition: 500ms ease-in-out;
     }
   }
 
   &.download-button {
-    background: $primaryGreenColor;
+    background: $primaryColor;
     color: #fff;
     border: none;
 
     &:hover {
-      color: $primaryGreenColor;
+      color: $primaryColor;
       background: #fff;
-      border: 1px solid $primaryGreenColor;
+      border: 1px solid $primaryColor;
       transition: 500ms ease-in-out;
     }
   }
 }
 .bulk h2 {
   margin: 40px;
+}
+
+.bulk-buttons{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0px!important;
 }
 
 // CERTIFICATE IMAGES
@@ -65,6 +74,13 @@ button {
       width: 100%;
       max-width: 200px;
     }
+  }
+
+  .bulk-buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 0px!important;
   }
 }
 

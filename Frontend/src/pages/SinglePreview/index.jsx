@@ -6,7 +6,7 @@ import certificate from "./images/Completion - Portrait (2).png";
 import certificate3 from "./images/Completion - Portrait (3).png";
 import certificate2 from "./images/Completion - Portrait.png";
 
-function Index() {
+function SinglePreview() {
   return (
     <div id="singlePreview">
       {/* BUTTONS TO TOGGLE BETWEEN SINGLE AND BULK CERTIFICATE */}
@@ -49,4 +49,4 @@ function Index() {
   );
 }
 
-export default Index;
+export default SinglePreview;
