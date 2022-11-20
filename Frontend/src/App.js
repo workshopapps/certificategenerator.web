@@ -21,6 +21,7 @@ import {
 } from "./pages";
 
 import  Layout  from "../src/Component/Layout";
+import Profile from "./pages/Profile";
 
 function App() {
   return (
@@ -43,6 +44,7 @@ function App() {
             <Route path="/bulkstep" element={<BulkStep />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/pricing" element={<Pricing />} />
+            <Route path="/profile" element={<Profile />} />
             <Route path="*" element={<Error />} />
           </Routes>
         </main>
