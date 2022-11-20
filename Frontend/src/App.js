@@ -1,6 +1,8 @@
 import "./Style/App.scss";
 import Navbar from "./Component/Navbar";
 import { Route, Routes } from "react-router-dom";
+import Signup from "./Component/Signup-Login/assets/Sginup";
+import Login from "./Component/Signup-Login/assets/Login";
 import {
   AboutUs,
   BulkPreview,
@@ -32,6 +34,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/login" element={<Login />} />
             <Route path="/comingsoon" element={<ComingSoon />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/templates" element={<Templates />} />
