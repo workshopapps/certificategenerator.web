@@ -26,26 +26,26 @@ export default function Certificate () {
           </div>
 
           <form action="" className="form text-left work-sans">
-            <label for='img'>Logo</label>
+            <label htmlFor='img'>Logo</label>
             <input type="file" name="uploadfile" id="img" style={{ display:"none"}}/>
-            <label for="img" className="upload">Upload logo</label>
+            <label htmlFor="img" className="upload">Upload logo</label>
             <p style={{fontSize: '12px'}}>Max image upload size: 8mb</p>
 
-            <label for='text' className="label">Certificate Title</label>
+            <label htmlFor='text' className="label">Certificate Title</label>
             <input type="text" placeholder="Certificate of completion"/>
 
-            <label for='text' className="label">Awardee Names</label>
+            <label htmlFor='text' className="label">Awardee Names</label>
             <input type="text" placeholder="Gabriel Prosper"/>
 
-            <label for='text' className="label">Dedication or message</label>
+            <label htmlFor='text' className="label">Dedication or message</label>
             <input type="text" placeholder="For your exceptional performance this month, 
             in appreciation for your loyalty and the desire to fulfil our goals, 
             in recognition of your leadership and dedication "/>
 
-            <label for='text' className="label">Issued by</label>
+            <label htmlFor='text' className="label">Issued by</label>
             <input type="text" placeholder="Name of organisation or issuer"/>
 
-            <label for='date' className="label">Issue Date</label>
+            <label htmlFor='date' className="label">Issue Date</label>
             <input type="date" />
 
             <input type="submit" value="Create Certificate" className="submit-btn"/>

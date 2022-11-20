@@ -21,22 +21,22 @@ function Navbar() {
     },
     {
       id: 2,
-      url: "/",
+      url: "/templates",
       text: "browse templates",
     },
     {
       id: 3,
-      url: "/",
+      url: "/pricing",
       text: "pricing",
     },
     {
       id: 4,
-      url: "/",
+      url: "/blog",
       text: "blog",
     },
     {
       id: 5,
-      url: "/",
+      url: "/faq",
       text: "FAQs",
     },
   ];

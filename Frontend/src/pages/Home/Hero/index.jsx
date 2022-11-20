@@ -10,7 +10,7 @@ import skillshare from '../../../assets/images/skillshare.png'
 export default function Hero () {
     return (
         <>
-          <div className="flex center justify-between">
+          <div id="container" className="flex center justify-between">
                <div className="hero-left">
                   <p className="hero-text sora">
                     Create and download

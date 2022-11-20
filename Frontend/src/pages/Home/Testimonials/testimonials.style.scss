@@ -2,6 +2,7 @@
 @import "../../../Style/variables";
 
 #testimonials {
+  text-align: center;
   .flex {
     display: flex;
   }
@@ -41,7 +42,9 @@
     width: 90%;
     margin: auto;
   }
-
+  .testimonials{
+    background: none;
+  }
   .testimonial-header {
     font-weight: 700;
     font-size: 48px;

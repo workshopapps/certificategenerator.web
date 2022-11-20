@@ -11,7 +11,7 @@ body {
     max-width: $containerWidth;
     color: #222222;
 }
-
+#container{
 .flex {
     display: flex;
 }
@@ -124,4 +124,6 @@ body {
     .hero-img {
         display: none;
     }
+}
+
 }
