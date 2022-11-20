@@ -101,9 +101,9 @@ export const LegalDocuments = () => {
   const CookiePolicy = () => {
     return (
       <div className="main-page"> 
-         <h2>Cookie Policy</h2>
+         <h2>Cookie policy</h2>
          <section>
-          <h2>General Information</h2>
+          <h2>General information</h2>
           <p>Some areas and functions of the Website may use cookies, i.e. text files stored on the user’s computer, identifying him/her
              in a way that is necessary to enable certain operations. Cookies are used, among other things, to remember data necessary for
             the user’s login. Thanks to the use of cookies, the User is not obliged to re-enter the data previously entered in the Website,
@@ -120,7 +120,7 @@ export const LegalDocuments = () => {
                  in the help or documentation of the Internet browser.</p>
          </section>
          <section>
-          <h2>Use of cookies by the Administrator</h2>
+          <h2>Use of cookies by the administrator</h2>
           <p>
   Cookies are used to store information about the User’s session (i.e. the IP address from which the User connects to the Website, connection time
    and other technical parameters of the connection).</p>
@@ -137,7 +137,7 @@ export const LegalDocuments = () => {
          </section>
   
          <section>
-        <h2> Third party Cookies</h2>
+        <h2> Third party cookies</h2>
     <p>The website o uses cookies of the following third parties:</p>
   <ul>
     <li>Google AdWords - a remarketing tool of Google LCC, which allows for displaying personalized advertisements
