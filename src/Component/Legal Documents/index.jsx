@@ -101,7 +101,7 @@ export const LegalDocuments = () => {
   const CookiePolicy = () => {
     return (
       <div className="main-page"> 
-         <h2>Cookie policy</h2>
+         <h2>Cookies policy</h2>
          <section>
           <h2>General information</h2>
           <p>Some areas and functions of the Website may use cookies, i.e. text files stored on the user’s computer, identifying him/her
