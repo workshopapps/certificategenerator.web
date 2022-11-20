@@ -1,5 +1,5 @@
 import "./Style/App.scss";
-
+import Navbar from "./Component/Navbar";
 import { Route, Routes } from "react-router-dom";
 import {
   AboutUs,
@@ -8,7 +8,6 @@ import {
   Career,
   Choice,
   ComingSoon,
-  ContactUs,
   Dashboard,
   EditBulk,
   Error,
@@ -28,10 +27,11 @@ import Home from "./pages/Home";
 function App() {
   return (
     <>
-      <Layout>
-        <main className="App">
-          <Routes>
-            <Route path="/" index element={<Home />} />
+      <Navbar />
+      <div className="App">
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Home />} />
             <Route path="/comingsoon" element={<ComingSoon />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/templates" element={<Templates />} />
@@ -47,11 +47,11 @@ function App() {
             <Route path="/bulk_step" element={<BulkStep />} />
             <Route path="/edit_bulk" element={<EditBulk />} />
             <Route path="/pricing" element={<Pricing />} />
-            <Route path="/contact-us" element={<ContactUs />} />
-            <Route path="*" element={<Error />} />
-          </Routes>
-        </main>
-      </Layout>
+          </Route>
+          <Route path="*" element={<Error />} />
+        </Routes>
+      </div>
+      {/* <Footer /> */}
     </>
   );
 }
