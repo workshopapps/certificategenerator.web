@@ -163,6 +163,18 @@
     margin-top: 6vh;
     margin-bottom: 5vh;
 }
+#PaymentSwitch-main{
+    margin: 0px;
+    padding: 0px;
+}
+#PaymentSwitch-text{
+    text-align: start;
+    font-family: 'Work Sans';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 19px;
+    color: #6C6C70;
+}
 
 #CheckoutMainLeft-col-space-com{
     margin: 0px;
@@ -321,7 +333,7 @@
 }
 #CheckoutMainRightComp-div{
     padding-top: 2vh;
-    margin-left: 1vw
+    margin-left: 1vw;
 }
 #CheckoutMainRightComp-text{
     font-family: 'Work Sans';

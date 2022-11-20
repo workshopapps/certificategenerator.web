@@ -6,6 +6,7 @@ import Card from '../icons/Card.svg'
 import CheckoutMainLeftInput from './CheckoutMainLeftInput'
 import CheckoutMainLeftComp from './CheckoutMainLeftComp'
 import { useState } from 'react'
+import PaymentSwitch from './PaymentSwitch'
 
 function CheckoutMainLeft() {
 
@@ -28,6 +29,10 @@ function CheckoutMainLeft() {
   const [cvvCheck, setCvvCheck] = useState(false)
 
   const [icon, setIcon] = useState()
+
+  const [payment, setPayment] = useState(true)
+  const [paymentBorderCard, setPaymentBorderCard] = useState('1px solid #01AA6E')
+  const [paymentBorderBank, setPaymentBorderBank] = useState('1px solid #222222')
 
   function firstNamef(value){
     setFirstName(value);
@@ -103,6 +108,18 @@ function CheckoutMainLeft() {
     }
   }
 
+  function switchPaymentCard(){
+    setPayment(true);
+    setPaymentBorderCard('1px solid #01AA6E');
+    setPaymentBorderBank('1px solid #222222');
+  }
+
+  function switchPaymentBank(){
+    setPayment(false);
+    setPaymentBorderCard('1px solid #222222');
+    setPaymentBorderBank('1px solid #01AA6E');
+  }
+
   return (
     <div className="col-xs-12 col-12-sm col-md-12 col-lg-8 col-lxl-8 col-xxl-8" id='CheckoutMainLeft-container'>
 
@@ -147,43 +164,26 @@ function CheckoutMainLeft() {
         <div className='row' id='CheckoutMainLeft-main-div-2-div-1'>
 
           <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6" id='CheckoutMainLeft-col-space-com'>
-            <CheckoutMainLeftComp text='Credit Card' icon1={CreditCard} space='1vw' border='1px solid #01AA6E' />
+            <CheckoutMainLeftComp text='Credit Card' icon1={CreditCard} space='1vw' border={paymentBorderCard}
+            paymentClick={switchPaymentCard} />
           </div>
 
           <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6" id='CheckoutMainLeft-col'>
-            <CheckoutMainLeftComp text='Bank Transfer' icon1={BankTransfer} border='1px solid #222222' />
+            <CheckoutMainLeftComp text='Bank Transfer' icon1={BankTransfer} border={paymentBorderBank} 
+            paymentClick={switchPaymentBank} />
           </div>
 
         </div>
 
-        <CheckoutMainLeftInput label='Cardholder name' placeholder='' value={cardName} functions={e => cardNamef(e.target.value)}
-        class={cardNameCheck ? 'cardname-error' : 'cardname-ok'} />
-
-        <div className='row gx-5' id='CheckoutMainLeft-main-div-2-div-2'>
-
-          <div className="col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 col-xxl-6" id='CheckoutMainLeft-col-space'>
-            <CheckoutMainLeftInput label='Card number' placeholder='' class={cardNumberCheck ? 'cardnumber-error' : 'cardnumber-ok'}
-            value={cardNumber} functions={e => cardNumberf(e.target.value)} icon={icon} />
-          </div>
-
-          <div className="col-xs-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 col-xxl-3" id='CheckoutMainLeft-col-space-com'>
-            <CheckoutMainLeftInput label='Expiry' placeholder='DD/MM/YYYY' value={expiry} functions={e => expiryf(e.target.value)}
-            class={expiryCheck ? 'expiry-error' : 'expiry-ok'} />
-          </div>
-
-          <div className="col-xs-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 col-xxl-3" id='CheckoutMainLeft-col'>
-            <CheckoutMainLeftInput label='CVV' placeholder='' value={cvv} functions={e => cvvf(e.target.value)}
-            class={cvvCheck ? 'cvv-error' : 'cvv-ok'} />
-          </div>
+        {payment? <PaymentSwitch cardNameCheck={cardNameCheck} cardName={cardName} cardNamef={e => cardNamef(e.target.value)} 
+        cardNumberCheck={cardNumberCheck} cardNumber={cardNumber} cardNumberf={e => cardNumberf(e.target.value)} icon={icon} 
+        expiry={expiry} expiryf={e => expiryf(e.target.value)} expiryCheck={expiryCheck} 
+        cvv={cvv} cvvf={e => cvvf(e.target.value)} cvvCheck={cvvCheck} 
+        SecurePay={SecurePay} /> : <p id='PaymentSwitch-text'>A one-time account number will be generated once you click “pay” for you to finish
+          checking out and expires in 30 minutes</p>}
           
-        </div>
-
       </div>
-
-      <div id='CheckoutMainLeft-icon-div'>
-        <img src={SecurePay} alt="SecurePay" id='CheckoutMainLeft-icon' />
-      </div>
-
+      
       <button id='CheckoutMainLeft-btn'>Pay $23.99</button>
 
     </div>

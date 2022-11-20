@@ -79,6 +79,9 @@
     #CheckoutMainLeftInput-label{
         font-size: 16px;
     }
+    #CheckoutMainLeft-main-div-2-div-1{
+        margin-bottom: 2vh;
+    }
     #CheckoutMainLeft-main-div-2-div-2{
         margin-bottom: 0vh;
     }
@@ -98,6 +101,9 @@
         background: #FFFFFF;
         box-shadow: 0px -2px 24px rgba(94, 94, 94, 0.08), 0px 15px 18px rgba(94, 94, 94, 0.12);
         border-radius: 10px;
+    }
+    #CheckoutMainRightComp-div{
+        margin-left: 2vw;
     }
     #CheckoutMainRightComp-main-last{
         margin-bottom: 10vh;
@@ -252,6 +258,9 @@
     #CheckoutMainLeftComp-text{
         font-size: 16px;
     }
+    #CheckoutMainLeft-main-div-2-div-1{
+        margin-bottom: 2vh;
+    }
     #CheckoutMainLeft-main-div-2-div-2{
         margin-bottom: 0vh;
     }
@@ -269,6 +278,9 @@
         box-shadow: 0px 1px 5px rgba(94, 94, 94, 0.08), 0px 15px 18px rgba(94, 94, 94, 0.12);
         border-radius: 10px;
         padding-left: 5vw;
+    }
+    #CheckoutMainRightComp-div{
+        margin-left: 2vw;
     }
     #CheckoutMainRightComp-main-last{
         margin-bottom: 15vh;
@@ -494,6 +506,18 @@
         margin-top: 6vh;
         margin-bottom: 5vh;
     }
+    #PaymentSwitch-main{
+        margin: 0px;
+        padding: 0px;
+    }
+    #PaymentSwitch-text{
+        text-align: start;
+        font-family: 'Work Sans';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 19px;
+        color: #6C6C70;
+    }
     
     #CheckoutMainLeft-col-space{
         margin: 0px;
@@ -646,7 +670,7 @@
     }
     #CheckoutMainRightComp-div{
         padding-top: 2vh;
-        margin-left: 1vw
+        margin-left: 1vw;
     }
     #CheckoutMainRightComp-text{
         font-family: 'Work Sans';
