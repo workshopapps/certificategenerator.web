@@ -1,0 +1,140 @@
+@import "../../Style/variables";
+
+.choiceContainer {
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+	margin: 16em 11em;
+
+	letter-spacing: 2px;
+	transition: all 2s;
+
+	div {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-around;
+		align-items: center;
+		position: relative;
+		&.bulk,
+		&.single {
+			height: 200px;
+		}
+		h2 {
+			font-family: Sora;
+			font-size: 33px;
+			font-weight: 700;
+			line-height: 42px;
+
+			text-align: left;
+		}
+		p {
+			font-family: Work Sans;
+			font-size: 16px;
+			font-weight: 400;
+			line-height: 19px;
+
+			text-align: left;
+			
+		}
+		label,
+		button {
+			position: relative;
+			min-height: 42px;
+			min-width: 10em;
+			width: fit-content;
+
+			background: $uploadBtn;
+
+			border-radius: 10px;
+
+			font-size: 14px;
+			font-weight: 700;
+			line-height: 17px;
+
+			text-align: left;
+			color: #ffffff;
+			padding: 1em 1.4em;
+
+			border: none;
+			letter-spacing: 1.4px;
+			i {
+				position: absolute;
+				top: 10px;
+				left: 25px;
+			}
+			span {
+				position: absolute;
+				top: 14px;
+				right: 25px;
+				text-transform: uppercase;
+			}
+			+ div {
+				display: block;
+				/* margin-top: 26px; */
+				position: absolute;
+				bottom: -30px;
+				a {
+					text-decoration: none;
+					color: #006642;
+				}
+			}
+			&:hover {
+				cursor: pointer;
+				opacity: 0.8;
+			}
+		}
+
+		&.bulk p {
+			position: relative;
+			padding-left: 1em;
+
+			i {
+				position: absolute;
+				right: -28px;
+				top: -2px;
+			}
+		}
+		&.or {
+			div {
+				height: 8em;
+				border-right: 0.5px solid #6c6c70;
+			}
+			span {
+				// position: absolute;
+				width: 32px;
+				height: 39px;
+				margin: 0.1em;
+
+				font-family: "Work Sans";
+				font-style: normal;
+				font-weight: 300;
+				font-size: 33px;
+				line-height: 39px;
+				/* identical to box height */
+
+				color: #6c6c70;
+			}
+		}
+	}
+	input[type="file"] {
+		display: none;
+	}
+}
+
+@media screen and (max-width: 900px) {
+	.choiceContainer {
+		flex-direction: column;
+		margin-top: auto;
+		justify-content: space-around;
+		min-height: 500px;
+		.or {
+			flex-direction: row;
+			div {
+				height: 0 !important;
+				width: 8em;
+				border-right: 0 !important;
+				border-bottom: 0.5px solid #6c6c70;
+			}
+		}
+	}
+}
