@@ -20,7 +20,7 @@ import {
   Pricing
 } from "./pages";
 
-import { Layout } from "./component";
+import { Layout } from "./Component";
 
 function App() {
   return (
