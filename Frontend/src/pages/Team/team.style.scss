@@ -75,6 +75,7 @@ $figureBorder: 1px solid #6C6C70;
   display: $display;
   flex-wrap: $flexWrap;
   flex-direction: $flexDirection;
+  justify-content: center;
 }
 
 figure {
