@@ -1,12 +1,14 @@
+
 import React from 'react'
 import "./textarea.scss"
+
 
 const TextArea = ({label, placeholder}) => {
   return (
     <div className="textareaContainer">
       <label
         htmlFor={label}
-        className="textareaContainetextareaContainer__label"
+        className="textareaContainer__label"
       >
         {label}
       </label>

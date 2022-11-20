@@ -4,6 +4,7 @@ import {
   ContactLocationIcon,
   ContactPhoneIcon,
 } from "../../assets";
+import Button from "../../Component/button";
 import Inputfield from "../../Component/inputField";
 import TextArea from "../../Component/textarea";
 import "./contact.scss";
@@ -71,7 +72,8 @@ const ContactUs = () => {
               placeholder="+234900000 "
               type="tel"
             />
-            <TextArea placeholder="type message here" label="Message"/>
+            <TextArea placeholder="type message here" label="Message" />
+            <Button width='100%'>Send Message</Button>
           </form>
         </div>
       </div>
