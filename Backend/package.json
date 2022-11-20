@@ -1,0 +1,9 @@
+{
+  "name": "certificategenerator.web",
+  "version": "1.0.0",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/workshopapps/certificategenerator.web"
+  }
+}

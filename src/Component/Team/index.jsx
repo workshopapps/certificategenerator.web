@@ -167,7 +167,11 @@ const Team = () => {
       <div className="team">Our Team</div>
       <div className="meet">Meet our innovative and creative team behind the vision of our software</div>
       {/* members */}
+<<<<<<< HEAD
       <div className="containers">
+=======
+      <div className="container">
+>>>>>>> dev
         {members.map((member, id) =>
           <figure key={id}>
             <img src={member.picture} alt="A team member photograph" />
