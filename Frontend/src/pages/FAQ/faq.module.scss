@@ -34,8 +34,9 @@
   width: 80%;
   margin-top: 3rem;
 
-  .faq-header {
+  h2 {
     font-size: 1.2rem;
+    margin-bottom: 1rem;
   }
 
   .faqWrapper {
@@ -44,6 +45,7 @@
     border-radius: 10px;
     padding: 1rem 2rem;
     margin-bottom: 0.2rem;
+
     .faqQuestions {
       @include flexContainer(row, 100%, space-between);
       gap: 20px;
