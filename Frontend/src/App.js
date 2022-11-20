@@ -5,11 +5,18 @@ import { Route, Routes } from 'react-router-dom';
 import { AboutUs, BulkPreview, BulkStep, Career,  Choice, ComingSoon, Dashboard, EditBulk, Error, FAQ, Layout, Modify, Pricing, SinglePreview, Team, Templates, Terms } from './pages';
 // import Footer from './Component/Footer';
 
-import Home from './pages/Home'
+
+
+import Profile from "./pages/Profile";
+
+import Home from './pages/Home';
 
 function App() {
   return (
     <>
+
+      
+
       <Navbar />
       <div className='App'>
         <Routes>
@@ -29,6 +36,7 @@ function App() {
             <Route path='/bulk_preview' element={<BulkPreview />} />
             <Route path='/bulk_step' element={<BulkStep />} />
             <Route path='/edit_bulk' element={<EditBulk />} />
+             <Route path="/profile" element={<Profile />} />
             <Route path='/pricing' element={<Pricing />} />
           </Route>
             <Route path='*' element={<Error />} />
@@ -36,6 +44,7 @@ function App() {
         </Routes>
       </div>
       {/* <Footer /> */}
+
     </>
   );
 
