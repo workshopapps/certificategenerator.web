@@ -3,7 +3,6 @@ import "./pricing.style.scss";
 import Table from "react-bootstrap/Table";
 
 function Feature () {
-
     return(
         <section className="feature">
             <article>
