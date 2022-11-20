@@ -1,8 +1,8 @@
 import React from "react";
 import './testimonials.style.scss'
-import person_1 from '../../assets/images/person-1.png'
-import person_2 from '../../assets/images/person-2.png'
-import person_3 from '../../assets/images/person-3.png'
+import person_1 from '../../../assets/images/person-1.png'
+import person_2 from '../../../assets/images/person-2.png'
+import person_3 from '../../../assets/images/person-3.png'
 
 export default function Testimonials () {
     return (
