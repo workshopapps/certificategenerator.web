@@ -24,18 +24,18 @@ const UserForm = () => {
   };
 
   return (
-    <div className="user_form">
-      <div className="link_items">
-        <div className="myFlex border-bottom">
+    <div className="user_formm">
+      <div className="link_itemss">
+        <div className="myFlexx border-bottomm">
           <a>Individual</a>
         </div>
-        <div className="myFlex">
+        <div className="myFlexx">
           <a>Bulk</a>
         </div>
       </div>
       <form>
         <h4>Manage Your Profile</h4>
-        <div className="form_item">
+        <div className="form_itemm">
           <input
             id="name"
             type="text"
@@ -44,11 +44,11 @@ const UserForm = () => {
           />
           <label htmlFor="name">Name</label>
         </div>
-        <div className="form_item">
+        <div className="form_itemm">
           <input id="job" type="text" value={job} onChange={jobChangeHandler} />
           <label htmlFor="job">Job</label>
         </div>
-        <div className="form_item">
+        <div className="form_itemm">
           <input
             id="location"
             type="text"
@@ -57,7 +57,7 @@ const UserForm = () => {
           />
           <label htmlFor="location">Location</label>
         </div>
-        <div className="form_item">
+        <div className="form_itemm">
           <input
             id="mail"
             type="email"
@@ -66,7 +66,7 @@ const UserForm = () => {
           />
           <label htmlFor="mail">Email</label>
         </div>
-        <div className="form_item">
+        <div className="form_itemm">
           <input
             id="phone"
             type="text"
@@ -75,8 +75,8 @@ const UserForm = () => {
           />
           <label htmlFor="phone">Phone Number</label>
         </div>
-        <div className="flex_center">
-          <button type="button" className="btn">
+        <div className="flex_centerrr">
+          <button type="button" className="btnnnn">
             Delete Account
           </button>
         </div>
