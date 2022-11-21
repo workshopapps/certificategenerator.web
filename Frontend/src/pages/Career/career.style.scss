@@ -1,44 +1,35 @@
 @import "../../Style/variables";
 @import url("https://fonts.googleapis.com/css2?family=Sora:wght@400;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400&display=swap");
-
 $sectionWidth: 100%;
-$containerBackground: #e8f6f4;
-
+$containerBackground: #E8F6F4;
 $fontStyle: normal;
 $fontFamily: "Sora";
 $fontFamily2: "Work Sans", sans-serif;
-
 $bold: 700;
 $normal: 400;
 $light: 300;
-
 $mt-2: 2rem;
 $mt-1: 1rem;
-
 $sm: 340px;
 $smaller: 430px;
 $small: 650px;
 $medium: 912px;
-
 .flex {
   display: flex;
 }
 .justify-between {
   justify-content: space-between;
 }
-
 .items-center {
   align-items: center;
 }
-
 a {
   cursor: pointer;
   text-decoration: none;
 }
 .section {
   padding: 0 6.25rem;
-
   @media screen and (max-width: $medium) {
     padding: 0 2rem;
   }
@@ -50,10 +41,9 @@ p {
   margin: $mt-1 0;
 }
 .career__container {
-  background: #ffffff;
+  background: #FFFFFF;
   font-family: $fontFamily;
   margin-top: -3rem;
-
   .hero__section {
     text-align: initial;
     @media screen and (max-width: $small) {
@@ -132,16 +122,14 @@ p {
       }
     }
   }
-
   .section1 {
     margin-top: 3rem;
     text-align: initial;
-
     h2 {
       margin-bottom: 2rem;
       font-size: 39px;
       b {
-        color: #7b41b4;
+        color: #7B41B4;
       }
       @media screen and (max-width: $medium) {
         font-size: 1.8rem;
@@ -183,7 +171,6 @@ p {
           width: 60px;
           height: 50px;
         }
-
         img {
           width: 100%;
           height: 100%;
@@ -191,7 +178,6 @@ p {
           border-radius: 8px;
         }
       }
-
       .text__container {
         margin-left: 2rem;
         h2 {
@@ -223,7 +209,6 @@ p {
       }
     }
   }
-
   .section2 {
     background: $containerBackground;
     margin-top: 3rem;
@@ -274,7 +259,7 @@ p {
         }
         h5 {
           font-size: 1.2rem;
-          color: #08372f;
+          color: #08372F;
           margin-top: $mt-1;
         }
         @media screen and (max-width: $medium) {
@@ -324,7 +309,6 @@ p {
       }
     }
   }
-
   .section3 {
     margin-top: 3rem;
     padding: 2rem 6.25rem;
@@ -412,7 +396,6 @@ p {
       }
     }
   }
-
   .section4 {
     background: $containerBackground;
     padding: 3rem 5rem;
@@ -421,7 +404,7 @@ p {
       padding: 3rem 2rem;
     }
     h2 {
-      color: #08372f;
+      color: #08372F;
       font-size: 3rem;
       margin-bottom: 3rem;
       @media screen and (max-width: $small) {
@@ -433,9 +416,8 @@ p {
         display: flex;
         align-items: center;
         gap: 10px;
-
         .input__div {
-          background: #ffffff;
+          background: #FFFFFF;
           display: flex;
           border: 1.2px solid rgba(34, 34, 34, 0.6);
           padding: 5px 10px;
@@ -470,10 +452,8 @@ p {
         }
       }
     }
-
     .jobs {
       margin-top: $mt-2;
-
       .job__type {
         display: flex;
         align-items: center;
@@ -486,8 +466,8 @@ p {
           padding: 2px;
           width: 25px;
           height: 25px;
-          color: #ffffff;
-          background: #6c6c70;
+          color: #FFFFFF;
+          background: #6C6C70;
           border-radius: 22rem;
           margin-left: 10px;
         }
@@ -504,7 +484,6 @@ p {
           align-items: flex-start;
           margin-bottom: 1rem;
         }
-
         h3 {
           font-size: 1.8rem;
           margin-top: $mt-1;
@@ -516,7 +495,7 @@ p {
           font-size: 1.2rem;
           margin: $mt-1 0;
           b {
-            color: #6c6c70;
+            color: #6C6C70;
           }
         }
       }
