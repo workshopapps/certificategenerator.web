@@ -21,7 +21,7 @@ const handleCsv = async (req, res) => {
 
     }
 
-    return res.status(200).json( jsonOutput ).end();
+    return res.status(200).json({ result: jsonOutput }).end();
   }
 
   return res.status(400).json({message: "No csv file was uploaded"}).end();
