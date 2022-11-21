@@ -4,7 +4,8 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors')
 const fileUpload = require('express-fileupload');
-
+const careers = require('./routes/careerRouter')
+const mailingLists = require('./routes/mailingListRouter')
 const app = express()
 
 //import coustom middlware
@@ -14,6 +15,8 @@ const connectDB = require('./utils/dbConn');
 const auth = require('./routes/authRouter')
 const csvRouter = require('./routes/csvRouter.js');
 const blog = require('./routes/blogPostRouter')
+app.use('/api/careers',careers)
+app.use('/api/mailinglists',mailingLists)
 
 const PORT = process.env.PORT || 5000;
 
