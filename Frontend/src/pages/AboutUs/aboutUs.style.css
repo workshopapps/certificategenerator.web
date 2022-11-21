@@ -64,7 +64,7 @@
   line-height: 23px;
   letter-spacing: -0.004em;
 }
-#aboutUs .stroke {
+#aboutUs .aboutstroke {
   background: #19A68E;
   align-items: center;
   border-radius: 8px;
@@ -265,14 +265,13 @@
   }
   #aboutUs .aboutValueCard {
     width: 360px;
-    height: 180px;
+    height: 200px;
     border-radius: 10px;
     padding: 24px 19px 24px 16px;
   }
   #aboutUs .aboutValueCardD {
-    display: flex;
-    gap: 16px;
-    bottom: 24px;
+    gap: 22px;
+    bottom: 20px;
   }
   #aboutUs .aboutValueS {
     gap: 28px;
@@ -361,7 +360,7 @@
     font-size: 16px;
     line-height: 19px;
   }
-  #aboutUs .stroke {
+  #aboutUs .aboutstroke {
     width: 50px;
   }
   #aboutUs .aboutNav {
@@ -380,8 +379,11 @@
   #aboutUs .aboutAbout {
     display: flex;
     flex-direction: column;
-    padding: 0 24px 48px;
+    padding: 24px 48px;
     gap: 48px;
+  }
+  #aboutUs #mission {
+    flex-direction: column-reverse;
   }
   #aboutUs .aboutAboutD {
     width: 100%;
@@ -408,7 +410,7 @@
   }
   #aboutUs .aboutValueCard {
     width: 180px;
-    height: 128px;
+    height: 140px;
     padding: 16px 10px 13px;
   }
   #aboutUs #v1h4 {
@@ -418,6 +420,7 @@
   }
   #aboutUs .aboutValueCardD {
     gap: 5px;
+    bottom: 16px;
   }
   #aboutUs .aboutValueCardD img {
     height: 30px;
@@ -478,4 +481,4 @@
     height: 240px;
     width: 160px;
   }
-}
+}/*# sourceMappingURL=aboutUs.style.css.map */

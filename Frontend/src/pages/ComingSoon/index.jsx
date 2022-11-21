@@ -39,7 +39,7 @@ function Comingsoon() {
                 type='email'
                 placeholder='Your email'
                 className='email'></input>
-              <button className='btn'>Notify me</button>
+              <div className='coming_btn'>Notify me</div>
             </form>
             <div className='spam'>~Don't worry we will not spam you~</div>
           </div>

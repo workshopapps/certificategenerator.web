@@ -2,6 +2,9 @@ body {
   text-align: center;
 }
 
+#bulkPreview {
+  text-align: center !important;
+}
 #bulkPreview button {
   margin: 15px 10px 25px 10px;
   border-radius: 5px;
@@ -13,8 +16,8 @@ body {
 }
 #bulkPreview button.send-button {
   background: transparent;
-  border: 1px solid #19a68e;
-  color: #19a68e;
+  border: 1px solid #19a68e !important;
+  color: #19a68e !important;
 }
 #bulkPreview button.send-button:hover {
   color: #fff;
@@ -23,14 +26,14 @@ body {
   transition: 500ms ease-in-out;
 }
 #bulkPreview button.download-button {
-  background: #19a68e;
+  background: #19a68e !important;
   color: #fff;
   border: none;
 }
 #bulkPreview button.download-button:hover {
-  color: #19a68e;
+  color: #19a68e !important;
   background: #fff;
-  border: 1px solid #19a68e;
+  border: 1px solid #19a68e !important;
   transition: 500ms ease-in-out;
 }
 #bulkPreview .bulk h2 {
@@ -41,6 +44,10 @@ body {
   flex-direction: column;
   align-items: center;
   margin: 0px !important;
+}
+#bulkPreview .certificate img {
+  width: 100% !important;
+  max-width: 400px !important;
 }
 #bulkPreview .bulk-images {
   display: flex;
@@ -68,9 +75,17 @@ body {
     justify-content: center;
     margin: 0px !important;
   }
+  #bulkPreview .certificate img {
+    width: 100%;
+    max-width: 400px;
+  }
 }
 @media screen and (min-width: 1000px) {
   #bulkPreview .bulk-images img {
     max-width: 300px !important;
   }
-}
+  #bulkPreview .certificate img {
+    width: 100% !important;
+    max-width: 600px !important;
+  }
+}/*# sourceMappingURL=bulk.style.css.map */

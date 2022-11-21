@@ -24,32 +24,32 @@
   margin-bottom: 0px !important;
 }
 #edit .form .logo h6 {
-  margin-bottom: 30px;
-  margin-top: 5px;
+  margin-bottom: 30px !important;
+  margin-top: 5px !important;
 }
 #edit .form label {
   font-weight: bolder;
 }
 #edit .form input,
 #edit .form select {
-  padding: 18px;
-  border-radius: 10px;
+  padding: 18px !important;
+  border-radius: 10px !important;
   border: 1px solid grey;
-  width: 95%;
+  width: 95% !important;
   margin-top: 15px !important;
   margin-bottom: 30px !important;
   background: #fff;
 }
 #edit .form select {
-  width: 100%;
+  width: 100% !important;
 }
 #edit .form button {
   background: #19a68e;
-  color: #fff;
+  color: #fff !important;
   border: none;
   width: 130px;
   height: 43px;
-  text-align: center;
+  text-align: center !important;
   margin: 0px;
 }
 #edit .form button:hover {
@@ -69,4 +69,4 @@
     max-width: 700px;
     height: auto;
   }
-}
+}/*# sourceMappingURL=edit.style.css.map */

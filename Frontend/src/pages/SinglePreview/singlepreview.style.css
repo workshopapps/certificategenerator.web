@@ -2,6 +2,9 @@ body {
   text-align: center;
 }
 
+#singlePreview {
+  text-align: center !important;
+}
 #singlePreview .button-container button {
   margin: 35px 10px;
   height: 37px;
@@ -30,6 +33,9 @@ body {
   border: 1px solid #19a68e;
   transition: 500ms ease-in-out;
 }
+#singlePreview .certificate {
+  text-align: center !important;
+}
 #singlePreview .certificate h1 {
   font-size: 30px;
   font-weight: 500;
@@ -38,7 +44,7 @@ body {
 #singlePreview .certificate button {
   margin: 35px 20px 45px 20px;
   border-radius: 5px;
-  color: #19a68e;
+  color: #19a68e !important;
   width: 140px;
   height: 35px;
   font-size: 12px;
@@ -46,7 +52,7 @@ body {
 #singlePreview .certificate button.download-button {
   background: transparent;
   border: 1px solid #19a68e;
-  color: #19a68e;
+  color: #19a68e !important;
 }
 #singlePreview .certificate button.download-button:hover {
   color: #fff;
@@ -113,4 +119,4 @@ body {
   #singlePreview .single-images img {
     max-width: 300px;
   }
-}
+}/*# sourceMappingURL=singlepreview.style.css.map */

@@ -78,6 +78,7 @@
 }
 #comingsoon .emyform {
   display: flex;
+  flex-direction: row;
   gap: 20px;
   justify-content: center;
   align-items: center;
@@ -86,17 +87,17 @@
   height: 49px;
   width: 388px;
   background: #FFFFFF;
-  border: 1.2px solid 0.01AA6E;
+  border: 1.2px solid #19A68E;
   border-radius: 10px;
   flex: none;
   order: 0;
   flex-grow: 0;
 }
-#comingsoon .btn {
+#comingsoon .coming_btn {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: 0.19A68E;
+  background: #19A68E;
   border-radius: 10px;
   height: 49px;
   border: none;
@@ -112,7 +113,7 @@
   align-items: center;
   letter-spacing: -0.004em;
   color: #ffffff;
-  margin-bottom: 15px;
+  width: 100px;
 }
 #comingsoon .spam {
   font-family: "Work Sans";
@@ -123,7 +124,7 @@
   display: flex;
   align-items: center;
   letter-spacing: -0.004em;
-  color: 0.6C6C70;
+  color: #6C6C70;
   margin-top: 20px;
 }
 #comingsoon footer {
@@ -132,6 +133,7 @@
   justify-content: space-between;
   width: 86%;
   margin-top: 172px;
+  margin-bottom: 100px;
 }
 #comingsoon footer > ul {
   width: 19%;
@@ -148,7 +150,7 @@
   align-items: center;
   letter-spacing: -0.004em;
   color: 0.222222;
-  margin-bottom: 50px;
+  margin-top: 50px;
 }
 #comingsoon .socail_logo {
   width: 185px;
@@ -166,7 +168,7 @@
   display: flex;
   align-items: center;
   letter-spacing: -0.004em;
-  color: 0.19A68E;
+  color: #19A68E;
   flex: none;
   order: 0;
   flex-grow: 0;
@@ -240,6 +242,7 @@
   #comingsoon .welcome,
 #comingsoon footer {
     flex-direction: column;
+    gap: 20px;
   }
   #comingsoon .f1 {
     display: flex;
@@ -255,6 +258,12 @@
     margin-left: 50px;
     font-size: 16px;
   }
+  #comingsoon .social {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+  }
   #comingsoon .email {
     width: 150px;
   }
@@ -267,4 +276,4 @@
     justify-content: center;
     align-items: center;
   }
-}
+}/*# sourceMappingURL=Comingsoon.css.map */

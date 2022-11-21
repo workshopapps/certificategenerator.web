@@ -35,6 +35,8 @@
 .template-wrapper .filter-btn {
   font-size: 0;
   padding: 2px 8px;
+  width: 138px;
+  height: 48px;
   position: absolute;
   top: 0;
   border: 1px solid transparent;
@@ -75,17 +77,19 @@
   padding-block: 30px;
   text-align: center;
 }
-.template-wrapper .cards-container .template-card__header button {
+.template-wrapper .cards-container .template-card__header .btn-premium {
   position: absolute;
   top: 5px;
   right: 5px;
+  height: 30px;
+  width: 94px;
   color: rgb(255, 255, 255);
   background-color: #606060;
   border: 1px solid #606060;
   border-radius: 8px;
   padding: 6px 10px;
 }
-.template-wrapper .cards-container .template-card__header button img {
+.template-wrapper .cards-container .template-card__header .btn-premium img {
   margin-left: 5px;
 }
 .template-wrapper .cards-container .template-card__icon {
@@ -136,4 +140,4 @@
   .template-wrapper h1 {
     font-size: 47px;
   }
-}
+}/*# sourceMappingURL=template.style.css.map */
