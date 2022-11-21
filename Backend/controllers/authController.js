@@ -94,7 +94,49 @@ const userSignup = async (req, res, next) => {
     }
 }
 
+const userLogin = async (req, res, next) => {
+    const email = req.body.email;
+    const password = req.body.password;
+    try {
+        
+        const user = await User.findOne({ email: email })
+        if (!user) {
+            const error = new Error(
+                "A user for this email could not be found!"
+            );
+            error.statusCode = 401;
+            throw error;
+        }
+        const isEqual = await bcrypt.compare(password, user.password)
+        if (!isEqual) {
+            const error = new Error("Wrong password!");
+            error.statusCode = 401;
+            throw error;
+        }
+        const token = jwt.sign({
+            email: user.email,
+            userId: user._id
+        }, secret,
+        {expiresIn: "24h"}
+        )
+        res.status(201).json({
+            message: "user logged in successfully",
+            token: token,
+            userId: user._id.toString()
+        })
+    } catch (error) {
+        if (!error.statusCode) {
+            error.statusCode = 500
+        }
+        next(error)
+    }
+
+    
+}
+
+
 
 module.exports = {
-    userSignup
+    userSignup,
+    userLogin
 }

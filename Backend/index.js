@@ -4,7 +4,6 @@ const mongoose = require('mongoose')
 const bodyParser = require('body-parser');
 const cors = require('cors')
 const fileUpload = require('express-fileupload');
-const auth = require('./routes/authRouter')
 
 const app = express()
 
@@ -12,6 +11,7 @@ const app = express()
 const connectDB = require('./utils/dbConn');
 
 //import custom routes
+const auth = require('./routes/authRouter')
 const csvRouter = require('./routes/csvRouter.js');
 
 const PORT = process.env.PORT || 5000;
@@ -35,7 +35,7 @@ app.get('/', (req, res) => {
 });
   
 app.use('/api/auth', auth)
-  app.use('/api/upload/csv', csvRouter);
+app.use('/api/upload/csv', csvRouter);
   
 
 
