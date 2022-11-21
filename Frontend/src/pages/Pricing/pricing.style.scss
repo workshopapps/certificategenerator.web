@@ -1,7 +1,5 @@
 @use "../../Style/variables";
 
-// @import "~bootstrap/scss/bootstrap";
-
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=Sora:wght@700&family=Work+Sans:wght@400;600;700&display=swap');
 
 $pricingBackground: rgba(178, 225, 217, 0.25);
@@ -12,6 +10,8 @@ $featureBackground: #FFFFFF;
 $featureHeader: 'Sora', sans-serif;
 
 main {
+    margin-top: -70px;
+
     .pricing{
         background-color: $pricingBackground;
         font-family: $text;
@@ -250,10 +250,13 @@ main {
             border-radius: 8px;
             padding: 40px 20px;
             width: 942px;
-            height: 962px;
+            height: fit-content;
             margin: 30px auto;
         
             table {
+                width: 100%;
+                flex-shrink: 0;
+
                 thead {
                     background-color: #19A68E;
                     padding: 20px 16px 20px 22px;
@@ -266,7 +269,7 @@ main {
 
                     th:nth-of-type(1) {
                         border-radius: 4px 0px 0px 4px;
-                        text-align: justify;
+                        text-align: start;
                     }
                     
                     th:nth-of-type(4) {
@@ -294,6 +297,7 @@ main {
                     }
                 }
             }
+
         }
 
         .featureEnd {
@@ -321,10 +325,9 @@ main {
 
 // Testimonials styles
     .testimonials {
-        background-color: $pricingBackground;
         font-family: $text;
         
-        .text {
+        .textC {
             text-align: center;
             max-width: 100%;
             width: 90%;
@@ -369,15 +372,11 @@ main {
                     line-height: 26px;
                     color: #656666;
 
-                    img:nth-of-type(1) {
-                        margin-bottom: 20px;
-                    }
-
                     > div {
                         display: flex;
                         align-items: center;
                         position: absolute;
-                        bottom: 20px;
+                        bottom: 0;
 
                         img {
                             margin-right: 20px;
@@ -410,7 +409,7 @@ main {
     main {
         .testimonials {
 
-            .text {
+            .textC {
     
                 .testimonialContainer {
                     display: flex;
@@ -444,7 +443,7 @@ main {
     main {
         .pricing{
             
-            .text {
+            .textC {
     
                 p:nth-of-type(1) {
                     font-size: 14px;
@@ -487,26 +486,19 @@ main {
 
                 .sliderContainer {
                     position: relative;
-                    width: 399px;
-                    height: 727px;
+                    height: fit-content;
                     margin: auto;
+                    overflow-x: scroll;
+                    width: 399px;
+                    background-color: $pricingBackground;
 
                     #slider {
                         display: flex;
-                        justify-content: center;
-
-                        .carousel-indicators {
-                            [aria-current] {
-                                background-color: #BDBDBD;
-                                width: 20px;
-                                height: 5px;
-                                border-radius: 10px;
-                            }
-
-                            [aria-current = true] {
-                                background-color: #19A68E !important;
-                                width: 44px !important;
-                            }
+                        justify-content: space-between;
+                        flex-shrink: 0;
+                        
+                        article {
+                            width: 399px;
                         }
                     }
                 }
@@ -532,12 +524,15 @@ main {
             border: 1px solid #E0E0E0;
             border-radius: 6px; 
             margin-bottom: 70px; 
+            overflow-x: scroll;
+            overflow-y: hidden;
         
             table {
                 position: relative;
                 width: 676px;
                 margin: auto;
-                margin-bottom: 20px;       
+                margin-bottom: 20px; 
+                flex-shrink: 0;      
 
                 thead {
                     padding: 16px, 13px, 16px, 17px;
@@ -605,7 +600,7 @@ main {
 
     .testimonials {
 
-        .text {
+        .textC {
 
             > p {
                 font-size: 14px;
@@ -632,7 +627,7 @@ main {
     main {
         .pricing{
             
-            .text {
+            .textC {
     
                 p {
                     font-size: 14px;
@@ -670,8 +665,15 @@ main {
                 .sliderContainer {
                     position: relative;
                     width: 327px;
-                    height: 664px;
+                    height: fit-content;
                     margin: auto;
+
+                    #slider {
+                        
+                        article {
+                            width: 327px;
+                        }
+                    }
                 }
             }
         }
@@ -707,7 +709,7 @@ main {
     main {
         .pricing{
             
-            .text {
+            .textC {
     
                 p {
                     font-size: 14px;
