@@ -134,7 +134,7 @@ const aboutUs = () => {
 
         <div className="aboutGallery">
           <h3>Our Gallery</h3>
-          <hr className='.aboutstroke'/>
+          <hr className='aboutstroke'/>
           <div className="aboutGalleryS">
             <img src={Gallery1} alt="" />
             <img src={Gallery2} alt="" />
