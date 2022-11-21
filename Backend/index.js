@@ -1,4 +1,5 @@
 require('dotenv').config();
+require("express-async-errors")
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
@@ -19,7 +20,7 @@ const certificate = require('./routes/certificateRouter');
 const downloadCsv = require('./routes/downloadRouter');
 const careers = require('./routes/careerRouter')
 const mailingLists = require('./routes/mailingListRouter')
-
+const pricing = require('./routes/pricingRouter')
 const PORT = process.env.PORT || 5000;
 
 connectDB();
@@ -47,6 +48,7 @@ app.use('/api/certificates', certificate)
 app.use('/api/download', downloadCsv)
 app.use('/api/careers',careers)
 app.use('/api/mailinglists',mailingLists)
+app.use('/api/pricing', pricing)
 
 
 mongoose.connection.once('open', () => {
