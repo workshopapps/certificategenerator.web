@@ -66,8 +66,33 @@ const getNoOfCertificatesIssued = async (req, res) => {
   res.status(200).json({result: certificates, issuedCertificates: certificates.length});
 };
 
+const deleteSingleCertificate = async (req, res) => {
+  const auth = req.headers.authorization;
+  const {id:certificateID} = req.params;
+
+  if (!auth) {
+    return res.status(403).json({ error: "No auth credentials sent!" });
+  }
+
+  try{
+    const cert = await User.findOneAndDelete({_id:certificateID})
+    if(!cert){
+        return res.status(404).json(`No certificate with id: ${certificateID}`)
+    }
+        res.status(200).json({
+          success: true, 
+          message:`Certificate has been Deleted`})
+  } catch(error) {
+    return res.status(400).json({
+      success: false,
+      error: error,
+    });
+  }
+};
+
 module.exports = {
   getAllCertificates,
   addCertificate,
-  getNoOfCertificatesIssued
+  getNoOfCertificatesIssued,
+  deleteSingleCertificate
 };
