@@ -43,6 +43,9 @@ $size-sm: 12px;
       gap: 1rem;
     }
   }
+  &__align-start{
+    text-align: start;
+  }
   &__text {
     font-size: $size;
     font-weight: 400;
@@ -62,14 +65,17 @@ $size-sm: 12px;
     line-height: 20px;
     margin: 0;
   }
-  &__btn > button {
-    all: unset;
-    padding: 12px 20px;
-    border-radius: 5px;
-    background-color: transparent;
-    color: $primaryGreenColor;
-    border: 1px solid $primaryGreenColor;
-    word-wrap: nowrap;
+  &__btn {
+    text-align: start;
+    > button {
+      all: unset;
+      padding: 12px 20px;
+      border-radius: 5px;
+      background-color: transparent;
+      color: $primaryGreenColor;
+      border: 1px solid $primaryGreenColor;
+      word-wrap: nowrap;
+    }
   }
 
   &__cards {
