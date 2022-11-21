@@ -53,7 +53,7 @@ function App() {
             <Route path="/bulk_step" element={<BulkStep />} />
             <Route path="/edit_bulk" element={<EditBulk />} />
             <Route path="/pricing" element={<Pricing />} />
-            <Route path="/contact-us" element={<ContactUs />} />
+            <Route path="/contact" element={<ContactUs />} />
             <Route path="/payment" element={<Checkout />} />
           </Route>
           <Route path="*" element={<Error />} />
