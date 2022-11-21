@@ -142,7 +142,7 @@ export const cardData = [
     count: 12800,
   },
   {
-    title: "Drafts",
+    title: "Total number of pending certificates",
     icon: "",
     count: 2,
   },
