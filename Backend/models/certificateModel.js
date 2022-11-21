@@ -1,46 +1,45 @@
-const mongoose = require("mongoose");
-const { Schema } = require("mongoose");
+const mongoose = require('mongoose')
+const { Schema } = require('mongoose');
 
-const CertificateSchema = new Schema({
-  records: [
-    {
-      name: {
+const CertificateSchema = new mongoose.Schema({
+  records: [{
+    name: {
         type: String,
-        required: [true, "Name of recipient is required"],
-      },
-      organization: {
-        type: String,
-        required: [true, "Name of organization (issuer) is required"],
-      },
-      description: {
-        type: String,
-        required: [true, "Description (Title) is required"],
-      },
-      award: {
-        type: String,
-        required: [true, "Award (purpose) is required"],
-      },
-      signed: {
-        type: String,
-      },
-      date: {
-        type: String,
-        required: [true, "Date issued is required"],
-      },
+        required: [true, 'Name of recipient is required']
     },
-  ],
-  userId: {
+    nameOfOrganization: {
+        type: String,
+        required: [true, 'Name of organization (issuer) is required']
+    },
+    description: {
+        type: String,
+        required: [true, 'Description (Title) is required']
+    },
+    award: {
+        type: String,
+        required: [true, 'Award (purpose) is required']
+    },
+    signed: {
+        type: String,
+    },
+    date: {
+        type: String,
+        required: [true, 'Date issued is required']
+    }
+  }],
+  userId:{
     type: Schema.Types.ObjectId,
-    ref: "User",
+    required: true,
+    ref: 'User'
   },
   subscribed: {
     type: Boolean,
-    default: false,
+    default: false
   },
   trialAvailable: {
     type: Boolean,
-    default: true,
-  },
-});
+    default: true
+  }
+})
 
-module.exports = mongoose.model("Certificate", CertificateSchema);
+module.exports = mongoose.model('Certificate', CertificateSchema);
