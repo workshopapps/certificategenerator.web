@@ -9,7 +9,7 @@ export default function BulkStep () {
     return (
         <div className="bulk">
           <p className="heading sora">Create bulk Certificates in <span className="emphasized">3 easy steps</span></p>
-          <div className="flex space center items-center">
+          <div className="flex space center items-center wrap">
             <img src={example} alt="bulk-example" style={{cursor: 'pointer'}} className="example"/>
             <div className="text-left work-sans">
                 <div className="process">
