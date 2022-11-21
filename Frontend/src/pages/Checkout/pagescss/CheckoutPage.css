@@ -66,6 +66,7 @@
     padding-left: 6vw;
     padding-right: 6vw;
     margin-top: 5vh;
+    /* border: 5px solid yellow; */
 }
 #CheckoutMain-text{
     font-family: 'Sora';
@@ -83,6 +84,7 @@
     align-items: flex-start;
     justify-content: center;
     flex-direction: row;
+    /* border: 5px solid red; */
 }
 
 
@@ -91,6 +93,8 @@
 #CheckoutMainLeft-container{
     margin: 0px;
     padding: 0px;
+    /* border: 5px solid blue; */
+    width: 70%;
 }
 #CheckoutMainLeft-text-1{
     font-family: 'Sora';
@@ -103,8 +107,6 @@
     margin: 0px;
     padding: 0px;
     display: flex;
-    align-items: flex-start;
-    justify-content: center;
     margin-top: 5vh;
 }
 #CheckoutMainLeft-main-div-1-sub-div-2{
@@ -113,11 +115,14 @@
     display: flex;
     align-items: flex-start;
     justify-content: center;
+    flex-direction: row;
     margin-top: 4vh;
 }
 
 
 #CheckoutMainLeftInput-main{
+    margin: 0px;
+    padding: 0px;
     display: flex;
     align-items: flex-start;
     justify-content: center;
@@ -134,11 +139,16 @@
     outline: none;
 }
 #CheckoutMainLeftInput-div{
+    margin: 0px;
+    padding: 0px;
     display: flex;
     width: 100%;
     border: 1.2px solid #222222;
     border-radius: 10px;
-    padding-right: 1vw;
+}
+#CheckoutMainLeftInput-icon{
+    margin-right: 1vw;
+    margin-left: 1vw;
 }
 #CheckoutMainLeftInput-label{
     font-family: 'Work Sans';
@@ -146,6 +156,8 @@
     font-weight: 500;
     font-size: 19px;
     margin-bottom: 2vh;
+    width: 100%;
+    display: flex;
 }
 #CheckoutMainLeftInput-input{
     font-family: 'Work Sans';
@@ -186,15 +198,18 @@
     margin: 0px;
     padding: 0px;
     padding-right: 2vw;
+    width: 100%;
 }
 #CheckoutMainLeft-col-space{
     margin: 0px;
     padding: 0px;
     padding-right: 2vw;
+    width: 100%;
 }
 #CheckoutMainLeft-col{
     margin: 0px;
     padding: 0px;
+    width: 100%;
 }
 #CheckoutMainLeftComp-main{
     display: flex;
@@ -215,6 +230,7 @@
     margin: 0px;
     padding: 0px;
     margin-bottom: 4vh;
+    display: flex;
 }
 #CheckoutMainLeft-main-div-2-div-2{
     margin: 0px;
@@ -222,6 +238,19 @@
     margin-top: 3vh;
     margin-bottom: 4vh;
     display: flex;
+    flex-direction: row;
+}
+#PaymentSwitch-cardNumber-div-1{
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+    padding-right: 2vw;
+}
+#PaymentSwitch-cardNumber-div-2{
+    margin: 0px;
+    padding: 0px;
+    display: flex;
+    width: 100%;
 }
 
 
@@ -262,6 +291,8 @@
     padding-bottom: 8vh;
     padding-top: 5vh;
     height: 100%;
+    /* border: 5px solid green; */
+    width: 30%;
 }
 #CheckoutMainRight-container-sub{
     margin: 0px;
@@ -276,20 +307,29 @@
     padding-left: 2vw;
     padding-top: 6vh;
 }
+#CheckoutMainRight-text-container{
+    /* border: 3px solid purple; */
+    padding: 0px;
+    margin: 0px;
+    width: 100%;
+    text-align: start;
+}
 
 #CheckoutMainRight-text-1{
     font-family: 'Sora';
     font-style: normal;
     font-weight: 600;
     font-size: 27px;
-    margin-bottom: 6vh;
+    /* margin-bottom: 6vh; */
+    /* border: 3px solid blue; */
 }
 #CheckoutMainRight-text-2{
     font-family: 'Work Sans';
     font-style: normal;
     font-weight: 700;
     font-size: 28px;
-    margin-bottom: 1vh;
+    /* margin-bottom: 1vh; */
+    /* border: 3px solid blue; */
 }
 #CheckoutMainRight-text-3{
     font-family: 'Work Sans';
@@ -297,14 +337,16 @@
     font-weight: 400;
     font-size: 16px;
     color: #6C6C70;
-    margin-bottom: 2vh;
+    /* margin-bottom: 1vh; */
+    /* border: 3px solid blue; */
 }
 #CheckoutMainRight-text-4{
     font-family: 'Work Sans';
     font-style: normal;
     font-weight: 700;
     font-size: 40px;
-    margin-bottom: 2vh;
+    /* margin-bottom: 2vh; */
+    /* border: 3px solid blue; */
 }
 #CheckoutMainRight-text-4-sub{
     font-family: 'Work Sans';
@@ -318,7 +360,8 @@
     font-style: normal;
     font-weight: 600;
     font-size: 16px;
-    margin-bottom: 2vh;
+    /* margin-bottom: 2vh; */
+    /* border: 3px solid blue; */
 }
 
 #CheckoutMainRightComp-main{
@@ -338,7 +381,6 @@
     margin-bottom: 20vh;
 }
 #CheckoutMainRightComp-div{
-    padding-top: 2vh;
     margin-left: 1vw;
 }
 #CheckoutMainRightComp-text{
