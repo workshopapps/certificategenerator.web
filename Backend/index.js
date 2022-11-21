@@ -4,6 +4,8 @@ const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 const cors = require('cors')
 const fileUpload = require('express-fileupload');
+const auth = require('./routes/authRouter')
+
 const app = express()
 
 //import coustom middlware
@@ -32,6 +34,7 @@ app.get('/', (req, res) => {
     res.send('Welcome to HNG-Certificate Api');
 });
   
+app.use('/api/auth', auth)
   app.use('/api/upload/csv', csvRouter);
   
 
