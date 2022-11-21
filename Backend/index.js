@@ -40,7 +40,7 @@ app.get('/', (req, res) => {
 app.use('/api/auth', auth)
 app.use('/api/upload/csv', csvRouter);
 app.use('/api/blog', blog);
-app.use('/api/certificate', certificate)
+app.use('/api/certificates', certificate)
 app.use('/api/download', downloadCsv)
 
 
