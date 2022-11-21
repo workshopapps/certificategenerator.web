@@ -1,0 +1,52 @@
+@import "../../../Style/variables";
+@import "../dashboard.style.scss";
+@import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap");
+
+.card {
+    padding: 1rem;
+    border-radius: 12px;
+    p {
+      margin-bottom: 1rem;
+      font-weight: 500;
+      line-height: 1.5rem;
+      font-size: $size-sm;
+      color: $card-text-color;
+    }
+    .icon-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      .icon {
+        background-color: $primaryGreenColor;
+        display: flex;
+        width: 40px;
+        height: 40px;
+        justify-content: center;
+        align-items: center;
+        border-radius: 10px;
+      }
+      .count {
+        font-size: $size;
+        font-weight: 700;
+        color: $text-primary;
+      }
+      
+    }
+    &:nth-child(even) {
+      background-color: $card-bg-color-even;
+    }
+    &:nth-child(odd) {
+      background-color: $card-bg-color-odd;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .card{
+        p{
+            font-size: $size-md;
+        }
+        .count{
+            font-size: $size-xlg !important;
+        }
+    }
+}

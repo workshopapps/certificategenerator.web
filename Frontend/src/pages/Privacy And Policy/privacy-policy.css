@@ -1,0 +1,40 @@
+.main-page {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  padding: 50px 100px 180px 100px;
+}
+
+p, li {
+  font-size: 19px;
+}
+
+li {
+  margin-bottom: 20px;
+  list-style-type: square;
+}
+
+ul {
+  padding: 25px;
+}
+
+.green {
+  color: #19A68E;
+  font-size: 17px;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+#green {
+  font-size: 19px;
+  color: #19A68E;
+}
+
+@media (max-width: 550px) {
+  .main-page {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    padding: 50px 10px 180px 10px;
+  }
+}
