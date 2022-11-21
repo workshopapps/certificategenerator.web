@@ -499,3 +499,14 @@
 }
 
 
+
+#Footer-main-text{
+    font-family: 'Work Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 19px;
+    margin-top: 9vh;
+}
+#Footer-sub-text{
+    color: #CAB3E1;
+}
