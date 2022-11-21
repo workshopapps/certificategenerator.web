@@ -52,6 +52,7 @@ const getAllCertificates = async (req, res) => {
   res.status(200).json(certificates);
 };
 
+//This is for getting one certificate
 const getCertificate = async (req, res) => {
   const { id } = req.params
   const certificate = await User.findOne({ _id: id })
