@@ -49,6 +49,11 @@ button {
   align-items: center;
   margin: 0px!important;
 }
+  
+  .certificate img{
+      width: 100%;
+      max-width: 300px;
+  }
 
 // CERTIFICATE IMAGES
 
@@ -74,6 +79,7 @@ button {
       width: 100%;
       max-width: 200px;
     }
+
   }
 
   .bulk-buttons{
@@ -82,11 +88,22 @@ button {
     justify-content: center;
     margin: 0px!important;
   }
+    
+  .certificate img{
+      width: 100%;
+      max-width: 400px;
+  }
 }
 
 @media screen and (min-width: 1000px) {
   .bulk-images img {
     max-width: 300px !important;
+  }
+  
+    
+  .certificate img{
+      width: 100%;
+      max-width: 500px;
   }
 }
 
