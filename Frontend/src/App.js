@@ -27,6 +27,7 @@ import {
 
 import Home from "./pages/Home";
 import Checkout from "./pages/Checkout";
+import { Privacy } from "./pages/PrivacyPolicy";
 
 function App() {
   return (
@@ -53,8 +54,9 @@ function App() {
             <Route path="/bulk_step" element={<BulkStep />} />
             <Route path="/edit_bulk" element={<EditBulk />} />
             <Route path="/pricing" element={<Pricing />} />
-            <Route path="/contact" element={<ContactUs />} />
+            <Route path="/contact-us" element={<ContactUs />} />
             <Route path="/payment" element={<Checkout />} />
+            <Route path="/privacy" element={<Privacy />} />
           </Route>
           <Route path="*" element={<Error />} />
         </Routes>
