@@ -21,6 +21,7 @@ import {
   Team,
   Templates,
   Terms,
+  Profle
 } from "./pages";
 // import Footer from './Component/Footer';
 
@@ -53,6 +54,7 @@ function App() {
             <Route path="/edit_bulk" element={<EditBulk />} />
             <Route path="/pricing" element={<Pricing />} />
             <Route path="/payment" element={<Checkout />} />
+            <Route path="/profile" element={<Profle />} />
           </Route>
           <Route path="*" element={<Error />} />
         </Routes>
