@@ -16,8 +16,8 @@ button {
 
   &.send-button {
     background: transparent;
-    border: 1px solid $primaryColor;
-    color: $primaryColor;
+    border: 1px solid $primaryColor!important;;
+    color: $primaryColor!important;;
     &:hover {
       color: #fff;
       background: $primaryColor;
@@ -32,9 +32,9 @@ button {
     border: none;
 
     &:hover {
-      color: $primaryColor;
+      color: $primaryColor!important;;
       background: #fff;
-      border: 1px solid $primaryColor;
+      border: 1px solid $primaryColor!important;;
       transition: 500ms ease-in-out;
     }
   }
@@ -49,6 +49,11 @@ button {
   align-items: center;
   margin: 0px!important;
 }
+  
+  .certificate img{
+      width: 100%!important;;
+      max-width: 400px!important;;
+  }
 
 // CERTIFICATE IMAGES
 
@@ -74,6 +79,7 @@ button {
       width: 100%;
       max-width: 200px;
     }
+
   }
 
   .bulk-buttons{
@@ -82,11 +88,22 @@ button {
     justify-content: center;
     margin: 0px!important;
   }
+    
+  .certificate img{
+      width: 100%;
+      max-width: 400px;
+  }
 }
 
 @media screen and (min-width: 1000px) {
   .bulk-images img {
     max-width: 300px !important;
+  }
+  
+    
+  .certificate img{
+      width: 100%!important;;
+      max-width: 600px!important;;
   }
 }
 
