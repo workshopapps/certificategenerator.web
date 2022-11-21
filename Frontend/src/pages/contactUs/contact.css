@@ -1,0 +1,144 @@
+.contact {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+  width: 100%;
+  padding: 1.875rem;
+  min-height: 100vh;
+  height: 100%;
+  font-family: "Sora", sans-serif;
+}
+@media screen and (min-width: 640px) {
+  .contact {
+    padding: 3.5rem;
+  }
+}
+@media screen and (min-width: 900px) {
+  .contact {
+    padding: 5rem;
+  }
+}
+@media screen and (min-width: 1300px) {
+  .contact {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 6.25rem 0;
+  }
+}
+
+.contact__content {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  width: 100%;
+}
+@media screen and (min-width: 600px) {
+  .contact__content {
+    flex-direction: column-reverse;
+  }
+}
+@media screen and (min-width: 900px) {
+  .contact__content {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+.contact__info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  gap: 1.875rem;
+  background: rgba(255, 255, 255, 0.7);
+  box-shadow: 0px 2px 4px rgba(34, 34, 34, 0.08);
+  border-radius: 10px;
+  padding: 3.75rem 0;
+}
+@media screen and (min-width: 600px) {
+  .contact__info {
+    flex-direction: row;
+  }
+}
+@media screen and (min-width: 900px) {
+  .contact__info {
+    max-width: 400px;
+    flex-direction: column;
+  }
+}
+@media screen and (min-width: 1100px) {
+  .contact__info {
+    max-width: 500px;
+  }
+}
+.contact__info--item {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: center;
+  text-align: center;
+}
+.contact__info--itemText {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+.contact__info--key {
+  font-weight: 600;
+  font-size: 1.1875rem;
+}
+.contact__info--address {
+  font-weight: 700;
+  font-size: 1rem;
+}
+.contact__info span {
+  font-weight: 400;
+  font-size: 1rem;
+}
+
+.contact__form {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+.contact__form .contact__form-intro {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  color: #222222;
+}
+.contact__form--title {
+  font-weight: 700;
+  font-size: 2rem;
+}
+@media screen and (min-width: 600px) {
+  .contact__form--title {
+    font-size: 3rem;
+  }
+}
+.contact__form--subtitle {
+  font-weight: 400;
+  font-size: 1.125rem;
+}
+@media screen and (min-width: 600px) {
+  .contact__form--subtitle {
+    font-size: 1.5rem;
+  }
+}
+.contact__form form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.contact__form--group {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+@media screen and (min-width: 600px) {
+  .contact__form--group {
+    flex-direction: row;
+  }
+}
