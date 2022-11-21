@@ -13,6 +13,7 @@ const connectDB = require('./utils/dbConn');
 //import custom routes
 const auth = require('./routes/authRouter')
 const csvRouter = require('./routes/csvRouter.js');
+const blog = require('./routes/blogPostRouter')
 
 const PORT = process.env.PORT || 5000;
 
@@ -27,19 +28,20 @@ app.use(cors());
 app.use(express.json())
 app.use(bodyParser.json());
 app.use(express.json());
-app.use(express.urlencoded({extended: false}));
+app.use(express.urlencoded({ extended: false }));
 app.use(fileUpload());
 
 app.get('/', (req, res) => {
-    res.send('Welcome to HNG-Certificate Api');
+  res.send('Welcome to HNG-Certificate Api');
 });
-  
+
 app.use('/api/auth', auth)
 app.use('/api/upload/csv', csvRouter);
-  
+app.use('/api/blog', blog)
 
 
-mongoose.connection.once('open', ()=> {
+
+mongoose.connection.once('open', () => {
   console.log('Connected to DB')
-  app.listen(PORT, ()=> console.log(`server running on port ${PORT}`));
+  app.listen(PORT, () => console.log(`server running on port ${PORT}`));
 })
