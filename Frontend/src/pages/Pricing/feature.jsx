@@ -10,7 +10,7 @@ function Feature () {
             </article>
             
             <article className="tableContainer">
-                {/* <Table responsive="md">
+                <table responsive="md">
                     <thead>
                         <tr>
                             <th>Overview</th>
@@ -101,7 +101,7 @@ function Feature () {
                         </tr>
                     </tbody>
 
-                </Table> */}
+                </table>
             </article>
 
             <article className="featureEnd">

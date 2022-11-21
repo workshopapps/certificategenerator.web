@@ -4,8 +4,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors')
 const fileUpload = require('express-fileupload');
-const careers = require('./routes/careerRouter')
-const mailingLists = require('./routes/mailingListRouter')
+
 const app = express()
 
 //import coustom middlware
@@ -15,8 +14,11 @@ const connectDB = require('./utils/dbConn');
 const auth = require('./routes/authRouter')
 const csvRouter = require('./routes/csvRouter.js');
 const blog = require('./routes/blogPostRouter')
-app.use('/api/careers',careers)
-app.use('/api/mailinglists',mailingLists)
+const blog = require('./routes/blogPostRouter');
+const certificate = require('./routes/certificateRouter');
+const downloadCsv = require('./routes/downloadRouter');
+const careers = require('./routes/careerRouter')
+const mailingLists = require('./routes/mailingListRouter')
 
 const PORT = process.env.PORT || 5000;
 
@@ -40,8 +42,11 @@ app.get('/', (req, res) => {
 
 app.use('/api/auth', auth)
 app.use('/api/upload/csv', csvRouter);
-app.use('/api/blog', blog)
-
+app.use('/api/blog', blog);
+app.use('/api/certificate', certificate)
+app.use('/api/download', downloadCsv)
+app.use('/api/careers',careers)
+app.use('/api/mailinglists',mailingLists)
 
 
 mongoose.connection.once('open', () => {
