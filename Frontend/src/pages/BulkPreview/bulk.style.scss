@@ -4,7 +4,7 @@ body{
 }
 //BUTTONS
 #bulkPreview {
-  
+    text-align:center!important;
 button {
   margin: 15px 10px 25px 10px;
   border-radius: 5px;
@@ -27,7 +27,7 @@ button {
   }
 
   &.download-button {
-    background: $primaryColor;
+    background: $primaryColor!important;;
     color: #fff;
     border: none;
 
