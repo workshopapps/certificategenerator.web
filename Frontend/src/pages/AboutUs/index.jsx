@@ -86,7 +86,7 @@ const aboutUs = () => {
 
         <div className="aboutService">
           <h3>Our Services</h3>
-          <hr className='stroke' />
+          <hr className='aboutstroke' />
           <div className="aboutServiceS">
             <div className="aboutServiceCard">
                 <img src={Service1} alt="" />
@@ -134,7 +134,7 @@ const aboutUs = () => {
 
         <div className="aboutGallery">
           <h3>Our Gallery</h3>
-          <hr className='stroke'/>
+          <hr className='.aboutstroke'/>
           <div className="aboutGalleryS">
             <img src={Gallery1} alt="" />
             <img src={Gallery2} alt="" />
