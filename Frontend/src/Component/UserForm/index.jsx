@@ -76,7 +76,7 @@ const UserForm = () => {
           <label htmlFor="phone">Phone Number</label>
         </div>
         <div className="flex_centerrr">
-          <button type="button" className="btnnnn">
+          <button type="button" className="btnnnnn">
             Delete Account
           </button>
         </div>
