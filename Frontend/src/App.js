@@ -1,6 +1,8 @@
 import "./Style/App.scss";
 import Navbar from "./Component/Navbar";
 import { Route, Routes } from "react-router-dom";
+import Signup from "./Component/Signup-Login/assets/Sginup";
+import Login from "./Component/Signup-Login/assets/Login";
 import {
   AboutUs,
   BulkPreview,
@@ -23,6 +25,7 @@ import {
 // import Footer from './Component/Footer';
 
 import Home from "./pages/Home";
+import Checkout from "./pages/Checkout";
 
 function App() {
   return (
@@ -32,6 +35,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/login" element={<Login />} />
             <Route path="/comingsoon" element={<ComingSoon />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/templates" element={<Templates />} />
@@ -47,6 +52,7 @@ function App() {
             <Route path="/bulk_step" element={<BulkStep />} />
             <Route path="/edit_bulk" element={<EditBulk />} />
             <Route path="/pricing" element={<Pricing />} />
+            <Route path="/payment" element={<Checkout />} />
           </Route>
           <Route path="*" element={<Error />} />
         </Routes>

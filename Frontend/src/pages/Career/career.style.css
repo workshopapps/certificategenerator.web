@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Sora:wght@400;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400&display=swap");
 * {
-  text-align: initial;
+  text-align: center;
   margin: 0;
 }
 
@@ -546,4 +546,4 @@ p {
 }
 .career__container .section4 .jobs .job__desc h4 b {
   color: #6c6c70;
-}/*# sourceMappingURL=career.style.css.map */
+}
