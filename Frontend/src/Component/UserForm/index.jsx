@@ -26,10 +26,10 @@ const UserForm = () => {
   return (
     <div className="user_formm">
       <div className="link_itemss">
-        <div className="myFlexx border-bottomm">
+        <div className="myFlexs border-bottomm">
           <a>Individual</a>
         </div>
-        <div className="myFlexx">
+        <div className="myFlexs">
           <a>Bulk</a>
         </div>
       </div>
