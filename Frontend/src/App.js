@@ -10,6 +10,7 @@ import {
   Career,
   Choice,
   ComingSoon,
+  ContactUs,
   Dashboard,
   EditBulk,
   Error,
@@ -52,6 +53,7 @@ function App() {
             <Route path="/bulk_step" element={<BulkStep />} />
             <Route path="/edit_bulk" element={<EditBulk />} />
             <Route path="/pricing" element={<Pricing />} />
+            <Route path="/contact" element={<ContactUs />} />
             <Route path="/payment" element={<Checkout />} />
           </Route>
           <Route path="*" element={<Error />} />
