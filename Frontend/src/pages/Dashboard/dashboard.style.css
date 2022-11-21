@@ -41,7 +41,6 @@
   font-size: 12px;
   color: #6c6c70;
   line-height: 20px;
-  margin: 0;
 }
 .dashboard__btn > button {
   all: unset;
@@ -151,9 +150,6 @@
 }
 
 @media screen and (min-width: 780px) {
-  .dashboard {
-    padding: 4rem 0;
-  }
   .dashboard__title {
     font-size: 23px;
     margin-bottom: 0.5rem;
@@ -166,9 +162,10 @@
     width: 90%;
     margin: 0 auto 1rem auto;
   }
-  .dashboard__profile-pic {
-    border-radius: 50%;
-    overflow: hidden;
+  .dashboard__hero-section .flexx {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
   }
   .dashboard__cards {
     width: 90%;
@@ -177,7 +174,7 @@
   }
   .dashboard .table-wrapper {
     width: 90%;
-    margin: 0 auto 0rem auto;
+    margin: 0 auto 1rem auto;
   }
   .dashboard .table-wrapper .table-header {
     flex-direction: row;
@@ -194,11 +191,4 @@
   .dashboard .table-wrapper .table table {
     width: 100% !important;
   }
-}
-@media screen and (min-width: 780px) and (min-width: 1090px) {
-  .dashboard__hero-section .flexx {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-end;
-  }
-}
+}/*# sourceMappingURL=dashboard.style.css.map */

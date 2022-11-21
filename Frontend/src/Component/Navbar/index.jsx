@@ -1,5 +1,4 @@
 import "./navbar.style.scss";
-//import menu from '../../pages/ComingSoon/images/menu.svg'
 import React, { useRef } from "react";
 import logo from "./assets/icon.png";
 import { FaBars } from "react-icons/fa";
@@ -21,27 +20,28 @@ function Navbar() {
     },
     {
       id: 2,
-      url: "/",
+      url: "/templates",
       text: "browse templates",
     },
     {
       id: 3,
-      url: "/",
+      url: "/pricing",
       text: "pricing",
     },
     {
       id: 4,
-      url: "/",
+      url: "/blog",
       text: "blog",
     },
     {
       id: 5,
-      url: "/",
+      url: "/faq",
       text: "FAQs",
     },
   ];
 
   return (
+    <div id="Nav"> 
     <div className="navbar">
       <div className="nav-header-container">
         <div className="nav-header container">
@@ -76,6 +76,7 @@ function Navbar() {
           </div>
         </div>
       </div>
+    </div>
     </div>
   );
 }

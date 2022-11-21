@@ -1,6 +1,6 @@
 import React from "react";
 import "./pricing.style.scss";
-// import Table from "react-bootstrap/Table";
+import Table from "react-bootstrap/Table";
 
 function Feature () {
     return(
@@ -10,7 +10,7 @@ function Feature () {
             </article>
             
             <article className="tableContainer">
-                {/* <Table responsive="md">
+                <Table responsive="md">
                     <thead>
                         <tr>
                             <th>Overview</th>
@@ -101,7 +101,7 @@ function Feature () {
                         </tr>
                     </tbody>
 
-                </Table> */}
+                </Table>
             </article>
 
             <article className="featureEnd">

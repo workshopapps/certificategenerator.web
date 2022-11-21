@@ -11,11 +11,10 @@ p, li {
 
 li {
   margin-bottom: 20px;
-  list-style-type: square;
 }
 
 ul {
-  padding: 25px;
+  padding-left: 0;
 }
 
 .green {
@@ -37,4 +36,4 @@ ul {
     flex-direction: column;
     padding: 50px 10px 180px 10px;
   }
-}
+}/*# sourceMappingURL=privacy-policy.css.map */

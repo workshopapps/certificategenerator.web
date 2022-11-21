@@ -3,7 +3,6 @@ section {
   width: 100%;
   max-height: 1832px;
   background: #F8FFFE;
-  text-align: center;
 }
 
 .team {
@@ -12,31 +11,28 @@ section {
   font-style: normal;
   font-family: "Sora";
   font-size: 57px;
-  line-height: auto;
+  line-height: 72px;
   align-items: center;
   letter-spacing: -0.5px;
 }
 
 .meet {
-  margin-left: 100px;
   color: #000000;
-  margin-right: 120px;
   font-weight: 400;
   font-style: normal;
   font-family: "Sora";
   font-size: 23px;
   margin-top: 24px;
-  line-height: auto;
+  line-height: 29px;
   align-items: center;
   letter-spacing: -0.5px;
 }
 
 .containers {
-  margin: 24px 100px;
+  margin: 24px 120px;
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
-  justify-content: center;
 }
 
 figure {
@@ -106,14 +102,10 @@ button {
   figure {
     width: 233px;
   }
-  .meet {
-    margin-left: 28px;
-    margin-right: 28px;
-  }
 }
 @media only screen and (min-width: 0px) and (max-width: 480px) {
   .containers {
-    margin: 8px 33px;
+    margin: 24px 33px;
   }
   section {
     max-height: 100%;
@@ -121,15 +113,4 @@ button {
   figure {
     width: 327px;
   }
-  .meet {
-    margin-left: 28px;
-    margin-right: 28px;
-    font-size: 16px;
-    margin-top: 8px;
-    margin-bottom: 24px;
-  }
-  .team {
-    font-size: 36px;
-    margin-top: 32px;
-  }
-}
+}/*# sourceMappingURL=team.style.css.map */
