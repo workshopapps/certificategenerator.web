@@ -7,11 +7,8 @@ p {
 }
 
 .navbar {
-  margin-bottom: 4rem;
   text-align: start;
   position: relative;
-  background: #fff;
-  z-index: 999;
 }
 
 .container {
@@ -124,6 +121,7 @@ p {
   }
   .navbar {
     display: flex;
+    width: 100%;
     align-items: center;
     justify-content: space-between;
     padding: 10px 20px;
