@@ -25,6 +25,7 @@ import {
 // import Footer from './Component/Footer';
 
 import Home from "./pages/Home";
+import Checkout from "./pages/Checkout";
 
 function App() {
   return (
@@ -51,6 +52,7 @@ function App() {
             <Route path="/bulk_step" element={<BulkStep />} />
             <Route path="/edit_bulk" element={<EditBulk />} />
             <Route path="/pricing" element={<Pricing />} />
+            <Route path="/payment" element={<Checkout />} />
           </Route>
           <Route path="*" element={<Error />} />
         </Routes>
