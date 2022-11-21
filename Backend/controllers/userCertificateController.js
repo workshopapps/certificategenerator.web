@@ -52,7 +52,22 @@ const getAllCertificates = async (req, res) => {
   res.status(200).json(certificates);
 };
 
+const getCertificate = async (req, res) => {
+  const { id } = req.params
+  const certificate = await User.findOne({ _id: id })
+  const auth = req.headers.authorization;
+  if (!auth) {
+    return res.status(403).json({ error: "No credentials sent!" });
+  }
+  if (!certificate) {
+    return res.status(404).json({message:`Certificate not found`})
+  }
+
+  return res.status(200).json(certificate);
+};
+
 module.exports = {
   getAllCertificates,
   addCertificate,
+  getCertificate
 };
