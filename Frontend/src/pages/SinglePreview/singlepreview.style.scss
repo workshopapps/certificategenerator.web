@@ -3,12 +3,14 @@
 // BUTTON CONTAINER FOR THE TOGGLE BUTTONS
 
 #singlePreview{
+  text-align:center!important;
 .button-container button {
   margin: 35px 10px;
   height: 37px;
   width: 150px;
   border-radius: 10px;
   font-family: "Work Sans", sans-serif;
+  
 
   &.not-active {
     background: transparent;
@@ -35,7 +37,10 @@
     }
   }
 }
-
+.certificate{
+  text-align:center!important;
+  
+  }
 .certificate h1 {
   font-size: 30px;
   font-weight: 500;
@@ -45,15 +50,15 @@
 .certificate button {
   margin: 35px 20px 45px 20px;
   border-radius: 5px;
-  color: $primaryGreenColor;
+  color: $primaryColor!important;
   width: 140px;
   height: 35px;
   font-size: 12px;
 
   &.download-button {
     background: transparent;
-    border: 1px solid $primaryGreenColor;
-    color: $primaryGreenColor;
+    border: 1px solid $primaryColor;
+    color: $primaryColor!important;
     &:hover {
       color: #fff;
       background: $primaryGreenColor;

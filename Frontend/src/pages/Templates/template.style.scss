@@ -42,6 +42,8 @@
   .filter-btn {
     font-size: 0;
     padding: 2px 8px;
+    width: 138px;
+    height: 48px;
     position: absolute;
     top: 0;
     border: 1px solid transparent;
@@ -87,10 +89,12 @@
           text-align: center;
         }
 
-        button {
+        .btn-premium {
           position: absolute;
           top: 5px;
           right: 5px;
+          height: 30px;
+          width: 94px;
           color: rgba(255, 255, 255, 1);
           background-color: #606060;
           border: 1px solid #606060;

@@ -6,7 +6,7 @@ const Card = ({ item }) => {
     <div className="card total-Issued">
       <p>{item.title}</p>
       <div className="icon-wrapper">
-        <span className="icon">
+        <span className="icon-dash">
           {cardIconOne()}
         </span>
         {item.count > 0 ? <span className="count">{item.count}</span> : <span className="count">N/A</span>}

@@ -17,11 +17,11 @@ const Dashboard = () => {
             <img src={profilePic} alt="Avatar" />
           </div>
           <div className="flexx">
-            <div>
+            <div className="dashboard__align-start">
               <h3 className="dashboard__text">Welcome</h3>
               <h1 className="dashboard__title">Team Headlight</h1>
               <p className="dashboard__description">
-                Let’s do the Accounts for you,Get a summary of all the
+                Let’s do the Accounts for you, Get a summary of all the
                 Certificates and Job done her
               </p>
             </div>

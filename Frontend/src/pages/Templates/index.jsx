@@ -145,7 +145,7 @@ export default function Template() {
         <div className="template-card">
           <div className="template-card__header">
             <h2>Blank Canvas</h2>
-            <button>
+            <button className="btn-premium">
               Premium
               <img src={premiumicon} alt="" />
             </button>
