@@ -74,7 +74,7 @@ h6 {
     line-height: 23px;
     letter-spacing: -0.004em;
 }
-.stroke{
+.aboutstroke{
     background: #19A68E;
     align-items: center;
     border-radius: 8px;
@@ -299,14 +299,13 @@ h6 {
     }
     .aboutValueCard {
         width: 360px;
-        height: 180px;
+        height: 200px;
         border-radius: 10px;
         padding: 24px 19px 24px 16px;
     }
     .aboutValueCardD {
-        display: flex;
-        gap: 16px;
-        bottom: 24px;
+        gap: 22px;
+        bottom: 20px;
     }
     .aboutValueS {
         gap: 28px;
@@ -407,7 +406,7 @@ h6 {
         font-size: 16px;
         line-height: 19px;
         }
-    .stroke {
+    .aboutstroke {
         width: 50px;
         }
     // fake nav
@@ -429,9 +428,12 @@ h6 {
     .aboutAbout {
         display: flex;
         flex-direction: column;
-        padding: 0 24px 48px;
+        padding: 24px 48px;
         gap: 48px;
         }
+    #mission{
+        flex-direction: column-reverse;
+    }    
     .aboutAboutD {
         width: 100%;
         align-items: center;
@@ -459,7 +461,7 @@ h6 {
         }
     .aboutValueCard {
         width: 180px;
-        height: 128px;
+        height: 140px;
         padding: 16px 10px 13px;
         }
     #v1h4 {
@@ -469,6 +471,7 @@ h6 {
         }
     .aboutValueCardD {
         gap: 5px;
+        bottom: 16px;
         }
     .aboutValueCardD img {
         height: 30px;

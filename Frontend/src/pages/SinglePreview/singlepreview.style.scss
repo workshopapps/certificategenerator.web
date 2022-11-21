@@ -6,12 +6,14 @@ body{
 }
 
 #singlePreview{
+  text-align:center!important;
 .button-container button {
   margin: 35px 10px;
   height: 37px;
   width: 150px;
   border-radius: 10px;
   font-family: "Work Sans", sans-serif;
+  
 
   &.not-active {
     background: transparent;
@@ -38,7 +40,10 @@ body{
     }
   }
 }
-
+.certificate{
+  text-align:center!important;
+  
+  }
 .certificate h1 {
   font-size: 30px;
   font-weight: 500;
@@ -48,7 +53,7 @@ body{
 .certificate button {
   margin: 35px 20px 45px 20px;
   border-radius: 5px;
-  color: $primaryColor;
+  color: $primaryColor!important;
   width: 140px;
   height: 35px;
   font-size: 12px;
@@ -56,7 +61,7 @@ body{
   &.download-button {
     background: transparent;
     border: 1px solid $primaryColor;
-    color: $primaryColor;
+    color: $primaryColor!important;
     &:hover {
       color: #fff;
       background: $primaryColor;

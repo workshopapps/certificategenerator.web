@@ -80,6 +80,7 @@ function Career() {
       </section>
 
       <section className="section section3">
+        <h2 id='heading-text'>Our Hiring Process</h2>
         <div className="flex__wrapper">
           <div className="image__container">
             <img src={Briefcase} alt="" />
