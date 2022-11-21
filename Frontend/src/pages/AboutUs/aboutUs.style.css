@@ -64,7 +64,8 @@
   line-height: 23px;
   letter-spacing: -0.004em;
 }
-#aboutUs .stroke {
+
+.aboutstroke {
   background: #19A68E;
   align-items: center;
   border-radius: 8px;
