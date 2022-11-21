@@ -22,6 +22,7 @@ import {
   Team,
   Templates,
   Terms,
+  Profile,
 } from "./pages";
 // import Footer from './Component/Footer';
 
@@ -56,7 +57,11 @@ function App() {
             <Route path="/pricing" element={<Pricing />} />
             <Route path="/contact-us" element={<ContactUs />} />
             <Route path="/payment" element={<Checkout />} />
+
+            <Route path="/profile" element={<Profile />} />
+
             <Route path="/privacy" element={<Privacy />} />
+
           </Route>
           <Route path="*" element={<Error />} />
         </Routes>
