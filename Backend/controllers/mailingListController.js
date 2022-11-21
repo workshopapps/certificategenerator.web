@@ -2,7 +2,7 @@ const MailingList = require( "../models/mailingListModel")
 
 const { sendMailingEmail } = require("../utils/email")
 
-const createMailing = async(req, res, next) =>{
+exports.createMailing = async(req, res, next) =>{
     try {
         const newMail = new MailingList({...req.body})
         await newMail.save()
@@ -20,12 +20,12 @@ const createMailing = async(req, res, next) =>{
     }
 }
 
-const getAllMailing = async (req, res) =>{
+exports.getAllMailing = async (req, res) =>{
     const mailings = await MailingList.find({})
     res.status(200).json({response: mailings})
 }
 
-const DeleteMaling =  async (req, res,next) =>{
+exports.DeleteMaling =  async (req, res,next) =>{
         const {id:mailingID} = req.params
         const mailing = await MailingList.findOneAndDelete({_id:mailingID})
         if(!mailing){
@@ -34,7 +34,3 @@ const DeleteMaling =  async (req, res,next) =>{
             res.status(200).json({response: mailing, message:`Email has been Deleted`})
 }
 
-
-module.exports ={
-    createMailing, getAllMailing, DeleteMaling
-}

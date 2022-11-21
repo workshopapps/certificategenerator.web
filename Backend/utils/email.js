@@ -26,7 +26,7 @@ const sendMailingEmail = ({email}, res) => {
 
             //mail options
             const mailOptions = {
-            from: config.AUTH_EMAIL,
+            from: process.env.AUTH_EMAIL,
             to: `${email}`,
             subject: `Certawi- You are on our Mailing List`,
             html: `<p>Thank you for joining Certawi.</p>

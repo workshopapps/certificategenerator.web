@@ -1,5 +1,5 @@
 const blogPostModel = require("../models/blogPostModel");
-const Joi = require("joi");
+// const Joi = require("joi");
 
 exports.addBlogPost = async (req, res) => {
   try {
