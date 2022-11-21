@@ -329,6 +329,25 @@ p {
     margin-top: 3rem;
     padding: 2rem 6.25rem;
     text-align: initial;
+    
+    h2 {
+      margin-bottom: 2rem;
+      font-size: 39px;
+      b {
+        color: #7b41b4;
+      }
+      @media screen and (max-width: $medium) {
+        font-size: 1.8rem;
+      }
+      @media screen and (max-width: $small) {
+        text-align: center;
+        font-size: 1.3rem;
+        color: #08372F;
+        b {
+          color: #222222;
+        }
+      }
+    }
     @media screen and (max-width: $small) {
       padding: 2rem 1rem;
     }
