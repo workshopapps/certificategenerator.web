@@ -19,6 +19,7 @@ const downloadCsv = require("./routes/downloadRouter");
 const careers = require("./routes/careerRouter");
 const mailingLists = require("./routes/mailingListRouter");
 const profileRouter = require("./routes/profileRouters");
+const contacts = require('./routes/contactRouter');
 
 const PORT = process.env.PORT || 5000;
 
@@ -42,7 +43,8 @@ app.use("/api/certificates", certificate);
 app.use("/api/download", downloadCsv);
 app.use("/api/careers", careers);
 app.use("/api/mailinglists", mailingLists);
-app.use("/api/profile/",profileRouter)
+app.use("/api/profile/",profileRouter);
+app.use('/api/contactus',contacts)
 
 mongoose.connection.once("open", () => {
   console.log("Connected to DB");
