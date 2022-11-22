@@ -1,7 +1,7 @@
 const Contact = require('../models/contactModel.js');
 const dotenv = require('dotenv');
 dotenv.config();
-const config = require('../utils/config.js')
+// const config = require('../utils/config.js')
 const nodemailer = require('nodemailer');
 
 // get all contacts
@@ -18,7 +18,7 @@ const getContacts = async (req,res) => {
   }
 }
 
-// 
+// send Email to contact
 const sendContact =  async (req, res) => {
   try{
     const {firstName, lastName, email, phoneNumber, message} = await req.body;
@@ -39,8 +39,8 @@ const sendContact =  async (req, res) => {
     let transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
-        user: config.AUTH_EMAIL,
-        pass: config.AUTH_PASS
+        user: process.env.AUTH_EMAIL,
+        pass: process.env.AUTH_PASS
         // clientId: GOOGLE_CLIENT_ID,
         // clientSecret: GOOGLE_CLIENT_SECRET
         // refreshToken: GOOGLE_REFRESH_TOKEN
@@ -49,7 +49,7 @@ const sendContact =  async (req, res) => {
 
     // Mail Options To Website User
     let mailOptions = {
-      from: `${config.AUTH_EMAIL}`, //Sender address
+      from: `${process.env.AUTH_EMAIL}`, //Sender address
       to: `${req.body.email}`, // Receiver address
       subject: 'Hi From Certawi',
       text: 'Hi from Certawi',
