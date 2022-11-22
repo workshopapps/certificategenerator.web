@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import "./template.style.scss";
 
 import Filter from "./modal";
@@ -177,9 +178,9 @@ export default function Template() {
             </button>
           </div>
           <div className="template-card__icon">
-            <a href="#">
+            <Link to="/pricing">
               <img src={addicon} alt="card" />
-            </a>
+            </Link>
           </div>
         </div>
 
