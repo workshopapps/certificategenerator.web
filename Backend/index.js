@@ -14,7 +14,6 @@ const connectDB = require("./utils/dbConn");
 const auth = require("./routes/authRouter");
 const csvRouter = require("./routes/csvRouter.js");
 const blog = require("./routes/blogPostRouter");
-// const blog = require('./routes/blogPostRouter');
 const certificate = require("./routes/certificateRouter");
 const downloadCsv = require("./routes/downloadRouter");
 const careers = require("./routes/careerRouter");
