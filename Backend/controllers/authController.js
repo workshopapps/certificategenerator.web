@@ -64,10 +64,9 @@ const userSignup = async (req, res, next) => {
     //Form signup
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      const error = new Error("validation failed");
       error.statusCode = 422;
       error.data = errors.array();
-      throw error;
+      return res.status(error.statusCode).json({message: "user input validation failed", errors: error.data})
     }
 
     if (await userExist(email)) {
