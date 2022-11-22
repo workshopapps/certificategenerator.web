@@ -70,10 +70,10 @@
   .filter-btn {
     font-size: 0;
     padding: 2px 8px;
-    width: 138px;
-    height: 48px;
+    width: 60px;
+    height: 60px;
     position: absolute;
-    top: 0;
+    top: -25px;
     border: 1px solid transparent;
     background-color: transparent;
     right: 0;
@@ -189,6 +189,8 @@
       background-color: #fff;
       rotate: 0deg;
       top: 4px;
+      width: 138px;
+      height: 48px;
     }
   }
 }
