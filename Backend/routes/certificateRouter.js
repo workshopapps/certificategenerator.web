@@ -6,9 +6,9 @@ const { getAllCertificates,
     getCertificate,
     getNoOfCertificatesIssued } = require('../controllers/userCertificateController');
 
+router.get('/issuedCertificates', getNoOfCertificatesIssued);
+router.get('/:id', getCertificate);
 router.get('/', getAllCertificates);
 router.post('/', addCertificate);
-router.post('/:id', getCertificate);
-router.get('/issuedCertificates', getNoOfCertificatesIssued);
 
 module.exports = router;

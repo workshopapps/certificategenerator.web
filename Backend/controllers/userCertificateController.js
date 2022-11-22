@@ -32,8 +32,8 @@ const addCertificate = async (req, res) => {
     });
   }
 
-  user.records = [...jsonData];
-  user.save();
+  user.records = [...user.records, ...jsonData];
+  await user.save();
 
   res.status(200).json(jsonData);
 };
@@ -47,6 +47,8 @@ const getAllCertificates = async (req, res) => {
   const token = auth.split(" ")[1];
   const { userId } = jwt.decode(token);
   const user = await User.findOne({ userId }).exec();
+  if(!user) return res.status(404).json({'message': 'user not found'});
+
   const certificates = user.records;
 
   res.status(200).json(certificates);
@@ -54,12 +56,20 @@ const getAllCertificates = async (req, res) => {
 
 //This is for getting one certificate
 const getCertificate = async (req, res) => {
-  const { id } = req.params
-  const certificate = await User.findOne({ _id: id })
   const auth = req.headers.authorization;
   if (!auth) {
     return res.status(403).json({ error: "No credentials sent!" });
   }
+
+  const token = auth.split(" ")[1];
+  const { userId } = jwt.decode(token);
+
+  const user = await User.findOne({ userId });
+  if(!user) return res.status(404).json({'message': 'user not found'});
+
+  const certificateId = req.params.id;
+  const certificate = user.records.find(cert => cert._id !== certificateId);
+
   if (!certificate) {
     return res.status(404).json({message:`Certificate not found`})
   }
@@ -81,9 +91,10 @@ const getNoOfCertificatesIssued = async (req, res) => {
   res.status(200).json({result: certificates, issuedCertificates: certificates.length});
 };
 
+
 module.exports = {
   getAllCertificates,
   addCertificate,
   getCertificate,
-  getNoOfCertificatesIssued
+  getNoOfCertificatesIssued,
 };
