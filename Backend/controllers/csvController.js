@@ -1,16 +1,15 @@
 const csvToJson = require("csvtojson");
 const { isValidJsonOutput } = require("../utils/validation");
-const jwt = require('jsonwebtoken');
-
+const fs = require('fs')
 
 const handleCsv = async (req, res) => {
-  const files = req.files;
+  const file = req.file;
   
-  if (files) {
-    const file = files.file;
+  if (file) {
     
     // Convert the buffered csv data to readable format
-    const csvData = Buffer.from(file.data).toString();
+    const buffer = fs.readFileSync(file.path);
+    const csvData = Buffer.from(buffer).toString();
 
     // convert csvData to JSON and send back to client
     const jsonOutput = await csvToJson().fromString(csvData);
@@ -21,7 +20,7 @@ const handleCsv = async (req, res) => {
 
     }
 
-    return res.status(200).json( jsonOutput ).end();
+    return res.status(200).json({ result: jsonOutput, count:jsonOutput.length }).end();
   }
 
   return res.status(400).json({message: "No csv file was uploaded"}).end();

@@ -1,55 +1,51 @@
 require('dotenv').config();
-const express = require('express')
-const mongoose = require('mongoose')
-const bodyParser = require('body-parser')
+const express = require('express');
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
 const cors = require('cors')
 const fileUpload = require('express-fileupload');
-const app = express()
+
+const app = express();
 
 //import coustom middlware
-const connectDB = require('./utils/dbConn');
+const connectDB = require("./utils/dbConn");
 
 //import custom routes
-const csvRouter = require('./routes/csvRouter.js');
+const auth = require("./routes/authRouter");
+const csvRouter = require("./routes/csvRouter.js");
+const blog = require("./routes/blogPostRouter");
+// const blog = require('./routes/blogPostRouter');
+const certificate = require("./routes/certificateRouter");
+const downloadCsv = require("./routes/downloadRouter");
+const careers = require("./routes/careerRouter");
+const mailingLists = require("./routes/mailingListRouter");
+const profileRouter = require("./routes/profileRouters");
 
 const PORT = process.env.PORT || 5000;
 
 connectDB();
 
-
-
-
-
 //middleware
 app.use(cors());
-app.use(express.json())
+app.use(express.json());
 app.use(bodyParser.json());
 app.use(express.json());
-app.use(express.urlencoded({extended: false}));
-app.use(fileUpload());
+app.use(express.urlencoded({ extended: false }));
 
-app.get('/', (req, res) => {
-    res.send('Welcome to HNG-Certificate Api');
+app.get("/", (req, res) => {
+  res.send("Welcome to HNG-Certificate Api");
 });
 
-//routes
+app.use("/api/auth", auth);
+app.use("/api/upload/csv", csvRouter);
+app.use("/api/blog", blog);
+app.use("/api/certificates", certificate);
+app.use("/api/download", downloadCsv);
+app.use("/api/careers", careers);
+app.use("/api/mailinglists", mailingLists);
+app.use("/api/profile/",profileRouter)
 
-// app.use((err, req, res, next)=>{
-//   const errorStatus = err.status || 500
-//     const errorMessage = err.message || "Something went wrong!"
-//     return res.status(errorStatus).json({
-//       success: false,
-//       status: errorStatus,
-//       message: errorMessage,
-//       stack: err.stack,
-//     })
-//   })
-  
-  app.use('/api/upload/csv', csvRouter);
-  
-
-
-mongoose.connection.once('open', ()=> {
-  console.log('Connected to DB')
-  app.listen(PORT, ()=> console.log(`server running on port ${PORT}`));
-})
+mongoose.connection.once("open", () => {
+  console.log("Connected to DB");
+  app.listen(PORT, () => console.log(`server running on port ${PORT}`));
+});

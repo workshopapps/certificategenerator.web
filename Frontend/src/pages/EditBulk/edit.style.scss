@@ -1,70 +1,109 @@
 @import "../../Style/variables";
 @import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@500&display=swap");
 
-#edit {
+#edit-bulk {
+  margin-bottom: 80px;
+
+  .button-container{
+    display: block!important;
+  }
+  .button-container button {
+    margin: 0px 10px 30px 10px;
+    height: 37px;
+    width: 150px;
+    border-radius: 10px;
+    font-family: "Work Sans", sans-serif;
+    
   
-body {
-  text-align:'center';
+    &.not-active {
+      background: transparent;
+      border: none;
+  
+      &:hover {
+        color: #fff;
+        background: $primaryColor;
+        border: none;
+        transition: 500ms ease-in-out;
+      }
+    }
+  
+    &.active {
+      background: $primaryColor;
+      color: #fff;
+      border: none;
+  
+      &:hover {
+        color: $primaryColor;
+        background: #fff;
+        border: 1px solid $primaryColor;
+        transition: 500ms ease-in-out;
+      }
+    }
+  }
+
   h1 {
-    font-size: 30px;
+    font-size: 25px;
     font-weight: 500;
     
   }
-}
 
-.form {
+
+form {
   border: 1px solid #545454;
   padding: 30px;
   margin: 30px;
-  border-radius: 10px;
+  border-radius: 8px;
   text-align: left;
   background: #fafafb;
-  margin-bottom: 50px !important;
+  margin-bottom: 50px!important;
 
-  .logo input {
-    padding: 5px !important;
-    border-radius: 5px !important;
-    border: 1px solid #545454;
-    width: 26% !important;
-    margin-top: 15px !important;
-    margin-bottom: 0px !important;
+  #edit-bulk-logo input {
+    padding: 15px!important;
+    border-radius: 5px!important;
+    border: 1px solid #000!important;
+    width: 56%!important;
+    height: 50px;
+    margin-top: 0px!important;
+    margin-bottom: 5px!important;
   }
 
-  .logo h6 {
-    margin-bottom: 30px;
-    margin-top: 5px;
+  #edit-bulk-logo h6 {
+    margin-bottom: 20px!important;;
+    margin-top: 5px!important;;
   }
   label {
     font-weight: bolder;
   }
 
-  input,
-  select {
-    padding: 18px;
-    border-radius: 10px;
-    border: 1px solid grey;
-    width: 95%;
-    margin-top: 15px !important;
-    margin-bottom: 30px !important;
+  .edit-bulk-input input,
+  .edit-bulk-select select {
+    padding: 18px!important;
+    border-radius: 8px!important;;
+    border: 1px solid #000!important;
+outline: none!important;
+    width: 95%!important;
+    height: 60px;
+    margin-top: 15px!important;
+    margin-bottom: 30px!important;
     background: #fff;
   }
 
   select {
-    width: 100%;
+    width: 100%!important;;
   }
 
-  button {
+  #edit-bulk-button {
     background: $primaryColor;
-    color: #fff;
+    color: #fff!important;;
     border: none;
 
     width: 130px;
     height: 43px;
-    text-align: center;
+    text-align: center!important;;
     margin: 0px;
 
     &:hover {
-      color: $primaryColor;
+      color: $primaryColor!important;
       background: #fff;
       border: 1px solid $primaryColor;
       transition: 500ms ease-in-out;
@@ -73,16 +112,99 @@ body {
 }
 
 @media screen and (min-width: 768px) {
+ 
   .modify-container {
     display: flex;
     flex-direction: column;
     align-items: center;
+
   }
+
   form {
     width: 100%;
     max-width: 700px;
     height: auto;
   }
+}
+
+@media screen and (min-width: 1024px) {
+
+  .button-container button {
+    font-size: 18px;
+    height: 40px;
+    width: 160px;
+  }
+ h1{
+  font-size: 30px;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+ }
+  form {
+    width: 100%;
+    max-width: 900px;
+    height: auto;
+    label{
+      font-size: 18px;
+    }
+    #edit-bulk-logo h6{
+      font-size: 15px;
+    }
+
+    .edit-bulk-input input::placeholder,
+    #edit-bulk-logo input::placeholder,
+    select {
+      font-size: 17px;
+    }
+    #edit-bulk-button{
+      font-size: 17px;
+      width: 180px;
+      height: 55px;
+      margin: 20px 0px;
+    }
+  
+  }
+}
+
+
+@media screen and (min-width: 1440px) {
+
+
+  .button-container button {
+    font-size: 20px;
+    height: 43px;
+    width: 180px;
+  }
+
+ h1{
+  font-size: 40px;
+  letter-spacing: 1px;
+  margin: 20px;
+ }
+
+  form {
+    max-width: 1300px;
+
+    label{
+      font-size: 20px;
+    }
+
+    #edit-bulk-logo h6{
+      font-size: 18px;
+    }
+
+    .edit-bulk-input input::placeholder,
+    #edit-bulk-logo input::placeholder,
+    select {
+      font-size: 19px;
+    }
+    #edit-bulk-button{
+      font-size: 20px;
+      width: 200px;
+      height: 60px;
+      margin: 30px 0px;
+    }
+  }
+
 }
 
 }

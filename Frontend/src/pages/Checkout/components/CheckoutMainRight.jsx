@@ -6,15 +6,21 @@ function CheckoutMainRight() {
 
         <div className="container-fluid" id='CheckoutMainRight-container-sub'>
 
-          <h3 id='CheckoutMainRight-text-1'>Order Summary</h3>
+          <p id='CheckoutMainRight-text-container'>
 
-          <h4 id='CheckoutMainRight-text-2'>Standard</h4>
+            <span id='CheckoutMainRight-text-1'>Order Summary</span> <br /> <br /> <br />
 
-          <p id='CheckoutMainRight-text-3'>More features customised for you</p>
+            <span id='CheckoutMainRight-text-2'>Standard</span> <br />
 
-          <h3 id='CheckoutMainRight-text-4'>$23.99 <sub id='CheckoutMainRight-text-4-sub'>/month</sub></h3>
+            <span id='CheckoutMainRight-text-3'>More features customised for you</span> <br /> <br />
 
-          <h6 id='CheckoutMainRight-text-5'>Eveything in Lite +</h6>
+            <span id='CheckoutMainRight-text-4'>$23.99 <sub id='CheckoutMainRight-text-4-sub'>/month</sub></span> <br /> <br />
+
+            <span id='CheckoutMainRight-text-5'>Eveything in Lite +</span> <br /> <br />
+
+          </p>
+
+          
 
           <CheckoutMainRightComp text='Templates library' id='CheckoutMainRightComp-main' />
 
@@ -35,4 +41,3 @@ function CheckoutMainRight() {
 }
 
 export default CheckoutMainRight
-
