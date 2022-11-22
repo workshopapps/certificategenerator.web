@@ -1,6 +1,6 @@
 //Pages
 
-export { default as Layout } from "../component/Layout";
+export { default as Layout } from "../Component/Layout";
 export { default as ComingSoon } from "./ComingSoon";
 export { default as Dashboard } from "./Dashboard";
 export { default as Choice } from "./Choice(single or bulk)";

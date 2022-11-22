@@ -1,8 +1,8 @@
 import "./Style/App.scss";
-import Navbar from "./component/Navbar";
+import Navbar from "./Component/Navbar";
 import { Route, Routes } from "react-router-dom";
-import Signup from "./component/Signup-Login/assets/Sginup";
-import Login from "./component/Signup-Login/assets/Login";
+import Signup from "./Component/Signup-Login/assets/Sginup";
+import Login from "./Component/Signup-Login/assets/Login";
 import {
   AboutUs,
   BulkPreview,
