@@ -158,9 +158,6 @@ const forgotPassword = async (req, res) => {
 const changePassword = async (req, res) => {
   try {
     const { token } = req.params;
-    if (!token) {
-      return res.status(400).json({ message: "token is required" });
-    }
     const { newpassword, confirmpassword } = req.body;
     if (newpassword != confirmpassword) {
       return res
@@ -172,8 +169,8 @@ const changePassword = async (req, res) => {
     user.password = newpassword;
     user.save();
     res.status(200).send({ message: "password changed" });
-  } catch (error) {
-    return res.status(401).json({ message: "invalid Token" });
+  } catch (err) {
+    next(err);
   }
 };
 
