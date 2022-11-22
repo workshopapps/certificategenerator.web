@@ -18,7 +18,7 @@ const getContacts = async (req,res) => {
   }
 }
 
-// send Email to contact
+// send Email to contact from form
 const sendContact =  async (req, res) => {
   try{
     const {firstName, lastName, email, phoneNumber, message} = await req.body;
