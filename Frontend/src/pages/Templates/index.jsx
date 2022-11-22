@@ -18,6 +18,7 @@ import cardimg11 from "./assets/Rectangle11.png";
 import premiumicon from "./assets/Vector.svg";
 import filtericon from "./assets/setting.svg";
 import addicon from "./assets/add-square.svg";
+import closeicon from "./assets/close.png";
 
 export default function Template() {
   const [modalState, setModalState] = useState(false);
@@ -94,6 +95,7 @@ export default function Template() {
   ];
 
   let categories = category;
+  console.log(categories);
 
   const closeModal = () => {
     setModalState(false);
@@ -111,6 +113,10 @@ export default function Template() {
     <div className="template-wrapper">
       <header>
         <h1>Templates</h1>
+        <div className="error-container">
+          <p className="error-container__message">Oops! It seems like none of the templates match the filters you selected. Please modify your filters or browse the templates manually.</p>
+          <img src={closeicon} alt="close icon" className="closeicon" />
+        </div>
 
         <div className="top-container-div">
           <p>All results</p>
