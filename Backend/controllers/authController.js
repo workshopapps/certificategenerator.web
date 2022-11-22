@@ -32,7 +32,10 @@ const userExist = async (_email) => {
 const userSignup = async (req, res, next) => {
   try {
     let { accessToken, email, password } = req.body;
+<<<<<<< HEAD
     console.log('password', password)
+=======
+>>>>>>> 54172d262dbc3c4317754454b3ec6376a4b81702
 
     //google signup
     if (req.body.accessToken) {
@@ -83,8 +86,12 @@ const userSignup = async (req, res, next) => {
       }
       const newUser = new User({
         email: email,
+<<<<<<< HEAD
         password: hash,  //mistake?
         authenticationType: {  //what is this line for? i dont think we need it
+=======
+        authenticationType: {
+>>>>>>> 54172d262dbc3c4317754454b3ec6376a4b81702
           form: {
             password: hash,
           },
@@ -148,11 +155,17 @@ const forgotPassword = async (req, res) => {
   if (!user) {
     return res.status(400).json({ message: "User does not exist" });
   }
+<<<<<<< HEAD
 
   const token = jwt.sign({ email: user.email }, process.env.JWT_SECRET, {
     expiresIn: process.env.JWT_LIFETIME,
   });
 
+=======
+  const token = jwt.sign({ email: user.email }, process.env.JWT_SECRET, {
+    expiresIn: process.env.JWT_LIFETIME,
+  });
+>>>>>>> 54172d262dbc3c4317754454b3ec6376a4b81702
   if (!token) {
     return res.status(401).json({ message: "token cannot be verified" });
   }
@@ -162,7 +175,10 @@ const forgotPassword = async (req, res) => {
 const changePassword = async (req, res) => {
   try {
     const { token } = req.params;
+<<<<<<< HEAD
 
+=======
+>>>>>>> 54172d262dbc3c4317754454b3ec6376a4b81702
     if (!token) {
       return res.status(400).json({ message: "token is required" });
     }
