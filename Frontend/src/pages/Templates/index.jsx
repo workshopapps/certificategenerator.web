@@ -24,6 +24,9 @@ export default function Template() {
   const [modalState, setModalState] = useState(false);
 
   const [category, setCategory] = useState([]);
+  // const [selectCategoryNum,setSelectCategoryNum ] = useState(0);
+
+ let selectCategoryNum = 0;
 
   const cardImages = [
     {
@@ -105,17 +108,35 @@ export default function Template() {
     categories.push(clickedCategory);
   };
 
+  const errorMsg = document.querySelector('.error-wrapper');
+
   const applySelectCategories = () => {
     setCategory(categories);
+
+    if (categories.length === 0) {
+      showErrorMsg();
+    } else {
+      return hideErrorMsg();
+    }
   };
+
+  const hideErrorMsg = () => {
+    errorMsg.classList.add('hideerrorMsg');
+  }
+
+  const showErrorMsg = () => {
+    errorMsg.classList.remove('hideerrorMsg');
+  }
 
   return (
     <div className="template-wrapper">
       <header>
         <h1>Templates</h1>
-        <div className="error-container">
-          <p className="error-container__message">Oops! It seems like none of the templates match the filters you selected. Please modify your filters or browse the templates manually.</p>
-          <img src={closeicon} alt="close icon" className="closeicon" />
+        <div className="error-wrapper hideerrorMsg">
+          <div className="error-container">
+            <p className="error-container__message">Oops! It seems like none of the templates match the filters you selected. Please modify your filters or browse the templates manually.</p>
+            <img onClick={hideErrorMsg} src={closeicon} alt="close icon" className="closeicon" />
+        </div>
         </div>
 
         <div className="top-container-div">
@@ -168,6 +189,8 @@ export default function Template() {
             return category.length === 0 ? item : category.includes(item.type);
           })
           .map((item) => {
+            selectCategoryNum++;
+            console.log(selectCategoryNum);
             return (
               <div key={item.id} className="template-card">
                 <div className="template-card__img">

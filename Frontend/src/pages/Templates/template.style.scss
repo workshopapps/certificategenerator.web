@@ -9,6 +9,10 @@
   header {
     position: relative;
 
+    .hideerrorMsg {
+      display: none;
+    }
+
     .error-container {
       background-color: #FBE5E5;
       border: 2px solid #ECB4B4;
