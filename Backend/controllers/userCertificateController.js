@@ -52,47 +52,23 @@ const getAllCertificates = async (req, res) => {
   res.status(200).json(certificates);
 };
 
-const getNoOfCertificatesIssued = async (req, res) => {
+//This is for getting one certificate
+const getCertificate = async (req, res) => {
+  const { id } = req.params
+  const certificate = await User.findOne({ _id: id })
   const auth = req.headers.authorization;
   if (!auth) {
     return res.status(403).json({ error: "No credentials sent!" });
   }
-
-  const token = auth.split(" ")[1];
-  const { userId } = jwt.decode(token);
-  const user = await User.findOne({ userId }).exec();
-  const certificates = user.records;
-
-  res.status(200).json({result: certificates, issuedCertificates: certificates.length});
-};
-
-const deleteSingleCertificate = async (req, res) => {
-  const auth = req.headers.authorization;
-  const {id:certificateID} = req.params;
-
-  if (!auth) {
-    return res.status(403).json({ error: "No auth credentials sent!" });
+  if (!certificate) {
+    return res.status(404).json({message:`Certificate not found`})
   }
 
-  try{
-    const cert = await User.findOneAndDelete({_id:certificateID})
-    if(!cert){
-        return res.status(404).json(`No certificate with id: ${certificateID}`)
-    }
-        res.status(200).json({
-          success: true, 
-          message:`Certificate has been Deleted`})
-  } catch(error) {
-    return res.status(400).json({
-      success: false,
-      error: error,
-    });
-  }
+  return res.status(200).json(certificate);
 };
 
 module.exports = {
   getAllCertificates,
   addCertificate,
-  getNoOfCertificatesIssued,
-  deleteSingleCertificate
+  getCertificate
 };
