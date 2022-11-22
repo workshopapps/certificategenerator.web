@@ -25,9 +25,6 @@ export default function Template() {
   const [modalState, setModalState] = useState(false);
 
   const [category, setCategory] = useState([]);
-  // const [selectCategoryNum,setSelectCategoryNum ] = useState(0);
-
- let selectCategoryNum = 0;
 
   const cardImages = [
     {
@@ -184,7 +181,6 @@ export default function Template() {
             return category.length === 0 ? item : category.includes(item.type);
           })
           .map((item) => {
-            selectCategoryNum++;
             return (
               <div key={item.id} className="template-card">
                 <div className="template-card__img">
