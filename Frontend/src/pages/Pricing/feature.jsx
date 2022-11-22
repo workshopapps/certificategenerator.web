@@ -10,7 +10,7 @@ function Feature () {
             </article>
             
             <article className="tableContainer">
-                <table responsive="md">
+                <table>
                     <thead>
                         <tr>
                             <th>Overview</th>
