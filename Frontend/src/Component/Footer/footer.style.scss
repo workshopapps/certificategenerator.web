@@ -1,13 +1,14 @@
-@import '../../Style/variables';
-@import url('https://fonts.googleapis.com/css2?family=Sora:wght@600&family=Work+Sans:wght@400;500&display=swap');
+@import "../../Style/variables";
+@import url("https://fonts.googleapis.com/css2?family=Sora:wght@600&family=Work+Sans:wght@400;500&display=swap");
 
 #footerId {
+  margin-top: auto;
   padding-top: 3.5rem;
   background-color: $footerGreenBgColor;
   text-align: start;
   color: white;
   box-sizing: border-box;
-  font-family: 'Work Sans', sans-serif;
+  font-family: "Work Sans", sans-serif;
   letter-spacing: 0.05em;
   h3,
   h2 {
@@ -16,7 +17,7 @@
     line-height: 152.3%;
   }
   h2 {
-    font-family: 'Sora', sans-serif;
+    font-family: "Sora", sans-serif;
     font-size: 1rem;
     font-weight: 600;
   }
@@ -68,6 +69,7 @@
         padding: 15px;
         font-size: 13px;
         font-weight: 400;
+        height: 48px;
       }
       button {
         padding: 15px;
@@ -79,6 +81,7 @@
         font-weight: 500;
         cursor: pointer;
         transition: 0.3s ease;
+        width: inherit;
       }
       button:hover {
         background-color: #127867;
@@ -90,7 +93,8 @@
       color: rgb(140, 11, 11);
       background-color: rgb(230, 103, 103);
       border-radius: 5px;
-      margin-bottom: 0;
+      margin-bottom: -10px;
+      font-size: 11px;
     }
   }
 
@@ -114,6 +118,9 @@
       div {
         display: flex;
         gap: 1rem;
+      }
+      a {
+        color: white;
       }
       .social {
         font-size: 20px;
@@ -177,7 +184,7 @@
       .footer-socials {
         flex-direction: column;
         gap: 1rem;
-        align-items: flex-start;   
+        align-items: flex-start;
         margin-top: 5px;
         .social {
           font-size: 30px;
@@ -200,7 +207,6 @@
     .footer-form .footer-input button {
       max-width: fit-content;
       padding: 15px 20px;
-      height: 70px;
     }
   }
 }

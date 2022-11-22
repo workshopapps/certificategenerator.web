@@ -61,7 +61,6 @@ function App() {
             <Route path="/profile" element={<Profile />} />
 
             <Route path="/privacy" element={<Privacy />} />
-
           </Route>
           <Route path="*" element={<Error />} />
         </Routes>
