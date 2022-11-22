@@ -96,7 +96,6 @@ export default function Template() {
   ];
 
   let categories = category;
-  console.log(categories);
 
   const closeModal = () => {
     setModalState(false);
