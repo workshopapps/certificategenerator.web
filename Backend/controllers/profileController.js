@@ -3,7 +3,7 @@ const { User } = require('../models/userModel')
 const mongoose = require('mongoose');
 
 const createUserProfile = async (req, res, next) => {
-    const user= await User.findById(req.body.User);
+    const user= await User.findById(req.body.userId);
     if(!user) return res.status(400).send('Invalid userId')
     const profile = new Profile({
         userId:req.bod.userId,
@@ -21,7 +21,7 @@ const createUserProfile = async (req, res, next) => {
 };
 
 const getUserProfile = async (req, res, next) => {
-    const user= await User.findById(req.body.User);
+    const user= await User.findById(req.body.userId);
     if(!user) return res.status(400).send('Invalid userId')
     const profile = await Profile.findById(req.params.id);
     if (!profile) {
@@ -34,7 +34,7 @@ const getUserProfile = async (req, res, next) => {
 const updateUserProfile = async (req, res) => {
     if (!mongoose.isValidObjectId(req.params.id)) {
         res.status(400).send('invalid profile Id')
-        const user= await User.findById(req.body.User);
+        const user= await User.findById(req.body.userId);
     if(!user) return res.status(400).send('Invalid userId')
     }
     const updatedProfile = await Profile.findByIdAndUpdate(req.params.id,
@@ -56,7 +56,7 @@ const updateUserProfile = async (req, res) => {
 
 
 const deleteUserProfile = async (req, res) => {
-    const user= await User.findById(req.body.User);
+    const user= await User.findById(req.body.userId);
     if(!user) return res.status(400).send('Invalid userId')
     const profile = await Profile.findByIdAndRemove(req.params.id);
   
