@@ -2,19 +2,18 @@ import React from 'react';
 import "./pricing.style.scss";
 import { data } from './data';
 import { Link } from "react-router-dom"
-import Carousel from 'react-bootstrap/Carousel';
 
 function Slider ({ value }) {
 
   const { per } = data[value];
 
   return (
-    <Carousel className="plansContainer" id="slider" indicatorLabels = {[ "btn1", "btn2", "btn3" ]} controls={false}>
+    <section className="plansContainer" id="slider">
         {data[value].subscription.map((item)=>{
             const { id, sub } = item;
 
             return(
-                <Carousel.Item className={sub.subType} key={id}>
+                <article className={sub.subType} key={id}>
                     <h4>{sub.subType}</h4>
 
                     <p>{sub.header}</p>
@@ -38,10 +37,10 @@ function Slider ({ value }) {
                     <Link to={sub.linkTo}>
                         {sub.linkText}
                     </Link>
-                </Carousel.Item>
+                </article>
             );
         })}
-    </Carousel>
+    </section>
   );
 }
 

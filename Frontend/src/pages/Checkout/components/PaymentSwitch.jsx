@@ -9,19 +9,23 @@ function PaymentSwitch(props) {
 
         <div className='row gx-5' id='CheckoutMainLeft-main-div-2-div-2'>
 
-          <div className="col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 col-xxl-6" id='CheckoutMainLeft-col-space'>
-            <CheckoutMainLeftInput label='Card number' placeholder='' class={props.cardNumberCheck ? 'cardnumber-error' : 'cardnumber-ok'}
-            value={props.cardNumber} functions={props.cardNumberf} icon={props.icon} />
+          <div id='PaymentSwitch-cardNumber-div-1'>
+            <div className="col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 col-xxl-6" id='CheckoutMainLeft-col-space'>
+              <CheckoutMainLeftInput label='Card number' placeholder='' class={props.cardNumberCheck ? 'cardnumber-error' : 'cardnumber-ok'}
+              value={props.cardNumber} functions={props.cardNumberf} icon={props.icon} />
+            </div>
           </div>
 
-          <div className="col-xs-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 col-xxl-3" id='CheckoutMainLeft-col-space-com'>
-            <CheckoutMainLeftInput label='Expiry' placeholder='DD/MM/YYYY' value={props.expiry} functions={props.expiryf}
-            class={props.expiryCheck ? 'expiry-error' : 'expiry-ok'} />
-          </div>
+          <div id='PaymentSwitch-cardNumber-div-2'>
+            <div className="col-xs-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 col-xxl-3" id='CheckoutMainLeft-col-space-com'>
+              <CheckoutMainLeftInput label='Expiry' placeholder='DD/MM/YYYY' value={props.expiry} functions={props.expiryf}
+              class={props.expiryCheck ? 'expiry-error' : 'expiry-ok'} />
+            </div>
 
-          <div className="col-xs-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 col-xxl-3" id='CheckoutMainLeft-col'>
-            <CheckoutMainLeftInput label='CVV' placeholder='' value={props.cvv} functions={props.cvvf}
-            class={props.cvvCheck ? 'cvv-error' : 'cvv-ok'} />
+            <div className="col-xs-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 col-xxl-3" id='CheckoutMainLeft-col'>
+              <CheckoutMainLeftInput label='CVV' placeholder='' value={props.cvv} functions={props.cvvf}
+              class={props.cvvCheck ? 'cvv-error' : 'cvv-ok'} />
+            </div>
           </div>
           
         </div>
