@@ -98,7 +98,6 @@ export default function Template() {
   ];
 
   let categories = category;
-  console.log(categories);
 
   const closeModal = () => {
     setModalState(false);
@@ -190,7 +189,6 @@ export default function Template() {
           })
           .map((item) => {
             selectCategoryNum++;
-            console.log(selectCategoryNum);
             return (
               <div key={item.id} className="template-card">
                 <div className="template-card__img">
