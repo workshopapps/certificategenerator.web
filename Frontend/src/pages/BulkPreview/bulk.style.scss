@@ -1,23 +1,29 @@
 @import "../../Style/variables";
-body{
-  text-align:center;
-}
-//BUTTONS
-#bulkPreview {
-    text-align:center!important;
-button {
-  margin: 15px 10px 25px 10px;
-  border-radius: 5px;
-  color: $primaryColor;
-  width: 160px;
-  height: 40px;
-  font-size: 12px;
-  font-family: "Work Sans", sans-serif;
 
-  &.send-button {
+
+
+//BUTTONS
+#bulk-preview {
+  text-align:center!important;
+
+  .button-container{
+    display: block!important;
+    margin-top: 0px!important;
+    padding: 10px;
+  }
+
+.button-container button {
+  margin: 0px 10px 15px 10px;
+  height: 37px;
+  width: 150px;
+  border-radius: 10px;
+  font-family: "Work Sans", sans-serif;
+ 
+
+  &.not-active {
     background: transparent;
-    border: 1px solid $primaryColor!important;;
-    color: $primaryColor!important;;
+    border: none;
+
     &:hover {
       color: #fff;
       background: $primaryColor;
@@ -26,28 +32,74 @@ button {
     }
   }
 
-  &.download-button {
-    background: $primaryColor!important;;
+  &.active {
+    background: $primaryColor;
     color: #fff;
     border: none;
 
     &:hover {
-      color: $primaryColor!important;;
+      color: $primaryColor;
       background: #fff;
+      border: 1px solid $primaryColor;
+      transition: 500ms ease-in-out;
+    }
+  }
+}
+
+.certificate h1{
+  font-size: 20px;
+  margin: 20px;
+}
+
+#bulk-btns {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: "Work Sans", sans-serif;
+margin: 20px 0px;
+padding: 0px;
+
+#bulk-btns button{
+  border-radius: 5px!important;
+  
+}
+  .send-btn {
+    width: 150px!important;
+    height: 35px!important;
+    border-radius: 5px!important;
+    background: transparent;
+    border: 1px solid $primaryColor!important;;
+    color: $primaryColor!important;
+    margin: 8px 10px!important;
+
+    &:hover {
+      color: #fff!important;
+      background: $primaryColor!important;
+      border: none;
+      transition: 500ms ease-in-out;
+    }
+  }
+
+  .download-btn {
+    width: 150px!important;
+    height: 35px!important;
+    border-radius: 5px!important;
+    background: $primaryColor!important;;
+    color: #fff;
+    border: none;
+    margin: 8px 10px!important;
+
+    &:hover {
+      color: $primaryColor!important;;
+      background: #fff!important;
       border: 1px solid $primaryColor!important;;
       transition: 500ms ease-in-out;
     }
   }
 }
-.bulk h2 {
-  margin: 40px;
-}
-
-.bulk-buttons{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 0px!important;
+h2 {
+  margin: 30px 0px 60px;
+  font-size: 20px;
 }
   
   .certificate img{
@@ -68,34 +120,110 @@ button {
     width: 80%;
     height: auto;
   }
+  #template1{
+    border: 7px solid $primaryColor;
+  
+  }
+}
+
+#bulk-images-desktop img{
+display: none;
+
+#template1{
+  border: 7px solid $primaryColor;
+
+}
 }
 
 @media screen and (min-width: 768px) {
+  .button-container button{
+    font-size: 15px;
+    width: 170px;
+    height: 45px;
+    margin: 10px 15px 20px 15px;
+  }
+ 
+
+  .certificate h1, h2{
+    font-size: 30px;
+    margin: 30px;
+      }
+
   .bulk-images {
+    display: none;
     flex-direction: row;
     justify-content: center;
 
     &.bulk-images img {
       width: 100%;
-      max-width: 200px;
+      max-width: 230px;
     }
 
   }
 
-  .bulk-buttons{
+  #bulk-btns{
     display: flex;
-    flex-direction: row;
+    flex-direction: row!important;
     justify-content: center;
-    margin: 0px!important;
+    margin: 30px!important;
+
+    .send-btn, .download-btn{
+      font-size: 15px;
+      width: 170px!important;
+      height: 45px!important;
+      margin: 30px 15px 40px 15px;
+      padding: 5px;
+    }
   }
     
   .certificate img{
       width: 100%;
       max-width: 400px;
   }
+
+  
+#bulk-images-desktop img{
+  display: block;
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  margin:20px;
+  margin-left: 150px;
+  overflow: hidden;
+  
+
 }
 
-@media screen and (min-width: 1000px) {
+#template1{
+  margin: 50px;
+  padding: 0px 0px;
+  border: 5px solid $primaryColor!important;
+
+}
+
+.line{
+  padding: 10px;
+  margin: 10px 0px 20px 0px;
+}
+.line1{
+border-radius: 10px;
+background: #acebe0;
+
+}
+.line2{
+border: 3px solid $primaryColor;
+background: $primaryColor;
+max-width: 200px;
+width: 100%;
+margin-left: 250px;
+border-radius: 10px;
+
+}
+}
+
+@media screen and (min-width: 1024px) {
+
+
   .bulk-images img {
     max-width: 300px !important;
   }
@@ -104,6 +232,11 @@ button {
   .certificate img{
       width: 100%!important;;
       max-width: 600px!important;;
+  }
+
+  .bulk-images img {
+    width: 100%;
+    max-width: 300px;
   }
 }
 
