@@ -4,7 +4,7 @@ import "./edit.style.scss";
 
 function Index() {
   return (
-    <div id="edit">
+    <div id="edit-bulk">
       {/* BUTTONS TO TOGGLE BETWEEN SINGLE AND BULK CERTIFICATE */}
 
       <div className="button-container">
@@ -15,7 +15,7 @@ function Index() {
         </Link>
 
         <Link to="/edit_bulk">
-          <button className="active">Bulk Certificate</button>
+          <button className="active">Bulk</button>
         </Link>
       </div>
 
@@ -24,14 +24,14 @@ function Index() {
       <div className="modify-container">
         <h1>Modify Certificate</h1>
 
-        <form action="">
-          <div className="logo">
+        <form action="#">
+          <div id="edit-bulk-logo">
             <label htmlFor="Logo">Logo</label>
             <br /> <input placeholder="Upload Logo" type="file" />
             <h6>Max image upload size: 8mb</h6>
           </div>
 
-          <div>
+          <div className="edit-bulk-select">
             <label htmlFor="Certificate Title">Certificate Title</label>
             <select
               name="Certificate of completion"
@@ -49,7 +49,7 @@ function Index() {
             </select>
           </div>
 
-          <div>
+          <div className="edit-bulk-input">
             <label htmlFor="Dedication or Message">Dedication or Message</label>
             <input
               placeholder="For your exceptional performance this month, in appreciation for your loyalty and the desire to fulfil our goals,
@@ -58,12 +58,12 @@ function Index() {
             />
           </div>
 
-          <div>
+          <div className="edit-bulk-input">
             <label htmlFor="Issued by">Issued by</label>
             <input placeholder="Name of organization or issuer" type="text" />
           </div>
 
-          <div>
+          <div className="edit-bulk-input">
             <label htmlFor="Issue Date">Issue Date</label>
             <input placeholder="DD/MM/YY" type="text" />
           </div>
@@ -72,7 +72,7 @@ function Index() {
           {/* PROCEED TO BULK PREVIEW PAGE */}
 
           <Link to="/bulk_preview">
-            <button>Create Certificate</button>
+            <button id="edit-bulk-button">Create Certificate</button>
           </Link>
         </form>
       </div>

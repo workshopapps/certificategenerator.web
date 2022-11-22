@@ -2,15 +2,23 @@
 
 // BUTTON CONTAINER FOR THE TOGGLE BUTTONS
 
+
 #singlePreview{
   text-align:center!important;
+
+  .button-container{
+    display: block!important;
+    margin-top: 0px!important;
+    padding: 10px;
+  }
+
 .button-container button {
-  margin: 35px 10px;
+  margin: 0px 10px 15px 10px;
   height: 37px;
   width: 150px;
   border-radius: 10px;
   font-family: "Work Sans", sans-serif;
-  
+ 
 
   &.not-active {
     background: transparent;
@@ -42,13 +50,13 @@
   
   }
 .certificate h1 {
-  font-size: 30px;
+  font-size: 20px;
   font-weight: 500;
-  margin: 5px 0px 30px 0px;
+  margin: 0px 0px 45px 0px;
 }
 
 .certificate button {
-  margin: 35px 20px 45px 20px;
+  margin: 35px 20px 0px 20px;
   border-radius: 5px;
   color: $primaryColor!important;
   width: 140px;
@@ -61,32 +69,39 @@
     color: $primaryColor!important;
     &:hover {
       color: #fff;
-      background: $primaryGreenColor;
+      background: $primaryColor;
       border: none;
       transition: 500ms ease-in-out;
     }
   }
 
   &.send-button {
-    background: $primaryGreenColor;
+    background: $primaryColor;
     color: #fff;
     border: none;
 
     &:hover {
-      color: $primaryGreenColor;
+      color: $primaryColor;
       background: #fff;
-      border: 1px solid $primaryGreenColor;
+      border: 1px solid $primaryColor;
       transition: 500ms ease-in-out;
     }
   }
 }
 
+h2{
+  font-size: 20px;
+  margin: 30px;
+}
+
 .explore-button {
-  width: 170px;
-  padding: 10px;
+  width: 180px;
+  height: 40px;
+  margin: 30px;
+  text-align: center;
   border-radius: 8px;
   background: transparent;
-  border: 1px solid $primaryGreenColor;
+  border: 1px solid $primaryColor;
   font-family: "Work Sans", sans-serif;
 
   &:hover {
@@ -102,7 +117,7 @@
 .certificate img {
   width: 100%;
   height: auto;
-  max-width: 400px;
+  max-width: 300px;
 }
 
 .single-images {
@@ -120,8 +135,29 @@
 
 @media screen and (min-width: 768px) {
   // CERTIFICATE IMAGES
+.certificate h1{
+  font-size: 30px;
+ 
+}
 
-  .certificate img {
+h2{
+  font-size: 30px;
+}
+
+.button-container button{
+  font-size: 15px;
+  width: 170px;
+  height: 45px;
+  margin: 10px 15px 20px 15px;
+}
+.certificate button{
+  font-size: 15px;
+  width: 170px;
+  height: 40px;
+  margin: 30px 15px 40px 15px;
+}
+
+.certificate img {
     width: 100%;
     height: auto;
     max-width: 600px;
@@ -133,13 +169,36 @@
   }
   .single-images img {
     width: 100%;
-    max-width: 200px;
+    max-width: 250px;
   }
 }
 
-@media screen and (min-width: 1000px) {
+@media screen and (min-width: 1024px) {
+  .button-container button{
+    font-size: 18px;
+    width: 200px;
+    height: 50px;
+    margin: 10px 15px 40px 15px;
+  }
+ .certificate button{
+    font-size: 18px;
+    width: 200px;
+    height: 50px;
+    margin: 30px 15px 40px 15px;
+  }
+  .certificate img {
+    width: 100%;
+    height: auto;
+    max-width: 700px;
+  }
   .single-images img {
     max-width: 300px;
+  }
+
+  .explore-button{
+    width: 240px;
+    height: 55px;
+    font-size:18px;
   }
 }
 }
