@@ -14,7 +14,6 @@ const connectDB = require('./utils/dbConn');
 const auth = require('./routes/authRouter')
 const csvRouter = require('./routes/csvRouter.js');
 const blog = require('./routes/blogPostRouter')
-// const blog = require('./routes/blogPostRouter');
 const certificate = require('./routes/certificateRouter');
 const downloadCsv = require('./routes/downloadRouter');
 const careers = require('./routes/careerRouter')
@@ -45,8 +44,8 @@ app.use('/api/upload/csv', csvRouter);
 app.use('/api/blog', blog);
 app.use('/api/certificates', certificate)
 app.use('/api/download', downloadCsv)
-app.use('/api/careers',careers)
-app.use('/api/mailinglists',mailingLists)
+app.use('/api/careers', careers)
+app.use('/api/mailinglists', mailingLists)
 
 
 mongoose.connection.once('open', () => {
