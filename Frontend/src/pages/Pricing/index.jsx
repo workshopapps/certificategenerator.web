@@ -78,7 +78,7 @@ function Pricing() {
 
             <section className="testimonials">
                 <article className="textC">
-                    <p>TESTIMONIALS</p>
+                    <p id="monials">TESTIMONIALS</p>
 
                     <h3>What our clients say about us</h3>
 
