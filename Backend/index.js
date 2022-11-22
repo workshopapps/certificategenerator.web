@@ -5,20 +5,20 @@ const bodyParser = require('body-parser');
 const cors = require('cors')
 const fileUpload = require('express-fileupload');
 
-const app = express()
+const app = express();
 
 //import coustom middlware
-const connectDB = require('./utils/dbConn');
+const connectDB = require("./utils/dbConn");
 
 //import custom routes
-const auth = require('./routes/authRouter')
-const csvRouter = require('./routes/csvRouter.js');
-const blog = require('./routes/blogPostRouter')
+const auth = require("./routes/authRouter");
+const csvRouter = require("./routes/csvRouter.js");
+const blog = require("./routes/blogPostRouter");
 // const blog = require('./routes/blogPostRouter');
-const certificate = require('./routes/certificateRouter');
-const downloadCsv = require('./routes/downloadRouter');
-const careers = require('./routes/careerRouter')
-const mailingLists = require('./routes/mailingListRouter')
+const certificate = require("./routes/certificateRouter");
+const downloadCsv = require("./routes/downloadRouter");
+const careers = require("./routes/careerRouter");
+const mailingLists = require("./routes/mailingListRouter");
 
 const PORT = process.env.PORT || 5000;
 
