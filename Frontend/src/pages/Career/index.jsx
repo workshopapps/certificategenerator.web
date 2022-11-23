@@ -2,7 +2,7 @@ import React from "react";
 import "./career.style.scss";
 import { Persons, Positions, Positions2 } from "./data";
 import SectionCarousel from "./Carousel";
-import Button from "../../Component/Button";
+import Button from "../../Component/button";
 import Rocket from "./assets/rocket-launcher.webp";
 import Frame from "./assets/Frame 16353.png";
 import Briefcase from "./assets/candidate resumes and briefcase.png";
