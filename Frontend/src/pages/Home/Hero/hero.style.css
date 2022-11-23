@@ -81,8 +81,27 @@ body {
   text-align: center;
 }
 
+.mobile-only {
+  display: none;
+}
+
 .perks {
-  padding: 20px 0 0 0;
+  padding: 2% 0 0 0;
+}
+@media screen and (max-width: 1130px) {
+  .perks {
+    padding-top: 20%;
+  }
+}
+@media screen and (max-width: 950px) {
+  .perks {
+    padding-top: 25%;
+  }
+}
+@media screen and (max-width: 650px) and (min-width: 481px) {
+  .perks {
+    padding-top: 300px !important;
+  }
 }
 
 .tick {
@@ -94,7 +113,7 @@ body {
   display: flex;
   align-items: flex-end;
   gap: 100px;
-  padding-left: 100px;
+  padding-left: 8%;
 }
 
 .partner-head {
@@ -135,7 +154,7 @@ body {
     display: none;
   }
   .hero {
-    padding-top: 40px;
+    padding-top: 40px !important;
     text-align: center;
   }
   .hero-left {
@@ -149,10 +168,17 @@ body {
     text-align: center;
   }
   .hero-caption {
+    font-size: 16px;
     text-align: center;
   }
   .hero-button {
-    width: 90%;
+    width: 100%;
+  }
+  .mobile-only {
+    display: block;
+    text-align: center;
+    font-weight: 500;
+    font-size: 16px;
   }
   .perks {
     flex-direction: column;

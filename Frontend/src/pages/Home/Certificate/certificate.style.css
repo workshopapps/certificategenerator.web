@@ -96,6 +96,7 @@ body {
   border: 0.8px solid #545454;
   border-radius: 16px;
   padding: 8%;
+  gap: 0;
 }
 
 label {
@@ -163,10 +164,17 @@ input::-webkit-calendar-picker-indicator {
     text-align: center;
   }
   .prompt {
+    font-size: 16px;
     line-height: 24px;
   }
   .mode {
     width: 90%;
+  }
+  .mode button {
+    font-size: 16px;
+  }
+  .mobile-none {
+    display: none;
   }
   .cert-img {
     flex-direction: column;
