@@ -184,12 +184,6 @@ body {
     flex-direction: column;
     padding-top: 50px;
   }
-  .partner-head {
-    padding: 60px 0 25px 0;
-  }
-  .partners {
-    overflow: scroll;
-  }
   .perks .single-perk {
     width: -webkit-fit-content !important;
     width: -moz-fit-content !important;
