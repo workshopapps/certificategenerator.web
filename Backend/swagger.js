@@ -15,4 +15,4 @@ const endpointsFiles = [
   './index.js'
 ]
 
-swaggerAutogen(outputFile, endpointsFiles)
+swaggerAutogen(outputFile, endpointsFiles, doc)
