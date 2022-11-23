@@ -48,7 +48,7 @@ function Navbar() {
         <div className="nav-header nav-container">
           <div className="nav-logo" onClick={() => navigate("/")}>
             <h2>
-              Cert<span>awi</span>
+              Cert<span>ify</span>
             </h2>
             <img src={logo} alt="certawi bulb" />
           </div>
