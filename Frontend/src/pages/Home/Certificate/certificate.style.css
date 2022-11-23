@@ -88,14 +88,33 @@ body {
   text-align: center;
 }
 
+<<<<<<< HEAD
 .cert-form {
   max-width: 1440px;
   width: 80%;
   background-color: #fafafb;
+=======
+.explore {
+  text-align: right;
+  font-size: 12px;
+  font-weight: 600;
+  margin-right: 3%;
+}
+.explore .explore-arrow {
+  color: #19A68E;
+  margin-right: 1%;
+}
+
+.cert-form {
+  max-width: 1440px;
+  width: 80%;
+  background-color: #ffffff;
+>>>>>>> ebdee73 (feat(FRO-1): Updated styling and responsiveness)
   margin: 5.5% 10% 12%;
   border: 0.8px solid #545454;
   border-radius: 16px;
   padding: 8%;
+  gap: 0;
 }
 
 label {
@@ -149,11 +168,20 @@ input::-webkit-calendar-picker-indicator {
     font-size: 32px;
     line-height: 40px;
   }
+<<<<<<< HEAD
   .cert-img {
     overflow-x: scroll;
   }
 <<<<<<< HEAD
 =======
+=======
+  .mode {
+    width: 90%;
+  }
+  .cert-img {
+    overflow-x: scroll;
+  }
+>>>>>>> ebdee73 (feat(FRO-1): Updated styling and responsiveness)
   .cert-form {
     margin: 5.5% 10% 12%;
   }
@@ -165,11 +193,24 @@ input::-webkit-calendar-picker-indicator {
     text-align: center;
   }
   .prompt {
+<<<<<<< HEAD
+=======
+    font-size: 16px;
+>>>>>>> ebdee73 (feat(FRO-1): Updated styling and responsiveness)
     line-height: 24px;
   }
   .mode {
     width: 90%;
   }
+<<<<<<< HEAD
+=======
+  .mode button {
+    font-size: 16px;
+  }
+  .mobile-none {
+    display: none;
+  }
+>>>>>>> ebdee73 (feat(FRO-1): Updated styling and responsiveness)
   .cert-img {
     flex-direction: column;
     width: 50% !important;
@@ -182,8 +223,20 @@ input::-webkit-calendar-picker-indicator {
     margin: 0;
     margin-bottom: 0 !important;
   }
+<<<<<<< HEAD
   .submit-btn {
     width: 95%;
   }
 >>>>>>> e449f28319e16d4352c7d1debf51cd9cc977eab4
+=======
+  .label {
+    margin: 24px 0 12px 0;
+  }
+  input {
+    height: 52px;
+  }
+  .submit-btn {
+    width: 100%;
+  }
+>>>>>>> ebdee73 (feat(FRO-1): Updated styling and responsiveness)
 }/*# sourceMappingURL=certificate.style.css.map */
