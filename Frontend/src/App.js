@@ -24,7 +24,6 @@ import {
   Terms,
   UploadCSV,
   Profile,
-  UploadCSV
 } from "./pages";
 // import Footer from './Component/Footer';
 
@@ -59,16 +58,10 @@ function App() {
             <Route path="/pricing" element={<Pricing />} />
             <Route path="/contact-us" element={<ContactUs />} />
             <Route path="/payment" element={<Checkout />} />
-            <Route path="/upload" element={<UploadCSV />} />
-
             <Route path="/profile" element={<Profile />} />
+            <Route path="/upload" element={<UploadCSV />} />
 
             <Route path="/privacy" element={<Privacy />} />
-<<<<<<< HEAD
-=======
-            <Route path="/upload" element={<UploadCSV />} />
-
->>>>>>> 5012516 (upload page complete)
           </Route>
           <Route path="*" element={<Error />} />
         </Routes>
