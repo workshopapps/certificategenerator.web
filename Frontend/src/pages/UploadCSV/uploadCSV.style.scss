@@ -1,0 +1,131 @@
+@import '../../Style/variables';
+
+
+.uploadCSVContainer {
+    background-color: #FFF;
+    margin-top: -4em;
+    color: #222;
+    img {
+        // width: 80%;
+    }
+    div.certificateSwitch {
+        display: inline-block;
+        padding: 10px;
+        border: 1px solid rgba(34, 34, 34, 0.04);
+        border-radius: 20px;
+        margin: 4em auto 2em;
+        // margin-bottom: 2em;
+        .switchBtn {
+            transition: all .1s step-end;
+            background-color: inherit;
+            padding: 1.125rem;
+            width: fit-content;
+            border:none;
+            outline:none;
+            border-radius: 10px;
+            padding: 0.75rem 2.5em;
+            text-align: center;
+            font-size: 1.125rem;
+            font-weight: 400;
+            &:nth-child(2) {
+                padding:0.75em 6em;
+            }
+            &.active{
+                color: #fff;
+                background: $primaryColor;
+            }
+
+        }
+    }
+    h1 {
+        font-family: 'Work Sans';
+font-style: normal;
+font-weight: 500;
+font-size: 47px;
+line-height: 55px;
+
+align-items: center;
+letter-spacing: -0.004em;
+margin-bottom: 1em;
+    } 
+    div.certificatePreview {
+        margin-bottom: 1em;
+        & > * {
+    width: 90%;
+  }
+  
+    }
+    button.modiftyCertificate {
+        margin-bottom: 3em;
+    }
+    h2 {
+        font-weight: 600;
+font-size: 32px;
+line-height: 38px;
+margin-bottom: .7em;
+    }
+    .dragBox {
+       
+        width: 30em;
+height: 12.5em;
+display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        font-size: 1.1em;
+        line-height: 2em;
+        
+        margin:auto;
+        margin-top: 2em;
+        margin-bottom: 6em;
+     
+        i {
+            margin:2em;
+            margin-bottom:0;
+        }
+    span {
+
+        color: #19A68E;
+        .CSVupload {
+            color:inherit;
+            background-color: inherit;
+            font-size: inherit;
+            text-decoration: underline;
+            display: inline;
+            margin-left: 12px;
+        }
+    }
+    }
+    div.moreTemplate {
+        display: flex;
+        justify-content: center;
+        gap:3em;
+        align-items: center;
+        margin-bottom: 4em;
+        overflow: hidden;
+        + .btnLight {
+            margin-bottom: 4em;
+        }
+    }
+    .btnLight {
+            background-color: inherit;
+    color: #19a68e;
+    border: 1px solid #19a68e;
+    &:hover{ opacity: .6;
+    cursor: pointer;}
+    }
+}
+
+@media screen and (max-width:900px) {
+    .uploadCSVContainer {
+
+
+        .dragBox {
+            width: 70%;
+        }
+        div.moreTemplate {
+            flex-direction: column;
+    
+        }
+    }
+}
