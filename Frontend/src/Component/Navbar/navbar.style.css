@@ -1,22 +1,23 @@
 @import url("https://fonts.googleapis.com/css2?family=Sora:wght@600&family=Work+Sans:wght@400;500&display=swap");
-h2,
-h3,
-p {
-  margin: 0;
-  font-family: "Work Sans", sans-serif;
-}
-
 .navbar {
-  margin-bottom: 4rem;
+  margin-bottom: 1.5rem;
   text-align: start;
   position: relative;
   background: #fff;
   z-index: 999;
 }
+.navbar h2,
+.navbar h3,
+.navbar p,
+.navbar a {
+  margin: 0;
+  font-family: "Work Sans", sans-serif;
+}
 
-.container {
+.nav-container {
   width: 90%;
   margin: 0 auto;
+  width: 90%;
 }
 
 .nav-header-container {
@@ -50,9 +51,17 @@ p {
 }
 .nav-header .nav-click .btn {
   display: none;
+  margin: 0;
+}
+.nav-header .nav-click .btn .link {
+  color: white;
 }
 .nav-header .nav-click .bars {
   font-size: 24px;
+}
+.nav-header .nav-click .times {
+  font-size: 27px;
+  color: #ad2fd0;
 }
 
 .btn {
@@ -91,6 +100,12 @@ p {
   color: #222;
   text-transform: capitalize;
 }
+.links-container .links .link:hover {
+  color: #19a68e;
+}
+.links-container .links .link:hover {
+  color: #ad2fd0;
+}
 
 .show-links {
   height: 283px;
@@ -101,6 +116,10 @@ p {
 }
 .button-container .btn {
   width: 100%;
+  margin: 0;
+}
+.button-container .btn .link {
+  color: white;
 }
 
 @media only screen and (min-width: 768px) {
@@ -116,7 +135,8 @@ p {
 }
 @media only screen and (min-width: 1024px) {
   .nav-header .nav-click .bars,
-.nav-header .nav-click .btn {
+.nav-header .nav-click .btn,
+.nav-header .nav-click .times {
     display: none;
   }
   .nav-header-container {
@@ -129,7 +149,7 @@ p {
     padding: 10px 20px;
     box-shadow: 0px 0.5px 5px rgba(34, 34, 34, 0.25);
   }
-  .container {
+  .nav-container {
     width: 100%;
     margin: 0;
   }
@@ -152,7 +172,6 @@ p {
   }
   .links-container .links p {
     border: none;
-    margin-top: 2px;
     padding: 0 30px;
     min-width: -webkit-fit-content;
     min-width: -moz-fit-content;
@@ -162,4 +181,4 @@ p {
     display: block;
     padding: 0;
   }
-}
+}/*# sourceMappingURL=navbar.style.css.map */

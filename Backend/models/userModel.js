@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const UserSchema = new mongoose.Schema({
   name: {
@@ -7,7 +7,7 @@ const UserSchema = new mongoose.Schema({
   email: {
     type: String,
     required: true,
-    unique: true
+    unique: true,
   },
   password: {
     type: String,
@@ -15,7 +15,7 @@ const UserSchema = new mongoose.Schema({
   },
   isAdmin: {
     type: Boolean,
-    default: false
+    default: false,
   },
   avatar: {
     type: String,
@@ -30,23 +30,25 @@ const UserSchema = new mongoose.Schema({
   },
   subscription: {
     type: String,
-    enum: ['basic', 'standard', 'premium'],
-    default : 'basic'
+    enum: ["basic", "standard", "premium"],
+    default: "basic",
   },
-  records: [{
-    name: {
+  records: [
+    {
+      name: {
         type: String,
-        required: [true, 'Name of recipient is required']
-    },
-    studentID: {
+        required: [true, "Name of recipient is required"],
+      },
+      studentID: {
         type: String,
-        required: [true, 'Student ID is required']
+        required: [true, "Student ID is required"],
+      },
+      collectionID: {
+        required: true,
+        type: String,
+      },
     },
-    collectionID : {
-      required : true,
-      type : String
-    }
-  }],
-})
+  ],
+});
 
-module.exports = mongoose.model('User', UserSchema)
+module.exports = mongoose.model("User", UserSchema);

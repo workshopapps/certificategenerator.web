@@ -209,106 +209,7 @@ p {
       }
     }
   }
-  .section2 {
-    background: $containerBackground;
-    margin-top: 3rem;
-    text-align: initial;
-    padding: 2rem 3rem;
-    @media screen and (max-width: $small) {
-      padding: 2rem 1rem;
-    }
-    .flex__wrapper {
-      display: flex;
-      position: relative;
-      flex-direction: row-reverse;
-      justify-content: center;
-      #arrow {
-        display: flex;
-        position: absolute;
-        top: -20px;
-        right: 0;
-        .arrow {
-          padding: 8px;
-          width: 32px;
-          height: 32px;
-          background: rgba(8, 55, 47, 0.5);
-          margin: 2px;
-          border-radius: 50px;
-        }
-      }
-      @media screen and (max-width: $small) {
-        flex-direction: column;
-        align-items: center;
-        // align-items: initial;
-      }
-      .text__container {
-        width: 834px;
-        h2 {
-          font-weight: $bold;
-          font-size: 2.5rem;
-        }
-        p {
-          width: 630px;
-          font-family: $fontFamily2;
-          margin-top: $mt-2;
-          font-size: 19px;
-        }
-        h4 {
-          font-size: 1.6rem;
-          margin-top: $mt-2;
-        }
-        h5 {
-          font-size: 1.2rem;
-          color: #08372F;
-          margin-top: $mt-1;
-        }
-        @media screen and (max-width: $medium) {
-          width: 500px;
-          h2 {
-            width: 340px;
-            font-size: 1.6rem;
-          }
-          p {
-            width: 330px;
-            font-size: 16px;
-          }
-        }
-        @media screen and (max-width: $small) {
-          width: 330px;
-          h2 {
-            text-align: center;
-            font-size: 1.2rem;
-            width: fit-content;
-          }
-          P {
-            width: 340px;
-          }
-        }
-        @media screen and (max-width: $sm) {
-          width: 300px;
-          P {
-            font-size: 15px;
-            width: 290px;
-          }
-        }
-      }
-      .image__container {
-        width: 316px;
-        height: 316px;
-        img {
-          border-radius: 22rem;
-          transform: matrix(-1, 0, 0, 1, 0, 0);
-          width: 100%;
-        }
-        @media screen and (max-width: $small) {
-          display: block;
-          margin: 0 auto;
-          width: 116px;
-          height: 116px;
-        }
-      }
-    }
-  }
+
   .section3 {
     margin-top: 3rem;
     padding: 2rem 6.25rem;
@@ -424,7 +325,6 @@ p {
           height: 3rem;
           width: 100%;
           border-radius: 10px;
-          margin-top: 1rem;
           img {
             width: 1.5rem;
           }

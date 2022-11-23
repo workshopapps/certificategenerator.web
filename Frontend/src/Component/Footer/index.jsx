@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import logo from "./assets/icon.png";
 import "./footer.style.scss";
 import { BsInstagram, BsLinkedin, BsTwitter, BsGithub } from "react-icons/bs";
+import { useEffect } from "react";
 
 const Footer = () => {
   const year = new Date().getFullYear();
@@ -24,6 +25,12 @@ const Footer = () => {
       return;
     }
   };
+
+  const routePath = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [routePath]);
+
   return (
     <div id="footerId" className="footer">
       <div className="footer-container">
@@ -31,22 +38,39 @@ const Footer = () => {
           <div className="footer-lists">
             <div className="list">
               <h2>company</h2>
-              <Link className="link">About</Link>
-              <Link className="link">Contact</Link>
-              <Link className="link">Our team</Link>
+              <Link to="/aboutUs" className="link">
+                About
+              </Link>
+              <Link to="/contact-us" className="link">
+                Contact
+              </Link>
+              <Link to="/team" className="link">
+                Our team
+              </Link>
             </div>
             <div className="list">
               <h2>product</h2>
-              <Link className="link">How it works</Link>
-              <Link className="link">Pricing</Link>
-              <Link className="link">Terms of Service</Link>
-              <Link className="link">Privacy Policy</Link>
+              <Link to="/pricing" className="link">
+                Pricing
+              </Link>
+              <Link to="/terms" className="link">
+                Terms of Service
+              </Link>
+              <Link to="/privacy" className="link">
+                Privacy Policy
+              </Link>
             </div>
             <div className="list">
               <h2>resources</h2>
-              <Link className="link">Blog</Link>
-              <Link className="link">Help</Link>
-              <Link className="link">FAQs</Link>
+              <Link to="/templates" className="link">
+                Templates
+              </Link>
+              <Link to="/career" className="link">
+                Career
+              </Link>
+              <Link to="/FAQ" className="link">
+                FAQs
+              </Link>
             </div>
           </div>
           <div className="footer-form">
@@ -70,17 +94,37 @@ const Footer = () => {
         <div className="footer-info">
           <div className="footer-logo">
             <h2>
-              Certawi <img src={logo} alt="certawi logo" />
+              Certify <img src={logo} alt="Certify logo" />
             </h2>
-            <h3>info@certawi.com</h3>
+            <h3>info@Certify.com</h3>
           </div>
           <div className="footer-socials">
             <h3>We are social</h3>
             <div>
-              <BsInstagram className="social" />
-              <BsLinkedin className="social" />
-              <BsTwitter className="social" />
-              <BsGithub className="social" />
+              <a
+                href="https://instagram.com/hnginternship?igshid=YmMyMTA2M2Y="
+                target="_blank"
+              >
+                <BsInstagram className="social" />
+              </a>
+              <a
+                href="https://www.linkedin.com/m/company/hng-internship"
+                target="_blank"
+              >
+                <BsLinkedin className="social" />
+              </a>
+              <a
+                href="https://twitter.com/hnginternship?s=21&t=xpk379-T4b-GQ5_UAcEnsg"
+                target="_blank"
+              >
+                <BsTwitter className="social" />
+              </a>
+              <a
+                href="https://github.com/workshopapps/certificategenerator.web"
+                target="_blank"
+              >
+                <BsGithub className="social" />
+              </a>
             </div>
           </div>
         </div>

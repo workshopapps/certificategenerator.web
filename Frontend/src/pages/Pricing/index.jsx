@@ -77,8 +77,8 @@ function Pricing() {
             <Feature />
 
             <section className="testimonials">
-                <article className="text">
-                    <p>TESTIMONIALS</p>
+                <article className="textC">
+                    <p id="monials">TESTIMONIALS</p>
 
                     <h3>What our clients say about us</h3>
 

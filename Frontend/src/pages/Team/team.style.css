@@ -32,7 +32,7 @@ section {
 }
 
 .containers {
-  margin: 24px 100px;
+  margin: 24px 120px;
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
@@ -132,4 +132,4 @@ button {
     font-size: 36px;
     margin-top: 32px;
   }
-}
+}/*# sourceMappingURL=team.style.css.map */
