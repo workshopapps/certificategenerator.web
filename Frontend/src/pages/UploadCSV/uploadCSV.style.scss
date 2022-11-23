@@ -51,7 +51,7 @@
 
     align-items: center;
     letter-spacing: -0.004em;
-    margin-bottom: 1em;
+    margin: 1em;
   }
   div.certificatePreview {
     margin-bottom: 1em;
@@ -67,7 +67,7 @@
     font-weight: 600;
     font-size: 32px;
     line-height: 38px;
-    margin-bottom: 0.7em;
+    margin: 0.7em;
   }
   .dragBox {
     width: 30em;
@@ -127,11 +127,39 @@
 
 @media screen and (max-width: 900px) {
   .uploadCSVContainer {
+    .certificatePreview {
+      width: 60%;
+      margin: auto;
+      margin-bottom: 3em;
+      img {
+        margin: auto;
+      }
+    }
+    .CSVSample {
+      img {
+        margin: auto;
+        width: 70%;
+      }
+      margin-right: 3em;
+      margin-left: 3em;
+    }
+    img {
+      margin-right: 3em;
+      margin-left: 3em;
+    }
     .dragBox {
       width: 70%;
     }
     div.moreTemplate {
       flex-direction: column;
     }
+  }
+}
+@media screen and (max-width: 768px) {
+  h1 {
+    font-size: 30px !important;
+  }
+  h2 {
+    font-size: 20px !important;
   }
 }
