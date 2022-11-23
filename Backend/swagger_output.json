@@ -1,782 +1,872 @@
 {
-  "swagger": "2.0",
+  "openapi": "3.0.3",
   "info": {
-    "version": "1.0.0",
-    "title": "CERTIFY API",
-    "description": ""
+    "title": "Team Headlight (Certificate Generator)",
+    "description": "## Certificate generator backend documentation.\n\n#### For setting up the repo on your system:\nThis steps is for people who are not familiar with the repo\n\n* Clone repo\n* run npm install\n* run npm start",
+    "version": "1.0.1"
   },
-  "host": "https://certify-api.onrender.com",
-  "basePath": "/",
-  "schemes": [
-    "http"
+  "servers": [
+    {
+      "url": "https://certify-api.onrender.com/"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Authorization"
+    },
+    {
+      "name": "Mailing"
+    },
+    {
+      "name": "Career"
+    },
+    {
+      "name": "Blog"
+    },
+    {
+      "name": "Dashboard"
+    },
+    {
+      "name": "Pricing"
+    },
+    {
+      "name": "Contact"
+    }
   ],
   "paths": {
-    "/": {
-      "get": {
-        "description": "",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
     "/api/auth/signup": {
       "post": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "accessToken": {
-                  "example": "any"
-                },
-                "email": {
-                  "example": "any"
-                },
-                "password": {
-                  "example": "any"
-                }
+        "tags": [
+          "Authorization"
+        ],
+        "summary": "Create user account",
+        "description": "Create user account on our mongoDB. Endpoint accepts email and password for normal login and **accessToken** for Google signin. This endpoint works for normal signin and google signin",
+        "requestBody": {
+          "description": "Request sample",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SignUp"
               }
             }
           }
-        ],
+        },
         "responses": {
-          "201": {
-            "description": "Created"
-          },
-          "401": {
-            "description": "Unauthorized"
+          "default": {
+            "description": "server response"
           }
         }
       }
     },
-    "/api/auth/login": {
-      "post": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "email": {
-                  "example": "any"
-                },
-                "password": {
-                  "example": "any"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "Created"
-          },
-          "400": {
-            "description": "Bad Request"
-          }
-        }
-      }
-    },
-    "/api/auth/forgotpassword": {
-      "post": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "email": {
-                  "example": "any"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "401": {
-            "description": "Unauthorized"
-          }
-        }
-      }
-    },
-    "/api/auth/changepassword": {
-      "post": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "authorization",
-            "in": "header",
-            "type": "string"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "newpassword": {
-                  "example": "any"
-                },
-                "confirmpassword": {
-                  "example": "any"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "401": {
-            "description": "Unauthorized"
-          }
-        }
-      }
-    },
-    "/api/upload/csv/": {
-      "post": {
-        "description": "",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "422": {
-            "description": "Unprocessable Entity"
-          }
-        }
-      }
-    },
-    "/api/blog/": {
-      "post": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "title": {
-                  "example": "any"
-                },
-                "article": {
-                  "example": "any"
-                },
-                "writtenBy": {
-                  "example": "any"
-                },
-                "datePosted": {
-                  "example": "any"
-                },
-                "imageUrl": {
-                  "example": "any"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      },
+    "/api/mailinglists": {
       "get": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "title",
-            "in": "query",
-            "type": "string"
-          },
-          {
-            "name": "page",
-            "in": "query",
-            "type": "string"
-          }
+        "tags": [
+          "Mailing"
         ],
+        "summary": "Get list",
+        "description": "Endpoint fetches all the emails on the mailing list.",
         "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "500": {
-            "description": "Internal Server Error"
+          "default": {
+            "description": "server response"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Mailing"
+        ],
+        "summary": "Add email to list",
+        "description": "Endpoint accepts email and adds it to the mailing list on mongoDB.",
+        "requestBody": {
+          "description": "Created user object",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Mailing"
+              }
+            }
+          }
+        },
+        "responses": {
+          "default": {
+            "description": "server response"
           }
         }
       }
     },
-    "/api/blog/{id}": {
-      "get": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      },
-      "put": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "title": {
-                  "example": "any"
-                },
-                "description": {
-                  "example": "any"
-                },
-                "imageUrl": {
-                  "example": "any"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      },
+    "/api/mailinglists/{email}": {
       "delete": {
-        "description": "",
+        "tags": [
+          "Mailing"
+        ],
+        "summary": "Delete email from list",
+        "description": "Endpoint deletes a single email from mailing list",
         "parameters": [
           {
-            "name": "id",
+            "name": "email",
             "in": "path",
+            "description": "Email of the user you want to delete",
             "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      }
-    },
-    "/api/certificates/issuedCertificates": {
-      "get": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "authorization",
-            "in": "header",
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "403": {
-            "description": "Forbidden"
-          }
-        }
-      }
-    },
-    "/api/certificates/": {
-      "get": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "authorization",
-            "in": "header",
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "403": {
-            "description": "Forbidden"
-          },
-          "404": {
-            "description": "Not Found"
-          }
-        }
-      },
-      "post": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "authorization",
-            "in": "header",
-            "type": "string"
-          },
-          {
-            "name": "body",
-            "in": "body",
+            "style": "simple",
+            "explode": false,
             "schema": {
-              "type": "object",
-              "properties": {
-                "name": {
-                  "example": "any"
-                },
-                "nameOfOrganization": {
-                  "example": "any"
-                },
-                "award": {
-                  "example": "any"
-                },
-                "description": {
-                  "example": "any"
-                },
-                "date": {
-                  "example": "any"
-                },
-                "signed": {
-                  "example": "any"
-                }
-              }
+              "type": "string"
             }
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "403": {
-            "description": "Forbidden"
+          "default": {
+            "description": "server response"
           }
         }
       }
     },
-    "/api/certificates/{id}": {
+    "/api/careers": {
       "get": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "type": "string"
-          }
+        "tags": [
+          "Career"
         ],
+        "summary": "Get all career",
+        "description": "Endpoint gets all the available career from the database",
         "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "403": {
-            "description": "Forbidden"
-          },
-          "404": {
-            "description": "Not Found"
-          }
-        }
-      }
-    },
-    "/api/download/": {
-      "post": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "collectionID": {
-                  "example": "any"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/careers/": {
-      "post": {
-        "description": "",
-        "parameters": [],
-        "responses": {
-          "201": {
-            "description": "Created"
+          "default": {
+            "description": "server response"
           }
         }
       },
-      "get": {
-        "description": "",
-        "parameters": [],
+      "post": {
+        "tags": [
+          "Career"
+        ],
+        "summary": "Create a career posting",
+        "description": "Endpoint to create a career posting",
+        "requestBody": {
+          "description": "Created career object",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Career"
+              }
+            }
+          }
+        },
         "responses": {
-          "200": {
-            "description": "OK"
+          "default": {
+            "description": "server response"
           }
         }
       }
     },
     "/api/careers/{id}": {
       "get": {
-        "description": "",
+        "tags": [
+          "Career"
+        ],
+        "summary": "Get a career",
+        "description": "Endpoint a single career from database",
         "parameters": [
           {
             "name": "id",
             "in": "path",
+            "description": "ID of the career",
             "required": true,
-            "type": "string"
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "404": {
-            "description": "Not Found"
+          "default": {
+            "description": "server response"
           }
         }
       },
-      "delete": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "404": {
-            "description": "Not Found"
-          }
-        }
-      },
-      "put": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "404": {
-            "description": "Not Found"
-          }
-        }
-      }
-    },
-    "/api/mailinglists/": {
       "post": {
-        "description": "",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      },
-      "get": {
-        "description": "",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/mailinglists/{id}": {
-      "delete": {
-        "description": "",
+        "tags": [
+          "Career"
+        ],
+        "summary": "Update a career",
+        "description": "Endpoint to update a single career from database",
         "parameters": [
           {
             "name": "id",
             "in": "path",
+            "description": "ID of the career",
             "required": true,
-            "type": "string"
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Career object",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Career"
+              }
+            }
+          }
+        },
+        "responses": {
+          "default": {
+            "description": "server response"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Career"
+        ],
+        "summary": "Delete a career",
+        "description": "Endpoint to delete a single career from database",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of the career",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
+          "default": {
+            "description": "server response"
+          }
+        }
+      }
+    },
+    "/api/blog": {
+      "get": {
+        "tags": [
+          "Blog"
+        ],
+        "summary": "Get blog posts",
+        "description": "Endpoint to get all blog posts or search blog posts by title limited to 10 per page",
+        "parameters": [
+          {
+            "name": "title",
+            "in": "query",
+            "description": "The blog title",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
           },
-          "404": {
-            "description": "Not Found"
+          {
+            "name": "page",
+            "in": "query",
+            "description": "The page number",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "server response"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Blog"
+        ],
+        "summary": "Create a blog post",
+        "description": "This endpoint creates a blog post and stores it into database",
+        "requestBody": {
+          "description": "Blog object",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Blog"
+              }
+            }
+          }
+        },
+        "responses": {
+          "default": {
+            "description": "server response"
+          }
+        }
+      }
+    },
+    "/api/blog/{id}": {
+      "get": {
+        "tags": [
+          "Blog"
+        ],
+        "summary": "Get a single blog post",
+        "description": "Endpoint to get a single blog posts from the database",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of the blog",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "server response"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Blog"
+        ],
+        "summary": "Update a blog post",
+        "description": "This endpoint updates a single blog post",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of the blog",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Blog object",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Blog"
+              }
+            }
+          }
+        },
+        "responses": {
+          "default": {
+            "description": "server response"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Blog"
+        ],
+        "summary": "Delete a single blog post",
+        "description": "Endpoint to delete a single blog posts from the database",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of the blog",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "server response"
           }
         }
       }
     },
     "/api/profile/{id}": {
       "get": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
+        "tags": [
+          "Dashboard"
         ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "404": {
-            "description": "Not Found"
-          }
-        }
-      },
-      "put": {
-        "description": "",
+        "summary": "Get a single user",
+        "description": "Endpoint to get a single user from the database",
         "parameters": [
           {
             "name": "id",
             "in": "path",
+            "description": "ID of the user",
             "required": true,
-            "type": "string"
-          },
-          {
-            "name": "body",
-            "in": "body",
+            "style": "simple",
+            "explode": false,
             "schema": {
-              "type": "object",
-              "properties": {
-                "userId": {
-                  "example": "any"
-                },
-                "name": {
-                  "example": "any"
-                },
-                "job": {
-                  "example": "any"
-                },
-                "location": {
-                  "example": "any"
-                },
-                "email": {
-                  "example": "any"
-                },
-                "phoneNumber": {
-                  "example": "any"
-                }
-              }
+              "type": "string"
             }
           }
         ],
         "responses": {
-          "201": {
-            "description": "Created"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "404": {
-            "description": "Not Found"
+          "default": {
+            "description": "server response"
+          }
+        },
+        "security": [
+          {
+            "jwtToken": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "Dashboard"
+        ],
+        "summary": "Update user profile",
+        "description": "This endpoint updates user profile details",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of the blog",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Blog object",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SignUp"
+              }
+            }
+          }
+        },
+        "responses": {
+          "default": {
+            "description": "server response"
+          }
+        },
+        "security": [
+          {
+            "jwtToken": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "Dashboard"
+        ],
+        "summary": "Delete a user",
+        "description": "Endpoint to delete a single user",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of the blog",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "server response"
+          }
+        },
+        "security": [
+          {
+            "jwtToken": []
+          }
+        ]
+      }
+    },
+    "/api/upload/csv": {
+      "post": {
+        "tags": [
+          "Dashboard"
+        ],
+        "summary": "Upload certificate CSV",
+        "description": "Upload the certificate CSV to process the CSV file and generate a certificate. Send a post request with your CSV file to the endpoint The key name should be **file**",
+        "requestBody": {
+          "description": "CSV file",
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/upload_csv_body"
+              }
+            }
+          }
+        },
+        "responses": {
+          "default": {
+            "description": "server response"
+          }
+        },
+        "security": [
+          {
+            "jwtToken": []
+          }
+        ]
+      }
+    },
+    "/api/certificates/issuedCertificates": {
+      "get": {
+        "tags": [
+          "Dashboard"
+        ],
+        "summary": "Get number of issued certificates",
+        "description": "Endpoint gets total number of issued certificates",
+        "responses": {
+          "default": {
+            "description": "server response"
+          }
+        },
+        "security": [
+          {
+            "jwtToken": []
+          }
+        ]
+      }
+    },
+    "/api/certificates/deleteCertificate/{id}": {
+      "delete": {
+        "tags": [
+          "Dashboard"
+        ],
+        "summary": "Delete a single certificate",
+        "description": "Endpoint to delete a single certificate from the database",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of the certificate",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "server response"
+          }
+        },
+        "security": [
+          {
+            "jwtToken": []
+          }
+        ]
+      }
+    },
+    "/api/contactus": {
+      "get": {
+        "tags": [
+          "Contact"
+        ],
+        "summary": "Get all contacts",
+        "description": "Endpoint to get all user contacts",
+        "responses": {
+          "default": {
+            "description": "server response"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Contact"
+        ],
+        "summary": "Contact the developers",
+        "description": "Endpoint allows visitors contact the developers of the platform",
+        "requestBody": {
+          "description": "Contact object",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Contact"
+              }
+            }
+          }
+        },
+        "responses": {
+          "default": {
+            "description": "server response"
+          }
+        }
+      }
+    },
+    "/api/pricing": {
+      "get": {
+        "tags": [
+          "Pricing"
+        ],
+        "summary": "Get all pricing list",
+        "description": "Endpoint to get all pricing list",
+        "responses": {
+          "default": {
+            "description": "server response"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Pricing"
+        ],
+        "summary": "Create a pricing",
+        "description": "This endpoint saves a new pricing list on the database",
+        "requestBody": {
+          "description": "Pricing object",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Pricing"
+              }
+            }
+          }
+        },
+        "responses": {
+          "default": {
+            "description": "server response"
+          }
+        }
+      }
+    },
+    "/api/pricing/{id}": {
+      "get": {
+        "tags": [
+          "Pricing"
+        ],
+        "summary": "Get a single pricing",
+        "description": "Endpoint to get a single pricing from the database",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of the pricing",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "server response"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Pricing"
+        ],
+        "summary": "Update a pricing",
+        "description": "This endpoint updates a pricing list",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of the pricing",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Pricing object",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Pricing"
+              }
+            }
+          }
+        },
+        "responses": {
+          "default": {
+            "description": "server response"
           }
         }
       },
       "delete": {
-        "description": "",
+        "tags": [
+          "Pricing"
+        ],
+        "summary": "Delete a pricing",
+        "description": "Endpoint to delete a pricing from the database",
         "parameters": [
           {
             "name": "id",
             "in": "path",
+            "description": "ID of the pricing",
             "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "server response"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "SignUp": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "example": "user@hng.com"
+          },
+          "password": {
+            "type": "string",
+            "example": "12345"
+          },
+          "accessToken": {
             "type": "string"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "userId": {
-                  "example": "any"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "404": {
-            "description": "Not Found"
-          }
-        }
-      }
-    },
-    "/api/profile/": {
-      "post": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "userId": {
-                  "example": "any"
-                },
-                "name": {
-                  "example": "any"
-                },
-                "job": {
-                  "example": "any"
-                },
-                "location": {
-                  "example": "any"
-                },
-                "email": {
-                  "example": "any"
-                },
-                "phoneNumber": {
-                  "example": "any"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "Created"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "404": {
-            "description": "Not Found"
-          }
-        }
-      }
-    },
-    "/api/contactus/": {
-      "get": {
-        "description": "",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "500": {
-            "description": "Internal Server Error"
           }
         }
       },
-      "post": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "firstName": {
-                  "example": "any"
-                },
-                "lastName": {
-                  "example": "any"
-                },
-                "email": {
-                  "example": "any"
-                },
-                "phoneNumber": {
-                  "example": "any"
-                },
-                "message": {
-                  "example": "any"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "Created"
-          },
-          "500": {
-            "description": "Internal Server Error"
+      "Mailing": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "example": "user@hng.com"
           }
         }
+      },
+      "Career": {
+        "type": "object",
+        "properties": {
+          "role": {
+            "type": "string",
+            "example": "Software Engineer"
+          },
+          "location": {
+            "type": "string",
+            "example": "Remote"
+          },
+          "jobType": {
+            "type": "string",
+            "example": "Backend Engineer"
+          },
+          "JobDescription": {
+            "type": "string",
+            "example": "Just be good"
+          },
+          "jobDescription": {
+            "type": "integer",
+            "example": 2
+          }
+        }
+      },
+      "Blog": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "example": "Hello World"
+          },
+          "article": {
+            "type": "string",
+            "example": "Testing"
+          },
+          "writtenBy": {
+            "type": "string",
+            "example": "HNG9"
+          },
+          "datePosted": {
+            "type": "string",
+            "example": "Jab 2, 2024"
+          },
+          "imageUrl": {
+            "type": "string",
+            "example": "https://cloudicary.com/image.png"
+          }
+        }
+      },
+      "Contact": {
+        "type": "object",
+        "properties": {
+          "first_name": {
+            "type": "string",
+            "example": "Comedian"
+          },
+          "last_name": {
+            "type": "string",
+            "example": "Remote"
+          },
+          "phone_number": {
+            "type": "string",
+            "example": "08105555000"
+          },
+          "message": {
+            "type": "string",
+            "example": "Hello"
+          },
+          "email": {
+            "type": "string",
+            "example": "mail@hng.com"
+          }
+        }
+      },
+      "Pricing": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "example": "basic"
+          },
+          "price": {
+            "type": "string",
+            "example": "12000"
+          },
+          "description": {
+            "type": "string",
+            "example": "Just pay us"
+          }
+        }
+      },
+      "upload_csv_body": {
+        "type": "object",
+        "properties": {
+          "file": {
+            "type": "string",
+            "format": "binary"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "jwtToken": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
       }
     }
   }
