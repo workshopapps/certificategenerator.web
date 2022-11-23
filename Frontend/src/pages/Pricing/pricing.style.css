@@ -1,0 +1,594 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=Sora:wght@700&family=Work+Sans:wght@400;600;700&display=swap");
+main {
+  margin-top: -70px;
+}
+main .pricing {
+  background-color: rgba(178, 225, 217, 0.25);
+  font-family: "Work Sans", sans-serif;
+}
+main .pricing .text {
+  text-align: center;
+  max-width: 100%;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+main .pricing .text p:nth-of-type(1) {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 29px;
+  color: #19A68E;
+  padding-top: 80px;
+  margin-bottom: 20px;
+}
+main .pricing .text p:nth-of-type(2) {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 26px;
+  color: #6C6C70;
+  max-width: 505px;
+  width: 100%;
+  margin: auto;
+}
+main .pricing .text h3 {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 54px;
+  margin-bottom: 20px;
+  color: #222222;
+}
+main .pricing .plans {
+  max-width: 100%;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+main .pricing .plans .btnContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #FFFFFF;
+  box-shadow: 0px 4px 14px rgba(87, 80, 80, 0.1);
+  border-radius: 50px;
+  max-width: 315px;
+  height: 74px;
+  width: 100%;
+  margin: 20px auto 40px;
+  padding: 10px 8px;
+  cursor: pointer;
+}
+main .pricing .plans .btnContainer .plan-btn {
+  color: #222222;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 26px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 14px 42px;
+  gap: 10px;
+  max-width: 148px;
+  width: 100%;
+  height: 54px;
+}
+main .pricing .plans .btnContainer .active-btn {
+  background-color: #19A68E;
+  border-radius: 50px;
+  color: #FFFFFF;
+  font-weight: 600;
+  transition: 300ms ease-in;
+}
+main .pricing .plans .plansContainer {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  padding-bottom: 60px;
+}
+main .pricing .plans .plansContainer .Basic, main .pricing .plans .plansContainer .Premium, main .pricing .plans .plansContainer .Standard {
+  padding: 20px;
+  border-radius: 10px;
+  width: 399px;
+  height: 667px;
+  position: relative;
+}
+main .pricing .plans .plansContainer .Basic h4, main .pricing .plans .plansContainer .Premium h4, main .pricing .plans .plansContainer .Standard h4 {
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 36px;
+}
+main .pricing .plans .plansContainer .Basic p:nth-of-type(1), main .pricing .plans .plansContainer .Premium p:nth-of-type(1), main .pricing .plans .plansContainer .Standard p:nth-of-type(1) {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 26px;
+}
+main .pricing .plans .plansContainer .Basic h3, main .pricing .plans .plansContainer .Premium h3, main .pricing .plans .plansContainer .Standard h3 {
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 47px;
+}
+main .pricing .plans .plansContainer .Basic h3 span, main .pricing .plans .plansContainer .Premium h3 span, main .pricing .plans .plansContainer .Standard h3 span {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 26px;
+}
+main .pricing .plans .plansContainer .Basic p:nth-of-type(2), main .pricing .plans .plansContainer .Premium p:nth-of-type(2), main .pricing .plans .plansContainer .Standard p:nth-of-type(2) {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 26px;
+}
+main .pricing .plans .plansContainer .Basic .others, main .pricing .plans .plansContainer .Premium .others, main .pricing .plans .plansContainer .Standard .others {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+main .pricing .plans .plansContainer .Basic .others span, main .pricing .plans .plansContainer .Premium .others span, main .pricing .plans .plansContainer .Standard .others span {
+  display: inline-block;
+  margin-left: 20px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 26px;
+}
+main .pricing .plans .plansContainer .Basic a, main .pricing .plans .plansContainer .Premium a, main .pricing .plans .plansContainer .Standard a {
+  text-decoration: none;
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translate(-50%, -20px);
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 26px;
+  width: 335px;
+  height: 54px;
+  box-shadow: 0px 6px 21px rgba(0, 112, 244, 0.15);
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+main .pricing .plans .plansContainer .Basic, main .pricing .plans .plansContainer .Premium {
+  background-color: #FFFFFF;
+  box-shadow: 0px 4px 14px rgba(77, 72, 72, 0.1);
+}
+main .pricing .plans .plansContainer .Basic h4, main .pricing .plans .plansContainer .Premium h4 {
+  color: #222222;
+}
+main .pricing .plans .plansContainer .Basic p:nth-of-type(1), main .pricing .plans .plansContainer .Premium p:nth-of-type(1) {
+  color: #6C6C70;
+}
+main .pricing .plans .plansContainer .Basic h3, main .pricing .plans .plansContainer .Premium h3 {
+  color: #222222;
+}
+main .pricing .plans .plansContainer .Basic h3 span, main .pricing .plans .plansContainer .Premium h3 span {
+  color: #6C6C70;
+}
+main .pricing .plans .plansContainer .Basic p:nth-of-type(2), main .pricing .plans .plansContainer .Premium p:nth-of-type(2) {
+  color: #222222;
+}
+main .pricing .plans .plansContainer .Basic .others span, main .pricing .plans .plansContainer .Premium .others span {
+  color: #6C6C70;
+}
+main .pricing .plans .plansContainer .Basic a, main .pricing .plans .plansContainer .Premium a {
+  background-color: #19A68E;
+  color: #FFFFFF;
+}
+main .pricing .plans .plansContainer .Standard {
+  background-color: #19A68E;
+  box-shadow: 0px 4px 14px rgba(77, 72, 72, 0.1);
+  color: #FFFFFF;
+}
+main .pricing .plans .plansContainer .Standard a {
+  background-color: #FFFFFF;
+  color: #19A68E;
+}
+main .pricing .plans #slider {
+  display: none;
+}
+main .feature {
+  background-color: #FFFFFF;
+  font-family: "Work Sans", sans-serif;
+}
+main .feature article {
+  max-width: 100%;
+  width: 90%;
+  text-align: center;
+  margin: auto;
+}
+main .feature article h3 {
+  padding-top: 60px;
+  font-weight: 600;
+  font-size: 40px;
+  line-height: 50px;
+  font-family: "Sora", sans-serif;
+  color: #222222;
+}
+main .feature .tableContainer {
+  box-shadow: 0px 4px 14px rgba(66, 69, 71, 0.1);
+  border-radius: 8px;
+  padding: 40px 20px;
+  width: 942px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  margin: 30px auto;
+}
+main .feature .tableContainer table {
+  width: 100%;
+  flex-shrink: 0;
+}
+main .feature .tableContainer table thead {
+  background-color: #19A68E;
+  padding: 20px 16px 20px 22px;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 26px;
+  color: #FFFFFF;
+  font-family: "Open Sans", sans-serif;
+  height: 64px;
+}
+main .feature .tableContainer table thead th:nth-of-type(1) {
+  border-radius: 4px 0px 0px 4px;
+  text-align: start;
+  padding-left: 20px;
+}
+main .feature .tableContainer table thead th:nth-of-type(4) {
+  border-radius: 0px 4px 4px 0px;
+}
+main .feature .tableContainer table tbody tr {
+  height: 66px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 26px;
+  color: #6C6C70;
+}
+main .feature .tableContainer table tbody tr td:nth-of-type(1) {
+  text-align: start;
+  padding-left: 20px;
+}
+main .feature .tableContainer table tbody tr:nth-of-type(odd) {
+  background-color: #FFFFFF !important;
+}
+main .feature .tableContainer table tbody tr:nth-child(even) {
+  background-color: rgba(178, 225, 217, 0.1);
+}
+main .feature .featureEnd h3 {
+  width: 829px;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 54px;
+  color: #222222;
+  margin: 0px auto 70px;
+}
+main .feature .featureEnd div {
+  cursor: pointer;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding-bottom: 70px;
+}
+main .testimonials {
+  font-family: "Work Sans", sans-serif;
+}
+main .testimonials .textC {
+  text-align: center;
+  max-width: 100%;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+main .testimonials .textC > p {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 29px;
+  color: #19A68E;
+  padding-top: 80px;
+}
+main .testimonials .textC h3 {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 54px;
+  color: #222222;
+  margin-bottom: 30px;
+}
+main .testimonials .textC .testimonialContainer {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  padding-bottom: 60px;
+}
+main .testimonials .textC .testimonialContainer > div {
+  width: 397px;
+  height: 399px;
+  margin: auto;
+  padding: 20px;
+  background-color: #FFFFFF;
+  box-shadow: 0px 4px 14px rgba(82, 77, 77, 0.1);
+  border-radius: 10px;
+  text-align: justify;
+  position: relative;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 26px;
+  color: #656666;
+}
+main .testimonials .textC .testimonialContainer > div > div {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  bottom: 0;
+}
+main .testimonials .textC .testimonialContainer > div > div img {
+  margin-right: 20px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+}
+main .testimonials .textC .testimonialContainer > div > div div p:nth-of-type(1) {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 32px;
+  color: #191A1B;
+}
+main .bg {
+  width: 100vw;
+  height: 60px;
+  background-color: #FFFFFF;
+}
+
+@media (max-width: 1439px) {
+  main .testimonials .textC {
+    /* Scroll bar */
+  }
+  main .testimonials .textC .testimonialContainer {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: 0px;
+    margin-left: auto;
+    margin-right: auto;
+    overflow-x: scroll;
+    overflow-y: hidden;
+  }
+  main .testimonials .textC .testimonialContainer > div {
+    margin-right: 20px;
+    flex-shrink: 0;
+    overflow: none;
+  }
+  main .testimonials .textC .testimonialContainer::-webkit-scrollbar {
+    width: 14px;
+  }
+  main .testimonials .textC .testimonialContainer::-webkit-scrollbar-thumb {
+    background: #FFFFFF;
+    border-radius: 10px;
+    background-clip: padding-box;
+    border: 6px solid transparent;
+  }
+}
+@media (max-width: 1300px) {
+  main .pricing {
+    background: rgba(178, 225, 217, 0.25);
+  }
+  main .pricing .textC p:nth-of-type(1) {
+    font-size: 14px;
+    line-height: 22px;
+  }
+  main .pricing .textC p:nth-of-type(2) {
+    font-size: 16px;
+    line-height: 26px;
+    color: #555557;
+  }
+  main .pricing .textC h3 {
+    font-size: 28px;
+    line-height: 35px;
+    color: #191A1B;
+  }
+  main .pricing .plans {
+    position: relative;
+    /* Scroll bar */
+  }
+  main .pricing .plans .btnContainer {
+    max-width: 272px;
+    height: 68px;
+    width: 100%;
+  }
+  main .pricing .plans .btnContainer .plan-btn {
+    color: #191A1B;
+    max-width: 128px;
+    height: 48px;
+  }
+  main .pricing .plans .btnContainer .active-btn {
+    color: #FFFFFF;
+  }
+  main .pricing .plans #pc {
+    display: none;
+  }
+  main .pricing .plans .sliderContainer {
+    position: relative;
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
+    height: fit-content;
+    margin: auto;
+    overflow-x: scroll;
+    width: 420px;
+  }
+  main .pricing .plans .sliderContainer #slider {
+    display: flex;
+    justify-content: space-between;
+    flex-shrink: 0;
+    width: 420px;
+    background: none;
+    text-align: justify;
+    padding-left: 20px;
+    margin: auto;
+  }
+  main .pricing .plans .sliderContainer #slider article {
+    width: 399px;
+    margin: auto;
+  }
+  main .pricing .plans ::-webkit-scrollbar {
+    width: 14px;
+  }
+  main .pricing .plans ::-webkit-scrollbar-thumb {
+    background: #08372f;
+    border-radius: 10px;
+    background-clip: padding-box;
+    border: 6px solid transparent;
+  }
+}
+@media (max-width: 991px) {
+  main .feature {
+    /* Scroll bar */
+  }
+  main .feature article h3 {
+    padding-top: 90px;
+    font-size: 28px;
+    line-height: 35px;
+  }
+  main .feature .tableContainer {
+    width: 745px;
+    height: 768px;
+    border: 1px solid #E0E0E0;
+    border-radius: 6px;
+    margin-bottom: 70px;
+    overflow-x: scroll;
+    overflow-y: hidden;
+  }
+  main .feature .tableContainer table {
+    position: relative;
+    width: 676px;
+    margin: auto;
+    margin-bottom: 20px;
+    flex-shrink: 0;
+  }
+  main .feature .tableContainer table thead {
+    padding: 16px, 13px, 16px, 17px;
+    font-size: 14px;
+    line-height: 22px;
+    height: 52px;
+  }
+  main .feature .tableContainer table thead th:nth-of-type(1) {
+    border-radius: 3px 0px 0px 3px;
+  }
+  main .feature .tableContainer table thead th:nth-of-type(4) {
+    border-radius: 0px 3px 3px 0px;
+  }
+  main .feature .tableContainer table tbody tr {
+    height: 48px;
+    font-size: 12px;
+    line-height: 19px;
+  }
+  main .feature ::-webkit-scrollbar {
+    width: 14px;
+  }
+  main .feature ::-webkit-scrollbar-thumb {
+    background: #FFFFFF;
+    border-radius: 10px;
+    background-clip: padding-box;
+    border: 6px solid transparent;
+  }
+  main .feature .featureEnd h3 {
+    width: 100%;
+    font-size: 28px;
+    line-height: 44px;
+    text-align: center;
+    color: #191A1B;
+  }
+  main .feature .featureEnd div {
+    cursor: pointer;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    grid-template-columns: repeat(6, 1fr);
+    width: 100%;
+  }
+  main .feature .featureEnd div img {
+    margin-right: 30px;
+    max-width: 100%;
+    width: 80%;
+  }
+  main .testimonials .textC > p {
+    font-size: 14px;
+    line-height: 22px;
+    padding-top: 100px;
+  }
+  main .testimonials .textC h3 {
+    font-size: 28px;
+    line-height: 35px;
+  }
+}
+@media (max-width: 767px) {
+  main .pricing .textC p {
+    font-size: 14px;
+    line-height: 22px;
+  }
+  main .pricing .textC h3 {
+    font-size: 24px;
+    line-height: 30px;
+  }
+  main .pricing .plans .plansContainer .Basic, main .pricing .plans .plansContainer .Premium, main .pricing .plans .plansContainer .Standard {
+    max-width: 327px;
+    width: 100%;
+    height: 604px;
+    position: relative;
+  }
+  main .pricing .plans .plansContainer .Basic .others, main .pricing .plans .plansContainer .Premium .others, main .pricing .plans .plansContainer .Standard .others {
+    margin-bottom: 10px;
+  }
+  main .pricing .plans .plansContainer .Basic a, main .pricing .plans .plansContainer .Premium a, main .pricing .plans .plansContainer .Standard a {
+    width: 300px;
+    height: 48px;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  main .pricing .plans .sliderContainer {
+    position: relative;
+    width: 348px;
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
+    height: fit-content;
+    margin: auto;
+  }
+  main .pricing .plans .sliderContainer #slider {
+    width: 327px;
+  }
+  main .pricing .plans .sliderContainer #slider article {
+    width: 327px;
+  }
+  main .feature .featureEnd div img {
+    margin-right: 30px;
+    max-width: 100%;
+    width: 80%;
+  }
+  main .testimonials .textC {
+    max-width: 100vw;
+    width: 100%;
+  }
+  main .testimonials .textC .testimonialContainer > div {
+    margin-right: 10px;
+  }
+}
+@media (max-width: 480px) {
+  main .testimonials {
+    max-width: 100vw !important;
+    width: 100% !important;
+  }
+  main .testimonials .textC #monials, main .testimonials .textC h3 {
+    max-width: 100%;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+@media (max-width: 360px) {
+  main .pricing .textC p {
+    font-size: 14px;
+    line-height: 22px;
+  }
+  main .pricing .textC h3 {
+    font-size: 24px;
+    line-height: 30px;
+  }
+}/*# sourceMappingURL=pricing.style.css.map */
