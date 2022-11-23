@@ -5,21 +5,21 @@ import "./template.style.scss";
 import Filter from "./modal";
 
 // template card images
-import cardimg from "./assets/Rectangle1.webp";
-import cardimg2 from "./assets/Rectangle2.webp";
-import cardimg3 from "./assets/Rectangle3.webp";
-import cardimg4 from "./assets/Rectangle4.webp";
-import cardimg5 from "./assets/Rectangle5.webp";
-import cardimg6 from "./assets/Rectangle6.webp";
-import cardimg7 from "./assets/Rectangle7.webp";
-import cardimg8 from "./assets/Rectangle8.webp";
-import cardimg9 from "./assets/Rectangle9.webp";
-import cardimg10 from "./assets/Rectangle10.webp";
-import cardimg11 from "./assets/Rectangle11.webp";
-import premiumicon from "./assets/Vector.svg";
-import filtericon from "./assets/setting.svg";
-import addicon from "./assets/add-square.svg";
-import closeicon from "./assets/close.png";
+import cardimg from "../../assets/images/templates/Rectangle1.webp";
+import cardimg2 from "../../assets/images/templates/Rectangle2.webp";
+import cardimg3 from "../../assets/images/templates/Rectangle3.webp";
+import cardimg4 from "../../assets/images/templates/Rectangle4.webp";
+import cardimg5 from "../../assets/images/templates/Rectangle5.webp";
+import cardimg6 from "../../assets/images/templates/Rectangle6.webp";
+import cardimg7 from "../../assets/images/templates/Rectangle7.webp";
+import cardimg8 from "../../assets/images/templates/Rectangle8.webp";
+import cardimg9 from "../../assets/images/templates/Rectangle9.webp";
+import cardimg10 from "../../assets/images/templates/Rectangle10.webp";
+import cardimg11 from "../../assets/images/templates/Rectangle11.webp";
+import premiumicon from "../../assets/images/templates/Vector.svg";
+import filtericon from "../../assets/images/templates/setting.svg";
+import addicon from "../../assets/images/templates/add-square.svg";
+import closeicon from "../../assets/images/templates/close.png";
 
 export default function Template() {
   const [modalState, setModalState] = useState(false);

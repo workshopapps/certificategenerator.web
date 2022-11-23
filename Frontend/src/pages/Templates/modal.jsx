@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import "./modal.style.scss";
 
-import redimg from "./assets/Rectangle270.png";
-import blueimg from "./assets/Rectangle271.png";
-import brownimg from "./assets/Rectangle272.png";
-import yellowimg from "./assets/Rectangle273.png";
-import greenimg from "./assets/Rectangle274.png";
-import blackimg from "./assets/Rectangle275.png";
-import whiteimg from "./assets/Rectangle276.png";
+import redimg from "../../assets/images/templates/Rectangle270.png";
+import blueimg from  "../../assets/images/templates/Rectangle271.png";
+import brownimg from  "../../assets/images/templates/Rectangle272.png";
+import yellowimg from  "../../assets/images/templates/Rectangle273.png";
+import greenimg from  "../../assets/images/templates/Rectangle274.png";
+import blackimg from  "../../assets/images/templates/Rectangle275.png";
+import whiteimg from  "../../assets/images/templates/Rectangle276.png";
+
 
 export default function Filter({
   modalClose,
