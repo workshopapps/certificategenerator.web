@@ -257,7 +257,7 @@ a {
   color: #19A68E;
 }
 
-@media all and (max-width: 1200px) {
+@media all and (max-width: 1240px) {
   .container {
     gap: 90px;
   }
