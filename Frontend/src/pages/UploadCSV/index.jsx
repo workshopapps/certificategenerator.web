@@ -52,7 +52,7 @@ const UploadCSV = () => {
       <Button name={"Modify Certificate"} className={"modiftyCertificate"} />
 
       <h2>Upload your csv file here in the format below</h2>
-      <div className="CVSSample">
+      <div className="CSVSample">
         <img src={CSVSample} alt="CSV sample" />
       </div>
 
