@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import "./edit.style.scss";
 
 function Index() {
+
   return (
     <div id="edit-bulk">
       {/* BUTTONS TO TOGGLE BETWEEN SINGLE AND BULK CERTIFICATE */}
@@ -10,7 +11,7 @@ function Index() {
       <div className="button-container">
         {/* BUTTON TO GO BACK TO THE SINGLE CERTIFICATE PAGE */}
 
-        <Link to="/single_preview">
+        <Link to="/">
           <button className="not-active">Single Certificate</button>
         </Link>
 
@@ -27,13 +28,14 @@ function Index() {
         <form action="#">
           <div id="edit-bulk-logo">
             <label htmlFor="Logo">Logo</label>
-            <br /> <input placeholder="Upload Logo" type="file" />
+            <br /> <input placeholder="Upload Logo" type="file"  required />
             <h6>Max image upload size: 8mb</h6>
           </div>
 
           <div className="edit-bulk-select">
             <label htmlFor="Certificate Title">Certificate Title</label>
             <select
+            required
               name="Certificate of completion"
               id="Certificate of completion"
             >
@@ -67,25 +69,28 @@ function Index() {
               placeholder="For your exceptional performance this month, in appreciation for your loyalty and the desire to fulfil our goals,
                in recognition of your leadership and dedication"
               type="text"
+              required
             />
           </div>
 
           <div className="edit-bulk-input">
             <label htmlFor="Issued by">Issued by</label>
-            <input placeholder="Name of organization or issuer" type="text" />
+            <input  placeholder="Name of organization or issuer" type="text"  required  />
+         
           </div>
 
           <div className="edit-bulk-input">
             <label htmlFor="Issue Date">Issue Date</label>
-            <input placeholder="DD/MM/YY" type="text" />
+            <input placeholder="DD/MM/YY" type="text"  required  />
           </div>
 
           {/* CREATE BUTTON FOR BULK CERTIFICATES */}
           {/* PROCEED TO BULK PREVIEW PAGE */}
-
-          <Link to="/bulk_preview">
-            <button id="edit-bulk-button">Create Certificate</button>
-          </Link>
+          
+          <Link to = "/bulk_preview">
+          <button id="edit-bulk-button">Create Certificate</button>
+        </Link>
+      
         </form>
       </div>
     </div>
