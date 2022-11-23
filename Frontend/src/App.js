@@ -33,7 +33,7 @@ function App() {
   return (
     <>
       <Layout>
-        <div className="App">
+        <main className="App">
           <Routes>
             <Route path="/" index element={<Home />} />
             <Route path="/signup" element={<Signup />} />
@@ -59,7 +59,7 @@ function App() {
             <Route path="/privacy" element={<Privacy />} />
             <Route path="*" element={<Error />} />
           </Routes>
-        </div>
+        </main>
       </Layout>
     </>
   );
