@@ -25,6 +25,18 @@ export default function Filter({
   const [btn6active, setBtn6Active] = useState(false);
   const [btn7active, setBtn7Active] = useState(false);
 
+  //restore btn states
+  const resetFilterBtns = () => {
+    setBtn1Active(false);
+    setBtn2Active(false);
+    setBtn3Active(false);
+    setBtn4Active(false);
+    setBtn5Active(false);
+    setBtn6Active(false);
+    setBtn7Active(false);
+  }
+
+
   if (!open) return null;
 
   return (
@@ -159,6 +171,7 @@ export default function Filter({
             onClick={() => {
               applyCategories();
               modalClose();
+              resetFilterBtns();
             }}
             className="btn-submit btn-submit--apply"
           >
@@ -168,6 +181,7 @@ export default function Filter({
             onClick={() => {
               setCategory("");
               modalClose();
+              resetFilterBtns();
             }}
             className="btn-submit btn-submit--cancel"
           >

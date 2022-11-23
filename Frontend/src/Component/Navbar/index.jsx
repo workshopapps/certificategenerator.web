@@ -43,6 +43,7 @@ function Navbar() {
   ];
 
   return (
+    <div id="Nav"> 
     <div className="navbar">
       <div className="nav-header-container">
         <div className="nav-header nav-container">
@@ -50,7 +51,7 @@ function Navbar() {
             <h2>
               Cert<span>ify</span>
             </h2>
-            <img src={logo} alt="certawi bulb" />
+            <img src={logo} alt="Certify bulb" />
           </div>
           <div className="nav-click">
             <button className="btn">
@@ -89,6 +90,7 @@ function Navbar() {
           </div>
         </div>
       </div>
+    </div>
     </div>
   );
 }

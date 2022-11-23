@@ -39,15 +39,15 @@ const Login = () => {
     }
     return(
         <div>
-            <div className="logo-div">
+            {/* <div className="logo-div">
                 <img className="logo" alt="" src={logoSVG}/>
                 <img className="menu" alt="" src={menuSVG}/>
-            </div>
+            </div> */}
             <div className="authContainer">
                 <div className="formDiv">
                     <form>
-                        <div id="heading">Welcome to Certawi</div>    
-                        <small id="startGenerating">Start generating certificates by creating a Certawi account</small>
+                        <div id="heading">Welcome to Certify</div>    
+                        <small id="startGenerating">Start generating certificates by creating a Certify account</small>
                         <div id="signupG" ><img alt="" src={googleSVG} id="imgs"/>Signup using Google</div>
                         <div id="signupA" ><img alt="" src={appleSVG} id="imgs"/>Signup using Apple</div>
                         <div id="hrLine"><span id="or">or</span></div>
@@ -69,7 +69,7 @@ const Login = () => {
                         </div>
                         <div id="btn">Login</div>
                     </form>   
-                    <p className="haveAccount">Don’t have a Certawi account? <Link to="/signup" id="coloredTerms">Create an account </Link></p>
+                    <p className="haveAccount">Don’t have a Certify account? <Link to="/signup" id="coloredTerms">Create an account </Link></p>
                 </div>
                 <div className="emptySpace"><img className="cert_img" alt="" src={cert}/></div>
             </div>

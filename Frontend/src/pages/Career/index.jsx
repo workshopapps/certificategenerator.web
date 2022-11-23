@@ -1,14 +1,14 @@
 import React from "react";
 import "./career.style.scss";
 import { Persons, Positions, Positions2 } from "./data";
+import SectionCarousel from "./Carousel";
 import Button from "../../Component/button";
 import Rocket from "./assets/rocket-launcher.webp";
 import Frame from "./assets/Frame 16353.png";
 import Briefcase from "./assets/candidate resumes and briefcase.png";
-import Lead from "./assets/design-lead.webp";
 import Search from "./assets/search-icon.svg";
-import ArrowLeft from "./assets/arrow-left.svg";
-import ArrowRight from "./assets/arrow-right.svg";
+
+
 
 function Career() {
   return (
@@ -55,29 +55,8 @@ function Career() {
           </div>
         </div>
       </section>
-
-      <section className=" section2">
-        <div className="flex__wrapper">
-          <div id="arrow">
-            <img src={ArrowLeft} alt="arrow-left" className="arrow" />
-            <img src={ArrowRight} alt="arrow-right" className="arrow" />
-          </div>
-          <div className="image__container">
-            <img src={Lead} alt="design-lead" />
-          </div>
-          <div className="text__container">
-            <h2>Everyone’s contribution counts and is well appreciated</h2>
-            <p>
-              The culture at Headlight is amazing. Everyone can contibute and no
-              idea is considered stupid. Your creative energy is not restrained
-              but it is harnessed to move the team forward
-            </p>
-
-            <h4>Gabriel Prosper</h4>
-            <h5>Design lead</h5>
-          </div>
-        </div>
-      </section>
+      
+      <SectionCarousel />
 
       <section className="section section3">
         <h2 id='heading-text'>Our Hiring Process</h2>
