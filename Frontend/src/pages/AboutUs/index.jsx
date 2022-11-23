@@ -2,26 +2,27 @@ import React from 'react'
 import {Outlet, Link} from 'react-router-dom'
 import "./aboutUs.style.scss";
 
-import IMG1 from '../../assets/IMG1.png'
+import IMG1 from '../../assets/images/aboutUs/IMG1.png'
 
-import Value1 from '../../assets/value1.png'
-import Value2 from '../../assets/value2.png'
-import Value3 from '../../assets/value3.png'
+import Value1 from '../../assets/images/aboutUs/value1.png'
+import Value2 from '../../assets/images/aboutUs/value2.png'
+import Value3 from '../../assets/images/aboutUs/value3.png'
 
-import Service1 from '../../assets/service1.png'
-import Service2 from '../../assets/service2.png'
-import Service3 from '../../assets/service3.png'
-import Service4 from '../../assets/service4.png'
+import Service1 from '../../assets/images/aboutUs/service1.png'
+import Service2 from '../../assets/images/aboutUs/service2.png'
+import Service3 from '../../assets/images/aboutUs/service3.png'
+import Service4 from '../../assets/images/aboutUs/service4.png'
 
-import Gallery1 from '../../assets/gallery1.png'
-import Gallery2 from '../../assets/gallery2.png'
-import Gallery3 from '../../assets/gallery3.png'
-import Gallery4 from '../../assets/gallery4.png'
-import Gallery5 from '../../assets/gallery5.png'
-import Gallery6 from '../../assets/gallery6.png'
+import Gallery1 from '../../assets/images/aboutUs/gallery1.png'
+import Gallery2 from '../../assets/images/aboutUs/gallery2.png'
+import Gallery3 from '../../assets/images/aboutUs/gallery3.png'
+import Gallery4 from '../../assets/images/aboutUs/gallery4.png'
+import Gallery5 from '../../assets/images/aboutUs/gallery5.png'
+import Gallery6 from '../../assets/images/aboutUs/gallery6.png'
+
 
 // import { Scrollbar } from 'swiper';
-// import {Swiper, SwiperSlide} from 'swiper/react';
+// import {per, SwiperSlide} from 'swiper/react';
 // import 'swiper/css';
 // import 'swiper/css/scrollbar';
 
