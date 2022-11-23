@@ -132,7 +132,7 @@ export const data = [
     },
     {
         id: 2,
-        plan: "Annualy",
+        plan: "Annually",
         subscription: [
             {
                 id: 1,

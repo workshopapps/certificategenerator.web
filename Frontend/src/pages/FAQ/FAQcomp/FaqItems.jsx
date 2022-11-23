@@ -7,7 +7,7 @@ export const FaqItems = ({ faq, onToggle, active }) => {
 
   return (
     <>
-      <div className={Style.faqWrapper}>
+      <div className={Style.faqWrapper} onClick={onToggle}>
         <div className={Style.faqQuestions}>
           <div className={Style.question}>
             <div className={Style.faqIcon}>
@@ -20,9 +20,9 @@ export const FaqItems = ({ faq, onToggle, active }) => {
           </div>
           <div className={Style.dropdowmIcon}>
             {active ? (
-              <RiArrowDropRightLine className={Style.icon} onClick={onToggle} />
+              <RiArrowDropRightLine className={Style.icon} />
             ) : (
-              <RiArrowDropDownLine className={Style.icon} onClick={onToggle} />
+              <RiArrowDropDownLine className={Style.icon} />
             )}
           </div>
         </div>
