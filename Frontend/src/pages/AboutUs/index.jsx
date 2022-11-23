@@ -1,4 +1,3 @@
-// import { Outlet } from 'react-router-dom'
 import React from 'react'
 import {Outlet, Link} from 'react-router-dom'
 import "./aboutUs.style.scss";
@@ -21,9 +20,14 @@ import Gallery4 from '../../assets/gallery4.png'
 import Gallery5 from '../../assets/gallery5.png'
 import Gallery6 from '../../assets/gallery6.png'
 
+// import { Scrollbar } from 'swiper';
+// import {Swiper, SwiperSlide} from 'swiper/react';
+// import 'swiper/css';
+// import 'swiper/css/scrollbar';
 
 const aboutUs = () => {
   return (
+    
     <div id="aboutUs" className="about">     
       <div className="aboutHero">
         <div className="aboutHeroL">
@@ -48,6 +52,12 @@ const aboutUs = () => {
       </div>
       
       <div className="aboutValue">
+
+        {/* modules={[Scrollbar]}  */}
+        {/* spaceBetween={40} */}
+        {/* slidesPerView={1} */}
+        {/* scrollbar={{draggable:true}} */}
+
         <h2>Testimonial</h2>
         <h4 id="vh4">What our customers have to say about us</h4>
         <div className="aboutValueS">
