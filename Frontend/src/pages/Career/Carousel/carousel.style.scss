@@ -7,7 +7,7 @@
 
 
     @media screen and (max-width: $small) {
-        padding: 2rem 1rem;
+        padding: .5rem .5rem;
     }
 
     .flex__wrapper {
@@ -39,7 +39,11 @@
         @media screen and (max-width: $small) {
             flex-direction: column;
             align-items: center;
-            // align-items: initial;
+        }
+        @media screen and (max-width: $sm) {
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem;
         }
 
         .text__container {

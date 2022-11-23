@@ -12,6 +12,9 @@ function SectionCarousel() {
 
   const next = () => {
       setcurrentImageIndex(currentImageIndex + 1)
+      // if(currentImageIndex > 3){
+      //   return currentImageIndex - 1
+      // }
       console.log('next');
     }
   const prev = (e) => {
@@ -19,7 +22,6 @@ function SectionCarousel() {
     setcurrentImageIndex(currentImageIndex - 1)
     console.log('prev');
   }
-  // const { currentImageIndex } = state;
   return (
     <div>
       <section className="section2">
@@ -29,10 +31,11 @@ function SectionCarousel() {
           showStatus={false}
           showThumbs={false}
           showIndicators={false}
+          autoPlay={true}
           showArrows={false}
           infiniteLoop={true}
           transitionTime={200}
-          useKeyboardArrows >
+          useKeyboardArrows>
            {carouseltems.map((item, index) => {
             const {heading, body, image, name, role} = item
             return (
