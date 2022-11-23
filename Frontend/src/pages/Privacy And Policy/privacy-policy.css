@@ -1,36 +1,32 @@
-.main-page {
+#privacy .main-page {
   text-align: left;
   display: flex;
   flex-direction: column;
   padding: 50px 100px 180px 100px;
 }
-
-p, li {
+#privacy p,
+#privacy li {
   font-size: 19px;
 }
-
-li {
+#privacy li {
   margin-bottom: 20px;
+  list-style-type: square;
 }
-
-ul {
-  padding-left: 0;
+#privacy ul {
+  padding: 25px;
 }
-
-.green {
-  color: #19A68E;
+#privacy .green {
+  color: #19a68e;
   font-size: 17px;
   font-weight: 700;
   margin-bottom: 5px;
 }
-
-#green {
+#privacy #green {
   font-size: 19px;
-  color: #19A68E;
+  color: #19a68e;
 }
-
 @media (max-width: 550px) {
-  .main-page {
+  #privacy .main-page {
     text-align: left;
     display: flex;
     flex-direction: column;
