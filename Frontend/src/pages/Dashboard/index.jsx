@@ -1,6 +1,6 @@
 import React from "react";
 import "./dashboard.style.scss";
-import profilePic from "./assets/Ellipse3.jpg";
+import profilePic from "./assets/Ellipse4.png";
 import Card from "./Card";
 import {actionIcon, tableData, cardData, nullDataIcon} from "./utils"
 

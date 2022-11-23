@@ -19,4 +19,4 @@ export { default as ContactUs} from './contactUs';
 export { default as Career } from './Career';
 
 export { default as Pricing } from "./Pricing";
-export { default as Profile } from "./Profile";
+export { default as ProfilePage } from "./ProfilePage";
