@@ -63,14 +63,6 @@ function App() {
             <Route path="/profile" element={<Profile />} />
 
             <Route path="/privacy" element={<Privacy />} />
-<<<<<<< Updated upstream
-=======
-
-
-            <Route path="/upload" element={<UploadCSV />} />
-
-
->>>>>>> Stashed changes
           </Route>
           <Route path="*" element={<Error />} />
         </Routes>
