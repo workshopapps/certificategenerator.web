@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import logo from "./assets/icon.png";
+import logo from "../../assets/images/footerIcon.png";
 import "./footer.style.scss";
 import { BsInstagram, BsLinkedin, BsTwitter, BsGithub } from "react-icons/bs";
 import { useEffect } from "react";
