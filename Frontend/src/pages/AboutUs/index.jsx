@@ -48,7 +48,7 @@ const aboutUs = () => {
       </div>
       
       <div className="aboutValue">
-        <h2>Testiomonial</h2>
+        <h2>Testimonial</h2>
         <h4 id="vh4">What our customers have to say about us</h4>
         <div className="aboutValueS">
           <div  className="aboutValueCard">
