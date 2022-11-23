@@ -162,7 +162,7 @@ const members = [
 
 const Team = () => {
   return (
-    <section>
+    <section className="teamContainer">
       {/* title */}
       <div className="team">Our Team</div>
       <div className="meet">
