@@ -43,28 +43,26 @@ function Navbar() {
   ];
 
   return (
-    <div id="Nav">
-      <div className="navbar">
-        <div className="nav-header-container">
-          <div className="nav-header nav-container">
-            <div className="nav-logo" onClick={() => navigate("/")}>
-              <h2>
-                Cert<span>ify</span>
-              </h2>
-              <img src={logo} alt="Certify bulb" />
-            </div>
-            <div className="nav-click">
-              <button className="btn">
-                <Link to="/modify" className="link">
-                  get started
-                </Link>
-              </button>
-              {switchFa === true ? (
-                <FaTimes className="times" onClick={handleToggle} />
-              ) : (
-                <FaBars className="bars" onClick={handleToggle} />
-              )}
-            </div>
+    <div className="navbar">
+      <div className="nav-header-container">
+        <div className="nav-header nav-container">
+          <div className="nav-logo" onClick={() => navigate("/")}>
+            <h2>
+              Cert<span>ify</span>
+            </h2>
+            <img src={logo} alt="certawi bulb" />
+          </div>
+          <div className="nav-click">
+            <button className="btn">
+              <Link to="/modify" className="link">
+                get started
+              </Link>
+            </button>
+            {switchFa === true ? (
+              <FaTimes className="times" onClick={handleToggle} />
+            ) : (
+              <FaBars className="bars" onClick={handleToggle} />
+            )}
           </div>
         </div>
         <div className="nav-links">
