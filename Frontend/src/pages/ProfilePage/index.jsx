@@ -1,6 +1,6 @@
 import React from "react";
 import "./profile.style.scss";
-import Avatar from "./assets/Ellipse4.png"
+import Avatar from "../../assets/images/Ellipse4.png"
 
 const ProfilePage = () => {
   return (
