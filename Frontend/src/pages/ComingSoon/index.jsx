@@ -8,7 +8,6 @@ import under_construction from './images/under_construction.png'
 import twitter from './images/twitter.png'
 
 
-
 function Comingsoon() {
   return (
     <div id='comingsoon'>

@@ -35,7 +35,10 @@
   &.active {
     background: $primaryColor;
     color: #fff;
-    border: none;
+    width: 140px;
+    height: 40px;
+    font-size: 12px;
+    font-family: 'Work Sans', sans-serif;
 
     &:hover {
       color: $primaryColor;
@@ -152,19 +155,11 @@ h2 {
       }
 
 
-  #bulk-btns{
+  .bulk-buttons{
     display: flex;
-    flex-direction: row!important;
+    flex-direction: row;
     justify-content: center;
-    margin: 30px!important;
-
-    .send-btn, .download-btn{
-      font-size: 15px;
-      width: 170px!important;
-      height: 45px!important;
-      margin: 30px 15px 40px 15px;
-      padding: 5px;
-    }
+    margin: 0px!important;
   }
     
   .certificate img{

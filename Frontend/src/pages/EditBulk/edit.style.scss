@@ -105,9 +105,9 @@ outline: none!important;
     margin: 0px;
 
     &:hover {
-      color: $primaryColor!important;
+      color: $primaryColor;
       background: #fff;
-      border: 1px solid $primaryColor;
+      border: 1px solid $primaryGreenColor;
       transition: 500ms ease-in-out;
     }
   }

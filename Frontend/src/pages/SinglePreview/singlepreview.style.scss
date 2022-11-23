@@ -22,25 +22,25 @@
 
   &.not-active {
     background: transparent;
-    border: none;
+    border: 1px solid $primaryGreenColor;
 
     &:hover {
       color: #fff;
-      background: $primaryColor;
+      background: $primaryGreenColor;
       border: none;
       transition: 500ms ease-in-out;
     }
   }
 
   &.active {
-    background: $primaryColor;
+    background: $primaryGreenColor;
     color: #fff;
     border: none;
 
     &:hover {
-      color: $primaryColor;
+      color: $primaryGreenColor;
       background: #fff;
-      border: 1px solid $primaryColor;
+      border: 1px solid $primaryGreenColor;
       transition: 500ms ease-in-out;
     }
   }
@@ -68,7 +68,7 @@
     border: 1px solid $primaryColor;
     color: $primaryColor!important;
     &:hover {
-      color: #fff!important;
+      color: #fff;
       background: $primaryColor;
       border: none;
       transition: 500ms ease-in-out;
@@ -77,12 +77,12 @@
 
   &.send-button {
     background: $primaryColor;
-    color: #fff!important;
+    color: #fff;
     border: none;
 
     &:hover {
-      color: $primaryColor!important;
-      background: #fff!important;
+      color: $primaryColor;
+      background: #fff;
       border: 1px solid $primaryColor;
       transition: 500ms ease-in-out;
     }
@@ -102,12 +102,11 @@ h2{
   border-radius: 8px;
   background: transparent;
   border: 1px solid $primaryColor;
-  color: $primaryColor;
   font-family: "Work Sans", sans-serif;
 
   &:hover {
     color: #fff;
-    background: $primaryColor;
+    background: $primaryGreenColor;
     border: none;
     transition: 500ms ease-in-out;
   }

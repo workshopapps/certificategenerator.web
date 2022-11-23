@@ -45,7 +45,7 @@ section {
 .meet {
   margin-left: 100px;
   color: $titleColor;
-  margin-right: 100px;
+  margin-right: 120px;
   font-weight: $normal;
   font-style: $fontStyle;
   font-family: $fontFamily;
@@ -59,7 +59,7 @@ section {
 $width: 292px;
 $height: 333px;
 $flexWrap: wrap;
-$margin: 24px 100px;
+$margin: 24px 120px;
 $figureMargin: 6px;
 $flexDirection: row;
 $boxSizing: border-box;
@@ -75,7 +75,6 @@ $figureBorder: 1px solid #6C6C70;
   display: $display;
   flex-wrap: $flexWrap;
   flex-direction: $flexDirection;
-  justify-content: center;
 }
 
 figure {

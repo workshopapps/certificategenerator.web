@@ -3,7 +3,6 @@ import "./pricing.style.scss";
 import { data } from './data';
 import { Link } from "react-router-dom"
 
-
 function Slider ({ value }) {
 
   const { per } = data[value];

@@ -7,7 +7,7 @@ import '@splidejs/react-splide/css';
 
 
 
-function BulkPreview() {
+function Index() {
   return (
     <div id="bulk-preview">
       {/* BUTTONS TO TOGGLE BETWEEN SINGLE AND BULK CERTIFICATE */}
@@ -125,4 +125,4 @@ function BulkPreview() {
   );
 }
 
-export default BulkPreview;
+export default Index;

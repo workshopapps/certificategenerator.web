@@ -6,7 +6,7 @@ import { Featured } from "./FAQcomp/Featured";
 import { GettingStarted } from "./FAQcomp/GettingStarted";
 import { Uploads } from "./FAQcomp/Uploads";
 import Style from "./faq.module.scss";
-import Button from "../../Component/button";
+import Button from "../../Component/Button";
 
 const FAQ = () => {
   return (

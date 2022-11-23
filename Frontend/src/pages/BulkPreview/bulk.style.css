@@ -1,46 +1,36 @@
-body {
-  text-align: center;
-}
-
 #bulkPreview button {
-  margin: 15px 10px 25px 10px;
+  margin: 35px 20px 45px 20px;
   border-radius: 5px;
-  color: #19a68e;
-  width: 160px;
+  color: #19a6be;
+  width: 140px;
   height: 40px;
   font-size: 12px;
   font-family: "Work Sans", sans-serif;
 }
 #bulkPreview button.send-button {
   background: transparent;
-  border: 1px solid #19a68e;
-  color: #19a68e;
+  border: 1px solid #19a6be;
+  color: #19a6be;
 }
 #bulkPreview button.send-button:hover {
   color: #fff;
-  background: #19a68e;
+  background: #19a6be;
   border: none;
   transition: 500ms ease-in-out;
 }
 #bulkPreview button.download-button {
-  background: #19a68e;
+  background: #19a6be;
   color: #fff;
   border: none;
 }
 #bulkPreview button.download-button:hover {
-  color: #19a68e;
+  color: #19a6be;
   background: #fff;
-  border: 1px solid #19a68e;
+  border: 1px solid #19a6be;
   transition: 500ms ease-in-out;
 }
 #bulkPreview .bulk h2 {
   margin: 40px;
-}
-#bulkPreview .bulk-buttons {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 0px !important;
 }
 #bulkPreview .bulk-images {
   display: flex;
@@ -62,15 +52,9 @@ body {
     width: 100%;
     max-width: 200px;
   }
-  #bulkPreview .bulk-buttons {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    margin: 0px !important;
-  }
 }
 @media screen and (min-width: 1000px) {
   #bulkPreview .bulk-images img {
     max-width: 300px !important;
   }
-}
+}/*# sourceMappingURL=bulk.style.css.map */
