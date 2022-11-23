@@ -128,7 +128,13 @@ export default function Template() {
   return (
     <div className="template-wrapper">
       <header>
-        <h1>Templates</h1>
+        <h1 className="templates-title">Templates</h1>
+        <div className="error-wrapper hideerrorMsg">
+          <div className="error-container">
+            <p className="error-container__message">Oops! It seems like none of the templates match the filters you selected. Please modify your filters or browse the templates manually.</p>
+            <img onClick={hideErrorMsg} src={closeicon} alt="close icon" className="closeicon" />
+        </div>
+        </div>
 
         <div className="top-container-div">
           <p>All results</p>
