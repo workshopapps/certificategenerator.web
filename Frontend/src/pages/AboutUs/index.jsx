@@ -20,6 +20,10 @@ import Gallery4 from '../../assets/images/aboutUs/gallery4.png'
 import Gallery5 from '../../assets/images/aboutUs/gallery5.png'
 import Gallery6 from '../../assets/images/aboutUs/gallery6.png'
 
+// import { Scrollbar } from 'swiper';
+// import {Swiper, SwiperSlide} from 'swiper/react';
+// import 'swiper/css';
+// import 'swiper/css/scrollbar';
 
 // import { Scrollbar } from 'swiper';
 // import {per, SwiperSlide} from 'swiper/react';
