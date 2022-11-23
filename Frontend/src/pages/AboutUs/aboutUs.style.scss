@@ -261,8 +261,8 @@ h6 {
         padding-bottom: 11px;
         }
     .aboutHeroR img {
-        width: 500px;
-        // width: 380px;
+        height: 500px;
+        width: 45%;
         }
     // about
     .aboutAbout {
@@ -345,8 +345,7 @@ h6 {
 @media screen and (max-width:700px) {
     // hero
     .aboutHeroR img {
-        // height: 380px;
-        width: 450px;
+        height: 450px;
     }
     // sevice
     .aboutServiceS {
