@@ -5,10 +5,10 @@
     "title": "CERTIFY API",
     "description": ""
   },
-  "host": "https://certify-api.onrender.com",
+  "host": "certify-api.onrender.com",
   "basePath": "/",
   "schemes": [
-    "http"
+    "https"
   ],
   "paths": {
     "/": {
