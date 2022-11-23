@@ -1,20 +1,21 @@
 @import url("https://fonts.googleapis.com/css2?family=Sora:wght@600&family=Work+Sans:wght@400;500&display=swap");
 
-#Nav{
-h2,
-h3,
-p {
-  margin: 0;
-  font-family: "Work Sans", sans-serif;
-}
 .navbar {
-  margin-bottom: 4rem;
+  margin-bottom: 1.5rem;
   text-align: start;
   position: relative;
   background: #fff;
-  z-index: 999;
+  h2,
+  h3,
+  p,
+  a {
+    margin: 0;
+    font-family: "Work Sans", sans-serif;
+  }
 }
-.container {
+
+.nav-container {
+  width: 90%;
   margin: 0 auto;
   width: 90%;
 }
@@ -46,9 +47,17 @@ p {
     align-items: center;
     .btn {
       display: none;
+      margin: 0;
+      .link {
+        color: white;
+      }
     }
     .bars {
       font-size: 24px;
+    }
+    .times {
+      font-size: 27px;
+      color: #ad2fd0;
     }
   }
 }
@@ -90,6 +99,9 @@ p {
         color:#19a68e;
       }
     }
+    .link:hover {
+      color: #ad2fd0;
+    }
   }
 }
 .show-links {
@@ -99,6 +111,10 @@ p {
   padding-bottom: 10px;
   .btn {
     width: 100%;
+    margin: 0;
+    .link {
+      color: white;
+    }
   }
 }
 
@@ -120,7 +136,8 @@ p {
   .nav-header {
     .nav-click {
       .bars,
-      .btn {
+      .btn,
+      .times {
         display: none;
       }
     }
@@ -136,9 +153,9 @@ p {
     padding: 10px 20px;
     box-shadow: 0px 0.5px 5px rgba(34, 34, 34, 0.25);
   }
-  .container {
+  .nav-container {
     width: 100%;
-    margin: 0 ;
+    margin: 0;
   }
   .links-container {
     height: auto !important;
@@ -167,5 +184,4 @@ p {
     display: block;
     padding: 0;
   }
-}
 }

@@ -107,35 +107,53 @@ h2 {
   
   .certificate img{
       width: 100%!important;;
-      max-width: 400px!important;;
+      max-width: 300px!important;;
   }
 
 // CERTIFICATE IMAGES
 
-.bulk-images {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 
-  &.bulk-images img {
-    margin: 10px;
-    margin: 15px;
-    width: 80%;
-    height: auto;
-  }
+#bulk-images-desktop img{
+  width: 100%;
+  max-width: 350px;
+  height: auto;
+  margin:20px;
+  margin-left: 100px;
+  overflow: hidden;
+  
+
 }
 
+#template1{
+  margin: 50px;
+  padding: 0px 0px;
+  border: 5px solid $primaryColor!important;
+
+}
+
+
+@media screen and (min-width: 500px) {
+.certificate img{
+  min-width:450px;
+}
+}
 @media screen and (min-width: 768px) {
-  .bulk-images {
-    flex-direction: row;
-    justify-content: center;
-
-    &.bulk-images img {
-      width: 100%;
-      max-width: 200px;
-    }
-
+  .button-container button{
+    font-size: 15px;
+    width: 170px;
+    height: 45px;
+    margin: 10px 15px 20px 15px;
   }
+ 
+  .certificate img{
+    min-width:600px;
+  }
+
+  .certificate h1, h2{
+    font-size: 30px;
+    margin: 30px;
+      }
+
 
   .bulk-buttons{
     display: flex;
@@ -151,14 +169,7 @@ h2 {
 
   
 #bulk-images-desktop img{
-  display: block;
-  width: 100%;
-  max-width: 400px;
-  height: auto;
-  margin:20px;
-  margin-left: 150px;
-  overflow: hidden;
-  
+  margin-left: 150px;  
 
 }
 
@@ -190,7 +201,9 @@ border-radius: 10px;
 }
 
 @media screen and (min-width: 1024px) {
-
+  .certificate img{
+    max-width:700px;
+  }
 
   .bulk-images img {
     max-width: 300px !important;
