@@ -38,13 +38,25 @@ function EditBulk() {
               id="Certificate of completion"
             >
               <option value="Certificate of completion">
-                Certificate of completion
+                Certificate of Completion
               </option>
-              <option value="Certificate of completion">
-                Certificate of completion
+              <option value="Certificate of achievement">
+                Certificate of Achievement
               </option>
-              <option value="Certificate of completion">
-                Certificate of completion
+              <option value="Certificate of appreciation">
+                Certificate of Appreciation
+              </option>
+              <option value="employee of the year">
+                Employee of the Year
+              </option>
+              <option value="employee of the month">
+                Employee of the Month
+              </option>
+              <option value="employee of the week">
+                Employee of the Week
+              </option>
+              <option value="custom certificate">
+                Custom Certificate 
               </option>
             </select>
           </div>
