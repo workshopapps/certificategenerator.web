@@ -20,24 +20,26 @@ const ContactUs = () => {
             <ContactChatIcon />
             <div className="contact__info--itemText">
               <h4 className="contact__info--key">Chat with customer suport</h4>
-              <p className="contact__info--address">Chat with sales team</p>
-              <span>support@certawi.com</span>
+              <span>Chat with sales team</span>
+              <p className="contact__info--address">support@certawi.com</p>
             </div>
           </div>
           <div className="contact__info--item">
             <ContactLocationIcon />
             <div className="contact__info--itemText">
               <h4 className="contact__info--key">Visit us</h4>
-              <p className="contact__info--address">Visit our office</p>
-              <span>121 vincent str., lagos</span>
+              <span >Visit our office</span>
+              <p className="contact__info--address">
+                121 vincent str., lagos
+              </p>
             </div>
           </div>
           <div className="contact__info--item">
             <ContactPhoneIcon />
             <div className="contact__info--itemText">
               <h4 className="contact__info--key">Call us</h4>
-              <p className="contact__info--address">Mon-Fri from 8am-6pm</p>
-              <span>+234900-000-000</span>
+              <span>Mon-Fri from 8am-6pm</span>
+              <p className="contact__info--address">+234900-000-000</p>
             </div>
           </div>
         </div>
