@@ -1,0 +1,147 @@
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  padding-left: 2.25em;
+  width: 22%;
+  color: #333;
+  background: #ffffff;
+  box-shadow: 0px 0.5px 5px rgba(34, 34, 34, 0.25);
+}
+.sidebar h1,
+.sidebar h3,
+.sidebar h5 {
+  margin: 0.3em 0;
+}
+.sidebar h5 {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 18px;
+  margin-bottom: 1em;
+}
+.sidebar .colorScheme {
+  width: 85%;
+}
+.sidebar .colorScheme div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 9px;
+}
+.sidebar .colorScheme div.selection {
+  height: 2em;
+}
+.sidebar .colorScheme div.secondaryColor .colorHex {
+  margin-left: 24px;
+}
+.sidebar .colorScheme div span.colorCircle {
+  height: 20px;
+  width: 20px;
+  display: inline-block;
+  border-radius: 50%;
+}
+.sidebar .colorScheme div span.colorHex {
+  width: 6em;
+  height: 27px;
+  border: 1px solid #808080;
+  border-radius: 5px;
+  padding-left: 12px;
+}
+.sidebar form {
+  width: 85%;
+}
+.sidebar ul {
+  list-style-type: none;
+}
+.sidebar ul label {
+  margin-top: 1.5em;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 16px;
+  display: block;
+}
+.sidebar ul input,
+.sidebar ul select,
+.sidebar ul textarea {
+  height: 35px;
+  border: 1px solid #222222;
+  border-radius: 5px;
+  padding: 10px;
+}
+.sidebar ul textarea {
+  height: 4.5em;
+}
+.sidebar ul input,
+.sidebar ul textarea {
+  margin: 5px 0 1em 0;
+  width: 100%;
+}
+.sidebar ul input.long,
+.sidebar ul textarea.long {
+  display: block;
+}
+.sidebar ul select {
+  display: inline-block;
+}
+.sidebar ul select.medium {
+  width: 65%;
+  margin-right: 10%;
+}
+.sidebar ul select.short {
+  width: 25%;
+}
+.sidebar ul input[type=reset] {
+  background: none;
+  border: none;
+  padding-right: 0;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  float: right;
+  color: #fb4343;
+}
+.sidebar ul input[type=reset]:hover {
+  cursor: pointer;
+  opacity: 0.6;
+}
+
+.dragBox {
+  width: 100%;
+  height: 10em;
+  margin-top: 0.6em;
+  border: 1px dashed #7b41b4;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.dragBox .or {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: -1em;
+}
+.dragBox .or hr {
+  width: 40%;
+  display: inline;
+  height: 1px;
+  margin: 0 1em;
+}
+.dragBox .fileUpload {
+  background-color: #19a68e;
+  color: #fff;
+  border-radius: 10px;
+  padding: 1em 1.25em;
+  cursor: inherit;
+}
+.dragBox .fileUpload input[type=file] {
+  display: none;
+}
+.dragBox:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}/*# sourceMappingURL=sidebar.style.css.map */

@@ -25,6 +25,9 @@
   flex-direction: column;
   gap: 1rem;
 }
+.dashboard__align-start {
+  text-align: start;
+}
 .dashboard__text {
   font-size: 14px;
   font-weight: 400;
@@ -42,6 +45,9 @@
   font-size: 12px;
   color: #6c6c70;
   line-height: 20px;
+}
+.dashboard__btn {
+  text-align: start;
 }
 .dashboard__btn > button {
   all: unset;
@@ -110,7 +116,7 @@
   border-collapse: collapse;
 }
 .dashboard .table-wrapper .table table tr {
-  border-bottom: 1px solid lightgray;
+  border-bottom: 1px solid #EFEFEF;
 }
 .dashboard .table-wrapper .table table th {
   font-size: 12px;
@@ -151,6 +157,9 @@
 }
 
 @media screen and (min-width: 780px) {
+  .dashboard {
+    padding: 1.5rem 0 4rem 0;
+  }
   .dashboard__title {
     font-size: 23px;
     margin-bottom: 0.5rem;
@@ -161,16 +170,15 @@
   }
   .dashboard__hero-section {
     width: 90%;
-    margin: 0 auto 1rem auto;
+    margin: 0 auto 1.2rem auto;
   }
-  .dashboard__hero-section .flexx {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-end;
+  .dashboard__profile-pic {
+    border-radius: 50%;
+    overflow: hidden;
   }
   .dashboard__cards {
     width: 90%;
-    margin: 0 auto 1rem auto;
+    margin: 0 auto 1.2rem auto;
     grid-template-columns: 1fr 1fr 1fr;
   }
   .dashboard .table-wrapper {
@@ -194,11 +202,13 @@
   }
 }
 .card {
-  padding: 1rem;
+  padding: 1.5rem 1rem;
   border-radius: 12px;
+  text-align: start;
 }
 .card p {
-  margin-bottom: 1rem;
+  margin: 0;
+  margin-bottom: 1.5rem;
   font-weight: 500;
   line-height: 1.5rem;
   font-size: 12px;
@@ -209,7 +219,7 @@
   align-items: center;
   gap: 1rem;
 }
-.card .icon-wrapper .icon {
+.card .icon-wrapper .icon-dash {
   background-color: #19a6be;
   display: flex;
   width: 40px;

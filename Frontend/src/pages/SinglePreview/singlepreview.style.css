@@ -1,118 +1,169 @@
-.button-container button {
-  margin: 35px 10px;
+#singlePreview {
+  text-align: center !important;
+}
+#singlePreview .button-container {
+  display: block !important;
+  margin-top: 0px !important;
+  padding: 10px;
+}
+#singlePreview .button-container button {
+  margin: 0px 10px 15px 10px;
   height: 37px;
   width: 150px;
   border-radius: 10px;
   font-family: "Work Sans", sans-serif;
 }
-.button-container button.not-active {
+#singlePreview .button-container button.not-active {
   background: transparent;
   border: 1px solid #19a6be;
 }
-.button-container button.not-active:hover {
+#singlePreview .button-container button.not-active:hover {
   color: #fff;
   background: #19a6be;
   border: none;
   transition: 500ms ease-in-out;
 }
-.button-container button.active {
+#singlePreview .button-container button.active {
   background: #19a6be;
   color: #fff;
   border: none;
 }
-.button-container button.active:hover {
+#singlePreview .button-container button.active:hover {
   color: #19a6be;
   background: #fff;
   border: 1px solid #19a6be;
   transition: 500ms ease-in-out;
 }
-
-.certificate h1 {
-  font-size: 30px;
-  font-weight: 500;
-  margin: 5px 0px 30px 0px;
+#singlePreview .certificate {
+  text-align: center !important;
 }
-
-.certificate button {
-  margin: 35px 20px 45px 20px;
+#singlePreview .certificate h1 {
+  font-size: 20px;
+  font-weight: 500;
+  margin: 0px 0px 45px 0px;
+}
+#singlePreview .certificate button {
+  margin: 35px 20px 0px 20px;
   border-radius: 5px;
-  color: #19a6be;
+  color: #19a68e !important;
   width: 140px;
   height: 35px;
   font-size: 12px;
 }
-.certificate button.download-button {
+#singlePreview .certificate button.download-button {
   background: transparent;
-  border: 1px solid #19a6be;
-  color: #19a6be;
+  border: 1px solid #19a68e;
+  color: #19a68e !important;
 }
-.certificate button.download-button:hover {
+#singlePreview .certificate button.download-button:hover {
   color: #fff;
-  background: #19a6be;
+  background: #19a68e;
   border: none;
   transition: 500ms ease-in-out;
 }
-.certificate button.send-button {
-  background: #19a6be;
+#singlePreview .certificate button.send-button {
+  background: #19a68e;
   color: #fff;
   border: none;
 }
-.certificate button.send-button:hover {
-  color: #19a6be;
+#singlePreview .certificate button.send-button:hover {
+  color: #19a68e;
   background: #fff;
-  border: 1px solid #19a6be;
+  border: 1px solid #19a68e;
   transition: 500ms ease-in-out;
 }
-
-.explore-button {
-  width: 170px;
-  padding: 10px;
+#singlePreview h2 {
+  font-size: 20px;
+  margin: 30px;
+}
+#singlePreview .explore-button {
+  width: 180px;
+  height: 40px;
+  margin: 30px;
+  text-align: center;
   border-radius: 8px;
   background: transparent;
-  border: 1px solid #19a6be;
+  border: 1px solid #19a68e;
   font-family: "Work Sans", sans-serif;
 }
-.explore-button:hover {
+#singlePreview .explore-button:hover {
   color: #fff;
   background: #19a6be;
   border: none;
   transition: 500ms ease-in-out;
 }
-
-.certificate img {
+#singlePreview .certificate img {
   width: 100%;
   height: auto;
-  max-width: 400px;
+  max-width: 300px;
 }
-
-.single-images {
+#singlePreview .single-images {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.single-images.single-images img {
+#singlePreview .single-images.single-images img {
   margin: 15px;
   width: 80%;
   height: auto;
 }
-
 @media screen and (min-width: 768px) {
-  .certificate img {
+  #singlePreview .certificate h1 {
+    font-size: 30px;
+  }
+  #singlePreview h2 {
+    font-size: 30px;
+  }
+  #singlePreview .button-container button {
+    font-size: 15px;
+    width: 170px;
+    height: 45px;
+    margin: 10px 15px 20px 15px;
+  }
+  #singlePreview .certificate button {
+    font-size: 15px;
+    width: 170px;
+    height: 40px;
+    margin: 30px 15px 40px 15px;
+  }
+  #singlePreview .certificate img {
     width: 100%;
     height: auto;
     max-width: 600px;
   }
-  .single-images {
+  #singlePreview .single-images {
     flex-direction: row;
     justify-content: center;
   }
-  .single-images img {
+  #singlePreview .single-images img {
     width: 100%;
-    max-width: 200px;
+    max-width: 250px;
   }
 }
-@media screen and (min-width: 1000px) {
-  .single-images img {
+@media screen and (min-width: 1024px) {
+  #singlePreview .button-container button {
+    font-size: 18px;
+    width: 200px;
+    height: 50px;
+    margin: 10px 15px 40px 15px;
+  }
+  #singlePreview .certificate button {
+    font-size: 18px;
+    width: 200px;
+    height: 50px;
+    margin: 30px 15px 40px 15px;
+  }
+  #singlePreview .certificate img {
+    width: 100%;
+    height: auto;
+    max-width: 700px;
+  }
+  #singlePreview .single-images img {
     max-width: 300px;
+  }
+  #singlePreview .explore-button {
+    width: 240px;
+    height: 55px;
+    font-size: 18px;
   }
 }/*# sourceMappingURL=singlepreview.style.css.map */
