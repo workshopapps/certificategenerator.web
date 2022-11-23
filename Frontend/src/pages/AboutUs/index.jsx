@@ -28,7 +28,7 @@ const aboutUs = () => {
       <div className="aboutHero">
         <div className="aboutHeroL">
           <h1>We are a team of Creators and Innovators </h1>
-          <h4>Certawi helps you generate certificates of different shapes and colors, you can also customize your own certificate with certawi</h4>
+          <h4>Certify helps you generate certificates of different shapes and colors, you can also customize your own certificate with Certify</h4>
           <Link className="btn">Learn More</Link>
         </div>
         <div className="aboutHeroR">
@@ -41,14 +41,14 @@ const aboutUs = () => {
           <img src={Gallery2} alt="" />
         </div>
         <div className="aboutAboutD">
-          <h3>About Certawi</h3>
-          <h4>Certawi is a full-featured online platform aimed at generating digital credentials and certificates for schools, businesses and organizations. We offer a complete and easy to use certificate management system. Certawi provides high quality templates with great designs as well as variety of customization options. Generate stunning certificates for your students, employees or colleagues with our online tool, today.</h4>
+          <h3>About Certify</h3>
+          <h4>Certify is a full-featured online platform aimed at generating digital credentials and certificates for schools, businesses and organizations. We offer a complete and easy to use certificate management system. Certify provides high quality templates with great designs as well as variety of customization options. Generate stunning certificates for your students, employees or colleagues with our online tool, today.</h4>
           <Link className="btn">Learn More</Link>
         </div>
       </div>
       
       <div className="aboutValue">
-        <h2>Testiomonial</h2>
+        <h2>Testimonial</h2>
         <h4 id="vh4">What our customers have to say about us</h4>
         <div className="aboutValueS">
           <div  className="aboutValueCard">

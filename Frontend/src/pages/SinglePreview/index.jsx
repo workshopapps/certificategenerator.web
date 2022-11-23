@@ -12,7 +12,7 @@ function Index() {
       {/* BUTTONS TO TOGGLE BETWEEN SINGLE AND BULK CERTIFICATE */}
 
       <div className="button-container">
-        <Link to="/single_preview">
+        <Link to="/">
           <button className="active">Single Certificate</button>
         </Link>
         <Link to="/edit_bulk">
@@ -22,7 +22,7 @@ function Index() {
 
       {/* IMAGE OF YOUR CERTIFICATE READY TO BE DOWNLOADED OR SENT */}
 
-      <div className="certificate">
+      <div className="certificate-hero">
         <h1>Your certificate is ready!</h1>
         <img src={certificate} alt="certificate" />
 

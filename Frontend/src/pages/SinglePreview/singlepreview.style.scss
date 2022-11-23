@@ -21,41 +21,41 @@
  
 
   &.not-active {
-    background: transparent;
-    border: 1px solid $primaryGreenColor;
+    background: transparent!important;
+    border: 1px solid $primaryColor!important;
 
     &:hover {
-      color: #fff;
-      background: $primaryGreenColor;
-      border: none;
+      color: #fff!important;
+      background: $primaryColor!important;
+      border: none!important;
       transition: 500ms ease-in-out;
     }
   }
 
   &.active {
-    background: $primaryGreenColor;
-    color: #fff;
-    border: none;
+    background: $primaryColor!important;
+    color: #fff!important;
+    border: none!important;
 
     &:hover {
-      color: $primaryGreenColor;
-      background: #fff;
-      border: 1px solid $primaryGreenColor;
+      color: $primaryColor!important;
+      background: #fff!important;
+      border: 1px solid $primaryColor!important;
       transition: 500ms ease-in-out;
     }
   }
 }
-.certificate{
+.certificate-hero{
   text-align:center!important;
   
   }
-.certificate h1 {
+.certificate-hero h1 {
   font-size: 20px;
   font-weight: 500;
   margin: 0px 0px 45px 0px;
 }
 
-.certificate button {
+.certificate-hero button {
   margin: 35px 20px 0px 20px;
   border-radius: 5px;
   color: $primaryColor!important;
@@ -64,26 +64,26 @@
   font-size: 12px;
 
   &.download-button {
-    background: transparent;
-    border: 1px solid $primaryColor;
+    background: transparent!important;
+    border: 1px solid $primaryColor!important;
     color: $primaryColor!important;
     &:hover {
-      color: #fff;
-      background: $primaryColor;
-      border: none;
+      color: #fff!important;
+      background: $primaryColor!important;
+      border: none!important;
       transition: 500ms ease-in-out;
     }
   }
 
   &.send-button {
-    background: $primaryColor;
-    color: #fff;
-    border: none;
+    background: $primaryColor!important;
+    color: #fff!important;
+    border: none!important;
 
     &:hover {
-      color: $primaryColor;
-      background: #fff;
-      border: 1px solid $primaryColor;
+      color: $primaryColor!important;
+      background: #fff!important;
+      border: 1px solid $primaryColor!important;
       transition: 500ms ease-in-out;
     }
   }
@@ -106,15 +106,15 @@ h2{
 
   &:hover {
     color: #fff;
-    background: $primaryGreenColor;
+    background: $primaryColor!important;
     border: none;
     transition: 500ms ease-in-out;
   }
 }
 
-// CERTIFICATE IMAGES
+// certificate-hero IMAGES
 
-.certificate img {
+.certificate-hero img {
   width: 100%;
   height: auto;
   max-width: 300px;
@@ -133,9 +133,26 @@ h2{
   }
 }
 
+@media screen and (min-width: 500px) {
+  .certificate-hero img{
+    min-width:450px;
+  }
+
+  .certificate-hero button {
+    width: 160px;
+    height: 40px;
+    font-size: 13px;
+  }
+  .certificate-hero h1, h2{
+font-size: 22px;
+  }
+
+  
+  }
+
 @media screen and (min-width: 768px) {
-  // CERTIFICATE IMAGES
-.certificate h1{
+  // certificate-hero IMAGES
+.certificate-hero h1{
   font-size: 30px;
  
 }
@@ -150,14 +167,14 @@ h2{
   height: 45px;
   margin: 10px 15px 20px 15px;
 }
-.certificate button{
+.certificate-hero button{
   font-size: 15px;
   width: 170px;
   height: 40px;
   margin: 30px 15px 40px 15px;
 }
 
-.certificate img {
+.certificate-hero img {
     width: 100%;
     height: auto;
     max-width: 600px;
@@ -180,13 +197,13 @@ h2{
     height: 50px;
     margin: 10px 15px 40px 15px;
   }
- .certificate button{
+ .certificate-hero button{
     font-size: 18px;
     width: 200px;
     height: 50px;
     margin: 30px 15px 40px 15px;
   }
-  .certificate img {
+  .certificate-hero img {
     width: 100%;
     height: auto;
     max-width: 700px;
