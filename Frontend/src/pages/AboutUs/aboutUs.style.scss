@@ -262,7 +262,7 @@ h6 {
         }
     .aboutHeroR img {
         height: 500px;
-        width: 45%;
+        width: 350px;
         }
     // about
     .aboutAbout {
@@ -345,6 +345,7 @@ h6 {
 @media screen and (max-width:700px) {
     // hero
     .aboutHeroR img {
+        width: 320px;
         height: 450px;
     }
     // sevice
