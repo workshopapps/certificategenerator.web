@@ -86,7 +86,7 @@ const aboutUs = () => {
 
         <div className="aboutService">
           <h3>Our Services</h3>
-          {/* <hr className='aboutstroke' /> */}
+          <hr className='aboutstroke' />
           <div className="aboutServiceS">
             <div className="aboutServiceCard">
                 <img src={Service1} alt="" />
@@ -122,7 +122,7 @@ const aboutUs = () => {
 
         <div id="mission" className="aboutAbout">
         <div className="aboutAboutD">
-          <h3>Misssion</h3>
+          <h3>Mission</h3>
           <h4>We strive to offer customers a quick and user friendly digital certificate generation process. Our aim is to provide a single trustworthy and efficient online certificate maker tool. Or team of highly trained professionals is ready to help you represent your achievements with beautiful certificate.</h4>
           <Link className="btn">Learn More</Link>
         </div>
@@ -133,7 +133,7 @@ const aboutUs = () => {
       </div>
         <div className="aboutGallery">
           <h3>Our Gallery</h3>
-          {/* <hr className='aboutstroke'/> */}
+          <hr className='aboutstroke'/>
           <div className="aboutGalleryS">
             <img src={Gallery1} alt="" />
             <img src={Gallery2} alt="" />
