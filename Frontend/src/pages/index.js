@@ -20,3 +20,5 @@ export { default as Career } from './Career';
 
 export { default as Pricing } from "./Pricing";
 export { default as Profile } from "./Profile";
+export {default as UploadCSV} from './UploadCSV';
+
