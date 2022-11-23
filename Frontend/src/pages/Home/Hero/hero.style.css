@@ -51,17 +51,19 @@ body {
   margin: auto;
 }
 
-.hero-text {
+.hero {
+  padding-top: 80px;
+}
+.hero .hero-left {
+  width: 533px;
+  height: 328px;
+  text-align: left;
+}
+.hero .hero-left .hero-text {
   font-weight: 700;
   font-size: 48px;
   line-height: 60px;
   margin-bottom: 20px;
-}
-
-.hero-left {
-  width: 533px;
-  height: 328px;
-  text-align: left;
 }
 
 .gap {
@@ -76,6 +78,11 @@ body {
   border-radius: 10px;
   color: #FFFFFF;
   margin-top: 32px;
+  text-align: center;
+}
+
+.perks {
+  padding: 20px 0 0 0;
 }
 
 .tick {
@@ -93,10 +100,14 @@ body {
 .partner-head {
   padding: 120px 0 32px 0;
   font-weight: 700;
+  text-align: center;
 }
 
 @media screen and (max-width: 768px) and (min-width: 481px) {
-  .hero-text {
+  .hero {
+    padding-top: 40px;
+  }
+  .hero-left .hero-text {
     font-size: 32px;
     line-height: 40px;
   }
@@ -104,6 +115,9 @@ body {
     width: 45%;
     height: 100%;
     margin-left: 50px;
+  }
+  .perks {
+    padding-top: 40%;
   }
   .partners {
     width: 90%;
@@ -120,4 +134,37 @@ body {
   .hero-img {
     display: none;
   }
+<<<<<<< HEAD
+=======
+  .hero {
+    padding-top: 40px;
+    text-align: center;
+  }
+  .hero-left {
+    width: 100vw;
+    height: 20% !important;
+    text-align: center;
+  }
+  .hero-text {
+    font-size: 24px !important;
+    line-height: 30px !important;
+    text-align: center;
+  }
+  .hero-caption {
+    text-align: center;
+  }
+  .hero-button {
+    width: 90%;
+  }
+  .perks {
+    flex-direction: column;
+    padding-top: 50px;
+  }
+  .partner-head {
+    padding: 60px 0 25px 0;
+  }
+  .partners {
+    overflow: scroll;
+  }
+>>>>>>> e449f28319e16d4352c7d1debf51cd9cc977eab4
 }/*# sourceMappingURL=hero.style.css.map */

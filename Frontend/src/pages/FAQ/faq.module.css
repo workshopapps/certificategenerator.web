@@ -28,6 +28,7 @@
 .faqContainer h2 {
   font-size: 1.2rem;
   margin-bottom: 1rem;
+  text-align: left;
 }
 .faqContainer .faqWrapper {
   box-shadow: 0px 4px 14px rgba(82, 77, 77, 0.2);
@@ -53,6 +54,7 @@
   line-height: 1.5;
   font-weight: 500;
   font-size: 0.75rem;
+  text-align: left;
 }
 .faqContainer .faqWrapper .faqQuestions .question .faqIcon {
   width: 50px;
@@ -72,6 +74,7 @@
 .faqContainer .faqWrapper .faqAnswers li {
   line-height: 1.5;
   font-size: 0.9rem;
+  text-align: left;
 }
 
 @media screen and (min-width: 481px) {

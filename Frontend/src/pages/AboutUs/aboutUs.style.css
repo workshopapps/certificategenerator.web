@@ -64,16 +64,12 @@
   line-height: 23px;
   letter-spacing: -0.004em;
 }
-
-.aboutstroke {
+#aboutUs .aboutstroke {
   background: #19A68E;
   align-items: center;
   border-radius: 8px;
   width: 114px;
   height: 10px;
-}
-#aboutUs .aboutNav {
-  height: 100px;
 }
 #aboutUs .aboutHero {
   display: flex;
@@ -143,8 +139,8 @@
   overflow: scroll;
 }
 #aboutUs .aboutValueCard {
-  width: 500px;
-  height: 240px;
+  width: 600px;
+  height: 300px;
   position: relative;
   border-radius: 5px;
   padding: 30px 45px 33px 32px;
@@ -201,10 +197,6 @@
 #aboutUs .aboutGalleryS img {
   width: 100%;
 }
-#aboutUs .aboutFooter {
-  height: 443px;
-  background: #08372F;
-}
 @media screen and (max-width: 1024px) {
   #aboutUs h1 {
     font-size: 32px;
@@ -222,13 +214,6 @@
 #aboutUs h6 {
     font-size: 14px;
     line-height: 16px;
-  }
-  #aboutUs .btn {
-    width: 111px;
-    padding: 17.5px 26px;
-  }
-  #aboutUs .aboutNav {
-    height: 68px;
   }
   #aboutUs .aboutHero {
     padding: 0 44px;
@@ -265,15 +250,14 @@
     padding: 0 10%;
   }
   #aboutUs .aboutValueCard {
-    width: 360px;
-    height: 180px;
+    width: 480px;
+    height: 220px;
     border-radius: 10px;
     padding: 24px 19px 24px 16px;
   }
   #aboutUs .aboutValueCardD {
-    display: flex;
-    gap: 16px;
-    bottom: 24px;
+    gap: 22px;
+    bottom: 20px;
   }
   #aboutUs .aboutValueS {
     gap: 28px;
@@ -315,9 +299,6 @@
   #aboutUs .aboutGalleryS img {
     width: 100%;
   }
-  #aboutUs .aboutFooter {
-    height: 834px;
-  }
 }
 @media screen and (max-width: 800px) {
   #aboutUs .aboutHeroR img {
@@ -357,16 +338,11 @@
     line-height: 12px;
   }
   #aboutUs .btn {
-    width: 110px;
-    padding: 14px 20px;
     font-size: 16px;
     line-height: 19px;
   }
-  #aboutUs .stroke {
+  #aboutUs .aboutstroke {
     width: 50px;
-  }
-  #aboutUs .aboutNav {
-    height: 64px;
   }
   #aboutUs .aboutHero {
     padding: 0 24px;
@@ -381,8 +357,11 @@
   #aboutUs .aboutAbout {
     display: flex;
     flex-direction: column;
-    padding: 0 24px 48px;
+    padding: 24px 24px 48px;
     gap: 48px;
+  }
+  #aboutUs #mission {
+    flex-direction: column-reverse;
   }
   #aboutUs .aboutAboutD {
     width: 100%;
@@ -408,8 +387,8 @@
     padding-top: 35px;
   }
   #aboutUs .aboutValueCard {
-    width: 180px;
-    height: 128px;
+    width: 240px;
+    height: 140px;
     padding: 16px 10px 13px;
   }
   #aboutUs #v1h4 {
@@ -419,6 +398,7 @@
   }
   #aboutUs .aboutValueCardD {
     gap: 5px;
+    bottom: 16px;
   }
   #aboutUs .aboutValueCardD img {
     height: 30px;
@@ -455,9 +435,6 @@
     padding-top: 49px;
     gap: 20px;
     grid-template-columns: 1fr 1fr;
-  }
-  #aboutUs .aboutFooter {
-    height: 1785px;
   }
 }
 @media screen and (max-width: 480px) {

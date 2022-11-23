@@ -1,55 +1,107 @@
 @import url("https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=Work+Sans:wght@400;500;700&display=swap");
-#testimonials .flex {
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  max-width: 100%;
+  color: #222222;
+}
+
+.flex {
   display: flex;
 }
-#testimonials .justify-between {
+
+.justify-between {
   justify-content: space-between;
 }
-#testimonials .grid {
+
+.grid {
   display: grid;
 }
-#testimonials .work-sans {
+
+.work-sans {
   font-family: "Work sans";
 }
-#testimonials .sora {
+
+.sora {
   font-family: "Sora";
 }
-#testimonials .line-height {
+
+.line-height {
   line-height: 24px;
 }
-#testimonials .emphasized {
-  color: #19a68e;
+
+.emphasized {
+  color: #19A68E;
 }
-#testimonials .text-left {
+
+.text-left {
   text-align: left;
 }
-#testimonials .items-center {
+
+.items-center {
   align-items: center;
 }
-#testimonials .center {
+
+.center {
   width: 90%;
   margin: auto;
 }
-#testimonials .testimonial-header {
+
+.testimonial-header {
   font-weight: 700;
   font-size: 48px;
   line-height: 60px;
   padding: 120px 0 16px 0;
+  text-align: center;
 }
-#testimonials .testimonial-caption {
+
+.testimonial-caption {
   font-size: 24px;
   line-height: 32px;
   padding-bottom: 40px;
+  text-align: center;
 }
-#testimonials .container {
+
+.testimonial-container {
   width: 343px;
   height: 329px;
   border: 1px solid rgba(73, 73, 73, 0.4);
   border-radius: 24px;
   padding: 40px 25px 0 25px;
 }
+
+.testimonial-bottom {
+  padding-bottom: 120px !important;
+  background-color: white !important;
+}
+
 @media screen and (max-width: 768px) and (min-width: 481px) {
-  #testimonials .testimonials {
+  .testimonials {
     overflow-x: scroll;
   }
+<<<<<<< HEAD
+=======
+}
+@media screen and (max-width: 480px) {
+  .testimonials {
+    flex-direction: column;
+    width: 70% !important;
+    margin: auto !important;
+  }
+  .testimonial-header {
+    font-size: 24px;
+    line-height: 30px;
+  }
+  .testimonial-caption {
+    font-size: 16px;
+    line-height: 24px;
+  }
+  .testimonial-bottom {
+    margin-bottom: 52px !important;
+  }
+>>>>>>> e449f28319e16d4352c7d1debf51cd9cc977eab4
 }/*# sourceMappingURL=testimonials.style.css.map */

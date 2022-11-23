@@ -1,5 +1,5 @@
-@import "../../../Style/variables";
-@import "../dashboard.style.scss";
+@use "../../../Style/variables" as *;
+@use "../dashboard.style.scss" as *;
 @import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap");
 
 .card {

@@ -239,6 +239,7 @@ p {
     font-size: 16px;
   }
 }
+<<<<<<< HEAD
 .career__container .section2 {
   background: #E8F6F4;
   margin-top: 3rem;
@@ -352,6 +353,8 @@ p {
     height: 116px;
   }
 }
+=======
+>>>>>>> e449f28319e16d4352c7d1debf51cd9cc977eab4
 .career__container .section3 {
   margin-top: 3rem;
   padding: 2rem 6.25rem;
@@ -493,7 +496,6 @@ p {
   height: 3rem;
   width: 100%;
   border-radius: 10px;
-  margin-top: 1rem;
 }
 .career__container .section4 form .search__wrapper .input__div img {
   width: 1.5rem;

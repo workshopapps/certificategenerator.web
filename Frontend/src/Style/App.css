@@ -6,13 +6,20 @@
   box-sizing: border-box;
 }
 
-body, html {
+body,
+html {
   position: relative;
   overflow-x: hidden;
 }
 
 body {
-  background: #F8FFFE;
+  background: #f8fffe;
   font-family: "Work Sans", sans-serif;
   width: 100%;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }/*# sourceMappingURL=App.css.map */
