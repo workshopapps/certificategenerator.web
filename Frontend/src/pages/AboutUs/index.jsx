@@ -86,7 +86,7 @@ const aboutUs = () => {
 
         <div className="aboutService">
           <h3>Our Services</h3>
-          <hr className='aboutstroke' />
+          {/* <hr className='aboutstroke' /> */}
           <div className="aboutServiceS">
             <div className="aboutServiceCard">
                 <img src={Service1} alt="" />
@@ -131,10 +131,9 @@ const aboutUs = () => {
         </div>
 
       </div>
-
         <div className="aboutGallery">
           <h3>Our Gallery</h3>
-          <hr className='aboutstroke'/>
+          {/* <hr className='aboutstroke'/> */}
           <div className="aboutGalleryS">
             <img src={Gallery1} alt="" />
             <img src={Gallery2} alt="" />
@@ -144,11 +143,6 @@ const aboutUs = () => {
             <img src={Gallery6} alt="" />
           </div>
         </div>
-
-        {/* <div className="aboutFooter">
-          footer
-        </div> */}
-
 
       <Outlet/>
     </div>
