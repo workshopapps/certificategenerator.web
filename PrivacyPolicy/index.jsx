@@ -1,4 +1,4 @@
-import "../PrivacyPolicy/privacy-policy.scss"
+import "./privacy-policy.scss"
 
 import React from 'react'
 import { useState } from "react"
