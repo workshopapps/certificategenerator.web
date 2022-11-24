@@ -2,14 +2,18 @@ import React from "react";
 import { Link } from "react-router-dom";
 import certificate from "./images/Completion - Portrait (2).png";
 import "./bulk.style.scss";
+import { Splide, SplideSlide } from '@splidejs/react-splide';
+import '@splidejs/react-splide/css';
 
-function BulkPreview() {
+
+
+function Index() {
   return (
-    <div id="bulkPreview" className="bulk">
+    <div id="bulk-preview">
       {/* BUTTONS TO TOGGLE BETWEEN SINGLE AND BULK CERTIFICATE */}
 
       <div className="button-container">
-        <Link to="/single_preview">
+        <Link to="/">
           <button className="not-active">Single Certificate</button>
         </Link>
         <button className="active">Bulk Certificate</button>
@@ -25,20 +29,100 @@ function BulkPreview() {
       {/* PREVIEW OF BULK GENERATED CERTIFICATES  */}
 
       <h2>Preview of Generated Certificates (120 recipents)</h2>
-      <div className="bulk-images">
-        <img src={certificate} alt="templates" />
-        <img src={certificate} alt="templates" />
-        <img src={certificate} alt="templates" />
-      </div>
 
-      {/* BUTTONS TO DOWNLOAD OR SHARE THE CRETIFICATES */}
+     
+<section id ="bulk-images-desktop">
+<Splide
+      options={ {
+        
+        rewind: true,
+        gap   : '10px',
+        perPage:4,
+        drag:'free',
+        arrows:false,
+        pagination:false,
+       breakpoints:{
+        640:{
+          perPage:2,
+        },
+        768:{
+          perPage:3
+        }
+       }
+      } }>
 
-      <div className="bulk-buttons">
-        <button className="download-button">Download Certificates</button>
-        <button className="send-button">Send Certificates</button>
+      <SplideSlide>
+        <img  id ="template1" src={certificate} alt="certificates"/>
+      </SplideSlide>
+      <SplideSlide>
+        <img src={certificate} alt="certificates"/>
+      </SplideSlide>
+      <SplideSlide>
+        <img src={certificate} alt="certificates"/>
+      </SplideSlide>
+      <SplideSlide>
+        <img src={certificate} alt="certificates"/>
+      </SplideSlide>
+      <SplideSlide>
+        <img src={certificate} alt="certificates"/>
+      </SplideSlide>
+      <SplideSlide>
+        <img src={certificate} alt="certificates"/>
+      </SplideSlide>
+      <SplideSlide>
+        <img src={certificate} alt="certificates"/>
+      </SplideSlide>
+      <SplideSlide>
+        <img src={certificate} alt="certificates"/>
+      </SplideSlide>
+      <SplideSlide>
+        <img src={certificate} alt="certificates"/>
+      </SplideSlide>
+      <SplideSlide>
+        <img src={certificate} alt="certificates"/>
+      </SplideSlide>
+      <SplideSlide>
+        <img src={certificate} alt="certificates"/>
+      </SplideSlide>
+      <SplideSlide>
+        <img src={certificate} alt="certificates"/>
+      </SplideSlide>
+      <SplideSlide>
+        <img src={certificate} alt="certificates"/>
+      </SplideSlide>
+      <SplideSlide>
+        <img src={certificate} alt="certificates"/>
+      </SplideSlide>
+      <SplideSlide>
+        <img src={certificate} alt="certificates"/>
+      </SplideSlide>
+      <SplideSlide>
+        <img src={certificate} alt="certificates"/>
+      </SplideSlide>
+      <SplideSlide>
+        <img src={certificate} alt="certificates"/>
+      </SplideSlide>
+      <SplideSlide>
+        <img src={certificate} alt="certificates"/>
+      </SplideSlide>
+      <SplideSlide>
+        <img src={certificate} alt="certificates"/>
+      </SplideSlide>
+    </Splide>
+</section>
+
+<div className="line">
+  <div className="line1"><div className="line2"></div></div>
+</div>
+
+ {/* BUTTONS TO DOWNLOAD OR SHARE THE CRETIFICATES */}
+
+ <div id="bulk-btns">
+        <button className="download-btn">Download Certificates</button>
+        <button className="send-btn">Send Certificates</button>
       </div>
     </div>
   );
 }
 
-export default BulkPreview;
+export default Index;
