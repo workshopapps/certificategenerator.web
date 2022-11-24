@@ -101,10 +101,34 @@ body {
   margin-right: 1%;
 }
 
+<<<<<<< HEAD
+<<<<<<< HEAD
 .cert-form {
   max-width: 1440px;
   width: 80%;
   background-color: #fafafb;
+=======
+=======
+>>>>>>> 107f10cea3d328c973b9dce02857bb688a0e928e
+.explore {
+  text-align: right;
+  font-size: 12px;
+  font-weight: 600;
+  margin-right: 3%;
+}
+.explore .explore-arrow {
+  color: #19A68E;
+  margin-right: 1%;
+}
+
+.cert-form {
+  max-width: 1440px;
+  width: 80%;
+  background-color: #ffffff;
+<<<<<<< HEAD
+>>>>>>> ebdee73 (feat(FRO-1): Updated styling and responsiveness)
+=======
+>>>>>>> 107f10cea3d328c973b9dce02857bb688a0e928e
   margin: 5.5% 10% 12%;
   border: 0.8px solid #545454;
   border-radius: 16px;
@@ -163,9 +187,29 @@ input::-webkit-calendar-picker-indicator {
     font-size: 32px;
     line-height: 40px;
   }
+<<<<<<< HEAD
+<<<<<<< HEAD
   .cert-img {
     overflow-x: scroll;
   }
+<<<<<<< HEAD
+=======
+=======
+  .mode {
+    width: 90%;
+  }
+  .cert-img {
+    overflow-x: scroll;
+  }
+>>>>>>> ebdee73 (feat(FRO-1): Updated styling and responsiveness)
+=======
+  .mode {
+    width: 90%;
+  }
+  .cert-img {
+    overflow-x: scroll;
+  }
+>>>>>>> 107f10cea3d328c973b9dce02857bb688a0e928e
   .cert-form {
     margin: 5.5% 10% 12%;
   }
@@ -177,18 +221,34 @@ input::-webkit-calendar-picker-indicator {
     text-align: center;
   }
   .prompt {
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
     font-size: 16px;
+>>>>>>> ebdee73 (feat(FRO-1): Updated styling and responsiveness)
+=======
+    font-size: 16px;
+>>>>>>> 107f10cea3d328c973b9dce02857bb688a0e928e
     line-height: 24px;
   }
   .mode {
     width: 90%;
   }
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 107f10cea3d328c973b9dce02857bb688a0e928e
   .mode button {
     font-size: 16px;
   }
   .mobile-none {
     display: none;
   }
+<<<<<<< HEAD
+>>>>>>> ebdee73 (feat(FRO-1): Updated styling and responsiveness)
+=======
+>>>>>>> 107f10cea3d328c973b9dce02857bb688a0e928e
   .cert-img {
     flex-direction: column;
     width: 50% !important;
@@ -201,7 +261,26 @@ input::-webkit-calendar-picker-indicator {
     margin: 0;
     margin-bottom: 0 !important;
   }
+<<<<<<< HEAD
+<<<<<<< HEAD
   .submit-btn {
     width: 95%;
   }
+>>>>>>> e449f28319e16d4352c7d1debf51cd9cc977eab4
+=======
+=======
+>>>>>>> 107f10cea3d328c973b9dce02857bb688a0e928e
+  .label {
+    margin: 24px 0 12px 0;
+  }
+  input {
+    height: 52px;
+  }
+  .submit-btn {
+    width: 100%;
+  }
+<<<<<<< HEAD
+>>>>>>> ebdee73 (feat(FRO-1): Updated styling and responsiveness)
+=======
+>>>>>>> 107f10cea3d328c973b9dce02857bb688a0e928e
 }/*# sourceMappingURL=certificate.style.css.map */
