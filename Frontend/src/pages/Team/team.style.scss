@@ -2,6 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;700&display=swap');
 
 .teamContainer {
+text-align: center;
 
 $sectionWidth: 100%;
 $containerHeight: 1832px;
@@ -31,7 +32,6 @@ section {
   width: $sectionWidth;
   max-height: $containerHeight;
   background: $containerBackground;
-  text-align: center;
 }
 // title styling
 .team {
