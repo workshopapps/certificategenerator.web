@@ -1,11 +1,7 @@
 import React from 'react';
 import './Comingsoon.css'
 import arrowRight from './images/arrowRight.png'
-import github from './images/github.png'
-import instagra from './images/instagra.png'
-import linkedin from './images/linkedin.png'
 import under_construction from './images/under_construction.png'
-import twitter from './images/twitter.png'
 
 
 
@@ -44,22 +40,7 @@ function Comingsoon() {
             <div className='spam'>~Don't worry we will not spam you~</div>
           </div>
         </div>
-        <footer>
-          <div className='social'>
-            <div className='socail_des'>We are social</div>
-            <div className='socail_logo'>
-              <img src={instagra} alt=''></img>
-              <img src={linkedin} alt='linkedin'></img>
-              <img src={twitter} alt='tiwitter'></img>
-              <img src={github} alt='github'></img>
-            </div>
-          </div>
-          <ul>
-            <li>Pricing</li>
-            <li>Blog</li>
-            <li>FAQs</li>
-          </ul>
-        </footer>
+        
       </div>
     </div>
   );

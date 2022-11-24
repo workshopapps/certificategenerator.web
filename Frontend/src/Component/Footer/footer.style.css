@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Sora:wght@600&family=Work+Sans:wght@400;500&display=swap");
 #footerId {
+  margin-top: auto;
   padding-top: 3.5rem;
   background-color: #08372f;
   text-align: start;
@@ -69,6 +70,7 @@
   padding: 15px;
   font-size: 13px;
   font-weight: 400;
+  height: 48px;
 }
 #footerId .footer-form .footer-input button {
   padding: 15px;
@@ -80,6 +82,7 @@
   font-weight: 500;
   cursor: pointer;
   transition: 0.3s ease;
+  width: inherit;
 }
 #footerId .footer-form .footer-input button:hover {
   background-color: #127867;
@@ -90,7 +93,8 @@
   color: rgb(140, 11, 11);
   background-color: rgb(230, 103, 103);
   border-radius: 5px;
-  margin-bottom: 0;
+  margin-bottom: -10px;
+  font-size: 11px;
 }
 #footerId .footer-info {
   margin-bottom: 40px;
@@ -114,6 +118,9 @@
 #footerId .footer-info .footer-socials div {
   display: flex;
   gap: 1rem;
+}
+#footerId .footer-info .footer-socials a {
+  color: white;
 }
 #footerId .footer-info .footer-socials .social {
   font-size: 20px;
@@ -196,6 +203,5 @@
     max-width: -moz-fit-content;
     max-width: fit-content;
     padding: 15px 20px;
-    height: 70px;
   }
-}
+}/*# sourceMappingURL=footer.style.css.map */

@@ -35,7 +35,10 @@
   &.active {
     background: $primaryColor;
     color: #fff;
-    border: none;
+    width: 140px;
+    height: 40px;
+    font-size: 12px;
+    font-family: 'Work Sans', sans-serif;
 
     &:hover {
       color: $primaryColor;
@@ -104,76 +107,75 @@ h2 {
   
   .certificate img{
       width: 100%!important;;
-      max-width: 400px!important;;
+      max-width: 300px!important;;
   }
 
 // CERTIFICATE IMAGES
 
-.bulk-images {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  &.bulk-images img {
-    margin: 10px;
-    margin: 15px;
-    width: 80%;
-    height: auto;
-  }
-  #template1{
-    border: 7px solid $primaryColor;
-  
-  }
-}
 
 #bulk-images-desktop img{
-display: none;
+  width: 100%;
+  max-width: 350px;
+  height: auto;
+  margin:20px;
+  margin-left: 100px;
+  overflow: hidden;
+  
+
+}
 
 #template1{
-  border: 7px solid $primaryColor;
+  margin: 50px;
+  padding: 0px 0px;
+  border: 5px solid $primaryColor!important;
 
 }
+
+
+@media screen and (min-width: 500px) {
+.certificate img{
+  min-width:450px;
 }
+}
+
 
 @media screen and (min-width: 768px) {
   .button-container button{
-    font-size: 15px;
+    font-size: 15px!important;
     width: 170px;
-    height: 45px;
-    margin: 10px 15px 20px 15px;
+    height: 40px;
+    margin: 30px 15px 40px 15px;
   }
  
+
+  #bulk-btns button{
+    font-size: 13px;
+    
+    padding: 5px;
+    margin: 30px 15px 40px 15px;
+  }
+
+  .send-btn, .download-btn{
+    width: 200px!important;
+    height: 50px;
+  padding: 10px;
+
+}
+  .certificate img{
+    min-width:600px;
+  }
 
   .certificate h1, h2{
     font-size: 30px;
     margin: 30px;
       }
 
-  .bulk-images {
-    display: none;
+
+ #bulk-btns{
+    display: flex;
     flex-direction: row;
     justify-content: center;
-
-    &.bulk-images img {
-      width: 100%;
-      max-width: 230px;
-    }
-
-  }
-
-  #bulk-btns{
-    display: flex;
-    flex-direction: row!important;
-    justify-content: center;
-    margin: 30px!important;
-
-    .send-btn, .download-btn{
-      font-size: 15px;
-      width: 170px!important;
-      height: 45px!important;
-      margin: 30px 15px 40px 15px;
-      padding: 5px;
-    }
+    margin: 20px!important;
   }
     
   .certificate img{
@@ -183,14 +185,7 @@ display: none;
 
   
 #bulk-images-desktop img{
-  display: block;
-  width: 100%;
-  max-width: 400px;
-  height: auto;
-  margin:20px;
-  margin-left: 150px;
-  overflow: hidden;
-  
+  margin-left: 150px;  
 
 }
 
@@ -222,7 +217,33 @@ border-radius: 10px;
 }
 
 @media screen and (min-width: 1024px) {
+  .button-container button{
+    font-size: 18px;
+    width: 200px;
+    height: 50px;
+    margin: 10px 15px 40px 15px;
+  }
 
+  #bulk-btns{
+    margin: 20px;
+  }
+
+  #bulk-btns button{
+    font-size: 18px;
+    width: 200px;
+    height: 50px;
+    margin: 30px 15px 40px 15px;
+  }
+  .send-btn, .download-btn{
+    font-size: 14px!important;
+    width: 220px!important;
+    height: 50px!important;
+  
+
+}
+  .certificate img{
+    max-width:700px;
+  }
 
   .bulk-images img {
     max-width: 300px !important;

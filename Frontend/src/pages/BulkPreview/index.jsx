@@ -7,13 +7,13 @@ import '@splidejs/react-splide/css';
 
 
 
-function BulkPreview() {
+function Index() {
   return (
     <div id="bulk-preview">
       {/* BUTTONS TO TOGGLE BETWEEN SINGLE AND BULK CERTIFICATE */}
 
       <div className="button-container">
-        <Link to="/single_preview">
+        <Link to="/">
           <button className="not-active">Single Certificate</button>
         </Link>
         <button className="active">Bulk Certificate</button>
@@ -29,15 +29,8 @@ function BulkPreview() {
       {/* PREVIEW OF BULK GENERATED CERTIFICATES  */}
 
       <h2>Preview of Generated Certificates (120 recipents)</h2>
-      <div className="bulk-images">
-        <img id="template1" src={certificate} alt="templates" />
-        <img src={certificate} alt="templates" />
-        <img src={certificate} alt="templates" />
-      </div>
 
      
-
-
 <section id ="bulk-images-desktop">
 <Splide
       options={ {
@@ -48,9 +41,16 @@ function BulkPreview() {
         drag:'free',
         arrows:false,
         pagination:false,
-      } }
-      aria-label="My Favorite Images"
-    >
+       breakpoints:{
+        640:{
+          perPage:2,
+        },
+        768:{
+          perPage:3
+        }
+       }
+      } }>
+
       <SplideSlide>
         <img  id ="template1" src={certificate} alt="certificates"/>
       </SplideSlide>
@@ -125,4 +125,4 @@ function BulkPreview() {
   );
 }
 
-export default BulkPreview;
+export default Index;
