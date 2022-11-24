@@ -4,6 +4,7 @@ import logo from "../../assets/images/footerIcon.png";
 import "./footer.style.scss";
 import { BsInstagram, BsLinkedin, BsTwitter, BsGithub } from "react-icons/bs";
 import { useEffect } from "react";
+import { API } from "../../config";
 
 const Footer = () => {
   const year = new Date().getFullYear();
@@ -24,10 +25,18 @@ const Footer = () => {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(email),
-      }).then(() => {
-        setSuccess("Thank you for subscribing");
-        console.log("done");
-      });
+      })
+        .then(() => {
+          setSuccess("Thank you for subscribing");
+          setTimeout(() => {
+            setSuccess("");
+            setEmail("");
+          }, 3000);
+          console.log("done");
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     } else if (!regex.test(email) && email !== "") {
       setMessage("Please enter a valid email");
       setSuccess("");
@@ -40,11 +49,6 @@ const Footer = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [routePath]);
-
-  setTimeout(() => {
-    setSuccess("");
-    setMessage("");
-  }, 4000);
 
   return (
     <div id="footerId" className="footer">
