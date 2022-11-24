@@ -1,10 +1,18 @@
-const isValidJsonOutput = (data) => {
-    const headers = ["name", "student_id"];
+const isValidJsonOutput = (jsonArray) => {
+    const validHeaders = ["name","nameoforganization","description","award","signed","date"];
 
-    // Check to see if every row has complete set of values
-    const validResponse = data.every(jsonObj => {
-        return headers.every(header => (jsonObj[header] !== ''));
-    });
+    const csvHeadersCount = Object.keys(jsonArray[0]).length;
+
+    const validResponse = (csvHeadersCount === validHeaders.length) && validHeaders.every(header => {
+        
+        return jsonArray.every(jsonObj => {
+            
+            const jsonObjHeaders = Object.keys(jsonObj).map(jsonObjHeader => jsonObjHeader.toLowerCase());
+
+            return jsonObjHeaders.indexOf(header) !== -1;
+        })
+
+    })
 
     return validResponse;
 }
