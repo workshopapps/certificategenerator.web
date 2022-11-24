@@ -106,7 +106,82 @@ body {
     height: 100%;
   }
   .bulk-button {
-    margin: 60px 0 32px 0;
+    margin: 60px 0 32px 11%;
+    width: 80%;
+  }
+}
+@media screen and (max-width: 480px) {
+  .heading {
+    font-size: 24px;
+    line-height: 30px;
+    text-align: center;
+    padding-inline: 70px;
+  }
+  .wrap {
+    flex-wrap: wrap;
+  }
+  .example {
+    width: 90%;
+    height: 80%;
+    margin: auto;
+  }
+  .bulk .space {
+    gap: 24px;
+  }
+  .bulk div div {
+    width: 90%;
+    margin: auto;
+  }
+  .process {
+    display: flex;
+    align-items: center;
+  }
+  .process .steps {
+    padding-left: 5%;
+  }
+  .process img {
+    height: 100%;
+  }
+  .bulk-button {
+    margin: 40px 0 24px 11%;
+    width: 80%;
+  }
+}
+@media screen and (max-width: 480px) {
+  .heading {
+    font-size: 24px;
+    line-height: 30px;
+    text-align: center;
+    padding-inline: 70px;
+  }
+  .wrap {
+    flex-wrap: wrap;
+  }
+  .example {
+    width: 90%;
+    height: 80%;
+    margin: auto;
+  }
+  .bulk .space {
+    gap: 24px;
+  }
+  .bulk div div {
+    width: 90%;
+    margin: auto;
+  }
+  .process {
+    display: flex;
+    align-items: center;
+  }
+  .process .steps {
+    padding-left: 5%;
+  }
+  .process img {
+    height: 100%;
+  }
+  .bulk-button {
+    margin: 40px 0 24px 11%;
+    width: 80%;
   }
 }
 @media screen and (max-width: 480px) {

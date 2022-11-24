@@ -199,4 +199,11 @@
   .dashboard .table-wrapper .table table {
     width: 100% !important;
   }
+}
+@media screen and (min-width: 780px) and (min-width: 1090px) {
+  .dashboard__hero-section .flexx {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
 }/*# sourceMappingURL=dashboard.style.css.map */

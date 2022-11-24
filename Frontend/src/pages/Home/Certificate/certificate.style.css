@@ -86,16 +86,44 @@ body {
   font-weight: 500;
   cursor: pointer;
   text-align: center;
+  cursor: pointer;
+  text-align: center;
+}
+
+.explore {
+  text-align: right;
+  font-size: 12px;
+  font-weight: 600;
+  margin-right: 3%;
+}
+.explore .explore-arrow {
+  color: #19A68E;
+  margin-right: 1%;
+}
+.cert-form {
+  max-width: 1440px;
+  width: 80%;
+  background-color: #fafafb;
+}
+.explore {
+  text-align: right;
+  font-size: 12px;
+  font-weight: 600;
+  margin-right: 3%;
+}
+.explore .explore-arrow {
+  color: #19A68E;
+  margin-right: 1%;
 }
 
 .cert-form {
   max-width: 1440px;
   width: 80%;
-  background-color: #fafafb;
-  margin: 5.5% 10% 12%;
+  background-color: #ffffff;
   border: 0.8px solid #545454;
   border-radius: 16px;
   padding: 8%;
+  gap: 0;
 }
 
 label {
@@ -152,6 +180,18 @@ input::-webkit-calendar-picker-indicator {
   .cert-img {
     overflow-x: scroll;
   }
+  .mode {
+    width: 90%;
+  }
+  .cert-img {
+    overflow-x: scroll;
+  }
+  .mode {
+    width: 90%;
+  }
+  .cert-img {
+    overflow-x: scroll;
+  }
   .cert-form {
     margin: 5.5% 10% 12%;
   }
@@ -163,10 +203,17 @@ input::-webkit-calendar-picker-indicator {
     text-align: center;
   }
   .prompt {
+    font-size: 16px;
     line-height: 24px;
   }
   .mode {
     width: 90%;
+  }
+  .mode button {
+    font-size: 16px;
+  }
+  .mobile-none {
+    display: none;
   }
   .cert-img {
     flex-direction: column;
@@ -182,5 +229,14 @@ input::-webkit-calendar-picker-indicator {
   }
   .submit-btn {
     width: 95%;
+  }
+  .label {
+    margin: 24px 0 12px 0;
+  }
+  input {
+    height: 52px;
+  }
+  .submit-btn {
+    width: 100%;
   }
 }/*# sourceMappingURL=certificate.style.css.map */

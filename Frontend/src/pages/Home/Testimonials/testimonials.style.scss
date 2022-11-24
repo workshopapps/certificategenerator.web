@@ -10,6 +10,7 @@
 body {
     max-width: $containerWidth;
     color: #222222;
+    background-color: #ffffff;
 }
 
 .flex {
@@ -68,29 +69,39 @@ body {
 }
 
 .testimonial-container {
-    width: 343px;
+    width: 29%;
     height: 329px;
     border: 1px solid rgba(73, 73, 73, 0.4);
     border-radius: 24px;
     padding: 40px 25px 0 25px;
+    p{
+        margin: 0;
+    }
 }
 
 .testimonial-bottom {
     padding-bottom: 120px !important;
-    background-color: white !important;
 }
 
 @media screen  and (max-width: 768px) and (min-width: 481px) {
     .testimonials {
-        overflow-x: scroll;
+        flex-direction: column;
+        width: 80% !important;
+        margin: auto !important;
+        .testimonial-container {
+            width: 100%;
+        }
     }
 }
 
 @media screen  and (max-width: 480px) {
     .testimonials {
         flex-direction: column;
-        width: 70% !important;
+        width: 80% !important;
         margin: auto !important;
+        .testimonial-container {
+            width: 100%;
+        }
     }
     .testimonial-header {
         font-size: 24px;
