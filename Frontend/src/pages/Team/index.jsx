@@ -2,31 +2,31 @@ import React from "react";
 
 import "./team.style.scss";
 // pictures
-import Joy from "./images/joy.svg";
-import Zed from "./images/zed.svg";
-import Ben from "./images/ben.svg";
-import Moyo from "./images/moyo.svg";
-import Ehis from "./images/ehis.svg";
-import Anees from "./images/anees.svg";
-import Ajayi from "./images/ajayi.svg";
-import Rhoda from "./images/rhoda.svg";
-import Samuel from "./images/samuel.svg";
-import Abiola from "./images/abiola.svg";
-import Joseph from "./images/joseph.svg";
-import Luqman from "./images/luqman.svg";
-import Asanze from "./images/asanze.svg";
-import Andrew from "./images/andrew.svg";
-import Prosper from "./images/prosper.svg";
-import Muminat from "./images/muminat.svg";
+import Joy from "../../assets/images/team/joy.svg";
+import Zed from "../../assets/images/team/zed.svg";
+import Ben from "../../assets/images/team/ben.svg";
+import Moyo from "../../assets/images/team/moyo.svg";
+import Ehis from "../../assets/images/team/ehis.svg";
+import Anees from "../../assets/images/team/anees.svg";
+import Ajayi from "../../assets/images/team/ajayi.svg";
+import Rhoda from "../../assets/images/team/rhoda.svg";
+import Samuel from "../../assets/images/team/samuel.svg";
+import Abiola from "../../assets/images/team/abiola.svg";
+import Joseph from "../../assets/images/team/joseph.svg";
+import Luqman from "../../assets/images/team/luqman.svg";
+import Asanze from "../../assets/images/team/asanze.svg";
+import Andrew from "../../assets/images/team/andrew.svg";
+import Prosper from "../../assets/images/team/prosper.svg";
+import Muminat from "../../assets/images/team/muminat.svg";
 // icons
-import Web from "./images/web.svg";
-import Github from "./images/github.svg";
-import Twitter from "./images/twitter.svg";
-import Behance from "./images/behance.svg";
-import LinkedIn from "./images/linkedin.svg";
-import Facebook from "./images/facebook.svg";
-import Instagram from "./images/instagram.svg";
-import ArrowDown from "./images/arrow_down.svg";
+import Web from "../../assets/images/team/web.svg";
+import Github from "../../assets/images/team/github.svg";
+import Twitter from "../../assets/images/team/twitter.svg";
+import Behance from "../../assets/images/team/behance.svg";
+import LinkedIn from "../../assets/images/team/linkedin.svg";
+import Facebook from "../../assets/images/team/facebook.svg";
+import Instagram from "../../assets/images/team/instagram.svg";
+import ArrowDown from "../../assets/images/team/arrow_down.svg";
 
 // members data
 const members = [
@@ -162,7 +162,7 @@ const members = [
 
 const Team = () => {
   return (
-    <section>
+    <section className="teamContainer">
       {/* title */}
       <div className="team">Our Team</div>
       <div className="meet">

@@ -82,11 +82,6 @@ h6 {
     height: 10px;
 }
 
-// fake nav
-.aboutNav{
-    height: 100px;
-}
-
 // hero
 .aboutHero{
     display: flex;
@@ -225,11 +220,6 @@ h6 {
     width: 100%;
 }
 
-// footer
-.aboutFooter{
-    height: 443px;
-    background: #08372F;
-}
 
 // tablet screen
 @media screen and (max-width:1024px){
@@ -250,12 +240,7 @@ h6 {
         font-size: 14px;
         line-height: 16px;
         }
-
-    // fake nav
-    .aboutNav {
-        height: 68px;
-        }
-    // hero
+     // hero
     .aboutHero {
         padding: 0 44px;
         }
@@ -347,10 +332,6 @@ h6 {
     .aboutGalleryS img{
         width: 100%;
     }
-    // footer
-    .aboutFooter {
-        height: 834px;
-    }
 }
 @media screen and (max-width:800px) {
     // hero
@@ -403,10 +384,6 @@ h6 {
     .aboutstroke {
         width: 50px;
         }
-    // fake nav
-    .aboutNav {
-        height: 64px;
-        }
     // hero
     .aboutHero {
         padding: 0 24px;
@@ -422,7 +399,7 @@ h6 {
     .aboutAbout {
         display: flex;
         flex-direction: column;
-        padding: 24px 48px;
+        padding: 24px 24px 48px;
         gap: 48px;
         }
     #mission{
@@ -506,9 +483,6 @@ h6 {
         padding-top: 49px;
         gap: 20px;
         grid-template-columns: 1fr 1fr;
-        }
-    .aboutFooter {
-        height: 1785px;
         }
 }
 

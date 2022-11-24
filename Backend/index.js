@@ -1,3 +1,4 @@
+
 require('dotenv').config();
 require("express-async-errors");
 const express = require('express');
@@ -21,8 +22,10 @@ const blog = require("./routes/blogPostRouter");
 const certificate = require("./routes/certificateRouter");
 const downloadCsv = require("./routes/downloadRouter");
 const careers = require("./routes/careerRouter");
+const teamRoute = require("./routes/teamRouter");
 const mailingLists = require("./routes/mailingListRouter");
 const profileRouter = require("./routes/profileRouters");
+const router = require("./routes/teamRouter");
 const contacts = require('./routes/contactRouter');
 const pricing = require('./routes/pricingRouter');
 const swaggerUi = require('swagger-ui-express')
@@ -52,12 +55,10 @@ app.use("/api/download", downloadCsv);
 app.use("/api/careers", careers);
 app.use("/api/mailinglists", mailingLists);
 app.use("/api/profile/", profileRouter);
+app.use("/api/team", teamRoute);
 app.use('/api/contactus', contacts)
 app.use('/api/pricing', pricing)
-app.use("/api/profile/", profileRouter);
-app.use('/api/contactus', contacts)
 app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerFile))
-
 
 mongoose.connection.once("open", () => {
   console.log("Connected to DB");

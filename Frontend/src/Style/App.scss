@@ -1,28 +1,26 @@
 @import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@500&display=swap");
 
-@import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&display=swap");
 @import "./variables";
 
-
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-body, html {
-    position: relative;
-    overflow-x: hidden;
+body,
+html {
+  position: relative;
+  overflow-x: hidden;
 }
 body {
-	background: #F8FFFE;
-	font-family: "Work Sans", sans-serif;
+  background: #f8fffe;
+  font-family: "Work Sans", sans-serif;
 
-	width:100%;
+  width: 100%;
 }
-  
-
-
-
-
-
-
+.App {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}

@@ -1,57 +1,62 @@
 @import "../../Style/variables";
 
 // BUTTON CONTAINER FOR THE TOGGLE BUTTONS
-body{
-  text-align:center;
-}
+
 
 #singlePreview{
   text-align:center!important;
+
+  .button-container{
+    display: block!important;
+    margin-top: 0px!important;
+    padding: 10px;
+  }
+
 .button-container button {
-  margin: 35px 10px;
+  margin: 0px 10px 15px 10px;
   height: 37px;
   width: 150px;
   border-radius: 10px;
   font-family: "Work Sans", sans-serif;
-  
+ 
 
   &.not-active {
-    background: transparent;
-    border: none;
+    background: transparent!important;
+    border: 1px solid $primaryColor!important;
 
     &:hover {
-      color: #fff;
-      background: $primaryColor;
-      border: none;
+      color: #fff!important;
+      background: $primaryColor!important;
+      border: none!important;
       transition: 500ms ease-in-out;
     }
   }
 
   &.active {
-    background: $primaryColor;
-    color: #fff;
-    border: none;
+    background: $primaryColor!important;
+    color: #fff!important;
+    border: none!important;
 
     &:hover {
-      color: $primaryColor;
-      background: #fff;
-      border: 1px solid $primaryColor;
+      color: $primaryColor!important;
+      background: #fff!important;
+      border: 1px solid $primaryColor!important;
       transition: 500ms ease-in-out;
     }
   }
 }
-.certificate{
+.certificate-hero{
   text-align:center!important;
   
   }
-.certificate h1 {
-  font-size: 30px;
+.certificate-hero h1 {
+  font-size: 20px;
   font-weight: 500;
-  margin: 5px 0px 30px 0px;
+  margin: 0px 0px 45px 0px;
 }
 
-.certificate button {
-  margin: 35px 20px 45px 20px;
+.certificate-hero button {
+  margin: 35px 20px 0px 20px;
   border-radius: 5px;
   color: $primaryColor!important;
   width: 140px;
@@ -59,34 +64,41 @@ body{
   font-size: 12px;
 
   &.download-button {
-    background: transparent;
-    border: 1px solid $primaryColor;
+    background: transparent!important;
+    border: 1px solid $primaryColor!important;
     color: $primaryColor!important;
     &:hover {
-      color: #fff;
-      background: $primaryColor;
-      border: none;
+      color: #fff!important;
+      background: $primaryColor!important;
+      border: none!important;
       transition: 500ms ease-in-out;
     }
   }
 
   &.send-button {
-    background: $primaryColor;
-    color: #fff;
-    border: none;
+    background: $primaryColor!important;
+    color: #fff!important;
+    border: none!important;
 
     &:hover {
-      color: $primaryColor;
-      background: #fff;
-      border: 1px solid $primaryColor;
+      color: $primaryColor!important;
+      background: #fff!important;
+      border: 1px solid $primaryColor!important;
       transition: 500ms ease-in-out;
     }
   }
 }
 
+h2{
+  font-size: 20px;
+  margin: 30px;
+}
+
 .explore-button {
-  width: 170px;
-  padding: 10px;
+  width: 180px;
+  height: 40px;
+  margin: 30px;
+  text-align: center;
   border-radius: 8px;
   background: transparent;
   border: 1px solid $primaryColor;
@@ -94,18 +106,18 @@ body{
 
   &:hover {
     color: #fff;
-    background: $primaryColor;
+    background: $primaryColor!important;
     border: none;
     transition: 500ms ease-in-out;
   }
 }
 
-// CERTIFICATE IMAGES
+// certificate-hero IMAGES
 
-.certificate img {
+.certificate-hero img {
   width: 100%;
   height: auto;
-  max-width: 400px;
+  max-width: 300px;
 }
 
 .single-images {
@@ -121,10 +133,48 @@ body{
   }
 }
 
-@media screen and (min-width: 768px) {
-  // CERTIFICATE IMAGES
+@media screen and (min-width: 500px) {
+  .certificate-hero img{
+    min-width:450px;
+  }
 
-  .certificate img {
+  .certificate-hero button {
+    width: 160px;
+    height: 40px;
+    font-size: 13px;
+  }
+  .certificate-hero h1, h2{
+font-size: 22px;
+  }
+
+  
+  }
+
+@media screen and (min-width: 768px) {
+  // certificate-hero IMAGES
+.certificate-hero h1{
+  font-size: 30px;
+ 
+}
+
+h2{
+  font-size: 30px;
+}
+
+.button-container button{
+  font-size: 15px;
+  width: 170px;
+  height: 45px;
+  margin: 10px 15px 20px 15px;
+}
+.certificate-hero button{
+  font-size: 15px;
+  width: 170px;
+  height: 40px;
+  margin: 30px 15px 40px 15px;
+}
+
+.certificate-hero img {
     width: 100%;
     height: auto;
     max-width: 600px;
@@ -136,13 +186,36 @@ body{
   }
   .single-images img {
     width: 100%;
-    max-width: 200px;
+    max-width: 250px;
   }
 }
 
-@media screen and (min-width: 1000px) {
+@media screen and (min-width: 1024px) {
+  .button-container button{
+    font-size: 18px;
+    width: 200px;
+    height: 50px;
+    margin: 10px 15px 40px 15px;
+  }
+ .certificate-hero button{
+    font-size: 18px;
+    width: 200px;
+    height: 50px;
+    margin: 30px 15px 40px 15px;
+  }
+  .certificate-hero img {
+    width: 100%;
+    height: auto;
+    max-width: 700px;
+  }
   .single-images img {
     max-width: 300px;
+  }
+
+  .explore-button{
+    width: 240px;
+    height: 55px;
+    font-size:18px;
   }
 }
 }
