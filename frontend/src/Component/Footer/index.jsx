@@ -4,7 +4,6 @@ import logo from "../../assets/images/footerIcon.png";
 import "./footer.style.scss";
 import { BsInstagram, BsLinkedin, BsTwitter, BsGithub } from "react-icons/bs";
 import { useEffect } from "react";
-import { API } from "../../config";
 
 const Footer = () => {
   const year = new Date().getFullYear();
@@ -21,22 +20,18 @@ const Footer = () => {
       /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
     if (regex.test(email)) {
       setMessage("");
-      fetch("https://certify-api.onrender.com/api/mailingLists", {
+      fetch("http://34.195.230.138/api/mailingLists", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(email),
-      })
-        .then(() => {
-          setSuccess("Thank you for subscribing");
-          setTimeout(() => {
-            setSuccess("");
-            setEmail("");
-          }, 3000);
-          console.log("done");
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      }).then(() => {
+        setSuccess("Thank you for subscribing");
+        setTimeout(() => {
+          setSuccess("");
+          setEmail("");
+        }, 3000);
+        console.log("done");
+      });
     } else if (!regex.test(email) && email !== "") {
       setMessage("Please enter a valid email");
       setSuccess("");
