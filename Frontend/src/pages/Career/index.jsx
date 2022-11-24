@@ -32,11 +32,11 @@ function Career() {
       </div>
 
       <section className="section section1">
-        <h2>Who We Are</h2>
+        <h2>Working at CERTIFY</h2>
 
         <div className="flex__wrapper">
           <div className="desktop__image">
-            <img src={Frame} alt="frame" />
+            <img src={Frame} alt="frame"/>
           </div>
           <div className="team">
             {Persons.map((person) => {
@@ -48,6 +48,10 @@ function Career() {
               We move <b>fast</b>, we shoot <b>sharp</b>
             </h2>
             <p>
+              We recruit and retain the best people, creatin creating opportunities 
+              for early career and more experienced hires. Opportunities with us 
+              include internships - the Certify Management Development Programe and 
+              experience hiring.
               Join our amazing team as we make magic happen for businesses that
               are strivining to make magic happen for their teams.
             </p>
