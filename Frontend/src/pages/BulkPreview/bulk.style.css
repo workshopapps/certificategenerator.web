@@ -164,6 +164,8 @@
   #bulk-preview .bulk-images img {
     max-width: 300px !important;
   }
+<<<<<<< HEAD
+=======
   #bulk-preview .certificate img {
     width: 100% !important;
     max-width: 600px !important;
@@ -172,4 +174,5 @@
     width: 100%;
     max-width: 300px;
   }
+>>>>>>> e449f28319e16d4352c7d1debf51cd9cc977eab4
 }/*# sourceMappingURL=bulk.style.css.map */
