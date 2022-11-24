@@ -96,6 +96,15 @@
       margin-bottom: -10px;
       font-size: 11px;
     }
+    .success-msg {
+      text-align: center;
+      letter-spacing: 1.5px;
+      color: rgb(16, 103, 11);
+      background-color: rgb(103, 230, 192);
+      border-radius: 5px;
+      margin-bottom: -10px;
+      font-size: 11px;
+    }
   }
 
   .footer-info {
@@ -164,6 +173,9 @@
         }
       }
       .error-msg {
+        max-width: 63%;
+      }
+      .success-msg {
         max-width: 63%;
       }
     }
