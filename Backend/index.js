@@ -52,7 +52,6 @@ app.use("/api/profile/",profileRouter);
 app.use('/api/contactus',contacts)
 app.use('/api/pricing', pricing)
 app.use("/api/profile/", profileRouter);
-app.use('/api/contactus', contacts)
 app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerFile))
 
 mongoose.connection.once("open", () => {
