@@ -163,6 +163,7 @@ p {
         display: none;
         @media screen and (max-width: $small) {
           display: flex;
+          padding-bottom: 16px;
           width: 90px;
           height: 80px;
           align-items: center;
