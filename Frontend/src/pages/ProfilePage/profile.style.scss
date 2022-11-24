@@ -35,6 +35,8 @@
       color: #f84343;
       border: 1px solid #f84343;
       transition: all 200ms ease-in-out;
+      padding: .7rem 1.3rem;
+      border-radius: 10px;
       cursor: pointer;
       &:hover {
         background-color: #f84343;
@@ -89,8 +91,13 @@
       .form-btn-wrapper {
         text-align: center;
         button {
+          all: unset;
+          background-color: $primaryColor;
           width: 60%;
           color: #ffffff;
+          padding: .8rem 0;
+          border-radius: 10px;
+          cursor: pointer;
         }
       }
     }
@@ -122,7 +129,7 @@
       }
       h2 {
         text-align: center;
-        font-size: 27px;
+        font-size: 27px !important;
         margin-bottom: 1.5rem;
       }
     }
@@ -130,35 +137,9 @@
 }
 @media screen and (max-width: 769px) {
   .profile-page {
-    .user-info {
-      width: 50%;
-      .btn-wrapper button {
-        background-color: transparent;
-        color: #f84343;
-        border: 1px solid #f84343;
-        transition: all 200ms ease-in-out;
-        cursor: pointer;
-        &:hover {
-          background-color: #f84343;
-          color: #ffffff;
-        }
-      }
-      .mb-2 {
-        > h3 {
-          font-size: 20px;
-        }
-        p {
-          font-size: 16px;
-        }
-        span {
-          font-size: 14px;
-        }
-      }
-    }
-
     .form {
       h2 {
-        font-size: 32px;
+        font-size: 32px !important;
       }
       form .form-group label {
         color: rgba(0, 0, 0, 0.6);
