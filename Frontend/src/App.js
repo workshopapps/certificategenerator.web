@@ -28,7 +28,7 @@ import {
 
 import Home from "./pages/Home";
 import Checkout from "./pages/Checkout";
-import { Privacy } from "./pages/PrivacyPolicy";
+import PrivacyPolicy from "./pages/Privacy And Policy";
 import { useState } from "react";
 
 function App() {
@@ -87,7 +87,7 @@ function App() {
             <Route path="/profile" element={<Profile />} />
             <Route path="/upload" element={<UploadCSV />} />
 
-            <Route path="/privacy" element={<Privacy />} />
+            <Route path="/privacy" element={<PrivacyPolicy />} />
           </Route>
           <Route path="*" element={<Error />} />
         </Routes>

@@ -3,8 +3,7 @@ import "./privacy-policy.css"
 import React from 'react'
 import { Outlet } from "react-router-dom"
 
-
-const PrivacyPolicy = () => {
+function PrivacyPolicy() {
   return (
     <div id="privacy" className="main-page">
         <section>
@@ -95,4 +94,4 @@ identify you. Personally identifiable information may include, but is not limite
   )
 }
 
-export default PrivacyPolicy
+export default PrivacyPolicy;
