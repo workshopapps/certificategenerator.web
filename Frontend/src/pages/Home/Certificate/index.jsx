@@ -5,23 +5,23 @@ import demo_2 from '../../../assets/images/demo-2.png'
 import demo_3 from '../../../assets/images/demo-3.png'
 import {Link, useNavigate} from "react-router-dom"
 import UploadCSV from "../../UploadCSV";
+import SinglePreview from "../../SinglePreview";
 
-export default function Certificate () {
+export default function Certificate ({
+  logo,
+  setLogo,
+  certificateTitle,
+  setCertificateTitle,
+  awardeeName,
+  setAwardeeName,
+  message,
+  setMessage,
+  issuedBy,
+  setIssuedBy,
+  issueDate,
+  setIssueDate
+}) {
     const [bulkCertificate, setBulkCertificate] = useState(false);
-    const [logo, setLogo] = useState([]);
-    const [certificateTitle, setCertificateTitle] = useState("");
-    const [awardeeName, setAwardeeName] = useState("");
-    const [message, setMessage] = useState("");
-    const [issuedBy, setIssuedBy] = useState("");
-    const [issueDate, setIssueDate] = useState("");
-    const navigate =  useNavigate();
-
-    const handleSubmit = e => {
-      e.preventDefault();
-      const formData = [logo, certificateTitle, awardeeName, message, issuedBy, issueDate];
-      console.log(formData);
-      navigate('/single_preview');
-    };
   
     return (
         <>
@@ -123,10 +123,10 @@ export default function Certificate () {
             <label htmlFor='date' className="label">Issue Date</label>
             <input type="date" value={issueDate} onChange={e => setIssueDate(e.target.value)} />
 
-            {/* <Link to = "single_preview"> */}
+            <Link to = "single_preview">
             <input type="submit" value="Create Certificate" className="submit-btn"/>
 
-            {/* </Link> */}
+            </Link>
           </form>
             </div>}
         </>
