@@ -89,7 +89,6 @@ function App() {
             <Route path="/upload" element={<UploadCSV />} />
 
             <Route path="/privacy" element={<Privacy />} />
-
           </Route>
           <Route path="*" element={<Error />} />
         </Routes>
