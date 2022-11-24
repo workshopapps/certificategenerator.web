@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const fileExtLimiter = require('../middleware/fileExtLimiter')
 
 const { getAllCertificates,
     addCertificate,
@@ -8,7 +9,7 @@ const { getAllCertificates,
 
 router.get('/issuedCertificates', getNoOfCertificatesIssued);
 router.get('/', getAllCertificates);
-router.post('/', addCertificate);
+router.post('/', fileExtLimiter, addCertificate);
 router.get('/:id', getCertificate);
 
 module.exports = router;

@@ -34,7 +34,9 @@ const PORT = process.env.PORT || 5000;
 connectDB();
 
 //middleware
-app.use(cors());
+app.use(cors({
+    origin: '*',
+}));
 app.use(express.json());
 app.use(bodyParser.json());
 app.use(express.json());
