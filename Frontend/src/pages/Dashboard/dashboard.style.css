@@ -199,7 +199,6 @@
   .dashboard .table-wrapper .table table {
     width: 100% !important;
   }
-<<<<<<< HEAD
 }
 @media screen and (min-width: 780px) and (min-width: 1090px) {
   .dashboard__hero-section .flexx {
@@ -207,6 +206,4 @@
     justify-content: space-between;
     align-items: flex-end;
   }
-=======
->>>>>>> e449f28319e16d4352c7d1debf51cd9cc977eab4
 }/*# sourceMappingURL=dashboard.style.css.map */
