@@ -1,4 +1,3 @@
-
 require('dotenv').config();
 require("express-async-errors");
 const express = require('express');
@@ -22,10 +21,10 @@ const blog = require("./routes/blogPostRouter");
 const certificate = require("./routes/certificateRouter");
 const downloadCsv = require("./routes/downloadRouter");
 const careers = require("./routes/careerRouter");
-const teamRoute = require("./routes/teamRouter");
+const teamRoute = require("./routes/teamRoutes");
 const mailingLists = require("./routes/mailingListRouter");
 const profileRouter = require("./routes/profileRouters");
-const router = require("./routes/teamRouter");
+// const router = require("./routes/teamRouter");
 const contacts = require('./routes/contactRouter');
 const pricing = require('./routes/pricingRouter');
 const swaggerUi = require('swagger-ui-express')

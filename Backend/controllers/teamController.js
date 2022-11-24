@@ -1,8 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable consistent-return */
 /* eslint-disable linebreak-style */
-const { validationResult } = require("express-validator");
-const Member = require("../models/Member");
+const Member = require("../models/teamMembersModel");
 
 // get list of all team members with optional stack query
 exports.getTeamMembers = async (req, res, next) => {
@@ -36,8 +35,6 @@ exports.getTeamMembers = async (req, res, next) => {
     });
     console.log(error);
   }
-  //   next(error);
-  // }
 };
 
 // get a team member using a unique identifier
@@ -74,30 +71,6 @@ exports.addTeamMember = async (req, res, next) => {
     });
   }
 };
-// try {
-//   const errors = validationResult(req);
-//   if (!errors.isEmpty()) {
-//     return res.status(400).json({ errors: errors.array() });
-//   }
-//   const {
-//     body,
-//   } = req;
-//   const member = await new Member(body).save();
-//   if (!member) {
-//     return res.status(400).json({
-//       success: false,
-//       message: 'bad request',
-//     });
-//   }
-//   return res.status(200).json({
-//     success: true,
-//     message: 'member added successfully',
-//     id: member._id,
-//   });
-// } catch (error) {
-//   next(error);
-// }
-//};
 
 exports.updateTeamMember = async (req, res, next) => {
   try {

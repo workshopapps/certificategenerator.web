@@ -1,6 +1,4 @@
-const multer = require('multer')
 const nodemailer = require('nodemailer')
-require('dotenv').config();
 fs = require('fs');
 const User = require("../models/userModel");
 const jwt = require("jsonwebtoken");
@@ -36,7 +34,7 @@ exports.sendCertificate = async (req, res) => {
         from: process.env.AUTH_EMAIL,
         to: `${email}`,
         subject: `Certonic Certificate`,
-        html: `<p>Thank you for using Certawi.</p>
+        html: `<p>Thank you for using Certonic.</p>
                 <p>Here is your Certificate</p>
                 `,
         attachments: [{
