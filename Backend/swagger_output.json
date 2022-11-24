@@ -2,7 +2,7 @@
   "openapi": "3.0.3",
   "info": {
     "title": "Certify API",
-    "description": "## Certify API documentation.\n\n#### To set up, run:\n* run npm install\n* run npm start",
+    "description": "## Certify API description.",
     "version": "1.0.0"
   },
   "servers": [
@@ -201,6 +201,35 @@
             }
           }
         ],
+        "responses": {
+          "default": {
+            "description": "server response"
+          }
+        },
+        "security": [
+          {
+            "jwtToken": []
+          }
+        ]
+      }
+    },
+    "/api/sendCertificate": {
+      "post": {
+        "tags": [
+          "Dashboard"
+        ],
+        "summary": "Send certificate to mail",
+        "description": "Endpoint send certificate to user mail",
+        "requestBody": {
+          "description": "PDF file",
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/sendCertificate"
+              }
+            }
+          }
+        },
         "responses": {
           "default": {
             "description": "server response"
@@ -661,6 +690,10 @@
       "SignUp": {
         "type": "object",
         "properties": {
+          "name": {
+            "type": "string",
+            "example": "user"
+          },
           "email": {
             "type": "string",
             "example": "user@hng.com"
@@ -763,6 +796,15 @@
           "description": {
             "type": "string",
             "example": "Just pay us"
+          }
+        }
+      },
+      "sendCertificate": {
+        "type": "object",
+        "properties": {
+          "file": {
+            "type": "string",
+            "format": "binary"
           }
         }
       },
