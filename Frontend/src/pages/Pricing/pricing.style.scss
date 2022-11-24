@@ -586,10 +586,10 @@ main {
         }
 
         /* Scroll bar */
-        ::-webkit-scrollbar {
+        .tableContainer::-webkit-scrollbar {
             width: 14px;
         }
-        ::-webkit-scrollbar-thumb {
+        .tableContainer::-webkit-scrollbar-thumb {
             background: $featureBackground;
             border-radius:  10px;
             background-clip: padding-box;
