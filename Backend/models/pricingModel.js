@@ -14,7 +14,7 @@ const PricingSchema = new Schema({
     },
     description: {
         required: true,
-        type: String,
+        type: Array,
         trim: true
     }
 })
