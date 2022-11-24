@@ -29,15 +29,36 @@ import {
 import Home from "./pages/Home";
 import Checkout from "./pages/Checkout";
 import { Privacy } from "./pages/PrivacyPolicy";
+import { useState } from "react";
 
 function App() {
+  const [logo, setLogo] = useState("");
+  const [certificateTitle, setCertificateTitle] = useState("");
+  const [awardeeName, setAwardeeName] = useState("");
+  const [message, setMessage] = useState("");
+  const [issuedBy, setIssuedBy] = useState("");
+  const [issueDate, setIssueDate] = useState("");
+
   return (
     <>
       <Navbar />
       <div className="App">
         <Routes>
           <Route path="/" element={<Layout />}>
-            <Route index element={<Home />} />
+            <Route index element={<Home
+              logo={logo}
+              setLogo={setLogo}
+              certificateTitle={certificateTitle}
+              setCertificateTitle={setCertificateTitle}
+              awardeeName={awardeeName}
+              setAwardeeName={setAwardeeName}
+              message={message}
+              setMessage={setMessage}
+              issuedBy={issuedBy}
+              setIssuedBy={setIssuedBy}
+              issueDate={issueDate}
+              setIssueDate={setIssueDate}
+            />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/login" element={<Login />} />
             <Route path="/comingsoon" element={<ComingSoon />} />
@@ -47,7 +68,14 @@ function App() {
             <Route path="choice" element={<Choice />} />
             <Route path="/team" element={<Team />} />
             <Route path="/terms" element={<Terms />} />
-            <Route path="/single_preview" element={<SinglePreview />} />
+            <Route path="/single_preview" element={<SinglePreview
+              logo={logo}
+              certificateTitle={certificateTitle}
+              awardeeName={awardeeName}
+              message={message}
+              issuedBy={issuedBy}
+              issueDate={issueDate}
+            />} />
             <Route path="/aboutUs" element={<AboutUs />} />
             <Route path="/FAQ" element={<FAQ />} />
             <Route path="/bulk_preview" element={<BulkPreview />} />
