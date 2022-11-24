@@ -3,10 +3,25 @@ import './certificate.style.scss'
 import demo from '../../../assets/images/demo.png'
 import demo_2 from '../../../assets/images/demo-2.png'
 import demo_3 from '../../../assets/images/demo-3.png'
-import {Link} from "react-router-dom"
+import {Link, useNavigate} from "react-router-dom"
+import UploadCSV from "../../UploadCSV";
 
 export default function Certificate () {
     const [bulkCertificate, setBulkCertificate] = useState(false);
+    const [logo, setLogo] = useState([]);
+    const [certificateTitle, setCertificateTitle] = useState("");
+    const [awardeeName, setAwardeeName] = useState("");
+    const [message, setMessage] = useState("");
+    const [issuedBy, setIssuedBy] = useState("");
+    const [issueDate, setIssueDate] = useState("");
+    const navigate =  useNavigate();
+
+    const handleSubmit = e => {
+      e.preventDefault();
+      const formData = [logo, certificateTitle, awardeeName, message, issuedBy, issueDate];
+      console.log(formData);
+      navigate('/single_preview');
+    };
   
     return (
         <>
@@ -30,7 +45,7 @@ export default function Certificate () {
         }
           
 
-          {bulkCertificate ? 
+          {bulkCertificate ?            
            <div>
 
           <div className="flex center justify-between gap cert-img">
@@ -44,7 +59,8 @@ export default function Certificate () {
           </Link>
 
           <form action="" className="cert-form text-left work-sans">
-            <label for='img'>Logo</label>
+            <UploadCSV />
+            {/* <label for='img'>Logo</label>
             <input type="file" name="uploadfile" id="img" style={{ display:"none"}}/>
             <label for="img" className="upload">Upload logo</label>
             <p style={{fontSize: '12px', margin: '0'}}>Max image upload size: 8mb</p>
@@ -63,7 +79,7 @@ export default function Certificate () {
             <label for='date' className="label">Issue Date</label>
             <input type="date" />
 
-            <input type="submit" value="Create Certificate" className="submit-btn"/>
+            <input type="submit" value="Create Certificate" className="submit-btn"/> */}
           </form>
            </div>
            : 
@@ -86,26 +102,31 @@ export default function Certificate () {
             <p style={{fontSize: '12px', margin: '0'}}>Max image upload size: 8mb</p>
 
             <label htmlFor='text' className="label">Certificate Title</label>
-            <input type="text" placeholder="Certificate of completion"/>
+            <input type="text" placeholder="Certificate of completion" value={certificateTitle} onChange={e => setCertificateTitle(e.target.value)} />
 
-            <label htmlFor='text' className="label">Awardee Names</label>
-            <input type="text" placeholder="Gabriel Prosper"/>
+            <label htmlFor='text' className="label">Awardee Name</label>
+            <input type="text" placeholder="Gabriel Prosper" value={awardeeName} onChange={e => setAwardeeName(e.target.value)} />
 
             <label htmlFor='text' className="label">Dedication or message</label>
-            <input type="text" placeholder="For your exceptional performance this month, 
-            in appreciation for your loyalty and the desire to fulfil our goals, 
-            in recognition of your leadership and dedication "/>
+            <input
+              type="text"
+              value={message}
+              onChange={e => setMessage(e.target.value)}
+              placeholder="For your exceptional performance this month, 
+                in appreciation for your loyalty and the desire to fulfil our goals, 
+                in recognition of your leadership and dedication"
+            />
 
             <label htmlFor='text' className="label">Issued by</label>
-            <input type="text" placeholder="Name of organisation or issuer"/>
+            <input type="text" placeholder="Name of organisation or issuer" value={issuedBy} onChange={e => setIssuedBy(e.target.value)} />
 
             <label htmlFor='date' className="label">Issue Date</label>
-            <input type="date" />
+            <input type="date" value={issueDate} onChange={e => setIssueDate(e.target.value)} />
 
-            <Link to = "single_preview">
+            {/* <Link to = "single_preview"> */}
             <input type="submit" value="Create Certificate" className="submit-btn"/>
 
-            </Link>
+            {/* </Link> */}
           </form>
             </div>}
         </>
