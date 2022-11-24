@@ -1,9 +1,9 @@
-require('dotenv').config();
-const express = require('express');
-const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
-const cors = require('cors')
-const fileUpload = require('express-fileupload');
+require("dotenv").config();
+const express = require("express");
+const mongoose = require("mongoose");
+const bodyParser = require("body-parser");
+const cors = require("cors");
+const fileUpload = require("express-fileupload");
 
 const app = express();
 
@@ -18,8 +18,10 @@ const blog = require("./routes/blogPostRouter");
 const certificate = require("./routes/certificateRouter");
 const downloadCsv = require("./routes/downloadRouter");
 const careers = require("./routes/careerRouter");
+const teamRoute = require("./routes/teamRouter");
 const mailingLists = require("./routes/mailingListRouter");
 const profileRouter = require("./routes/profileRouters");
+const router = require("./routes/teamRouter");
 
 const PORT = process.env.PORT || 5000;
 
@@ -43,7 +45,8 @@ app.use("/api/certificates", certificate);
 app.use("/api/download", downloadCsv);
 app.use("/api/careers", careers);
 app.use("/api/mailinglists", mailingLists);
-app.use("/api/profile/",profileRouter)
+app.use("/api/profile/", profileRouter);
+app.use("/api/team", teamRoute);
 
 mongoose.connection.once("open", () => {
   console.log("Connected to DB");
