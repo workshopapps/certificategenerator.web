@@ -47,12 +47,12 @@ const addCertificate = async (req, res) => {
   if (!user) {
     await User.create({
       userId: userId,
-      records: certificateData,
+      records: [...certificateData],
     });
+  } else {
+    user.records = [...user.records, ...certificateData];
+    await user.save();
   }
-
-  user.records = [...user.records, ...certificateData];
-  await user.save();
 
   res.status(200).json(certificateData);
 };
