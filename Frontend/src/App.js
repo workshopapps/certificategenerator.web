@@ -21,8 +21,8 @@ import {
   Team,
   Templates,
   Terms,
-  UploadCSV,
   ProfilePage,
+  UploadCSV,
 } from "./pages";
 // import Footer from './Component/Footer';
 
@@ -84,6 +84,7 @@ function App() {
             <Route path="/pricing" element={<Pricing />} />
             <Route path="/contact-us" element={<ContactUs />} />
             <Route path="/payment" element={<Checkout />} />
+
             <Route path="/profile" element={<ProfilePage />} />
             <Route path="/upload" element={<UploadCSV />} />
 
