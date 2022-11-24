@@ -1,10 +1,11 @@
-import { Downloads } from "./FAQcomp/Downloads";
-// import { FaqContainer } from "./FAQcomp/FaqContainer";
-// import faqStyle from "./faq.module.scss";
-import { FaqHeader } from "./FAQcomp/FaqHeader";
-import { Featured } from "./FAQcomp/Featured";
-import { GettingStarted } from "./FAQcomp/GettingStarted";
-import { Uploads } from "./FAQcomp/Uploads";
+import { FaqSection } from "./FaqSection ";
+import {
+  GettingStartedItems,
+  FeaturedItems,
+  UploadsItems,
+  DownlaodsItems,
+} from "./FaqModule";
+
 import Style from "./faq.module.scss";
 import Button from "../../Component/button";
 
@@ -12,11 +13,19 @@ const FAQ = () => {
   return (
     <>
       <section className={Style.faqWrap}></section>
-      <FaqHeader />
-      <GettingStarted header={"Getting Started"} />
-      <Downloads header={"Downloads"} />
-      <Uploads header={"Uploads"} />
-      <Featured header={"Featured"} />
+      <div className={Style.header}>
+        <h2>Frequently Asked Questions</h2>
+        <p>
+          Some questions you might have about Certawi Certificate Geneartor as a
+          user. Feel free to contact us for further enquiries that are not
+          provided here.
+        </p>
+      </div>
+      <FaqSection header={"Getting Started"} questions={GettingStartedItems} />
+      <FaqSection header={"Downloads"} questions={DownlaodsItems} />
+      <FaqSection header={"Uploads"} questions={UploadsItems} />
+      <FaqSection header={"Featured"} questions={FeaturedItems} />
+
       <div className={Style.faqBtn}>
         <Button name={"Have more questions?"} />
       </div>
