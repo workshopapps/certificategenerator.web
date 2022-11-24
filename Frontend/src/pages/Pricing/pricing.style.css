@@ -591,4 +591,16 @@ main .bg {
     font-size: 24px;
     line-height: 30px;
   }
+<<<<<<< HEAD
+  main .pricing .plans .plansContainer .Basic, main .pricing .plans .plansContainer .Premium, main .pricing .plans .plansContainer .Standard {
+    max-width: 90vw;
+    width: 100%;
+    height: 604px;
+    position: relative;
+  }
+  main .pricing .plans .plansContainer .Basic a, main .pricing .plans .plansContainer .Premium a, main .pricing .plans .plansContainer .Standard a {
+    width: 280px;
+  }
+=======
+>>>>>>> e449f28319e16d4352c7d1debf51cd9cc977eab4
 }/*# sourceMappingURL=pricing.style.css.map */
