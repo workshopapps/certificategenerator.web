@@ -1,7 +1,7 @@
 import "./Style/App.scss";
 import Navbar from "./Component/Navbar";
 import { Route, Routes } from "react-router-dom";
-import Signup from "./Component/Signup-Login/assets/Sginup";
+import Signup from "./Component/Signup-Login/assets/Signup";
 import Login from "./Component/Signup-Login/assets/Login";
 import {
   AboutUs,
