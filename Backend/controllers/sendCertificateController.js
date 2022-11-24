@@ -3,11 +3,6 @@ fs = require('fs');
 const User = require("../models/userModel");
 const jwt = require("jsonwebtoken");
 
-
-//for development
-process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0;
-
-
 exports.sendCertificate = async (req, res) => {
     const auth = req.headers.authorization;
     const file = req.file;
