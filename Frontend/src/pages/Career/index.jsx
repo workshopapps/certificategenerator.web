@@ -48,10 +48,6 @@ function Career() {
               We move <b>fast</b>, we shoot <b>sharp</b>
             </h2>
             <p>
-              We recruit and retain the best people, creatin creating opportunities 
-              for early career and more experienced hires. Opportunities with us 
-              include internships - the Certify Management Development Programe and 
-              experience hiring.
               Join our amazing team as we make magic happen for businesses that
               are strivining to make magic happen for their teams.
             </p>
