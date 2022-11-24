@@ -213,6 +213,52 @@
         ]
       }
     },
+    "/api/certificates": {
+      "post": {
+        "tags": [
+          "Dashboard"
+        ],
+        "summary": "Add certificates for Authorized user",
+        "description": "Endpoint post certificates",
+        "requestBody": {
+          "description": "CSV file",
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/upload_csv_body"
+              }
+            }
+          }
+        },
+        "responses": {
+          "default": {
+            "description": "server response"
+          }
+        },
+        "security": [
+          {
+            "jwtToken": []
+          }
+        ]
+      },
+      "get": {
+        "tags": [
+          "Dashboard"
+        ],
+        "summary": "Get all certificates",
+        "description": "Endpoint gets all users certificates",
+        "responses": {
+          "default": {
+            "description": "server response"
+          }
+        },
+        "security": [
+          {
+            "jwtToken": []
+          }
+        ]
+      }
+    },
     "/api/certificates/issuedCertificates": {
       "get": {
         "tags": [
