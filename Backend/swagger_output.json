@@ -1,6 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
+<<<<<<< Updated upstream
     "version": "1.0.0",
     "title": "CERTIFY API",
     "description": ""
@@ -15,15 +16,73 @@
       "get": {
         "description": "",
         "parameters": [],
+=======
+    "title": "Certify API",
+    "description": "## Certify API documentation.\n\n#### To set up, run:\n* run npm install\n* run npm start",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://certify-api.onrender.com/"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Unauthourized User"
+    },
+    {
+      "name": "Authorization"
+    },
+    {
+      "name": "Dashboard"
+    },
+    {
+      "name": "Mailing"
+    },
+    {
+      "name": "Career"
+    },
+    {
+      "name": "Pricing"
+    },
+    {
+      "name": "Contact"
+    }
+  ],
+  "paths": {
+    "/api/upload/csv": {
+      "post": {
+        "tags": [
+          "Unauthourized User"
+        ],
+        "summary": "Upload certificate CSV",
+        "description": "Upload the certificate CSV to process the CSV file and generate a certificate. Send a post request with your CSV file to the endpoint The key name should be **file**",
+        "requestBody": {
+          "description": "CSV file",
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/upload_csv_body"
+              }
+            }
+          }
+        },
+>>>>>>> Stashed changes
         "responses": {
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "security": [
+          {
+            "jwtToken": []
+          }
+        ]
       }
     },
     "/api/auth/signup": {
       "post": {
+<<<<<<< Updated upstream
         "description": "",
         "parameters": [
           {
@@ -41,6 +100,19 @@
                 "password": {
                   "example": "any"
                 }
+=======
+        "tags": [
+          "Authorization"
+        ],
+        "summary": "Create user account",
+        "description": "Create user account on our mongoDB. Endpoint accepts email and password for normal login and **accessToken** for Google signin. This endpoint works for normal signin and google signin",
+        "requestBody": {
+          "description": "Request sample",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SignUp"
+>>>>>>> Stashed changes
               }
             }
           }
@@ -56,6 +128,7 @@
       }
     },
     "/api/auth/login": {
+<<<<<<< Updated upstream
       "post": {
         "description": "",
         "parameters": [
@@ -98,6 +171,20 @@
                 "email": {
                   "example": "any"
                 }
+=======
+      "post": {
+        "tags": [
+          "Authorization"
+        ],
+        "summary": "Login to account",
+        "description": "Login to user account stored on database using email and password",
+        "requestBody": {
+          "description": "Request sample",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SignUp"
+>>>>>>> Stashed changes
               }
             }
           }
@@ -115,6 +202,7 @@
         }
       }
     },
+<<<<<<< Updated upstream
     "/api/auth/changepassword": {
       "post": {
         "description": "",
@@ -127,6 +215,23 @@
           {
             "name": "body",
             "in": "body",
+=======
+    "/api/profile/{id}": {
+      "get": {
+        "tags": [
+          "Dashboard"
+        ],
+        "summary": "Get a single user",
+        "description": "Endpoint to get a single user from the database",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of the user",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+>>>>>>> Stashed changes
             "schema": {
               "type": "object",
               "properties": {
@@ -150,6 +255,7 @@
           "401": {
             "description": "Unauthorized"
           }
+<<<<<<< Updated upstream
         }
       }
     },
@@ -157,6 +263,44 @@
       "post": {
         "description": "",
         "parameters": [],
+=======
+        },
+        "security": [
+          {
+            "jwtToken": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "Dashboard"
+        ],
+        "summary": "Update user profile",
+        "description": "This endpoint updates user profile details",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of the blog",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Blog object",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SignUp"
+              }
+            }
+          }
+        },
+>>>>>>> Stashed changes
         "responses": {
           "200": {
             "description": "OK"
@@ -167,6 +311,7 @@
           "422": {
             "description": "Unprocessable Entity"
           }
+<<<<<<< Updated upstream
         }
       }
     },
@@ -177,6 +322,29 @@
           {
             "name": "body",
             "in": "body",
+=======
+        },
+        "security": [
+          {
+            "jwtToken": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "Dashboard"
+        ],
+        "summary": "Delete a user",
+        "description": "Endpoint to delete a single user",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of the blog",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+>>>>>>> Stashed changes
             "schema": {
               "type": "object",
               "properties": {
@@ -206,6 +374,7 @@
           "500": {
             "description": "Internal Server Error"
           }
+<<<<<<< Updated upstream
         }
       },
       "get": {
@@ -231,17 +400,56 @@
           },
           "500": {
             "description": "Internal Server Error"
+=======
+        },
+        "security": [
+          {
+            "jwtToken": []
           }
-        }
+        ]
       }
     },
+    "/api/certificates/issuedCertificates": {
+      "get": {
+        "tags": [
+          "Dashboard"
+        ],
+        "summary": "Get number of issued certificates",
+        "description": "Endpoint gets total number of issued certificates",
+        "responses": {
+          "default": {
+            "description": "server response"
+          }
+        },
+        "security": [
+          {
+            "jwtToken": []
+>>>>>>> Stashed changes
+          }
+        ]
+      }
+    },
+<<<<<<< Updated upstream
     "/api/blog/{id}": {
       "get": {
         "description": "",
+=======
+    "/api/certificates/{id}": {
+      "delete": {
+        "tags": [
+          "Dashboard"
+        ],
+        "summary": "Delete a single certificate",
+        "description": "Endpoint to delete a single certificate from the database",
+>>>>>>> Stashed changes
         "parameters": [
           {
             "name": "id",
             "in": "path",
+<<<<<<< Updated upstream
+=======
+            "description": "ID of the certificate",
+>>>>>>> Stashed changes
             "required": true,
             "type": "string"
           }
@@ -253,8 +461,28 @@
           "500": {
             "description": "Internal Server Error"
           }
+        },
+        "security": [
+          {
+            "jwtToken": []
+          }
+        ]
+      }
+    },
+    "/api/mailinglists": {
+      "get": {
+        "tags": [
+          "Mailing"
+        ],
+        "summary": "Get list",
+        "description": "Endpoint fetches all the emails on the mailing list.",
+        "responses": {
+          "default": {
+            "description": "server response"
+          }
         }
       },
+<<<<<<< Updated upstream
       "put": {
         "description": "",
         "parameters": [
@@ -279,6 +507,20 @@
                 "imageUrl": {
                   "example": "any"
                 }
+=======
+      "post": {
+        "tags": [
+          "Mailing"
+        ],
+        "summary": "Add email to list",
+        "description": "Endpoint accepts email and adds it to the mailing list on mongoDB.",
+        "requestBody": {
+          "description": "Created user object",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Mailing"
+>>>>>>> Stashed changes
               }
             }
           }
@@ -291,13 +533,27 @@
             "description": "Internal Server Error"
           }
         }
-      },
+      }
+    },
+    "/api/mailinglists/{email}": {
       "delete": {
+<<<<<<< Updated upstream
         "description": "",
+=======
+        "tags": [
+          "Mailing"
+        ],
+        "summary": "Delete email from list",
+        "description": "Endpoint deletes a single email from mailing list",
+>>>>>>> Stashed changes
         "parameters": [
           {
-            "name": "id",
+            "name": "email",
             "in": "path",
+<<<<<<< Updated upstream
+=======
+            "description": "Email of the user you want to delete",
+>>>>>>> Stashed changes
             "required": true,
             "type": "string"
           }
@@ -312,6 +568,7 @@
         }
       }
     },
+<<<<<<< Updated upstream
     "/api/certificates/issuedCertificates": {
       "get": {
         "description": "",
@@ -321,7 +578,15 @@
             "in": "header",
             "type": "string"
           }
+=======
+    "/api/careers": {
+      "get": {
+        "tags": [
+          "Career"
+>>>>>>> Stashed changes
         ],
+        "summary": "Get all career",
+        "description": "Endpoint gets all the available career from the database",
         "responses": {
           "200": {
             "description": "OK"
@@ -330,6 +595,7 @@
             "description": "Forbidden"
           }
         }
+<<<<<<< Updated upstream
       }
     },
     "/api/certificates/": {
@@ -386,11 +652,27 @@
                 "signed": {
                   "example": "any"
                 }
+=======
+      },
+      "post": {
+        "tags": [
+          "Career"
+        ],
+        "summary": "Create a career posting",
+        "description": "Endpoint to create a career posting",
+        "requestBody": {
+          "description": "Created career object",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Career"
+>>>>>>> Stashed changes
               }
             }
           }
         ],
         "responses": {
+<<<<<<< Updated upstream
           "200": {
             "description": "OK"
           },
@@ -399,17 +681,35 @@
           },
           "403": {
             "description": "Forbidden"
+=======
+          "default": {
+            "description": "server response"
+>>>>>>> Stashed changes
           }
         }
       }
     },
+<<<<<<< Updated upstream
     "/api/certificates/{id}": {
       "get": {
         "description": "",
+=======
+    "/api/careers/{id}": {
+      "get": {
+        "tags": [
+          "Career"
+        ],
+        "summary": "Get a career",
+        "description": "Endpoint a single career from database",
+>>>>>>> Stashed changes
         "parameters": [
           {
             "name": "id",
             "in": "path",
+<<<<<<< Updated upstream
+=======
+            "description": "ID of the career",
+>>>>>>> Stashed changes
             "required": true,
             "type": "string"
           },
@@ -420,6 +720,7 @@
           }
         ],
         "responses": {
+<<<<<<< Updated upstream
           "200": {
             "description": "OK"
           },
@@ -445,6 +746,38 @@
                 "collectionID": {
                   "example": "any"
                 }
+=======
+          "default": {
+            "description": "server response"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Career"
+        ],
+        "summary": "Update a career",
+        "description": "Endpoint to update a single career from database",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of the career",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Career object",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Career"
+>>>>>>> Stashed changes
               }
             }
           }
@@ -454,6 +787,7 @@
             "description": "OK"
           }
         }
+<<<<<<< Updated upstream
       }
     },
     "/api/careers/": {
@@ -479,10 +813,23 @@
     "/api/careers/{id}": {
       "get": {
         "description": "",
+=======
+      },
+      "delete": {
+        "tags": [
+          "Career"
+        ],
+        "summary": "Delete a career",
+        "description": "Endpoint to delete a single career from database",
+>>>>>>> Stashed changes
         "parameters": [
           {
             "name": "id",
             "in": "path",
+<<<<<<< Updated upstream
+=======
+            "description": "ID of the career",
+>>>>>>> Stashed changes
             "required": true,
             "type": "string"
           }
@@ -495,6 +842,7 @@
             "description": "Not Found"
           }
         }
+<<<<<<< Updated upstream
       },
       "delete": {
         "description": "",
@@ -505,6 +853,14 @@
             "required": true,
             "type": "string"
           }
+=======
+      }
+    },
+    "/api/contactus": {
+      "get": {
+        "tags": [
+          "Contact"
+>>>>>>> Stashed changes
         ],
         "responses": {
           "200": {
@@ -682,6 +1038,7 @@
           }
         }
       }
+<<<<<<< Updated upstream
     },
     "/api/profile/": {
       "post": {
@@ -713,6 +1070,50 @@
                 }
               }
             }
+=======
+    }
+  },
+  "components": {
+    "schemas": {
+      "SignUp": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "example": "user@hng.com"
+          },
+          "password": {
+            "type": "string",
+            "example": "12345"
+          },
+          "accessToken": {
+            "type": "string"
+          }
+        }
+      },
+      "Login": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "example": "user@hng.com"
+          },
+          "password": {
+            "type": "string",
+            "example": "12345"
+          },
+          "accessToken": {
+            "type": "string"
+          }
+        }
+      },
+      "Mailing": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "example": "user@hng.com"
+>>>>>>> Stashed changes
           }
         ],
         "responses": {
@@ -726,6 +1127,7 @@
             "description": "Not Found"
           }
         }
+<<<<<<< Updated upstream
       }
     },
     "/api/contactus/": {
@@ -767,6 +1169,31 @@
                 }
               }
             }
+=======
+      },
+      "Contact": {
+        "type": "object",
+        "properties": {
+          "first_name": {
+            "type": "string",
+            "example": "Comedian"
+          },
+          "last_name": {
+            "type": "string",
+            "example": "Remote"
+          },
+          "phone_number": {
+            "type": "string",
+            "example": "08105555000"
+          },
+          "message": {
+            "type": "string",
+            "example": "Hello"
+          },
+          "email": {
+            "type": "string",
+            "example": "mail@hng.com"
+>>>>>>> Stashed changes
           }
         ],
         "responses": {
