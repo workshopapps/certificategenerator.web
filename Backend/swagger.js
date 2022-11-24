@@ -7,7 +7,7 @@ const doc = {
     description: "",
   },
   host: 'certify-api.onrender.com',
-  schemes: [''],
+  schemes: ['https'],
 };
 
 const outputFile = './swagger_output.json'

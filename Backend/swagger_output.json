@@ -1,9 +1,9 @@
 {
   "openapi": "3.0.3",
   "info": {
-    "title": "Team Headlight (Certificate Generator)",
-    "description": "## Certificate generator backend documentation.\n\n#### For setting up the repo on your system:\nThis steps is for people who are not familiar with the repo\n\n* Clone repo\n* run npm install\n* run npm start",
-    "version": "1.0.1"
+    "title": "Certify API",
+    "description": "## Certify API documentation.\n\n#### To set up, run:\n* run npm install\n* run npm start",
+    "version": "1.0.0"
   },
   "servers": [
     {
@@ -12,19 +12,19 @@
   ],
   "tags": [
     {
+      "name": "Unauthourized User"
+    },
+    {
       "name": "Authorization"
+    },
+    {
+      "name": "Dashboard"
     },
     {
       "name": "Mailing"
     },
     {
       "name": "Career"
-    },
-    {
-      "name": "Blog"
-    },
-    {
-      "name": "Dashboard"
     },
     {
       "name": "Pricing"
@@ -34,6 +34,35 @@
     }
   ],
   "paths": {
+    "/api/upload/csv": {
+      "post": {
+        "tags": [
+          "Unauthourized User"
+        ],
+        "summary": "Upload certificate CSV",
+        "description": "Upload the certificate CSV to process the CSV file and generate a certificate. Send a post request with your CSV file to the endpoint The key name should be **file**",
+        "requestBody": {
+          "description": "CSV file",
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/upload_csv_body"
+              }
+            }
+          }
+        },
+        "responses": {
+          "default": {
+            "description": "server response"
+          }
+        },
+        "security": [
+          {
+            "jwtToken": []
+          }
+        ]
+      }
+    },
     "/api/auth/signup": {
       "post": {
         "tags": [
@@ -56,6 +85,183 @@
             "description": "server response"
           }
         }
+      }
+    },
+    "/api/auth/login": {
+      "post": {
+        "tags": [
+          "Authorization"
+        ],
+        "summary": "Login to account",
+        "description": "Login to user account stored on database using email and password",
+        "requestBody": {
+          "description": "Request sample",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SignUp"
+              }
+            }
+          }
+        },
+        "responses": {
+          "default": {
+            "description": "server response"
+          }
+        }
+      }
+    },
+    "/api/profile/{id}": {
+      "get": {
+        "tags": [
+          "Dashboard"
+        ],
+        "summary": "Get a single user",
+        "description": "Endpoint to get a single user from the database",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of the user",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "server response"
+          }
+        },
+        "security": [
+          {
+            "jwtToken": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "Dashboard"
+        ],
+        "summary": "Update user profile",
+        "description": "This endpoint updates user profile details",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of the blog",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Blog object",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SignUp"
+              }
+            }
+          }
+        },
+        "responses": {
+          "default": {
+            "description": "server response"
+          }
+        },
+        "security": [
+          {
+            "jwtToken": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "Dashboard"
+        ],
+        "summary": "Delete a user",
+        "description": "Endpoint to delete a single user",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of the blog",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "server response"
+          }
+        },
+        "security": [
+          {
+            "jwtToken": []
+          }
+        ]
+      }
+    },
+    "/api/certificates/issuedCertificates": {
+      "get": {
+        "tags": [
+          "Dashboard"
+        ],
+        "summary": "Get number of issued certificates",
+        "description": "Endpoint gets total number of issued certificates",
+        "responses": {
+          "default": {
+            "description": "server response"
+          }
+        },
+        "security": [
+          {
+            "jwtToken": []
+          }
+        ]
+      }
+    },
+    "/api/certificates/{id}": {
+      "delete": {
+        "tags": [
+          "Dashboard"
+        ],
+        "summary": "Delete a single certificate",
+        "description": "Endpoint to delete a single certificate from the database",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of the certificate",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "server response"
+          }
+        },
+        "security": [
+          {
+            "jwtToken": []
+          }
+        ]
       }
     },
     "/api/mailinglists": {
@@ -244,335 +450,6 @@
         }
       }
     },
-    "/api/blog": {
-      "get": {
-        "tags": [
-          "Blog"
-        ],
-        "summary": "Get blog posts",
-        "description": "Endpoint to get all blog posts or search blog posts by title limited to 10 per page",
-        "parameters": [
-          {
-            "name": "title",
-            "in": "query",
-            "description": "The blog title",
-            "required": false,
-            "style": "form",
-            "explode": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "page",
-            "in": "query",
-            "description": "The page number",
-            "required": false,
-            "style": "form",
-            "explode": true,
-            "schema": {
-              "type": "integer"
-            }
-          }
-        ],
-        "responses": {
-          "default": {
-            "description": "server response"
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "Blog"
-        ],
-        "summary": "Create a blog post",
-        "description": "This endpoint creates a blog post and stores it into database",
-        "requestBody": {
-          "description": "Blog object",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Blog"
-              }
-            }
-          }
-        },
-        "responses": {
-          "default": {
-            "description": "server response"
-          }
-        }
-      }
-    },
-    "/api/blog/{id}": {
-      "get": {
-        "tags": [
-          "Blog"
-        ],
-        "summary": "Get a single blog post",
-        "description": "Endpoint to get a single blog posts from the database",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "ID of the blog",
-            "required": true,
-            "style": "simple",
-            "explode": false,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "default": {
-            "description": "server response"
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "Blog"
-        ],
-        "summary": "Update a blog post",
-        "description": "This endpoint updates a single blog post",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "ID of the blog",
-            "required": true,
-            "style": "simple",
-            "explode": false,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "description": "Blog object",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Blog"
-              }
-            }
-          }
-        },
-        "responses": {
-          "default": {
-            "description": "server response"
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "Blog"
-        ],
-        "summary": "Delete a single blog post",
-        "description": "Endpoint to delete a single blog posts from the database",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "ID of the blog",
-            "required": true,
-            "style": "simple",
-            "explode": false,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "default": {
-            "description": "server response"
-          }
-        }
-      }
-    },
-    "/api/profile/{id}": {
-      "get": {
-        "tags": [
-          "Dashboard"
-        ],
-        "summary": "Get a single user",
-        "description": "Endpoint to get a single user from the database",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "ID of the user",
-            "required": true,
-            "style": "simple",
-            "explode": false,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "default": {
-            "description": "server response"
-          }
-        },
-        "security": [
-          {
-            "jwtToken": []
-          }
-        ]
-      },
-      "post": {
-        "tags": [
-          "Dashboard"
-        ],
-        "summary": "Update user profile",
-        "description": "This endpoint updates user profile details",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "ID of the blog",
-            "required": true,
-            "style": "simple",
-            "explode": false,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "description": "Blog object",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/SignUp"
-              }
-            }
-          }
-        },
-        "responses": {
-          "default": {
-            "description": "server response"
-          }
-        },
-        "security": [
-          {
-            "jwtToken": []
-          }
-        ]
-      },
-      "delete": {
-        "tags": [
-          "Dashboard"
-        ],
-        "summary": "Delete a user",
-        "description": "Endpoint to delete a single user",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "ID of the blog",
-            "required": true,
-            "style": "simple",
-            "explode": false,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "default": {
-            "description": "server response"
-          }
-        },
-        "security": [
-          {
-            "jwtToken": []
-          }
-        ]
-      }
-    },
-    "/api/upload/csv": {
-      "post": {
-        "tags": [
-          "Dashboard"
-        ],
-        "summary": "Upload certificate CSV",
-        "description": "Upload the certificate CSV to process the CSV file and generate a certificate. Send a post request with your CSV file to the endpoint The key name should be **file**",
-        "requestBody": {
-          "description": "CSV file",
-          "content": {
-            "multipart/form-data": {
-              "schema": {
-                "$ref": "#/components/schemas/upload_csv_body"
-              }
-            }
-          }
-        },
-        "responses": {
-          "default": {
-            "description": "server response"
-          }
-        },
-        "security": [
-          {
-            "jwtToken": []
-          }
-        ]
-      }
-    },
-    "/api/certificates/issuedCertificates": {
-      "get": {
-        "tags": [
-          "Dashboard"
-        ],
-        "summary": "Get number of issued certificates",
-        "description": "Endpoint gets total number of issued certificates",
-        "responses": {
-          "default": {
-            "description": "server response"
-          }
-        },
-        "security": [
-          {
-            "jwtToken": []
-          }
-        ]
-      }
-    },
-    "/api/certificates/deleteCertificate/{id}": {
-      "delete": {
-        "tags": [
-          "Dashboard"
-        ],
-        "summary": "Delete a single certificate",
-        "description": "Endpoint to delete a single certificate from the database",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "ID of the certificate",
-            "required": true,
-            "style": "simple",
-            "explode": false,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "default": {
-            "description": "server response"
-          }
-        },
-        "security": [
-          {
-            "jwtToken": []
-          }
-        ]
-      }
-    },
     "/api/contactus": {
       "get": {
         "tags": [
@@ -751,6 +628,22 @@
           }
         }
       },
+      "Login": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "example": "user@hng.com"
+          },
+          "password": {
+            "type": "string",
+            "example": "12345"
+          },
+          "accessToken": {
+            "type": "string"
+          }
+        }
+      },
       "Mailing": {
         "type": "object",
         "properties": {
@@ -782,31 +675,6 @@
           "jobDescription": {
             "type": "integer",
             "example": 2
-          }
-        }
-      },
-      "Blog": {
-        "type": "object",
-        "properties": {
-          "title": {
-            "type": "string",
-            "example": "Hello World"
-          },
-          "article": {
-            "type": "string",
-            "example": "Testing"
-          },
-          "writtenBy": {
-            "type": "string",
-            "example": "HNG9"
-          },
-          "datePosted": {
-            "type": "string",
-            "example": "Jab 2, 2024"
-          },
-          "imageUrl": {
-            "type": "string",
-            "example": "https://cloudicary.com/image.png"
           }
         }
       },
