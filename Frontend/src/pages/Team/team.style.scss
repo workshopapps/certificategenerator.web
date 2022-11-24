@@ -1,6 +1,8 @@
 @import "../../Style/variables";
 @import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;700&display=swap');
 
+.teamContainer {
+
 $sectionWidth: 100%;
 $containerHeight: 1832px;
 $containerBackground: #F8FFFE;
@@ -203,4 +205,5 @@ $viewLetterSpacing: -0.004em;
     font-size: 36px;
     margin-top: 32px;
   }
+}
 }

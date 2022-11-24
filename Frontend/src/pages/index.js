@@ -15,8 +15,9 @@ export { default as BulkPreview } from "./BulkPreview";
 export { default as BulkStep } from "./Home/BulkStep";
 export { default as EditBulk } from "./EditBulk";
 export { default as Error } from "./Error";
-export { default as ContactUs} from './contactUs';
-export { default as Career } from './Career';
+export { default as ContactUs } from "./contactUs";
+export { default as Career } from "./Career";
 
 export { default as Pricing } from "./Pricing";
 export { default as Profile } from "./Profile";
+export { default as UploadCSV } from "./UploadCSV";
