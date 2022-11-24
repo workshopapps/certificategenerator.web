@@ -1,15 +1,12 @@
 const csvToJson = require("csvtojson");
 const { isValidJsonOutput } = require("../utils/validation");
-const fs = require('fs')
 
 const handleCsv = async (req, res) => {
-  const file = req.file;
+  const file = req.files;
   
   if (file) {
-    
-    // Convert the buffered csv data to readable format
-    const buffer = fs.readFileSync(file.path);
-    const csvData = Buffer.from(buffer).toString();
+    const csvFile = file.file.data;
+    const csvData = Buffer.from(csvFile).toString();
 
     // convert csvData to JSON and send back to client
     const jsonOutput = await csvToJson().fromString(csvData);

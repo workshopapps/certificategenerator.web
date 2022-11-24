@@ -113,7 +113,10 @@ const userLogin = async (req, res, next) => {
       error.statusCode = 401;
       throw error;
     }
-    const isEqual = bcrypt.compare(password, user.password);
+    const isEqual = await bcrypt.compare(
+      password,
+      user.authenticationType.form.password
+    );
     if (!isEqual) {
       const error = new Error("Wrong password!");
       error.statusCode = 401;
@@ -132,11 +135,8 @@ const userLogin = async (req, res, next) => {
       token: token,
       userId: user._id.toString(),
     });
-  } catch (error) {
-    if (!error.statusCode) {
-      error.statusCode = 500;
-    }
-    next(error);
+  } catch (err) {
+    next(err);
   }
 };
 
@@ -157,8 +157,17 @@ const forgotPassword = async (req, res) => {
 
 const changePassword = async (req, res) => {
   try {
-    const { token } = req.params;
+    const auth = req.headers.authorization;
+    if (!auth || !auth.startsWith("Bearer")) {
+      return res.status(401).json({ message: "authentication invalid" });
+    }
+    const token = auth.split(" ")[1];
     const { newpassword, confirmpassword } = req.body;
+    if (!newpassword || !confirmpassword) {
+      return res
+        .status(400)
+        .json("Please provide new password and confrim password");
+    }
     if (newpassword != confirmpassword) {
       return res
         .status(400)
@@ -166,9 +175,17 @@ const changePassword = async (req, res) => {
     }
     const { email } = jwt.verify(token, process.env.JWT_SECRET);
     const user = await User.findOne({ email });
-    user.password = newpassword;
-    user.save();
-    res.status(200).send({ message: "password changed" });
+
+    bcrypt.hash(newpassword, 10, async function (err, hash) {
+      if (err) {
+        const error = new Error("account could not be created");
+        error.statusCode = 422;
+        throw error;
+      }
+      user.authenticationType.form.password = hash;
+      user.save();
+      res.status(200).send({ message: "password changed" });
+    });
   } catch (err) {
     next(err);
   }

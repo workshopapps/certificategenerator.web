@@ -1,5 +1,5 @@
 const fileExtLimiter = (req, res, next) => {
-  const fileName = req.file.originalname;
+  const fileName = req.files.file.name;
   const fileNameExtension = fileName.split(".").pop();
   const allowed = fileNameExtension === "csv";
 
