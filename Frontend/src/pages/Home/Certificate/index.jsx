@@ -19,13 +19,13 @@ export default function Certificate () {
 
           {bulkCertificate ? 
           <div className="flex justify-between mode">
-            <button className="select" style={{color: '#222222', backgroundColor: '#ffffff'}}  onClick={() => {setBulkCertificate(false)}}>Single Certificate</button>
-            <button className="select" onClick={() => {setBulkCertificate(true)}}>Bulk Certificate</button>
+            <button className="select" style={{color: '#222222', backgroundColor: '#ffffff'}}  onClick={() => {setBulkCertificate(false)}}>Single <span className="mobile-none">Certificate</span></button>
+            <button className="select" onClick={() => {setBulkCertificate(true)}}>Bulk <span className="mobile-none">Certificate</span></button>
           </div>
           :
           <div className="flex justify-between mode">
-            <button className="select"  onClick={() => {setBulkCertificate(false)}}>Single Certificate</button>
-            <button className="select" style={{color: '#222222', backgroundColor: '#ffffff'}} onClick={() => {setBulkCertificate(true)}}>Bulk Certificate</button>
+            <button className="select"  onClick={() => {setBulkCertificate(false)}}>Single <span className="mobile-none">Certificate</span></button>
+            <button className="select" style={{color: '#222222', backgroundColor: '#ffffff'}} onClick={() => {setBulkCertificate(true)}}>Bulk <span className="mobile-none">Certificate</span></button>
           </div>
         }
           
@@ -39,11 +39,15 @@ export default function Certificate () {
             <img src={demo_3} alt="certificate-3" />
           </div>
 
+          <Link to="templates">
+          <p className="explore"><span className="explore-arrow">&#10140;</span>Explore more templates</p>
+          </Link>
+
           <form action="" className="cert-form text-left work-sans">
             <label for='img'>Logo</label>
             <input type="file" name="uploadfile" id="img" style={{ display:"none"}}/>
             <label for="img" className="upload">Upload logo</label>
-            <p style={{fontSize: '12px'}}>Max image upload size: 8mb</p>
+            <p style={{fontSize: '12px', margin: '0'}}>Max image upload size: 8mb</p>
 
             <label for='text' className="label">Certificate Title</label>
             <input type="text" placeholder="Certificate of completion"/>
@@ -71,11 +75,15 @@ export default function Certificate () {
             <img src={demo_3} alt="certificate-3" />
           </div>
 
+          <Link to="templates">
+          <p className="explore"><span className="explore-arrow">&#10140;</span>Explore more templates</p>
+          </Link>
+          
           <form action="" className="cert-form text-left work-sans">
             <label for='img'>Logo</label>
             <input type="file" name="uploadfile" id="img" style={{ display:"none"}}/>
             <label htmlFor="img" className="upload">Upload logo</label>
-            <p style={{fontSize: '12px'}}>Max image upload size: 8mb</p>
+            <p style={{fontSize: '12px', margin: '0'}}>Max image upload size: 8mb</p>
 
             <label htmlFor='text' className="label">Certificate Title</label>
             <input type="text" placeholder="Certificate of completion"/>

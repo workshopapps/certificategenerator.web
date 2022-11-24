@@ -10,8 +10,8 @@ import googleSVG from "./assets/google.svg"
 import cert from "./assets/Cert.png"
 import emailSVG from "./assets/email.svg"
 import keySVG from "./assets/key.svg"
-import logoSVG from "./assets/Certawi-logo.png"
-import menuSVG from "./assets/menu.svg"
+// import logoSVG from "./assets/Certawi-logo.png"
+// import menuSVG from "./assets/menu.svg"
 
 const Login = () => {
     const [type, setType]=useState('password');

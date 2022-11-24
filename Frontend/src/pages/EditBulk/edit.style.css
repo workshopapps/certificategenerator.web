@@ -115,6 +115,8 @@
     max-width: 700px;
     height: auto;
   }
+<<<<<<< HEAD
+=======
 }
 @media screen and (min-width: 1024px) {
   #edit-bulk .button-container button {
@@ -193,4 +195,5 @@
     height: 60px;
     margin: 30px 0px;
   }
+>>>>>>> e449f28319e16d4352c7d1debf51cd9cc977eab4
 }/*# sourceMappingURL=edit.style.css.map */

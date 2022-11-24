@@ -104,24 +104,28 @@ const Footer = () => {
               <a
                 href="https://instagram.com/hnginternship?igshid=YmMyMTA2M2Y="
                 target="_blank"
+                rel="noreferrer"
               >
                 <BsInstagram className="social" />
               </a>
               <a
                 href="https://www.linkedin.com/m/company/hng-internship"
                 target="_blank"
+                rel="noreferrer"
               >
                 <BsLinkedin className="social" />
               </a>
               <a
                 href="https://twitter.com/hnginternship?s=21&t=xpk379-T4b-GQ5_UAcEnsg"
                 target="_blank"
+                rel="noreferrer"
               >
                 <BsTwitter className="social" />
               </a>
               <a
                 href="https://github.com/workshopapps/certificategenerator.web"
                 target="_blank"
+                rel="noreferrer"
               >
                 <BsGithub className="social" />
               </a>

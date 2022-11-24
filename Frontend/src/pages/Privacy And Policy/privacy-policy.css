@@ -1,9 +1,31 @@
+<<<<<<< HEAD
+.main-page {
+=======
 #privacy .main-page {
+>>>>>>> e449f28319e16d4352c7d1debf51cd9cc977eab4
   text-align: left;
   display: flex;
   flex-direction: column;
   padding: 50px 100px 180px 100px;
 }
+<<<<<<< HEAD
+
+p, li {
+  font-size: 19px;
+}
+
+li {
+  margin-bottom: 20px;
+  list-style-type: square;
+}
+
+ul {
+  padding: 25px;
+}
+
+.green {
+  color: #19A68E;
+=======
 #privacy p,
 #privacy li {
   font-size: 19px;
@@ -17,16 +39,28 @@
 }
 #privacy .green {
   color: #19a68e;
+>>>>>>> e449f28319e16d4352c7d1debf51cd9cc977eab4
   font-size: 17px;
   font-weight: 700;
   margin-bottom: 5px;
 }
+<<<<<<< HEAD
+
+#green {
+  font-size: 19px;
+  color: #19A68E;
+}
+
+@media (max-width: 550px) {
+  .main-page {
+=======
 #privacy #green {
   font-size: 19px;
   color: #19a68e;
 }
 @media (max-width: 550px) {
   #privacy .main-page {
+>>>>>>> e449f28319e16d4352c7d1debf51cd9cc977eab4
     text-align: left;
     display: flex;
     flex-direction: column;

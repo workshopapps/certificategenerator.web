@@ -27,10 +27,10 @@ const UserForm = () => {
     <div className="user_formm">
       <div className="link_itemss">
         <div className="myFlexs border-bottomm">
-          <a>Individual</a>
+          <a href="#/">Individual</a>
         </div>
         <div className="myFlexs">
-          <a>Bulk</a>
+          <a href="#/">Bulk</a>
         </div>
       </div>
       <form>

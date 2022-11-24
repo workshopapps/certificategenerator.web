@@ -8,9 +8,9 @@ const Header = () => {
   return (
     <div className="headerr">
       <div className="framee">
-        <img src={frame} />
+        <img src={frame} alt='' />
         <div className="header_profile_iconn">
-          <img src={image} />
+          <img src={image} alt='' />
         </div>
       </div>
       <div className="profile_detailss">
