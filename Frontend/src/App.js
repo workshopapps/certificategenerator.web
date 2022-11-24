@@ -16,7 +16,6 @@ import {
   Error,
   FAQ,
   Layout,
-  Modify,
   Pricing,
   SinglePreview,
   Team,
@@ -46,7 +45,6 @@ function App() {
             <Route path="/templates" element={<Templates />} />
             <Route path="/career" element={<Career />} />
             <Route path="choice" element={<Choice />} />
-            <Route path="modify" element={<Modify />} />
             <Route path="/team" element={<Team />} />
             <Route path="/terms" element={<Terms />} />
             <Route path="/single_preview" element={<SinglePreview />} />
