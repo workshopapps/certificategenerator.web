@@ -4,9 +4,9 @@ const auth = require('../middleware/authentication')
 
 const {
   createUserProfile,
-  updateUserProfile,
+  // updateUserProfile,
   getUserProfile,
-  deleteUserProfile
+  // deleteUserProfile
 
 } = require('../controllers/profileController')
 
@@ -19,10 +19,10 @@ router.get('/',auth, getUserProfile)
 router.post('/', auth, createUserProfile)
 
 // to for update a user's profile
-router.put('/', auth, updateUserProfile)
+// router.put('/', auth, updateUserProfile)
 
 // to delete a user profile
-router.delete('/', auth, deleteUserProfile)
+// router.delete('/', auth, deleteUserProfile)
 
 
 module.exports = router
