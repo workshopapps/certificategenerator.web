@@ -1,0 +1,287 @@
+#comingsoon {
+  .container {
+    display: flex;
+    width: 100vw;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 100px;
+  }
+
+  .main {
+    display: flex;
+    width: 86%;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    
+  }
+  .welcome {
+    width: 100%;
+    display: flex;
+    gap: 46px;
+    margin-top: 72px;
+    max-width: 1240px;
+  }
+  .welcomeHead {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+  .arrow {
+    width: 17px;
+    height: 12px;
+  }
+
+  .back {
+    width: 163px;
+    font-family: 'Work Sans';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 19px;
+    line-height: 22px;
+    color: 0.222222;
+  }
+  .welcomeHead {
+    width: 86%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 44px;
+  }
+  .f1 {
+    width: 500px;
+    font-family: 'Sora';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 64px;
+    line-height: 81px;
+    letter-spacing: -0.5px;
+    color: 0;
+    margin-left: 0;
+    height: 81px;
+    text-align: left;
+  }
+  .p {
+    width: 100%;
+    font-family: 'Sora';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 27px;
+    line-height: 44px;
+    letter-spacing: -0.5px;
+    color: 0;
+    text-align: left;
+  }
+  .formdat {
+    display: flex;
+    width: 100%;
+    margin-top: 40px;
+    align-items: flex-start;
+    flex-direction: column;
+    max-width: 1240px;
+  }
+  .under_construction{width: 46%;}
+  .cons_img{width: 100%;}
+  .emyform{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    
+  }
+  .email {
+    height: 49px;
+    width: 388px;
+    background: #FFFFFF;
+    border: 1.2px solid #19A68E;
+    border-radius: 10px;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+  }
+  .coming_btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #19A68E;
+    border-radius: 10px;
+    height: 49px;
+    border: none;
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+    font-family: 'Work Sans';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 19px;
+    display: flex;
+    align-items: center;
+    letter-spacing: -0.004em;
+    color: #ffffff;
+    width: 100px;
+  }
+  // .form{
+  //     display: flex;
+  //     width: 100%;
+  // }
+  .spam {
+    font-family: 'Work Sans';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 19px;
+    display: flex;
+    align-items: center;
+    letter-spacing: -0.004em;
+    color: #6C6C70;
+    margin-top: 20px;
+  }
+  footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 86%;
+    margin-top: 172px;
+    margin-bottom: 100px;
+  }
+  footer > ul {
+    width: 19%;
+    list-style: none;
+    display: flex;
+    padding: 0%;
+    justify-content: space-between;
+    font-family: 'Work Sans';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 19px;
+    display: flex;
+    align-items: center;
+    letter-spacing: -0.004em;
+    color: 0.222222;
+    margin-top: 50px;
+  }
+  .socail_logo {
+    width: 185px;
+    height: 36px;
+    display: flex;
+    justify-content: space-between;
+    max-width: 1440px;
+  }
+
+  .socail_des {
+    font-family: 'Work Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    display: flex;
+    align-items: center;
+    letter-spacing: -0.004em;
+    color: #19A68E;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    margin-bottom: 15px;
+  }
+
+  @media screen and (max-width: 1200px) {
+    .p,
+    .f1,
+    .welcomeHead {
+      width: 500px;
+    }
+    
+  }
+  @media screen and (max-width: 1024px) {
+    
+    .f1 {
+      font-size: 36px;
+      width: 300px;
+    }
+    .p {
+      font-size: 16px;
+      width: 300px;
+    }
+
+    .welcomeHead {
+      width: 350px;
+    }
+    .items {
+      width: 150px;
+    }
+    .email {
+      width: 250px;
+    }
+  }
+  @media screen and (max-width: 768px) {
+    
+    .welcomeHead {  width: 100%;
+      
+          }
+    .f1 {
+      width: 300px;
+      font-size: 24px;
+      font-weight: 500px;
+    }
+    .p {
+      font-size: 12px;
+      width: 250px;
+    }
+    .items {
+      width: 200px;
+    }
+    .welcomeHead {
+      width: 300px;
+    }
+    
+  }
+  @media screen and (max-width: 480px) {
+    .cons_img,
+    .items > ul,
+    .formdat,
+    footer {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .cons_img {
+      width: 300px;
+    }
+    .welcome,
+    footer {
+      flex-direction: column;
+      gap: 20px;
+    }
+    .f1 {display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 36px;
+      width: 100%;
+      
+    }
+    .p {
+      width: 100%;
+      justify-content: center;
+      align-items: center;
+      margin-left: 50px;
+      font-size: 16px;
+    }
+    .social{display: flex; align-items: center; flex-direction: column; gap: 20px;}
+    .email {
+      width: 150px;
+    }
+    footer > ul {
+      width: 60%;
+    }
+    .welcomeHead{
+      width: 100%;
+      display: flex; justify-content: center; align-items: center;
+    }
+    .p{text-align: center;}
+    
+  }
+}

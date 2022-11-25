@@ -1,0 +1,178 @@
+#bulk-preview {
+  text-align: center !important;
+}
+#bulk-preview .button-container {
+  display: block !important;
+  margin-top: 0px !important;
+  padding: 10px;
+}
+#bulk-preview .button-container button {
+  margin: 0px 10px 15px 10px;
+  height: 37px;
+  width: 150px;
+  border-radius: 10px;
+  font-family: "Work Sans", sans-serif;
+}
+#bulk-preview .button-container button.not-active {
+  background: transparent;
+  border: none;
+}
+#bulk-preview .button-container button.not-active:hover {
+  color: #fff;
+  background: #19a68e;
+  border: none;
+  transition: 500ms ease-in-out;
+}
+#bulk-preview .button-container button.active {
+  background: #19a68e;
+  color: #fff;
+  width: 140px;
+  height: 40px;
+  font-size: 12px;
+  font-family: "Work Sans", sans-serif;
+}
+#bulk-preview .button-container button.active:hover {
+  color: #19a68e;
+  background: #fff;
+  border: 1px solid #19a68e;
+  transition: 500ms ease-in-out;
+}
+#bulk-preview .certificate h1 {
+  font-size: 20px;
+  margin: 20px;
+}
+#bulk-preview #bulk-btns {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: "Work Sans", sans-serif;
+  margin: 20px 0px;
+  padding: 0px;
+}
+#bulk-preview #bulk-btns #bulk-btns button {
+  border-radius: 5px !important;
+}
+#bulk-preview #bulk-btns .send-btn {
+  width: 150px !important;
+  height: 35px !important;
+  border-radius: 5px !important;
+  background: transparent;
+  border: 1px solid #19a68e !important;
+  color: #19a68e !important;
+  margin: 8px 10px !important;
+}
+#bulk-preview #bulk-btns .send-btn:hover {
+  color: #fff !important;
+  background: #19a68e !important;
+  border: none;
+  transition: 500ms ease-in-out;
+}
+#bulk-preview #bulk-btns .download-btn {
+  width: 150px !important;
+  height: 35px !important;
+  border-radius: 5px !important;
+  background: #19a68e !important;
+  color: #fff;
+  border: none;
+  margin: 8px 10px !important;
+}
+#bulk-preview #bulk-btns .download-btn:hover {
+  color: #19a68e !important;
+  background: #fff !important;
+  border: 1px solid #19a68e !important;
+  transition: 500ms ease-in-out;
+}
+#bulk-preview h2 {
+  margin: 30px 0px 60px;
+  font-size: 20px;
+}
+#bulk-preview .certificate img {
+  width: 100% !important;
+  max-width: 300px !important;
+}
+#bulk-preview #bulk-images-desktop img {
+  width: 100%;
+  max-width: 350px;
+  height: auto;
+  margin: 20px;
+  margin-left: 100px;
+  overflow: hidden;
+}
+#bulk-preview #template1 {
+  margin: 50px;
+  padding: 0px 0px;
+  border: 5px solid #19a68e !important;
+}
+@media screen and (min-width: 500px) {
+  #bulk-preview .certificate img {
+    min-width: 450px;
+  }
+}
+@media screen and (min-width: 768px) {
+  #bulk-preview .button-container button {
+    font-size: 15px;
+    width: 170px;
+    height: 45px;
+    margin: 10px 15px 20px 15px;
+  }
+  #bulk-preview .certificate img {
+    min-width: 600px;
+  }
+  #bulk-preview .certificate h1, #bulk-preview h2 {
+    font-size: 30px;
+    margin: 30px;
+  }
+  #bulk-preview .bulk-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 0px !important;
+  }
+  #bulk-preview .certificate img {
+    width: 100%;
+    max-width: 400px;
+  }
+  #bulk-preview #bulk-images-desktop img {
+    margin-left: 150px;
+  }
+  #bulk-preview #template1 {
+    margin: 50px;
+    padding: 0px 0px;
+    border: 5px solid #19a68e !important;
+  }
+  #bulk-preview .line {
+    padding: 10px;
+    margin: 10px 0px 20px 0px;
+  }
+  #bulk-preview .line1 {
+    border-radius: 10px;
+    background: #acebe0;
+  }
+  #bulk-preview .line2 {
+    border: 3px solid #19a68e;
+    background: #19a68e;
+    max-width: 200px;
+    width: 100%;
+    margin-left: 250px;
+    border-radius: 10px;
+  }
+}
+@media screen and (min-width: 1024px) {
+  #bulk-preview .certificate img {
+    max-width: 700px;
+  }
+  #bulk-preview .bulk-images img {
+    max-width: 300px !important;
+  }
+<<<<<<< HEAD
+=======
+  #bulk-preview .certificate img {
+    width: 100% !important;
+    max-width: 600px !important;
+  }
+  #bulk-preview .bulk-images img {
+    width: 100%;
+    max-width: 300px;
+  }
+>>>>>>> e449f28319e16d4352c7d1debf51cd9cc977eab4
+}/*# sourceMappingURL=bulk.style.css.map */

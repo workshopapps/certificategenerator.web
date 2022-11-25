@@ -1,0 +1,114 @@
+#terms {
+  max-width: 100%;
+  text-align: left;
+  padding: 3rem 4rem;
+  line-height: 36px;
+}
+#terms a {
+  color: unset;
+  text-decoration: unset;
+}
+#terms a:hover {
+  color: rgba(25, 166, 143, 0.7803921569);
+}
+@media screen and (max-width: 768px) {
+  #terms {
+    padding: 3rem 44px;
+  }
+}
+@media screen and (max-width: 568px) {
+  #terms {
+    padding: 3rem 32px;
+  }
+}
+#terms .header {
+  text-align: center;
+}
+#terms .header h1 {
+  color: #222222;
+  font-size: 56px;
+  margin: 0;
+}
+#terms .header p {
+  color: #6C6C70;
+  font-size: 32px;
+}
+@media screen and (max-width: 768px) {
+  #terms .header h1 {
+    font-size: 32px;
+  }
+  #terms .header p {
+    font-size: 20px;
+    margin: 0;
+  }
+}
+#terms .tableOfContent {
+  margin-bottom: 40px;
+}
+@media screen and (max-width: 768px) {
+  #terms .tableOfContent h2 {
+    font-size: 24px;
+    margin-bottom: -10px;
+    margin-top: 25px;
+  }
+}
+#terms .tableOfContent ol {
+  padding-left: 20px;
+}
+#terms .tableOfContent ol li {
+  color: #19a68e;
+  margin-bottom: 12px;
+  font-size: 18px;
+  line-height: 30px;
+  margin-bottom: 8px;
+}
+@media screen and (max-width: 768px) {
+  #terms .tableOfContent ol li {
+    margin-bottom: 10px;
+  }
+}
+#terms .List ol {
+  padding-left: 20px;
+  font-size: 24px;
+  font-weight: bolder;
+}
+#terms .List ol li {
+  margin-bottom: 40px;
+}
+@media screen and (max-width: 768px) {
+  #terms .List ol li {
+    margin-bottom: 20px;
+  }
+}
+#terms .List ol ul {
+  padding-left: 20px;
+  padding-top: 20px;
+}
+@media screen and (max-width: 768px) {
+  #terms .List ol ul {
+    padding-top: 5px;
+  }
+}
+#terms .List ol ul li {
+  color: #6c6c70;
+  margin-bottom: 20px;
+  font-size: 18px;
+  margin-left: -25px;
+  font-weight: normal;
+  list-style-type: disc;
+  line-height: 36px;
+}
+@media screen and (max-width: 768px) {
+  #terms .List ol ul li {
+    line-height: 32px;
+    font-size: 16px;
+  }
+}
+#terms .List ol .noStyle {
+  padding-left: 0;
+}
+#terms .List ol .noStyle li {
+  list-style-type: none;
+  margin-left: -25px;
+  line-height: 36px;
+}/*# sourceMappingURL=term.style.css.map */
