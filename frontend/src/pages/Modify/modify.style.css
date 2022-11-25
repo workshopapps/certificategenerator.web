@@ -1,0 +1,7 @@
+.modifyContainer {
+  margin-top: -4em;
+  display: flex;
+}
+.modifyContainer .certificate {
+  margin: 8em;
+}

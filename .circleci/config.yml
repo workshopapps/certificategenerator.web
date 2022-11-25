@@ -1,0 +1,89 @@
+version: 2.1
+
+jobs:
+  build-frontend:
+    docker:
+      - image: circleci/node:16.10.0
+      - image: docker:17.09.1-ce-git
+    steps:
+      - checkout # pulls code from github repo
+      - setup_remote_docker
+      # - run:
+      #     name: cd & update
+      #     command: |
+      #       cd frontend
+      #       sudo npm install -g
+      - restore_cache:
+          key: dependency-cache-{{ checksum "./frontend/package.json" }}
+      - run:
+          name: Build front-end
+          command: |
+            cd frontend
+            npm install
+          # npm run build
+      - save_cache:
+          key: dependency-cache-{{ checksum "./frontend/package.json" }}
+          paths:
+            - ./frontend/node_modules
+      - run:
+          name: Docker
+          when: on_success
+          command: |
+            cd frontend
+            docker --version
+            docker login -u=$DOCKER_LOGIN -p=$DOCKER_PASSWORD
+            docker build -t codak77/certificategeneratorwebfrontend:frontend --build-arg codak77=codak77/certificategeneratorwebfrontend-frontend .
+            docker push codak77/certificategeneratorwebfrontend:frontend
+            echo "Docker build made sucessfully!! for codak77/certificategeneratorwebfrontend:frontend"
+      - run:
+          name: Build Failure
+          when: on_fail
+          command: |
+            echo "ERROR building certificategeneratorwebfrontend:frontend"
+
+  build-backend:
+    docker:
+      - image: circleci/node:16.10.0
+      - image: docker:17.09.1-ce-git
+    steps:
+      - checkout # pulls code from github repo
+      - setup_remote_docker
+      - run:
+          name: update packages
+          command: |
+            cd backend
+            sudo npm install -g
+      - restore_cache:
+            key: dependency-cache-{{ checksum "./backend/package.json" }}
+      - run:
+          name: Node Install
+          command: |
+            cd backend
+            npm cache clear --force
+            sudo npm install
+      - save_cache:
+          key: dependency-cache-{{ checksum "./backend/package.json" }}
+          paths:
+            - ./backend/node_modules
+      # - run: npm run test
+      - run:
+          name: Docker
+          when: on_success
+          command: |
+            cd backend
+            docker --version
+            docker login -u=$DOCKER_LOGIN -p=$DOCKER_PASSWORD
+            docker build -t codak77/certificategeneratorwebbackend:backend --build-arg codak77=certificategeneratorwebbackend-backend .
+            docker push codak77/certificategeneratorwebbackend:backend
+            echo "Docker build made sucessfully!! for certificategeneratorwebbackend:backend"
+      - run:
+          name: Build Failure
+          when: on_fail
+          command: |
+            echo "ERROR building certificategeneratorwebbackend:backend"
+
+workflows:
+  default:
+    jobs:
+      - build-frontend
+      - build-backend

@@ -1,0 +1,520 @@
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700;800&display=swap');
+
+#aboutUs{
+body {
+    background-color: #ffffff;
+    padding: 0;
+    margin: 0;
+    outline: 0;
+    border: 0;
+    list-style: none;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    text-align: left;
+    letter-spacing: -0.004em;
+    color: #222222;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    font-size: 64px;
+    font-weight: 700;
+    line-height: 75px;
+}
+
+h2 {
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 56px;
+}
+
+h3 {
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 47px;
+    text-align: center;
+}
+
+h4 {
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 28px;
+}
+
+h5 {
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 26px;
+}
+
+h6 {
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 23px;
+}
+
+.btn {
+    width: 163px;
+    color: #ffffff;
+    background: #19A68E;
+    padding: 17.5px 26px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 23px;
+    letter-spacing: -0.004em;
+}
+.aboutstroke{
+    background: #19A68E;
+    align-items: center;
+    border-radius: 8px;
+    width: 114px;
+    height: 10px;
+}
+
+// hero
+.aboutHero{
+    display: flex;
+    padding: 0 100px;
+}
+.aboutHeroL{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 50%;
+    padding: 40px 0 160px;
+}
+
+.aboutHeroL h4{
+    padding-bottom: 14px;
+}
+.aboutHeroR{
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+// about
+.aboutAbout{
+    display: flex;
+    padding: 40px 100px;
+    gap: 10%;
+    background: #F8F8F8;
+    align-items: center;
+}
+#mission{
+    background: #ffffff;
+}
+.aboutAboutD{
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+.aboutAboutD h3{
+    text-align: left;
+}
+.aboutAboutD h4{
+    padding-bottom: 16px;
+
+}
+.aboutAboutImg{
+    width: 45%
+}
+.aboutAboutImg img{
+    width: 100%;
+    height: 70%;
+}
+
+// value
+.aboutValue{
+    padding: 40px 0 40px 100px;
+}
+.aboutValue h2{
+    text-align: center;
+    color: #19A68E;
+    padding-bottom: 37px;
+}
+#vh4{
+    text-align: center;
+    padding: 0 20% 0 20%;
+}
+.aboutValueS {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 40px;
+    padding-top: 51px;
+    overflow: scroll;
+}
+.aboutValueCard {
+    width: 600px;
+    height: 300px;
+    position: relative;
+    border-radius: 5px;
+    padding: 30px 45px 33px 32px;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 0px 0px #0000001A;
+    box-shadow: 0px 4px 8px 0px #0000001A;
+    box-shadow: 0px 32px 19px 0px #0000000D;
+}
+.aboutValueCardD {
+    display: flex;
+    gap: 22px;
+    position: absolute;
+    bottom: 24px;
+    align-items: center;
+}
+#v2h4 {
+    padding-bottom: 12px;
+}
+
+// service
+.aboutService{
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items: center;
+    padding: 40px 100px ;
+    background: #F8F8F8;
+}
+.aboutService h3{
+    padding-bottom: 16px;
+}
+.aboutServiceS{
+    padding: 40px 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+.aboutServiceCard{
+    display: flex;
+    gap: 48px;
+    align-items: center;
+    padding:24px 24px 24px 0;
+}
+.aboutServiceCardT h5{
+    padding-top: 14px;
+}
+
+// gallery
+.aboutGallery{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #F8F8F8;
+    padding: 40px 100px;
+    margin-bottom: 59px;
+}
+.aboutGallery h3{
+    padding-bottom: 17px;
+}
+.aboutGalleryS{
+    padding-top: 63px;
+    display: grid;
+    gap: 40px;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+.aboutGalleryS img{
+    width: 100%;
+}
+
+
+// tablet screen
+@media screen and (max-width:1024px){
+    h1 {
+        font-size: 32px;
+        line-height: 38px;
+        }
+    h2 {
+        font-size: 40px;
+        line-height: 47px;
+        }
+    h4 {
+        font-size: 18px;
+        line-height: 21px;
+        }
+    h5,
+    h6 {
+        font-size: 14px;
+        line-height: 16px;
+        }
+     // hero
+    .aboutHero {
+        padding: 0 44px;
+        }
+    .aboutHeroL{
+        gap: 24px;
+        padding: 24px 0 120px;
+        width: 45%;
+        }
+    .aboutHeroL h4 {
+        padding-bottom: 11px;
+        }
+    .aboutHeroR img {
+        height: 500px;
+        width: 350px;
+        }
+    // about
+    .aboutAbout {
+        padding: 36px 44px;
+        gap: 6%;
+        }
+    .aboutAboutD {
+        width: 47%;
+    }
+    .aboutAboutImg {
+        width: 47%
+    }
+    // value
+    .aboutValue {
+        padding: 36px 0 36px 44px;
+    }
+    .aboutValue h2 {
+        padding-bottom: 24px;
+    }
+    
+    #vh4 {
+        padding: 0 10%;
+    }
+    .aboutValueCard {
+        width: 480px;
+        height: 220px;
+        border-radius: 10px;
+        padding: 24px 19px 24px 16px;
+    }
+    .aboutValueCardD {
+        gap: 22px;
+        bottom: 20px;
+    }
+    .aboutValueS {
+        gap: 28px;
+    }
+    .aboutValueCardD img{
+        height: 50px;
+        width: 50px;
+    }
+    #v2h4 {
+        padding-bottom: 6px;
+    }
+    
+    // service
+    .aboutService {
+        padding: 36px 44px;
+    }
+    .aboutServiceS {
+        padding: 36px 0 36px;
+    }
+    .aboutServiceCard{
+        padding: 12px 24px 12px 0;
+    }
+    .aboutServiceCard img{
+        height: 50px;
+        width: 50px;
+    }
+    .aboutServiceCardT h5 {
+        padding-top: 6px;
+    }
+    
+    // gallery
+    .aboutGallery {
+        padding: 36px 44px;
+        margin-bottom: 51px;
+    }
+    .aboutGallery h3 {
+        padding-bottom: 12px;
+    }
+    .aboutGalleryS {
+        padding-top: 44px;
+        gap: 36px;
+    }
+    .aboutGalleryS img{
+        width: 100%;
+    }
+}
+
+@media screen and (max-width:700px) {
+    // hero
+    .aboutHeroR img {
+        width: 320px;
+        height: 450px;
+    }
+    // sevice
+    .aboutServiceS {
+        gap: 16px;
+    }
+    .aboutServiceCard{
+        gap: 12px;
+    }
+}
+
+// mobile screen
+@media screen and (max-width:600px) {
+    h1,
+    h2,
+    h3{
+        font-size: 18px;
+        line-height: 21px;
+        }
+    h4 {
+        font-size: 12px;
+        line-height: 14px;
+        }
+    
+    h5 {
+        font-size: 11px;
+        line-height: 13px;
+        }
+    h6 {
+        font-size: 10px;
+        line-height: 12px;
+        }
+    .btn {
+        font-size: 16px;
+        line-height: 19px;
+        }
+    .aboutstroke {
+        width: 50px;
+        }
+    // hero
+    .aboutHero {
+        display: flex;
+        flex-direction: column;
+        padding: 0 24px;
+        }
+    .aboutHeroL {
+        padding: 0 0 36px;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        }
+    .aboutHeroR {
+        position: relative;
+        width: 100%;
+    }
+    .aboutHeroR img {
+        width: 100%;        
+    } 
+    // about
+    .aboutAbout {
+        display: flex;
+        flex-direction: column;
+        padding: 24px;
+        gap: 48px;
+        }
+    #mission{
+        flex-direction: column-reverse;
+    }    
+    .aboutAboutD {
+        width: 100%;
+        align-items: center;
+        }
+    .aboutAboutImg {
+        width: 100%;
+        height: 100%;
+        }
+
+    // value
+    .aboutValue {
+        padding: 24px 0 24px 24px;
+        }
+    .aboutValue h2 {
+        padding-bottom: 16px;
+        }
+    #vh4 {
+        padding: 0 5%;
+        font-size: 14px;
+        line-height: 16px;
+        }
+    .aboutValueS {
+        gap: 24px;
+        padding-top: 35px;
+        }
+    .aboutValueCard {
+        width: 240px;
+        height: 140px;
+        padding: 16px 10px 13px;
+        }
+    #v1h4 {
+        padding-bottom: 24px;
+        font-size: 10px;
+        line-height: 12px;
+        }
+    .aboutValueCardD {
+        gap: 5px;
+        bottom: 16px;
+        }
+    .aboutValueCardD img {
+        height: 30px;
+        width: 30px;
+        }
+    #v2h4 {
+        padding-bottom: 1px;
+        }
+    
+    // service
+    .aboutService {
+       padding: 24px;
+       }
+    .aboutService h3 {
+       padding: 16px 0 13px;
+       }
+    .aboutServiceS {
+        padding: 34px 0;
+        grid-template-columns: 1fr;
+        }
+    .aboutServiceCardT h4 {
+        font-size: 14px;
+        line-height: 16px;
+        }
+    .aboutServiceCardT h5 {
+        padding-top: 6px;
+        }
+    
+    // gallery
+    .aboutGallery {
+        padding: 24px;
+        margin-bottom: 24px;
+        }
+    .aboutGallery h3 {
+        padding-bottom: 24px;
+        }
+    .aboutGalleryS {
+        padding-top: 24px;
+        gap: 20px;
+        grid-template-columns: 1fr 1fr;
+        }
+}
+
+// @media screen and (max-width: 480px) {
+//     .aboutHeroL {
+//             width: 50%;
+//             padding: 24px 0 120px;
+//         }   
+//         .aboutHeroR img {
+//             height: 280px;
+//             width: 180px;
+//         }
+// }
+// @media screen and (max-width: 380px) {
+//     .aboutHeroL {
+//         width: 45%;
+//         padding: 24px 0 60px;
+//     }
+//     .aboutHeroR img {
+//         height: 240px;
+//         width: 160px;
+//     }
+// }
+}
+
+
