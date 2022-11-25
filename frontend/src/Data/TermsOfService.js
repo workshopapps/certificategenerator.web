@@ -7,7 +7,7 @@ export const generalProvisions = [
     name: 'The condition necessary before the Client can use the Service is to read the following Regulations and accept them in their entirety. Upon acceptance of the Terms and Conditions, an agreement is concluded between the Service Provider and the Client for provision of the Certifier service electronically.',
   },
   {
-    name: <>The Certifier Service is provided in four packages, indicated in the price list at <a href="https://www.certify.com/" style={{color: '#19A68E', textDecoration: 'underline'}}>https://www.certify.com/</a>., however, the Certifier Service in the Custom package is provided in accordance with individual arrangements between the Service Provider and the Client within the framework of a written Agreement, and these Terms and Conditions shall not apply to it.</>,
+    name: <>The Certifier Service is provided in four packages, indicated in the price list at <a href="https://www.certonic.com/" style={{color: '#19A68E', textDecoration: 'underline'}}>https://www.certonic.com/</a>., however, the Certifier Service in the Custom package is provided in accordance with individual arrangements between the Service Provider and the Client within the framework of a written Agreement, and these Terms and Conditions shall not apply to it.</>,
   },
 ];
 export const services = [
@@ -15,7 +15,7 @@ export const services = [
     name: 'The Service Provider undertakes to provide the Client, by electronic means, with a set of services indicated below, jointly referred to in these Regulations as "Service" or "Certifier Service". The Certifier service in the Free package is a free service, and in other packages it is payable. The service consists, in particular, in providing the Client with software enabling the creation, edition and export of electronic certificates.'
   },
   {
-    name: <>The scope of the aforementioned individual services depends on the Certifier Service package selected by the Customer, as described at <a href="https://www.certify.com/" style={{color: '#19A68E', textDecoration: 'underline'}}>https://www.certify.com/</a>. The customer is aware that some functionalities may not be available or limited in the package of his choice.</>,
+    name: <>The scope of the aforementioned individual services depends on the Certifier Service package selected by the Customer, as described at <a href="https://www.certonic.com/" style={{color: '#19A68E', textDecoration: 'underline'}}>https://www.certonic.com/</a>. The customer is aware that some functionalities may not be available or limited in the package of his choice.</>,
   },
   {
     name: 'The Client is free to change and select packages of the Service, however, the transition from a paid to a free package does not give rise to an obligation on the part of the Service Provider to refund all or part of the fee. Provider declares that it provides the Service using the Certifier application, which is located depending on the types of data in the AWS (Amazon) cloud. Both the application and any data stored in it are protected by the 256-bit SSL A+ grade protocol.',
@@ -53,10 +53,10 @@ export const payments = [
     name: 'If paid variants of the Service are selected, the Service is provided only after the payment of the fee by the Client.'
   },
   {
-    name: <>Fees may be paid by bank transfer, credit card or debit card, as well as other payment orders made through payment institutions or electronic money institutions operating in accordance with the Payment Services Act of 19 August 2011. The service provider undertakes to enable so-called fast payments through <a href="https://www.certify.com/" style={{color: '#19A68E', textDecoration: 'underline'}}>https://www.certify.com/</a>.</>,
+    name: <>Fees may be paid by bank transfer, credit card or debit card, as well as other payment orders made through payment institutions or electronic money institutions operating in accordance with the Payment Services Act of 19 August 2011. The service provider undertakes to enable so-called fast payments through <a href="https://www.certonic.com/" style={{color: '#19A68E', textDecoration: 'underline'}}>https://www.certonic.com/</a>.</>,
   },
   {
-    name: <>The fee for individual variants of the Service is specified in the Price List at <a href="https://www.certify.com/" style={{color: '#19A68E', textDecoration: 'underline'}}>https://www.certify.com/</a>, which is an integral part of these Terms and Conditions. These are each time net prices for the monthly period of using the Service.</>,
+    name: <>The fee for individual variants of the Service is specified in the Price List at <a href="https://www.certonic.com/" style={{color: '#19A68E', textDecoration: 'underline'}}>https://www.certonic.com/</a>, which is an integral part of these Terms and Conditions. These are each time net prices for the monthly period of using the Service.</>,
   },
   {
     name: 'The Service Provider reserves the right to make changes to the Price List at any time.',
