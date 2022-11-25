@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import certificate from "./images/Completion - Portrait (2).png";
+import certificate from "../../assets/images/bulkPreview/Completion - Portrait (2).png"
 import "./bulk.style.scss";
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import '@splidejs/react-splide/css';

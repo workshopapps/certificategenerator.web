@@ -2,9 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./singlepreview.style.scss";
 //import ".../Style/_variables.scss"
-import certificate from "./images/Completion - Portrait (2).png";
-import certificate3 from "./images/Completion - Portrait (3).png";
-import certificate2 from "./images/Completion - Portrait.png";
+
+import certificate from "../../assets/images/SinglePreview/Completion - Portrait (2).png"
+import certificate2 from "../../assets/images/SinglePreview/Completion - Portrait (3).png"
+import certificate3 from "../../assets/images/SinglePreview/Completion - Portrait.png"
 
 function Index({
   logo,
