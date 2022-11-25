@@ -109,7 +109,11 @@ const Footer = () => {
         <div className="footer-info">
           <div className="footer-logo">
             <h2>
+<<<<<<< HEAD:frontend/src/Component/Footer/index.jsx
               Certonic <img src={logo} alt="Certonic logo" />
+=======
+              Certonic <img src={logo} alt="Certify logo" />
+>>>>>>> 5edaad5 (FRO-16 fix: minor fix):Frontend/src/Component/Footer/index.jsx
             </h2>
             <h3>info@certonic.com</h3>
           </div>
