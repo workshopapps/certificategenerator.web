@@ -6,7 +6,14 @@ import certificate from "./images/Completion - Portrait (2).png";
 import certificate3 from "./images/Completion - Portrait (3).png";
 import certificate2 from "./images/Completion - Portrait.png";
 
-function Index() {
+function Index({
+  logo,
+  certificateTitle,
+  awardeeName,
+  message,
+  issuedBy,
+  issueDate
+}) {
   return (
     <div id="singlePreview">
       {/* BUTTONS TO TOGGLE BETWEEN SINGLE AND BULK CERTIFICATE */}
@@ -25,6 +32,12 @@ function Index() {
       <div className="certificate-hero">
         <h1>Your certificate is ready!</h1>
         <img src={certificate} alt="certificate" />
+        <p>{logo}</p>
+        <p>{certificateTitle}</p>
+        <p>{awardeeName}</p>
+        <p>{message}</p>
+        <p>{issuedBy}</p>
+        <p>{issueDate}</p>
 
         {/* BUTTONS FOR EITHER SENDIMG OR DOWNLOADING */}
 
