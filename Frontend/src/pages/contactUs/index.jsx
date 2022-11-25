@@ -21,7 +21,7 @@ const ContactUs = () => {
             <div className="contact__info--itemText">
               <h4 className="contact__info--key">Chat with customer suport</h4>
               <p className="contact__info--address">Chat with sales team</p>
-              <span>support@certawi.com</span>
+              <span>support@certonic.com</span>
             </div>
           </div>
           <div className="contact__info--item">
