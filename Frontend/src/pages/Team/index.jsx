@@ -166,9 +166,8 @@ const Team = () => {
       {/* title */}
       <div className="team">Our Team</div>
       <div className="meet">
-        Experience, skill and creativity all come together to build our software
-        - one that's innovative, visionary, and inclusive. The team behind
-        Certawi Certificate Generator consist of:
+        Experience, skill and creativity all come together to build our software - one that's innovative, visionary, and inclusive.  We are a team of talented and
+        passionate designers, managers, developers and marketers dedicated to creating the best certificate generator on the planet. 
       </div>
       {/* members */}
       <div className="containers">
