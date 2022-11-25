@@ -30,6 +30,11 @@ import Gallery6 from '../../assets/images/aboutUs/gallery6.png'
 // import 'swiper/css';
 // import 'swiper/css/scrollbar';
 
+// import { Scrollbar } from 'swiper';
+// import {per, SwiperSlide} from 'swiper/react';
+// import 'swiper/css';
+// import 'swiper/css/scrollbar';
+
 const aboutUs = () => {
   return (
     
