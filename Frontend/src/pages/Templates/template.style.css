@@ -7,7 +7,30 @@
 .template-wrapper header {
   position: relative;
 }
-.template-wrapper h1 {
+.template-wrapper header .hideerrorMsg {
+  display: none;
+}
+.template-wrapper header .error-container {
+  background-color: #FBE5E5;
+  border: 2px solid #ECB4B4;
+  border-radius: 10px;
+  padding-inline: 10px;
+  padding-block: 0px;
+  display: flex;
+  align-items: center;
+}
+.template-wrapper header .error-container__message {
+  font-size: 13px;
+  color: #222222;
+  font-weight: 300;
+  text-align: center;
+}
+.template-wrapper header .error-container .closeicon {
+  width: 30px;
+  height: 30px;
+  opacity: 50%;
+}
+.template-wrapper .templates-title {
   color: rgb(34, 34, 34);
   text-align: center;
   font-size: 20px;
@@ -35,8 +58,10 @@
 .template-wrapper .filter-btn {
   font-size: 0;
   padding: 2px 8px;
+  width: 60px;
+  height: 60px;
   position: absolute;
-  top: 0;
+  top: -25px;
   border: 1px solid transparent;
   background-color: transparent;
   right: 0;
@@ -70,22 +95,25 @@
   background-color: rgb(108, 108, 112);
   position: relative;
 }
-.template-wrapper .cards-container .template-card__header h2 {
+.template-wrapper .cards-container .template-card__header .canvas-title {
   margin: 0;
   padding-block: 30px;
   text-align: center;
+  font-size: 24px;
 }
-.template-wrapper .cards-container .template-card__header button {
+.template-wrapper .cards-container .template-card__header .btn-premium {
   position: absolute;
   top: 5px;
   right: 5px;
+  height: 30px;
+  width: 94px;
   color: rgb(255, 255, 255);
   background-color: #606060;
   border: 1px solid #606060;
   border-radius: 8px;
   padding: 6px 10px;
 }
-.template-wrapper .cards-container .template-card__header button img {
+.template-wrapper .cards-container .template-card__header .btn-premium img {
   margin-left: 5px;
 }
 .template-wrapper .cards-container .template-card__icon {
@@ -114,7 +142,13 @@
   .template-wrapper {
     margin-inline: 90px;
   }
-  .template-wrapper h1 {
+  .template-wrapper .error-container {
+    gap: 10px;
+  }
+  .template-wrapper .error-container__message {
+    font-size: 32px;
+  }
+  .template-wrapper .templates-title {
     font-size: 30px;
   }
   .template-wrapper .filter-btn {
@@ -125,7 +159,9 @@
     border-radius: 8px;
     background-color: #fff;
     rotate: 0deg;
-    top: 4px;
+    top: 0px;
+    width: 138px;
+    height: 48px;
   }
 }
 @media (min-width: 1024px) {
@@ -133,7 +169,14 @@
     margin-inline: 90px;
     padding-block: 64px;
   }
-  .template-wrapper h1 {
+  .template-wrapper .error-container {
+    justify-content: space-evenly;
+    gap: 20px;
+  }
+  .template-wrapper .error-container .error-container__message {
+    font-size: 16px;
+  }
+  .template-wrapper .templates-title {
     font-size: 47px;
   }
-}
+}/*# sourceMappingURL=template.style.css.map */

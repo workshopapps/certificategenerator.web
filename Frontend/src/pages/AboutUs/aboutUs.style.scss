@@ -82,11 +82,6 @@ h6 {
     height: 10px;
 }
 
-// fake nav
-.aboutNav{
-    height: 100px;
-}
-
 // hero
 .aboutHero{
     display: flex;
@@ -162,8 +157,8 @@ h6 {
     overflow: scroll;
 }
 .aboutValueCard {
-    width: 500px;
-    height: 240px;
+    width: 600px;
+    height: 300px;
     position: relative;
     border-radius: 5px;
     padding: 30px 45px 33px 32px;
@@ -225,11 +220,6 @@ h6 {
     width: 100%;
 }
 
-// footer
-.aboutFooter{
-    height: 443px;
-    background: #08372F;
-}
 
 // tablet screen
 @media screen and (max-width:1024px){
@@ -250,16 +240,7 @@ h6 {
         font-size: 14px;
         line-height: 16px;
         }
-    .btn{
-        width: 111px;
-        padding: 17.5px 26px;
-        } 
-
-    // fake nav
-    .aboutNav {
-        height: 68px;
-        }
-    // hero
+     // hero
     .aboutHero {
         padding: 0 44px;
         }
@@ -298,8 +279,8 @@ h6 {
         padding: 0 10%;
     }
     .aboutValueCard {
-        width: 360px;
-        height: 200px;
+        width: 480px;
+        height: 220px;
         border-radius: 10px;
         padding: 24px 19px 24px 16px;
     }
@@ -351,10 +332,6 @@ h6 {
     .aboutGalleryS img{
         width: 100%;
     }
-    // footer
-    .aboutFooter {
-        height: 834px;
-    }
 }
 @media screen and (max-width:800px) {
     // hero
@@ -401,17 +378,11 @@ h6 {
         line-height: 12px;
         }
     .btn {
-        width: 110px;
-        padding: 14px 20px;
         font-size: 16px;
         line-height: 19px;
         }
     .aboutstroke {
         width: 50px;
-        }
-    // fake nav
-    .aboutNav {
-        height: 64px;
         }
     // hero
     .aboutHero {
@@ -428,7 +399,7 @@ h6 {
     .aboutAbout {
         display: flex;
         flex-direction: column;
-        padding: 24px 48px;
+        padding: 24px 24px 48px;
         gap: 48px;
         }
     #mission{
@@ -460,7 +431,7 @@ h6 {
         padding-top: 35px;
         }
     .aboutValueCard {
-        width: 180px;
+        width: 240px;
         height: 140px;
         padding: 16px 10px 13px;
         }
@@ -512,9 +483,6 @@ h6 {
         padding-top: 49px;
         gap: 20px;
         grid-template-columns: 1fr 1fr;
-        }
-    .aboutFooter {
-        height: 1785px;
         }
 }
 
