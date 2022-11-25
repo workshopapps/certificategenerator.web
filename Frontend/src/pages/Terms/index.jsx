@@ -9,7 +9,7 @@ const Terms = () => {
 
         {/* Header */}
         <div className='header'>
-            <h1>Certawi Terms of Service</h1>
+            <h1>Certonic Terms of Service</h1>
             <p>Last updated: November 17, 2022</p>
         </div>
 

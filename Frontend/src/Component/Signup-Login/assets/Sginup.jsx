@@ -48,8 +48,8 @@ const Signup = () => {
             </div> */}
             <div className="authContainer">
                 <div className="formDiv">
-                    <div id="heading">Welcome to Certify</div>    
-                    <span id="startGenerating">Start generating certificates by creating a Certify account</span>
+                    <div id="heading">Welcome to Certonic</div>    
+                    <span id="startGenerating">Start generating certificates by creating a Certonic account</span>
                     <div id="signupG">
                         <img alt="" src={googleSVG} id="img_id" />
                         <a href="#">Signup using Google</a>

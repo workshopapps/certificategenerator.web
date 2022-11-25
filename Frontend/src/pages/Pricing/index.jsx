@@ -18,7 +18,7 @@ function Pricing() {
 
                     <h3>We've got a plan to suit any need.</h3>
 
-                    <p>Buy a plan that's right for you. With Certify 
+                    <p>Buy a plan that's right for you. With Certonic 
                         you can tailor your plan to suit your budget and needs. 
                         We accept all major payment methods and process payments immediately.
                     </p>
