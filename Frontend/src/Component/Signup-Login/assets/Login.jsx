@@ -67,7 +67,7 @@ const Login = () => {
                             onChange={handleChange} name="acceptTerms"/>
                             <label id="labels" htmlFor="acceptTerms">Remember me</label>
                         </div>
-                        <div id="btn">Login</div>
+                        <input id="btn" type="submit" value="Login" />
                     </form>   
                     <p className="haveAccount">Don’t have a Certonic account? <Link to="/signup" id="coloredTerms">Create an account </Link></p>
                 </div>
