@@ -1,11 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./singlepreview.style.scss";
-//import ".../Style/_variables.scss"
-
-import certificate from "../../assets/images/SinglePreview/Completion - Portrait (2).png"
-import certificate2 from "../../assets/images/SinglePreview/Completion - Portrait (3).png"
-import certificate3 from "../../assets/images/SinglePreview/Completion - Portrait.png"
+import certificate from "../../assets/images/SinglePreview/Completion - Portrait (2).png";
+import certificate2 from "../../assets/images/SinglePreview/Completion - Portrait (3).png";
+import certificate3 from "../../assets/images/SinglePreview/Completion - Portrait.png";
 
 function Index({
   logo,
@@ -13,7 +11,7 @@ function Index({
   awardeeName,
   message,
   issuedBy,
-  issueDate
+  issueDate,
 }) {
   return (
     <div id="singlePreview">
@@ -30,16 +28,46 @@ function Index({
 
       {/* IMAGE OF YOUR CERTIFICATE READY TO BE DOWNLOADED OR SENT */}
 
-      <div className="certificate-hero">
-        <h1>Your certificate is ready!</h1>
-        <img src={certificate} alt="certificate" />
-        <p>{logo}</p>
-        <p>{certificateTitle}</p>
-        <p>{awardeeName}</p>
-        <p>{message}</p>
-        <p>{issuedBy}</p>
-        <p>{issueDate}</p>
+      <div className="certificate-header">
+        <h4>Your certificate is ready!</h4>
+      </div>
 
+      <section id="container-wrapper">
+        <div id="container-design">
+          <div className="sample3"></div>
+          <div className="sample"></div>
+
+          <div id="single-preview-card">
+            <div id="single-preview-text">
+              <div id="preview-text">
+                <img src={logo} alt="" />
+                <h1>{certificateTitle}</h1>
+                
+                <p>THIS CERTIFIES THAT</p>
+                <h2>{awardeeName}</h2>
+                <h6>{message}</h6>
+              </div>
+
+              <div className="single-preview-issue">
+                <div className="issue-by">
+                  <h6>{issuedBy}</h6>
+                  <div className="line"></div>
+                  <p>ISSUED BY</p>
+                </div>
+
+                <div className="issue-by">
+                  <h6>{issueDate}</h6>
+                  <div className="line"></div>
+                  <p>ISSUE DATE</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="sample2"></div>
+        </div>
+      </section>
+
+      <div className="certificate-share-hero">
         {/* BUTTONS FOR EITHER SENDIMG OR DOWNLOADING */}
 
         <div className="buttons">
@@ -64,3 +92,4 @@ function Index({
 }
 
 export default Index;
+
