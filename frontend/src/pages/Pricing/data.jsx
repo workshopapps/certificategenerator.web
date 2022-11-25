@@ -266,7 +266,7 @@ export const data = [
 export const testimonials = [
     {
         id: 1,
-        text: "As a course creator with multiple courses, it's just so quick to create certificates using certonic that it almost feels like cheating. As there are a number of customizable certificates, I'm able to quickly create designs consistent with my brand very quickly.",
+        text: "As a course creator with multiple courses, it's just so quick to create certificates using Certonic that it almost feels like cheating. As there are a number of customizable certificates, I'm able to quickly create designs consistent with my brand very quickly.",
         img: "/assets/jessica.svg",
         name: "Jessica Hendrix",
         position: "Chief Product Officer"
