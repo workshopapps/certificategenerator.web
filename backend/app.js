@@ -37,7 +37,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(fileUpload());
 
-app.get("/", (req, res) => {
+app.get("/api", (req, res) => {
   res.send("Welcome to HNG-Certificate Api");
 });
 
