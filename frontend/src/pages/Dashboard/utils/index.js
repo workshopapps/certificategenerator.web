@@ -139,16 +139,16 @@ export const cardData = [
   {
     title: "Total Number Issued",
     icon: "",
-    count: 12800,
+    count: 0,
   },
   {
     title: "Total number of pending certificates",
     icon: "",
-    count: 2,
+    count: 0,
   },
   {
     title: "No of Certificates Declined",
     icon: "",
-    count: 2,
+    count: 0,
   },
 ];
