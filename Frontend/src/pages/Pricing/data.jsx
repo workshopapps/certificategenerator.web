@@ -266,7 +266,7 @@ export const data = [
 export const testimonials = [
     {
         id: 1,
-        text: "As a course creator with multiple courses, it's just so quick to create certificates using certify that it almost feels like cheating. As there are a number of customizable certificates, I'm able to quickly create designs consistent with my brand very quickly.",
+        text: "As a course creator with multiple courses, it's just so quick to create certificates using Certonic that it almost feels like cheating. As there are a number of customizable certificates, I'm able to quickly create designs consistent with my brand very quickly.",
         img: "/assets/jessica.svg",
         name: "Jessica Hendrix",
         position: "Chief Product Officer"
@@ -280,21 +280,21 @@ export const testimonials = [
     },
     {
         id: 3,
-        text: "Using Certify is always a straightforward, simple and enjoyable experience, particularly as there are only a few steps involved. There’s nothing complicated about the user experience. The team are always on hand and are responsive to any queries. Great experience overall.",
+        text: "Using Certonic is always a straightforward, simple and enjoyable experience, particularly as there are only a few steps involved. There’s nothing complicated about the user experience. The team are always on hand and are responsive to any queries. Great experience overall.",
         img: "/assets/raul.svg",
         name: "Raul Gonzalez",
         position: "Chief Mentor, UI Academy"
     },
     {
         id: 4,
-        text: "Certify made that easier than I ever thought possible and now I have a tool that makes certification easier than ever before. With Certify, I can manage my certifications and continuing education requirements in one place.",
+        text: "Certonic made that easier than I ever thought possible and now I have a tool that makes certification easier than ever before. With Certonic, I can manage my certifications and continuing education requirements in one place.",
         img: "/assets/emily.svg",
         name: "Emily Rowe",
         position: "Principal, Grange High School"
     },
     {
         id: 5,
-        text: "The Certify tool is a fantastic option for anyone looking to automate their certification processes! The user experience is very clean and easy to use. I was able to learn how to use the tool seamlessly within 30 minutes. The customer service team is also very responsive and helpful.",
+        text: "The Certonic tool is a fantastic option for anyone looking to automate their certification processes! The user experience is very clean and easy to use. I was able to learn how to use the tool seamlessly within 30 minutes. The customer service team is also very responsive and helpful.",
         img: "/assets/raheem.svg",
         name: "Raheem Pound",
         position: "Business Analyst"
