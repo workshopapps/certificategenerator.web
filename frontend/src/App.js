@@ -29,7 +29,7 @@ import {
 import Home from "./pages/Home";
 import Checkout from "./pages/Checkout";
 import { Privacy } from "./pages/PrivacyPolicy";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function App() {
   const [logo, setLogo] = useState("");
@@ -39,6 +39,32 @@ function App() {
   const [issuedBy, setIssuedBy] = useState("");
   const [issueDate, setIssueDate] = useState("");
 
+  const [file, setFile] = useState('')
+  const [certificatesData, setCertificateData] = useState([])
+
+  useEffect(() => {
+    const uploadFile = () => {
+    let myHeaders = new Headers();
+    myHeaders.append(
+      "Authorization",
+      "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzdmOTg3MDQyODc5MzAwNDJmYzE0M2UiLCJpYXQiOjE2NjkzMDY4MjQsImV4cCI6MTY2OTM5MzIyNH0.x5q4XJDcFvN8EWqc4e0el6CZXJtwQjtcrmo3Id0sQlc"
+    );
+
+    let formdata = new FormData();
+    formdata.append("file", file[0]);
+    let requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: formdata,
+    };
+
+    fetch("https://certify-api.onrender.com/api/certificates", requestOptions)
+      .then((response) => response.json())
+      .then((result) => setCertificateData(result))
+      .catch((error) => console.log("error", error));
+    }
+    file && uploadFile()
+  }, [file]);
   return (
     <>
       <Navbar />
@@ -78,7 +104,7 @@ function App() {
             />} />
             <Route path="/aboutUs" element={<AboutUs />} />
             <Route path="/FAQ" element={<FAQ />} />
-            <Route path="/bulk_preview" element={<BulkPreview />} />
+            <Route path="/bulk_preview" certificatesData={certificatesData} element={<BulkPreview />} />
             <Route path="/bulk_step" element={<BulkStep />} />
             <Route path="/edit_bulk" element={<EditBulk />} />
             <Route path="/pricing" element={<Pricing />} />
@@ -86,7 +112,7 @@ function App() {
             <Route path="/payment" element={<Checkout />} />
 
             <Route path="/profile" element={<ProfilePage />} />
-            <Route path="/upload" element={<UploadCSV />} />
+            <Route path="/upload" setFile={setFile} element={<UploadCSV />} />
 
             <Route path="/privacy" element={<Privacy />} />
           </Route>
