@@ -10,9 +10,9 @@ import Template2 from "../../assets/images/uploadPage/template2.svg";
 import Template3 from "../../assets/images/uploadPage/template3.svg";
 import { useState } from "react";
 
-const UploadCSV = () => {
+const UploadCSV = ({setFile}) => {
   const [state, setState] = useState({ active: true });
-
+  
   const toggleState = (e) => {
     console.log(Object.values(e.target.classList));
     // console.log( typeof e.target.classList);
@@ -27,6 +27,8 @@ const UploadCSV = () => {
       });
     }
   };
+  
+
   return (
     <div className="uploadCSVContainer">
       <div className="certificateSwitch">
@@ -76,6 +78,7 @@ const UploadCSV = () => {
               name="uploadCSV"
               accept=".csv"
               className="box"
+              onChange={(e) => {setFile(e.target.files);}}
             />
             Browse files
           </label>
