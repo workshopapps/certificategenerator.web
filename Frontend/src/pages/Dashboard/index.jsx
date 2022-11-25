@@ -46,7 +46,7 @@ const Dashboard = () => {
     fetchData();
   }, []);
 
-  const dataCheck = cardData.filter((item) => item.count !== 0);
+  const dataCheck = issuedCert.filter((item) => item.count !== 0);
 
   return (
     <>
