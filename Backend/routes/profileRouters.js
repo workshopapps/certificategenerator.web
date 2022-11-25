@@ -1,5 +1,6 @@
 const express = require('express')
 const router = express.Router()
+const auth = require(../middleware/authentication)
 
 const {
   createUserProfile,
@@ -12,16 +13,16 @@ const {
 
 
 // for getting each user profile
-router.get('/:id', getUserProfile)
+router.get('/',auth, getUserProfile)
 
 // for creating each user profile
-router.post('/', createUserProfile)
+router.post('/', auth, createUserProfile)
 
 // to for update a user's profile
-router.put('/:id', updateUserProfile)
+router.put('/', auth, updateUserProfile)
 
 // to delete a user profile
-router.delete('/:id', deleteUserProfile)
+router.delete('/', auth, deleteUserProfile)
 
 
 module.exports = router
