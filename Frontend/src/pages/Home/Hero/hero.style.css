@@ -79,6 +79,7 @@ body {
   color: #FFFFFF;
   margin-top: 32px;
   text-align: center;
+  cursor: pointer;
 }
 
 .mobile-only {
@@ -204,4 +205,4 @@ body {
   .partners .bottom {
     margin-bottom: -100px;
   }
-}
+}/*# sourceMappingURL=hero.style.css.map */

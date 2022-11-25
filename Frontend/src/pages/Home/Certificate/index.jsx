@@ -58,7 +58,7 @@ export default function Certificate ({
           <p className="explore"><span className="explore-arrow">&#10140;</span>Explore more templates</p>
           </Link>
 
-          <form action="" className="cert-form text-left work-sans">
+          <form data-test-id="cert-form" action="" className="cert-form text-left work-sans">
             <UploadCSV />
             {/* <label for='img'>Logo</label>
             <input type="file" name="uploadfile" id="img" style={{ display:"none"}}/>

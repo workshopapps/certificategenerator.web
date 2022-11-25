@@ -4,6 +4,7 @@ import example from '../../../assets/images/example.png'
 import one from '../../../assets/images/step-one.png'
 import two from '../../../assets/images/step-two.png'
 import three from '../../../assets/images/step-three.png'
+import { Link } from "react-router-dom";
 
 export default function BulkStep () {
     return (
@@ -26,7 +27,9 @@ export default function BulkStep () {
                 </div>
             </div>
           </div>
-          <button className="bulk-button work-sans">Create Bulk Certificates</button>
+          <Link to='/edit_bulk'>
+            <button className="bulk-button work-sans">Create Bulk Certificates</button>
+          </Link>
         </div>
     )
 }
