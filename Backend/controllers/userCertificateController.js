@@ -13,29 +13,48 @@ const addCertificate = async (req, res) => {
   const { userId } = jwt.decode(token);
 
   const files = req.files;
-  if (!files) return res.status(400).json({ message: "bad request" }).end();
-  const csvFile = files.file.data;
-  const csvData = Buffer.from(csvFile).toString();
-  const jsonData = await csvToJson().fromString(csvData);
-  if (!isValidJsonOutput(jsonData))
-    return res
-      .status(400)
-      .json({ message: "Invalid input from uploaded csv file" })
-      .end();
+  const payload = req.body;
+
+  if (!files && Object.keys(payload).length === 0) {
+    return res.status(400).json({ message: "bad request" }).end();
+  }
+
+  let certificateData;
+  if (files) {
+    const csvFile = files.file.data;
+    const csvData = Buffer.from(csvFile).toString();
+    certificateData = await csvToJson().fromString(csvData);
+    if (!isValidJsonOutput(certificateData))
+      return res
+        .status(400)
+        .json({ message: "Invalid input from uploaded csv file" })
+        .end();
+  } else if (payload) {
+    certificateData = [
+      {
+        name: payload.name,
+        nameOfOrganization: payload.nameOfOrganization,
+        award: payload.award,
+        description: payload.description,
+        date: payload.date,
+        signed: payload.signed,
+      },
+    ];
+  } else return res.status(400).json({ message: "bad request" }).end();
 
   const user = await User.findOne({ userId }).exec();
 
   if (!user) {
     await User.create({
       userId: userId,
-      records: jsonData,
+      records: [...certificateData],
     });
+  } else {
+    user.records = [...user.records, ...certificateData];
+    await user.save();
   }
 
-  user.records = [...jsonData];
-  user.save();
-
-  res.status(200).json(jsonData);
+  res.status(200).json(certificateData);
 };
 
 const getAllCertificates = async (req, res) => {
@@ -47,6 +66,8 @@ const getAllCertificates = async (req, res) => {
   const token = auth.split(" ")[1];
   const { userId } = jwt.decode(token);
   const user = await User.findOne({ userId }).exec();
+  if (!user) return res.status(404).json({ message: "user not found" });
+
   const certificates = user.records;
 
   res.status(200).json(certificates);
@@ -54,14 +75,22 @@ const getAllCertificates = async (req, res) => {
 
 //This is for getting one certificate
 const getCertificate = async (req, res) => {
-  const { id } = req.params
-  const certificate = await User.findOne({ _id: id })
   const auth = req.headers.authorization;
   if (!auth) {
     return res.status(403).json({ error: "No credentials sent!" });
   }
+
+  const token = auth.split(" ")[1];
+  const { userId } = jwt.decode(token);
+
+  const user = await User.findOne({ userId });
+  if (!user) return res.status(404).json({ message: "user not found" });
+
+  const certificateId = req.params.id;
+  const certificate = user.records.find((cert) => cert._id !== certificateId);
+
   if (!certificate) {
-    return res.status(404).json({message:`Certificate not found`})
+    return res.status(404).json({ message: `Certificate not found` });
   }
 
   return res.status(200).json(certificate);
@@ -78,12 +107,40 @@ const getNoOfCertificatesIssued = async (req, res) => {
   const user = await User.findOne({ userId }).exec();
   const certificates = user.records;
 
-  res.status(200).json({result: certificates, issuedCertificates: certificates.length});
+  res
+    .status(200)
+    .json({ result: certificates, issuedCertificates: certificates.length });
 };
+
+const deleteCertificate = async (req, res) => {
+  const {id:certificateID} = req.params
+
+
+  //validate header authorization
+  const auth = req.headers.authorization;
+  if (!auth) {
+    return res.status(403).json({ error: "No credentials sent!" });
+  }
+
+   //validate param ID
+   if (!certificateID.match(/^[0-9a-fA-F]{24}$/)) {
+    return res.status(403).json({ error: "Not a valid certificate ID" });
+  }
+
+  //delete certificate by ID
+  const cert = await User.findOneAndDelete({_id:certificateID})
+
+  
+  if(!cert){
+      return res.status(404).json(`No Certificate with id: ${certificateID}`)
+  }
+  return res.status(200).json({message: `Certificate has been Deleted`})
+}
 
 module.exports = {
   getAllCertificates,
   addCertificate,
   getCertificate,
-  getNoOfCertificatesIssued
+  getNoOfCertificatesIssued,
+  deleteCertificate
 };

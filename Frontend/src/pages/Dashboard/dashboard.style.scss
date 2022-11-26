@@ -1,5 +1,4 @@
-// @use "../../Style/variables" as *;
-@import "../../Style/variables";
+@use "../../Style/variables" as *;
 @import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap");
 
 // colors
@@ -36,10 +35,20 @@ $size-sm: 12px;
     align-items: center;
     gap: 1rem;
     .flexx {
-        flex: 2;
+      flex: 2;
       display: flex;
       flex-direction: column;
       gap: 1rem;
+      p{
+        margin: .3rem 0 0 0;
+        font-size: 14px;
+      }
+    }
+  }
+  &__profile-pic{
+    width: 100px;
+    img{
+      width: 100%;
     }
   }
   &__align-start{
@@ -62,7 +71,6 @@ $size-sm: 12px;
     font-size: $size-sm;
     color: #6c6c70;
     line-height: 20px;
-    margin: 0;
   }
   &__btn {
     text-align: start;
@@ -71,8 +79,8 @@ $size-sm: 12px;
       padding: 12px 20px;
       border-radius: 5px;
       background-color: transparent;
-      color: $primaryGreenColor;
-      border: 1px solid $primaryGreenColor;
+      color: $primaryColor;
+      border: 1px solid $primaryColor;
       word-wrap: nowrap;
     }
   }
@@ -106,7 +114,7 @@ $size-sm: 12px;
         padding: 12px 20px;
         border-radius: 5px;
         color: #ffffff;
-        background-color: $primaryGreenColor;
+        background-color: $primaryColor;
       }
     }
     .table {
@@ -126,7 +134,7 @@ $size-sm: 12px;
             padding: 12px 20px;
             border-radius: 5px;
             color: #ffffff;
-            background-color: $primaryGreenColor;
+            background-color: $primaryColor;
         }
       }
 
@@ -134,20 +142,22 @@ $size-sm: 12px;
         width: 768px;
         text-align: left;
         border-collapse: collapse;
+        background-color: $primaryColor;
+        color: #ffffff;
         tr {
           border-bottom: 1px solid #EFEFEF;
         }
         th {
           font-size: $size-sm;
           letter-spacing: 0.02em;
-          color: $text-color-light;
+          color: #ffffff;
           white-space: nowrap;
-          padding: 1rem 0;
+          padding: 1rem 1rem;
         }
         td {
           font-size: $size;
-          color: $text-color-light;
-          padding: 0.6rem 0;
+          color: #ffffff;
+          padding: 0.6rem 1rem;
 
           button {
             font-size: $size-sm;
@@ -165,7 +175,7 @@ $size-sm: 12px;
           }
           button.issue {
             background-color: #ecfdfa;
-            color: $primaryGreenColor;
+            color: $primaryColor;
           }
           button.cancel {
             background-color: #fbd8d6;
@@ -182,7 +192,14 @@ $size-sm: 12px;
 @media screen and (min-width: 780px) {
   
   .dashboard {
-    padding: 1.5rem 0 4rem 0;
+    padding: 3rem 0 ;
+    &__hero-section{
+      .flexx{
+        p{
+          margin: 0;
+        }
+      }
+    }
     &__title{
       font-size: $size-lg;
       margin-bottom: .5rem;
@@ -206,7 +223,7 @@ $size-sm: 12px;
     }
     .table-wrapper{
         width: 90%;
-        margin: 0 auto 0rem auto;
+        margin: 0 auto 1rem auto;
         .table-header {
           flex-direction: row;
           justify-content: space-between;
@@ -224,15 +241,15 @@ $size-sm: 12px;
           }
     }
   }
-  @media screen and (min-width: 1090px){
-    .dashboard{
-      &__hero-section{
-        .flexx {
-          flex-direction: row;
-          justify-content: space-between;
-          align-items: flex-end;
-        }
-      }
+}
+@media screen and (min-width: 960px) {
+  .dashboard{
+    &__hero-section{
+      .flexx{
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-end;
+      } 
     }
   }
 }

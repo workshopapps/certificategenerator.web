@@ -16,11 +16,11 @@ function Pricing() {
                 <article className="text">
                     <p>PRICING</p>
 
-                    <h3>Choose a plan tailored to your needs</h3>
+                    <h3>We've got a plan to suit any need.</h3>
 
-                    <p>Buy a plan that's right for you. With Certawi 
+                    <p>Buy a plan that's right for you. With Certify 
                         you can tailor your plan to suit your budget and needs. 
-                        Choose to upgrade or downgrade your plan at any time – it's up to you!
+                        We accept all major payment methods and process payments immediately.
                     </p>
                 </article>
 
@@ -78,7 +78,7 @@ function Pricing() {
 
             <section className="testimonials">
                 <article className="textC">
-                    <p>TESTIMONIALS</p>
+                    <p id="monials">TESTIMONIALS</p>
 
                     <h3>What our clients say about us</h3>
 

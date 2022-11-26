@@ -1,16 +1,17 @@
 import "./navbar.style.scss";
 //import menu from '../../pages/ComingSoon/images/menu.svg'
-import React, { useRef } from "react";
-import logo from "./assets/icon.png";
-import { FaBars } from "react-icons/fa";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useRef, useState } from "react";
+import logo from "../../assets/images/navbarIcon.png";
+import { FaBars, FaTimes } from "react-icons/fa";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 
 function Navbar() {
+  const [switchFa, setSwitchFa] = useState(false);
   const navigate = useNavigate();
   const navRef = useRef();
   const handleToggle = () => {
-    console.log(navRef.current);
     navRef.current.classList.toggle("show-links");
+    setSwitchFa(!switchFa);
   };
 
   const links = [
@@ -21,22 +22,22 @@ function Navbar() {
     },
     {
       id: 2,
-      url: "/",
+      url: "/templates",
       text: "browse templates",
     },
     {
       id: 3,
-      url: "/",
+      url: "/pricing",
       text: "pricing",
     },
     {
       id: 4,
-      url: "/",
-      text: "blog",
+      url: "/contact-us",
+      text: "contact",
     },
     {
       id: 5,
-      url: "/",
+      url: "/FAQ",
       text: "FAQs",
     },
   ];
@@ -44,35 +45,47 @@ function Navbar() {
   return (
     <div className="navbar">
       <div className="nav-header-container">
-        <div className="nav-header container">
+        <div className="nav-header nav-container">
           <div className="nav-logo" onClick={() => navigate("/")}>
             <h2>
-              Cert<span>awi</span>
+              Cert<span>ify</span>
             </h2>
             <img src={logo} alt="certawi bulb" />
           </div>
           <div className="nav-click">
-            <button className="btn">get started</button>
-            <FaBars className="bars" onClick={handleToggle} />
+            <button className="btn">
+              <Link to="/modify" className="link">
+                get started
+              </Link>
+            </button>
+            {switchFa === true ? (
+              <FaTimes className="times" onClick={handleToggle} />
+            ) : (
+              <FaBars className="bars" onClick={handleToggle} />
+            )}
           </div>
         </div>
-      </div>
-      <div className="nav-links">
-        <div className="links-container container" ref={navRef}>
-          <div className="links">
-            {links.map((link) => {
-              const { id, url, text } = link;
-              return (
-                <p key={id}>
-                  <Link to={url} className="link">
-                    {text}
-                  </Link>
-                </p>
-              );
-            })}
-          </div>
-          <div className="button-container">
-            <button className="btn">get started</button>
+        <div className="nav-links">
+          <div className="links-container nav-container" ref={navRef}>
+            <div className="links">
+              {links.map((link) => {
+                const { id, url, text } = link;
+                return (
+                  <p key={id}>
+                    <NavLink to={url} className="link" onClick={handleToggle}>
+                      {text}
+                    </NavLink>
+                  </p>
+                );
+              })}
+            </div>
+            <div className="button-container">
+              <button className="btn" onClick={handleToggle}>
+                <Link to="/modify" className="link">
+                  get started
+                </Link>
+              </button>
+            </div>
           </div>
         </div>
       </div>

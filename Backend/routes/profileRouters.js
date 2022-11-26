@@ -16,4 +16,8 @@ router.post("/", addUserProfile);
 //for updating userProfile
 router.put('/', updateUserProfile);
 
+<<<<<<< HEAD
 module.exports = router;
+=======
+module.exports = router;
+>>>>>>> 86ad619ae164b2daf428c9dd9ef3f438e9e60dca

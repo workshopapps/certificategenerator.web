@@ -1,72 +1,199 @@
 @import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@500&display=swap");
-#edit body {
-  text-align: "center";
+#edit-bulk {
+  margin-bottom: 80px;
 }
-#edit body h1 {
-  font-size: 30px;
-  font-weight: 500;
+#edit-bulk .button-container {
+  display: flex !important;
+  align-items: center;
+  justify-content: center !important;
 }
-#edit .form {
-  border: 1px solid #545454;
-  padding: 30px;
-  margin: 30px;
+#edit-bulk .button-container button {
+  margin: 0px 10px 30px 10px;
+  height: 37px;
+  width: 130px;
   border-radius: 10px;
-  text-align: left;
-  background: #fafafb;
-  margin-bottom: 50px !important;
+  font-family: "Work Sans", sans-serif;
 }
-#edit .form .logo input {
-  padding: 5px !important;
-  border-radius: 5px !important;
-  border: 1px solid #545454;
-  width: 26% !important;
-  margin-top: 15px !important;
-  margin-bottom: 0px !important;
+#edit-bulk .button-container button.not-active {
+  background: transparent;
+  border: none;
 }
-#edit .form .logo h6 {
-  margin-bottom: 30px;
-  margin-top: 5px;
+#edit-bulk .button-container button.not-active:hover {
+  color: #fff;
+  background: #19a68e;
+  border: none;
+  transition: 500ms ease-in-out;
 }
-#edit .form label {
-  font-weight: bolder;
-}
-#edit .form input,
-#edit .form select {
-  padding: 18px;
-  border-radius: 10px;
-  border: 1px solid grey;
-  width: 95%;
-  margin-top: 15px !important;
-  margin-bottom: 30px !important;
-  background: #fff;
-}
-#edit .form select {
-  width: 100%;
-}
-#edit .form button {
+#edit-bulk .button-container button.active {
   background: #19a68e;
   color: #fff;
   border: none;
-  width: 130px;
-  height: 43px;
-  text-align: center;
-  margin: 0px;
 }
-#edit .form button:hover {
+#edit-bulk .button-container button.active:hover {
   color: #19a68e;
   background: #fff;
   border: 1px solid #19a68e;
   transition: 500ms ease-in-out;
 }
+#edit-bulk h1 {
+  font-size: 20px;
+  font-weight: 500;
+  text-align: center !important;
+}
+#edit-bulk form {
+  border: 1px solid #545454;
+  padding: 30px;
+  margin: 30px;
+  border-radius: 8px;
+  text-align: left;
+  background: #fafafb;
+  margin-bottom: 50px !important;
+}
+#edit-bulk form #edit-bulk-logo input {
+  padding: 15px !important;
+  border-radius: 5px !important;
+  border: 1px solid #000 !important;
+  width: 56% !important;
+  height: 50px;
+  margin-top: 0px !important;
+  margin-bottom: 5px !important;
+}
+#edit-bulk form #edit-bulk-logo h6 {
+  margin-bottom: 20px !important;
+  margin-top: 5px !important;
+}
+#edit-bulk form label {
+  font-weight: bolder;
+}
+#edit-bulk form .edit-bulk-input input,
+#edit-bulk form .edit-bulk-select select {
+  padding: 18px !important;
+  border-radius: 8px !important;
+  border: 1px solid #000 !important;
+  outline: none !important;
+  width: 95% !important;
+  height: 60px;
+  margin-top: 15px !important;
+  margin-bottom: 30px !important;
+  background: #fff;
+}
+#edit-bulk form select {
+  width: 100% !important;
+}
+#edit-bulk form #edit-bulk-button {
+  background: #19a68e;
+  color: #fff !important;
+  border: none;
+  width: 130px;
+  height: 43px;
+  text-align: center !important;
+  margin: 0px;
+}
+#edit-bulk form #edit-bulk-button:hover {
+  color: #19a68e;
+  background: #fff;
+  border: 1px solid #19a6be;
+  transition: 500ms ease-in-out;
+}
 @media screen and (min-width: 768px) {
-  #edit .modify-container {
+  #edit-bulk .button-container button {
+    font-size: 15px;
+    width: 170px;
+    height: 45px;
+    max-width: 10px 15px 20px 15px;
+  }
+  #edit-bulk .modify-container {
     display: flex;
     flex-direction: column;
     align-items: center;
   }
-  #edit form {
+  #edit-bulk h1 {
+    font-size: 25px;
+  }
+  #edit-bulk form {
     width: 100%;
     max-width: 700px;
     height: auto;
   }
+<<<<<<< HEAD
+=======
 }
+@media screen and (min-width: 1024px) {
+  #edit-bulk .button-container button {
+    font-size: 18px;
+    height: 40px;
+    width: 160px;
+  }
+  #edit-bulk h1 {
+    font-size: 30px;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+  }
+  #edit-bulk form {
+    width: 100%;
+    max-width: 900px;
+    height: auto;
+  }
+  #edit-bulk form label {
+    font-size: 18px;
+  }
+  #edit-bulk form #edit-bulk-logo h6 {
+    font-size: 15px;
+  }
+  #edit-bulk form .edit-bulk-input input::-moz-placeholder, #edit-bulk form #edit-bulk-logo input::-moz-placeholder {
+    font-size: 17px;
+  }
+  #edit-bulk form .edit-bulk-input input:-ms-input-placeholder, #edit-bulk form #edit-bulk-logo input:-ms-input-placeholder {
+    font-size: 17px;
+  }
+  #edit-bulk form .edit-bulk-input input::placeholder,
+#edit-bulk form #edit-bulk-logo input::placeholder,
+#edit-bulk form select {
+    font-size: 17px;
+  }
+  #edit-bulk form #edit-bulk-button {
+    font-size: 17px;
+    width: 180px;
+    height: 55px;
+    margin: 20px 0px;
+  }
+}
+@media screen and (min-width: 1440px) {
+  #edit-bulk .button-container button {
+    font-size: 20px;
+    height: 43px;
+    width: 180px;
+  }
+  #edit-bulk h1 {
+    font-size: 40px;
+    letter-spacing: 1px;
+    margin: 20px;
+  }
+  #edit-bulk form {
+    max-width: 1300px;
+  }
+  #edit-bulk form label {
+    font-size: 20px;
+  }
+  #edit-bulk form #edit-bulk-logo h6 {
+    font-size: 18px;
+  }
+  #edit-bulk form .edit-bulk-input input::-moz-placeholder, #edit-bulk form #edit-bulk-logo input::-moz-placeholder {
+    font-size: 19px;
+  }
+  #edit-bulk form .edit-bulk-input input:-ms-input-placeholder, #edit-bulk form #edit-bulk-logo input:-ms-input-placeholder {
+    font-size: 19px;
+  }
+  #edit-bulk form .edit-bulk-input input::placeholder,
+#edit-bulk form #edit-bulk-logo input::placeholder,
+#edit-bulk form select {
+    font-size: 19px;
+  }
+  #edit-bulk form #edit-bulk-button {
+    font-size: 20px;
+    width: 200px;
+    height: 60px;
+    margin: 30px 0px;
+  }
+>>>>>>> e449f28319e16d4352c7d1debf51cd9cc977eab4
+}/*# sourceMappingURL=edit.style.css.map */

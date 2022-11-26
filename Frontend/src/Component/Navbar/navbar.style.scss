@@ -1,21 +1,24 @@
 @import url("https://fonts.googleapis.com/css2?family=Sora:wght@600&family=Work+Sans:wght@400;500&display=swap");
 
-h2,
-h3,
-p {
-  margin: 0;
-  font-family: "Work Sans", sans-serif;
-}
 .navbar {
-  margin-bottom: 4rem;
+  margin-bottom: 1.5rem;
   text-align: start;
   position: relative;
   background: #fff;
   z-index: 999;
+  h2,
+  h3,
+  p,
+  a {
+    margin: 0;
+    font-family: "Work Sans", sans-serif;
+  }
 }
-.container {
+
+.nav-container {
   width: 90%;
   margin: 0 auto;
+  width: 90%;
 }
 .nav-header-container {
   box-shadow: 0px 0.5px 5px rgba(34, 34, 34, 0.25);
@@ -45,9 +48,17 @@ p {
     align-items: center;
     .btn {
       display: none;
+      margin: 0;
+      .link {
+        color: white;
+      }
     }
     .bars {
       font-size: 24px;
+    }
+    .times {
+      font-size: 27px;
+      color: #ad2fd0;
     }
   }
 }
@@ -74,17 +85,20 @@ p {
     p {
       padding: 10px 0;
       border-bottom: 1px solid #222;
-      font-size: 1rem;
-      font-weight: 400;
-    }
-    p:first-child {
-      font-size: 20px;
-      font-weight: 600;
     }
     .link {
       text-decoration: none;
       color: #222;
       text-transform: capitalize;
+      font-weight: 400;
+      font-size: 1rem;
+    }
+    .link:hover {
+      color: #ad2fd0;
+    }
+    .active {
+      font-size: 20px;
+      font-weight: 600;
     }
   }
 }
@@ -95,6 +109,10 @@ p {
   padding-bottom: 10px;
   .btn {
     width: 100%;
+    margin: 0;
+    .link {
+      color: white;
+    }
   }
 }
 
@@ -116,7 +134,8 @@ p {
   .nav-header {
     .nav-click {
       .bars,
-      .btn {
+      .btn,
+      .times {
         display: none;
       }
     }
@@ -132,9 +151,9 @@ p {
     padding: 10px 20px;
     box-shadow: 0px 0.5px 5px rgba(34, 34, 34, 0.25);
   }
-  .container {
+  .nav-container {
     width: 100%;
-    margin: 0 ;
+    margin: 0;
   }
   .links-container {
     height: auto !important;
@@ -148,12 +167,8 @@ p {
       margin-bottom: 0;
       align-items: center;
       border-right: 1px solid #222;
-      p:first-child {
-        margin: 0;
-      }
       p {
         border: none;
-        margin-top: 2px;
         padding: 0 30px;
         min-width: fit-content;
       }
