@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import logo from "./assets/icon.png";
+import logo from "../../assets/images/footerIcon.png";
 import "./footer.style.scss";
 import { BsInstagram, BsLinkedin, BsTwitter, BsGithub } from "react-icons/bs";
 import { useEffect } from "react";
@@ -94,9 +94,9 @@ const Footer = () => {
         <div className="footer-info">
           <div className="footer-logo">
             <h2>
-              Certify <img src={logo} alt="Certify logo" />
+              Certonic <img src={logo} alt="Certonic logo" />
             </h2>
-            <h3>info@Certify.com</h3>
+            <h3>info@certonic.com</h3>
           </div>
           <div className="footer-socials">
             <h3>We are social</h3>

@@ -92,7 +92,7 @@ h6 {
     flex-direction: column;
     gap: 20px;
     width: 50%;
-    padding: 131px 0 207px;
+    padding: 40px 0 160px;
 }
 
 .aboutHeroL h4{
@@ -107,7 +107,7 @@ h6 {
 // about
 .aboutAbout{
     display: flex;
-    padding: 100px;
+    padding: 40px 100px;
     gap: 10%;
     background: #F8F8F8;
     align-items: center;
@@ -138,7 +138,7 @@ h6 {
 
 // value
 .aboutValue{
-    padding: 75px 0 148px 100px;
+    padding: 40px 0 40px 100px;
 }
 .aboutValue h2{
     text-align: center;
@@ -180,14 +180,18 @@ h6 {
 
 // service
 .aboutService{
-    padding: 39px 100px 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items: center;
+    padding: 40px 100px ;
     background: #F8F8F8;
 }
 .aboutService h3{
     padding-bottom: 16px;
 }
 .aboutServiceS{
-    padding: 68px 0 84px;
+    padding: 40px 0;
     display: grid;
     grid-template-columns: 1fr 1fr;
 }
@@ -203,8 +207,12 @@ h6 {
 
 // gallery
 .aboutGallery{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     background: #F8F8F8;
-    padding: 50px 100px 38px;
+    padding: 40px 100px;
     margin-bottom: 59px;
 }
 .aboutGallery h3{
@@ -246,19 +254,19 @@ h6 {
         }
     .aboutHeroL{
         gap: 24px;
-        padding: 51px 0 120px;
+        padding: 24px 0 120px;
         width: 45%;
         }
     .aboutHeroL h4 {
         padding-bottom: 11px;
         }
     .aboutHeroR img {
-        height: 380px;
-        width: 380px;
+        height: 500px;
+        width: 350px;
         }
     // about
     .aboutAbout {
-        padding: 64px 44px;
+        padding: 36px 44px;
         gap: 6%;
         }
     .aboutAboutD {
@@ -269,7 +277,7 @@ h6 {
     }
     // value
     .aboutValue {
-        padding: 46px 0 79px 44px;
+        padding: 36px 0 36px 44px;
     }
     .aboutValue h2 {
         padding-bottom: 24px;
@@ -301,10 +309,10 @@ h6 {
     
     // service
     .aboutService {
-        padding: 51px 44px 41px;
+        padding: 36px 44px;
     }
     .aboutServiceS {
-        padding: 33px 0 59px;
+        padding: 36px 0 36px;
     }
     .aboutServiceCard{
         padding: 12px 24px 12px 0;
@@ -319,7 +327,7 @@ h6 {
     
     // gallery
     .aboutGallery {
-        padding: 50px 44px 41px;
+        padding: 36px 44px;
         margin-bottom: 51px;
     }
     .aboutGallery h3 {
@@ -333,19 +341,12 @@ h6 {
         width: 100%;
     }
 }
-@media screen and (max-width:800px) {
-    // hero
-    .aboutHeroR img {
-        height: 380px;
-        width: 340px;
-    }
-}
 
 @media screen and (max-width:700px) {
     // hero
     .aboutHeroR img {
-        height: 380px;
-        width: 300px;
+        width: 320px;
+        height: 450px;
     }
     // sevice
     .aboutServiceS {
@@ -386,20 +387,28 @@ h6 {
         }
     // hero
     .aboutHero {
+        display: flex;
+        flex-direction: column;
         padding: 0 24px;
         }
     .aboutHeroL {
-        padding: 24px 0 148px;
+        padding: 0 0 36px;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
         }
+    .aboutHeroR {
+        position: relative;
+        width: 100%;
+    }
     .aboutHeroR img {
-        height: 320px;
-        width: 240px;
-        } 
+        width: 100%;        
+    } 
     // about
     .aboutAbout {
         display: flex;
         flex-direction: column;
-        padding: 24px 24px 48px;
+        padding: 24px;
         gap: 48px;
         }
     #mission{
@@ -416,7 +425,7 @@ h6 {
 
     // value
     .aboutValue {
-        padding: 24px 0 40px 24px;
+        padding: 24px 0 24px 24px;
         }
     .aboutValue h2 {
         padding-bottom: 16px;
@@ -454,7 +463,7 @@ h6 {
     
     // service
     .aboutService {
-       padding: 10px 24px 36px;
+       padding: 24px;
        }
     .aboutService h3 {
        padding: 16px 0 13px;
@@ -473,37 +482,39 @@ h6 {
     
     // gallery
     .aboutGallery {
-        padding: 30px 24px 40px;
-        margin-bottom: 23px;
+        padding: 24px;
+        margin-bottom: 24px;
         }
     .aboutGallery h3 {
-        padding-bottom: 21px;
+        padding-bottom: 24px;
         }
     .aboutGalleryS {
-        padding-top: 49px;
+        padding-top: 24px;
         gap: 20px;
         grid-template-columns: 1fr 1fr;
         }
 }
 
-@media screen and (max-width: 480px) {
-    .aboutHeroL {
-            width: 50%;
-            padding: 24px 0 120px;
-        }   
-        .aboutHeroR img {
-            height: 280px;
-            width: 180px;
-        }
+// @media screen and (max-width: 480px) {
+//     .aboutHeroL {
+//             width: 50%;
+//             padding: 24px 0 120px;
+//         }   
+//         .aboutHeroR img {
+//             height: 280px;
+//             width: 180px;
+//         }
+// }
+// @media screen and (max-width: 380px) {
+//     .aboutHeroL {
+//         width: 45%;
+//         padding: 24px 0 60px;
+//     }
+//     .aboutHeroR img {
+//         height: 240px;
+//         width: 160px;
+//     }
+// }
 }
-@media screen and (max-width: 380px) {
-    .aboutHeroL {
-        width: 45%;
-        padding: 24px 0 60px;
-    }
-    .aboutHeroR img {
-        height: 240px;
-        width: 160px;
-    }
-}
-}
+
+

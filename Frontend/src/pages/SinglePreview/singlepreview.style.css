@@ -161,9 +161,12 @@
   #singlePreview .single-images img {
     max-width: 300px;
   }
+<<<<<<< HEAD
+=======
   #singlePreview .explore-button {
     width: 240px;
     height: 55px;
     font-size: 18px;
   }
+>>>>>>> e449f28319e16d4352c7d1debf51cd9cc977eab4
 }/*# sourceMappingURL=singlepreview.style.css.map */

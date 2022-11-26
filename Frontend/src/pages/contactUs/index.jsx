@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   ContactChatIcon,
   ContactLocationIcon,
@@ -8,8 +8,44 @@ import Button from "../../Component/button";
 import Inputfield from "../../Component/inputField";
 import TextArea from "../../Component/textarea";
 import "./contact.scss";
+import axios from "axios"
 
 const ContactUs = () => {
+
+  const [firstName, setFirstName] = useState("")
+  const [lastName, setLastName] = useState("")
+  const [email, setEmail] = useState("")
+  const [phoneNumber, setPhoneNumber] = useState("")
+  const [message, setMessage] = useState("")
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState("")
+  const [success, setSuccess] = useState(false)
+
+  async function handleSubmit(e) {
+    e.preventDefault()
+
+    try {
+     setLoading(true)
+      await axios.post("http://34.195.230.138/api/contactus", {
+      firstName, lastName, email, phoneNumber, message, 
+     })
+      
+      setLoading(false)
+      setSuccess(true)
+      
+   } catch (err) {
+    setError(err.message)
+   }
+  }
+
+  useEffect(() => {
+   setTimeout(() => {
+    setSuccess(false)
+   }, 1500);
+  }, [success])
+  
+
+
   return (
     <div className="contact">
       <div className="contact__content">
@@ -28,10 +64,8 @@ const ContactUs = () => {
             <ContactLocationIcon />
             <div className="contact__info--itemText">
               <h4 className="contact__info--key">Visit us</h4>
-              <span >Visit our office</span>
-              <p className="contact__info--address">
-                121 vincent str., lagos
-              </p>
+              <span>Visit our office</span>
+              <p className="contact__info--address">121 vincent str., lagos</p>
             </div>
           </div>
           <div className="contact__info--item">
@@ -51,31 +85,44 @@ const ContactUs = () => {
               Our friendly team would love to hear from you
             </p>
           </div>
-          <form action="">
+          <form onSubmit={handleSubmit}>
             <div className="contact__form--group">
               <Inputfield
                 placeholder="First name"
                 label="First Name"
                 type="text"
+                onChange={(e) => setFirstName(e.target.value)}
               />
               <Inputfield
                 placeholder="First name"
                 label="Last Name"
                 type="text"
+                onChange={(e) => setLastName(e.target.value)}
               />
             </div>
             <Inputfield
               label=" Email"
               type="email"
               placeholder="gigtot@gmail.com"
+              onChange={(e) => setEmail(e.target.value)}
             />
             <Inputfield
               label=" Phone no"
               placeholder="+234900000 "
               type="tel"
+              onChange={(e) => setPhoneNumber(e.target.value)}
             />
-            <TextArea placeholder="type message here" label="Message" />
-            <Button width='100%'>Send Message</Button>
+            <TextArea placeholder="type message here" label="Message" onChange={(e)=> setMessage(e.target.value)}/>
+            <Button width="100%">
+              {loading ? (
+                <div className="loading"></div>
+              ) : success ? (
+                "Message sent!"
+              ) : (
+                "Send Message"
+              )}
+            </Button>
+            {error && <p>Something went wrong</p>}
           </form>
         </div>
       </div>

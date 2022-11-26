@@ -48,8 +48,8 @@ const Signup = () => {
             </div> */}
             <div className="authContainer">
                 <div className="formDiv">
-                    <div id="heading">Welcome to Certify</div>    
-                    <span id="startGenerating">Start generating certificates by creating a Certify account</span>
+                    <div id="heading">Welcome to Certonic</div>    
+                    <span id="startGenerating">Start generating certificates by creating a Certonic account</span>
                     <div id="signupG">
                         <img alt="" src={googleSVG} id="img_id" />
                         <a href="#">Signup using Google</a>
@@ -78,7 +78,7 @@ const Signup = () => {
                             read and accepted Certawi’s <span id="coloredTerms"> Terms of Use</span> and 
                             <span id="coloredTerms"> Privacy Policy</span></div>
                         </div>
-                        <div id="btn">Create Account</div>
+                        <input type="submit" id="btn" value="Create Account" />
                     </form>   
                     <p className="haveAccount">Already have an account? <Link to="/login" id="coloredTerms">Login</Link></p>
                 </div>   

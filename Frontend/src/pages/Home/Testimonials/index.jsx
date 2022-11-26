@@ -11,7 +11,7 @@ export default function Testimonials () {
           <p className="testimonial-caption">What our users have to say about us</p>
           <div className="flex testimonials center justify-between gap testimonial-bottom">
             <div className="testimonial-container text-left sora test">
-              <div className="flex items-center" style={{width: '343px'}}>
+              <div className="flex items-center" >
                 <img src={person_1} alt="user" />
                 <div style={{paddingLeft: '20px'}}>
                     <p style={{fontWeight: '600'}}>Lindsay Favazza</p>
@@ -19,13 +19,13 @@ export default function Testimonials () {
                 </div>
               </div>
               <p style={{paddingTop: "25px"}}>
-                  “This is my first time utilizing Certawi.
+                  “This is my first time utilizing Certonic.
                   It is simply brilliant. In a matter of seconds, a full certificate is generated”
               </p>
             </div>
 
             <div className="testimonial-container text-left sora test">
-              <div className="flex items-center" style={{width: '343px'}}>
+              <div className="flex items-center" >
                 <img src={person_2} alt="user" />
                 <div style={{paddingLeft: '20px'}}>
                     <p style={{fontWeight: '600'}}>Valerie Tan</p>
@@ -33,13 +33,13 @@ export default function Testimonials () {
                 </div>
               </div>
               <p style={{paddingTop: "25px"}}>
-                “The certawi certificate generator is a fantastic tool that helps me create certificates 
+                “The certonic certificate generator is a fantastic tool that helps me create certificates 
                 quickly and with plenty of inspiration. Definitely, I would advise.”
               </p>
             </div>
 
             <div className="testimonial-container text-left sora test">
-              <div className="flex items-center" style={{width: '343px'}}>
+              <div className="flex items-center" >
                 <img src={person_3} alt="user" />
                 <div style={{paddingLeft: '20px'}}>
                     <p style={{fontWeight: '600'}}>Lea Botha</p>

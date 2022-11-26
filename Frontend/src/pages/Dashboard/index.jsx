@@ -1,14 +1,53 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./dashboard.style.scss";
-import profilePic from "./assets/Ellipse3.jpg";
+import profilePic from "../../assets/images/Ellipse4.png";
 import Card from "./Card";
-import {actionIcon, tableData, cardData, nullDataIcon} from "./utils"
+import { cardData, nullDataIcon, actionIcon } from "./utils";
 
 const Dashboard = () => {
-  
+  const [data, setData] = useState([]);
+  const [issuedCert, setIssuedCert] = useState([...cardData]);
 
-  const dataCheck = cardData.filter(item => item.count !== 0)
-  
+  useEffect(() => {
+    const fetchData = () => {
+      setIssuedCert(cardData);
+      const myHeaders = new Headers();
+      myHeaders.append(
+        "Authorization",
+        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzdmOTg3MDQyODc5MzAwNDJmYzE0M2UiLCJpYXQiOjE2NjkzMDY4MjQsImV4cCI6MTY2OTM5MzIyNH0.x5q4XJDcFvN8EWqc4e0el6CZXJtwQjtcrmo3Id0sQlc"
+      );
+
+      let requestOptions = {
+        method: "GET",
+        headers: myHeaders,
+      };
+
+      fetch("https://certify-api.onrender.com/api/certificates", requestOptions)
+        .then((response) => response.json())
+        .then((result) => setData(result))
+        .catch((error) => console.log("error", error));
+
+      fetch(
+        "https://certify-api.onrender.com/api/certificates/issuedCertificates",
+        requestOptions
+      )
+        .then((response) => response.json())
+        .then((result) => {
+          setIssuedCert(
+            issuedCert.map((item) =>
+              item.title === "Total Number Issued"
+                ? { ...item, count: result.issuedCertificates }
+                : item
+            )
+          );
+        })
+        .catch((error) => console.log("error", error));
+    };
+    fetchData();
+  }, []);
+
+  const dataCheck = issuedCert.filter((item) => item.count !== 0);
+
   return (
     <>
       <div className="dashboard">
@@ -19,10 +58,10 @@ const Dashboard = () => {
           <div className="flexx">
             <div className="dashboard__align-start">
               <h3 className="dashboard__text">Welcome</h3>
-              <h1 className="dashboard__title">Team Headlight</h1>
+              <h2 className="dashboard__title">Team Headlight</h2>
               <p className="dashboard__description">
                 Let’s do the Accounts for you, Get a summary of all the
-                Certificates and Job done her
+                Certificates and Job done here
               </p>
             </div>
             <div className="dashboard__btn">
@@ -32,13 +71,13 @@ const Dashboard = () => {
         </div>
 
         <div className="dashboard__cards">
-          {cardData.map((item, idx) => (
+          {issuedCert.map((item, idx) => (
             <Card key={idx} item={item} />
           ))}
         </div>
 
         <div className="table-wrapper">
-          <div className='table-header'>
+          <div className="table-header">
             <p>CERTIFICATE DASHBOARD</p>
             {dataCheck.length > 0 ? (
               <div>
@@ -53,19 +92,19 @@ const Dashboard = () => {
                   <th>CERTIFICATE NAMES</th>
                   <th>STATUS</th>
                   <th>DATE ISSUED</th>
-                  <th>NO OF CERTIFICATES</th>
+                  {/* <th>NO OF CERTIFICATES</th> */}
                   <th>FILE TYPE</th>
                   <th className="action">ACTION</th>
                 </tr>
               </thead>
-              {dataCheck.length > 0 && (
+              {data.length > 0 && (
                 <tbody>
-                  {tableData.map((item, idx) => (
+                  {data.map((item, idx) => (
                     <tr key={idx}>
-                      <td>{item.certificateName}</td>
+                      <td>{item.nameOfOrganization.toUpperCase()}</td>
                       {item.status === "Issued" ? (
                         <td>
-                          <button className="issue">Issued</button>
+                          <button className="cancel">Canceled</button>
                         </td>
                       ) : item.status === "Pending" ? (
                         <td>
@@ -73,12 +112,12 @@ const Dashboard = () => {
                         </td>
                       ) : (
                         <td>
-                          <button className="cancel">Canceled</button>
+                          <button className="issue">Issued</button>
                         </td>
                       )}
-                      <td>{item.dateIssued}</td>
-                      <td>{item.noOfCerticicate}</td>
-                      <td>{item.fileType}</td>
+                      <td>{item.date}</td>
+                      {/* <td>{data.length}</td> */}
+                      <td>PDF</td>
                       <td className="action">{actionIcon()}</td>
                     </tr>
                   ))}
@@ -86,15 +125,17 @@ const Dashboard = () => {
               )}
             </table>
 
-            {dataCheck.length === 0 && <div className="null-table-data">
-              <div>
-                {nullDataIcon()}
-                <p>You haven't created any Certificates</p>
+            {dataCheck.length === 0 && (
+              <div className="null-table-data">
                 <div>
-                  <button className="">Create New Certificate</button>
+                  {nullDataIcon()}
+                  <p>You haven't created any Certificates</p>
+                  <div>
+                    <button className="">Create New Certificate</button>
+                  </div>
                 </div>
               </div>
-            </div>}
+            )}
           </div>
         </div>
       </div>

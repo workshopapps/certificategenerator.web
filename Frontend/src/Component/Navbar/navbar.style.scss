@@ -85,23 +85,20 @@
     p {
       padding: 10px 0;
       border-bottom: 1px solid #222;
-      font-size: 1rem;
-      font-weight: 400;
-    }
-    p:first-child {
-      font-size: 20px;
-      font-weight: 600;
     }
     .link {
       text-decoration: none;
       color: #222;
       text-transform: capitalize;
-      &:hover{
-        color:#19a68e;
-      }
+      font-weight: 400;
+      font-size: 1rem;
     }
     .link:hover {
       color: #ad2fd0;
+    }
+    .active {
+      font-size: 20px;
+      font-weight: 600;
     }
   }
 }
@@ -170,12 +167,8 @@
       margin-bottom: 0;
       align-items: center;
       border-right: 1px solid #222;
-      p:first-child {
-        margin: 0;
-      }
       p {
         border: none;
-        //margin-top: 2px;
         padding: 0 30px;
         min-width: fit-content;
       }

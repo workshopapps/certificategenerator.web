@@ -1,4 +1,5 @@
 import "./Style/App.scss";
+import Navbar from "./Component/Navbar";
 import { Route, Routes } from "react-router-dom";
 import Signup from "./Component/Signup-Login/assets/Sginup";
 import Login from "./Component/Signup-Login/assets/Login";
@@ -32,10 +33,11 @@ import { Privacy } from "./pages/PrivacyPolicy";
 function App() {
   return (
     <>
-      <Layout>
-        <main className="App">
-          <Routes>
-            <Route path="/" index element={<Home />} />
+      <Navbar />
+      <div className="App">
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Home />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/login" element={<Login />} />
             <Route path="/comingsoon" element={<ComingSoon />} />
@@ -55,12 +57,15 @@ function App() {
             <Route path="/pricing" element={<Pricing />} />
             <Route path="/contact-us" element={<ContactUs />} />
             <Route path="/payment" element={<Checkout />} />
+
             <Route path="/profile" element={<Profile />} />
+
             <Route path="/privacy" element={<Privacy />} />
-            <Route path="*" element={<Error />} />
-          </Routes>
-        </main>
-      </Layout>
+          </Route>
+          <Route path="*" element={<Error />} />
+        </Routes>
+      </div>
+      {/* <Footer /> */}
     </>
   );
 }

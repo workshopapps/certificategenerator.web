@@ -1,34 +1,48 @@
-// import { Outlet } from 'react-router-dom'
 import React from 'react'
 import {Outlet, Link} from 'react-router-dom'
 import "./aboutUs.style.scss";
 
-import IMG1 from '../../assets/IMG1.png'
+import IMG1 from '../../assets/images/aboutUs/IMG1.png'
 
-import Value1 from '../../assets/value1.png'
-import Value2 from '../../assets/value2.png'
-import Value3 from '../../assets/value3.png'
+import Value1 from '../../assets/images/aboutUs/value1.png'
+import Value2 from '../../assets/images/aboutUs/value2.png'
+import Value3 from '../../assets/images/aboutUs/value3.png'
 
-import Service1 from '../../assets/service1.png'
-import Service2 from '../../assets/service2.png'
-import Service3 from '../../assets/service3.png'
-import Service4 from '../../assets/service4.png'
+import Service1 from '../../assets/images/aboutUs/service1.png'
+import Service2 from '../../assets/images/aboutUs/service2.png'
+import Service3 from '../../assets/images/aboutUs/service3.png'
+import Service4 from '../../assets/images/aboutUs/service4.png'
 
-import Gallery1 from '../../assets/gallery1.png'
-import Gallery2 from '../../assets/gallery2.png'
-import Gallery3 from '../../assets/gallery3.png'
-import Gallery4 from '../../assets/gallery4.png'
-import Gallery5 from '../../assets/gallery5.png'
-import Gallery6 from '../../assets/gallery6.png'
+import Gallery1 from '../../assets/images/aboutUs/gallery1.png'
+import Gallery2 from '../../assets/images/aboutUs/gallery2.png'
+import Gallery3 from '../../assets/images/aboutUs/gallery3.png'
+import Gallery4 from '../../assets/images/aboutUs/gallery4.png'
+import Gallery5 from '../../assets/images/aboutUs/gallery5.png'
+import Gallery6 from '../../assets/images/aboutUs/gallery6.png'
 
+// import { Scrollbar } from 'swiper';
+// import {per, SwiperSlide} from 'swiper/react';
+// import 'swiper/css';
+// import 'swiper/css/scrollbar';
+
+// import { Scrollbar } from 'swiper';
+// import {per, SwiperSlide} from 'swiper/react';
+// import 'swiper/css';
+// import 'swiper/css/scrollbar';
+
+// import { Scrollbar } from 'swiper';
+// import {per, SwiperSlide} from 'swiper/react';
+// import 'swiper/css';
+// import 'swiper/css/scrollbar';
 
 const aboutUs = () => {
   return (
+    
     <div id="aboutUs" className="about">     
       <div className="aboutHero">
         <div className="aboutHeroL">
           <h1>We are a team of Creators and Innovators </h1>
-          <h4>Certify helps you generate certificates of different shapes and colors, you can also customize your own certificate with Certify</h4>
+          <h4>Certonic helps you generate certificates of different shapes and colors, you can also customize your own certificate with Certonic</h4>
           <Link className="btn">Learn More</Link>
         </div>
         <div className="aboutHeroR">
@@ -41,13 +55,19 @@ const aboutUs = () => {
           <img src={Gallery2} alt="" />
         </div>
         <div className="aboutAboutD">
-          <h3>About Certify</h3>
-          <h4>Certify is a full-featured online platform aimed at generating digital credentials and certificates for schools, businesses and organizations. We offer a complete and easy to use certificate management system. Certify provides high quality templates with great designs as well as variety of customization options. Generate stunning certificates for your students, employees or colleagues with our online tool, today.</h4>
+          <h3>About Certonic</h3>
+          <h4>Certonic is a full-featured online platform aimed at generating digital credentials and certificates for schools, businesses and organizations. We offer a complete and easy to use certificate management system. Certonic provides high quality templates with great designs as well as variety of customization options. Generate stunning certificates for your students, employees or colleagues with our online tool, today.</h4>
           <Link className="btn">Learn More</Link>
         </div>
       </div>
       
       <div className="aboutValue">
+
+        {/* modules={[Scrollbar]}  */}
+        {/* spaceBetween={40} */}
+        {/* slidesPerView={1} */}
+        {/* scrollbar={{draggable:true}} */}
+
         <h2>Testimonial</h2>
         <h4 id="vh4">What our customers have to say about us</h4>
         <div className="aboutValueS">
@@ -86,7 +106,7 @@ const aboutUs = () => {
 
         <div className="aboutService">
           <h3>Our Services</h3>
-          {/* <hr className='aboutstroke' /> */}
+          <hr className='aboutstroke' />
           <div className="aboutServiceS">
             <div className="aboutServiceCard">
                 <img src={Service1} alt="" />
@@ -122,7 +142,7 @@ const aboutUs = () => {
 
         <div id="mission" className="aboutAbout">
         <div className="aboutAboutD">
-          <h3>Misssion</h3>
+          <h3>Mission</h3>
           <h4>We strive to offer customers a quick and user friendly digital certificate generation process. Our aim is to provide a single trustworthy and efficient online certificate maker tool. Or team of highly trained professionals is ready to help you represent your achievements with beautiful certificate.</h4>
           <Link className="btn">Learn More</Link>
         </div>
@@ -133,7 +153,7 @@ const aboutUs = () => {
       </div>
         <div className="aboutGallery">
           <h3>Our Gallery</h3>
-          {/* <hr className='aboutstroke'/> */}
+          <hr className='aboutstroke'/>
           <div className="aboutGalleryS">
             <img src={Gallery1} alt="" />
             <img src={Gallery2} alt="" />

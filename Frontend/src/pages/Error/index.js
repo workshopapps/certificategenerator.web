@@ -14,7 +14,7 @@ const Error = () => {
       </p>
       <div className="error-buttons">
         <Link className="link" to="/">
-          <button className="btn-solid">Go to Certawi Home</button>
+          <button className="btn-solid">Go to Certonic Home</button>
         </Link>
         <Link className="link">
           <button className="btn-outline" onClick={() => navigate(-1)}>
