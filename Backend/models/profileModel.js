@@ -33,7 +33,7 @@ const ProfileSchema = new mongoose.Schema({
       required: [true, 'Must provide a valid phone number!'],
 =======
   user: {
-    type: Schema.Types.ObjectId,
+    type: mongoose.Schema.Types.ObjectId,
     required: true,
     ref: "User",
   },
