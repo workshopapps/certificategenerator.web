@@ -46,7 +46,7 @@ function Index({
               <div id="single-preview-card">
                 <div id="single-preview-text">
                   <div id="preview-text">
-                    <img src={logo} alt="" />
+                    <img src={logo} style={{width:'40px'}} alt="logo" />
                     <h1>{certificateTitle}</h1>
 
                     <p>THIS CERTIFIES THAT</p>
