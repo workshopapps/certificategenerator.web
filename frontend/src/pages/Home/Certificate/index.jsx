@@ -5,7 +5,7 @@ import demo_2 from '../../../assets/images/demo-2.png'
 import demo_3 from '../../../assets/images/demo-3.png'
 import {Link, useNavigate} from "react-router-dom"
 import UploadCSV from "../../UploadCSV";
-import SinglePreview from "../../SinglePreview";
+
 
 export default function Certificate ({
   logo,
@@ -96,9 +96,10 @@ export default function Certificate ({
           </Link>
           
           <form action="" className="cert-form text-left work-sans">
-            <label for='img'>Logo</label>
-            <input type="file" name="uploadfile" id="img" style={{ display:"none"}}/>
-            <label htmlFor="img" className="upload">Upload logo</label>
+            <label for='img'>Upload logo</label>
+            <input type="file" name="uploadfile" id="img" onChange={e => setLogo(URL.createObjectURL(e.target.files[0]))} />
+
+            <img  style = {{width:'40px'}} src = {logo} alt ="logo"/>
             <p style={{fontSize: '12px', margin: '0'}}>Max image upload size: 8mb</p>
 
             <label htmlFor='text' className="label">Certificate Title</label>
