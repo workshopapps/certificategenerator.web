@@ -133,7 +133,7 @@ const Footer = () => {
         <h3>
           &copy; Copyright {year}{" "}
           <span className="headlight-text">Team Headlight</span>. All rights
-          reserved.
+          reserved. SEAN STEVENS
         </h3>
       </div>
     </div>
