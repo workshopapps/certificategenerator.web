@@ -20,7 +20,7 @@ jobs:
           command: |
             cd frontend
             npm install
-            npm run build
+            CI=false npm run build
       - save_cache:
           key: dependency-cache-{{ checksum "./frontend/package.json" }}
           paths:
@@ -65,6 +65,11 @@ jobs:
           key: dependency-cache-{{ checksum "./backend/package.json" }}
           paths:
             - ./backend/node_modules
+      - run:
+          name: Run Endpoint tests
+          command: |
+              cd backend
+              npm test
       - run:
           name: Docker
           when: on_success
