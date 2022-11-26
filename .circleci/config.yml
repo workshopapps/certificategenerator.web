@@ -65,7 +65,7 @@ jobs:
           key: dependency-cache-{{ checksum "./backend/package.json" }}
           paths:
             - ./backend/node_modules
-      # - run: npm run test
+      - run: npm run build
       - run:
           name: Docker
           when: on_success
@@ -101,6 +101,7 @@ jobs:
             sudo docker login
             sudo docker stop frontend backend
             sudo docker rm frontend backend
+            sudo docker rmi -f codak77/certificategeneratorwebbackend:backend codak77/certificategeneratorwebfrontend:frontend
             sudo docker pull codak77/certificategeneratorwebfrontend:frontend
             sudo docker pull codak77/certificategeneratorwebbackend:backend
             sudo docker run -d -p 3000:3000 --name frontend codak77/certificategeneratorwebfrontend:frontend

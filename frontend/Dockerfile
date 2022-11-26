@@ -8,6 +8,13 @@ RUN npm install
 
 COPY . /frontend/
 
-EXPOSE 3000
+RUN npm run build
 
-CMD ["npm", "start"]
+RUN npm install -g serve
+
+CMD ["serve", "-s", "build"]
+
+
+#EXPOSE 3000
+
+#CMD ["npm", "start"]
