@@ -78,7 +78,7 @@ const Signup = () => {
                             read and accepted Certawi’s <span id="coloredTerms"> Terms of Use</span> and 
                             <span id="coloredTerms"> Privacy Policy</span></div>
                         </div>
-                        <div id="btn">Create Account</div>
+                        <input type="submit" id="btn" value="Create Account" />
                     </form>   
                     <p className="haveAccount">Already have an account? <Link to="/login" id="coloredTerms">Login</Link></p>
                 </div>   
