@@ -1,10 +1,7 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
-<<<<<<< HEAD
 
 const ProfileSchema = new mongoose.Schema({
-=======
->>>>>>> 8b26c30849b4fd8bc5d5cf3c6b7e0da47c6ce1e4
   user: {
     type: Schema.Types.ObjectId,
     required: true,
