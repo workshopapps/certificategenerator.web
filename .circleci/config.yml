@@ -94,7 +94,7 @@ jobs:
       - run: 
           name: Deploy success
           when: on_success
-          command: ./scripts/deploy.sh
+          command: sudo chmod +x ./scripts/deploy.sh
       - run:
           name: Deploy Failure
           when: on_fail
