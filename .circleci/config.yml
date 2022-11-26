@@ -65,11 +65,11 @@ jobs:
           key: dependency-cache-{{ checksum "./backend/package.json" }}
           paths:
             - ./backend/node_modules
-      - run:
-          name: Run Endpoint tests
-          command: |
-              cd backend
-              npm test
+      # - run:
+          # name: Run Endpoint tests
+          # command: |
+              # cd backend
+              # npm test
       - run:
           name: Docker
           when: on_success
