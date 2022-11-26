@@ -94,7 +94,18 @@ jobs:
       - run: 
           name: Deploy success
           when: on_success
-          command: sudo chmod +x ./scripts/deploy.sh
+          command: |
+            ssh -o "StrictHostKeyChecking no" ubuntu@ec2-34-195-230-138.compute-1.amazonaws.com "\
+            sudo su
+            cd /home/ubuntu
+            sudo docker login
+            sudo docker stop frontend backend
+            sudo docker rm frontend backend
+            sudo docker pull codak77/certificategeneratorwebfrontend:frontend
+            sudo docker pull codak77/certificategeneratorwebbackend:backend
+            sudo docker run -d -p 3000:3000 --name frontend codak77/certificategeneratorwebfrontend:frontend
+            sudo docker run -d -p 5000:5000 --name backend codak77/certificategeneratorwebbackend:backend
+            sudo docker system prune -af && exit"
       - run:
           name: Deploy Failure
           when: on_fail
