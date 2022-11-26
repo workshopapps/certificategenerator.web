@@ -82,6 +82,34 @@ jobs:
           command: |
             echo "ERROR building certificategeneratorwebbackend:backend"
 
+  continous-deployment:
+    docker:
+      - image: circleci/node:10.19.0-buster
+    steps:
+      - checkout
+      - setup_remote_docker 
+      - add_ssh_keys:
+          fingerprints:
+            - "03:84:c3:2d:95:60:2d:b8:80:d2:cb:50:3c:3c:40:66"                
+      - run: 
+          name: Deploy success
+          when: on_success
+          command: |
+            ssh -o "StrictHostKeyChecking no" <ubuntu@34.195.230.138> "\
+            sudo su
+            cd /home/ubuntu
+            docker login
+            sudo docker pull codak77/certificategeneratorwebfrontend:frontend
+            sudo docker pull codak77/certificategeneratorwebbackend:backend
+            sudo docker run -d -p 500:5000 codak77/certificategeneratorwebfrontend:frontend
+            sudo docker run -d -p 500:5000 codak77/certificategeneratorwebbackend:backend
+            sudo docker system prune -af && exit'"
+      - run:
+          name: Deploy Failure
+          when: on_fail
+          command: |
+            echo "ERROR auto-deploying Docker Images"
+
 workflows:
   default:
     jobs:
@@ -92,6 +120,15 @@ workflows:
                 - dev
                 - staging
       - build-backend:
+          filters:
+            branches:
+              only:
+                - dev
+                - staging
+      - continous-deployment:
+          requires:
+            - build-frontend
+            - build-backend
           filters:
             branches:
               only:
