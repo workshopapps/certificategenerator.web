@@ -7,7 +7,7 @@ exports.createMailing = async(req, res, next) =>{
         const newMail = new MailingList({...req.body})
         await newMail.save()
             .then(result=>{
-                // handle account verification
+                // handle mailing list confirmation
                 sendMailingEmail(result, res)
             }).catch(err =>{
                 console.log(err);

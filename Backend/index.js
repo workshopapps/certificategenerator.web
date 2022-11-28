@@ -25,6 +25,7 @@ const teamRoute = require("./routes/teamRoutes");
 const mailingLists = require("./routes/mailingListRouter");
 const profileRouter = require("./routes/profileRouters");
 const contacts = require('./routes/contactRouter');
+const applyCareer = require('./routes/applyCareerRouter')
 const pricing = require('./routes/pricingRouter');
 const swaggerUi = require('swagger-ui-express')
 const swaggerFile = require('./swagger_output.json')
@@ -54,6 +55,7 @@ app.use("/api/certificates", certificate);
 app.use("/api/download", downloadCsv);
 app.use("/api/careers", careers);
 app.use("/api/mailinglists", mailingLists);
+app.use("/api/applycareers", applyCareer);
 app.use("/api/profile", profileRouter);
 app.use("/api/team", teamRoute);
 app.use('/api/contactus', contacts)

@@ -28,8 +28,8 @@ const sendMailingEmail = ({ email }, res) => {
     const mailOptions = {
         from: process.env.AUTH_EMAIL,
         to: `${email}`,
-        subject: `Certawi- You are on our Mailing List`,
-        html: `<p>Thank you for joining Certawi.</p>
+        subject: `Certgo - You are on our Mailing List`,
+        html: `<p>Thank you for joining Certgo.</p>
             <p>You will recieve other important Updates from us.</p>
             `,
     }
@@ -45,6 +45,32 @@ const sendMailingEmail = ({ email }, res) => {
 
 }
 
+//send Application Email 
+const sendApplicationEmail = ({ email, name,role,location }, res) => {
+
+    //mail options
+    const mailOptions = {
+        from: process.env.AUTH_EMAIL,
+        to: `${email}`,
+        subject: `Certgo- New Career Application`,
+        html: `<p>Dear ${name},</p>
+            <p>You have applied for the role of ${role} and your location is ${location}.</p>
+            <p>Expect update concerning your application from us,</p>
+            <p> From the "Certgo Career Team" </p>
+            `,
+    }
+
+    transporter.sendMail(mailOptions, function (error, info) {
+        if (error) {
+            console.log(error);
+        } else {
+            res.status(200).json({ message: "Career Confirmation Email has been sent" })
+            console.log('Email sent: ' + info.response);
+        }
+    })
+
+}
+
 module.exports = {
-    sendMailingEmail
+    sendMailingEmail , sendApplicationEmail
 }
