@@ -1,12 +1,12 @@
 import React from "react";
 import "./career.style.scss";
-import { Persons} from "./data";
+import { Persons, Positions, Positions2 } from "./data";
 import SectionCarousel from "./Carousel";
-import SectionPositions from "./openPositions";
 import Button from "../../Component/button";
 import Rocket from "./assets/rocket-launcher.webp";
 import Frame from "./assets/Frame 16353.png";
 import Briefcase from "./assets/candidate resumes and briefcase.png";
+import Search from "./assets/search-icon.svg";
 
 
 
@@ -82,7 +82,76 @@ function Career() {
           </div>
         </div>
       </section>
-      <SectionPositions Button={Button}/>
+
+      <section id="positions" className="section4">
+        <h2>Open Positions</h2>
+        <form>
+          <div className="search__wrapper">
+            <div className="input__div">
+              <img src={Search} alt="search-icon" />
+              <input
+                placeholder="Search for job openings here "
+                className="input"
+              />
+            </div>
+            <Button name="Search" />
+          </div>
+          <div className="options">
+            <select>
+              <option value="Job Category">Job Category</option>
+            </select>
+            <select>
+              <option value="Full/Part-time">Full/Part-time</option>
+            </select>
+            <select>
+              <option value="Location">Location</option>
+            </select>
+          </div>
+        </form>
+
+        <div className="jobs">
+          <div className="job__type">
+            <h3>Engineering</h3>
+            <span className="number__badge">3</span>
+          </div>
+          {Positions.map((position) => {
+            return (
+              <div key={position.id} className="job__cont">
+                <div className="job__desc">
+                  <div>
+                    <h3>{position.role}</h3>
+                    <h4>
+                      {position.type} | <b>{position.location}</b>
+                    </h4>
+                  </div>
+                  <Button name="Apply" />
+                </div>
+                <hr />
+              </div>
+            );
+          })}
+          <div className="job__type">
+            <h3>Customer Success</h3>
+            <span className="number__badge">2</span>
+          </div>
+          {Positions2.map((position, index) => {
+            return index < 2 ? (
+              <div key={position.id} className="job__cont">
+                <div className="job__desc">
+                  <div>
+                    <h3>{position.role}</h3>
+                    <h4>
+                      {position.type} | <b>{position.location}</b>
+                    </h4>
+                  </div>
+                  <Button name="Apply" />
+                </div>
+                <hr />
+              </div>
+            ) : null;
+          })}
+        </div>
+      </section>
     </div>
   );
 }
