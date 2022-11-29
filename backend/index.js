@@ -29,7 +29,7 @@ const pricing = require('./routes/pricingRouter');
 const swaggerUi = require('swagger-ui-express')
 const swaggerFile = require('./swagger_output.json')
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5077;
 
 connectDB();
 
