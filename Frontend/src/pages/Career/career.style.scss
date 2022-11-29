@@ -34,7 +34,7 @@ a {
     padding: 0 2rem;
   }
   @media screen and (max-width: $small) {
-    padding: 0 0.5rem;
+    padding: 0 1rem;
   }
 }
 p {
@@ -164,6 +164,7 @@ p {
         @media screen and (max-width: $small) {
           display: flex;
           width: 90px;
+          padding-bottom: 166px;
           height: 80px;
           align-items: center;
         }
@@ -302,7 +303,7 @@ p {
     padding: 3rem 5rem;
     text-align: initial;
     @media screen and (max-width: $small) {
-      padding: 3rem 2rem;
+      padding: 3rem 0rem;
     }
     h2 {
       color: #08372F;
