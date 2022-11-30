@@ -2,7 +2,6 @@ const ApplyCareer = require( "../models/ApplycareerModel")
 
 const { sendApplicationEmail } = require("../utils/email")
 
-
 exports.newApplication = async(req, res, next) =>{
     try {
         const newCareer = new ApplyCareer({...req.body})
@@ -43,5 +42,3 @@ exports.DeleteApplication  =  async (req, res,next) =>{
         }
             res.status(200).json({response: apply, message:`Application has been Deleted`})
 }
-
-
