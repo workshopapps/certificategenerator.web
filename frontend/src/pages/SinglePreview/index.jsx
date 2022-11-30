@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./singlepreview.style.scss";
 import certificate from "../../assets/images/SinglePreview/Completion - Portrait (2).png";
 import certificate2 from "../../assets/images/SinglePreview/Completion - Portrait (3).png";
 import certificate3 from "../../assets/images/SinglePreview/Completion - Portrait.png";
 import { exportComponentAsPNG } from "react-component-export-image";
+import html2canvas from "html2canvas";
+import { jsPDF } from "jspdf";
 
 function Index({
   logo,
@@ -14,7 +16,31 @@ function Index({
   issuedBy,
   issueDate,
 }) {
+
+  // STATE FOR MODAL POPUP
+  const [showModal, setShowModal] = useState(false);
+
+  // REF FOR PNG AND PDF
   var certificateWrapper = React.createRef();
+
+  // FUNCTION FOR HANDLING PDF DOWNLOAD
+
+  const handleDownloadPdf = async () => {
+    const element = certificateWrapper.current;
+    const canvas = await html2canvas(element);
+    const data = canvas.toDataURL("image/png");
+
+    const pdf = new jsPDF(
+      {
+      orientation:"l",
+      unit: "pt",
+      format: [canvas.width, canvas.height]
+    }
+    );
+    pdf.addImage(data, "PNG", 0, 0, canvas.width, canvas.height);
+    pdf.save(`${awardeeName}.pdf`);
+  };
+
   return (
     <div id="singlePreview">
       {/* BUTTONS TO TOGGLE BETWEEN SINGLE AND BULK CERTIFICATE */}
@@ -46,7 +72,7 @@ function Index({
               <div id="single-preview-card">
                 <div id="single-preview-text">
                   <div id="preview-text">
-                    <img src={logo} style={{width:'40px'}} alt="logo" />
+                    <img src={logo} style={{ width: "40px" }} alt="logo" />
                     <h1>{certificateTitle}</h1>
 
                     <p>THIS CERTIFIES THAT</p>
@@ -82,13 +108,9 @@ function Index({
 
         <div className="buttons">
           <button className="send-button">Send Certificate</button>
+
           <button
-            onClick={(e) => {
-              e.preventDefault();
-              exportComponentAsPNG(certificateWrapper, {
-                html2CanvasOptions: { backgroundColor: "#fff" },
-              });
-            }}
+            onClick={() => setShowModal(true)}
             className="download-button"
           >
             Download Certificate
@@ -107,6 +129,54 @@ function Index({
 
       {/* BUTTON TO EXPLORE MORE TEMPLATES */}
       <button className="explore-button">Explore More Templates</button>
+
+
+{/* START OF MODAL */}
+
+      {/* MODAL */}
+
+      {showModal ? (
+        <>
+          <div className="modal-wrapper">
+            {/* CLOSE BUTTON */}
+
+            <div className="modal-header">
+              <button
+                className=""
+                type="button"
+                onClick={() => setShowModal(false)}
+              >
+                X
+              </button>
+            </div>
+
+            <hr />
+
+            {/* BODY */}
+
+            <div className=" modal-body ">
+              <button
+                onClick={(e) => {
+                  e.preventDefault();
+                  exportComponentAsPNG(certificateWrapper, {
+                    fileName: `${awardeeName}`,
+                    html2CanvasOptions: { backgroundColor: "#fff" },
+                  });
+                }}
+                className="download-button"
+              >
+                Download Certificate as PNG
+              </button>
+
+              <button onClick={handleDownloadPdf} className="download-button">
+                Download Certificate as PDF
+              </button>
+            </div>
+          </div>
+        </>
+      ) : null}
+
+      {/* END OF MODAL */}
     </div>
   );
 }
