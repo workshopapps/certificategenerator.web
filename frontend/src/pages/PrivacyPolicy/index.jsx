@@ -12,7 +12,7 @@ export const Privacy = () => {
           <section>
          <h2>Privacy policy</h2>
           <p>Shall apply from November 23, 2022.</p>   
-  <p>Certonic is a certificate generator  committed to protecting the privacy and accuracy of your confidential information to the extent 
+  <p>Certgo is a certificate generator  committed to protecting the privacy and accuracy of your confidential information to the extent 
   possible, subject to provisions of state and federal law. Other than as required by laws that guarantee public access to certain types of 
   information, or in response to subpoenas or other legal instruments that authorize access, personally-identifiable information is not 
   actively shared. In particular, we do not re-distribute or sell personal information collected on our web servers.</p>
@@ -29,39 +29,39 @@ export const Privacy = () => {
               <li>Address,State,Province,Zip/Postal Code, City</li>
               <li>Usage Data</li>
           </ul>
-          <p>Certonic websites may collect personal information such as name, address, e-mail address, telephone number(s), and/or educational
+          <p>Certgo websites may collect personal information such as name, address, e-mail address, telephone number(s), and/or educational
                interests, IP Addresses. Such personal information may be requested by us for registration purposes and also for the use of
                 creating certificates. Additional personal information, such as credit card account information, may be requested for purchases
                  or enrollment purposes.
               </p>
           <p>Web servers typically collect, at least temporarily, the following information: Internet Protocol (IP) address of computer being 
-              used; web pages requested; referring web page; browser used; date and time. Certonic may collect statistics identifying particular
+              used; web pages requested; referring web page; browser used; date and time. Certgo may collect statistics identifying particular
                IP addresses from which our websites are accessed.
           </p>
           <p className="green">cookies</p>
           <p>
-          Certonic website may use "cookies" in order to deliver web content specific to individual users' interests or to keep track of online
+          Certgo website may use "cookies" in order to deliver web content specific to individual users' interests or to keep track of online
            purchasing transactions.
           </p>
   
           <p className="green">Webforms</p>
           <p>
-          Certonic uses webforms forms on this site. These forms require users to give contact information [name, address,    e-mail address, telephone number(s)].
+          Certgo uses webforms forms on this site. These forms require users to give contact information [name, address,    e-mail address, telephone number(s)].
           Contact information from the registration form is used only to send material relating to the [event/course/purpose]  for which it
            was collected and will not be sold to another party. 
            </p>
          <section>
         <h2>Use of collected information</h2>
         <ul>
-          <li>Certonic may use personal information collected from websites for the purpose of future communication back to  users, in order to 
+          <li>Certgo may use personal information collected from websites for the purpose of future communication back to  users, in order to 
           keep you informed of such activities as keeping you up to date on newly added feature that you might find beneficial, but only if you 
           are provided the opportunity to opt out of that type of use.</li>
-          <li>Certonic may use browser IP address information and anonymous browser history to report information about site accesses and for 
-          profiling purposes. %his information is generally used to improve Web presentation and utilization. Certonic also may use IP address 
+          <li>Certgo may use browser IP address information and anonymous browser history to report information about site accesses and for 
+          profiling purposes. %his information is generally used to improve Web presentation and utilization. Certgo also may use IP address 
           information for troubleshooting purposes</li>
-          <li>Some Certonic activity may use  cookies  in order to deliver web content specific to individual users' interests or to keep track of 
+          <li>Some Certgo activity may use  cookies  in order to deliver web content specific to individual users' interests or to keep track of 
           online purchasing transactions. Sensitive personal information is not stored within cookies.</li>
-          <li>Collected information will be stored as long as users have an account registered with Certonic. Prior to account closure we store data 
+          <li>Collected information will be stored as long as users have an account registered with Certgo. Prior to account closure we store data 
           for not more than 24 hours after account has been deleted.</li>
           <li>Users have option to prohibit collection and use of their personal data by not choosing to any pricing plan.</li>
         </ul>
@@ -69,20 +69,20 @@ export const Privacy = () => {
          <section>
          <h2>Distribution of collected information</h2>
          <ul>
-          <li>Certonic will not disclose, without your consent, personal information collected about you, except for certain explicit circumstances 
+          <li>Certgo will not disclose, without your consent, personal information collected about you, except for certain explicit circumstances 
           in which disclosure is required by law.</li>
-          <li>Certonic will not distribute or sell personal information to third-party organizations.</li>
+          <li>Certgo will not distribute or sell personal information to third-party organizations.</li>
          </ul>
          </section>
          <section> 
           <h2>Access to own information</h2>
           <p>Questions regarding users' rights to review, modify or delete their previously provided personal information should be directed to the 
-          Certonic customer service to which they provided the information. Any disputes will be resolved under existing records regulations 
-          applicable to Certonic.</p>
+          Certgo customer service to which they provided the information. Any disputes will be resolved under existing records regulations 
+          applicable to Certgo.</p>
          </section>
          <section>
           <h2> Responsibility for external sites</h2>
-          <p>Certonic does not control the content or information practices of external organizations. We recommend you review the privacy 
+          <p>Certgo does not control the content or information practices of external organizations. We recommend you review the privacy 
           statements of these organizations.</p>
          </section>
          <section>

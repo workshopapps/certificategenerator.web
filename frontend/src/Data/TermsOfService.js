@@ -1,24 +1,24 @@
 
 export const generalProvisions = [
   {
-    name: '  The following Terms and Conditions define the principles of providing the Certonic service by electronic means (hereinafter referred to as the "Service") to natural persons, legal entities or other organisational units with legal capacity (hereinafter referred to as "Clients") by the Service Provider - Certonic which has a registered office in Nigeria.',
+    name: '  The following Terms and Conditions define the principles of providing the Certgo service by electronic means (hereinafter referred to as the "Service") to natural persons, legal entities or other organisational units with legal capacity (hereinafter referred to as "Clients") by the Service Provider - Certgo which has a registered office in Nigeria.',
   },
   {
     name: 'The condition necessary before the Client can use the Service is to read the following Regulations and accept them in their entirety. Upon acceptance of the Terms of Service, an agreement is concluded between the Service Provider and the Client for provision of the online certificate generator service.',
   },
   {
-    name: <>Certonic Service is provided in four packages, indicated in the price list at  <a href="https://www.certonic.com/" style={{color: '#19A68E', textDecoration: 'underline'}}>https://www.certonic.com/</a>. However, Our Service in the Custom package is provided in accordance with individual arrangements between the Service Provider and the Client within the framework of a written Agreement, and these Terms and Conditions shall not apply to it.</>,
+    name: <>Certgo Service is provided in four packages, indicated in the price list at  <a href="https://certgo.hng.tech/" style={{color: '#19A68E', textDecoration: 'underline'}}>https://www.certgo.com/</a>. However, Our Service in the Custom package is provided in accordance with individual arrangements between the Service Provider and the Client within the framework of a written Agreement, and these Terms and Conditions shall not apply to it.</>,
   },
 ];
 export const services = [
   {
-    name: 'The Service Provider undertakes to provide the Client, by electronic means, with a set of services indicated below, jointly referred to in these Regulations as "Service" or "Certonic". The Certonic service in the Free package is a free service, and in other packages, it is payable. The service in particular provides the Client with an enabling opportunity for the creation, edition and exportation of electronic certificates.'
+    name: 'The Service Provider undertakes to provide the Client, by electronic means, with a set of services indicated below, jointly referred to in these Regulations as "Service" or "Certgo". The Certgo service in the Free package is a free service, and in other packages, it is payable. The service in particular provides the Client with an enabling opportunity for the creation, edition and exportation of electronic certificates.'
   },
   {
-    name: <>The scope of the aforementioned individual services depends on Our Service package selected by the Customer, as described at <a href="https://www.certonic.com/" style={{color: '#19A68E', textDecoration: 'underline'}}>https://www.certonic.com/</a>. The customer is aware that some functionalities may not be available or limited in the package of his choice.</>,
+    name: <>The scope of the aforementioned individual services depends on Our Service package selected by the Customer, as described at <a href="https://www.certgo.com/" style={{color: '#19A68E', textDecoration: 'underline'}}>https://www.certgo.com/</a>. The customer is aware that some functionalities may not be available or limited in the package of his choice.</>,
   },
   {
-    name: <>'The Client is free to change and select packages of the Service. However, the transition from a paid to a free package does not give rise to an obligation on the part of the Service Provider to refund all or part of the fee. The provider declares that it provides the Service using <a href="https://www.certonic.com/" style={{color: '#19A68E', textDecoration: 'underline'}}>https://www.certonic.com/</a>. Both the application and any data stored in it are protected by the 256-bit SSL A+ grade protocol.'</>,
+    name: <>'The Client is free to change and select packages of the Service. However, the transition from a paid to a free package does not give rise to an obligation on the part of the Service Provider to refund all or part of the fee. The provider declares that it provides the Service using <a href="https://www.certgo.com/" style={{color: '#19A68E', textDecoration: 'underline'}}>https://www.certgo.com/</a>. Both the application and any data stored in it are protected by the 256-bit SSL A+ grade protocol.'</>,
   },
 ];
 export const useOfService = [
@@ -60,10 +60,10 @@ export const payments = [
     name: 'If paid variants of the Service are selected, the Service is provided only after the payment of the fee by the Client.'
   },
   {
-    name: <>Fees may be paid by bank transfer, credit card or debit card, as well as other payment orders made through payment institutions or electronic money institutions operating in accordance with the Nigerian law. The service provider undertakes to enable fast payments through <a href="https://www.certonic.com/" style={{color: '#19A68E', textDecoration: 'underline'}}>https://www.certonic.com/</a>.</>,
+    name: <>Fees may be paid by bank transfer, credit card or debit card, as well as other payment orders made through payment institutions or electronic money institutions operating in accordance with the Nigerian law. The service provider undertakes to enable fast payments through <a href="https://www.certgo.com/" style={{color: '#19A68E', textDecoration: 'underline'}}>https://www.certgo.com/</a>.</>,
   },
   {
-    name: <>The fee for individual variants of the Service is specified in the Price List at <a href="https://www.certonic.com/" style={{color: '#19A68E', textDecoration: 'underline'}}>https://www.certonic.com/</a> which is an integral part of this Terms of Service. These are each time net prices for the monthly period of using the Service.</>,
+    name: <>The fee for individual variants of the Service is specified in the Price List at <a href="https://www.certgo.com/" style={{color: '#19A68E', textDecoration: 'underline'}}>https://www.certgo.com/</a> which is an integral part of this Terms of Service. These are each time net prices for the monthly period of using the Service.</>,
   },
   {
     name: 'The Service Provider reserves the right to make changes to the Price List at any time.',

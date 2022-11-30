@@ -25,7 +25,7 @@ const Terms = () => {
     <div id="terms">
       {/* Header */}
       <div className="header">
-        <h1>Certonic Terms of Service</h1>
+        <h1>Certgo Terms of Service</h1>
         <p>Shall apply from November 23, 2022.</p>
       </div>
 

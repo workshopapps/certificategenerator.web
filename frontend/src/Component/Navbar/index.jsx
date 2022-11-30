@@ -22,21 +22,16 @@ function Navbar() {
     },
     {
       id: 2,
-      url: "/templates",
-      text: "browse templates",
-    },
-    {
-      id: 3,
       url: "/pricing",
       text: "pricing",
     },
     {
-      id: 4,
+      id: 3,
       url: "/contact-us",
       text: "contact",
     },
     {
-      id: 5,
+      id: 4,
       url: "/FAQ",
       text: "FAQs",
     },
@@ -49,9 +44,9 @@ function Navbar() {
           <div className="nav-header nav-container">
             <div className="nav-logo" onClick={() => navigate("/")}>
               <h2>
-                Cert<span>onic</span>
+                Cert<span>go</span>
               </h2>
-              <img src={logo} alt="Certonic bulb" />
+              <img src={logo} alt="Certgo bulb" />
             </div>
             <div className="nav-click">
               <button className="btn">

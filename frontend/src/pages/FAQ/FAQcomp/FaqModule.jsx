@@ -1,19 +1,19 @@
 export const GettingStartedItems = [
 	{
-		title: "What does Certonic Certificate Generator do?",
+		title: "What does Certgo Certificate Generator do?",
 		body: [
 			"It is a complete and easy to use website that can generate and send certificate to uploaded CSV lists.",
 		],
 	},
 
 	{
-		title: "How do I sign up for Certonic Certificate Generator?",
+		title: "How do I sign up for Certgo Certificate Generator?",
 		body: ["You can sign up with your email account."],
 	},
 	{
-		title: "How can I make use of Certonic Certificate Generator?",
+		title: "How can I make use of Certgo Certificate Generator?",
 		body: [
-			"Sign up for Certonic for free.",
+			"Sign up for Certgo for free.",
 			"Pick a template that fits the occasion.",
 			"Choose a colour scheme and upload the necessary information.",
 			"Upload CVS document.",
@@ -24,31 +24,31 @@ export const GettingStartedItems = [
 	{
 		title: "How much does creating a certificate cost?",
 		body: [
-			"It will cost nothing to make custom certificates. Certonic Certificate Generator can be used for free. However, if you want more features, you can upgrade your plan.",
+			"It will cost nothing to make custom certificates. Certgo Certificate Generator can be used for free. However, if you want more features, you can upgrade your plan.",
 		],
 	},
 	{
 		title: "Can I generate Certificates in bulk?",
 		body: [
-			"Definitely! Certonic was created to help you generate digital certificates in bulk.",
+			"Definitely! Certgo was created to help you generate digital certificates in bulk.",
 		],
 	},
 	{
-		title: "How is Certonic different from other Online Certificate Generators?",
+		title: "How is Certgo different from other Online Certificate Generators?",
 		body: [
-			"Unlike other Certificate Generators, we do not want users to be confused when faced with a wide array of templates that are more or less the same. Instead, Certonic Certificate Generator offers six simple design templates that are distinguishably different from one another and easy for users to use.",
+			"Unlike other Certificate Generators, we do not want users to be confused when faced with a wide array of templates that are more or less the same. Instead, Certgo Certificate Generator offers six simple design templates that are distinguishably different from one another and easy for users to use.",
 		],
 	},
 	{
 		title: "Can I share my account with another user?",
 		body: [
-			"Unfortunately, users cannot share the same account. Each user has their asset allocated under their own personal folder on Certonic Certificate Generator.",
+			"Unfortunately, users cannot share the same account. Each user has their asset allocated under their own personal folder on Certgo Certificate Generator.",
 		],
 	},
 	{
-		title: "Can I use Certonic on my phone?",
+		title: "Can I use Certgo on my phone?",
 		body: [
-			"Yes! Certonic is compatible with phone, tablet, laptop and MacBook.",
+			"Yes! Certgo is compatible with phone, tablet, laptop and MacBook.",
 		],
 	},
 ];
@@ -59,13 +59,13 @@ export const DownlaodsItems = [
 		body: ["The certificate comes in size 8.5 × 11"],
 	},
 	{
-		title: "Do free downloads of Certificate have Certonic watermark?",
-		body: ["No! Certonic offers free downloads without watermark."],
+		title: "Do free downloads of Certificate have Certgo watermark?",
+		body: ["No! Certgo offers free downloads without watermark."],
 	},
 	{
 		title: "Can I print one certificate instead of bulk?",
 		body: [
-			"If you do not want to download the certificate in bulk, Certonic provides you the option of downloading each certificate as a stand alone.",
+			"If you do not want to download the certificate in bulk, Certgo provides you the option of downloading each certificate as a stand alone.",
 		],
 	},
 	{
@@ -85,14 +85,14 @@ export const UploadsItems = [
 	{
 		title: "What if I made a mistake while uploading my CSV file?",
 		body: [
-			"Certonic Certificate Generator records whatever information you upload. If there is a mistake, you have to re-upload the correct file to the website.",
+			"Certgo Certificate Generator records whatever information you upload. If there is a mistake, you have to re-upload the correct file to the website.",
 		],
 	},
 
 	{
 		title: "Can I use my Brand Kit with the certificate maker?",
 		body: [
-			"Absolutely. When you have a Brand Kit set up in Certonic Certificate Generator, it is available anytime you want to create certificates. To have a Brand Kit you need to upgrade from a free plan.",
+			"Absolutely. When you have a Brand Kit set up in Certgo Certificate Generator, it is available anytime you want to create certificates. To have a Brand Kit you need to upgrade from a free plan.",
 		],
 	},
 ];
@@ -102,7 +102,7 @@ export const FeaturedItems = [
 		title:
 			"What if I modified my certificate design after I confirmed download?",
 		body: [
-			"Certonic auto saves your designs every 10 seconds to make it easy to use. So, once you modify your design, it automatically saves it. You recent update will be reflected on your design when you generate it.",
+			"Certgo auto saves your designs every 10 seconds to make it easy to use. So, once you modify your design, it automatically saves it. You recent update will be reflected on your design when you generate it.",
 		],
 	},
 	{
@@ -114,7 +114,7 @@ export const FeaturedItems = [
 	{
 		title: "What is the best certificate size?",
 		body: [
-			"The default size Certonic offers is 8.5 × 11. This is also the best certificate size",
+			"The default size Certgo offers is 8.5 × 11. This is also the best certificate size",
 		],
 	},
 	{
