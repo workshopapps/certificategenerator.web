@@ -1,8 +1,5 @@
 import React, { useState } from "react";
 import './certificate.style.scss'
-import demo from '../../../assets/images/demo.png'
-import demo_2 from '../../../assets/images/demo-2.png'
-import demo_3 from '../../../assets/images/demo-3.png'
 import {Link, useNavigate} from "react-router-dom"
 import UploadCSV from "../../UploadCSV";
 
@@ -48,16 +45,6 @@ export default function Certificate ({
           {bulkCertificate ?            
            <div>
 
-          <div className="flex center justify-between gap cert-img">
-            <img src={demo} alt="certificate-1" />
-            <img src={demo_2} alt="certificate-2" />
-            <img src={demo_3} alt="certificate-3" />
-          </div>
-
-          <Link to="templates">
-          <p className="explore"><span className="explore-arrow">&#10140;</span>Explore more templates</p>
-          </Link>
-
           <form action="" className="cert-form text-left work-sans">
             <UploadCSV />
             {/* <label for='img'>Logo</label>
@@ -85,16 +72,6 @@ export default function Certificate ({
            : 
            <div>
 
-          <div className="flex center justify-between gap cert-img">
-            <img src={demo} alt="certificate-1" />
-            <img src={demo_2} alt="certificate-2" />
-            <img src={demo_3} alt="certificate-3" />
-          </div>
-
-          <Link to="templates">
-          <p className="explore"><span className="explore-arrow">&#10140;</span>Explore more templates</p>
-          </Link>
-          
           <form action="" className="cert-form text-left work-sans">
             <label for='img'>Upload logo</label>
             <input type="file" name="uploadfile" id="img" onChange={e => setLogo(URL.createObjectURL(e.target.files[0]))} />
