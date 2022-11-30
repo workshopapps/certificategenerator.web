@@ -41,7 +41,7 @@ export const data = [
                 sub: {
                     subType: "Standard",
                     header: "More features customised for you",
-                    amount: "$23.99",
+                    amount: "$11.99",
                     text: "Everything in Lite +",
                     linkTo: "/payment",
                     linkText: "Choose plan",
@@ -84,7 +84,7 @@ export const data = [
                 sub: {
                     subType: "Premium",
                     header: "Best for professionals",
-                    amount: "$35.99",
+                    amount: "$23.99",
                     text: "Everything in Basic +",
                     linkTo: "/payment",
                     linkText: "Choose plan",
@@ -172,7 +172,7 @@ export const data = [
                 sub: {
                     subType: "Standard",
                     header: "More features customised for you",
-                    amount: "$239.99",
+                    amount: "$119.99",
                     text: "Everything in Lite +",
                     linkTo: "/payment",
                     linkText: "Choose plan",
@@ -215,7 +215,7 @@ export const data = [
                 sub: {
                     subType: "Premium",
                     header: "Best for professionals",
-                    amount: "$359.99",
+                    amount: "$239.99",
                     text: "Everything in Basic +",
                     linkTo: "/payment",
                     linkText: "Choose plan",
@@ -266,42 +266,42 @@ export const data = [
 export const testimonials = [
     {
         id: 1,
-        text: "As a course creator with multiple courses, it's just so quick to create certificates using Certgo that it almost feels like cheating. As there are a number of customizable certificates, I'm able to quickly create designs consistent with my brand very quickly.",
+        text: "Easy, simple, and fast. The ease of use is really commendable. Setup and configuration is quite fast and simple. I found it really handy in sending out digital certificates for our bootcamp. The certification process has become seamless with only 3 steps to take in order to issue the credentials.",
         img: "/assets/jessica.svg",
         name: "Jessica Hendrix",
         position: "Chief Product Officer"
     },
     {
         id: 2,
-        text: "This app made the process of creating certificates for our students seamless compared to how it was done before. To be able to provide students with an instant certification they can print out and hang on their wall is incredibly valuable for us.",
+        text: "I came across this website when I needed a bulk certificate generator for my course. It is straightforward and I like the frames as they look very professional. It is quite affordable.",
         img: "/assets/todd.svg",
         name: "Todd Holgate",
         position: "Moderator, Actvance"
     },
     {
         id: 3,
-        text: "Using Certgo is always a straightforward, simple and enjoyable experience, particularly as there are only a few steps involved. There’s nothing complicated about the user experience. The team are always on hand and are responsive to any queries. Great experience overall.",
+        text: "Certgo is a fantastic piece of software! It saves us a lot of time, as we were able to generate bulk certificates for our students automatically. The customer support is also excellent and helps us navigate the software and recommend a solution for the changes we need.",
         img: "/assets/raul.svg",
         name: "Raul Gonzalez",
         position: "Chief Mentor, UI Academy"
     },
     {
         id: 4,
-        text: "Certgo made that easier than I ever thought possible and now I have a tool that makes certification easier than ever before. With Certgo, I can manage my certifications and continuing education requirements in one place.",
+        text: "Certgo is an incredible website for designing certificates! A huge selection of templates, fonts, and colors; endless choices at the tip of your fingers; easy editing and sending/sharing. Best certificate generator I've used for a long time. If you haven't tried it... try it!",
         img: "/assets/emily.svg",
         name: "Emily Rowe",
         position: "Principal, Grange High School"
     },
     {
         id: 5,
-        text: "The Certgo tool is a fantastic option for anyone looking to automate their certification processes! The user experience is very clean and easy to use. I was able to learn how to use the tool seamlessly within 30 minutes. The customer service team is also very responsive and helpful.",
+        text: "Certgo is a fantastic option for anyone looking to automate their certification processes! The user experience is very clean and easy to use. I was able to learn how to use the tool seamlessly within 30 minutes. The customer service team is also very responsive and helpful! Recommended for EVERYONE.",
         img: "/assets/raheem.svg",
         name: "Raheem Pound",
         position: "Business Analyst"
     },
     {
         id: 6,
-        text: "Easy, simple, and fast. The ease of use is really commendable. Setup and configuration is quite fast and simple. I found it really handy in sending out digital certificates for our bootcamp. The certification process has become seamless with only 3 steps to take in order to issue the credentials.",
+        text: "The best platform for anyone needing to generate bulk certificates. Amazing! I love how easy it is for us.",
         img: "/assets/gloria.svg",
         name: "Gloria Higgins",
         position: "Moderator, SkillUp Africa"
