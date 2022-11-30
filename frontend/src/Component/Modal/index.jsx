@@ -7,22 +7,47 @@ function index({ open, onClose }) {
   return (
     <div onClick={onClose} className="modal-wrapper">
       <div className="modal-container" onClick={(e) => e.stopPropagation()}>
-        <h3 className="modal-container__text">
-          <Link to="/signup">Sign up enjoy this feature and more</Link>
-        </h3>
+        <div className="cancel-btn-wrapper">
+          <button onClick={onClose} className="modal-container__cancel">
+            Close{" "}
+            <span className="cancel-x-btn">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="w-6 h-6"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </span>
+          </button>
+        </div>
+        <div>
+          <h3 className="modal-container__header">Oops!!!</h3>
+          <p className="modal-container__text">
+            You need to Sign up to send certificate to your mail
+          </p>
+        </div>
         <div className="modal-container__btns">
           <Link to="/signup">
             <button onClick={onClose} className="modal-container__btn">
               Sign Up
             </button>
           </Link>
-
-          <button
-            onClick={onClose}
-            className="modal-container__btn modal-container__btn--cancel"
-          >
-            Cancel
-          </button>
+          <Link to="/login">
+            <button
+              onClick={onClose}
+              className="modal-container__btn modal-container__btn--signin"
+            >
+              Sign In
+            </button>
+          </Link>
         </div>
       </div>
     </div>
