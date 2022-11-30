@@ -51,6 +51,7 @@ export default function Testimonials () {
                 Amazing! I love how easy it is to use! Recommended for EVERYONE!”
               </p>
             </div>
+            
           </div>
         </>
     )
