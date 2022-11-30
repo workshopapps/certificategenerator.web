@@ -28,18 +28,6 @@
   flex-direction: column;
   gap: 20px;
 
-  button {
-    font-family: "Work Sans", sans-serif;
-    display: block;
-    padding: 14.5px 20px;
-    width: 200px;
-    height: 48px;
-    max-width: 200px;
-    border: none;
-    border-radius: 10px;
-    background-color: white;
-    font-size: 1rem;
-  }
   .link {
     text-decoration: none;
     .btn-outline {
@@ -62,6 +50,7 @@
 
 .arrow-left {
   font-size: 23px;
+  margin-bottom: -4px;
 }
 .error-image {
   margin-top: 20px;

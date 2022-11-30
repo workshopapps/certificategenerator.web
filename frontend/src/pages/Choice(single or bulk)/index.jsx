@@ -7,6 +7,7 @@ import UploadIcon from "../../assets/images/Choice/upload.svg";
 import Info from "../../assets/images/Choice/info.svg";
 // componenet
 import Upload from "./Upload";
+import Button from "../../Component/button";
 
 const Choice = () => {
   return (
@@ -14,7 +15,7 @@ const Choice = () => {
       <div className="single">
         <h2>Single certificate</h2>
         <p>Generate a single certificate within a few clicks</p>
-        <button type="button">Lets get started</button>
+        <Button text="Let's get started" />
       </div>
       <div className="or">
         <div class="vl"></div>
