@@ -141,3 +141,48 @@
     font-size: 23px;
   }
 }/*# sourceMappingURL=profile.style.css.map */
+
+@media screen and (max-width: 586px) {
+  .profile-page > div {
+    flex-direction: column;
+  }
+  .profile-page > div .user-info {
+    width: 100%;
+    text-align: center;
+  }
+  .profile-page > div .user-info .user-avatar {
+    width: 100%;
+    text-align: center;
+  }
+  .profile-page > div .user-info .user-avatar img {
+    width: 200px;
+  }
+  .profile-page > div .user-info .mb-2 {
+    margin-bottom: 1rem;
+  }
+  .profile-page > div h3 {
+    font-size: 18px;
+  }
+  .profile-page > div .form label {
+    font-size: 14px;
+  }
+  .profile-page > div .form h2 {
+    text-align: center;
+    font-size: 27px !important;
+    margin-bottom: 1.5rem;
+  }
+}
+@media screen and (max-width: 769px) {
+  .profile-page .form h2 {
+    font-size: 32px !important;
+  }
+  .profile-page .form form .form-group label {
+    color: rgba(0, 0, 0, 0.6);
+    margin-bottom: 0.5rem;
+  }
+}
+@media screen and (max-width: 868px) {
+  .profile-page .user-info .mb-2 h3 {
+    font-size: 23px;
+  }
+}/*# sourceMappingURL=profile.style.css.map */

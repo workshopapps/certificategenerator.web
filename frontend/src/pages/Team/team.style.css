@@ -11,7 +11,7 @@
   font-weight: 700;
   color: #000000;
   font-style: normal;
-  font-family: "Sora";
+  font-family: "Work Sans";
   font-size: 57px;
   line-height: auto;
   align-items: center;
@@ -23,7 +23,7 @@
   margin-right: 120px;
   font-weight: 400;
   font-style: normal;
-  font-family: "Sora";
+  font-family: "Work Sans";
   font-size: 23px;
   margin-top: 24px;
   line-height: auto;
@@ -123,4 +123,4 @@
     font-size: 36px;
     margin-top: 32px;
   }
-}/*# sourceMappingURL=team.style.css.map */
+}
