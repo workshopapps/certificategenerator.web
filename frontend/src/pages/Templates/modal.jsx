@@ -24,6 +24,15 @@ export default function Filter({
   const [btn5active, setBtn5Active] = useState(false);
   const [btn6active, setBtn6Active] = useState(false);
   const [btn7active, setBtn7Active] = useState(false);
+  //color
+  const [btn8active, setBtn8Active] = useState(false);
+  const [btn9active, setBtn9Active] = useState(false);
+  const [btn10active, setBtn10Active] = useState(false);
+  const [btn11active, setBtn11Active] = useState(false);
+  const [btn12active, setBtn12Active] = useState(false);
+  const [btn13active, setBtn13Active] = useState(false);
+  const [btn14active, setBtn14Active] = useState(false);  
+
 
   //restore btn states
   const resetFilterBtns = () => {
@@ -34,8 +43,17 @@ export default function Filter({
     setBtn5Active(false);
     setBtn6Active(false);
     setBtn7Active(false);
-  }
+    setBtn8Active(false);
+    setBtn9Active(false);
+    setBtn10Active(false);
+    setBtn11Active(false);
+    setBtn12Active(false);
+    setBtn13Active(false);
+    setBtn14Active(false);
 
+  }
+  
+  
 
   if (!open) return null;
 
@@ -142,27 +160,116 @@ export default function Filter({
         <div className="modal-card__color">
           <h2>Color</h2>
           <div className="filter-colors">
-            <div>
+            
+
+                  
+            <button
+              onClick={() => {
+                setBtn8Active(!btn8active);
+                return selectedCategory("red");
+              }}
+              className="sort-btnmodal"
+              style={{
+                backgroundColor: btn8active ? "#ff4500" : "#F4F4F4",
+                border: btn8active ? "none" : "none",
+                
+                }}
+            >
+              <div>
               <img src={redimg} alt="" />
-            </div>
-            <div>
+              </div>
+            </button>
+            <button
+              onClick={() => {
+                setBtn9Active(!btn9active);
+                return selectedCategory(<img src={brownimg} alt=""/>);
+              }}
+              className="sort-btnmodal"
+              style={{
+                backgroundColor: btn9active ? "rgb(83, 25, 25)" : "#F4F4F4",
+                border: btn9active ? "none" : "none"
+                }}
+            >
+              <div>
               <img src={brownimg} alt="" />
             </div>
-            <div>
+            </button>
+            <button
+              onClick={() => {
+                setBtn10Active(!btn10active);
+                return selectedCategory(<img src={yellowimg} alt=""/>);
+              }}
+              className="sort-btnmodal"
+              style={{
+                backgroundColor: btn10active ? "#ffa500" : "#F4F4F4",
+                border: btn10active ? "none" : "none"
+                }}
+            >
+              <div>
               <img src={yellowimg} alt="" />
             </div>
-            <div>
+            </button>
+            <button
+              onClick={() => {
+                setBtn11Active(!btn11active);
+                return selectedCategory("green");
+              }}
+              className="sort-btnmodal"
+              style={{
+                backgroundColor: btn11active ? "rgb(3, 88, 3)" : "#F4F4F4",
+                border: btn11active ? "none" : "none"
+                }}
+            >
+              <div>
               <img src={greenimg} alt="" />
             </div>
-            <div>
+            </button>
+            <button
+              onClick={() => {
+                setBtn12Active(!btn12active);
+                return selectedCategory("blue");
+              }}
+              className="sort-btnmodal"
+              style={{
+                backgroundColor: btn12active ? "rgb(6, 6, 119)" : "#F4F4F4",
+                border: btn12active ? "none" : "none"
+                }}
+            >
+              <div>
               <img src={blueimg} alt="" />
             </div>
-            <div>
+            </button>
+            <button
+              onClick={() => {
+                setBtn13Active(!btn13active);
+                return selectedCategory(<img src={blackimg} alt=""/>);
+              }}
+              className="sort-btnmodal"
+              style={{
+                backgroundColor: btn13active ? "rgb(20, 17, 17)" : "#F4F4F4",
+                border: btn13active ? "none" : "none"
+                }}
+            >
+              <div>
               <img src={blackimg} alt="" />
             </div>
-            <div>
+            </button> 
+            <button
+              onClick={() => {
+                setBtn14Active(!btn14active);
+                return selectedCategory(<img src={whiteimg} alt=""/>);
+              }}
+              className="sort-btnmodal"
+              style={{
+                backgroundColor: btn14active ? "#FFFFFF" : "#F4F4F4",
+                border: btn14active ? "none" : "none"
+                }}
+            >
+             <div>
               <img src={whiteimg} alt="" />
             </div>
+            </button>                        
+            
           </div>
         </div>
 

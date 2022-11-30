@@ -88,23 +88,20 @@
 .links-container .links p {
   padding: 10px 0;
   border-bottom: 1px solid #222;
-  font-size: 1rem;
-  font-weight: 400;
-}
-.links-container .links p:first-child {
-  font-size: 20px;
-  font-weight: 600;
 }
 .links-container .links .link {
   text-decoration: none;
   color: #222;
   text-transform: capitalize;
-}
-.links-container .links .link:hover {
-  color: #19a68e;
+  font-weight: 400;
+  font-size: 1rem;
 }
 .links-container .links .link:hover {
   color: #ad2fd0;
+}
+.links-container .links .active {
+  font-size: 20px;
+  font-weight: 600;
 }
 
 .show-links {
@@ -166,9 +163,6 @@
     margin-bottom: 0;
     align-items: center;
     border-right: 1px solid #222;
-  }
-  .links-container .links p:first-child {
-    margin: 0;
   }
   .links-container .links p {
     border: none;
