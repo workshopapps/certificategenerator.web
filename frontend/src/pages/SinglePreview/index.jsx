@@ -5,6 +5,8 @@ import certificate from "../../assets/images/SinglePreview/Completion - Portrait
 import certificate2 from "../../assets/images/SinglePreview/Completion - Portrait (3).png";
 import certificate3 from "../../assets/images/SinglePreview/Completion - Portrait.png";
 import { exportComponentAsPNG } from "react-component-export-image";
+import { useNavigate } from "react-router-dom";
+
 
 function Index({
   logo,
@@ -15,6 +17,8 @@ function Index({
   issueDate,
 }) {
   var certificateWrapper = React.createRef();
+  const navigate = useNavigate();
+
   return (
     <div id="singlePreview">
       {/* BUTTONS TO TOGGLE BETWEEN SINGLE AND BULK CERTIFICATE */}
@@ -106,7 +110,7 @@ function Index({
       </div>
 
       {/* BUTTON TO EXPLORE MORE TEMPLATES */}
-      <button className="explore-button">Explore More Templates</button>
+      <button className="explore-button" onClick={() => navigate('/templates')}>Explore More Templates</button>
     </div>
   );
 }
