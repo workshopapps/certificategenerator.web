@@ -10,24 +10,23 @@ import Template2 from "../../assets/images/uploadPage/template2.svg";
 import Template3 from "../../assets/images/uploadPage/template3.svg";
 import { useState } from "react";
 
-const UploadCSV = ({setFile}) => {
+const UploadCSV = ({ setFile }) => {
   const [state, setState] = useState({ active: true });
-  
-  const toggleState = (e) => {
+
+  const toggleState = e => {
     console.log(Object.values(e.target.classList));
     // console.log( typeof e.target.classList);
     const active = Object.values(e.target.classList).find(
-      (element) => element === "active"
+      element => element === "active"
     );
     //   .forEach(element => {
     if (!active) {
       // console.log(3);
-      setState((prev) => {
+      setState(prev => {
         return { ...prev, active: !prev.active };
       });
     }
   };
-  
 
   return (
     <div className="uploadCSVContainer">
@@ -51,7 +50,11 @@ const UploadCSV = ({setFile}) => {
       <div className="certificatePreview">
         <img src={Certificate} alt="certificate preview" />
       </div>
-      <Button name={"Modify Certificate"} className={"modiftyCertificate"} />
+      <Button
+        text={"Modify Certificate"}
+        className={"modiftyCertificate"}
+        style={{ margin: "auto" }}
+      />
 
       <h2>Upload your csv file here in the format below</h2>
       <div className="CSVSample">
@@ -78,7 +81,9 @@ const UploadCSV = ({setFile}) => {
               name="uploadCSV"
               accept=".csv"
               className="box"
-              onChange={(e) => {setFile(e.target.files);}}
+              onChange={e => {
+                setFile(e.target.files);
+              }}
             />
             Browse files
           </label>
