@@ -26,7 +26,6 @@ function Index({
     setOpenModal(!openModal);
   }
 
-
   // STATE FOR MODAL POPUP
   const [showModal, setShowModal] = useState(false);
 
