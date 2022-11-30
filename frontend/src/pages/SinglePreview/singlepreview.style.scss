@@ -4,7 +4,7 @@
 
 #singlePreview {
   text-align: center !important;
-  font-family: "Work Sans", sans-serif;
+  font-family: "Sora", sans-serif;
   .button-container {
     display: block !important;
     margin-top: 0px !important;
@@ -16,7 +16,7 @@
     height: 37px;
     width: 150px;
     border-radius: 10px;
-    font-family: "Work Sans", sans-serif;
+    font-family: "Sora", sans-serif;
 
     &.not-active {
       background: transparent !important;
@@ -99,7 +99,7 @@
     border-radius: 8px;
     background: transparent;
     border: 1px solid $primaryColor;
-    font-family: "Work Sans", sans-serif;
+    font-family: "Sora", sans-serif;
 
     &:hover {
       color: #fff;
