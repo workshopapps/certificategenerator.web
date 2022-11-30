@@ -1,11 +1,13 @@
 .template-wrapper {
   max-width: 100%;
-  background-color: #f8fffe;
+  background-color: #FFFFFF;
   padding-block: 32px;
   padding-inline: 10px;
 }
 .template-wrapper header {
   position: relative;
+  margin-right: 30px;
+  margin-left: 20px;
 }
 .template-wrapper header .hideerrorMsg {
   display: none;

@@ -49,6 +49,7 @@ export default function Testimonials () {
                 “Certgo is great for designing certificates for my students enrolled in my courses. The various letter font styles and font colors are wonderful to choose from. The final look and design of the certification are professional. I enjoy using this easy website.”
               </p>
             </div>
+            
           </div>
         </>
     )

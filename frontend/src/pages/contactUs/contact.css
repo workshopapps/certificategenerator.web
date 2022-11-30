@@ -59,6 +59,7 @@
 @media screen and (min-width: 600px) {
   .contact__info {
     flex-direction: row;
+    justify-content: center;
   }
 }
 @media screen and (min-width: 900px) {
@@ -140,5 +141,33 @@
 @media screen and (min-width: 600px) {
   .contact__form--group {
     flex-direction: row;
+  }
+}
+
+.loading {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  -webkit-animation: spin 0.5s linear infinite;
+          animation: spin 0.5s linear infinite;
+  border-top: 2px solid #fff;
+  border-bottom: 2px solid #fff;
+}
+
+@-webkit-keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
   }
 }/*# sourceMappingURL=contact.css.map */
