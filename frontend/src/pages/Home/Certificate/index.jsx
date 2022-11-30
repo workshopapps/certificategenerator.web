@@ -1,13 +1,9 @@
 import React, { useState } from "react";
-
-import "./certificate.style.scss";
-import { Link, useNavigate } from "react-router-dom";
-
 import "./certificate.style.scss";
 import demo from "../../../assets/images/demo.png";
 import demo_2 from "../../../assets/images/demo-2.png";
 import demo_3 from "../../../assets/images/demo-3.png";
-
+import { Link, useNavigate } from "react-router-dom";
 import UploadCSV from "../../UploadCSV";
 import Input from "../../../Component/Input";
 
@@ -101,9 +97,11 @@ export default function Certificate({
         Create your <span className="emphasized">certificate </span>
         with <span className="emphasized">ease</span>
       </p>
+
       <p style={{ padding: "10px" }} className="prompt">
         Select a template, input values and Create a Certificate right away.
       </p>
+
       {bulkCertificate ? (
         <div className="flex justify-between mode">
           <button
@@ -161,13 +159,12 @@ export default function Certificate({
             </p>
           </Link>
 
-          {/* <form action="" className="cert-form text-left work-sans">
+          <form action="" className="cert-form text-left work-sans">
             <UploadCSV />
-            <label for='img'>Logo</label>
+            {/* <label for='img'>Logo</label>
             <input type="file" name="uploadfile" id="img" style={{ display:"none"}}/>
             <label for="img" className="upload">Upload logo</label>
             <p style={{fontSize: '12px', margin: '0'}}>Max image upload size: 8mb</p>
-
             <label for='text' className="label">Certificate Title</label>
             <input type="text" placeholder="Certificate of completion"/>
         
@@ -175,35 +172,15 @@ export default function Certificate({
             <input type="text" placeholder="For your exceptional performance this month, 
             in appreciation for your loyalty and the desire to fulfil our goals, 
             in recognition of your leadership and dedication "/>
-
             <label for='text' className="label">Issued by</label>
             <input type="text" placeholder="Name of organisation or issuer"/>
-
             <label for='date' className="label">Issue Date</label>
             <input type="date" />
-
-            <input type="submit" value="Create Certificate" className="submit-btn"/>
-          </form> */}
+            <input type="submit" value="Create Certificate" className="submit-btn"/> */}
+          </form>
         </div>
       ) : (
         <div>
-          {/* <form action="" className="cert-form text-left work-sans">
-            <label for='img'>Upload logo</label>
-            <input type="file" name="uploadfile" id="img" onChange={e => setLogo(URL.createObjectURL(e.target.files[0]))} />
-
-            <img  style = {{width:'15%'}} src = {logo} alt ="logo"/>
-            <p style={{fontSize: '12px', margin: '0'}}>Max image upload size: 8mb</p>
-
-            <label htmlFor='text' className="label">Certificate Title</label>
-            <input type="text" placeholder="Certificate of completion" value={certificateTitle} onChange={e => setCertificateTitle(e.target.value)} />
-
-            <label htmlFor='text' className="label">Awardee Name</label>
-            <input type="text" placeholder="Gabriel Prosper" value={awardeeName} onChange={e => setAwardeeName(e.target.value)} />
-
-            <label htmlFor='text' className="label">Dedication or message</label>
-
-        </div>) */}
-
           <div className="flex center justify-between gap cert-img">
             <img src={demo} alt="certificate-1" />
             <img src={demo_2} alt="certificate-2" />
@@ -219,7 +196,6 @@ export default function Certificate({
 
           <form action="" className="cert-form text-left work-sans">
             <label for="img">Upload logo</label>
-
             <input
               type="file"
               name="uploadfile"
@@ -235,6 +211,12 @@ export default function Certificate({
             {formInput.map((e, i) => {
               return (
                 <>
+                  {/* <label
+                    htmlFor={e.label.htmlFor}
+                    className={e.label.labelClass}
+                  >
+                    {e.label.labelText}
+                  </label> */}
                   <Input
                     type={e.input.type}
                     placeholder={e.input.placeholder}
