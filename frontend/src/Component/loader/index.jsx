@@ -1,4 +1,4 @@
-import { BallTriangle } from 'react-loader-spinner';
+import { BallTriangle } from "react-loader-spinner";
 
 const Loader = () => {
   return (

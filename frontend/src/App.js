@@ -26,6 +26,16 @@ import {
 } from "./pages";
 // import Footer from './Component/Footer';
 
+// import Home from "./pages/Home";
+// import Checkout from "./pages/Checkout";
+// import { Privacy } from "./pages/PrivacyPolicy";
+// import { useState, useEffect } from "react";
+import { Loader } from "./Component";
+import Navbar from "./Component/Navbar";
+import { Route, Routes } from "react-router-dom";
+import Signup from "./Component/Signup-Login/assets/Sginup";
+import Login from "./Component/Signup-Login/assets/Login";
+
 function App() {
   const [logo, setLogo] = useState("");
   const [message, setMessage] = useState("");
