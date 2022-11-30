@@ -15,11 +15,15 @@ const Error = () => {
       </p>
       <div className="error-buttons">
         <Link className="link" to="/">
-          <Button text="Go to Certonic Home" />
+          <Button text="Go to Certgo Home" />
           {/* <button className="btn-solid">Go to Certonic Home</button> */}
         </Link>
         <Link className="link">
-          <Button text=" Go Back" className="btn-light">
+          <Button
+            text=" Go Back"
+            className="btn-light"
+            callback={() => navigate(-1)}
+          >
             <BsArrowLeft className="arrow-left" />
           </Button>
           {/* <button className="btn-outline" onClick={() => navigate(-1)}> */}
