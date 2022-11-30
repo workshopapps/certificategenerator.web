@@ -110,10 +110,20 @@
 }
 @media screen and (min-width: 768px) {
   #bulk-preview .button-container button {
-    font-size: 15px;
+    font-size: 15px !important;
     width: 170px;
-    height: 45px;
-    margin: 10px 15px 20px 15px;
+    height: 40px;
+    margin: 30px 15px 40px 15px;
+  }
+  #bulk-preview #bulk-btns button {
+    font-size: 13px;
+    padding: 5px;
+    margin: 30px 15px 40px 15px;
+  }
+  #bulk-preview .send-btn, #bulk-preview .download-btn {
+    width: 200px !important;
+    height: 50px;
+    padding: 10px;
   }
   #bulk-preview .certificate img {
     min-width: 600px;
@@ -122,11 +132,11 @@
     font-size: 30px;
     margin: 30px;
   }
-  #bulk-preview .bulk-buttons {
+  #bulk-preview #bulk-btns {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    margin: 0px !important;
+    margin: 20px !important;
   }
   #bulk-preview .certificate img {
     width: 100%;
@@ -158,14 +168,32 @@
   }
 }
 @media screen and (min-width: 1024px) {
+  #bulk-preview .button-container button {
+    font-size: 18px;
+    width: 200px;
+    height: 50px;
+    margin: 10px 15px 40px 15px;
+  }
+  #bulk-preview #bulk-btns {
+    margin: 20px;
+  }
+  #bulk-preview #bulk-btns button {
+    font-size: 18px;
+    width: 200px;
+    height: 50px;
+    margin: 30px 15px 40px 15px;
+  }
+  #bulk-preview .send-btn, #bulk-preview .download-btn {
+    font-size: 14px !important;
+    width: 220px !important;
+    height: 50px !important;
+  }
   #bulk-preview .certificate img {
     max-width: 700px;
   }
   #bulk-preview .bulk-images img {
     max-width: 300px !important;
   }
-<<<<<<< HEAD
-=======
   #bulk-preview .certificate img {
     width: 100% !important;
     max-width: 600px !important;
@@ -174,5 +202,4 @@
     width: 100%;
     max-width: 300px;
   }
->>>>>>> e449f28319e16d4352c7d1debf51cd9cc977eab4
-}/*# sourceMappingURL=bulk.style.css.map */
+}

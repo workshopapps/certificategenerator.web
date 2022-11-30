@@ -8,9 +8,9 @@ export default function Testimonials () {
     return (
         <>
           <p className="sora testimonial-header">Testimonials</p>
-          <p className="testimonial-caption">What our users have to say about us</p>
+          <p className="testimonial-caption work-sans">What our users have to say about us</p>
           <div className="flex testimonials center justify-between gap testimonial-bottom">
-            <div className="testimonial-container text-left sora test">
+            <div className="testimonial-container text-left wrok-sans test">
               <div className="flex items-center" >
                 <img src={person_1} alt="user" />
                 <div style={{paddingLeft: '20px'}}>
@@ -18,13 +18,13 @@ export default function Testimonials () {
                     <p>United States</p>
                 </div>
               </div>
-              <p style={{paddingTop: "25px"}}>
+              <p className="work-sans" style={{paddingTop: "25px"}}>
                   “This is my first time utilizing Certonic.
                   It is simply brilliant. In a matter of seconds, a full certificate is generated”
               </p>
             </div>
 
-            <div className="testimonial-container text-left sora test">
+            <div className="testimonial-container text-left work-sans test">
               <div className="flex items-center" >
                 <img src={person_2} alt="user" />
                 <div style={{paddingLeft: '20px'}}>
@@ -38,7 +38,7 @@ export default function Testimonials () {
               </p>
             </div>
 
-            <div className="testimonial-container text-left sora test">
+            <div className="testimonial-container text-left work-sans test">
               <div className="flex items-center" >
                 <img src={person_3} alt="user" />
                 <div style={{paddingLeft: '20px'}}>

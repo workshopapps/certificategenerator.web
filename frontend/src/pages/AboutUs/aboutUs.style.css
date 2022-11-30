@@ -80,7 +80,7 @@
   flex-direction: column;
   gap: 20px;
   width: 50%;
-  padding: 131px 0 207px;
+  padding: 40px 0 160px;
 }
 #aboutUs .aboutHeroL h4 {
   padding-bottom: 14px;
@@ -92,7 +92,7 @@
 }
 #aboutUs .aboutAbout {
   display: flex;
-  padding: 100px;
+  padding: 40px 100px;
   gap: 10%;
   background: #F8F8F8;
   align-items: center;
@@ -120,7 +120,7 @@
   height: 70%;
 }
 #aboutUs .aboutValue {
-  padding: 75px 0 148px 100px;
+  padding: 40px 0 40px 100px;
 }
 #aboutUs .aboutValue h2 {
   text-align: center;
@@ -160,14 +160,18 @@
   padding-bottom: 12px;
 }
 #aboutUs .aboutService {
-  padding: 39px 100px 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 100px;
   background: #F8F8F8;
 }
 #aboutUs .aboutService h3 {
   padding-bottom: 16px;
 }
 #aboutUs .aboutServiceS {
-  padding: 68px 0 84px;
+  padding: 40px 0;
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
@@ -181,8 +185,12 @@
   padding-top: 14px;
 }
 #aboutUs .aboutGallery {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   background: #F8F8F8;
-  padding: 50px 100px 38px;
+  padding: 40px 100px;
   margin-bottom: 59px;
 }
 #aboutUs .aboutGallery h3 {
@@ -220,18 +228,18 @@
   }
   #aboutUs .aboutHeroL {
     gap: 24px;
-    padding: 51px 0 120px;
+    padding: 24px 0 120px;
     width: 45%;
   }
   #aboutUs .aboutHeroL h4 {
     padding-bottom: 11px;
   }
   #aboutUs .aboutHeroR img {
-    height: 380px;
-    width: 380px;
+    height: 500px;
+    width: 350px;
   }
   #aboutUs .aboutAbout {
-    padding: 64px 44px;
+    padding: 36px 44px;
     gap: 6%;
   }
   #aboutUs .aboutAboutD {
@@ -241,7 +249,7 @@
     width: 47%;
   }
   #aboutUs .aboutValue {
-    padding: 46px 0 79px 44px;
+    padding: 36px 0 36px 44px;
   }
   #aboutUs .aboutValue h2 {
     padding-bottom: 24px;
@@ -270,10 +278,10 @@
     padding-bottom: 6px;
   }
   #aboutUs .aboutService {
-    padding: 51px 44px 41px;
+    padding: 36px 44px;
   }
   #aboutUs .aboutServiceS {
-    padding: 33px 0 59px;
+    padding: 36px 0 36px;
   }
   #aboutUs .aboutServiceCard {
     padding: 12px 24px 12px 0;
@@ -286,7 +294,7 @@
     padding-top: 6px;
   }
   #aboutUs .aboutGallery {
-    padding: 50px 44px 41px;
+    padding: 36px 44px;
     margin-bottom: 51px;
   }
   #aboutUs .aboutGallery h3 {
@@ -300,16 +308,10 @@
     width: 100%;
   }
 }
-@media screen and (max-width: 800px) {
-  #aboutUs .aboutHeroR img {
-    height: 380px;
-    width: 340px;
-  }
-}
 @media screen and (max-width: 700px) {
   #aboutUs .aboutHeroR img {
-    height: 380px;
-    width: 300px;
+    width: 320px;
+    height: 450px;
   }
   #aboutUs .aboutServiceS {
     gap: 16px;
@@ -345,19 +347,27 @@
     width: 50px;
   }
   #aboutUs .aboutHero {
+    display: flex;
+    flex-direction: column;
     padding: 0 24px;
   }
   #aboutUs .aboutHeroL {
-    padding: 24px 0 148px;
+    padding: 0 0 36px;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+  }
+  #aboutUs .aboutHeroR {
+    position: relative;
+    width: 100%;
   }
   #aboutUs .aboutHeroR img {
-    height: 320px;
-    width: 240px;
+    width: 100%;
   }
   #aboutUs .aboutAbout {
     display: flex;
     flex-direction: column;
-    padding: 24px 24px 48px;
+    padding: 24px;
     gap: 48px;
   }
   #aboutUs #mission {
@@ -372,7 +382,7 @@
     height: 100%;
   }
   #aboutUs .aboutValue {
-    padding: 24px 0 40px 24px;
+    padding: 24px 0 24px 24px;
   }
   #aboutUs .aboutValue h2 {
     padding-bottom: 16px;
@@ -408,7 +418,7 @@
     padding-bottom: 1px;
   }
   #aboutUs .aboutService {
-    padding: 10px 24px 36px;
+    padding: 24px;
   }
   #aboutUs .aboutService h3 {
     padding: 16px 0 13px;
@@ -425,35 +435,15 @@
     padding-top: 6px;
   }
   #aboutUs .aboutGallery {
-    padding: 30px 24px 40px;
-    margin-bottom: 23px;
+    padding: 24px;
+    margin-bottom: 24px;
   }
   #aboutUs .aboutGallery h3 {
-    padding-bottom: 21px;
+    padding-bottom: 24px;
   }
   #aboutUs .aboutGalleryS {
-    padding-top: 49px;
+    padding-top: 24px;
     gap: 20px;
     grid-template-columns: 1fr 1fr;
   }
 }
-@media screen and (max-width: 480px) {
-  #aboutUs .aboutHeroL {
-    width: 50%;
-    padding: 24px 0 120px;
-  }
-  #aboutUs .aboutHeroR img {
-    height: 280px;
-    width: 180px;
-  }
-}
-@media screen and (max-width: 380px) {
-  #aboutUs .aboutHeroL {
-    width: 45%;
-    padding: 24px 0 60px;
-  }
-  #aboutUs .aboutHeroR img {
-    height: 240px;
-    width: 160px;
-  }
-}/*# sourceMappingURL=aboutUs.style.css.map */
