@@ -1,10 +1,18 @@
 import React, { useState } from "react";
+
 import './certificate.style.scss'
 import {Link, useNavigate} from "react-router-dom"
+
+import "./certificate.style.scss";
+import demo from "../../../assets/images/demo.png";
+import demo_2 from "../../../assets/images/demo-2.png";
+import demo_3 from "../../../assets/images/demo-3.png";
+import { Link, useNavigate } from "react-router-dom";
+
 import UploadCSV from "../../UploadCSV";
+import Input from "../../../Component/Input";
 
-
-export default function Certificate ({
+export default function Certificate({
   logo,
   setLogo,
   certificateTitle,
@@ -18,32 +26,144 @@ export default function Certificate ({
   issueDate,
   setIssueDate
 }) {
-    const [bulkCertificate, setBulkCertificate] = useState(false);
-  
-    return (
-        <>
-          <p id="certificatee" className="sora header">
-            Create your <span className="emphasized">certificate </span> 
-            with <span className="emphasized">ease</span>
-          </p>
+  const [bulkCertificate, setBulkCertificate] = useState(false);
+  const formInput = [
+    {
+      label: {
+        htmlFor: "text",
+        labelClass: "label",
+        labelText: "Certificate Title"
+      },
+      input: {
+        type: "text",
+        placeholder: "Certificate of completion",
+        value: certificateTitle,
+        callback: e => setCertificateTitle(e.target.value)
+      }
+    },
+    {
+      label: {
+        htmlFor: "text",
+        labelClass: "label",
+        labelText: "Awardee Name"
+      },
+      input: {
+        type: "text",
+        placeholder: "John Doe",
+        value: awardeeName,
+        callback: e => setAwardeeName(e.target.value)
+      }
+    },
+    {
+      label: {
+        htmlFor: "text",
+        labelClass: "label",
+        labelText: "Dedication or message"
+      },
+      input: {
+        type: "text",
+        placeholder:
+          "For your exceptional performance this month,in appreciation for your loyalty and the desire to fulfil our goals, in recognition of your leadership and dedication",
+        value: message,
+        callback: e => setMessage(e.target.value)
+      }
+    },
+    {
+      label: {
+        htmlFor: "text",
+        labelClass: "label",
+        labelText: "Issued by"
+      },
+      input: {
+        type: "text",
+        placeholder: "Name of organisation or issuer",
+        value: certificateTitle,
+        callback: e => setIssuedBy(e.target.value)
+      }
+    },
+    {
+      label: {
+        htmlFor: "date",
+        labelClass: "label",
+        labelText: "Issue Date"
+      },
+      input: {
+        type: "date",
+        placeholder: "dd/mm/yyyy",
+        value: issueDate,
+        callback: e => setIssueDate(e.target.value)
+      }
+    }
+  ];
 
-          <p style={{padding: '10px'}} className="prompt">Select a template, input values and Create a Certificate right away.</p>
+  return (
+    <>
+      <p className="sora header">
+        Create your <span className="emphasized">certificate </span>
+        with <span className="emphasized">ease</span>
+      </p>
 
-          {bulkCertificate ? 
-          <div className="flex justify-between mode">
-            <button className="select" style={{color: '#222222', backgroundColor: '#ffffff'}}  onClick={() => {setBulkCertificate(false)}}>Single <span className="mobile-none">Certificate</span></button>
-            <button className="select" onClick={() => {setBulkCertificate(true)}}>Bulk <span className="mobile-none">Certificate</span></button>
+      <p style={{ padding: "10px" }} className="prompt">
+        Select a template, input values and Create a Certificate right away.
+      </p>
+
+      {bulkCertificate ? (
+        <div className="flex justify-between mode">
+          <button
+            className="select"
+            style={{ color: "#222222", backgroundColor: "#ffffff" }}
+            onClick={() => {
+              setBulkCertificate(false);
+            }}
+          >
+            Single <span className="mobile-none">Certificate</span>
+          </button>
+          <button
+            className="select"
+            onClick={() => {
+              setBulkCertificate(true);
+            }}
+          >
+            Bulk <span className="mobile-none">Certificate</span>
+          </button>
+        </div>
+      ) : (
+        <div className="flex justify-between mode">
+          <button
+            className="select"
+            onClick={() => {
+              setBulkCertificate(false);
+            }}
+          >
+            Single <span className="mobile-none">Certificate</span>
+          </button>
+          <button
+            className="select"
+            style={{ color: "#222222", backgroundColor: "#ffffff" }}
+            onClick={() => {
+              setBulkCertificate(true);
+            }}
+          >
+            Bulk <span className="mobile-none">Certificate</span>
+          </button>
+        </div>
+      )}
+
+      {bulkCertificate ? (
+        <div>
+          <div className="flex center justify-between gap cert-img">
+            <img src={demo} alt="certificate-1" />
+            <img src={demo_2} alt="certificate-2" />
+            <img src={demo_3} alt="certificate-3" />
           </div>
-          :
-          <div className="flex justify-between mode">
-            <button className="select"  onClick={() => {setBulkCertificate(false)}}>Single <span className="mobile-none">Certificate</span></button>
-            <button className="select" style={{color: '#222222', backgroundColor: '#ffffff'}} onClick={() => {setBulkCertificate(true)}}>Bulk <span className="mobile-none">Certificate</span></button>
-          </div>
-        }
-          
 
-          {bulkCertificate ?            
-           <div>
+          <Link to="templates">
+            <p className="explore">
+              <span className="explore-arrow">&#10140;</span>Explore more
+              templates
+            </p>
+          </Link>
+
 
           <form action="" className="cert-form text-left work-sans">
             <UploadCSV />
@@ -68,6 +188,7 @@ export default function Certificate ({
 
             <input type="submit" value="Create Certificate" className="submit-btn"/> */}
           </form>
+
            </div>
            : 
            <div>
@@ -86,27 +207,68 @@ export default function Certificate ({
             <input type="text" placeholder="Gabriel Prosper" value={awardeeName} onChange={e => setAwardeeName(e.target.value)} />
 
             <label htmlFor='text' className="label">Dedication or message</label>
+
+        </div>
+      ) : (
+        <div>
+          <div className="flex center justify-between gap cert-img">
+            <img src={demo} alt="certificate-1" />
+            <img src={demo_2} alt="certificate-2" />
+            <img src={demo_3} alt="certificate-3" />
+          </div>
+
+          <Link to="templates">
+            <p className="explore">
+              <span className="explore-arrow">&#10140;</span>Explore more
+              templates
+            </p>
+          </Link>
+
+          <form action="" className="cert-form text-left work-sans">
+            <label for="img">Upload logo</label>
+
             <input
-              type="text"
-              value={message}
-              onChange={e => setMessage(e.target.value)}
-              placeholder="For your exceptional performance this month, 
-                in appreciation for your loyalty and the desire to fulfil our goals, 
-                in recognition of your leadership and dedication"
+              type="file"
+              name="uploadfile"
+              id="img"
+              onChange={e => setLogo(URL.createObjectURL(e.target.files[0]))}
             />
 
-            <label htmlFor='text' className="label">Issued by</label>
-            <input type="text" placeholder="Name of organisation or issuer" value={issuedBy} onChange={e => setIssuedBy(e.target.value)} />
+            <img style={{ width: "40px" }} src={logo} alt="logo" />
+            <p style={{ fontSize: "12px", margin: "0" }}>
+              Max image upload size: 8mb
+            </p>
 
-            <label htmlFor='date' className="label">Issue Date</label>
-            <input type="date" value={issueDate} onChange={e => setIssueDate(e.target.value)} />
+            {formInput.map((e, i) => {
+              return (
+                <>
+                  {/* <label
+                    htmlFor={e.label.htmlFor}
+                    className={e.label.labelClass}
+                  >
+                    {e.label.labelText}
+                  </label> */}
+                  <Input
+                    type={e.input.type}
+                    placeholder={e.input.placeholder}
+                    callback={e.input.callback}
+                    label={e.label.labelText}
+                    id={e.label.htmlFor}
+                  />
+                </>
+              );
+            })}
 
-            <Link to = "single_preview">
-            <input type="submit" value="Create Certificate" className="submit-btn"/>
-
+            <Link to="single_preview">
+              <Input
+                type="submit"
+                value="Create Certificate"
+                className="submit-btn"
+              />
             </Link>
           </form>
-            </div>}
-        </>
-    )
+        </div>
+      )
+    </>
+  );
 }

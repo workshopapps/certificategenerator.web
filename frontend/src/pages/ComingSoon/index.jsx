@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import under_construction from "./images/under_construction.png";
 import { AiOutlineArrowLeft } from "react-icons/ai";
 import Button from "../../Component/button";
+import Input from "../../Component/Input";
 
 function Comingsoon() {
   const handleClick = e => {
