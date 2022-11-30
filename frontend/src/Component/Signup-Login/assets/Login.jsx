@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, Navigate, useNavigate} from "react-router-dom";
+import { Link,  useNavigate} from "react-router-dom";
 import { useState } from "react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import "./Style.css";
@@ -46,6 +46,7 @@ const Login = () => {
 
       if (response && response.data) {
         //redirect a successfull login here ...
+      
         navigate("/dashboard");
         console.log(response);
       }

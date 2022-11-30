@@ -27,7 +27,7 @@ function Index({
         <Link to="/">
           <button className="active">Single Certificate</button>
         </Link>
-        <Link to="/edit_bulk">
+        <Link to="/signup">
           <button className="not-active">Bulk Certificate</button>
         </Link>
       </div>
