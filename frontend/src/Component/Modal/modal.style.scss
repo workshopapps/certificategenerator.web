@@ -1,0 +1,97 @@
+@import "../../Style/variables";
+
+.modal-wrapper {
+  height: 100%;
+  width: 100%;
+  background: transparent;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 50;
+  overflow: hidden;
+
+  //Position modal at the center of the page
+  display: flex;
+  justify-content: center;
+
+  .modal-container {
+    background-color: aliceblue;
+    width: 80%;
+    border: 1px solid $primaryColor;
+    border-radius: 10px;
+    position: absolute;
+    top: 12%;
+    align-self: center;
+    padding: 15px;
+
+    // Align items
+
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+    &__text {
+      font-size: 16px;
+      font-weight: 400;
+    }
+
+    &__btns {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      .modal-container__btn {
+        background: $primaryColor !important;
+        color: #fff !important;
+        border: 1px solid $primaryColor;
+        font-size: 15px;
+        width: 100px;
+        height: 45px;
+        border-radius: 10px;
+        cursor: pointer;
+
+        &:hover {
+          color: #000 !important;
+          background: transparent !important;
+          border: 1px solid $primaryColor;
+          transition: 500ms ease-in-out;
+        }
+
+        &--cancel {
+          background: transparent !important;
+          color: #000 !important;
+          width: 100px;
+          height: 45px;
+
+          &:hover {
+            color: #fff !important;
+            background: $primaryColor !important;
+            transition: 500ms ease-in-out;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 700px) {
+  .modal-wrapper {
+    .modal-container {
+      width: 50%;
+      top: 400px;
+      padding: 15px;
+
+      &__text {
+        font-size: 20px;
+      }
+
+      &__btns {
+        gap: 20px;
+      }
+
+      .modal-container__btn {
+        width: 170px;
+        height: 45px;
+      }
+    }
+  }
+}
