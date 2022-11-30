@@ -3,7 +3,7 @@ import './certificate.style.scss'
 import demo from '../../../assets/images/demo.png'
 import demo_2 from '../../../assets/images/demo-2.png'
 import demo_3 from '../../../assets/images/demo-3.png'
-import {Link, useNavigate} from "react-router-dom"
+import {Link} from "react-router-dom"
 import UploadCSV from "../../UploadCSV";
 
 
