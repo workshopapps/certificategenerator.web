@@ -21,7 +21,7 @@ export default function Hero () {
                     <span className="emphasized"> free</span>
                   </p>
                   <p className="work-sans line-height hero-caption">Generate professionally designed certificates for your staff, students etc.</p>
-                  <Link to="/Certificate" className="link">
+                  <Link to="/Certificate">
                      <button className="hero-button">Create certificate</button>
                   </Link>
                   <p className="mobile-only">It is free and easy to use</p>
