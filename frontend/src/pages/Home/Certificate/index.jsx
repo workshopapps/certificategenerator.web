@@ -25,7 +25,7 @@ export default function Certificate ({
   
     return (
         <>
-          <p className="sora header">
+          <p id="certificatee" className="sora header">
             Create your <span className="emphasized">certificate </span> 
             with <span className="emphasized">ease</span>
           </p>

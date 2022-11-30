@@ -105,8 +105,6 @@ function Feature () {
             </article>
 
             <article className="featureEnd">
-                <h3>Trusted by 500+ high performing businesses and startups</h3>
-
                 <div>
                     <img src="/assets/ebay.svg" alt="ebay" />
                     <img src="/assets/cnn.svg" alt="cnn" />
