@@ -6,6 +6,8 @@ import google from '../../../assets/images/google.png'
 import udemy from '../../../assets/images/udemy.png'
 import coursera from '../../../assets/images/coursera.png'
 import skillshare from '../../../assets/images/skillshare.png'
+import {Link} from "react-router-dom";
+
 
 export default function Hero () {
     return (
@@ -19,9 +21,9 @@ export default function Hero () {
                     <span className="emphasized"> free</span>
                   </p>
                   <p className="work-sans line-height hero-caption">Generate professionally designed certificates for your staff, students etc.</p>
-                  <a href="#certificateee">
+                  <Link to="/Certificate" className="link">
                      <button className="hero-button">Create certificate</button>
-                  </a>
+                  </Link>
                   <p className="mobile-only">It is free and easy to use</p>
                </div>
                <img src={hero} alt='hero' className="hero-img"></img>

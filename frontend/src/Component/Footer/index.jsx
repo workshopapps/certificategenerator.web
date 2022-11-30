@@ -39,7 +39,7 @@ const Footer = () => {
             <div className="list">
               <h2>company</h2>
               <Link to="/aboutUs" className="link">
-                About
+                About us
               </Link>
               <Link to="/contact-us" className="link">
                 Contact

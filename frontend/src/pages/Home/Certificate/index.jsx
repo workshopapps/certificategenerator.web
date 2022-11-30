@@ -25,7 +25,6 @@ export default function Certificate ({
   
     return (
         <>
-        <div id="certificateee" >
           <p className="sora header">
             Create your <span className="emphasized">certificate </span> 
             with <span className="emphasized">ease</span>
@@ -131,7 +130,6 @@ export default function Certificate ({
             </Link>
           </form>
             </div>}
-          </div>
         </>
     )
 }
