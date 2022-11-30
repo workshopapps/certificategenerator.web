@@ -19,6 +19,7 @@ function Index({
 }) {
   const [openModal, setOpenModal] = useState(false);
   const [isAuntheticated, setIsAuntheticated] = useState(false);
+  const [modalMessage, setModalMessage] = useState("");
 
   function handleUnloggedUsers(e) {
     e.preventDefault();
@@ -61,6 +62,7 @@ function Index({
         <Link
           onClick={(e) => {
             if (isAuntheticated === false) {
+              setModalMessage("Please kindly sign up to access this feature");
               handleUnloggedUsers(e);
             }
           }}
@@ -74,7 +76,11 @@ function Index({
 
       <div className="certificate-header">
         <h4>Your certificate is ready!</h4>
-        <Modal open={openModal} onClose={() => setOpenModal(false)} />
+        <Modal
+          open={openModal}
+          onClose={() => setOpenModal(false)}
+          modalText={modalMessage}
+        />
       </div>
 
       {/* START OF CERTIFICATE */}
@@ -126,7 +132,12 @@ function Index({
         <div className="buttons">
           <button
             className="send-button"
-            onClick={() => setOpenModal(!openModal)}
+            onClick={() => {
+              setOpenModal(!openModal);
+              setModalMessage(
+                "You need to sign up to send certificate to your mail"
+              );
+            }}
           >
             Send Certificate
           </button>

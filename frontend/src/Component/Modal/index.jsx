@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./modal.style.scss";
 
-function index({ open, onClose }) {
+function index({ open, onClose, modalText }) {
   if (!open) return null;
   return (
     <div onClick={onClose} className="modal-wrapper">
@@ -30,9 +30,7 @@ function index({ open, onClose }) {
         </div>
         <div>
           <h3 className="modal-container__header">Oops!!!</h3>
-          <p className="modal-container__text">
-            You need to Sign up to send certificate to your mail
-          </p>
+          <p className="modal-container__text">{modalText}</p>
         </div>
         <div className="modal-container__btns">
           <Link to="/signup">
