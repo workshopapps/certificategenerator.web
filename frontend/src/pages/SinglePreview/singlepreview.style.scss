@@ -4,7 +4,7 @@
 
 #singlePreview {
   text-align: center !important;
-  font-family: "Work Sans", sans-serif;
+  font-family: "Sora", sans-serif;
   .button-container {
     display: block !important;
     margin-top: 0px !important;
@@ -16,7 +16,7 @@
     height: 37px;
     width: 150px;
     border-radius: 10px;
-    font-family: "Work Sans", sans-serif;
+    font-family: "Sora", sans-serif;
 
     &.not-active {
       background: transparent !important;
@@ -61,11 +61,11 @@
     font-size: 12px;
 
     &.download-button {
-      background: transparent!important;
-      border: 1px solid $primaryColor!important;
-      color: $primaryColor!important;
+      background: transparent !important;
+      border: 1px solid $primaryColor !important;
+      color: $primaryColor !important;
       &:hover {
-        color: #fff!important;
+        color: #fff !important;
         background: $primaryColor !important;
         border: none !important;
         transition: 500ms ease-in-out;
@@ -88,7 +88,7 @@
 
   h2 {
     font-size: 20px;
-    margin: 30px;
+    margin: 50px 0px 20px 0px !important;
   }
 
   .explore-button {
@@ -99,7 +99,7 @@
     border-radius: 8px;
     background: transparent;
     border: 1px solid $primaryColor;
-    font-family: "Work Sans", sans-serif;
+    font-family: "Sora", sans-serif;
 
     &:hover {
       color: #fff;
@@ -241,72 +241,54 @@
     }
   }
 
-  // START OF MODAL
-  .modal-wrapper {
-    position: absolute;
-    transform: translate(-50%, -50%);
-    z-index: 50;
-    outline: none;
-    top: 16%;
-    left: 50%;
-    background: $primaryColor;
-    border-radius: 15px;
-    width: 100%;
-    max-width: 300px;
-    height: 220px;
-    color:#fff;
-    font-family: "Work Sans", sans-serif;
+  #preview-text img {
+    width: 20%;
+    position: relative;
+    top: -20px;
+    z-index: 100;
   }
 
-  .modal-header {
-  display: flex;
-  justify-content: flex-end;
-  margin-right:10px;
- 
-  }
+  // START OF DROPDOWN
 
-  .modal-header button {
-    padding: 20px;
-    outline: none;
-    transition: 500ms ease-in-out;
-    background: transparent;
-    font-size: 20px;
-    border:none;
-    color:#fff;
-    font-weight: 300;
-  
-  }
-  .modal-header button:hover{
-    color:#000;
-  
-  }
-
-  .modal-body {
-    display: flex!important;
-    justify-content: center;
-    flex-direction: column;
+  .dropdown {
+    position: relative;
+    display: inline-block;
     align-items: center;
-    margin: 20px;
-
   }
 
-  .modal-body button {
-    background: #fff;
-    height: 40px!important;
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    padding: 0px;
+    margin: 0px;
+  }
+
+  .dropdown-content button {
+    padding: 0px;
+    margin: 0px;
     border: none;
-    color: $primaryColor !important;
-    padding:10px;
-    border-radius: 10px;
-    margin:10px;
-    &:hover {
-      color: #000!important;
-      background: #fff!important;
-      border: none !important;
-      transition: 500ms ease-in-out;
-    }
+    display: block;
   }
 
-  //END OF MODAL
+  .dropdown-content button:hover {
+    background-color: #ddd;
+  }
+
+  .dropdown:hover .dropdown-content {
+    display: block;
+    align-items: center;
+    text-align: center;
+  }
+
+  .dropbtn {
+    background-color: $primaryColor;
+    color: #fff !important;
+  }
+
+  //END OF DROPDOWN
 
   @media screen and (min-width: 500px) {
     .certificate-share-hero button {
@@ -342,10 +324,17 @@
   }
 
   @media screen and (min-width: 768px) {
-
-    .modal-wrapper{
+    .modal-wrapper {
       top: 28%;
     }
+
+    #preview-text img {
+      width: 10%;
+      position: relative;
+      top: -20px;
+      z-index: 100;
+    }
+
     // certificate-share-hero IMAGES
     .certificate-header h4 {
       font-size: 30px !important;
@@ -419,6 +408,7 @@
 
     h2 {
       font-size: 30px;
+      margin-top: 40px;
     }
 
     .button-container button {
@@ -427,11 +417,20 @@
       height: 45px;
       margin: 10px 15px 20px 15px;
     }
+
     .certificate-share-hero button {
       font-size: 15px;
       width: 170px;
       height: 40px;
-      margin: 30px 15px 40px 15px;
+      margin: 30px 15px 0px 15px;
+    }
+
+    .dropdown-content button {
+      font-size: 12px;
+      padding: 0px !important;
+      margin: 0px !important;
+      border: none;
+      display: block;
     }
 
     .single-images {
@@ -447,15 +446,23 @@
   @media screen and (min-width: 1024px) {
     .button-container button {
       font-size: 18px;
-      width: 200px;
-      height: 50px;
+      width: 180px;
+      height: 45px;
       margin: 10px 15px 40px 15px;
     }
     .certificate-share-hero button {
       font-size: 18px;
       width: 200px;
       height: 50px;
-      margin: 30px 15px 40px 15px;
+      margin: 30px 15px 0px 15px;
+    }
+
+    .dropdown-content button {
+      font-size: 13px;
+      padding: 0px !important;
+      margin: 0px !important;
+      border: none;
+      display: block;
     }
 
     .sample2 {
@@ -466,6 +473,11 @@
       height: auto;
       max-width: 700px;
     }
+
+    h2 {
+      margin-top: 70px !important;
+    }
+
     .single-images img {
       max-width: 300px;
     }
