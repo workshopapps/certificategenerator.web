@@ -33,15 +33,7 @@ function Index({
         <Link to="/">
           <button className="active">Single Certificate</button>
         </Link>
-        <Link
-          onClick={(e) => {
-            if (isAuntheticated === false) {
-              setModalMessage("Please kindly sign up to access this feature");
-              handleUnloggedUsers(e);
-            }
-          }}
-          to="/edit_bulk"
-        >
+        <Link to="/edit_bulk">
           <button className="not-active">Bulk Certificate</button>
         </Link>
       </div>
@@ -118,6 +110,8 @@ function Index({
           <button
             onClick={(e) => {
               e.preventDefault();
+              setOpenModal(!openModal);
+              setModalMessage("Sign up to access this and more features");
               exportComponentAsPNG(certificateWrapper, {
                 html2CanvasOptions: { backgroundColor: "#fff" },
               });
