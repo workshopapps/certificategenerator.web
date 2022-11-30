@@ -99,7 +99,7 @@ export default function Certificate ({
             <label for='img'>Upload logo</label>
             <input type="file" name="uploadfile" id="img" onChange={e => setLogo(URL.createObjectURL(e.target.files[0]))} />
 
-            <img  style = {{width:'40px'}} src = {logo} alt ="logo"/>
+            <img  style = {{width:'15%'}} src = {logo} alt ="logo"/>
             <p style={{fontSize: '12px', margin: '0'}}>Max image upload size: 8mb</p>
 
             <label htmlFor='text' className="label">Certificate Title</label>
