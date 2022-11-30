@@ -1,8 +1,5 @@
-import "./Style/App.scss";
-import Navbar from "./Component/Navbar";
-import { Route, Routes } from "react-router-dom";
-import Signup from "./Component/Signup-Login/assets/Sginup";
-import Login from "./Component/Signup-Login/assets/Login";
+import { useState, useEffect } from "react";
+
 import {
   AboutUs,
   BulkPreview,
@@ -24,23 +21,34 @@ import {
   ProfilePage,
   UploadCSV,
 } from "./pages";
-// import Footer from './Component/Footer';
-
+import "./Style/App.scss";
 import Home from "./pages/Home";
+import { Loader } from "./Component";
+import Navbar from "./Component/Navbar";
 import Checkout from "./pages/Checkout";
 import { Privacy } from "./pages/PrivacyPolicy";
-import { useState, useEffect } from "react";
+import { Route, Routes } from "react-router-dom";
+import Signup from "./Component/Signup-Login/assets/Sginup";
+import Login from "./Component/Signup-Login/assets/Login";
 
 function App() {
   const [logo, setLogo] = useState("");
-  const [certificateTitle, setCertificateTitle] = useState("");
-  const [awardeeName, setAwardeeName] = useState("");
   const [message, setMessage] = useState("");
   const [issuedBy, setIssuedBy] = useState("");
   const [issueDate, setIssueDate] = useState("");
+  const [awardeeName, setAwardeeName] = useState("");
+  const [certificateTitle, setCertificateTitle] = useState("");
 
   const [file, setFile] = useState('')
   const [certificatesData, setCertificateData] = useState([])
+
+  const [appLoading, setAppLoading] = useState(true);
+
+  useEffect(() => {
+    setTimeout(function () {
+      setAppLoading(false);
+    }, 5000);
+  }, []);
 
   useEffect(() => {
     const uploadFile = () => {
@@ -65,6 +73,15 @@ function App() {
     }
     file && uploadFile()
   }, [file]);
+
+  if (appLoading) {
+    return (
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <Loader />
+      </div>
+    );
+  };
+
   return (
     <>
       <Navbar />
@@ -73,17 +90,17 @@ function App() {
           <Route path="/" element={<Layout />}>
             <Route index element={<Home
               logo={logo}
+              message={message}
               setLogo={setLogo}
+              issuedBy={issuedBy}
+              issueDate={issueDate}
+              setMessage={setMessage}
+              awardeeName={awardeeName}
+              setIssuedBy={setIssuedBy}
+              setIssueDate={setIssueDate}
+              setAwardeeName={setAwardeeName}
               certificateTitle={certificateTitle}
               setCertificateTitle={setCertificateTitle}
-              awardeeName={awardeeName}
-              setAwardeeName={setAwardeeName}
-              message={message}
-              setMessage={setMessage}
-              issuedBy={issuedBy}
-              setIssuedBy={setIssuedBy}
-              issueDate={issueDate}
-              setIssueDate={setIssueDate}
             />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/login" element={<Login />} />
@@ -96,11 +113,11 @@ function App() {
             <Route path="/terms" element={<Terms />} />
             <Route path="/single_preview" element={<SinglePreview
               logo={logo}
-              certificateTitle={certificateTitle}
-              awardeeName={awardeeName}
               message={message}
               issuedBy={issuedBy}
               issueDate={issueDate}
+              awardeeName={awardeeName}
+              certificateTitle={certificateTitle}
             />} />
             <Route path="/aboutUs" element={<AboutUs />} />
             <Route path="/FAQ" element={<FAQ />} />
