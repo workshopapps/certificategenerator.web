@@ -58,9 +58,9 @@ const Login = () => {
       <div className="authContainer">
         <div className="formDiv">
           <form>
-            <div id="heading">Welcome to Certonic</div>
+            <div id="heading">Welcome to Certgo</div>
             <small id="startGenerating">
-              Start generating certificates by creating a Certonic account
+              Start generating certificates by creating a Certgo account
             </small>
             <div id="signupG">
               <img alt="" src={googleSVG} id="imgs" />
@@ -123,7 +123,7 @@ const Login = () => {
             />
           </form>
           <p className="haveAccount">
-            Don’t have a Certonic account?{" "}
+            Don’t have a Certgo account?{" "}
             <Link to="/signup" id="coloredTerms">
               Create an account{" "}
             </Link>

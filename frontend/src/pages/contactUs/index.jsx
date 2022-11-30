@@ -25,7 +25,7 @@ const ContactUs = () => {
 
     try {
       setLoading(true);
-      await axios.post("https://certonic.hng.tech/api/contactus", {
+      await axios.post("https://certgo.hng.tech/api/contactus", {
         firstName,
         lastName,
         email,

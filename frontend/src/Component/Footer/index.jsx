@@ -94,9 +94,9 @@ const Footer = () => {
         <div className="footer-info">
           <div className="footer-logo">
             <h2>
-              Certonic <img src={logo} alt="Certonic logo" />
+              Certgo <img src={logo} alt="Certgo logo" />
             </h2>
-            <h3>info@certonic.com</h3>
+            <h3>info@certgo.com</h3>
           </div>
           <div className="footer-socials">
             <h3>We are social</h3>

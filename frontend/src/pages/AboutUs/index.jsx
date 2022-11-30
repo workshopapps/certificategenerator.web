@@ -42,7 +42,7 @@ const aboutUs = () => {
       <div className="aboutHero">
         <div className="aboutHeroL">
           <h1>We are a team of Creators and Innovators </h1>
-          <h4>Certonic helps you generate certificates of different shapes and colors, you can also customize your own certificate with Certonic</h4>
+          <h4>Certgo helps you generate certificates of different shapes and colors, you can also customize your own certificate with Certgo</h4>
           <Link className="btn">Learn More</Link>
         </div>
         <div className="aboutHeroR">
@@ -55,8 +55,8 @@ const aboutUs = () => {
           <img src={Gallery2} alt="" />
         </div>
         <div className="aboutAboutD">
-          <h3>About Certonic</h3>
-          <h4>Certonic is a full-featured online platform aimed at generating digital credentials and certificates for schools, businesses and organizations. We offer a complete and easy to use certificate management system. Certonic provides high quality templates with great designs as well as variety of customization options. Generate stunning certificates for your students, employees or colleagues with our online tool, today.</h4>
+          <h3>About Certgo</h3>
+          <h4>Certgo is a full-featured online platform aimed at generating digital credentials and certificates for schools, businesses and organizations. We offer a complete and easy to use certificate management system. Certgo provides high quality templates with great designs as well as variety of customization options. Generate stunning certificates for your students, employees or colleagues with our online tool, today.</h4>
           <Link className="btn">Learn More</Link>
         </div>
       </div>

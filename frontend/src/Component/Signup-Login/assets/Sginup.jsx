@@ -69,9 +69,9 @@ const Signup = () => {
             </div> */}
       <div className="authContainer">
         <div className="formDiv">
-          <div id="heading">Welcome to Certonic</div>
+          <div id="heading">Welcome to Certgo</div>
           <span id="startGenerating">
-            Start generating certificates by creating a Certonic account
+            Start generating certificates by creating a Certgo account
           </span>
           <div id="signupG">
             <img alt="" src={googleSVG} id="img_id" />

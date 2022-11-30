@@ -19,7 +19,7 @@ export default function Testimonials () {
                 </div>
               </div>
               <p style={{paddingTop: "25px"}}>
-                  “This is my first time utilizing Certonic.
+                  “This is my first time utilizing Certgo.
                   It is simply brilliant. In a matter of seconds, a full certificate is generated”
               </p>
             </div>
@@ -33,7 +33,7 @@ export default function Testimonials () {
                 </div>
               </div>
               <p style={{paddingTop: "25px"}}>
-                “The certonic certificate generator is a fantastic tool that helps me create certificates 
+                “The certgo certificate generator is a fantastic tool that helps me create certificates 
                 quickly and with plenty of inspiration. Definitely, I would advise.”
               </p>
             </div>
