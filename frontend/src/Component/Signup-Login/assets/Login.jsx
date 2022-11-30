@@ -46,7 +46,7 @@ const Login = () => {
 
       if (response && response.data) {
         //redirect a successfull login here ...
-        navigate("/")
+        navigate("/dashboard");
         console.log(response);
       }
     } catch (error) {
