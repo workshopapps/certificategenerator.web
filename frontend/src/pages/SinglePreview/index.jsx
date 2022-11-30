@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import Modal from "../../Component/Modal";
 import "./singlepreview.style.scss";
 import certificate from "../../assets/images/SinglePreview/Completion - Portrait (2).png";
 import certificate2 from "../../assets/images/SinglePreview/Completion - Portrait (3).png";
@@ -16,6 +17,14 @@ function Index({
   issuedBy,
   issueDate,
 }) {
+  const [openModal, setOpenModal] = useState(false);
+  const [isAuntheticated, setIsAuntheticated] = useState(false);
+  const [modalMessage, setModalMessage] = useState("");
+
+  function handleUnloggedUsers(e) {
+    e.preventDefault();
+    setOpenModal(!openModal);
+  }
 
   // REF FOR PNG AND PDF
   var certificateWrapper = React.createRef();
@@ -55,6 +64,11 @@ function Index({
 
       <div className="certificate-header">
         <h4>Your certificate is ready!</h4>
+        <Modal
+          open={openModal}
+          onClose={() => setOpenModal(false)}
+          modalText={modalMessage}
+        />
       </div>
 
       {/* START OF CERTIFICATE */}
@@ -69,7 +83,7 @@ function Index({
               <div id="single-preview-card">
                 <div id="single-preview-text">
                   <div id="preview-text">
-                    <img src={logo} alt="logo" />
+                    <img src={logo} style={{width:'40px'}} alt="logo" />
                     <h1>{certificateTitle}</h1>
 
                     <p>THIS CERTIFIES THAT</p>
@@ -104,7 +118,17 @@ function Index({
         {/* BUTTONS FOR EITHER SENDIMG OR DOWNLOADING */}
 
         <div className="buttons">
-          <button className="send-button">Send Certificate</button>
+          <button
+            className="send-button"
+            onClick={() => {
+              setOpenModal(!openModal);
+              setModalMessage(
+                "You need to sign up to send certificate to your mail"
+              );
+            }}
+          >
+            Send Certificate
+          </button>
           <div class="dropdown">
             <button class="dropbtn download-button">Download Certificate</button>
             <div class="dropdown-content">
@@ -128,8 +152,6 @@ function Index({
               </button>
             </div>
           </div>
-
-
         </div>
       </div>
 
@@ -146,9 +168,6 @@ function Index({
       <Link to='/templates'>
         <button className="explore-button">Explore More Templates</button>
       </Link>
-
-
-
     </div>
   );
 }
