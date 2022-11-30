@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import Modal from "../../Component/Modal";
 import "./singlepreview.style.scss";
 import certificate from "../../assets/images/SinglePreview/Completion - Portrait (2).png";
 import certificate2 from "../../assets/images/SinglePreview/Completion - Portrait (3).png";
@@ -14,6 +15,14 @@ function Index({
   issuedBy,
   issueDate,
 }) {
+  const [openModal, setOpenModal] = useState(false);
+  const [isAuntheticated, setIsAuntheticated] = useState(false);
+
+  function handleUnloggedUsers(e) {
+    e.preventDefault();
+    setOpenModal(!openModal);
+  }
+
   var certificateWrapper = React.createRef();
   return (
     <div id="singlePreview">
@@ -23,7 +32,14 @@ function Index({
         <Link to="/">
           <button className="active">Single Certificate</button>
         </Link>
-        <Link to="/edit_bulk">
+        <Link
+          onClick={(e) => {
+            if (isAuntheticated === false) {
+              handleUnloggedUsers(e);
+            }
+          }}
+          to="/edit_bulk"
+        >
           <button className="not-active">Bulk Certificate</button>
         </Link>
       </div>
@@ -32,6 +48,7 @@ function Index({
 
       <div className="certificate-header">
         <h4>Your certificate is ready!</h4>
+        <Modal open={openModal} onClose={() => setOpenModal(false)} />
       </div>
 
       {/* START OF CERTIFICATE */}
@@ -46,7 +63,7 @@ function Index({
               <div id="single-preview-card">
                 <div id="single-preview-text">
                   <div id="preview-text">
-                    <img src={logo} style={{width:'40px'}} alt="logo" />
+                    <img src={logo} style={{ width: "40px" }} alt="logo" />
                     <h1>{certificateTitle}</h1>
 
                     <p>THIS CERTIFIES THAT</p>
@@ -81,10 +98,16 @@ function Index({
         {/* BUTTONS FOR EITHER SENDIMG OR DOWNLOADING */}
 
         <div className="buttons">
-          <button className="send-button">Send Certificate</button>
+          <button
+            className="send-button"
+            onClick={() => setOpenModal(!openModal)}
+          >
+            Send Certificate
+          </button>
           <button
             onClick={(e) => {
               e.preventDefault();
+              setOpenModal(!openModal);
               exportComponentAsPNG(certificateWrapper, {
                 html2CanvasOptions: { backgroundColor: "#fff" },
               });
