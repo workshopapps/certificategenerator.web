@@ -11,12 +11,12 @@ function Index() {
       <div className="button-container">
         {/* BUTTON TO GO BACK TO THE SINGLE CERTIFICATE PAGE */}
 
-        <Link to="/">
+        <Link to="/single_preview">
           <button className="not-active">Single Certificate</button>
         </Link>
 
         <Link to="/edit_bulk">
-          <button className="active">Bulk</button>
+          <button className="active">Bulk certificate</button>
         </Link>
       </div>
 

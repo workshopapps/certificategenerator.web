@@ -67,7 +67,7 @@ body {
 .mode {
     width: 30%;
     margin: auto;
-    border-radius: 50px;
+    border-radius: 20px;
     border: 0.8px solid rgba(84, 84, 84, 0.26);
     background-color: white;
     line-height: 19px;
@@ -78,17 +78,13 @@ body {
 .select {
     border: none;
     background: none;
-    height: 54px;
+    height: 35px;
     background-color: #19A68E;
     border-radius: 10px;
     color: #ffffff;
     margin: 2.5%;
-    border-radius: 50px;
-    max-width: 315px;
-    width: 100%;
-    padding: 10px 8px;
-    font-weight: 600;
-    font-size: 16px;
+    width: 50%;
+    font-weight: 500;
     cursor: pointer;
     text-align: center;
 }

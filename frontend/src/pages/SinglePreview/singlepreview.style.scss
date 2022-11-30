@@ -5,40 +5,56 @@
 #singlePreview {
   text-align: center !important;
 
-  .button-container {
-    display: block !important;
-    margin-top: 0px !important;
-    padding: 10px;
+.button-container {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    padding: 6px;
+    width: fit-content;
+    height: 100%;
+    margin: auto;
+    border-radius: 20px;
+    border: 0.8px solid rgba(84, 84, 84, 0.26);
+    background-color: white;
+    margin-bottom: 2rem;
   }
 
   .button-container button {
-    margin: 0px 10px 15px 10px;
+    margin: 5px 15px 5px 15px;
     height: 37px;
-    width: 150px;
+    width: 130px;
     border-radius: 10px;
     font-family: "Work Sans", sans-serif;
+    cursor: pointer;
+
 
     &.not-active {
-      background: transparent !important;
+      background: transparent;
+      width: 140px;
+      height: 40px;
+      font-size: 12px;
       border: 1px solid $primaryColor !important;
 
       &:hover {
-        color: #fff !important;
-        background: $primaryColor !important;
-        border: none !important;
+        color: #fff;
+        background: $primaryColor;
+        border: none;
         transition: 500ms ease-in-out;
       }
     }
 
     &.active {
-      background: $primaryColor !important;
-      color: #fff !important;
-      border: none !important;
+      background: $primaryColor;
+      width: 140px;
+      height: 40px;
+      font-size: 12px;
+      color: #fff;
+      border: none;
 
       &:hover {
-        color: $primaryColor !important;
-        background: #fff !important;
-        border: 1px solid $primaryColor !important;
+        color: $primaryColor;
+        background: #fff;
+        border: 1px solid $primaryColor;
         transition: 500ms ease-in-out;
       }
     }
@@ -354,12 +370,6 @@ border-right: 4px solid #ac0423;
       font-size: 30px;
     }
 
-    .button-container button {
-      font-size: 15px;
-      width: 170px;
-      height: 45px;
-      margin: 10px 15px 20px 15px;
-    }
     .certificate-share-hero button {
       font-size: 15px;
       width: 170px;
@@ -378,12 +388,11 @@ border-right: 4px solid #ac0423;
   }
 
   @media screen and (min-width: 1024px) {
-    .button-container button {
-      font-size: 18px;
-      width: 200px;
-      height: 50px;
-      margin: 10px 15px 40px 15px;
-    }
+      .button-container button {
+          font-size: 18px;
+          height: 40px;
+          width: 160px;
+        }
     .certificate-share-hero button {
       font-size: 18px;
       width: 200px;
