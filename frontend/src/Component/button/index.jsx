@@ -1,12 +1,26 @@
-import React from 'react'
-import './button.scss'
+import React from "react";
+import "./button.scss";
 
-const Button = ({children, name, width, className}) => {
+// const Button = ({children, name, width, className}) => {
+//   return (
+//       <button className={`btn ${className} `} style={{
+//         width: width
+//     }}>{children} {name}</button>
+//   )
+// }
+
+const Button = ({ text, callback, children, style, className }) => {
+  // const styles = { style };
   return (
-      <button className={`btn ${className} `} style={{
-        width: width
-    }}>{children} {name}</button>
-  )
-}
+    <button
+      type="button"
+      onClick={callback}
+      className={`btn ${className}`}
+      style={style}
+    >
+      {children} {text}
+    </button>
+  );
+};
 
-export default Button
+export default Button;

@@ -64,7 +64,7 @@
   color: #ad2fd0;
 }
 
-.btn {
+/* .btn {
   background-color: #19a68e;
   color: #fff;
   border: none;
@@ -72,7 +72,7 @@
   padding: 14.5px 20px;
   text-transform: capitalize;
   border-radius: 10px;
-}
+} */
 
 .links-container {
   height: 0;
@@ -135,8 +135,8 @@
 }
 @media only screen and (min-width: 1024px) {
   .nav-header .nav-click .bars,
-.nav-header .nav-click .btn,
-.nav-header .nav-click .times {
+  .nav-header .nav-click .btn,
+  .nav-header .nav-click .times {
     display: none;
   }
   .nav-header-container {
@@ -181,4 +181,4 @@
     display: block;
     padding: 0;
   }
-}/*# sourceMappingURL=navbar.style.css.map */
+} /*# sourceMappingURL=navbar.style.css.map */
