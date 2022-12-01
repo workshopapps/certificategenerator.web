@@ -88,7 +88,7 @@
 }
 
 #startGenerating {
-  font-family: "Sora";
+  font-family: "Work Sans";
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -107,7 +107,7 @@
   gap: 8px;
   border: 1.2px solid #19A68E;
   border-radius: 10px;
-  font-family: "Sora";
+  font-family: "Work Sans";
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -173,7 +173,7 @@ a {
 }
 
 #label {
-  font-family: "Sora";
+  font-family: "Work Sans";
   font-style: normal;
   font-weight: 400;
   font-size: 13px;
@@ -205,7 +205,7 @@ a {
   background: #19A68E;
   border-radius: 10px;
   border: none;
-  font-family: "Sora";
+  font-family: "Work Sans";
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -222,7 +222,7 @@ a {
 }
 
 .termsOfUse {
-  font-family: "Sora";
+  font-family: "Work Sans";
   font-style: normal;
   font-weight: 700;
   font-size: 13px;
@@ -237,7 +237,7 @@ a {
 }
 
 .haveAccount {
-  font-family: "Sora";
+  font-family: "Work Sans";
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
@@ -249,7 +249,7 @@ a {
   width: 100%;
   display: flex;
   justify-content: end;
-  font-family: "Sora";
+  font-family: "Work Sans";
   font-style: normal;
   font-weight: 400;
   font-size: 12px;
