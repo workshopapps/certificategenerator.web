@@ -106,7 +106,7 @@ export default function Certificate({
         <div className="flex justify-between mode">
           <button
             className="select"
-            style={{ color: "#222222", backgroundColor: "#ffffff" }}
+            style={{ color: "#222222", backgroundColor: "#ffffff", transition:'300ms ease-in' }}
             onClick={() => {
               setBulkCertificate(false);
             }}
@@ -134,7 +134,7 @@ export default function Certificate({
           </button>
           <button
             className="select"
-            style={{ color: "#222222", backgroundColor: "#ffffff" }}
+            style={{ color: "#222222", backgroundColor: "#ffffff",transition:'300ms ease-in' }}
             onClick={() => {
               setBulkCertificate(true);
             }}
