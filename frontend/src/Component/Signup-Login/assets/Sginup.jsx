@@ -1,10 +1,10 @@
 import React from "react";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, useNavigate} from "react-router-dom";
 import { useState } from "react";
 import {
   AiOutlineEye,
   AiOutlineEyeInvisible,
-  AiOutlineUserAdd
+
 } from "react-icons/ai";
 import "./Style.css";
 import appleSVG from "./assets/apple.svg";
@@ -13,16 +13,15 @@ import cert from "./assets/Cert.png";
 import emailSVG from "./assets/email.svg";
 import keySVG from "./assets/key.svg";
 import { createNewUser } from "../api";
-import Login from "./Login";
-import Input from "../../Input";
+
 
 const Signup = () => {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
   const [type, setType] = useState("password");
   const [formData, setFormData] = React.useState({
     password: "",
     email: "",
-    acceptTerms: false
+    acceptTerms: false,
   });
 
   const handleToggle = () => {
@@ -34,25 +33,26 @@ const Signup = () => {
   };
   function handleChange(event) {
     const { name, value, type, checked } = event.target;
-    setFormData(prevFormData => {
+    setFormData((prevFormData) => {
       return {
         ...prevFormData,
-        [name]: type === "checkbox" ? checked : value
+        [name]: type === "checkbox" ? checked : value,
       };
     });
   }
 
-  const handleOnSubmit = async e => {
+  const handleOnSubmit = async (e) => {
+    
     try {
       e.preventDefault();
       const response = await createNewUser({
         password: formData?.password,
-        email: formData?.email
+        email: formData?.email,
       });
 
       if (response && response.data) {
         //redirect a successfull signup here ...
-        navigate("/login");
+        navigate("/login")
       }
     } catch (error) {
       console.log(error);
@@ -87,18 +87,18 @@ const Signup = () => {
           <form>
             <div id="email">
               <img alt="" src={emailSVG} />
-              <Input
+              <input
                 className="email_input"
                 placeholder=" Email"
                 type="email"
                 required
                 name="email"
-                callback={handleChange}
-              />
+                onChange={handleChange}
+              ></input>
             </div>
             <div id="pwd">
               <img alt="" src={keySVG} />
-              <Input
+              <input
                 id="input_id"
                 placeholder="Create a password"
                 type={type}
@@ -128,11 +128,11 @@ const Signup = () => {
                 <span id="coloredTerms"> Privacy Policy</span>
               </div>
             </div>
-            <Input
+            <input
               type="submit"
               id="btn"
               value="Create Account"
-              callback={handleOnSubmit}
+              onClick={handleOnSubmit}
             />
           </form>
           <p className="haveAccount">

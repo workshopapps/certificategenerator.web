@@ -11,7 +11,7 @@
 .link_itemss {
   display: flex;
   justify-content: space-between;
-  font-family: "Sora", sans-serif;
+  font-family: "Work Sans", sans-serif;
   font-weight: 600;
   font-size: 20.65px;
   line-height: 26.02px;
@@ -84,4 +84,4 @@
   padding: 1rem 1.5rem;
   font-family: "Work Sans", sans-serif;
   color: #f84343;
-}/*# sourceMappingURL=userForm.style.css.map */
+}

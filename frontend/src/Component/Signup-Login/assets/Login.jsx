@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link,  useNavigate} from "react-router-dom";
 import { useState } from "react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import "./Style.css";
@@ -9,15 +9,14 @@ import cert from "./assets/Cert.png";
 import emailSVG from "./assets/email.svg";
 import keySVG from "./assets/key.svg";
 import { loginUser } from "../api";
-import Input from "../../Input";
 
 const Login = () => {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
   const [type, setType] = useState("password");
   const [formData, setFormData] = React.useState({
     email: "",
     password: "",
-    acceptTerms: false
+    acceptTerms: false,
   });
 
   const handleToggle = () => {
@@ -29,25 +28,26 @@ const Login = () => {
   };
   function handleChange(event) {
     const { name, value, type, checked } = event.target;
-    setFormData(prevFormData => {
+    setFormData((prevFormData) => {
       return {
         ...prevFormData,
-        [name]: type === "checkbox" ? checked : value
+        [name]: type === "checkbox" ? checked : value,
       };
     });
   }
 
-  const handleOnSubmit = async e => {
+  const handleOnSubmit = async (e) => {
     try {
       e.preventDefault();
       const response = await loginUser({
         password: formData?.password,
-        email: formData?.email
+        email: formData?.email,
       });
 
       if (response && response.data) {
         //redirect a successfull login here ...
-        navigate("/");
+      
+        navigate("/dashboard");
         console.log(response);
       }
     } catch (error) {
@@ -76,18 +76,18 @@ const Login = () => {
             </div>
             <div id="email">
               <img alt="" src={emailSVG} />
-              <Input
+              <input
                 className="email_input"
                 placeholder=" Email"
                 type="email"
                 name="email"
                 onChange={handleChange}
                 required
-              />
+              ></input>
             </div>
             <div id="pwd">
               <img alt="" src={keySVG} />
-              <Input
+              <input
                 id="input_id"
                 placeholder="Create a password"
                 type={type}
@@ -116,7 +116,7 @@ const Login = () => {
                 Remember me
               </label>
             </div>
-            <Input
+            <input
               type="submit"
               value="Login"
               id="btn"
