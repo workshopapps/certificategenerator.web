@@ -20,7 +20,13 @@ export default function Certificate ({
   setIssueDate
 }) {
     const [bulkCertificate, setBulkCertificate] = useState(false);
-  
+    const navigate = useNavigate()
+    const disabledButton = !logo.trim() || !message.trim() || !certificateTitle.trim() || !awardeeName.trim() || !issuedBy.trim() || !issueDate.trim()
+    const handleSubmit = (e) => {
+      e.preventDefault()
+      navigate('/single_preview')
+    }
+    
     return (
         <>
           <p id="certificatee" className="sora header">
@@ -73,7 +79,7 @@ export default function Certificate ({
            : 
            <div>
 
-          <form action="" className="cert-form text-left work-sans">
+          <form action="" onSubmit={handleSubmit} className="cert-form text-left work-sans">
             <label for='img'>Upload logo</label>
             <input type="file" name="uploadfile" id="img" onChange={e => setLogo(URL.createObjectURL(e.target.files[0]))} />
 
@@ -100,11 +106,13 @@ export default function Certificate ({
             <input type="text" placeholder="Name of organisation or issuer" value={issuedBy} onChange={e => setIssuedBy(e.target.value)} />
 
             <label htmlFor='date' className="label">Issue Date</label>
-            <input type="date" value={issueDate} onChange={e => setIssueDate(e.target.value)} />
+            <input type="text" value={issueDate} onChange={e => setIssueDate(e.target.value)} />
 
-            <Link className="btn-create" to = "single_preview">
-              <Button name={"Create Certificate"}/>
-            </Link>
+            
+            
+            <button disabled={disabledButton} className={`${disabledButton && 'btn-disabled'} btn-success`}>Create Certificate</button>
+            
+            
           </form>
             </div>}
         </>
