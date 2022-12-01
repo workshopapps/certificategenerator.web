@@ -18,7 +18,7 @@ const FAQ = () => {
       <Uploads header={"Uploads"} />
       <Featured header={"Featured"} />
       <div className={Style.faqBtn}>
-        <Button text={"Have more questions ?"} />
+        <Button name={"Have more questions?"} />
       </div>
     </>
   );

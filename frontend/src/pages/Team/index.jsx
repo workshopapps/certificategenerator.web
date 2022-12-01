@@ -27,7 +27,6 @@ import LinkedIn from "../../assets/images/team/linkedin.svg";
 import Facebook from "../../assets/images/team/facebook.svg";
 import Instagram from "../../assets/images/team/instagram.svg";
 import ArrowDown from "../../assets/images/team/arrow_down.svg";
-import Button from "../../Component/button";
 
 // members data
 const members = [
@@ -37,7 +36,7 @@ const members = [
     title: "Product designer",
     socialMediaIcon1: Web,
     socialMediaIcon2: LinkedIn,
-    socialMediaIcon3: Twitter
+    socialMediaIcon3: Twitter,
   },
   {
     picture: Ajayi,
@@ -45,7 +44,7 @@ const members = [
     title: "Product Manager",
     socialMediaIcon1: LinkedIn,
     socialMediaIcon2: Twitter,
-    socialMediaIcon3: Facebook
+    socialMediaIcon3: Facebook,
   },
   {
     picture: Joy,
@@ -53,7 +52,7 @@ const members = [
     title: "Product designer",
     socialMediaIcon1: Web,
     socialMediaIcon2: LinkedIn,
-    socialMediaIcon3: Twitter
+    socialMediaIcon3: Twitter,
   },
   {
     picture: Prosper,
@@ -61,7 +60,7 @@ const members = [
     title: "Product designer",
     socialMediaIcon1: Web,
     socialMediaIcon2: LinkedIn,
-    socialMediaIcon3: Twitter
+    socialMediaIcon3: Twitter,
   },
   {
     picture: Moyo,
@@ -69,7 +68,7 @@ const members = [
     title: "Product designer",
     socialMediaIcon1: LinkedIn,
     socialMediaIcon2: Twitter,
-    socialMediaIcon3: Behance
+    socialMediaIcon3: Behance,
   },
   {
     picture: Muminat,
@@ -77,7 +76,7 @@ const members = [
     title: "Product designer",
     socialMediaIcon1: Web,
     socialMediaIcon2: Instagram,
-    socialMediaIcon3: Twitter
+    socialMediaIcon3: Twitter,
   },
   {
     picture: Samuel,
@@ -85,7 +84,7 @@ const members = [
     title: "Frontend developer",
     socialMediaIcon1: Web,
     socialMediaIcon2: Twitter,
-    socialMediaIcon3: Github
+    socialMediaIcon3: Github,
   },
   {
     picture: Abiola,
@@ -93,7 +92,7 @@ const members = [
     title: "Product designer",
     socialMediaIcon1: Web,
     socialMediaIcon2: LinkedIn,
-    socialMediaIcon3: Github
+    socialMediaIcon3: Github,
   },
   {
     picture: Rhoda,
@@ -101,7 +100,7 @@ const members = [
     title: "Product designer",
     socialMediaIcon1: Web,
     socialMediaIcon2: Instagram,
-    socialMediaIcon3: LinkedIn
+    socialMediaIcon3: LinkedIn,
   },
   {
     picture: Ehis,
@@ -109,7 +108,7 @@ const members = [
     title: "Product designer",
     socialMediaIcon1: LinkedIn,
     socialMediaIcon2: Twitter,
-    socialMediaIcon3: Web
+    socialMediaIcon3: Web,
   },
   {
     picture: Zed,
@@ -117,7 +116,7 @@ const members = [
     title: "Product designer",
     socialMediaIcon1: Web,
     socialMediaIcon2: LinkedIn,
-    socialMediaIcon3: Twitter
+    socialMediaIcon3: Twitter,
   },
   {
     picture: Joseph,
@@ -125,7 +124,7 @@ const members = [
     title: "Frontend developer",
     socialMediaIcon1: Web,
     socialMediaIcon2: LinkedIn,
-    socialMediaIcon3: Github
+    socialMediaIcon3: Github,
   },
   {
     picture: Luqman,
@@ -133,7 +132,7 @@ const members = [
     title: "Frontend developer",
     socialMediaIcon1: Web,
     socialMediaIcon2: LinkedIn,
-    socialMediaIcon3: Github
+    socialMediaIcon3: Github,
   },
   {
     picture: Asanze,
@@ -141,7 +140,7 @@ const members = [
     title: "Product designer",
     socialMediaIcon1: LinkedIn,
     socialMediaIcon2: Twitter,
-    socialMediaIcon3: Web
+    socialMediaIcon3: Web,
   },
   {
     picture: Andrew,
@@ -149,7 +148,7 @@ const members = [
     title: "Product designer",
     socialMediaIcon1: Web,
     socialMediaIcon2: LinkedIn,
-    socialMediaIcon3: Twitter
+    socialMediaIcon3: Twitter,
   },
   {
     picture: Ben,
@@ -157,7 +156,7 @@ const members = [
     title: "Product designer",
     socialMediaIcon1: Web,
     socialMediaIcon2: LinkedIn,
-    socialMediaIcon3: Twitter
+    socialMediaIcon3: Twitter,
   }
 ];
 
@@ -167,50 +166,29 @@ const Team = () => {
       {/* title */}
       <div className="team">Our Team</div>
       <div className="meet">
-        Experience, skill and creativity all come together to build our software
-        - one that's innovative, visionary, and inclusive. We are a team of
-        talented and passionate designers, managers, developers and marketers
-        dedicated to creating the best certificate generator on the planet.
+        Experience, skill and creativity all come together to build our software - one that's innovative, visionary, and inclusive.  We are a team of talented and
+        passionate designers, managers, developers and marketers dedicated to creating the best certificate generator on the planet. 
       </div>
       {/* members */}
       <div className="containers">
-        {members.map((member, id) => (
+        {members.map((member, id) =>
           <figure className="figures" key={id}>
             <img src={member.picture} alt="A team member photograph" />
             <figcaption className="name">{member.name}</figcaption>
             <figcaption className="title">{member.title}</figcaption>
             <div className="icon">
-              <img
-                src={member.socialMediaIcon1}
-                alt="Social media icon 1"
-                height="19.94px"
-                width="19.96px"
-                className="right_margin"
-              />
-              <img
-                src={member.socialMediaIcon2}
-                alt="Social media icon 2"
-                height="19.94px"
-                width="19.96px"
-                className="right_margin"
-              />
-              <img
-                src={member.socialMediaIcon3}
-                alt="Social media icon 3"
-                height="19.94px"
-                width="19.96px"
-              />
+              <img src={member.socialMediaIcon1} alt="Social media icon 1" height='19.94px' width='19.96px' className="right_margin" />
+              <img src={member.socialMediaIcon2} alt="Social media icon 2" height='19.94px' width='19.96px' className="right_margin" />
+              <img src={member.socialMediaIcon3} alt="Social media icon 3" height='19.94px' width='19.96px' />
             </div>
           </figure>
-        ))}
+        )}
       </div>
       {/* button */}
-      <Button text="View more" style={{ margin: "auto", marginBottom: "1em" }}>
-        <img src={ArrowDown} alt="" />
-      </Button>
-      {/* <button type="button" className="view">
+      <button type="button" className="view">
         View more{" "}
-      </button> */}
+        <img src={ArrowDown} alt="" />
+      </button>
     </section>
   );
 };

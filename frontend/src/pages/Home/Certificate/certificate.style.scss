@@ -1,195 +1,218 @@
-@import url("https://fonts.googleapis.com/css2?family=Sora:wght@400;700&family=Work+Sans:wght@400;500;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;700&family=Work+Sans:wght@400;500;700&display=swap');
 @import "../../../Style/variables";
 
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
-  max-width: $containerWidth;
-  color: #222222;
+    max-width: $containerWidth;
+    color: #222222;
 }
 
 .flex {
-  display: flex;
+    display: flex;
 }
 .justify-between {
-  justify-content: space-between;
+    justify-content: space-between;
 }
 
 .grid {
-  display: grid;
+    display: grid;
 }
 
 .work-sans {
-  font-family: "Work sans";
+    font-family: 'Work sans';
 }
 
 .sora {
-  font-family: "Sora";
+    font-family: 'Sora';
 }
 
 .line-height {
-  line-height: 24px;
+    line-height: 24px;
 }
 
 .emphasized {
-  color: #19a68e;
+    color: #19A68E;
 }
 
 .text-left {
-  text-align: left;
+    text-align: left;
 }
 
 .items-center {
-  align-items: center;
+    align-items: center;
 }
 
 .center {
-  width: 90%;
-  margin: auto;
+    width: 90%;
+    margin: auto;
 }
 
 .header {
-  padding: 120px 0 0 0;
-  font-size: 48px;
-  font-weight: 700;
-  line-height: 60.48px;
-  text-align: center;
+    padding: 120px 0 0 0;
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 60.48px;
+    text-align: center;
 }
 
 .prompt {
-  text-align: center;
+    text-align: center;
 }
 
 .mode {
-  width: 30%;
-  margin: auto;
-  border-radius: 20px;
-  border: 0.8px solid rgba(84, 84, 84, 0.26);
-  background-color: white;
-  line-height: 19px;
-  font-weight: 500;
-  margin-block: 56px;
+    width: 30%;
+    margin: auto;
+    border-radius: 20px;
+    border: 0.8px solid rgba(84, 84, 84, 0.26);
+    background-color: white;
+    line-height: 19px;
+    font-weight: 500;
+    margin-block: 56px;
 }
 
 .select {
-  border: none;
-  background: none;
-  height: 35px;
-  background-color: #19a68e;
-  border-radius: 10px;
-  color: #ffffff;
-  margin: 2.5%;
-  width: 50%;
-  font-weight: 500;
-  cursor: pointer;
-  text-align: center;
+    border: none;
+    background: none;
+    height: 35px;
+    background-color: #19A68E;
+    border-radius: 10px;
+    color: #ffffff;
+    margin: 2.5%;
+    width: 50%;
+    font-weight: 500;
+    cursor: pointer;
+    text-align: center;
 }
 
 .explore {
-  text-align: right;
-  font-size: 12px;
-  font-weight: 600;
-  margin-right: 3%;
-  .explore-arrow {
-    color: #19a68e;
-    margin-right: 1%;
-  }
+    text-align: right;
+    font-size: 12px;
+    font-weight: 600;
+    margin-right: 3%;
+    .explore-arrow {
+        color: #19A68E;
+        margin-right: 1%;
+    }
 }
 
 .cert-form {
-  max-width: 1440px;
-  width: 80%;
-  background-color: #ffffff;
-  margin: 5.5% 10% 12%;
-  border: 0.8px solid #545454;
-  border-radius: 16px;
-  padding: 8%;
-  gap: 0;
+    max-width: 1440px;
+    width: 80%;
+    background-color: #ffffff;
+    margin: 5.5% 10% 12%;
+    border: 0.8px solid #545454;
+    border-radius: 16px;
+    padding: 8%;
+    gap: 0;
 }
 
 label {
-  display: block;
-  font-weight: 700;
+    display: block;
+    font-weight: 700;
+}
+
+input {
+    width: 100%;
+    height: 70px;
+    outline: none;
+    border: 0.8px solid #222222;
+    border-radius: 10px;
+    padding: 15px;
+}
+
+input::-webkit-calendar-picker-indicator{
+    display: none;
 }
 
 .upload {
-  font-weight: 500;
-  line-height: 19px;
-  border: 1px solid #cccccc;
-  border-radius: 4px;
-  margin-block: 8px;
-  padding: 10.5px 16px;
-  width: 129px;
-  cursor: pointer;
+    font-weight: 500;
+    line-height: 19px;
+    border: 1px solid #CCCCCC;
+    border-radius: 4px;
+    margin-block: 8px;
+    padding: 10.5px 16px;
+    width: 129px;
+    cursor: pointer;
 }
 
 .label {
-  margin: 48px 0 16px 0;
+    margin: 48px 0 16px 0;
 }
 
 .submit-btn {
-}
-
-@media screen and (max-width: 768px) and (min-width: 481px) {
-  .header {
-    font-size: 32px;
-    line-height: 40px;
-  }
-  .mode {
-    width: 90%;
-  }
-
-  .cert-img {
-    overflow-x: scroll;
-  }
-
-  .cert-form {
-    margin: 5.5% 10% 12%;
-  }
-}
-
-@media screen and (max-width: 480px) {
-  .header {
-    font-size: 24px;
-    line-height: 30px;
-    text-align: center;
-  }
-  .prompt {
-    font-size: 16px;
-    line-height: 24px;
-  }
-  .mode {
-    width: 90%;
-    button {
-      font-size: 16px;
-    }
-  }
-  .mobile-none {
-    display: none;
-  }
-  .cert-img {
-    flex-direction: column;
-    width: 50% !important;
-    margin: auto !important;
-  }
-  .cert-form {
-    width: 100%;
+    display: block;
+    width: 202px;
+    height: 64px;
+    background-color: #19A68E;
     border: none;
-    border-radius: 0;
-    margin: 0;
-    margin-bottom: 0 !important;
-  }
-  .label {
-    margin: 24px 0 12px 0;
-  }
-  input {
-    height: 52px;
-  }
-  .submit-btn {
-    width: 100%;
-  }
+    border-radius: 10px;
+    color: #FFFFFF;
+    margin-top: 32px;
+    cursor: pointer;
+    text-align: center;
+}
+
+@media screen  and (max-width: 768px) and (min-width: 481px) {
+    .header {
+        font-size: 32px;
+        line-height: 40px;
+    }
+    .mode {
+        width: 90%;
+    }
+
+    .cert-img {
+        overflow-x: scroll;
+    }
+
+    .cert-form {
+        margin: 5.5% 10% 12%;
+    }
+}
+
+@media screen  and (max-width: 480px) {
+    .header {
+        font-size: 24px;
+        line-height: 30px;
+        text-align: center;
+    }
+    .prompt {
+        font-size: 16px;
+        line-height: 24px;
+    }
+    .mode {
+        width: 90%;
+        button {
+            font-size: 16px;
+        }
+    }
+    .mobile-none {
+        display: none;
+    }
+    .cert-img {
+        flex-direction: column;
+        width: 50% !important;
+        margin: auto !important;
+    }
+    .cert-form {
+        width: 100%;
+        border: none;
+        border-radius: 0;
+        margin: 0 ;
+        margin-bottom: 0 !important;
+    }
+    .label {
+        margin: 24px 0 12px 0;
+    }
+    input {
+        height: 52px;
+    }
+    .submit-btn {
+        width: 100%;
+    }
 }
