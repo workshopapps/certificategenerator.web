@@ -3,7 +3,6 @@ import "./dashboard.style.scss";
 import profilePic from "../../assets/images/Ellipse4.png";
 import Card from "./Card";
 import { cardData, nullDataIcon, actionIcon } from "./utils";
-import Button from "../../Component/button";
 
 const Dashboard = () => {
   const [data, setData] = useState([]);
@@ -20,34 +19,34 @@ const Dashboard = () => {
 
       let requestOptions = {
         method: "GET",
-        headers: myHeaders
+        headers: myHeaders,
       };
 
       fetch("https://certify-api.onrender.com/api/certificates", requestOptions)
-        .then(response => response.json())
-        .then(result => setData(result))
-        .catch(error => console.log("error", error));
+        .then((response) => response.json())
+        .then((result) => setData(result))
+        .catch((error) => console.log("error", error));
 
       fetch(
         "https://certify-api.onrender.com/api/certificates/issuedCertificates",
         requestOptions
       )
-        .then(response => response.json())
-        .then(result => {
+        .then((response) => response.json())
+        .then((result) => {
           setIssuedCert(
-            issuedCert.map(item =>
+            issuedCert.map((item) =>
               item.title === "Total Number Issued"
                 ? { ...item, count: result.issuedCertificates }
                 : item
             )
           );
         })
-        .catch(error => console.log("error", error));
+        .catch((error) => console.log("error", error));
     };
     fetchData();
   }, []);
 
-  const dataCheck = issuedCert.filter(item => item.count !== 0);
+  const dataCheck = issuedCert.filter((item) => item.count !== 0);
 
   return (
     <>
@@ -82,8 +81,7 @@ const Dashboard = () => {
             <p>CERTIFICATE DASHBOARD</p>
             {dataCheck.length > 0 ? (
               <div>
-                <Button text={"Create New Certificate"} />
-                {/* <button className="">Create New Certificate</button> */}
+                <button className="">Create New Certificate</button>
               </div>
             ) : null}
           </div>
