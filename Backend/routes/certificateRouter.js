@@ -6,10 +6,12 @@ const { getAllCertificates,
     addCertificate,
     getCertificate,
     getNoOfCertificatesIssued,
-    deleteCertificate } = require('../controllers/userCertificateController');
+    deleteCertificate, getCertificateStatus, updateCertificateStatus } = require('../controllers/userCertificateController');
 
 router.get('/issuedCertificates', getNoOfCertificatesIssued);
 router.get('/', getAllCertificates);
+router.get('/status', getCertificateStatus);
+router.patch('/status', updateCertificateStatus);
 router.post('/', fileExtLimiter, addCertificate);
 router.get('/:id', getCertificate);
 router.delete('/:id', deleteCertificate);

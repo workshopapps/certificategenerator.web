@@ -137,10 +137,73 @@ const deleteCertificate = async (req, res) => {
   return res.status(200).json({message: `Certificate has been Deleted`})
 }
 
+const getCertificateStatus = async (req, res) => {
+  const auth = req.headers.authorization;
+  if (!auth) {
+    return res.status(403).json({ error: "No credentials sent!" });
+  }
+
+  const token = auth.split(" ")[1];
+  const { userId } = jwt.decode(token);
+
+  const user = await User.findOne({ userId });
+  if (!user) return res.status(404).json({ message: "user not found" });
+
+  const certificateId = req.params.id;
+  const certificate = user.records.find((cert) => cert._id !== certificateId);
+
+  if (!certificate) {
+    return res.status(404).json({ message: `Certificate not found` });
+  }
+
+  const certificateStatus = certificate.status
+
+  return res.status(200).json({status: certificateStatus});
+}
+
+const updateCertificateStatus = async (req, res) => {
+  const auth = req.headers.authorization;
+  const payload = req.body;
+  
+  if (!auth) {
+    return res.status(403).json({ error: "No credentials sent!" });
+  }
+
+  const token = auth.split(" ")[1];
+  const { userId } = jwt.decode(token);
+
+  const user = await User.findOne({ userId });
+  if (!user) return res.status(404).json({ message: "user not found" });
+
+  const certificateId = req.params.id;
+  const certificate = user.records.find((cert) => cert._id !== certificateId);
+
+  if (!certificate) {
+    return res.status(404).json({ message: `Certificate not found` });
+  }
+
+  const certificateStatus = payload.status.toLowerCase();
+
+  const certifiCateStatusTest = ['pending', 'issued', 'canceled'].some((value) => {
+    return value === certificateStatus
+  })
+
+  if (!certifiCateStatusTest) {
+    return res.status(400).json({message: 'invalid status'})
+  }
+
+  certificate.status = certificateStatus
+  await user.save();
+
+  return res.status(200).json({message: `${certificate.name} status set to ${certificateStatus}`})
+}
+
 module.exports = {
   getAllCertificates,
   addCertificate,
   getCertificate,
   getNoOfCertificatesIssued,
-  deleteCertificate
+  deleteCertificate,
+  getCertificateStatus,
+  updateCertificateStatus,
 };
