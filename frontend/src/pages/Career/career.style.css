@@ -40,6 +40,9 @@ p {
   font-family: "Sora";
   margin-top: -3rem;
 }
+.career__container > * {
+  font-family: "Sora";
+}
 .career__container .hero__section {
   text-align: initial;
 }
