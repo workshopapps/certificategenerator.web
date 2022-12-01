@@ -101,14 +101,14 @@ body {
 }
 
 .cert-form {
-    max-width: 1440px;
-    width: 80%;
-    background-color: #ffffff;
-    margin: 5.5% 10% 12%;
-    border: 0.8px solid #545454;
-    border-radius: 16px;
-    padding: 8%;
-    gap: 0;
+  max-width: 1440px;
+  width: 80%;
+  background-color:   #FAFAFB;
+  margin: 5.5% 10% 12%;
+  border: 0.8px solid #545454;
+  border-radius: 16px;
+  padding: 8%;
+  gap: 0;
 }
 
 label {
@@ -143,18 +143,70 @@ input::-webkit-calendar-picker-indicator{
 .label {
     margin: 48px 0 16px 0;
 }
+.btn-create{
+    margin-top: 2rem;
+}
 
-.submit-btn {
-    display: block;
-    width: 202px;
-    height: 64px;
-    background-color: #19A68E;
-    border: none;
-    border-radius: 10px;
-    color: #FFFFFF;
-    margin-top: 32px;
-    cursor: pointer;
+
+@media screen and (max-width: 768px) and (min-width: 481px) {
+  .header {
+    font-size: 32px;
+    line-height: 40px;
+  }
+  .mode {
+    width: 90%;
+  }
+
+  .cert-img {
+    overflow-x: scroll;
+  }
+
+  .cert-form {
+    margin: 5.5% 10% 12%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .header {
+    font-size: 24px;
+    line-height: 30px;
     text-align: center;
+  }
+  .prompt {
+    font-size: 16px;
+    line-height: 24px;
+  }
+  .mode {
+    width: 90%;
+    button {
+      font-size: 16px;
+    }
+  }
+  .mobile-none {
+    display: none;
+  }
+  .cert-img {
+    flex-direction: column;
+    width: 50% !important;
+    margin: auto !important;
+  }
+  .cert-form {
+    width: 100%;
+    border: none;
+    border-radius: 0;
+    margin: 0;
+    margin-bottom: 0 !important;
+    background-color: #ffffff;
+  }
+  .label {
+    margin: 24px 0 12px 0;
+  }
+  input {
+    height: 52px;
+  }
+  .btn-create button {
+    width: 100%;
+  }
 }
 
 @media screen  and (max-width: 768px) and (min-width: 481px) {

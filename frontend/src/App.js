@@ -47,7 +47,7 @@ function App() {
   useEffect(() => {
     setTimeout(function () {
       setAppLoading(false);
-    }, 5000);
+    }, 1000);
   }, []);
 
   useEffect(() => {
@@ -76,7 +76,7 @@ function App() {
 
   if (appLoading) {
     return (
-      <div style={{ display: "flex", justifyContent: "center" }}>
+      <div style={{ display: "flex", justifyContent: "center", marginTop: "250px" }}>
         <Loader />
       </div>
     );
