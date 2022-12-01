@@ -30,26 +30,31 @@ export default function Template() {
     {
       id: 1,
       url: cardimg,
-      type: "recognition",
+      type: "recognition",  
       layout: "landscape",
+      color: "red"
+    
     },
     {
       id: 2,
       url: cardimg2,
       type: "recognition",
       layout: "landscape",
+      
     },
     {
       id: 3,
       url: cardimg3,
       type: "completion",
       layout: "landscape",
+      color: "red"
     },
     {
       id: 4,
       url: cardimg4,
       type: "completion",
       layout: "landscape",
+
     },
     {
       id: 5,
@@ -62,6 +67,7 @@ export default function Template() {
       url: cardimg6,
       type: "appreciation",
       layout: "landscape",
+      color: "red"
     },
     {
       id: 7,
@@ -74,6 +80,7 @@ export default function Template() {
       url: cardimg8,
       type: "completion",
       layout: "landscape",
+      color: "red"
     },
     {
       id: 9,
@@ -93,6 +100,75 @@ export default function Template() {
       type: "completion",
       layout: "landscape",
     },
+    {
+      id: 12,
+      url: cardimg,
+      type: "red",
+      layout: "landscape",
+    },
+    {
+      id: 13,
+      url: cardimg3,
+      type: "red",
+      layout: "landscape",
+    },
+    {
+      id: 14,
+      url: cardimg6,
+      type: "red",
+      layout: "landscape",
+    },
+    {
+      id: 15,
+      url: cardimg8,
+      type: "red",
+      layout: "landscape",
+    },
+    {
+      id: 16,
+      url: cardimg2,
+      type: "blue",
+      layout: "landscape",
+    },
+    {
+      id: 17,
+      url: cardimg4,
+      type: "blue",
+      layout: "landscape",
+    },
+    {
+      id: 18,
+      url: cardimg9,
+      type: "blue",
+      layout: "landscape",
+    },
+    {
+      id: 19,
+      url: cardimg10,
+      type: "blue",
+      layout: "landscape",
+    },
+    {
+      id: 20,
+      url: cardimg5,
+      type: "green",
+      layout: "landscape",
+    },
+    {
+      id: 21,
+      url: cardimg7,
+      type: "green",
+      layout: "landscape",
+    },
+    {
+      id: 22,
+      url: cardimg11,
+      type: "green",
+      layout: "landscape",
+    },
+    
+
+
   ];
 
   let categories = category;
@@ -127,15 +203,15 @@ export default function Template() {
 
   return (
     <div className="template-wrapper">
-      <header>
-        <h1 className="templates-title">Templates</h1>
+      <header>       
+        
+        <div className="templates-title">Templates</div>
         <div className="error-wrapper hideerrorMsg">
           <div className="error-container">
             <p className="error-container__message">Oops! It seems like none of the templates match the filters you selected. Please modify your filters or browse the templates manually.</p>
             <img onClick={hideErrorMsg} src={closeicon} alt="close icon" className="closeicon" />
         </div>
         </div>
-
         <div className="top-container-div">
           <p>All results</p>
 
@@ -146,6 +222,8 @@ export default function Template() {
             </button>
           )}
         </div>
+
+        
         <button
           className="filter-btn"
           onClick={() => setModalState(!modalState)}
@@ -163,6 +241,8 @@ export default function Template() {
           applyCategories={applySelectCategories}
           setCategory={setCategory}
         />
+        
+        
       </header>
       <div className="cards-container">
         {/* cards start */}

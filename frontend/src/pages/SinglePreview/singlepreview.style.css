@@ -14,35 +14,35 @@
   font-family: "Work Sans", sans-serif;
 }
 #singlePreview .button-container button.not-active {
-  background: transparent;
-  border: 1px solid #19a6be;
+  background: transparent !important;
+  border: 1px solid #19a68e !important;
 }
 #singlePreview .button-container button.not-active:hover {
-  color: #fff;
-  background: #19a6be;
-  border: none;
+  color: #fff !important;
+  background: #19a68e !important;
+  border: none !important;
   transition: 500ms ease-in-out;
 }
 #singlePreview .button-container button.active {
-  background: #19a6be;
-  color: #fff;
-  border: none;
+  background: #19a68e !important;
+  color: #fff !important;
+  border: none !important;
 }
 #singlePreview .button-container button.active:hover {
-  color: #19a6be;
-  background: #fff;
-  border: 1px solid #19a6be;
+  color: #19a68e !important;
+  background: #fff !important;
+  border: 1px solid #19a68e !important;
   transition: 500ms ease-in-out;
 }
-#singlePreview .certificate {
+#singlePreview .certificate-share-hero {
   text-align: center !important;
 }
-#singlePreview .certificate h1 {
+#singlePreview .certificate-share-hero h1 {
   font-size: 20px;
-  font-weight: 500;
+  font-weight: 400;
   margin: 0px 0px 45px 0px;
 }
-#singlePreview .certificate button {
+#singlePreview .certificate-share-hero button {
   margin: 35px 20px 0px 20px;
   border-radius: 5px;
   color: #19a68e !important;
@@ -50,26 +50,26 @@
   height: 35px;
   font-size: 12px;
 }
-#singlePreview .certificate button.download-button {
-  background: transparent;
-  border: 1px solid #19a68e;
+#singlePreview .certificate-share-hero button.download-button {
+  background: transparent !important;
+  border: 1px solid #19a68e !important;
   color: #19a68e !important;
 }
-#singlePreview .certificate button.download-button:hover {
-  color: #fff;
-  background: #19a68e;
-  border: none;
+#singlePreview .certificate-share-hero button.download-button:hover {
+  color: #fff !important;
+  background: #19a68e !important;
+  border: none !important;
   transition: 500ms ease-in-out;
 }
-#singlePreview .certificate button.send-button {
-  background: #19a68e;
-  color: #fff;
-  border: none;
+#singlePreview .certificate-share-hero button.send-button {
+  background: #19a68e !important;
+  color: #fff !important;
+  border: none !important;
 }
-#singlePreview .certificate button.send-button:hover {
-  color: #19a68e;
-  background: #fff;
-  border: 1px solid #19a68e;
+#singlePreview .certificate-share-hero button.send-button:hover {
+  color: #19a68e !important;
+  background: #fff !important;
+  border: 1px solid #19a68e !important;
   transition: 500ms ease-in-out;
 }
 #singlePreview h2 {
@@ -88,14 +88,113 @@
 }
 #singlePreview .explore-button:hover {
   color: #fff;
-  background: #19a6be;
+  background: #19a68e !important;
   border: none;
   transition: 500ms ease-in-out;
 }
-#singlePreview .certificate img {
-  width: 100%;
-  height: auto;
+#singlePreview .certificate-header h4 {
+  font-size: 22px;
+  font-weight: 450;
+  margin-bottom: 20px;
+}
+#singlePreview .sample,
+#singlePreview .sample3 {
+  background: #ac0423;
+  position: relative;
+  height: 50px;
+  width: 20px;
+}
+#singlePreview .sample3 {
+  float: right;
+}
+#singlePreview .sample3:after {
+  background: #ac0423;
+  content: "";
+  height: 20px;
+  position: absolute;
+  right: 10px;
+  width: 50px;
+}
+#singlePreview .sample:after {
+  background: #ac0423;
+  content: "";
+  height: 20px;
+  position: absolute;
+  left: 10px;
+  width: 50px;
+}
+#singlePreview .sample2 {
+  opacity: 0.4;
+  background: #ac0423;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  position: absolute;
+  top: 18.5%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+#singlePreview #container-wrapper {
+  width: 90%;
+  margin: auto;
+  padding: 10px;
   max-width: 300px;
+  border-top: 4px solid #ac0423;
+  border-bottom: 4px solid #ac0423;
+  border-left: 4px solid #ac0423;
+  border-right: 4px solid #ac0423;
+}
+#singlePreview #container-design {
+  border: 2px solid #ac0423;
+}
+#singlePreview #single-preview-card {
+  position: relative;
+}
+#singlePreview #single-preview-text {
+  position: relative;
+  text-transform: capitalize;
+}
+#singlePreview #single-preview-text #preview-text {
+  position: relative;
+  top: -15px;
+}
+#singlePreview #single-preview-text #preview-text h1 {
+  font-size: 20px !important;
+  margin: 0px !important;
+  color: #ac0423;
+  font-weight: 450;
+}
+#singlePreview #single-preview-text #preview-text p {
+  text-transform: uppercase;
+  font-size: 13px !important;
+  color: #ac0423;
+}
+#singlePreview #single-preview-text #preview-text h2 {
+  color: #ac0423;
+  font-size: 18px;
+  border-bottom: 2px solid #ac0423;
+}
+#singlePreview #single-preview-text #preview-text h6 {
+  font-size: 13px;
+  padding: 5px 20px;
+}
+#singlePreview .single-preview-issue {
+  text-transform: uppercase;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-weight: bolder;
+  margin: 20px 0px 15px 0px;
+  color: #ac0423;
+}
+#singlePreview .single-preview-issue .line {
+  border-bottom: 1px solid #ac0423;
+}
+#singlePreview .single-preview-issue p {
+  font-size: 12px;
+}
+#singlePreview .single-preview-issue h6 {
+  font-size: 12px;
 }
 #singlePreview .single-images {
   display: flex;
@@ -107,9 +206,88 @@
   width: 80%;
   height: auto;
 }
+@media screen and (min-width: 500px) {
+  #singlePreview .certificate-share-hero button {
+    width: 160px;
+    height: 40px;
+    font-size: 13px;
+  }
+  #singlePreview .certificate-header h4,
+#singlePreview h2 {
+    font-size: 25px;
+    margin: 20px;
+  }
+  #singlePreview #single-preview-text #preview-text h1 {
+    font-size: 28px !important;
+  }
+  #singlePreview #single-preview-text #preview-text h2 {
+    font-size: 25px;
+  }
+  #singlePreview #container-wrapper {
+    width: 100%;
+    max-width: 400px;
+  }
+  #singlePreview .sample2 {
+    top: 14.5%;
+  }
+}
 @media screen and (min-width: 768px) {
-  #singlePreview .certificate h1 {
-    font-size: 30px;
+  #singlePreview .certificate-header h4 {
+    font-size: 30px !important;
+    margin: 20px;
+  }
+  #singlePreview .sample2 {
+    width: 100px;
+    height: 100px;
+    top: 25.5%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  #singlePreview #container-wrapper {
+    width: 70%;
+    margin: auto;
+    padding: 10px;
+    max-width: 600px;
+  }
+  #singlePreview #container-design {
+    border: 2px solid #ac0423;
+  }
+  #singlePreview #single-preview-card {
+    position: relative;
+  }
+  #singlePreview #single-preview-text {
+    position: relative;
+  }
+  #singlePreview #single-preview-text #preview-text {
+    position: relative;
+    top: -10px;
+  }
+  #singlePreview #single-preview-text #preview-text h1 {
+    font-size: 30px !important;
+    margin: 0px !important;
+  }
+  #singlePreview #single-preview-text #preview-text p {
+    font-size: 15px !important;
+  }
+  #singlePreview #single-preview-text #preview-text h2 {
+    font-size: 26px !important;
+    border-bottom: 1px solid #ac0423;
+  }
+  #singlePreview #single-preview-text #preview-text h6 {
+    font-size: 15px !important;
+    padding: 5px 20px;
+  }
+  #singlePreview .single-preview-issue {
+    margin: 20px 0px 15px 0px;
+  }
+  #singlePreview .single-preview-issue .line {
+    border-bottom: 1px solid #ac0423;
+  }
+  #singlePreview .single-preview-issue p {
+    font-size: 14px;
+  }
+  #singlePreview .single-preview-issue h6 {
+    font-size: 14px;
   }
   #singlePreview h2 {
     font-size: 30px;
@@ -120,16 +298,11 @@
     height: 45px;
     margin: 10px 15px 20px 15px;
   }
-  #singlePreview .certificate button {
+  #singlePreview .certificate-share-hero button {
     font-size: 15px;
     width: 170px;
     height: 40px;
     margin: 30px 15px 40px 15px;
-  }
-  #singlePreview .certificate img {
-    width: 100%;
-    height: auto;
-    max-width: 600px;
   }
   #singlePreview .single-images {
     flex-direction: row;
@@ -147,13 +320,16 @@
     height: 50px;
     margin: 10px 15px 40px 15px;
   }
-  #singlePreview .certificate button {
+  #singlePreview .certificate-share-hero button {
     font-size: 18px;
     width: 200px;
     height: 50px;
     margin: 30px 15px 40px 15px;
   }
-  #singlePreview .certificate img {
+  #singlePreview .sample2 {
+    top: 30%;
+  }
+  #singlePreview .certificate-share-hero img {
     width: 100%;
     height: auto;
     max-width: 700px;
@@ -161,12 +337,9 @@
   #singlePreview .single-images img {
     max-width: 300px;
   }
-<<<<<<< HEAD
-=======
   #singlePreview .explore-button {
     width: 240px;
     height: 55px;
     font-size: 18px;
   }
->>>>>>> e449f28319e16d4352c7d1debf51cd9cc977eab4
 }/*# sourceMappingURL=singlepreview.style.css.map */

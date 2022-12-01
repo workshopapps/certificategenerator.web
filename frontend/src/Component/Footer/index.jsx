@@ -39,7 +39,7 @@ const Footer = () => {
             <div className="list">
               <h2>company</h2>
               <Link to="/aboutUs" className="link">
-                About
+                About us
               </Link>
               <Link to="/contact-us" className="link">
                 Contact
@@ -75,8 +75,7 @@ const Footer = () => {
           </div>
           <div className="footer-form">
             <h3>Stay up to date with Product</h3>
-            <form noValidate>
-              <p className="error-msg">{message}</p>
+            <form noValidate>              
               <div className="footer-input">
                 <input
                   type="email"
@@ -88,6 +87,7 @@ const Footer = () => {
                 />
                 <button onClick={handleSubmit}>Subscribe</button>
               </div>
+              <p className="error-msg">{message}</p>
             </form>
           </div>
         </div>

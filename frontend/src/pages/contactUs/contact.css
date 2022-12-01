@@ -6,7 +6,7 @@
   padding: 1.875rem;
   min-height: 100vh;
   height: 100%;
-  font-family: "Sora", sans-serif;
+  font-family: "Work Sans", sans-serif;
 }
 @media screen and (min-width: 640px) {
   .contact {
@@ -59,6 +59,7 @@
 @media screen and (min-width: 600px) {
   .contact__info {
     flex-direction: row;
+    justify-content: center;
   }
 }
 @media screen and (min-width: 900px) {

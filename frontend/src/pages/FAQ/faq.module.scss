@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Work+Sans:wght@500;600;700&display=swap');
+
 @mixin flexContainer($direction, $width, $justify) {
   display: flex;
   justify-content: $justify;
@@ -10,7 +12,9 @@
 @mixin container {
   margin: 0 auto;
 }
-
+* {
+  font-family: "Work Sans", sans-serif;
+}
 
 .header {
   @include flexContainer(column, 80%, center);
@@ -44,8 +48,7 @@
     background-color: #fff;
     border-radius: 10px;
     padding: 1rem 2rem;
-    margin-bottom: 0.2rem;
-    	font-family: "Work Sans", sans-serif;
+    margin-bottom: 2rem;
 
     .faqQuestions {
       @include flexContainer(row, 100%, space-between);
@@ -61,7 +64,7 @@
         h3 {
           line-height: 160%;
           font-weight: 500;
-          font-size:0.875rem;
+          font-size: 1rem;
           text-align: left;
         }
 
@@ -280,7 +283,7 @@
           h3 {
             line-height: 1.5;
             font-weight: 500;
-            font-size: 1.4rem;
+            font-size: 1rem;
           }
 
           .faqIcon {

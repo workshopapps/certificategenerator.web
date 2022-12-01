@@ -8,9 +8,9 @@ export default function Testimonials () {
     return (
         <>
           <p className="sora testimonial-header">Testimonials</p>
-          <p className="testimonial-caption">What our users have to say about us</p>
+          <p className="testimonial-caption work-sans">What our users have to say about us</p>
           <div className="flex testimonials center justify-between gap testimonial-bottom">
-            <div className="testimonial-container text-left sora test">
+            <div className="testimonial-container text-left work-sans test">
               <div className="flex items-center" >
                 <img src={person_1} alt="user" />
                 <div style={{paddingLeft: '20px'}}>
@@ -19,12 +19,12 @@ export default function Testimonials () {
                 </div>
               </div>
               <p style={{paddingTop: "25px"}}>
-                  “This is my first time utilizing Certgo.
-                  It is simply brilliant. In a matter of seconds, a full certificate is generated”
+                  “Certgo is an incredible website for designing certificates! A huge selection of templates, fonts, and colors; endless choices at the tip of your fingers; easy editing and sending/sharing. Best certificate generator I've used for a long time. If you haven't tried it... try it!
+                  Victor Hayworth”
               </p>
             </div>
 
-            <div className="testimonial-container text-left sora test">
+            <div className="testimonial-container text-left work-sans test">
               <div className="flex items-center" >
                 <img src={person_2} alt="user" />
                 <div style={{paddingLeft: '20px'}}>
@@ -33,12 +33,11 @@ export default function Testimonials () {
                 </div>
               </div>
               <p style={{paddingTop: "25px"}}>
-                “The certgo certificate generator is a fantastic tool that helps me create certificates 
-                quickly and with plenty of inspiration. Definitely, I would advise.”
+                “Certgo is a fantastic piece of software! It saves us a lot of time, as we were able to generate bulk certificates for our students automatically. The customer support is also excellent and helps us navigate the software and recommend a solution for the changes we need.”
               </p>
             </div>
 
-            <div className="testimonial-container text-left sora test">
+            <div className="testimonial-container text-left work-sans test">
               <div className="flex items-center" >
                 <img src={person_3} alt="user" />
                 <div style={{paddingLeft: '20px'}}>
@@ -47,10 +46,10 @@ export default function Testimonials () {
                 </div>
               </div>
               <p style={{paddingTop: "25px"}}>
-                “Probably the best platform for anyone needing to generate bulk certificates. 
-                Amazing! I love how easy it is to use! Recommended for EVERYONE!”
+                “Certgo is great for designing certificates for my students enrolled in my courses. The various letter font styles and font colors are wonderful to choose from. The final look and design of the certification are professional. I enjoy using this easy website.”
               </p>
             </div>
+            
           </div>
         </>
     )
