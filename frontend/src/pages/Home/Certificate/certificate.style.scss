@@ -143,8 +143,22 @@ input::-webkit-calendar-picker-indicator{
 .label {
     margin: 48px 0 16px 0;
 }
-.btn-create{
+
+
+.btn-success{
+    all: unset;
+    background-color: $primaryColor;
+    color: #ffffff;
+    padding: 1rem 3rem;
+    text-align: center;
     margin-top: 2rem;
+    width: fit-content;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.btn-disabled{
+    background-color: #8ab9b2;
+    cursor: not-allowed;
 }
 
 
@@ -204,9 +218,7 @@ input::-webkit-calendar-picker-indicator{
   input {
     height: 52px;
   }
-  .btn-create button {
-    width: 100%;
-  }
+  
 }
 
 @media screen  and (max-width: 768px) and (min-width: 481px) {
