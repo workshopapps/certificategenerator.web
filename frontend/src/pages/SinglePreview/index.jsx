@@ -55,7 +55,7 @@ function Index({
         <Link to="/single_preview">
           <button className="active">Single Certificate</button>
         </Link>
-        <Link to="/edit_bulk">
+        <Link to="/signup">
           <button className="not-active">Bulk Certificate</button>
         </Link>
       </div>
