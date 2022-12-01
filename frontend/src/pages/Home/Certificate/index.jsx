@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import './certificate.style.scss'
 import {Link, useNavigate} from "react-router-dom"
 import UploadCSV from "../../UploadCSV";
+import Button from "../../../Component/button";
 
 
 export default function Certificate ({
@@ -101,9 +102,8 @@ export default function Certificate ({
             <label htmlFor='date' className="label">Issue Date</label>
             <input type="date" value={issueDate} onChange={e => setIssueDate(e.target.value)} />
 
-            <Link to = "single_preview">
-            <input type="submit" value="Create Certificate" className="submit-btn"/>
-
+            <Link className="btn-create" to = "single_preview">
+              <Button name={"Create Certificate"}/>
             </Link>
           </form>
             </div>}
