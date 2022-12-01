@@ -1,0 +1,142 @@
+@import url("https://fonts.googleapis.com/css2?family=Sora:wght@100;200;300;400;500;600;700&display=swap");
+@import "../../Style/variables";
+
+.modal-wrapper {
+  height: 100%;
+  width: 100%;
+  background: rgba(34, 34, 34, 0.4);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10000;
+  overflow: hidden;
+  font-family: "Sora", sans-serif;
+
+  //Position modal at the center of the page
+  display: flex;
+  justify-content: center;
+
+  .modal-container {
+    background-color: #fff;
+    width: 90%;
+    border-radius: 10px;
+    position: absolute;
+    top: 9%;
+    align-self: center;
+    padding: 25px 15px;
+
+    // Align items
+
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+    &__header {
+      font-family: "Sora", sans-serif;
+      font-size: 20px;
+    }
+
+    .cancel-btn-wrapper {
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .modal-container__cancel {
+      background: transparent;
+      color: #6c6c70;
+      border: none;
+      font-size: 16px;
+      font-family: "Sora", sans-serif;
+      width: 100px;
+      height: 35px;
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      align-items: center;
+      border-radius: 10px;
+      cursor: pointer;
+
+      .cancel-x-btn {
+        width: 30px;
+      }
+    }
+
+    &__header {
+      font-size: 30px;
+      font-weight: 700;
+      margin: 0 0 16px 0;
+    }
+
+    &__text {
+      color: #6c6c70;
+      font-size: 16px;
+      font-weight: 400;
+      font-family: "Sora", sans-serif;
+      padding-inline: 1%;
+      text-align: center;
+    }
+
+    &__btns {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 20px;
+      .modal-container__btn {
+        background: $primaryColor !important;
+        color: #fff !important;
+        border: 1px solid $primaryColor;
+        font-size: 15px;
+        font-family: "Sora", sans-serif;
+        width: 100%;
+        height: 45px;
+        border-radius: 10px;
+        cursor: pointer;
+
+        &:hover {
+          color: $primaryColor !important;
+          background: transparent !important;
+          border: 1px solid $primaryColor;
+          transition: 500ms ease-in-out;
+        }
+
+        &--signin {
+          background: transparent !important;
+          color: $primaryColor !important;
+          width: 100%;
+          height: 45px;
+
+          &:hover {
+            color: #fff !important;
+            background: $primaryColor !important;
+            transition: 500ms ease-in-out;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 700px) {
+  .modal-wrapper {
+    .modal-container {
+      width: 500px;
+      top: 300px;
+      padding: 35px;
+
+      &__header {
+        font-size: 30px;
+      }
+
+      &__text {
+        font-size: 16px;
+        width: 75%;
+        margin-inline: auto;
+      }
+
+      &__btns {
+        gap: 20px;
+      }
+    }
+  }
+}

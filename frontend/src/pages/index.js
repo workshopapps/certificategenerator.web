@@ -19,3 +19,7 @@ export { default as Career } from "./Career";
 export { default as Pricing } from "./Pricing";
 export { default as ProfilePage } from "./ProfilePage";
 export { default as UploadCSV } from "./UploadCSV";
+export { default as Home } from "./Home";
+export { default as Checkout } from "./Checkout";
+export { default as Privacy } from "./PrivacyPolicy";
+// import { Privacy } from "./pages/PrivacyPolicy";
