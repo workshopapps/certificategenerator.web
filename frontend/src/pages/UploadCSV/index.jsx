@@ -35,17 +35,11 @@ const UploadCSV = ({setFile}) => {
         <button
           className={!state.active ? "active switchBtn" : "switchBtn"}
           onClick={toggleState}
-        >
-          {" "}
-          Single Certificate
-        </button>
+        > Single Certificate </button>
         <button
           className={state.active ? "active switchBtn" : "switchBtn"}
           onClick={toggleState}
-        >
-          {" "}
-          Bulk
-        </button>
+        > Bulk Certificate </button>
       </div>
       <h1>Your certificate is almost ready!</h1>
       <div className="certificatePreview">

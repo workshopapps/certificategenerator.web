@@ -1,10 +1,10 @@
 import React from "react";
-import { Link, Navigate, useNavigate} from "react-router-dom";
+import { Link, useNavigate} from "react-router-dom";
 import { useState } from "react";
 import {
   AiOutlineEye,
   AiOutlineEyeInvisible,
-  AiOutlineUserAdd,
+
 } from "react-icons/ai";
 import "./Style.css";
 import appleSVG from "./assets/apple.svg";
@@ -13,7 +13,7 @@ import cert from "./assets/Cert.png";
 import emailSVG from "./assets/email.svg";
 import keySVG from "./assets/key.svg";
 import { createNewUser } from "../api";
-import Login from "./Login";
+
 
 const Signup = () => {
   const navigate = useNavigate()

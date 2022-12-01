@@ -1,11 +1,9 @@
 import React, { useState } from "react";
-import Style from "../faq.module.scss";
+import Style from "./faq.module.scss";
 
 import { FaqItems } from "./FaqItems";
 
-import { FeaturedItems } from "./FaqModule";
-
-export const Featured = ({ header }) => {
+export const FaqSection = ({ header, questions }) => {
   const [clicked, setclicked] = useState("0");
   const handleToggle = (index) => {
     console.log(index);
@@ -20,7 +18,7 @@ export const Featured = ({ header }) => {
       <section className={Style.faqContainer}>
         <h2>{header}</h2>
 
-        {FeaturedItems.map((faq, index) => {
+        {questions.map((faq, index) => {
           return (
             <FaqItems
               key={index}
