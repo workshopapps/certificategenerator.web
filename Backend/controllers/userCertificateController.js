@@ -87,7 +87,7 @@ const getCertificate = async (req, res) => {
   if (!user) return res.status(404).json({ message: "user not found" });
 
   const certificateId = req.params.id;
-  const certificate = user.records.find((cert) => cert._id !== certificateId);
+  const certificate = user.records.find((cert) => certificateId == cert._id);
 
   if (!certificate) {
     return res.status(404).json({ message: `Certificate not found` });
@@ -176,7 +176,7 @@ const updateCertificateStatus = async (req, res) => {
   if (!user) return res.status(404).json({ message: "user not found" });
 
   const certificateId = req.params.id;
-  const certificate = user.records.find((cert) => cert._id !== certificateId);
+  const certificate = user.records.find((cert) => certificateId == cert._id);
 
   if (!certificate) {
     return res.status(404).json({ message: `Certificate not found` });
