@@ -167,6 +167,56 @@ const getCertificateStatus = async (req, res) => {
   return res.status(200).json({status: certificateStatus});
 }
 
+const updateCertificateDetails = async (req, res) => {
+  const {id:certificateId} = req.params;
+  const { name, nameOfOrganization, award, description, date, signed } = req.body;
+  const auth = req.headers.authorization;
+  
+  if (!auth) {
+    return res.status(403).json({ error: 'No auth credentials sent!' });
+  }
+
+  const token = auth.split(" ")[1];
+  const { userId } = jwt.decode(token);
+
+
+  //validate and check certificateId is provided
+   if (!certificateId.match(/^[0-9a-fA-F]{24}$/)) {
+    return res.status(403).json({ message: 'Please provide a valid certificateId as path parameter'});
+  }
+
+
+  //validate certificate data to be updated
+  if(name == undefined 
+    || nameOfOrganization == undefined 
+    || award == undefined 
+    || description == undefined 
+    || date == undefined 
+    || signed == undefined) {
+      return res.status(400).json({ error: 'Please enter valid certificate details: name, nameOfOrganization, award, description, date, signed' });
+  }
+
+
+  //update mongodb
+  const cert = await User.updateOne({ userId: userId, 'records._id' : certificateId }, {
+    $set: {
+      'records.$.name' : name,
+      'records.$.nameOfOrganization' : nameOfOrganization,
+      'records.$.award' : award, 
+      'records.$.description' : description, 
+      'records.$.date' : date, 
+      'records.$.signed' : signed
+    }
+  })
+
+  
+  if(!cert){
+    return res.status(404).json({message: `No Certificate with id ${certificateId}`})
+  }
+
+  return res.status(200).json({message: `Certificate ID ${certificateId} has been updated`})
+}
+
 const updateCertificateStatus = async (req, res) => {
   const auth = req.headers.authorization;
   const payload = req.body;
@@ -211,5 +261,6 @@ module.exports = {
   getNoOfCertificatesIssued,
   deleteCertificate,
   getCertificateStatus,
+  updateCertificateDetails,
   updateCertificateStatus,
 };
