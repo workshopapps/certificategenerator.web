@@ -117,10 +117,11 @@ body {
 }
 
 .partners {
-    display: flex;
-    align-items: flex-end;
-    gap: 100px;
-    padding-left: 10%;
+  display: flex;
+  align-items: flex-end;
+  gap: 100px;
+  padding-left: 2.5rem;
+  overflow-x: auto;
 }
 
 .partner-head {
