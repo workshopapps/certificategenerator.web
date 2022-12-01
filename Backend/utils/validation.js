@@ -5,6 +5,7 @@ const isValidJsonOutput = (jsonArray) => {
     "description",
     "award",
     "signed",
+    "email",
     "date",
   ];
 

@@ -22,6 +22,10 @@ const CertificateSchema = new mongoose.Schema({
     signed: {
         type: String,
     },
+    email: {
+      type: String,
+      required: true,
+    },
     date: {
         type: String,
         required: [true, 'Date issued is required']

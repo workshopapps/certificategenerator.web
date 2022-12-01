@@ -28,6 +28,7 @@ const contacts = require('./routes/contactRouter');
 const pricing = require('./routes/pricingRouter');
 const swaggerUi = require('swagger-ui-express')
 const swaggerFile = require('./swagger_output.json')
+const eventRouter = require("./routes/eventRouter");
 
 const PORT = process.env.PORT || 5000;
 
@@ -59,6 +60,7 @@ app.use("/api/team", teamRoute);
 app.use('/api/contactus', contacts)
 app.use('/api/pricing', pricing)
 app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerFile))
+app.use("/api/events", eventRouter);
 
 mongoose.connection.once("open", () => {
   console.log("Connected to DB");

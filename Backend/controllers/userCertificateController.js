@@ -35,6 +35,7 @@ const addCertificate = async (req, res) => {
         name: payload.name,
         nameOfOrganization: payload.nameOfOrganization,
         award: payload.award,
+        email: payload.email,
         description: payload.description,
         date: payload.date,
         signed: payload.signed,
@@ -131,6 +132,9 @@ const deleteCertificate = async (req, res) => {
   }
 
   //delete certificate by ID
+  const cert = await User.findOneAndDelete({_id:certificateID})
+
+
   const cert = await User.updateOne({ userId: userId}, { $pull: { records: { _id: certificateID } } }, { safe: true })
   
   if(!cert){
@@ -166,7 +170,7 @@ const getCertificateStatus = async (req, res) => {
 const updateCertificateStatus = async (req, res) => {
   const auth = req.headers.authorization;
   const payload = req.body;
-  
+
   if (!auth) {
     return res.status(403).json({ error: "No credentials sent!" });
   }
