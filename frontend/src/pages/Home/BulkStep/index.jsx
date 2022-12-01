@@ -36,10 +36,9 @@ export default function BulkStep() {
             <img src={three} alt="three" />
             <p className="steps">Generate bulk certificates</p>
           </div>
-          <button className="bulk-button work-sans" onClick={()=> navigate("/signup")}>Create Bulk Certificates</button>
         </div>
       </div> 
-        <button className="bulk-button work-sans">Create Bulk Certificates</button>
+      <button className="bulk-button work-sans" onClick={()=> navigate("/signup")}>Create Bulk Certificates</button>
     </div>   
     )
 }
