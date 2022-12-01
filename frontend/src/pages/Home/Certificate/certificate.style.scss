@@ -143,6 +143,9 @@ input::-webkit-calendar-picker-indicator{
 .label {
     margin: 48px 0 16px 0;
 }
+.btn-create{
+    margin-top: 2rem;
+}
 
 
 @media screen and (max-width: 768px) and (min-width: 481px) {
@@ -201,7 +204,7 @@ input::-webkit-calendar-picker-indicator{
   input {
     height: 52px;
   }
-  .submit-btn {
+  .btn-create button {
     width: 100%;
   }
 }

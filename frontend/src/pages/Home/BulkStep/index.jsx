@@ -39,6 +39,7 @@ export default function BulkStep() {
           <button className="bulk-button work-sans" onClick={()=> navigate("/signup")}>Create Bulk Certificates</button>
         </div>
       </div> 
+        <button className="bulk-button work-sans">Create Bulk Certificates</button>
     </div>   
     )
 }
