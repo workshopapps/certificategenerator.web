@@ -52,7 +52,7 @@ function Index({
       {/* BUTTONS TO TOGGLE BETWEEN SINGLE AND BULK CERTIFICATE */}
 
       <div className="button-container">
-        <Link to="/">
+        <Link to="/single_preview">
           <button className="active">Single Certificate</button>
         </Link>
         <Link to="/edit_bulk">
