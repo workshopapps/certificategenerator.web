@@ -25,6 +25,11 @@ const CertificateSchema = new mongoose.Schema({
     date: {
         type: String,
         required: [true, 'Date issued is required']
+    },
+    status: {
+      type: String,
+      enum: [ 'pending', 'issued', 'canceled' ],
+      default: 'pending'
     }
   }],
   userId:{
