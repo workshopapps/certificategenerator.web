@@ -3,10 +3,12 @@ import "./dashboard.style.scss";
 import profilePic from "../../assets/images/Ellipse4.png";
 import Card from "./Card";
 import { cardData, nullDataIcon, actionIcon } from "./utils";
+import CreateCertificateModal from "../../Component/CreateCertificateModal";
 
 const Dashboard = () => {
   const [data, setData] = useState([]);
   const [issuedCert, setIssuedCert] = useState([...cardData]);
+  const [openModal, setOpenModal] = useState(false)
 
   useEffect(() => {
     const fetchData = () => {
@@ -81,10 +83,11 @@ const Dashboard = () => {
             <p>CERTIFICATE DASHBOARD</p>
             {dataCheck.length > 0 ? (
               <div>
-                <button className="">Create New Certificate</button>
+                <button className="" onClick={() => setOpenModal(true)}>Create New Certificate</button>
               </div>
             ) : null}
           </div>
+          <CreateCertificateModal open={openModal} onClose={() => setOpenModal(false)}/>
           <div className="table">
             <table>
               <thead>
@@ -92,7 +95,7 @@ const Dashboard = () => {
                   <th>CERTIFICATE NAMES</th>
                   <th>STATUS</th>
                   <th>DATE ISSUED</th>
-                  {/* <th>NO OF CERTIFICATES</th> */}
+                  <th>NO OF CERTIFICATES</th>
                   <th>FILE TYPE</th>
                   <th className="action">ACTION</th>
                 </tr>
@@ -116,7 +119,7 @@ const Dashboard = () => {
                         </td>
                       )}
                       <td>{item.date}</td>
-                      {/* <td>{data.length}</td> */}
+                      <td>{data.length}</td>
                       <td>PDF</td>
                       <td className="action">{actionIcon()}</td>
                     </tr>
