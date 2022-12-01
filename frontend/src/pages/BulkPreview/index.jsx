@@ -22,7 +22,7 @@ function Index() {
       {/* YOUR BULK CRETIFICATES READY TO BE DOWNLOADED OR SENT */}
 
       <div className="certificate">
-        <h1>Your certificates are ready!</h1>
+        {/* <h1>Your certificates are ready!</h1> */}
         <img src={certificate} alt="certificate" />
       </div>
 
