@@ -17,4 +17,21 @@
         font-weight: 500;
         margin-block: 30px;
     }
+
+    @media screen and (max-width: 480px) {
+        .mode {
+            width: 90%;
+
+            button {
+                font-size: 16px;
+            }
+        }
+    }
+
+    @media screen and (max-width: 768px) and (min-width: 481px) {
+
+        .mode {
+            width: 90%;
+        }
+    }
 }

@@ -117,11 +117,11 @@ function SinglePreview({
           >
             Send Certificate
           </button>
-          <div class="dropdown">
-            <button class="dropbtn download-button">
+          <div className="dropdown">
+            <button className="dropbtn download-button">
               Download Certificate
             </button>
-            <div class="dropdown-content">
+            <div className="dropdown-content">
               <button
                 onClick={(e) => {
                   e.preventDefault();

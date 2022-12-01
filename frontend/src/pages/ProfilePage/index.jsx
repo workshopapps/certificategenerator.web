@@ -4,7 +4,7 @@ import "./profile.style.scss";
 import Avatar from "../../assets/images/Ellipse4.png"
 
 const ProfilePage = () => {
-  const navigate = useNavigate
+  const navigate = useNavigate()
 
   const handleSignout = () =>{
     navigate('/')
