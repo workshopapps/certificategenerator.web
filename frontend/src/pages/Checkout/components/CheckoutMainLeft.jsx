@@ -30,9 +30,8 @@ function CheckoutMainLeft() {
 
   const [payment, setPayment] = useState(true);
   const [paymentBorderCard, setPaymentBorderCard] =
-    useState("1px solid #222222");
-  const [paymentBorderBank, setPaymentBorderBank] =
-    useState("1px solid #222222");
+    useState("4px solid #01AA6E");
+  const [paymentBorderBank, setPaymentBorderBank] = useState("");
 
   function firstNamef(value) {
     setFirstName(value);
@@ -111,12 +110,12 @@ function CheckoutMainLeft() {
   function switchPaymentCard() {
     setPayment(true);
     setPaymentBorderCard("4px solid #01AA6E");
-    setPaymentBorderBank("1px solid #222222");
+    setPaymentBorderBank("");
   }
 
   function switchPaymentBank() {
     setPayment(false);
-    setPaymentBorderCard("1px solid #222222");
+    setPaymentBorderCard("");
     setPaymentBorderBank("4px solid #01AA6E");
   }
 
@@ -137,7 +136,7 @@ function CheckoutMainLeft() {
               label="First name"
               placeholder="Bassey"
               value={firstName}
-              functions={(e) => firstNamef(e.target.value)}
+              functions={e => firstNamef(e.target.value)}
               class={firstNameCheck ? "firstname-error" : "firstname-ok"}
             />
           </div>
@@ -150,7 +149,7 @@ function CheckoutMainLeft() {
               label="Last name"
               placeholder="John"
               value={lastName}
-              functions={(e) => lastNamef(e.target.value)}
+              functions={e => lastNamef(e.target.value)}
               class={lastNameCheck ? "lastname-error" : "lastname-ok"}
             />
           </div>
@@ -165,7 +164,7 @@ function CheckoutMainLeft() {
               label="Country"
               placeholder="Your country"
               value={country}
-              functions={(e) => countryf(e.target.value)}
+              functions={e => countryf(e.target.value)}
               class={countryCheck ? "country-error" : "country-ok"}
             />
           </div>
@@ -178,7 +177,7 @@ function CheckoutMainLeft() {
               label="ZIP/Postal code"
               placeholder="Your postal code"
               value={zipCode}
-              functions={(e) => zipCodef(e.target.value)}
+              functions={e => zipCodef(e.target.value)}
               class={zipCodeCheck ? "zipcode-error" : "zipcode-ok"}
             />
           </div>
@@ -219,16 +218,16 @@ function CheckoutMainLeft() {
           <PaymentSwitch
             cardNameCheck={cardNameCheck}
             cardName={cardName}
-            cardNamef={(e) => cardNamef(e.target.value)}
+            cardNamef={e => cardNamef(e.target.value)}
             cardNumberCheck={cardNumberCheck}
             cardNumber={cardNumber}
-            cardNumberf={(e) => cardNumberf(e.target.value)}
+            cardNumberf={e => cardNumberf(e.target.value)}
             icon={icon}
             expiry={expiry}
-            expiryf={(e) => expiryf(e.target.value)}
+            expiryf={e => expiryf(e.target.value)}
             expiryCheck={expiryCheck}
             cvv={cvv}
-            cvvf={(e) => cvvf(e.target.value)}
+            cvvf={e => cvvf(e.target.value)}
             cvvCheck={cvvCheck}
             SecurePay={SecurePay}
           />
