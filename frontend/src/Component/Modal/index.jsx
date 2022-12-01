@@ -6,7 +6,7 @@ function index({ open, onClose, modalText }) {
   if (!open) return null;
   return (
     <div onClick={onClose} className="modal-wrapperx">
-      <div className="modal-containerx" onClick={(e) => e.stopPropagation()}>
+      <div className="modal-containerx" onClick={e => e.stopPropagation()}>
         <div className="cancel-btn-wrapper">
           <button onClick={onClose} className="modal-containerx__cancel">
             Close{" "}
