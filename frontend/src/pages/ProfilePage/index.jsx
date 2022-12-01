@@ -1,8 +1,14 @@
 import React from "react";
+import {useNavigate} from 'react-router-dom'
 import "./profile.style.scss";
 import Avatar from "../../assets/images/Ellipse4.png"
 
 const ProfilePage = () => {
+  const navigate = useNavigate
+
+  const handleSignout = () =>{
+    navigate('/')
+  }
   return (
     <div className="profile-page">
       <div>
@@ -27,7 +33,7 @@ const ProfilePage = () => {
         </div>
 
         <div className="btn-wrapper">
-          <button>Log Out</button>
+          <button onClick={handleSignout}>Log Out</button>
         </div>
       </div>
 

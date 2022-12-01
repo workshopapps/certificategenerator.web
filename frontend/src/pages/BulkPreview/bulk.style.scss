@@ -4,264 +4,281 @@
 
 //BUTTONS
 #bulk-preview {
-  text-align:center!important;
+  text-align: center !important;
 
-  .button-container{
-      display: block!important;
-      margin-top: 0px!important;
-      padding: 6px;
-      align-items: center;
-      justify-content: center;
-      width: fit-content;
-      height: 100%;
-      margin: auto;
-      border-radius: 20px;
-      border: 0.8px solid rgba(84, 84, 84, 0.26);
-      background-color: white;
-      margin-block: 40px;
-  }
-
-.button-container button {
-  margin: 5px 15px 5px 15px;
-  height: 37px;
-  width: 130px;
-  border-radius: 10px;
-  font-family: "Work Sans", sans-serif;
- 
-
-  &.not-active {
-    background: transparent;
-    width: 140px;
-    height: 40px;
-    font-size: 12px;
-    border: 1px solid $primaryColor !important;
-
-    &:hover {
-      color: #fff;
-      background: $primaryColor;
-      border: none;
-      transition: 500ms ease-in-out;
-    }
-  }
-
-  &.active {
-    background: $primaryColor;
-    border: none !important;
-    color: #fff;
-    width: 140px;
-    height: 40px;
-    font-size: 12px;
-    font-family: 'Work Sans', sans-serif;
-
-    &:hover {
-      color: $primaryColor;
-      background: #fff;
-      border: 1px solid $primaryColor !important;
-      transition: 500ms ease-in-out;
-    }
-  }
-}
-
-.certificate h1{
-  font-size: 20px;
-  margin: 20px;
-}
-
-#bulk-btns {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-family: "Work Sans", sans-serif;
-  margin: 20px 0px;
-  padding: 0px;
-
-#bulk-btns button{
-  border-radius: 5px!important;
-  
-}
-  .send-btn {
-    width: 150px!important;
-    height: 35px!important;
-    border-radius: 5px!important;
-    background: transparent;
-    border: 1px solid $primaryColor!important;;
-    color: $primaryColor!important;
-    margin: 8px 10px!important;
-
-    &:hover {
-      color: #fff!important;
-      background: $primaryColor!important;
-      border: none;
-      transition: 500ms ease-in-out;
-    }
-  }
-
-  .download-btn {
-    width: 150px!important;
-    height: 35px!important;
-    border-radius: 5px!important;
-    background: $primaryColor!important;;
-    color: #fff;
-    border: none;
-    margin: 8px 10px!important;
-
-    &:hover {
-      color: $primaryColor!important;;
-      background: #fff!important;
-      border: 1px solid $primaryColor!important;;
-      transition: 500ms ease-in-out;
-    }
-  }
-}
-h2 {
-  margin: 30px 0px 60px;
-  font-size: 20px;
-}
-  
-  .certificate img{
-      width: 100%!important;;
-      max-width: 300px!important;;
-  }
-
-// CERTIFICATE IMAGES
-
-
-#bulk-images-desktop img{
-  width: 100%;
-  max-width: 350px;
-  height: auto;
-  margin:20px;
-  margin-left: 100px;
-  overflow: hidden; 
-}
-
-#template1{
-  margin: 50px;
-  padding: 0px 0px;
-  border: 5px solid $primaryColor!important;
-
-}
-
-
-@media screen and (min-width: 500px) {
-.certificate img{
-  min-width:450px;
-}
-}
-
-
-@media screen and (min-width: 768px) {
-  #bulk-btns button{
-    font-size: 13px;
-    
-    padding: 5px;
-    margin: 30px 15px 40px 15px;
-  }
-
-  .send-btn, .download-btn{
-    width: 200px!important;
-    height: 50px;
-  padding: 10px;
-
-}
-  .certificate img{
-    min-width:600px;
-  }
-
-  .certificate h1, h2{
-    font-size: 30px;
-    margin: 30px;
-      }
-
-
- #bulk-btns{
-    display: flex;
-    flex-direction: row;
+  .button-container {
+    display: block !important;
+    margin-top: 0px !important;
+    padding: 6px;
+    align-items: center;
     justify-content: center;
-    margin: 20px!important;
-  }
-    
-  .certificate img{
-      width: 100%;
-      max-width: 400px;
-  }
-
-  
-#bulk-images-desktop img{
-  margin-left: 150px;  
-
-}
-
-#template1{
-  margin: 50px;
-  padding: 0px 0px;
-  border: 5px solid $primaryColor!important;
-
-}
-
-.line{
-  padding: 10px;
-  margin: 10px 0px 20px 0px;
-}
-.line1{
-border-radius: 10px;
-background: #acebe0;
-
-}
-.line2{
-border: 3px solid $primaryColor;
-background: $primaryColor;
-max-width: 200px;
-width: 100%;
-margin-left: 250px;
-border-radius: 10px;
-
-}
-}
-
-@media screen and (min-width: 1024px) {
-  .button-container button{
-    font-size: 18px;
-    width: 200px;
-    height: 50px;
-
+    width: fit-content;
+    height: 100%;
+    margin: auto;
+    border-radius: 20px;
+    border: 0.8px solid rgba(84, 84, 84, 0.26);
+    background-color: white;
+    margin-block: 40px;
   }
 
-  #bulk-btns{
+  .button-container button {
+    margin: 5px 15px 5px 15px;
+    height: 37px;
+    width: 130px;
+    border-radius: 10px;
+    font-family: "Work Sans", sans-serif;
+
+
+    &.not-active {
+      background: transparent;
+      width: 140px;
+      height: 40px;
+      font-size: 12px;
+      border: 1px solid $primaryColor !important;
+
+      &:hover {
+        color: #fff;
+        background: $primaryColor;
+        border: none;
+        transition: 500ms ease-in-out;
+      }
+    }
+
+    &.active {
+      background: $primaryColor;
+      border: none !important;
+      color: #fff;
+      width: 140px;
+      height: 40px;
+      font-size: 12px;
+      font-family: 'Work Sans', sans-serif;
+
+      &:hover {
+        color: $primaryColor;
+        background: #fff;
+        border: 1px solid $primaryColor !important;
+        transition: 500ms ease-in-out;
+      }
+    }
+  }
+
+  .certificate h1 {
+    font-size: 20px;
     margin: 20px;
   }
 
-  #bulk-btns button{
-    font-size: 18px;
-    width: 200px;
-    height: 50px;
-    margin: 30px 15px 40px 15px;
-  }
-  .send-btn, .download-btn{
-    font-size: 14px!important;
-    width: 220px!important;
-    height: 50px!important;
-  
+  #bulk-btns {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: "Work Sans", sans-serif;
+    margin: 20px 0px;
+    padding: 0px;
 
-}
-  .certificate img{
-    max-width:700px;
+    #bulk-btns button {
+      border-radius: 5px !important;
+    }
+
+    .send-btn {
+      width: 170px !important;
+      height: 38px !important;
+      border-radius: 5px !important;
+      background: transparent;
+      border: 1px solid $primaryColor !important;
+      ;
+      color: $primaryColor !important;
+      margin: 8px 10px !important;
+
+      &:hover {
+        color: #fff !important;
+        background: $primaryColor !important;
+        border: none;
+        transition: 500ms ease-in-out;
+      }
+    }
+
+    .download-btn {
+      width: 170px !important;
+      height: 38px !important;
+      border-radius: 5px !important;
+      background: $primaryColor !important;
+      ;
+      color: #fff;
+      border: none;
+      margin: 8px 10px !important;
+
+      &:hover {
+        color: $primaryColor !important;
+        ;
+        background: #fff !important;
+        border: 1px solid $primaryColor !important;
+        ;
+        transition: 500ms ease-in-out;
+      }
+    }
   }
 
-  .bulk-images img {
+  h2 {
+    margin: 30px 0px 60px;
+    font-size: 20px;
+  }
+
+  .certificate img {
+    width: 100% !important;
+    ;
     max-width: 300px !important;
-  }
-  
-    
-  .certificate img{
-      width: 100%!important;;
-      max-width: 600px!important;;
+    ;
   }
 
-  .bulk-images img {
+  // CERTIFICATE IMAGES
+
+
+  #bulk-images-desktop img {
     width: 100%;
-    max-width: 300px;
+    max-width: 350px;
+    height: auto;
+    margin: 20px;
+    margin-left: 100px;
+    overflow: hidden;
   }
-}
+
+  #template1 {
+    margin: 50px;
+    padding: 0px 0px;
+    border: 5px solid $primaryColor !important;
+
+  }
+
+
+  @media screen and (min-width: 500px) {
+    .certificate img {
+      min-width: 450px;
+    }
+  }
+
+
+  @media screen and (min-width: 768px) {
+    #bulk-btns button {
+      font-size: 13px;
+
+      padding: 5px;
+      margin: 30px 15px 40px 15px;
+    }
+
+    .send-btn,
+    .download-btn {
+      width: 200px !important;
+      height: 50px;
+      padding: 10px;
+
+    }
+
+    .certificate img {
+      min-width: 600px;
+    }
+
+    .certificate h1,
+    h2 {
+      font-size: 30px;
+      margin: 30px;
+    }
+
+
+    #bulk-btns {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      margin: 20px !important;
+    }
+
+    .certificate img {
+      width: 100%;
+      max-width: 400px;
+    }
+
+
+    #bulk-images-desktop img {
+      margin-left: 150px;
+
+    }
+
+    #template1 {
+      margin: 50px;
+      padding: 0px 0px;
+      border: 5px solid $primaryColor !important;
+
+    }
+
+    .line {
+      padding: 10px;
+      margin: 10px 0px 20px 0px;
+    }
+
+    .line1 {
+      border-radius: 10px;
+      background: #acebe0;
+
+    }
+
+    .line2 {
+      border: 3px solid $primaryColor;
+      background: $primaryColor;
+      max-width: 200px;
+      width: 100%;
+      margin-left: 250px;
+      border-radius: 10px;
+
+    }
+  }
+
+  @media screen and (min-width: 1024px) {
+    .button-container button {
+      font-size: 18px;
+      width: 200px;
+      height: 50px;
+
+    }
+
+    #bulk-btns {
+      margin: 20px;
+    }
+
+    #bulk-btns button {
+      font-size: 18px;
+      width: 200px;
+      height: 50px;
+      margin: 30px 15px 40px 15px;
+    }
+
+    .send-btn,
+    .download-btn {
+      font-size: 14px !important;
+      width: 220px !important;
+      height: 50px !important;
+
+
+    }
+
+    .certificate img {
+      max-width: 700px;
+    }
+
+    .bulk-images img {
+      max-width: 300px !important;
+    }
+
+
+    .certificate img {
+      width: 100% !important;
+      ;
+      max-width: 600px !important;
+      ;
+    }
+
+    .bulk-images img {
+      width: 100%;
+      max-width: 300px;
+    }
+  }
 
 }

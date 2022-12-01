@@ -10,7 +10,7 @@ import html2canvas from "html2canvas";
 import { jsPDF } from "jspdf";
 import Button from "../../Component/button";
 
-function Index({
+function SinglePreview({
   logo,
   certificateTitle,
   awardeeName,
@@ -48,17 +48,6 @@ function Index({
 
   return (
     <div id="singlePreview">
-      {/* BUTTONS TO TOGGLE BETWEEN SINGLE AND BULK CERTIFICATE */}
-
-      <div className="button-container">
-        <Link to="/single_preview">
-          <button className="active">Single Certificate</button>
-        </Link>
-        <Link to="/signup">
-          <button className="not-active">Bulk Certificate</button>
-        </Link>
-      </div>
-
       {/* IMAGE OF YOUR CERTIFICATE READY TO BE DOWNLOADED OR SENT */}
 
       <div className="certificate-header">
@@ -164,11 +153,14 @@ function Index({
       </div>
 
       {/* BUTTON TO EXPLORE MORE TEMPLATES */}
-      <Link to="/templates">
-        <Button text="Explore More Templates" style={{ margin: "30px auto" }} />
-      </Link>
+      <div className="template-btn">
+        <Link to="/templates" className="explore-btn">
+          <Button name="Explore More Templates" style={{ margin: "30px auto" }} />
+       </Link>
+      </div>
+      
     </div>
   );
 }
 
-export default Index;
+export default SinglePreview;

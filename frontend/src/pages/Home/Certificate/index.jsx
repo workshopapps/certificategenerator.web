@@ -102,7 +102,7 @@ export default function Certificate ({
             <label htmlFor='date' className="label">Issue Date</label>
             <input type="date" value={issueDate} onChange={e => setIssueDate(e.target.value)} />
 
-            <Link className="btn-create" to = "single_preview">
+            <Link className="btn-create" to = "preview">
               <Button name={"Create Certificate"}/>
             </Link>
           </form>

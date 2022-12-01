@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import certificate from "../../assets/images/bulkPreview/Completion - Portrait (2).png"
 import "./bulk.style.scss";
 import { Splide, SplideSlide } from '@splidejs/react-splide';
@@ -10,15 +9,6 @@ import '@splidejs/react-splide/css';
 function Index() {
   return (
     <div id="bulk-preview">
-      {/* BUTTONS TO TOGGLE BETWEEN SINGLE AND BULK CERTIFICATE */}
-
-      <div className="button-container">
-        <Link to="/single_preview">
-          <button className="not-active">Single Certificate</button>
-        </Link>
-        <button className="active">Bulk Certificate</button>
-      </div>
-
       {/* YOUR BULK CRETIFICATES READY TO BE DOWNLOADED OR SENT */}
 
       <div className="certificate">
