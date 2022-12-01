@@ -23,6 +23,7 @@ const downloadCsv = require("./routes/downloadRouter");
 const careers = require("./routes/careerRouter");
 const teamRoute = require("./routes/teamRoutes");
 const mailingLists = require("./routes/mailingListRouter");
+require('./routes/emailNotificationRouter')(app)
 const profileRouter = require("./routes/profileRouters");
 const contacts = require('./routes/contactRouter');
 const pricing = require('./routes/pricingRouter');
