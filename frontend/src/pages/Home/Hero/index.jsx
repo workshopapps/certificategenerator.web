@@ -21,7 +21,9 @@ export default function Hero() {
             Generate professionally designed certificates for your staff,
             students etc.
           </p>
-          <Button text={"Create a certificate now"} />
+          <a href="#certificatee">
+            <Button text={"Create certificate"} />
+          </a>
           {/* <button className="hero-button">Create a certificate now</button> */}
           <p className="mobile-only">It is free and easy to use</p>
         </div>

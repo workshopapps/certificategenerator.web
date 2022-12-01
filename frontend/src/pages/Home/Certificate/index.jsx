@@ -93,7 +93,7 @@ export default function Certificate({
 
   return (
     <>
-      <p className="sora header">
+      <p id="certificatee" className="sora header">
         Create your <span className="emphasized">certificate </span>
         with <span className="emphasized">ease</span>
       </p>
@@ -146,7 +146,7 @@ export default function Certificate({
 
       {bulkCertificate ? (
         <div>
-          <div className="flex center justify-between gap cert-img">
+          {/* <div className="flex center justify-between gap cert-img">
             <img src={demo} alt="certificate-1" />
             <img src={demo_2} alt="certificate-2" />
             <img src={demo_3} alt="certificate-3" />
@@ -157,7 +157,7 @@ export default function Certificate({
               <span className="explore-arrow">&#10140;</span>Explore more
               templates
             </p>
-          </Link>
+          </Link> */}
 
           <form action="" className="cert-form text-left work-sans">
             <UploadCSV />
@@ -181,7 +181,7 @@ export default function Certificate({
         </div>
       ) : (
         <div>
-          <div className="flex center justify-between gap cert-img">
+          {/* <div className="flex center justify-between gap cert-img">
             <img src={demo} alt="certificate-1" />
             <img src={demo_2} alt="certificate-2" />
             <img src={demo_3} alt="certificate-3" />
@@ -192,7 +192,7 @@ export default function Certificate({
               <span className="explore-arrow">&#10140;</span>Explore more
               templates
             </p>
-          </Link>
+          </Link> */}
 
           <form action="" className="cert-form text-left work-sans">
             <label for="img">Upload logo</label>
