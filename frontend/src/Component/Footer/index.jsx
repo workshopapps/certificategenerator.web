@@ -4,16 +4,15 @@ import logo from "../../assets/images/footerIcon.png";
 import "./footer.style.scss";
 import { BsInstagram, BsLinkedin, BsTwitter, BsGithub } from "react-icons/bs";
 import { useEffect } from "react";
-import Button from "../button";
 
 const Footer = () => {
   const year = new Date().getFullYear();
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
-  const handleChange = e => {
+  const handleChange = (e) => {
     setEmail(e.target.value);
   };
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     const regex =
       /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
@@ -76,8 +75,7 @@ const Footer = () => {
           </div>
           <div className="footer-form">
             <h3>Stay up to date with Product</h3>
-            <form noValidate>
-              <p className="error-msg">{message}</p>
+            <form noValidate>              
               <div className="footer-input">
                 <input
                   type="email"
@@ -87,8 +85,9 @@ const Footer = () => {
                   name="name"
                   onClick={() => setMessage("")}
                 />
-                <Button text={"Subscribe"} callback={handleSubmit} />
+                <button onClick={handleSubmit}>Subscribe</button>
               </div>
+              <p className="error-msg">{message}</p>
             </form>
           </div>
         </div>

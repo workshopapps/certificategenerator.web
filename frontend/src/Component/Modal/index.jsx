@@ -8,7 +8,7 @@ function index({ open, onClose, modalText }) {
     <div onClick={onClose} className="modal-wrapperx">
       <div className="modal-containerx" onClick={e => e.stopPropagation()}>
         <div className="cancel-btn-wrapper">
-          <button onClick={onClose} className="modal-containerx__cancel">
+          <button onClick={onClose} className="modal-container__cancel">
             Close{" "}
             <span className="cancel-x-btn">
               <svg
@@ -29,19 +29,19 @@ function index({ open, onClose, modalText }) {
           </button>
         </div>
         <div>
-          <h3 className="modal-containerx__header">Oops!!!</h3>
-          <p className="modal-containerx__text">{modalText}</p>
+          <h3 className="modal-container__header">Oops!!!</h3>
+          <p className="modal-container__text">{modalText}</p>
         </div>
-        <div className="modal-containerx__btns">
+        <div className="modal-container__btns">
           <Link to="/signup">
-            <button onClick={onClose} className="modal-containerx__btn">
+            <button onClick={onClose} className="modal-container__btn">
               Sign Up
             </button>
           </Link>
           <Link to="/login">
             <button
               onClick={onClose}
-              className="modal-containerx__btn modal-containerx__btn--signin"
+              className="modal-container__btn modal-container__btn--signin"
             >
               Sign In
             </button>

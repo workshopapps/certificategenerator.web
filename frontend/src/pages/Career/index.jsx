@@ -7,6 +7,7 @@ import Rocket from "./assets/rocket-launcher.webp";
 import Frame from "./assets/Frame 16353.png";
 import Briefcase from "./assets/candidate resumes and briefcase.png";
 import Search from "./assets/search-icon.svg";
+import { FiChevronDown } from "react-icons/fi";
 
 function Career() {
   return (
@@ -21,7 +22,7 @@ function Career() {
             are strivining to make magic happen for their teams.
           </p>
           <a href="#positions">
-            <Button text="See open positions" />
+            <Button name="See open positions" />
           </a>
         </div>
         <div className="hero__image">
@@ -37,7 +38,7 @@ function Career() {
             <img src={Frame} alt="frame" />
           </div>
           <div className="team">
-            {Persons.map(person => {
+            {Persons.map((person) => {
               return <img key={person.id} src={person.img} alt="" />;
             })}
           </div>
@@ -49,7 +50,7 @@ function Career() {
               Join our amazing team as we make magic happen for businesses that
               are strivining to make magic happen for their teams.
             </p>
-            <Button text="See careers" />
+            <Button name="See careers" />
           </div>
         </div>
       </section>
@@ -75,7 +76,7 @@ function Career() {
               guessing.
             </p>
             <a href="#positions">
-              <Button text="See careers" />
+              <Button name="See careers" />
             </a>
           </div>
         </div>
@@ -92,18 +93,29 @@ function Career() {
                 className="input"
               />
             </div>
-            <Button text="Search" />
+            <Button name="Search" />
           </div>
           <div className="options">
-            <select>
-              <option value="Job Category">Job Category</option>
-            </select>
-            <select>
-              <option value="Full/Part-time">Full/Part-time</option>
-            </select>
-            <select>
-              <option value="Location">Location</option>
-            </select>
+            <div>
+              <select>
+                <option className="option-in-options-div" value="Job Category">
+                  Job Category
+                </option>
+              </select>
+              <FiChevronDown size={20} className="select_dropdown_icon" />
+            </div>
+            <div>
+              <select>
+                <option value="Full/Part-time">Full/Part-time</option>
+              </select>
+              <FiChevronDown size={20} className="select_dropdown_icon" />
+            </div>
+            <div>
+              <select>
+                <option value="Location">Location</option>
+              </select>
+              <FiChevronDown size={20} className="select_dropdown_icon" />
+            </div>
           </div>
         </form>
 
@@ -112,17 +124,17 @@ function Career() {
             <h3>Engineering</h3>
             <span className="number__badge">3</span>
           </div>
-          {Positions.map(position => {
+          {Positions.map((position) => {
             return (
               <div key={position.id} className="job__cont">
                 <div className="job__desc">
                   <div>
                     <h3>{position.role}</h3>
                     <h4>
-                      {position.type} | <b>{position.location}</b>
+                      {position.type} <p>|</p> <b>{position.location}</b>
                     </h4>
                   </div>
-                  <Button text="Apply" />
+                  <Button name="Apply" />
                 </div>
                 <hr />
               </div>
@@ -139,10 +151,10 @@ function Career() {
                   <div>
                     <h3>{position.role}</h3>
                     <h4>
-                      {position.type} | <b>{position.location}</b>
+                      {position.type} <p>|</p> <b>{position.location}</b>
                     </h4>
                   </div>
-                  <Button text="Apply" />
+                  <Button name="Apply" />
                 </div>
                 <hr />
               </div>

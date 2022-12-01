@@ -43,7 +43,7 @@ export const data = [
                     header: "More features customised for you",
                     amount: "$11.99",
                     text: "Everything in Lite +",
-                    linkTo: "/payment",
+                    linkTo: "/signup",
                     linkText: "Choose plan",
                     subText: [
                         {
@@ -86,7 +86,7 @@ export const data = [
                     header: "Best for professionals",
                     amount: "$23.99",
                     text: "Everything in Basic +",
-                    linkTo: "/payment",
+                    linkTo: "/signup",
                     linkText: "Choose plan",
                     subText: [
                         {

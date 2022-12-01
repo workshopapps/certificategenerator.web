@@ -1,11 +1,13 @@
-import "./hero.style.scss";
-import hero from "../../../assets/images/hero.png";
-import tick from "../../../assets/images/tick.png";
-import google from "../../../assets/images/google.png";
-import udemy from "../../../assets/images/udemy.png";
-import coursera from "../../../assets/images/coursera.png";
-import skillshare from "../../../assets/images/skillshare.png";
+import React from "react";
+import './hero.style.scss'
+import hero from '../../../assets/images/hero.png'
+import tick from '../../../assets/images/tick.png'
+import google from '../../../assets/images/google.png'
+import udemy from '../../../assets/images/udemy.png'
+import coursera from '../../../assets/images/coursera.png'
+import skillshare from '../../../assets/images/skillshare.png'
 import Button from "../../../Component/button";
+// import {Link} from "react-router-dom";
 
 export default function Hero() {
   return (
@@ -21,16 +23,20 @@ export default function Hero() {
             Generate professionally designed certificates for your staff,
             students etc.
           </p>
-          <Button text={"Create a certificate now"} />
+          <a href="#certificatee">
+            <Button name={"Create certificate"} />
+          </a>
           {/* <button className="hero-button">Create a certificate now</button> */}
           <p className="mobile-only">It is free and easy to use</p>
         </div>
-        <img src={hero} alt="hero" className="hero-img"></img>
+        <div className="hero-right">
+          <img src={hero} alt="hero" className="hero-img"></img>
+        </div>
       </div>
 
       <div className="line-height flex justify-between center text-left work-sans perks">
         <div
-          className="flex items-center single-perk"
+          className="flex single-perk"
           style={{ width: "447px", gap: "10px" }}
         >
           <img src={tick} alt="tick" className="tick"></img>
@@ -39,14 +45,14 @@ export default function Hero() {
           </p>
         </div>
         <div
-          className="flex items-center single-perk"
+          className="flex single-perk"
           style={{ width: "325px", gap: "10px" }}
         >
           <img src={tick} alt="tick" className="tick"></img>
           <p>Edit template to your preferred look and feel.</p>
         </div>
         <div
-          className="flex items-center single-perk"
+          className="flex single-perk"
           style={{ width: "294px", gap: "10px" }}
         >
           <img src={tick} alt="tick" className="tick"></img>

@@ -16,7 +16,7 @@
   display: flex;
   justify-content: center;
 
-  .modal-containerx {
+  .modal-container {
     background-color: #fff;
     width: 90%;
     border-radius: 10px;
@@ -41,7 +41,7 @@
       justify-content: flex-end;
     }
 
-    .modal-containerx__cancel {
+    .modal-container__cancel {
       background: transparent;
       color: #6c6c70;
       border: none;
@@ -82,7 +82,7 @@
       justify-content: center;
       gap: 15px;
       margin-top: 20px;
-      .modal-containerx__btn {
+      .modal-container__btn {
         background: $primaryColor !important;
         color: #fff !important;
         border: 1px solid $primaryColor;
@@ -118,8 +118,8 @@
 }
 
 @media (min-width: 700px) {
-  .modal-wrapperx {
-    .modal-containerx {
+  .modal-wrapper {
+    .modal-container {
       width: 500px;
       top: 300px;
       padding: 35px;
