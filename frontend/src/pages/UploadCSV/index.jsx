@@ -3,7 +3,8 @@ import "./uploadCSV.style.scss";
 import Button from "../../Component/button";
 // img
 import Certificate from "../../assets/images/uploadPage/cert.svg";
-import CSVSample from "../../assets/images/uploadPage/CSVSample.svg";
+//import CSVSample from "../../assets/images/uploadPage/CSVSample.svg";
+import CSVSample from "../../assets/images/CSV-sample.png"
 import UploadVector from "../../assets/images/uploadPage/uploadVector.svg";
 import Template1 from "../../assets/images/uploadPage/template1.svg";
 import Template2 from "../../assets/images/uploadPage/template2.svg";
