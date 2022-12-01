@@ -32,7 +32,11 @@ const ContactUs = () => {
         phoneNumber,
         message
       });
-
+       setFirstName("");
+       setLastName("");
+       setEmail("");
+       setPhoneNumber("");
+       setMessage("");
       setLoading(false);
       setSuccess(true);
     } catch (err) {
@@ -91,12 +95,14 @@ const ContactUs = () => {
                 placeholder="First name"
                 label="First Name"
                 type="text"
+                value={firstName}
                 onChange={e => setFirstName(e.target.value)}
               />
               <Inputfield
                 placeholder="First name"
                 label="Last Name"
                 type="text"
+                value={lastName}
                 onChange={e => setLastName(e.target.value)}
               />
             </div>
@@ -104,18 +110,22 @@ const ContactUs = () => {
               label=" Email"
               type="email"
               placeholder="gigtot@gmail.com"
+              value={email}
               onChange={e => setEmail(e.target.value)}
             />
             <Inputfield
               label=" Phone no"
               placeholder="+234900000 "
               type="number"
+              value={phoneNumber}
+              maxlength='13'
+              pattern='[0-9]*'
               onChange={e => setPhoneNumber(e.target.value)}
-              pattern="[0-9]*"
             />
             <TextArea
               placeholder="type message here"
               label="Message"
+              value={message}
               onChange={e => setMessage(e.target.value)}
             />
             <Button width="100%">

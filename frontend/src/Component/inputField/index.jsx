@@ -1,9 +1,7 @@
 import React from 'react'
 import './input.scss'
 
-
-
-const Inputfield = ({label,type, placeholder, onChange, pattern, value}) => {
+const Inputfield = ({label,type, placeholder, onChange, value, pattern, maxlength}) => {
   return (
     <div className="inputContainer">
       <label htmlFor={label} className="inputContainer__label">
@@ -15,8 +13,9 @@ const Inputfield = ({label,type, placeholder, onChange, pattern, value}) => {
         placeholder={placeholder}
         aria-placeholder={placeholder}
         onChange={onChange}
-        pattern={pattern}
         value={value}
+        pattern={pattern}
+        maxlength={maxlength}
       />
     </div>
   );
