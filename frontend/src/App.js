@@ -76,7 +76,7 @@ function App() {
 
   if (appLoading) {
     return (
-      <div style={{ display: "flex", justifyContent: "center" }}>
+      <div style={{ display: "flex", justifyContent: "center", marginTop: "250px" }}>
         <Loader />
       </div>
     );
