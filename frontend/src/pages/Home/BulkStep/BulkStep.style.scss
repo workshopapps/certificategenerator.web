@@ -109,11 +109,10 @@ body {
     .heading{
         font-size: 32px;
     }  
-    .space{
-        gap: 5%;
-    }
+    
     .bulk-process{
         flex-direction: column;
+        gap: 3rem;
         > div{
             width: 100%;
         }
@@ -158,6 +157,7 @@ body {
     }
     .bulk-process{
         flex-direction: column;
+        gap: 3rem;
         > div{
             width: 100%;
         }
@@ -165,9 +165,10 @@ body {
             width: 100%;
         }
     }
-    .process {
+    .right .process {
         display: flex;
         align-items: center;
+        margin: 0 0 1rem 0;
     }
     .bulk-button {
         margin: 40px 0 24px 11%;
