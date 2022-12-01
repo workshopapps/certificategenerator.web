@@ -47,7 +47,7 @@ function App() {
   useEffect(() => {
     setTimeout(function () {
       setAppLoading(false);
-    }, 5000);
+    }, 1000);
   }, []);
 
   useEffect(() => {
