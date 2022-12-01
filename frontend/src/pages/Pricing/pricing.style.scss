@@ -11,7 +11,11 @@ $featureHeader: 'Sora', sans-serif;
 
 main {
     margin-top: -70px;
-
+    .bg {
+        width: 100vw;
+        height: 60px!important;
+        background-color: $pricingBackground!important;
+    }
     .pricing{
         background-color: $pricingBackground;
         font-family: $text;
@@ -318,80 +322,75 @@ main {
     }
 
 // Testimonials styles
+
+
+.testimonial {
+    text-align: center;
+    margin: 50px 0px;
+    font-family: "Sora" !important;
+  }
+  
+  .testimonial-wrapper {
+    margin: 30px 40px;
+    padding: 0px 50px;
+    overflow: hidden;
+  }
+  
+  .testimonial-box {
+    min-height: 300px;
+    padding: 25px;
+    border: 1px solid grey;
+    border-radius: 10px;
+    margin-bottom: 50px;
+  }
+  
+  .testimonial-flex {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+  
+  .testimonial-box .test-image img {
+    width: 80px;
+  }
+  
+  .testimonial-flex .text {
+    margin-left: 20px;
+    text-align: left;
+  }
+  
+  .testimonial-name {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0px;
+  }
+  
+  .testimonial-state {
+    font-size: 14px;
+    margin-top: 8px;
+    font-weight: 500;
+  }
+  
+  .testimonial-test {
+    font-size: 14px;
+    text-align: left;
+    line-height: 25px;
+    margin-top: 30px;
+    font-weight: 500;
+  }
+  
+  @media screen and (min-width: 1024px) {
+    .testimonial-box {
+      max-height: 315px;
+    }
+  }
+
+
     .testimonials {
         font-family: $text;
         
-        .textC {
-            text-align: center;
-            max-width: 100%;
-            width: 90%;
-            margin-left: auto;
-            margin-right: auto;
-
-            > p {
-                font-weight: 400;
-                font-size: 18px;
-                line-height: 29px;
-                color: #19A68E;
-                padding-top: 80px;
-            }
-
-            h3 {
-                font-family: $h3Text;
-                font-weight: 700;
-                font-size: 40px;
-                line-height: 54px;
-                color: #222222;
-                margin-bottom: 30px;
-            }
-
-            .testimonialContainer {
-                display: grid;
-                grid-template-columns: repeat(3, 1fr);
-                gap: 20px;
-                padding-bottom: 60px;
-
-                > div {
-                    width: 397px;
-                    height: 399px;
-                    margin: auto;
-                    padding: 20px;
-                    background-color: $featureBackground;
-                    box-shadow: 0px 4px 14px rgba(82, 77, 77, 0.1);
-                    border-radius: 10px;
-                    text-align: start;
-                    position: relative;
-                    font-weight: 400;
-                    font-size: 16px;
-                    line-height: 26px;
-                    color: #656666;
-
-                    > div {
-                        display: flex;
-                        align-items: center;
-                        position: absolute;
-                        bottom: 0;
-
-                        img {
-                            margin-right: 20px;
-                            width: 56px;
-                            height: 56px;
-                            border-radius: 50%;
-                        }
-
-                        div {
-                            p:nth-of-type(1) {
-                                font-weight: 600;
-                                font-size: 20px;
-                                line-height: 32px;
-                                color: #191A1B;
-                            }
-                        }
-                    } 
-                }
-            }
         }
-    }
+
 
     .bg {
         width: 100vw;
@@ -399,43 +398,7 @@ main {
         background-color: $featureBackground;
     }
 }
-@media (max-width: 1439px) {
-    main {
-        .testimonials {
 
-            .textC {
-                
-                .testimonialContainer {
-                    display: flex;
-                    align-items: center;
-                    width: 100%;
-                    gap: 0px;
-                    margin-left: auto;
-                    margin-right: auto;
-                    overflow-x: scroll;
-                    overflow-y: hidden;
-    
-                    > div {
-                        margin-right: 20px;
-                        flex-shrink: 0;
-                        overflow: none;
-                    }
-                }
-    
-                /* Scroll bar */
-                .testimonialContainer::-webkit-scrollbar {
-                    width: 10px;
-                }
-                .testimonialContainer::-webkit-scrollbar-thumb {
-                    background: #08372f;
-                    border-radius:  10px;
-                    background-clip: padding-box;
-                    border: 6px solid transparent;
-                }   
-            }
-        }
-    }
-}
 @media (max-width: 1300px) {
     main {
         .pricing{
@@ -614,23 +577,7 @@ main {
         }
     }
 
-    .testimonials {
-
-        .textC {
-
-            > p {
-                font-size: 14px;
-                line-height: 22px;
-                padding-top: 100px;
-            }
-
-            h3 {
-                font-size: 28px;
-                line-height: 35px;
-            }
-
-        }
-    }
+  
 }
 }
 @media (max-width: 767px) {
@@ -710,20 +657,6 @@ main {
         }
 
         .testimonials {
-            
-            .textC {  
-                max-width: 100vw;
-                width: 100%;
-
-                > p {
-                    padding-top: 50px;
-                }
-  
-                .testimonialContainer {
-                    > div {
-                        margin-right: 10px;
-                    }
-                }
 
                 /* Scroll bar */
                 .testimonialContainer::-webkit-scrollbar {
@@ -736,28 +669,11 @@ main {
                     border: 6px solid transparent;
                     width: 100px !important;
                 }   
-            }
+            
         }
     }
 }
-@media (max-width: 480px) {
-    main {
-        .testimonials {
-            max-width: 100vw !important;
-            width: 100% !important;
 
-            .textC {  
-                #monials, h3 {
-                    max-width: 100%;
-                    width: 90%;
-                    margin-left: auto;
-                    margin-right: auto;
-                }
-  
-            }
-        }
-    }
-}
 @media (max-width: 360px) {
     main {
         .pricing{
