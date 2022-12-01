@@ -1,4 +1,5 @@
-
+import DesignLead from "./assets/design-lead.webp";
+import Pm from "./assets/pm.webp";
 import Person1 from './assets/person-1.webp'
 import Person2 from './assets/person-2.webp'
 import Person3 from './assets/person-3.webp'
@@ -60,4 +61,23 @@ export const Persons = [
     img: Person4,
   },
 
+]
+
+
+export const carouseltems = [
+  {
+    heading:'Everyone’s contribution counts and is well appreciated',
+    body:'The culture at Headlight is amazing. Everyone can contibute and no idea is considered stupid. Your creative energy is not restrained but it is harnessed to move the team forward',
+    name:'Gabriel Prosper',
+    role:'Design lead',
+    image:DesignLead,
+  },
+  {
+    heading:'Everyone’s contribution counts and is well appreciated',
+    body:'The culture at Headlight is amazing. Everyone can contibute and no idea is considered stupid. Your creative energy is not restrained but it is harnessed to move the team forward',
+    name:'Adebanke Jayeoba',
+    role:'Product Manager',
+    image:Pm,
+  },
+ 
 ]

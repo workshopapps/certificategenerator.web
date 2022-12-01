@@ -1,23 +1,25 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import "./template.style.scss";
 
 import Filter from "./modal";
 
 // template card images
-import cardimg from "./assets/Rectangle1.png";
-import cardimg2 from "./assets/Rectangle2.png";
-import cardimg3 from "./assets/Rectangle3.png";
-import cardimg4 from "./assets/Rectangle4.png";
-import cardimg5 from "./assets/Rectangle5.png";
-import cardimg6 from "./assets/Rectangle6.png";
-import cardimg7 from "./assets/Rectangle7.png";
-import cardimg8 from "./assets/Rectangle8.png";
-import cardimg9 from "./assets/Rectangle9.png";
-import cardimg10 from "./assets/Rectangle10.png";
-import cardimg11 from "./assets/Rectangle11.png";
+import cardimg from "./assets/Rectangle1.webp";
+import cardimg2 from "./assets/Rectangle2.webp";
+import cardimg3 from "./assets/Rectangle3.webp";
+import cardimg4 from "./assets/Rectangle4.webp";
+import cardimg5 from "./assets/Rectangle5.webp";
+import cardimg6 from "./assets/Rectangle6.webp";
+import cardimg7 from "./assets/Rectangle7.webp";
+import cardimg8 from "./assets/Rectangle8.webp";
+import cardimg9 from "./assets/Rectangle9.webp";
+import cardimg10 from "./assets/Rectangle10.webp";
+import cardimg11 from "./assets/Rectangle11.webp";
 import premiumicon from "./assets/Vector.svg";
 import filtericon from "./assets/setting.svg";
 import addicon from "./assets/add-square.svg";
+import closeicon from "./assets/close.png";
 
 export default function Template() {
   const [modalState, setModalState] = useState(false);
@@ -103,14 +105,36 @@ export default function Template() {
     categories.push(clickedCategory);
   };
 
+  const errorMsg = document.querySelector('.error-wrapper');
+
   const applySelectCategories = () => {
     setCategory(categories);
+
+    if (categories.length === 0) {
+      showErrorMsg();
+    } else {
+      return hideErrorMsg();
+    }
   };
+
+  const hideErrorMsg = () => {
+    errorMsg.classList.add('hideerrorMsg');
+  }
+
+  const showErrorMsg = () => {
+    errorMsg.classList.remove('hideerrorMsg');
+  }
 
   return (
     <div className="template-wrapper">
       <header>
-        <h1>Templates</h1>
+        <h1 className="templates-title">Templates</h1>
+        <div className="error-wrapper hideerrorMsg">
+          <div className="error-container">
+            <p className="error-container__message">Oops! It seems like none of the templates match the filters you selected. Please modify your filters or browse the templates manually.</p>
+            <img onClick={hideErrorMsg} src={closeicon} alt="close icon" className="closeicon" />
+        </div>
+        </div>
 
         <div className="top-container-div">
           <p>All results</p>
@@ -144,16 +168,16 @@ export default function Template() {
         {/* cards start */}
         <div className="template-card">
           <div className="template-card__header">
-            <h2>Blank Canvas</h2>
+            <h2 className="canvas-title">Blank Canvas</h2>
             <button className="btn-premium">
               Premium
               <img src={premiumicon} alt="" />
             </button>
           </div>
           <div className="template-card__icon">
-            <a href="#">
+            <Link to="/pricing">
               <img src={addicon} alt="card" />
-            </a>
+            </Link>
           </div>
         </div>
 

@@ -1,27 +1,19 @@
-const express = require('express')
-const router = express.Router()
+const express = require("express");
+const router = express.Router();
 
 const {
-  createUserProfile,
-  updateUserProfile,
+  addUserProfile,
   getUserProfile,
-  deleteUserProfile
-
-} = require('../controllers/profileController')
-
-
+  updateUserProfile,
+} = require("../controllers/profileController");
 
 // for getting each user profile
-router.get('/:id', getUserProfile)
+router.get("/", getUserProfile);
 
 // for creating each user profile
-router.post('/', createUserProfile)
+router.post("/", addUserProfile);
 
-// to for update a user's profile
-router.put('/:id', updateUserProfile)
+//for updating userProfile
+router.put('/', updateUserProfile);
 
-// to delete a user profile
-router.delete('/:id', deleteUserProfile)
-
-
-module.exports = router
+module.exports = router;
