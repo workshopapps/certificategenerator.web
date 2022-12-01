@@ -25,8 +25,8 @@ pipeline {
 				sh "sudo cp -rf backend /home/sean/certgo/backend"
 				sh "sudo cp -fr ${WORKSPACE}/frontend/build/* /home/sean/certgo/frontend"
 				sh "sudo su - sean && whoami"
-                sh "sudo pm2 stop certgo"
-				sh "sudo pm2 stop index"
+                //sh "sudo pm2 stop certgo"
+				//sh "sudo pm2 stop index"
 				sh "sudo pm2 serve /home/sean/frontend/build --port 3077"
 				sh "sudo pm2 start /home/sean/backend/index.js"
 			}
