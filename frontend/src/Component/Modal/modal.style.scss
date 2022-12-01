@@ -2,7 +2,7 @@
 @import "../../Style/variables";
 
 .modal-wrapperx {
-  height: 150vh;
+  height: 100%;
   width: 100%;
   background: rgba(34, 34, 34, 0.4);
   position: absolute;
@@ -21,7 +21,7 @@
     width: 90%;
     border-radius: 10px;
     position: absolute;
-    top: 20%;
+    top: 12%;
     align-self: center;
     padding: 25px 15px;
 
