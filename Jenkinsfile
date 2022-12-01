@@ -9,7 +9,7 @@ pipeline {
 
 			steps {
 				sh "cd frontend"
-				sh "cd frontend && npm i --force && npm run build"
+				sh "cd frontend && npm i --force && CI=false npm run build"
 			} 
         }
         stage("build backend"){
