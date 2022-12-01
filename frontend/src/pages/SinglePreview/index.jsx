@@ -8,6 +8,7 @@ import certificate3 from "../../assets/images/SinglePreview/Completion - Portrai
 import { exportComponentAsPNG } from "react-component-export-image";
 import html2canvas from "html2canvas";
 import { jsPDF } from "jspdf";
+import Button from "../../Component/button";
 
 function Index({
   logo,
@@ -36,13 +37,11 @@ function Index({
     const canvas = await html2canvas(element);
     const data = canvas.toDataURL("image/png");
 
-    const pdf = new jsPDF(
-      {
-        orientation: "l",
-        unit: "pt",
-        format: [canvas.width, canvas.height]
-      }
-    );
+    const pdf = new jsPDF({
+      orientation: "l",
+      unit: "pt",
+      format: [canvas.width, canvas.height],
+    });
     pdf.addImage(data, "PNG", 0, 0, canvas.width, canvas.height);
     pdf.save(`${awardeeName}.pdf`);
   };
@@ -83,7 +82,7 @@ function Index({
               <div id="single-preview-card">
                 <div id="single-preview-text">
                   <div id="preview-text">
-                    <img src={logo} style={{width:'40px'}} alt="logo" />
+                    <img src={logo} style={{ width: "40px" }} alt="logo" />
                     <h1>{certificateTitle}</h1>
 
                     <p>THIS CERTIFIES THAT</p>
@@ -130,7 +129,9 @@ function Index({
             Send Certificate
           </button>
           <div class="dropdown">
-            <button class="dropbtn download-button">Download Certificate</button>
+            <button class="dropbtn download-button">
+              Download Certificate
+            </button>
             <div class="dropdown-content">
               <button
                 onClick={(e) => {
@@ -147,9 +148,7 @@ function Index({
               <button onClick={handleDownloadPdf} className="pdf-button">
                 PDF
               </button>
-              <button>
-                ZIP
-              </button>
+              <button>ZIP</button>
             </div>
           </div>
         </div>
@@ -165,8 +164,8 @@ function Index({
       </div>
 
       {/* BUTTON TO EXPLORE MORE TEMPLATES */}
-      <Link to='/templates'>
-        <button className="explore-button">Explore More Templates</button>
+      <Link to="/templates">
+        <Button text="Explore More Templates" style={{ margin: "30px auto" }} />
       </Link>
     </div>
   );
