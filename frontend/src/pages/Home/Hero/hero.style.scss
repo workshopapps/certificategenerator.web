@@ -53,24 +53,35 @@ body {
 }
 
 .hero {
-    padding-top: 80px;
-    .hero-left {
-        width: 533px;
-        height: 328px;
-        text-align: left;
-        .hero-text {
-            font-weight: 700;
-            font-size: 48px;
-            line-height: 60px;
-            margin-bottom: 20px;
-        }
-
+  padding-top: 2rem;
+  gap: 1.5rem;
+  align-items: center;
+  .hero-left {
+    width: 50%;
+    text-align: left;
+    .hero-text {
+      font-weight: 700;
+      font-size: 48px;
+      line-height: 60px;
+      margin-bottom: 20px;
+      margin-top: 0;
     }
+    .hero-caption{
+      margin-bottom: 2rem;
+    }
+  }
+  .hero-right{
+    width: 50%;
+    flex: 1;
+    .hero-img{
+      width: 100%;
+    }
+  }
 }
 
-.gap {
-    gap: 20px;
-}
+// .gap {
+//   gap: 20px;
+// }
 
 .hero-button {
     width: 232px;
@@ -89,16 +100,15 @@ body {
 }
 
 .perks {
-    padding: 2% 0 0 0;
-    @media screen and (max-width: 1130px) {
-        padding-top: 20%;
+  // padding: 2% 0 0 0;
+  padding-top: 2rem;
+  .single-perk{
+    margin-bottom: 2rem;
+    text-align: center;
+    p{
+      margin: 0 ;
     }
-    @media screen and (max-width: 950px) {
-        padding-top: 25%;
-    }
-    @media screen and (max-width: 650px) and (min-width: 481px) {
-        padding-top: 300px !important;
-    }
+  }
 }
 
 .tick {
@@ -118,91 +128,137 @@ body {
     font-weight: 700;
     text-align: center;
 }
-
-@media screen  and (max-width: 768px) and (min-width: 481px) {
-    .hero {
-        padding-top: 40px;
+@media screen and (max-width: 1024px) {
+  .hero{
+    .hero-left{
+      .hero-text{
+        font-size: 38px;
+        line-height: 50px;
+      }
     }
+  }
+}
+@media screen and (max-width: 868px) {
+  .hero {
+    align-items: initial;
+    gap: 1rem;
     .hero-left {
-        .hero-text {
-            font-size: 32px;
-            line-height: 40px;
-        }
+      .hero-text {
+        font-size: 32px;
+        line-height: 40px;
+        margin-bottom: 1rem;
+      }
+      .hero-caption{
+        margin-bottom: 1.3rem;
+        font-size: 16px;
+      }
+      button{
+        font-size: 16px;
+      }
+
+    }
+  
+    .hero-img {
+      height: 90%;
+      
+    }  
+  }
+  
+  .partners {
+    width: 90%;
+    margin: auto;
+    align-items: center;
+    gap: 50px;
+    overflow: scroll;
+    img {
+      width: 20%;
+    }
+  }
+}
+@media screen and (max-width: 768px){
+  .hero{
+    .hero-left{
+      .hero-text{
+        font-size: 28px;
+      }
+    }
+    .hero-right{
+      .hero-img{
+        width: 100%;
+      }
+    }
+  }
+}
+@media screen and (max-width: 620px) {
+  .hero {
+    align-items: flex-start;
+    gap: 1rem;
+    .hero-left {
+      .hero-text {
+        font-size: 28px;
+        line-height: 36px;
+        
+      }
+      .hero-caption{
+        margin-bottom: 1rem;
+      }
+
     }
 
-    .hero-img{
-        width: 45%;
-        height: 100%;
-        margin-left: 50px;
+    .hero-right{
+      .hero-img{
+        height: 96% !important;
+      }
     }
-    .perks {
-        padding-top: 40%;
-    }
-    .partners {
-        width: 90%;
-        margin: auto;
-        align-items: center;
-        gap: 50px;
-        overflow: scroll;
-        img {
-            width: 20%;
-        }
-    }
+  } 
+  .perks {
+    flex-direction: column;
+  }
 }
 
-@media screen  and (max-width: 480px) {
-    .hero-img {
-        display: none;
-    }
-    .hero{
-        padding-top: 40px !important;
-        text-align: center;
-    }
+@media screen and (max-width: 480px) {
+  .hero-right {
+    display: none;
+  }
+  .hero {
+    padding-top: 1rem;
+    text-align: center;
     .hero-left {
-        width: 100vw;
-        height: 20% !important;
-        text-align: center;        
-    }
-    .hero-text {
-        font-size: 24px !important;
-        line-height: 30px !important;
-        text-align: center;
-    }
-    .hero-caption {
-        font-size: 16px;
-        text-align: center;
-    }
-    .hero-button {
+      width: 100%;
+      text-align: center;
+      button{
         width: 100%;
+      }
     }
-    .mobile-only {
-        display: block;
-        text-align: center;
-        font-weight: 500;
-        font-size: 16px;
+  }
+ 
+  .hero-text {
+    font-size: 24px !important;
+    line-height: 30px !important;
+    text-align: center;
+  }
+  .hero-caption {
+    font-size: 16px;
+    text-align: center;
+  }
+  .hero-button {
+    width: 100%;
+  }
+  .mobile-only {
+    display: block;
+    text-align: center;
+    font-weight: 500;
+    font-size: 16px;
+  }
+  .perks {
+    flex-direction: column;
+    .single-perk {
+      width: fit-content !important;
+      font-size: 14px !important;
     }
-    .perks {
-        flex-direction: column;
-        padding-top: 50px;
-        .single-perk {
-            width: fit-content !important;
-            font-size: 14px !important;
-        }
-    }
-    .partner-head {
-        padding: 60px 0 30px 0;
-    }
-    .partners {
-        display: grid;
-        grid-template-columns: 10px 10px 10px 10px;
-        grid-template-rows: 10px 10px 10px 10px;
-        grid-template-areas: 
-        'a b c d'
-        'e f g h';
-        gap: 40%;
-        padding-inline: 5%;
-        .bottom{
-            margin-bottom: -100px;
-        }
-    }
+  }
+  .partner-head {
+    padding: 60px 0 30px 0;
+  }
+  
 }
