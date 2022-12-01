@@ -3,7 +3,7 @@ import './input.scss'
 
 
 
-const Inputfield = ({label,type, placeholder, onChange}) => {
+const Inputfield = ({label,type, placeholder, onChange, pattern, value}) => {
   return (
     <div className="inputContainer">
       <label htmlFor={label} className="inputContainer__label">
@@ -15,6 +15,8 @@ const Inputfield = ({label,type, placeholder, onChange}) => {
         placeholder={placeholder}
         aria-placeholder={placeholder}
         onChange={onChange}
+        pattern={pattern}
+        value={value}
       />
     </div>
   );
