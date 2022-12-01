@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseURL = "http://34.195.230.138/api/auth";
+const baseURL = "https://certgo.hng.tech/api/auth";
 
 const axiosInstance = axios.create({
   baseURL,
