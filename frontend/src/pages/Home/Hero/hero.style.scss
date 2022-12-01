@@ -103,8 +103,7 @@ body {
   // padding: 2% 0 0 0;
   padding-top: 2rem;
   .single-perk{
-    margin-bottom: 2rem;
-    text-align: center;
+    
     p{
       margin: 0 ;
     }
@@ -214,6 +213,10 @@ body {
   } 
   .perks {
     flex-direction: column;
+    .single-perk{
+      margin-bottom: 2rem;
+      text-align: center;
+    }
   }
 }
 
