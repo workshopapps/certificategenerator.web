@@ -1,14 +1,14 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import {
   ContactChatIcon,
   ContactLocationIcon,
-  ContactPhoneIcon,
+  ContactPhoneIcon
 } from "../../assets";
 import Button from "../../Component/button";
 import Inputfield from "../../Component/inputField";
 import TextArea from "../../Component/textarea";
 import "./contact.scss";
-import axios from "axios"
+import axios from "axios";
 
 const ContactUs = () => {
   const [firstName, setFirstName] = useState("");
@@ -30,7 +30,7 @@ const ContactUs = () => {
         lastName,
         email,
         phoneNumber,
-        message,
+        message
       });
        setFirstName("");
        setLastName("");

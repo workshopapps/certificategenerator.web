@@ -1,8 +1,6 @@
 import React from 'react'
 import './input.scss'
 
-
-
 const Inputfield = ({label,type, placeholder, onChange, value, pattern, maxlength}) => {
   return (
     <div className="inputContainer">
