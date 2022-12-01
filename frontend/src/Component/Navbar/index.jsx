@@ -4,6 +4,7 @@ import React, { useRef, useState } from "react";
 import logo from "../../assets/images/navbarIcon.png";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { Link, NavLink, useNavigate } from "react-router-dom";
+import Button from "../button";
 
 function Navbar() {
   const [switchFa, setSwitchFa] = useState(false);
@@ -18,23 +19,30 @@ function Navbar() {
     {
       id: 1,
       url: "/",
-      text: "home",
+      text: "home"
     },
     {
       id: 2,
+
+      url: "/templates",
+      text: "browse templates"
+    },
+    {
+      id: 3,
+
       url: "/pricing",
-      text: "pricing",
+      text: "pricing"
     },
     {
       id: 3,
       url: "/contact-us",
-      text: "contact",
+      text: "contact"
     },
     {
       id: 4,
       url: "/FAQ",
-      text: "FAQs",
-    },
+      text: "FAQs"
+    }
   ];
 
   return (
@@ -65,7 +73,7 @@ function Navbar() {
         <div className="nav-links">
           <div className="links-container nav-container" ref={navRef}>
             <div className="links">
-              {links.map((link) => {
+              {links.map(link => {
                 const { id, url, text } = link;
                 return (
                   <p key={id}>
@@ -77,11 +85,14 @@ function Navbar() {
               })}
             </div>
             <div className="button-container">
-              <button className="btn" onClick={handleToggle}>
+              <Button text={"get started"} callback={handleToggle}>
+                <Link to="/modify" className="link" />
+              </Button>
+              {/* <button className="btn" onClick={handleToggle}>
                 <Link to="/modify" className="link">
                   get started
-                </Link>
-              </button>
+                </Link> */}
+              {/* </button> */}
             </div>
           </div>
         </div>
