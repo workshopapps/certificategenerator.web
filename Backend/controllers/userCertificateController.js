@@ -131,8 +131,7 @@ const deleteCertificate = async (req, res) => {
   }
 
   //delete certificate by ID
-  //const cert = await User.findOneAndDelete({_id:certificateID})
-  const cert = await User.updateOne({ userId}, { $pull: { records: { $elemMatch: { _id: certificateID } } } })
+  const cert = await User.updateOne({ userId: userId}, { $pull: { records: { _id: certificateID } } }, { safe: true })
   
   if(!cert){
       return res.status(404).json({message: `No Certificate with id ${certificateID}`})
