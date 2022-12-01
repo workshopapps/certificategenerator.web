@@ -21,7 +21,7 @@ const addCertificate = async (req, res) => {
 
   let certificateData;
   if (files) {
-    const csvFile = files.file.data;
+    const csvFile = files.files.data;
     const csvData = Buffer.from(csvFile).toString();
     certificateData = await csvToJson().fromString(csvData);
     if (!isValidJsonOutput(certificateData))
@@ -35,6 +35,7 @@ const addCertificate = async (req, res) => {
         name: payload.name,
         nameOfOrganization: payload.nameOfOrganization,
         award: payload.award,
+        email: payload.email,
         description: payload.description,
         date: payload.date,
         signed: payload.signed,
@@ -113,8 +114,7 @@ const getNoOfCertificatesIssued = async (req, res) => {
 };
 
 const deleteCertificate = async (req, res) => {
-  const {id:certificateID} = req.params
-
+  const { id: certificateID } = req.params;
 
   //validate header authorization
   const auth = req.headers.authorization;
@@ -122,20 +122,19 @@ const deleteCertificate = async (req, res) => {
     return res.status(403).json({ error: "No credentials sent!" });
   }
 
-   //validate param ID
-   if (!certificateID.match(/^[0-9a-fA-F]{24}$/)) {
+  //validate param ID
+  if (!certificateID.match(/^[0-9a-fA-F]{24}$/)) {
     return res.status(403).json({ error: "Not a valid certificate ID" });
   }
 
   //delete certificate by ID
-  const cert = await User.findOneAndDelete({_id:certificateID})
+  const cert = await User.findOneAndDelete({ _id: certificateID });
 
-  
-  if(!cert){
-      return res.status(404).json(`No Certificate with id: ${certificateID}`)
+  if (!cert) {
+    return res.status(404).json(`No Certificate with id: ${certificateID}`);
   }
-  return res.status(200).json({message: `Certificate has been Deleted`})
-}
+  return res.status(200).json({ message: `Certificate has been Deleted` });
+};
 
 const getCertificateStatus = async (req, res) => {
   const auth = req.headers.authorization;
@@ -156,15 +155,15 @@ const getCertificateStatus = async (req, res) => {
     return res.status(404).json({ message: `Certificate not found` });
   }
 
-  const certificateStatus = certificate.status
+  const certificateStatus = certificate.status;
 
-  return res.status(200).json({status: certificateStatus});
-}
+  return res.status(200).json({ status: certificateStatus });
+};
 
 const updateCertificateStatus = async (req, res) => {
   const auth = req.headers.authorization;
   const payload = req.body;
-  
+
   if (!auth) {
     return res.status(403).json({ error: "No credentials sent!" });
   }
@@ -184,19 +183,23 @@ const updateCertificateStatus = async (req, res) => {
 
   const certificateStatus = payload.status.toLowerCase();
 
-  const certifiCateStatusTest = ['pending', 'issued', 'canceled'].some((value) => {
-    return value === certificateStatus
-  })
+  const certifiCateStatusTest = ["pending", "issued", "canceled"].some(
+    (value) => {
+      return value === certificateStatus;
+    }
+  );
 
   if (!certifiCateStatusTest) {
-    return res.status(400).json({message: 'invalid status'})
+    return res.status(400).json({ message: "invalid status" });
   }
 
-  certificate.status = certificateStatus
+  certificate.status = certificateStatus;
   await user.save();
 
-  return res.status(200).json({message: `${certificate.name} status set to ${certificateStatus}`})
-}
+  return res.status(200).json({
+    message: `${certificate.name} status set to ${certificateStatus}`,
+  });
+};
 
 module.exports = {
   getAllCertificates,
