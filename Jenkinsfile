@@ -27,7 +27,7 @@ pipeline {
 				sh "sudo su - sean && whoami"
                 //sh "sudo pm2 stop certgo"
 				//sh "sudo pm2 stop index"
-				sh "cd /home/sean/certgo/backend/ && sudo pm2 start npm --name "certgo" --start"
+				sh "cd /home/sean/certgo/backend && sudo pm2 start npm --name "certgo" --start"
 				sh "sudo pm2 start /home/sean/certgo/backend/index.js"
 			}
 			
