@@ -19,7 +19,7 @@ import {
   Templates,
   Terms,
   ProfilePage,
-  UploadCSV,
+  UploadCSV
 } from "./pages";
 import "./Style/App.scss";
 import Home from "./pages/Home";
@@ -39,8 +39,8 @@ function App() {
   const [awardeeName, setAwardeeName] = useState("");
   const [certificateTitle, setCertificateTitle] = useState("");
 
-  const [file, setFile] = useState('')
-  const [certificatesData, setCertificateData] = useState([])
+  const [file, setFile] = useState("");
+  const [certificatesData, setCertificateData] = useState([]);
 
   const [appLoading, setAppLoading] = useState(true);
 
@@ -52,35 +52,41 @@ function App() {
 
   useEffect(() => {
     const uploadFile = () => {
-    let myHeaders = new Headers();
-    myHeaders.append(
-      "Authorization",
-      "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzdmOTg3MDQyODc5MzAwNDJmYzE0M2UiLCJpYXQiOjE2NjkzMDY4MjQsImV4cCI6MTY2OTM5MzIyNH0.x5q4XJDcFvN8EWqc4e0el6CZXJtwQjtcrmo3Id0sQlc"
-    );
+      let myHeaders = new Headers();
+      myHeaders.append(
+        "Authorization",
+        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzdmOTg3MDQyODc5MzAwNDJmYzE0M2UiLCJpYXQiOjE2NjkzMDY4MjQsImV4cCI6MTY2OTM5MzIyNH0.x5q4XJDcFvN8EWqc4e0el6CZXJtwQjtcrmo3Id0sQlc"
+      );
 
-    let formdata = new FormData();
-    formdata.append("file", file[0]);
-    let requestOptions = {
-      method: "POST",
-      headers: myHeaders,
-      body: formdata,
+      let formdata = new FormData();
+      formdata.append("file", file[0]);
+      let requestOptions = {
+        method: "POST",
+        headers: myHeaders,
+        body: formdata
+      };
+
+      fetch("https://certify-api.onrender.com/api/certificates", requestOptions)
+        .then(response => response.json())
+        .then(result => setCertificateData(result))
+        .catch(error => console.log("error", error));
     };
-
-    fetch("https://certify-api.onrender.com/api/certificates", requestOptions)
-      .then((response) => response.json())
-      .then((result) => setCertificateData(result))
-      .catch((error) => console.log("error", error));
-    }
-    file && uploadFile()
+    file && uploadFile();
   }, [file]);
 
   if (appLoading) {
     return (
-      <div style={{ display: "flex", justifyContent: "center", marginTop: "250px" }}>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          marginTop: "250px"
+        }}
+      >
         <Loader />
       </div>
     );
-  };
+  }
 
   return (
     <>
@@ -88,40 +94,72 @@ function App() {
       <div className="App">
         <Routes>
           <Route path="/" element={<Layout />}>
-            <Route index element={<Home
-              logo={logo}
-              message={message}
-              setLogo={setLogo}
-              issuedBy={issuedBy}
-              issueDate={issueDate}
-              setMessage={setMessage}
-              awardeeName={awardeeName}
-              setIssuedBy={setIssuedBy}
-              setIssueDate={setIssueDate}
-              setAwardeeName={setAwardeeName}
-              certificateTitle={certificateTitle}
-              setCertificateTitle={setCertificateTitle}
-            />} />
+            <Route
+              index
+              element={
+                <Home
+                  logo={logo}
+                  message={message}
+                  setLogo={setLogo}
+                  issuedBy={issuedBy}
+                  issueDate={issueDate}
+                  setMessage={setMessage}
+                  awardeeName={awardeeName}
+                  setIssuedBy={setIssuedBy}
+                  setIssueDate={setIssueDate}
+                  setAwardeeName={setAwardeeName}
+                  certificateTitle={certificateTitle}
+                  setCertificateTitle={setCertificateTitle}
+                />
+              }
+            />
             <Route path="/signup" element={<Signup />} />
             <Route path="/login" element={<Login />} />
             <Route path="/comingsoon" element={<ComingSoon />} />
-            <Route path="/dashboard" element={<Dashboard />} />
+            <Route
+              path="/dashboard"
+              element={
+                <Dashboard
+                  logo={logo}
+                  message={message}
+                  setLogo={setLogo}
+                  issuedBy={issuedBy}
+                  issueDate={issueDate}
+                  setMessage={setMessage}
+                  awardeeName={awardeeName}
+                  setIssuedBy={setIssuedBy}
+                  setIssueDate={setIssueDate}
+                  setAwardeeName={setAwardeeName}
+                  certificateTitle={certificateTitle}
+                  setCertificateTitle={setCertificateTitle}
+                />
+              }
+            />
             <Route path="/templates" element={<Templates />} />
             <Route path="/career" element={<Career />} />
             <Route path="choice" element={<Choice />} />
             <Route path="/team" element={<Team />} />
             <Route path="/terms" element={<Terms />} />
-            <Route path="/single_preview" element={<SinglePreview
-              logo={logo}
-              message={message}
-              issuedBy={issuedBy}
-              issueDate={issueDate}
-              awardeeName={awardeeName}
-              certificateTitle={certificateTitle}
-            />} />
+            <Route
+              path="/single_preview"
+              element={
+                <SinglePreview
+                  logo={logo}
+                  message={message}
+                  issuedBy={issuedBy}
+                  issueDate={issueDate}
+                  awardeeName={awardeeName}
+                  certificateTitle={certificateTitle}
+                />
+              }
+            />
             <Route path="/aboutUs" element={<AboutUs />} />
             <Route path="/FAQ" element={<FAQ />} />
-            <Route path="/bulk_preview" certificatesData={certificatesData} element={<BulkPreview />} />
+            <Route
+              path="/bulk_preview"
+              certificatesData={certificatesData}
+              element={<BulkPreview />}
+            />
             <Route path="/bulk_step" element={<BulkStep />} />
             <Route path="/edit_bulk" element={<EditBulk />} />
             <Route path="/pricing" element={<Pricing />} />
@@ -132,7 +170,6 @@ function App() {
             <Route path="/upload" setFile={setFile} element={<UploadCSV />} />
 
             <Route path="/privacy" element={<Privacy />} />
-
           </Route>
           <Route path="*" element={<Error />} />
         </Routes>

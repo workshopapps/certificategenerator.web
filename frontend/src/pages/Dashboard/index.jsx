@@ -3,12 +3,25 @@ import "./dashboard.style.scss";
 import profilePic from "../../assets/images/Ellipse4.png";
 import Card from "./Card";
 import { cardData, nullDataIcon, actionIcon } from "./utils";
-import CreateCertificateModal from "../../Component/CreateCertificateModal";
+import CreateCertificateModal from "./CreateCertificateModal";
 
-const Dashboard = () => {
+const Dashboard = ({
+    logo,
+    setLogo,
+    certificateTitle,
+    setCertificateTitle,
+    awardeeName,
+    setAwardeeName,
+    message,
+    setMessage,
+    issuedBy,
+    setIssuedBy,
+    issueDate,
+    setIssueDate
+}) => {
   const [data, setData] = useState([]);
   const [issuedCert, setIssuedCert] = useState([...cardData]);
-  const [openModal, setOpenModal] = useState(false)
+  const [openModal, setOpenModal] = useState(true)
 
   useEffect(() => {
     const fetchData = () => {
@@ -87,7 +100,20 @@ const Dashboard = () => {
               </div>
             ) : null}
           </div>
-          <CreateCertificateModal open={openModal} onClose={() => setOpenModal(false)}/>
+          <CreateCertificateModal open={openModal} onClose={() => setOpenModal(false)}
+           logo={logo}
+           message={message}
+           setLogo={setLogo}
+           issuedBy={issuedBy}
+           issueDate={issueDate}
+           setMessage={setMessage}
+           awardeeName={awardeeName}
+           setIssuedBy={setIssuedBy}
+           setIssueDate={setIssueDate}
+           setAwardeeName={setAwardeeName}
+           certificateTitle={certificateTitle}
+           setCertificateTitle={setCertificateTitle}
+           />
           <div className="table">
             <table>
               <thead>
