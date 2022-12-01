@@ -144,11 +144,51 @@ input::-webkit-calendar-picker-indicator{
     margin: 48px 0 16px 0;
 }
 
-.submit-btn {
-    display: block;
-    width: 202px;
-    height: 64px;
-    background-color: #19A68E;
+
+@media screen and (max-width: 768px) and (min-width: 481px) {
+  .header {
+    font-size: 32px;
+    line-height: 40px;
+  }
+  .mode {
+    width: 90%;
+  }
+
+  .cert-img {
+    overflow-x: scroll;
+  }
+
+  .cert-form {
+    margin: 5.5% 10% 12%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .header {
+    font-size: 24px;
+    line-height: 30px;
+    text-align: center;
+  }
+  .prompt {
+    font-size: 16px;
+    line-height: 24px;
+  }
+  .mode {
+    width: 90%;
+    button {
+      font-size: 16px;
+    }
+  }
+  .mobile-none {
+    display: none;
+  }
+  .cert-img {
+    flex-direction: column;
+    width: 50% !important;
+    margin: auto !important;
+  }
+  .cert-form {
+    width: 100%;
     border: none;
     border-radius: 0;
     margin: 0;
@@ -164,7 +204,7 @@ input::-webkit-calendar-picker-indicator{
   .submit-btn {
     width: 100%;
   }
-
+}
 
 @media screen  and (max-width: 768px) and (min-width: 481px) {
     .header {
