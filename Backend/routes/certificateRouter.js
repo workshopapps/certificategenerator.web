@@ -11,9 +11,9 @@ const { getAllCertificates,
 router.get('/issuedCertificates', getNoOfCertificatesIssued);
 router.get('/', getAllCertificates);
 router.get('/status', getCertificateStatus);
-router.patch('/status', updateCertificateStatus);
 router.post('/', fileExtLimiter, addCertificate);
 router.get('/:id', getCertificate);
 router.delete('/:id', deleteCertificate);
+router.patch('/status/:id', updateCertificateStatus);
 
 module.exports = router;
