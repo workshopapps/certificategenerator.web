@@ -21,7 +21,7 @@ const addCertificate = async (req, res) => {
 
   let certificateData;
   if (files) {
-    const csvFile = files.file.data;
+    const csvFile = files.files.data;
     const csvData = Buffer.from(csvFile).toString();
     certificateData = await csvToJson().fromString(csvData);
     if (!isValidJsonOutput(certificateData))
@@ -114,8 +114,7 @@ const getNoOfCertificatesIssued = async (req, res) => {
 };
 
 const deleteCertificate = async (req, res) => {
-  const {id:certificateID} = req.params
-
+  const { id: certificateID } = req.params;
 
   //validate header authorization
   const auth = req.headers.authorization;
@@ -140,8 +139,8 @@ const deleteCertificate = async (req, res) => {
   if(!cert){
       return res.status(404).json({message: `No Certificate with id ${certificateID}`})
   }
-  return res.status(200).json({message: `Certificate has been Deleted`})
-}
+  return res.status(200).json({ message: `Certificate has been Deleted` });
+};
 
 const getCertificateStatus = async (req, res) => {
   const auth = req.headers.authorization;
@@ -162,10 +161,10 @@ const getCertificateStatus = async (req, res) => {
     return res.status(404).json({ message: `Certificate not found` });
   }
 
-  const certificateStatus = certificate.status
+  const certificateStatus = certificate.status;
 
-  return res.status(200).json({status: certificateStatus});
-}
+  return res.status(200).json({ status: certificateStatus });
+};
 
 const updateCertificateDetails = async (req, res) => {
   const {id:certificateId} = req.params;
@@ -240,19 +239,23 @@ const updateCertificateStatus = async (req, res) => {
 
   const certificateStatus = payload.status.toLowerCase();
 
-  const certifiCateStatusTest = ['pending', 'issued', 'canceled'].some((value) => {
-    return value === certificateStatus
-  })
+  const certifiCateStatusTest = ["pending", "issued", "canceled"].some(
+    (value) => {
+      return value === certificateStatus;
+    }
+  );
 
   if (!certifiCateStatusTest) {
-    return res.status(400).json({message: 'invalid status'})
+    return res.status(400).json({ message: "invalid status" });
   }
 
-  certificate.status = certificateStatus
+  certificate.status = certificateStatus;
   await user.save();
 
-  return res.status(200).json({message: `${certificate.name} status set to ${certificateStatus}`})
-}
+  return res.status(200).json({
+    message: `${certificate.name} status set to ${certificateStatus}`,
+  });
+};
 
 module.exports = {
   getAllCertificates,
