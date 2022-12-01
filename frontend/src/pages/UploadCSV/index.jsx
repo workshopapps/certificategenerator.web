@@ -32,27 +32,11 @@ const UploadCSV = ({setFile}) => {
   return (
     <div className="uploadCSVContainer">
       <div className="certificateSwitch">
-        <button
-          className={!state.active ? "active switchBtn" : "switchBtn"}
-          onClick={toggleState}
-        >
-          {" "}
-          Single Certificate
-        </button>
-        <button
-          className={state.active ? "active switchBtn" : "switchBtn"}
-          onClick={toggleState}
-        >
-          {" "}
-          Bulk
-        </button>
       </div>
       <h1>Your certificate is almost ready!</h1>
       <div className="certificatePreview">
         <img src={Certificate} alt="certificate preview" />
       </div>
-      <Button name={"Modify Certificate"} className={"modiftyCertificate"} />
-
       <h2>Upload your csv file here in the format below</h2>
       <div className="CSVSample">
         <img src={CSVSample} alt="CSV sample" />
