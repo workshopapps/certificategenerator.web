@@ -21,7 +21,7 @@ const Dashboard = ({
 }) => {
   const [data, setData] = useState([]);
   const [issuedCert, setIssuedCert] = useState([...cardData]);
-  const [openModal, setOpenModal] = useState(true)
+  const [openModal, setOpenModal] = useState(false)
 
   useEffect(() => {
     const fetchData = () => {
@@ -160,7 +160,7 @@ const Dashboard = ({
                   {nullDataIcon()}
                   <p>You haven't created any Certificates</p>
                   <div>
-                    <button className="">Create New Certificate</button>
+                    <button className="" onClick={() => setOpenModal(true)}>Create New Certificate</button>
                   </div>
                 </div>
               </div>
