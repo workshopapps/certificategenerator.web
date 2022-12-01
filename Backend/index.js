@@ -21,6 +21,7 @@ const blog = require("./routes/blogPostRouter");
 const certificate = require("./routes/certificateRouter");
 const downloadCsv = require("./routes/downloadRouter");
 const careers = require("./routes/careerRouter");
+const applyCareer = require('./routes/applyCareerRouter')
 const teamRoute = require("./routes/teamRoutes");
 const mailingLists = require("./routes/mailingListRouter");
 const profileRouter = require("./routes/profileRouters");
@@ -54,6 +55,7 @@ app.use("/api/blog", blog);
 app.use("/api/certificates", certificate);
 app.use("/api/download", downloadCsv);
 app.use("/api/careers", careers);
+app.use("/api/applycareers", applyCareer);
 app.use("/api/mailinglists", mailingLists);
 app.use("/api/profile", profileRouter);
 app.use("/api/team", teamRoute);
