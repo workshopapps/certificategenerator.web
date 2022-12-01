@@ -7,8 +7,7 @@ import Rocket from "./assets/rocket-launcher.webp";
 import Frame from "./assets/Frame 16353.png";
 import Briefcase from "./assets/candidate resumes and briefcase.png";
 import Search from "./assets/search-icon.svg";
-
-
+import { FiChevronDown } from "react-icons/fi";
 
 function Career() {
   return (
@@ -55,11 +54,11 @@ function Career() {
           </div>
         </div>
       </section>
-      
+
       <SectionCarousel />
 
       <section className="section section3">
-        <h2 id='heading-text'>Our Hiring Process</h2>
+        <h2 id="heading-text">Our Hiring Process</h2>
         <div className="flex__wrapper">
           <div className="image__container">
             <img src={Briefcase} alt="" />
@@ -97,15 +96,26 @@ function Career() {
             <Button name="Search" />
           </div>
           <div className="options">
-            <select>
-              <option value="Job Category">Job Category</option>
-            </select>
-            <select>
-              <option value="Full/Part-time">Full/Part-time</option>
-            </select>
-            <select>
-              <option value="Location">Location</option>
-            </select>
+            <div>
+              <select>
+                <option className="option-in-options-div" value="Job Category">
+                  Job Category
+                </option>
+              </select>
+              <FiChevronDown size={20} className="select_dropdown_icon" />
+            </div>
+            <div>
+              <select>
+                <option value="Full/Part-time">Full/Part-time</option>
+              </select>
+              <FiChevronDown size={20} className="select_dropdown_icon" />
+            </div>
+            <div>
+              <select>
+                <option value="Location">Location</option>
+              </select>
+              <FiChevronDown size={20} className="select_dropdown_icon" />
+            </div>
           </div>
         </form>
 
@@ -121,7 +131,7 @@ function Career() {
                   <div>
                     <h3>{position.role}</h3>
                     <h4>
-                      {position.type} | <b>{position.location}</b>
+                      {position.type} <p>|</p> <b>{position.location}</b>
                     </h4>
                   </div>
                   <Button name="Apply" />
@@ -141,7 +151,7 @@ function Career() {
                   <div>
                     <h3>{position.role}</h3>
                     <h4>
-                      {position.type} | <b>{position.location}</b>
+                      {position.type} <p>|</p> <b>{position.location}</b>
                     </h4>
                   </div>
                   <Button name="Apply" />

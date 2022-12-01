@@ -2,7 +2,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Sora:wght@400;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400&display=swap");
 $sectionWidth: 100%;
-$containerBackground: #E8F6F4;
+$containerBackground: #e8f6f4;
 $fontStyle: normal;
 $fontFamily: "Sora";
 $fontFamily2: "Work Sans", sans-serif;
@@ -11,10 +11,12 @@ $normal: 400;
 $light: 300;
 $mt-2: 2rem;
 $mt-1: 1rem;
+$mb-1: 0.7rem;
 $sm: 340px;
 $smaller: 430px;
 $small: 650px;
 $medium: 912px;
+$large_and_above: 1300px;
 .flex {
   display: flex;
 }
@@ -29,19 +31,22 @@ a {
   text-decoration: none;
 }
 .section {
-  padding: 0 6.25rem;
+  padding: 0 4.8rem;
   @media screen and (max-width: $medium) {
     padding: 0 2rem;
   }
   @media screen and (max-width: $small) {
     padding: 0 0.5rem;
   }
+  @media screen and (min-width: $large_and_above) {
+    padding: 0 10%;
+  }
 }
 p {
   margin: $mt-1 0;
 }
 .career__container {
-  background: #FFFFFF;
+  background: #ffffff;
   font-family: $fontFamily;
   margin-top: -3rem;
   .hero__section {
@@ -129,7 +134,7 @@ p {
       margin-bottom: 2rem;
       font-size: 39px;
       b {
-        color: #7B41B4;
+        color: #7b41b4;
       }
       @media screen and (max-width: $medium) {
         font-size: 1.8rem;
@@ -214,7 +219,7 @@ p {
     margin-top: 3rem;
     padding: 2rem 6.25rem;
     text-align: initial;
-    
+
     h2 {
       margin-bottom: 2rem;
       font-size: 39px;
@@ -227,7 +232,7 @@ p {
       @media screen and (max-width: $small) {
         text-align: center;
         font-size: 1.3rem;
-        color: #08372F;
+        color: #08372f;
         b {
           color: #222222;
         }
@@ -305,7 +310,7 @@ p {
       padding: 3rem 2rem;
     }
     h2 {
-      color: #08372F;
+      color: #08372f;
       font-size: 3rem;
       margin-bottom: 3rem;
       @media screen and (max-width: $small) {
@@ -318,7 +323,7 @@ p {
         align-items: center;
         gap: 10px;
         .input__div {
-          background: #FFFFFF;
+          background: #ffffff;
           display: flex;
           border: 1.2px solid rgba(34, 34, 34, 0.6);
           padding: 5px 10px;
@@ -338,16 +343,45 @@ p {
         }
       }
       .options {
-        select {
-          padding: 10px 12px;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        div {
           width: 141px;
           height: 40px;
           border-radius: 8px;
           border: 1px solid #222222;
           margin: 1rem 1rem 0 0;
           outline: none;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          overflow: hidden;
+          position: relative;
+          background-color: #fff;
+
           @media screen and (max-width: $small) {
             width: 112px;
+          }
+          select {
+            cursor: pointer;
+            padding-left: 8px;
+            outline: none;
+            border: none;
+            width: 110%;
+            height: 110%;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            &::-ms-expand {
+              display: none;
+            }
+          }
+          .select_dropdown_icon {
+            cursor: pointer;
+            position: absolute;
+            right: 7px;
+            color: #222222;
           }
         }
       }
@@ -366,8 +400,8 @@ p {
           padding: 2px;
           width: 25px;
           height: 25px;
-          color: #FFFFFF;
-          background: #6C6C70;
+          color: #ffffff;
+          background: #6c6c70;
           border-radius: 22rem;
           margin-left: 10px;
         }
@@ -385,17 +419,22 @@ p {
           margin-bottom: 1rem;
         }
         h3 {
-          font-size: 1.8rem;
+          font-size: 1.4rem;
           margin-top: $mt-1;
           @media screen and (max-width: $small) {
             font-size: 1.4rem;
           }
         }
         h4 {
-          font-size: 1.2rem;
-          margin: $mt-1 0;
+          font-size: 0.95rem;
+          font-weight: 400;
+          line-height: 10px;
+          margin-bottom: $mb-1;
+          display: flex;
+          align-items: center;
+          gap: 10px;
           b {
-            color: #6C6C70;
+            color: #6c6c70;
           }
         }
       }
