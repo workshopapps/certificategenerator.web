@@ -120,20 +120,25 @@ const deleteCertificate = async (req, res) => {
   //validate header authorization
   const auth = req.headers.authorization;
   if (!auth) {
-    return res.status(403).json({ error: "No credentials sent!" });
+    return res.status(403).json({ message: 'No auth credentials sent!'});
   }
+
+  const token = auth.split(" ")[1];
+  const { userId } = jwt.decode(token);
 
    //validate param ID
    if (!certificateID.match(/^[0-9a-fA-F]{24}$/)) {
-    return res.status(403).json({ error: "Not a valid certificate ID" });
+    return res.status(403).json({ message: 'Not a valid certificate ID'});
   }
 
   //delete certificate by ID
   const cert = await User.findOneAndDelete({_id:certificateID})
 
 
+  const cert = await User.updateOne({ userId: userId}, { $pull: { records: { _id: certificateID } } }, { safe: true })
+  
   if(!cert){
-      return res.status(404).json(`No Certificate with id: ${certificateID}`)
+      return res.status(404).json({message: `No Certificate with id ${certificateID}`})
   }
   return res.status(200).json({message: `Certificate has been Deleted`})
 }
