@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./certificate.style.scss";
 import { Link, useNavigate } from "react-router-dom";
 import UploadCSV from "../../UploadCSV";
-// import Button from "../../../Component/button";
+import Button from "../../../Component/button";
 
 export default function Certificate({
   logo,
@@ -48,7 +48,7 @@ export default function Certificate({
         }
           
 
-          {bulkCertificate ?            
+          {bulkCertificate ?   (         
            <div>
           <form action="" className="cert-form text-left work-sans">
             <UploadCSV />
