@@ -23,12 +23,9 @@ pipeline {
 		
 			steps {
 				sh "sudo cp -rf ${WORKSPACE}/backend/* /home/sean/certgo/backend"
-				sh "sudo cp -fr ${WORKSPACE}/frontend/* /home/sean/certgo/frontend"
+				sh "sudo cp -fr ${WORKSPACE}/frontend/build/* /var/www/certgo.hng.tech/html"
 				sh "sudo su - sean && whoami"
-                		sh "sudo pm2 stop static-page-server-3077 "
-				sh "sudo pm2 stop index"
-				sh "sudo pm2 serve /home/sean/certgo/frontend/build --port 3077"
-				sh "sudo pm2 start /home/sean/certgo/backend/ecosystem.config.js"
+				sh "sudo systemctl restart certgo.service"
 			}
 			
 	}
