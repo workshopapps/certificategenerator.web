@@ -116,8 +116,8 @@ export default function Certificate({
             <input type="submit" value="Create Certificate" className="submit-btn"/> */}
           </form>
         </div>
-      ) : (
-        <div>
+      ) : 
+        (<div>
           <form
             action=""
             onSubmit={handleSubmit}
@@ -232,7 +232,8 @@ export default function Certificate({
             </button>
           </form>
         </div>
-      )}
+        )
+      }
     </>
   );
 }
