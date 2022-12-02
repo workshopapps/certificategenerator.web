@@ -139,10 +139,6 @@ export default function Certificate({
             <label htmlFor="date" className="label">
               Issue Date
             </label>
-
-            <label htmlFor="date" className="label">
-              Issue Date
-            </label>
             <input
               type="date"
               value={issueDate}
