@@ -3,7 +3,8 @@ import './certificate.style.scss'
 import {Link, useNavigate} from "react-router-dom"
 import UploadCSV from "../../UploadCSV";
 import Button from "../../../Component/button";
-
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 export default function Certificate ({
   logo,
@@ -20,13 +21,27 @@ export default function Certificate ({
   setIssueDate
 }) {
     const [bulkCertificate, setBulkCertificate] = useState(false);
+    const [date, setDate ] = useState(Date.now())
     const navigate = useNavigate()
-    const disabledButton = !logo.trim() || !message.trim() || !certificateTitle.trim() || !awardeeName.trim() || !issuedBy.trim() || !issueDate.trim()
+    const disabledButton = !logo.trim() || !message.trim() || !certificateTitle.trim() || !awardeeName.trim() || !issuedBy.trim() || !issueDate
     const handleSubmit = (e) => {
       e.preventDefault()
       navigate('/preview')
     }
-    
+    const handleDate = (date) => {
+      setDate(date)
+      setIssueDate(formatDate(date));
+    }
+    function padTo2Digits(num) {
+      return num.toString().padStart(2, '0');
+    }
+    function formatDate(date) {
+      return [
+        padTo2Digits(date.getDate()),
+        padTo2Digits(date.getMonth() + 1),
+        date.getFullYear(),
+      ].join('/');
+    }
     return (
         <>
           <p id="certificatee" className="sora header">
@@ -101,9 +116,9 @@ export default function Certificate ({
             <label htmlFor='text' className="label">Issued by</label>
             <input type="text" placeholder="Name of organisation or issuer" value={issuedBy} onChange={e => setIssuedBy(e.target.value)} />
 
-            <label htmlFor='date' className="label">Issue Date</label>
-            <input type="date" value={issueDate} onChange={e => setIssueDate(e.target.value)} />
-
+            <label htmlFor='' className="label">Issue Date</label>
+            <DatePicker selected={date} onChange={handleDate} dateFormat="dd/MM/yyyy" />
+           
             
             
             <button disabled={disabledButton} className={`${disabledButton && 'btn-disabled'} btn-success`}>Create Certificate</button>
