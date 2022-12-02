@@ -1,6 +1,6 @@
 import "./navbar.style.scss";
 //import menu from '../../pages/ComingSoon/images/menu.svg'
-import React, { useRef, useState } from "react";
+import React, {  useState } from "react";
 import logo from "../../assets/images/navbarIcon.png";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { Link, NavLink, useNavigate } from "react-router-dom";
@@ -8,11 +8,20 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 function Navbar() {
   const [switchFa, setSwitchFa] = useState(false);
   const navigate = useNavigate();
-  const navRef = useRef();
+
   const handleToggle = () => {
-    navRef.current.classList.toggle("show-links");
+    
+  
+    
     setSwitchFa(!switchFa);
+   
+    
   };
+
+
+
+  
+  
 
   const links = [
     {
@@ -63,9 +72,14 @@ function Navbar() {
           </div>
         </div>
         <div className="nav-links">
-          <div className="links-container nav-container" ref={navRef}>
+          <div
+            className={`links-container nav-container ${
+              switchFa && "show-links"
+            }`}
+            // ref={navRef}
+          >
             <div className="links">
-              {links.map((link) => {
+              {links.map(link => {
                 const { id, url, text } = link;
                 return (
                   <p key={id}>
