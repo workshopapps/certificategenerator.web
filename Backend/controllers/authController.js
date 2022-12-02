@@ -174,7 +174,7 @@ const userLogin = async (req, res, next) => {
 
 const userLogout = async (req, res) => {
   try {
-    const userToken = await UserToken.findOne({ token: req.body.refreshToken });
+    const userToken = await UserToken.findOne({ token: req.headers.authorization });
     if (!userToken)
       return res
         .status(200)
