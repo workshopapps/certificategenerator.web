@@ -115,28 +115,49 @@ function App() {
             <Route path="/signup" element={<Signup />} />
             <Route path="/login" element={<Login />} />
             <Route path="/comingsoon" element={<ComingSoon />} />
-            <Route path="/dashboard" element={<Dashboard />} />
+            <Route
+              path="/dashboard"
+              element={
+                <Dashboard
+                  logo={logo}
+                  message={message}
+                  setLogo={setLogo}
+                  issuedBy={issuedBy}
+                  issueDate={issueDate}
+                  setMessage={setMessage}
+                  awardeeName={awardeeName}
+                  setIssuedBy={setIssuedBy}
+                  setIssueDate={setIssueDate}
+                  setAwardeeName={setAwardeeName}
+                  certificateTitle={certificateTitle}
+                  setCertificateTitle={setCertificateTitle}
+                />
+              }
+            />
             <Route path="/templates" element={<Templates />} />
             <Route path="/career" element={<Career />} />
             <Route path="choice" element={<Choice />} />
             <Route path="/team" element={<Team />} />
             <Route path="/terms" element={<Terms />} />
             <Route
-              path="/preview"
+              path="/single_preview"
               element={
-                <Preview
+                <SinglePreview
                   logo={logo}
                   message={message}
                   issuedBy={issuedBy}
                   issueDate={issueDate}
                   awardeeName={awardeeName}
                   certificateTitle={certificateTitle}
-                  certificatesData={certificatesData}
                 />
               }
             />
             <Route path="/aboutUs" element={<AboutUs />} />
             <Route path="/FAQ" element={<FAQ />} />
+            <Route
+              path="/bulk_preview"
+              element={<BulkPreview certificatesData={certificatesData} />}
+            />
             <Route path="/bulk_step" element={<BulkStep />} />
             <Route path="/edit_bulk" element={<EditBulk />} />
             <Route path="/pricing" element={<Pricing />} />
@@ -144,7 +165,7 @@ function App() {
             <Route path="/payment" element={<Checkout />} />
 
             <Route path="/profile" element={<ProfilePage />} />
-            <Route path="/upload" setFile={setFile} element={<UploadCSV />} />
+            <Route path="/upload" element={<UploadCSV setFile={setFile} />} />
 
             <Route path="/privacy" element={<Privacy />} />
           </Route>

@@ -1,6 +1,6 @@
 import React from "react";
-import {useNavigate} from 'react-router-dom';
 import Modal from '../../Component/Modal'
+import {useNavigate} from 'react-router-dom'
 import "./profile.style.scss";
 import Avatar from "../../assets/images/Ellipse4.png"
 
@@ -21,7 +21,6 @@ const ProfilePage = () => {
       }else{
          return false;
       }
-       
   }
   return (
     <div className="profile-page">
