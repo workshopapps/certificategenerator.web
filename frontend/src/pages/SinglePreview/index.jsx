@@ -49,17 +49,6 @@ function SinglePreview({
 
   return (
     <div id="singlePreview">
-      {/* BUTTONS TO TOGGLE BETWEEN SINGLE AND BULK CERTIFICATE */}
-
-      <div className="button-container">
-        <Link to="/single_preview">
-          <Button className="active">Single Certificate</Button>
-        </Link>
-        <Link to="/signup">
-          <Button className="not-active btnLight">Bulk Certificate</Button>
-        </Link>
-      </div>
-
       {/* IMAGE OF YOUR CERTIFICATE READY TO BE DOWNLOADED OR SENT */}
 
       <div className="certificate-header">
