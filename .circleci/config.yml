@@ -1,0 +1,144 @@
+version: 2.1
+
+jobs:
+  build-frontend:
+    docker:
+      - image: circleci/node:16.10.0
+      - image: docker:17.09.1-ce-git
+    steps:
+      - checkout # pulls code from github repo
+      - setup_remote_docker
+      # - run:
+      #     name: cd & update
+      #     command: |
+      #       cd frontend
+      #       sudo npm install -g
+      - restore_cache:
+          key: dependency-cache-{{ checksum "./frontend/package.json" }}
+      - run:
+          name: Build front-end
+          command: |
+            cd frontend
+            npm install
+            CI=false npm run build
+      - save_cache:
+          key: dependency-cache-{{ checksum "./frontend/package.json" }}
+          paths:
+            - ./frontend/node_modules
+      - run:
+          name: Docker
+          when: on_success
+          command: |
+            cd frontend
+            docker --version
+            docker login -u=$DOCKER_LOGIN -p=$DOCKER_PASSWORD
+            docker build -t codak77/certificategeneratorwebfrontend:frontend --build-arg codak77=codak77/certificategeneratorwebfrontend-frontend .
+            docker push codak77/certificategeneratorwebfrontend:frontend
+            echo "Docker build made sucessfully!! for codak77/certificategeneratorwebfrontend:frontend"
+      - run:
+          name: Build Failure
+          when: on_fail
+          command: |
+            echo "ERROR building certificategeneratorwebfrontend:frontend"
+
+  build-backend:
+    docker:
+      - image: circleci/node:16.10.0
+      - image: docker:17.09.1-ce-git
+    steps:
+      - checkout # pulls code from github repo
+      - setup_remote_docker
+      - run:
+          name: update packages
+          command: |
+            cd backend
+            sudo npm install -g
+      - restore_cache:
+            key: dependency-cache-{{ checksum "./backend/package.json" }}
+      - run:
+          name: Node Install
+          command: |
+            cd backend
+            npm cache clear --force
+            sudo npm install
+      - save_cache:
+          key: dependency-cache-{{ checksum "./backend/package.json" }}
+          paths:
+            - ./backend/node_modules
+      # - run:
+          # name: Run Endpoint tests
+          # command: |
+              # cd backend
+              # npm test
+      - run:
+          name: Docker
+          when: on_success
+          command: |
+            cd backend
+            docker --version
+            docker login -u=$DOCKER_LOGIN -p=$DOCKER_PASSWORD
+            docker build -t codak77/certificategeneratorwebbackend:backend --build-arg codak77=certificategeneratorwebbackend-backend .
+            docker push codak77/certificategeneratorwebbackend:backend
+            echo "Docker build made sucessfully!! for certificategeneratorwebbackend:backend"
+      - run:
+          name: Build Failure
+          when: on_fail
+          command: |
+            echo "ERROR building certificategeneratorwebbackend:backend"
+
+  continous-deployment:
+    docker:
+      - image: circleci/node:10.19.0-buster
+    steps:
+      - checkout
+      - setup_remote_docker 
+      - add_ssh_keys:
+          fingerprints:
+            - "03:84:c3:2d:95:60:2d:b8:80:d2:cb:50:3c:3c:40:66"                
+      - run: 
+          name: Deploy success
+          when: on_success
+          command: |
+            ssh -o "StrictHostKeyChecking no" ubuntu@ec2-34-195-230-138.compute-1.amazonaws.com "\
+            sudo su
+            cd /home/ubuntu
+            sudo docker login
+            sudo docker stop frontend backend
+            sudo docker rm frontend backend
+            sudo docker rmi -f codak77/certificategeneratorwebbackend:backend codak77/certificategeneratorwebfrontend:frontend
+            sudo docker pull codak77/certificategeneratorwebfrontend:frontend
+            sudo docker pull codak77/certificategeneratorwebbackend:backend
+            sudo docker run -d -p 3000:3000 --name frontend codak77/certificategeneratorwebfrontend:frontend
+            sudo docker run -d -p 5000:5000 --name backend codak77/certificategeneratorwebbackend:backend
+            sudo docker system prune -af
+            sudo docker builder prune -af && exit"
+      - run:
+          name: Deploy Failure
+          when: on_fail
+          command: |
+            echo "ERROR auto-deploying Docker Images"
+
+workflows:
+  default:
+    jobs:
+      - build-frontend:
+          filters:
+            branches:
+              only:
+                - dev
+                - staging
+      - build-backend:
+          filters:
+            branches:
+              only:
+                - dev
+                - staging
+      - continous-deployment:
+          requires:
+            - build-frontend
+            - build-backend
+          filters:
+            branches:
+              only:
+                - dev
+                - staging

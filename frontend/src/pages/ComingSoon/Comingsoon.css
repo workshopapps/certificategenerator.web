@@ -1,0 +1,149 @@
+#comingsoon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 100px;
+  max-width: 100% !important;
+  width: 90%;
+  margin: 50px auto 100px;
+}
+#comingsoon img {
+  cursor: pointer;
+}
+#comingsoon .back {
+  font-family: "Work Sans";
+  font-weight: 500;
+  font-size: 19px;
+  line-height: 22px;
+  margin-bottom: 30px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  background-color: #19A68E;
+  color: #FFFFFF;
+  padding: 10px;
+  border-radius: 20px;
+  width: 200px;
+}
+#comingsoon .back .arrow {
+  margin-right: 15px;
+}
+#comingsoon .f1 {
+  font-family: "Sora";
+  font-weight: 700;
+  font-size: 64px;
+  line-height: 81px;
+  letter-spacing: -0.5px;
+  color: 0;
+  margin-left: 0;
+  height: 81px;
+  margin-bottom: 20px;
+}
+#comingsoon .p {
+  font-family: "Sora";
+  font-weight: 400;
+  font-size: 27px;
+  line-height: 44px;
+  letter-spacing: -0.5px;
+  color: 0;
+}
+#comingsoon .formdat {
+  margin-top: 40px;
+}
+#comingsoon .formdat .fx {
+  display: flex;
+  align-items: center;
+}
+#comingsoon .formdat .fx .email {
+  height: 49px;
+  width: 388px;
+  background: #FFFFFF;
+  border: 1.2px solid #19A68E;
+  border-radius: 10px;
+}
+#comingsoon .formdat .fx button {
+  cursor: pointer;
+  margin-left: 20px;
+}
+#comingsoon .formdat .spam {
+  font-family: "Work Sans";
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+  letter-spacing: -0.004em;
+  color: #6C6C70;
+  margin-top: 20px;
+}
+
+@media (max-width: 1200px) {
+  #comingsoon {
+    display: grid;
+    grid-template-rows: repeat(2, 1fr);
+    place-items: center;
+    position: relative;
+  }
+  #comingsoon .welcomeHead {
+    text-align: center;
+  }
+  #comingsoon .welcomeHead .back {
+    position: absolute;
+    top: -30px;
+    left: 0;
+  }
+  #comingsoon .welcomeHead .f1 {
+    margin-top: 20px;
+  }
+  #comingsoon .welcomeHead .p {
+    width: 510px;
+  }
+  #comingsoon .welcomeHead .formdat .fx {
+    flex-direction: column;
+  }
+  #comingsoon .welcomeHead .formdat .fx button {
+    margin-left: 0px;
+    margin-top: 20px;
+  }
+  #comingsoon .welcomeHead .formdat .spam {
+    text-align: center;
+    width: 100%;
+  }
+  #comingsoon .construction {
+    grid-row: 1;
+  }
+}
+@media (max-width: 600px) {
+  #comingsoon .welcomeHead {
+    text-align: center;
+  }
+  #comingsoon .welcomeHead .f1 {
+    margin-top: 10px;
+    font-size: 48px;
+    line-height: 60px;
+  }
+  #comingsoon .welcomeHead .p {
+    max-width: 100%;
+    width: 90%;
+    margin: auto;
+    font-size: 19px;
+    line-height: 24px;
+  }
+  #comingsoon .construction img {
+    width: 400px;
+  }
+}
+@media (max-width: 420px) {
+  #comingsoon .welcomeHead .f1 {
+    font-size: 32px;
+    line-height: 40px;
+    margin-top: -20px;
+  }
+  #comingsoon .welcomeHead .p {
+    margin-top: -40px;
+  }
+  #comingsoon .welcomeHead .formdat .fx .email {
+    width: 300px;
+  }
+  #comingsoon .construction img {
+    width: 100%;
+  }
+}/*# sourceMappingURL=Comingsoon.css.map */

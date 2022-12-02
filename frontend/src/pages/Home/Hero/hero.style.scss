@@ -1,0 +1,256 @@
+@import url("https://fonts.googleapis.com/css2?family=Sora:wght@400;700&family=Work+Sans:wght@400;700&display=swap");
+@import "../../../Style/variables";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  max-width: $containerWidth;
+  color: #222222;
+}
+
+.flex {
+  display: flex;
+}
+.justify-between {
+  justify-content: space-between;
+}
+
+.grid {
+  display: grid;
+}
+
+.work-sans {
+  font-family: "Work sans";
+}
+
+.sora {
+  font-family: "Sora";
+}
+
+.line-height {
+  line-height: 24px;
+}
+
+.emphasized {
+  color: #19a68e;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.center {
+  width: 90%;
+  margin: auto;
+}
+
+.hero {
+  padding-top: 2rem;
+  gap: 4.5rem;
+  align-items: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-bottom: 3rem !important;
+  @media screen and (min-width: 1220px) {
+    gap: 6rem;
+  }
+  .hero-left {
+    width: 100%;
+    text-align: left;
+    margin-bottom: 1rem;
+    .hero-text {
+      font-weight: 700;
+      font-size: 40px;
+      line-height: 60px;
+      margin-bottom: 20px;
+      margin-top: 0;
+    }
+    .hero-caption {
+      margin-bottom: 2rem;
+      font-size: 16px;
+    }
+  }
+  .hero-right {
+    width: 100%;
+    .hero-img {
+      width: 100%;
+    }
+  }
+}
+
+// .gap {
+//   gap: 20px;
+// }
+
+.hero-button {
+  width: 232px;
+  height: 48px;
+  background-color: #19a68e;
+  border: none;
+  border-radius: 10px;
+  color: #ffffff;
+  margin-top: 32px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.mobile-only {
+  display: none;
+}
+
+.perks {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+  justify-content: center;
+  gap: 5rem;
+  width: 100%;
+  padding: 2rem 4.5rem;
+  .single-perk {
+    display: flex;
+    align-items: center;
+    padding: 30px;
+    border-radius: 12px;
+    background: #fff;
+    box-shadow: 0px 4px 12px 0px #b4b4b43d;
+    p {
+      margin: 0;
+      font-size: 1rem;
+    }
+  }
+}
+
+.tick {
+  width: 26.67px;
+  height: 26.67px;
+}
+
+@media screen and (max-width: 1024px) {
+  .hero {
+    .hero-left {
+      .hero-text {
+        font-size: 38px;
+        line-height: 50px;
+      }
+    }
+  }
+}
+@media screen and (max-width: 868px) {
+  .hero {
+    align-items: initial;
+    gap: 1rem;
+    .hero-left {
+      .hero-text {
+        font-size: 32px;
+        line-height: 40px;
+        margin-bottom: 1rem;
+      }
+      .hero-caption {
+        margin-bottom: 1.3rem;
+        font-size: 16px;
+      }
+      button {
+        font-size: 16px;
+      }
+    }
+
+    .hero-img {
+      height: 90%;
+    }
+  }
+}
+@media screen and (max-width: 768px) {
+  .hero {
+    .hero-left {
+      .hero-text {
+        font-size: 28px;
+      }
+    }
+    .hero-right {
+      .hero-img {
+        width: 100%;
+      }
+    }
+  }
+}
+@media screen and (max-width: 620px) {
+  .hero {
+    align-items: flex-start;
+    gap: 1rem;
+    .hero-left {
+      .hero-text {
+        font-size: 28px;
+        line-height: 36px;
+      }
+      .hero-caption {
+        margin-bottom: 1rem;
+      }
+    }
+
+    .hero-right {
+      .hero-img {
+        height: 96% !important;
+      }
+    }
+  }
+  .perks {
+    flex-direction: column;
+    .single-perk {
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .hero-right {
+    display: none;
+  }
+  .hero {
+    padding-top: 1rem;
+    text-align: center;
+    .hero-left {
+      width: 100%;
+      text-align: center;
+      button {
+        width: 100%;
+      }
+    }
+  }
+
+  .hero-text {
+    font-size: 24px !important;
+    line-height: 30px !important;
+    text-align: center;
+  }
+  .hero-caption {
+    font-size: 16px;
+    text-align: center;
+  }
+  .hero-button {
+    width: 100%;
+  }
+  .mobile-only {
+    display: block;
+    text-align: center;
+    font-weight: 500;
+    font-size: 16px;
+  }
+  .perks {
+    flex-direction: column;
+    .single-perk {
+      font-size: 14px !important;
+    }
+  }
+  .partner-head {
+    padding: 60px 0 30px 0;
+  }
+}

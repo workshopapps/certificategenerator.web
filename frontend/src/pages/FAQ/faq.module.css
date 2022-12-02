@@ -1,0 +1,278 @@
+@import url("https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Work+Sans:wght@500;600;700&display=swap");
+* {
+  font-family: "Work Sans", sans-serif;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 80%;
+  margin: 0 auto;
+  text-align: center;
+}
+.header h2 {
+  font-size: 2rem;
+  font-weight: 700;
+}
+.header p {
+  font-size: 1rem;
+}
+
+.faqContainer {
+  margin: 0 auto;
+  width: 80%;
+  margin-top: 3rem;
+}
+.faqContainer h2 {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  text-align: left;
+}
+.faqContainer .faqWrapper {
+  box-shadow: 0px 4px 14px rgba(82, 77, 77, 0.2);
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 1rem 2rem;
+  margin-bottom: 0.2rem;
+}
+.faqContainer .faqWrapper .faqQuestions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  width: 100%;
+  gap: 20px;
+}
+.faqContainer .faqWrapper .faqQuestions .question {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.faqContainer .faqWrapper .faqQuestions .question h3 {
+  line-height: 1.5;
+  font-weight: 500;
+  font-size: 0.75rem;
+  text-align: left;
+}
+.faqContainer .faqWrapper .faqQuestions .question .faqIcon {
+  width: 50px;
+  height: 50px;
+}
+.faqContainer .faqWrapper .faqQuestions .question .faqIcon img {
+  width: 100%;
+}
+.faqContainer .faqWrapper .faqQuestions .icon {
+  font-size: 2.5rem;
+}
+.faqContainer .faqWrapper .faqAnswers {
+  width: 80%;
+  margin: 0 auto;
+  color: #656565;
+}
+.faqContainer .faqWrapper .faqAnswers li {
+  line-height: 1.5;
+  font-size: 0.9rem;
+  text-align: left;
+}
+
+@media screen and (min-width: 481px) {
+  .header h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+  .header p {
+    font-size: 1rem;
+    font-weight: 400;
+    padding: 0.5rem 5rem;
+  }
+  .faqContainer {
+    margin: 0 auto;
+    width: 80%;
+    margin-top: 3rem;
+  }
+  .faqContainer h2 {
+    font-size: 1.5rem;
+  }
+  .faqContainer .faqWrapper {
+    box-shadow: 0px 4px 14px rgba(82, 77, 77, 0.2);
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 1rem 2rem;
+  }
+  .faqContainer .faqWrapper .faqQuestions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    width: 100%;
+    gap: 20px;
+  }
+  .faqContainer .faqWrapper .faqQuestions .question {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .faqContainer .faqWrapper .faqQuestions .question h3 {
+    line-height: 1.5;
+    font-weight: 500;
+    font-size: 1rem;
+  }
+  .faqContainer .faqWrapper .faqQuestions .question .faqIcon {
+    width: 50px;
+    height: 50px;
+  }
+  .faqContainer .faqWrapper .faqQuestions .question .faqIcon img {
+    width: 100%;
+  }
+  .faqContainer .faqWrapper .faqQuestions .icon {
+    font-size: 2.5rem;
+  }
+  .faqContainer .faqWrapper .faqAnswers {
+    width: 80%;
+    margin: 0 auto;
+    color: #656565;
+  }
+  .faqContainer .faqWrapper .faqAnswers li {
+    line-height: 1.5;
+    font-size: 1rem;
+  }
+}
+.faqBtn {
+  margin: 3rem auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media screen and (min-width: 769px) {
+  .header {
+    max-width: 1440px;
+  }
+  .header h2 {
+    font-size: 2.5rem;
+    font-weight: 600;
+  }
+  .header p {
+    font-size: 1.2rem;
+    font-weight: 400;
+    padding: 0.5rem 5rem;
+  }
+  .faqContainer {
+    margin: 0 auto;
+    width: 80%;
+    margin-top: 3rem;
+  }
+  .faqContainer h2 {
+    font-size: 2rem;
+  }
+  .faqContainer .faqWrapper {
+    box-shadow: 0px 4px 14px rgba(82, 77, 77, 0.2);
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 1rem 2rem;
+  }
+  .faqContainer .faqWrapper .faqQuestions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    width: 100%;
+    gap: 20px;
+  }
+  .faqContainer .faqWrapper .faqQuestions .question {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .faqContainer .faqWrapper .faqQuestions .question h3 {
+    line-height: 1.5;
+    font-weight: 500;
+    font-size: 1rem;
+  }
+  .faqContainer .faqWrapper .faqQuestions .question .faqIcon {
+    width: 50px;
+    height: 50px;
+  }
+  .faqContainer .faqWrapper .faqQuestions .question .faqIcon img {
+    width: 100%;
+  }
+  .faqContainer .faqWrapper .faqQuestions .icon {
+    font-size: 2.5rem;
+  }
+  .faqContainer .faqWrapper .faqAnswers {
+    width: 80%;
+    margin: 0 auto;
+    color: #656565;
+  }
+  .faqContainer .faqWrapper .faqAnswers li {
+    line-height: 1.5;
+    font-size: 1.2rem;
+  }
+}
+@media screen and (min-width: 1025px) {
+  .header {
+    max-width: 1440px;
+  }
+  .header h2 {
+    font-size: 3rem;
+    font-weight: 600;
+  }
+  .header p {
+    font-size: 1.7rem;
+    font-weight: 400;
+    padding: 0.5rem 5rem;
+  }
+  .faqContainer {
+    margin: 0 auto;
+    width: 80%;
+    margin-top: 3rem;
+  }
+  .faqContainer h2 {
+    font-size: 2rem;
+  }
+  .faqContainer .faqWrapper {
+    box-shadow: 0px 4px 14px rgba(82, 77, 77, 0.2);
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 1rem 2rem;
+  }
+  .faqContainer .faqWrapper .faqQuestions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    width: 100%;
+    gap: 20px;
+  }
+  .faqContainer .faqWrapper .faqQuestions .question {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .faqContainer .faqWrapper .faqQuestions .question h3 {
+    line-height: 1.5;
+    font-weight: 500;
+    font-size: 1.4rem;
+  }
+  .faqContainer .faqWrapper .faqQuestions .question .faqIcon {
+    width: 50px;
+    height: 50px;
+  }
+  .faqContainer .faqWrapper .faqQuestions .question .faqIcon img {
+    width: 100%;
+  }
+  .faqContainer .faqWrapper .faqQuestions .icon {
+    font-size: 2.5rem;
+  }
+  .faqContainer .faqWrapper .faqAnswers {
+    width: 80%;
+    margin: 0 auto;
+    color: #656565;
+  }
+  .faqContainer .faqWrapper .faqAnswers li {
+    line-height: 1.5;
+    font-size: 1.4rem;
+  }
+}

@@ -1,0 +1,549 @@
+@import "../../Style/variables";
+
+// BUTTON CONTAINER FOR THE TOGGLE BUTTONS
+
+#singlePreview {
+  text-align: center !important;
+
+  .button-container {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    padding: 6px;
+    width: fit-content;
+    height: 100%;
+    margin: auto;
+    border-radius: 20px;
+    border: 0.8px solid rgba(84, 84, 84, 0.26);
+    background-color: white;
+    margin-bottom: 2rem;
+  }
+
+  .button-container button {
+    margin: 5px 15px 5px 15px;
+    height: 37px;
+    width: 130px;
+    border-radius: 10px;
+    font-family: "Work Sans", sans-serif;
+    cursor: pointer;
+
+    &.not-active {
+      background: transparent;
+      width: 140px;
+      height: 40px;
+      font-size: 12px;
+      border: 1px solid $primaryColor !important;
+
+      &:hover {
+        color: #fff;
+        background: $primaryColor;
+        border: none;
+        transition: 500ms ease-in-out;
+      }
+    }
+
+    &.active {
+      background: $primaryColor;
+      width: 140px;
+      height: 40px;
+      font-size: 12px;
+      color: #fff;
+      border: none;
+
+      &:hover {
+        color: $primaryColor;
+        background: #fff;
+        border: 1px solid $primaryColor;
+        transition: 500ms ease-in-out;
+      }
+    }
+  }
+
+  .certificate-share-hero {
+    text-align: center !important;
+  }
+
+  .certificate-share-hero h1 {
+    font-size: 20px;
+    font-weight: 400;
+    margin: 0px 0px 45px 0px;
+  }
+
+  .certificate-share-hero button {
+    margin: 35px 20px 0px 20px;
+    border-radius: 5px;
+    color: $primaryColor !important;
+    width: 140px;
+    height: 35px;
+    font-size: 12px;
+
+    &.download-button {
+      background: transparent !important;
+      border: 1px solid $primaryColor !important;
+      color: $primaryColor !important;
+
+      &:hover {
+        color: #fff !important;
+        background: $primaryColor !important;
+        border: none !important;
+        transition: 500ms ease-in-out;
+      }
+    }
+
+    &.send-button {
+      background: $primaryColor !important;
+      color: #fff !important;
+      border: none !important;
+
+      &:hover {
+        color: $primaryColor !important;
+        background: #fff !important;
+        border: 1px solid $primaryColor !important;
+        transition: 500ms ease-in-out;
+      }
+    }
+  }
+
+  h2 {
+    font-size: 20px;
+    margin: 50px 0px 20px 0px !important;
+  }
+
+  .explore-button {
+    width: 180px !important;
+    height: 40px !important;
+    margin: 30px !important;
+    text-align: center !important;
+    border-radius: 8px !important;
+    background: transparent !important;
+    border: 1px solid $primaryColor !important;
+    font-family: "Sora", sans-serif !important;
+
+    &:hover {
+      color: #fff;
+      background: $primaryColor !important;
+      border: none;
+      transition: 500ms ease-in-out;
+    }
+  }
+
+  // certificate-share-hero IMAGES
+
+  .certificate-header h4 {
+    font-size: 22px;
+    font-weight: 450;
+    margin-bottom: 20px;
+  }
+
+  .sample,
+  .sample3 {
+    background: #ac0423;
+    position: relative;
+    height: 50px;
+    width: 20px;
+  }
+
+  .sample3 {
+    float: right;
+  }
+
+  .sample3:after {
+    background: #ac0423;
+    content: "";
+    height: 20px;
+    position: absolute;
+    right: 10px;
+    width: 50px;
+  }
+
+  .sample:after {
+    background: #ac0423;
+    content: "";
+    height: 20px;
+    position: absolute;
+    left: 10px;
+    width: 50px;
+  }
+
+  .sample2 {
+    opacity: 0.4;
+    background: #ac0423;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    position: absolute;
+    top: 18.5%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  #container-wrapper {
+    width: 90%;
+    margin: auto;
+    padding: 10px;
+    max-width: 300px;
+    border-top: 4px solid #ac0423;
+    border-bottom: 4px solid #ac0423;
+    border-left: 4px solid #ac0423;
+    border-right: 4px solid #ac0423;
+  }
+
+  #container-design {
+    border: 2px solid #ac0423;
+  }
+
+  #single-preview-card {
+    position: relative;
+  }
+
+  #single-preview-text {
+    position: relative;
+    text-transform: capitalize;
+
+    #preview-text {
+      position: relative;
+      top: -15px;
+
+      h1 {
+        font-size: 20px !important;
+        margin: 0px !important;
+        color: #ac0423;
+        font-weight: 450;
+      }
+
+      p {
+        text-transform: uppercase;
+        font-size: 13px !important;
+        color: #ac0423;
+      }
+
+      h2 {
+        color: #ac0423;
+        font-size: 18px;
+        border-bottom: 2px solid #ac0423;
+      }
+
+      h6 {
+        font-size: 13px;
+        padding: 5px 20px;
+      }
+    }
+  }
+
+  .single-preview-issue {
+    text-transform: uppercase;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-weight: bolder;
+    margin: 20px 0px 15px 0px;
+    color: #ac0423;
+
+    .line {
+      border-bottom: 1px solid #ac0423;
+    }
+
+    p {
+      font-size: 12px;
+    }
+
+    h6 {
+      font-size: 12px;
+    }
+  }
+
+  .single-images {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &.single-images img {
+      margin: 15px;
+      width: 80%;
+
+      height: auto;
+    }
+  }
+
+  #preview-text img {
+    width: 20%;
+    position: relative;
+    top: -20px;
+    z-index: 100;
+  }
+
+  // START OF DROPDOWN
+
+  .dropdown {
+    position: relative;
+    display: inline-block;
+    align-items: center;
+  }
+
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    left: 20px;
+    background-color: #f1f1f1;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    padding: 0px;
+    margin: 0px;
+  }
+
+  .dropdown-content button {
+    padding: 0px;
+    margin: 0px;
+    border: none;
+    display: block;
+    background: rgb(253, 252, 252);
+  }
+
+  .dropdown-content button:hover {
+    background-color: #ddd;
+  }
+
+  .dropdown:hover .dropdown-content {
+    display: block;
+    align-items: center;
+    text-align: center;
+  }
+
+  .dropbtn {
+    background-color: $primaryColor;
+    color: #fff !important;
+  }
+
+  //END OF DROPDOWN
+
+  @media screen and (min-width: 500px) {
+    .certificate-share-hero button {
+      width: 160px;
+      height: 40px;
+      font-size: 13px;
+    }
+
+    .certificate-header h4,
+    h2 {
+      font-size: 25px;
+      margin: 20px;
+    }
+
+    #single-preview-text {
+      #preview-text {
+        h1 {
+          font-size: 28px !important;
+        }
+
+        h2 {
+          font-size: 25px;
+        }
+      }
+    }
+
+    #container-wrapper {
+      width: 100%;
+      max-width: 400px;
+    }
+
+    .sample2 {
+      top: 14.5%;
+    }
+  }
+
+  @media screen and (min-width: 768px) {
+    .modal-wrapper {
+      top: 28%;
+    }
+
+    #preview-text img {
+      width: 10%;
+      position: relative;
+      top: -20px;
+      z-index: 100;
+    }
+
+    // certificate-share-hero IMAGES
+    .certificate-header h4 {
+      font-size: 30px !important;
+      margin: 20px;
+    }
+
+    .sample2 {
+      width: 100px;
+      height: 100px;
+      top: 25.5%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    #container-wrapper {
+      width: 70%;
+      margin: auto;
+      padding: 10px;
+      max-width: 600px;
+    }
+
+    #container-design {
+      border: 2px solid #ac0423;
+    }
+
+    #single-preview-card {
+      position: relative;
+    }
+
+    #single-preview-text {
+      position: relative;
+
+      #preview-text {
+        position: relative;
+        top: -10px;
+
+        h1 {
+          font-size: 30px !important;
+          margin: 0px !important;
+        }
+
+        p {
+          font-size: 15px !important;
+        }
+
+        h2 {
+          font-size: 26px !important;
+          border-bottom: 1px solid #ac0423;
+        }
+
+        h6 {
+          font-size: 15px !important;
+          padding: 5px 20px;
+        }
+      }
+    }
+
+    .single-preview-issue {
+      margin: 20px 0px 15px 0px;
+
+      .line {
+        border-bottom: 1px solid #ac0423;
+      }
+
+      p {
+        font-size: 14px;
+      }
+
+      h6 {
+        font-size: 14px;
+      }
+    }
+
+    h2 {
+      font-size: 30px;
+      margin-top: 40px;
+    }
+
+    .certificate-share-hero button {
+      font-size: 15px;
+      width: 170px;
+      height: 40px;
+      margin: 30px 15px 0px 15px;
+    }
+
+    .dropdown-content button {
+      font-size: 12px;
+      padding: 0px !important;
+      margin: 0px !important;
+      border: none;
+      display: block;
+    }
+
+    .single-images {
+      flex-direction: row;
+      justify-content: center;
+    }
+
+    .single-images img {
+      width: 100%;
+      max-width: 250px;
+    }
+  }
+
+  @media screen and (min-width: 1024px) {
+    .button-container button {
+      font-size: 18px;
+      width: 200px;
+      height: 50px;
+    }
+
+    .certificate-share-hero button {
+      font-size: 18px;
+      width: 200px;
+      height: 50px;
+      margin: 30px 15px 0px 15px;
+    }
+
+    .dropdown-content button {
+      font-size: 13px;
+      padding: 0px !important;
+      margin: 0px !important;
+      border: none;
+      display: block;
+    }
+
+    .sample2 {
+      top: 30%;
+    }
+
+    .certificate-share-hero img {
+      width: 100%;
+      height: auto;
+      max-width: 700px;
+    }
+
+    h2 {
+      margin-top: 70px !important;
+    }
+
+    .single-images img {
+      max-width: 300px;
+    }
+
+    .explore-button {
+      font-size: 14px !important;
+      width: 270px;
+      height: 58px;
+
+    }
+  }
+
+  .template-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+
+    button {
+      background: transparent !important;
+      color: $primaryColor;
+      padding: 1.125rem;
+      width: fit-content;
+      border: 1px solid $primaryColor;
+      outline: none;
+      border-radius: 10px;
+      padding: 0.75rem;
+      text-align: center;
+      font-size: 1.125rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      //margin-top: 1rem;
+      font-weight: 400;
+      text-transform: capitalize;
+      transition: all 0.3s;
+
+      &:hover {
+        background: $primaryColor !important;
+        color: #fff;
+      }
+    }
+  }
+}
