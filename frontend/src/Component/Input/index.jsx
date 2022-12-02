@@ -19,6 +19,7 @@ const Input = ({ type, placeholder, value, callback, id, label }) => {
             {label}
           </label>
           <input
+            name={id}
             id={id}
             type={type}
             placeholder={placeholder}
