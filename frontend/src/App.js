@@ -49,7 +49,7 @@ function App() {
   useEffect(() => {
     setTimeout(function () {
       setAppLoading(false);
-    }, 1000);
+    }, 100);
   }, []);
 
   useEffect(() => {
