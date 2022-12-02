@@ -6,6 +6,7 @@ import Testimonials from "./Testimonials";
 import { Outlet } from "react-router-dom";
 import Partners from "./Partners";
 
+
 const Home = ({
   logo,
   setLogo,
