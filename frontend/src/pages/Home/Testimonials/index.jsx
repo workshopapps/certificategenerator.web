@@ -19,7 +19,6 @@ export default function Testimonials() {
           options={{
             gap: "20px",
             perPage: 3,
-
             breakpoints: {
               1200: {
                 perPage: 2,
