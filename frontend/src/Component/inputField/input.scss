@@ -1,4 +1,4 @@
-@import '../../Style/variables';
+@import "../../Style/variables";
 
 .inputContainer {
   display: flex;
@@ -13,6 +13,13 @@
     color: $primaryBlackColor;
   }
 
+   input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+      appearance: none;
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
   &__input {
     border: 1.50376px solid rgba(34, 34, 34, 0.2);
     border-radius: 0.625rem;
@@ -21,10 +28,18 @@
     height: max-content;
     font-size: 1.125rem;
 
+   
+
     &::placeholder {
       font-weight: 400;
       font-size: 1.125rem;
       color: rgba(34, 34, 34, 0.5);
     }
   }
+}
+
+/* Firefox */
+input[type="number"] {
+  appearance:textfeild;
+  -moz-appearance: textfield;
 }

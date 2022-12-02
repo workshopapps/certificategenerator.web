@@ -8,7 +8,6 @@ import certificate3 from "../../assets/images/SinglePreview/Completion - Portrai
 import { exportComponentAsPNG } from "react-component-export-image";
 import html2canvas from "html2canvas";
 import { jsPDF } from "jspdf";
-import Button from "../../Component/button";
 
 function SinglePreview({
   logo,
@@ -153,12 +152,11 @@ function SinglePreview({
       </div>
 
       {/* BUTTON TO EXPLORE MORE TEMPLATES */}
-      <div className="template-btn">
-        <Link to="/templates" className="explore-btn">
-          <Button name="Explore More Templates" style={{ margin: "30px auto" }} />
-       </Link>
+      <div id = 'explore'>
+      <Link to="/templates">
+        <button className = "explore-button">Explore More Templates</button>
+      </Link>
       </div>
-      
     </div>
   );
 }
