@@ -8,7 +8,6 @@ import certificate3 from "../../assets/images/SinglePreview/Completion - Portrai
 import { exportComponentAsPNG } from "react-component-export-image";
 import html2canvas from "html2canvas";
 import { jsPDF } from "jspdf";
-import Button from "../../Component/button";
 
 function Index({
   logo,
@@ -164,9 +163,12 @@ function Index({
       </div>
 
       {/* BUTTON TO EXPLORE MORE TEMPLATES */}
+      <div id = 'explore'>
       <Link to="/templates">
-        <Button text="Explore More Templates" style={{ margin: "30px auto" }} />
+        <button className = "explore-button">Explore More Templates</button>
       </Link>
+      </div>
+     
     </div>
   );
 }
