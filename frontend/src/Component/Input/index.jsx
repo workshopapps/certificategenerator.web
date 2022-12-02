@@ -1,7 +1,7 @@
 import "./input.style.scss";
 import React from "react";
 
-const Input = ({ type, placeholder, value, callback, id, label }) => {
+const Input = ({ type, placeholder, value, callback, id, label, style }) => {
   return (
     <>
       {type === "submit" ? (
@@ -11,6 +11,7 @@ const Input = ({ type, placeholder, value, callback, id, label }) => {
             placeholder={placeholder}
             value={value}
             onClick={callback}
+            style={style}
           />
         </>
       ) : (
@@ -25,6 +26,7 @@ const Input = ({ type, placeholder, value, callback, id, label }) => {
             placeholder={placeholder}
             value={value}
             onChange={callback}
+            style={style}
           />
         </>
       )}
