@@ -12,7 +12,7 @@ const Footer = () => {
   const handleChange = e => {
     setEmail(e.target.value);
   };
-  const successMSG = "You have successfully subscriped for our newsletter🎉";
+  const successMSG = "You have successfully subscribed for our newsletter🎉";
   const handleSubmit = e => {
     e.preventDefault();
     const regex =
