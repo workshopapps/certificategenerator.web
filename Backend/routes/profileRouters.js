@@ -14,6 +14,6 @@ router.get("/", getUserProfile);
 router.post("/", addUserProfile);
 
 //for updating userProfile
-router.put('/', updateUserProfile);
+router.put("/", updateUserProfile);
 
 module.exports = router;
