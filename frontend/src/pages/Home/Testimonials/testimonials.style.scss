@@ -28,7 +28,8 @@ body {
 }
 
 .testimonial-box {
-  min-height: 300px;
+  height: 325px;
+  
   padding: 25px;
   border: 1px solid #b2e1d9;
   border-radius: 20px;
@@ -131,8 +132,13 @@ body {
   }
 }
 
+@media screen and (min-width: 768px) {
+  .testimonial-box {
+    height: 360px!important;
+  }
+}
 @media screen and (min-width: 1024px) {
   .testimonial-box {
-    max-height: 315px;
+    height: 315px!important;
   }
 }

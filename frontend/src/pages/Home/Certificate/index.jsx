@@ -19,6 +19,18 @@ export default function Certificate({
   setIssueDate
 }) {
   const [bulkCertificate, setBulkCertificate] = useState(false);
+  const navigate = useNavigate();
+  const disabledButton =
+    !logo.trim() ||
+    !message.trim() ||
+    !certificateTitle.trim() ||
+    !awardeeName.trim() ||
+    !issuedBy.trim() ||
+    !issueDate.trim();
+  const handleSubmit = e => {
+    e.preventDefault();
+    navigate("/single_preview");
+  };
 
   return (
     <>
@@ -100,7 +112,11 @@ export default function Certificate({
         </div>
       ) : (
         <div>
-          <form action="" className="cert-form text-left work-sans">
+          <form
+            action=""
+            onSubmit={handleSubmit}
+            className="cert-form text-left work-sans"
+          >
             <label for="img">Upload logo</label>
             <input
               type="file"
@@ -155,6 +171,22 @@ export default function Certificate({
               value={issuedBy}
               onChange={e => setIssuedBy(e.target.value)}
             />
+
+            <label htmlFor="date" className="label">
+              Issue Date
+            </label>
+            <input
+              type="text"
+              value={issueDate}
+              onChange={e => setIssueDate(e.target.value)}
+            />
+
+            <button
+              disabled={disabledButton}
+              className={`${disabledButton && "btn-disabled"} btn-success`}
+            >
+              Create Certificate
+            </button>
 
             <label htmlFor="date" className="label">
               Issue Date
