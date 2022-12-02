@@ -28,7 +28,7 @@ exports.emailNotification = async (req, res) => {
     const mailOptions = {
         from: process.env.AUTH_EMAIL,
         to: `${email}`,
-        subject: `Certgo- Your Certificates is Ready`,
+        subject: `Certgo- Your Certificates are Ready`,
         html: `<p>Thank you for using Certgo online certificate generator.</p>
 
                 <p>Your Certificate has been attached below</p>
@@ -48,7 +48,7 @@ exports.emailNotification = async (req, res) => {
             console.log('Email sent: ' + info.response);
             fs.unlink(`uploads/${file.filename}`, function (err) {
                 if (err) return console.log(err);
-                console.log('file deleted successfully');
+                console.log('file deleted successfully and notification has been sent');
             })
         }
     })
