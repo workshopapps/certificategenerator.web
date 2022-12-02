@@ -156,10 +156,7 @@ function SinglePreview({
       {/* BUTTON TO EXPLORE MORE TEMPLATES */}
       <div className="template-btn">
         <Link to="/templates" className="explore-btn">
-          <Button
-            name="Explore More Templates"
-            style={{ margin: "30px auto" }}
-          />
+          <button style={{ backgroundColor:'transparent', margin: "30px auto", }}>Explore More Templates</button>
         </Link>
       </div>
     </div>
