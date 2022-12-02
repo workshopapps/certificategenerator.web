@@ -119,11 +119,11 @@ const Login = () => {
                 Remember me
               </label>
             </div>
-            <input
+            <Input
               type="submit"
               value="Login"
               id="btn"
-              onClick={handleOnSubmit}
+              callback={handleOnSubmit}
             />
           </form>
           <p className="haveAccount">

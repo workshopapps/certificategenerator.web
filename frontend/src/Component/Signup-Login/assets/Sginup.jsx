@@ -125,7 +125,7 @@ const Signup = () => {
                 <span id="coloredTerms"> Privacy Policy</span>
               </div>
             </div>
-            <input
+            <Input
               type="submit"
               id="btn"
               value="Create Account"

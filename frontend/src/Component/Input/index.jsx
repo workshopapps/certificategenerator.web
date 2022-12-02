@@ -16,9 +16,11 @@ const Input = ({ type, placeholder, value, callback, id, label, style }) => {
         </>
       ) : (
         <>
-          <label htmlFor={id} className="label">
-            {label}
-          </label>
+          {label && (
+            <label htmlFor={id} className="label">
+              {label}
+            </label>
+          )}
           <input
             name={id}
             id={id}
