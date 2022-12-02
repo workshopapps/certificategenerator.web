@@ -224,24 +224,6 @@ export default function Certificate({
             <input
               required
               type="text"
-              placeholder={"Certificate of completion"}
-              value={certificateTitle}
-              callback={e => setCertificateTitle(e.target.value)}
-            />
-
-            <Input
-              id={"awardeeName"}
-              label={"Awardee Name"}
-              type="text"
-              placeholder={"Gabriel Prosper"}
-              value={awardeeName}
-              callback={e => setAwardeeName(e.target.value)}
-            />
-
-            <Input
-              id={"message"}
-              label={" Dedication or message"}
-              type="text"
               value={message}
               onChange={e => setMessage(e.target.value)}
               placeholder="For your exceptional performance this month."
@@ -262,7 +244,7 @@ export default function Certificate({
             <input
               type="date"
               value={issueDate}
-              onChange={e => setIssueDate(e.target.value)}
+              callback={e => setIssueDate(e.target.value)}
             />
 
             <Link
