@@ -185,15 +185,8 @@ export default function Certificate ({
             <label htmlFor='text' className="label">Issued by</label>
             <input type="text" placeholder="Name of organisation or issuer" value={issuedBy} onChange={e => setIssuedBy(e.target.value)} />
 
-            <label htmlFor="date" className="label">
-              Issue Date
-            </label>
-            <input
-              type="date"
-              value={issueDate}
-              className="date_"
-              callback={e => setIssueDate(e.target.value)}
-            />
+            <label htmlFor='date' className="label">Issue Date</label>
+            <input type="date" value={issueDate} onChange={e => setIssueDate(e.target.value)} />
 
             <Link
               className="btn-create isDisabled certi "
