@@ -30,7 +30,7 @@ export default function Hero() {
         </div>
       </div>
 
-      <div className="line-height flex justify-between text-left work-sans perks">
+      <div className="line-height text-left work-sans perks">
         <div className="flex single-perk" style={{ gap: "10px" }}>
           <img src={tick} alt="tick" className="tick"></img>
           <p>
