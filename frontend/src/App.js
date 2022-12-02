@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 
 import {
   AboutUs,
-  BulkPreview,
   BulkStep,
   Career,
   Choice,
@@ -15,7 +14,6 @@ import {
   Layout,
   Pricing,
   Preview,
-  SinglePreview,
   Team,
   Templates,
   Terms,
@@ -49,7 +47,7 @@ function App() {
   useEffect(() => {
     setTimeout(function () {
       setAppLoading(false);
-    }, 1000);
+    }, 100);
   }, []);
 
   useEffect(() => {
@@ -162,16 +160,12 @@ function App() {
             <Route path="/FAQ" element={<FAQ />} />
             <Route path="/bulk_step" element={<BulkStep />} />
             <Route path="/edit_bulk" element={<EditBulk />} />
-            <Route path="/pricing" element={<Pricing
-            access = {access}
-            setAccess = {setAccess}
-            
-            />} />
+            <Route
+              path="/pricing"
+              element={<Pricing access={access} setAccess={setAccess} />}
+            />
             <Route path="/contact-us" element={<ContactUs />} />
             <Route path="/payment" element={<Checkout />} />
-            <Route path="/bulk_preview" element={<BulkPreview />} />
-            <Route path="/single_preview" element={<SinglePreview />} />
-
             <Route path="/profile" element={<ProfilePage />} />
             <Route path="/upload" element={<UploadCSV setFile={setFile} />} />
 

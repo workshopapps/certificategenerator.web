@@ -3,7 +3,6 @@ import "./certificate.style.scss";
 import { Link, useNavigate } from "react-router-dom";
 import UploadCSV from "../../UploadCSV";
 import Button from "../../../Component/button";
-import Input from "../../../Component/Input";
 
 export default function Certificate({
   logo,
@@ -33,11 +32,33 @@ export default function Certificate({
     navigate("/preview");
   };
 
+  function filevalidation() {
+    const fi = document.querySelector(".custom-file-input");
+    // Check if any file is selected.
+    console.log(fi.files);
+    if (fi.files.length > 0) {
+      for (const i = 0; i <= fi.files.length - 1; i++) {
+        const fsize = fi.files.item(i).size;
+        const file = Math.round(fsize / 1024);
+        // The size of the file.
+        // if (file >= 4096) {
+        //   alert("File too Big, please select a file less than 4mb");
+        // } else if (file < 2048) {
+        //   alert("File too small, please select a file greater than 2mb");
+        // } else {
+        //   document.querySelector("#file-size").textContent =
+        //     "<b>" + file + "</b> KB";
+        //   }
+        document.querySelector("#file-size").textContent = `${file}KB`;
+      }
+    }
+  }
+
   return (
     <>
       <p id="certificatee" className="sora header">
-        Create your <span className="emphasized">certificate </span>
-        with <span className="emphasized">ease</span>
+        Create your <span>certificate </span>
+        with <span>ease</span>
       </p>
 
       {bulkCertificate ? (
@@ -98,7 +119,6 @@ export default function Certificate({
             <input type="file" name="uploadfile" id="img" style={{ display:"none"}}/>
             <label for="img" className="upload">Upload logo</label>
             <p style={{fontSize: '12px', margin: '0'}}>Max image upload size: 8mb</p>
-
             <label for='text' className="label">Certificate Title</label>
             <input type="text" placeholder="Certificate of completion"/>
         
@@ -106,13 +126,10 @@ export default function Certificate({
             <input type="text" placeholder="For your exceptional performance this month, 
             in appreciation for your loyalty and the desire to fulfil our goals, 
             in recognition of your leadership and dedication "/>
-
             <label for='text' className="label">Issued by</label>
             <input type="text" placeholder="Name of organisation or issuer"/>
-
             <label for='date' className="label">Issue Date</label>
             <input type="date" />
-
             <input type="submit" value="Create Certificate" className="submit-btn"/> */}
           </form>
         </div>
@@ -138,16 +155,17 @@ export default function Certificate({
                     position: "absolute"
                   }}
                   title=" "
-                  onChange={e =>
-                    setLogo(URL.createObjectURL(e.target.files[0]))
-                  }
+                  // onChange={e =>
+                  //   setLogo(URL.createObjectURL(e.target.files[0]))
+                  // }
+                  onChange={filevalidation}
                 />
               </span>
               {/* <label for="img">Upload Logo</label> */}
 
               {/* <img style={{ width: "15%" }} src={logo} alt="logo" /> */}
               <p style={{ fontSize: "12px", margin: "0" }}>
-                Max image upload size: 8mb
+                Max image upload size: <span id="file-size"></span>
               </p>
             </div>
             <label htmlFor="text" className="label">
@@ -181,7 +199,10 @@ export default function Certificate({
               placeholder="For your exceptional performance this month."
             />
 
-            <Input
+            <label htmlFor="text" className="label">
+              Issued by
+            </label>
+            <input
               id={"issuedBy"}
               label={" Issued by"}
               type="text"

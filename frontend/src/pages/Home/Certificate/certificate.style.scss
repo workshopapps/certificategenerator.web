@@ -15,6 +15,7 @@ body {
 .flex {
   display: flex;
 }
+
 .justify-between {
   justify-content: space-between;
 }
@@ -53,22 +54,11 @@ body {
 }
 
 .header {
-  padding: 16px 0 0 0;
-  font-size: 30px;
+  padding: 120px 0 0 0;
+  font-size: 48px;
   font-weight: 700;
   line-height: 60.48px;
   text-align: center;
-  padding: 16px;
-  @media screen and (max-width: 900.9px) {
-    font-size: 2rem;
-    line-height: 30px;
-  }
-  @media screen and (max-width: 700.9px) {
-    font-size: 1.6rem;
-  }
-  @media screen and (max-width: 480.9px) {
-    font-size: 1.2rem;
-  }
 }
 
 .prompt {
@@ -79,9 +69,10 @@ body {
 }
 
 .mode {
+  width: 30%;
   margin: auto;
-  border: 0.8px solid #b2e1d9;
-  border-radius: 10px;
+  border-radius: 20px;
+  border: 0.8px solid rgba(84, 84, 84, 0.26);
   background-color: white;
   line-height: 19px;
   font-weight: 500;
@@ -95,17 +86,14 @@ body {
 
 .select {
   border: none;
-  display: flex;
-  align-items: center;
-  flex-direction: row;
   background: none;
-  padding: 10px 23px;
+  height: 35px;
   background-color: #19a68e;
   border-radius: 10px;
   color: #ffffff;
-  margin: 4%;
-  font-size: 16px;
-  font-weight: 400;
+  margin: 2.5%;
+  width: 50%;
+  font-weight: 500;
   cursor: pointer;
   text-align: center;
 }
@@ -115,6 +103,7 @@ body {
   font-size: 12px;
   font-weight: 600;
   margin-right: 3%;
+
   .explore-arrow {
     color: #19a68e;
     margin-right: 1%;
@@ -215,12 +204,18 @@ input::placeholder {
   border-radius: 10px;
   cursor: pointer;
 }
+
 .btn-disabled {
   background-color: #8ab9b2;
   cursor: not-allowed;
 }
 
 @media screen and (max-width: 768px) and (min-width: 481px) {
+  .header {
+    font-size: 32px;
+    line-height: 40px;
+  }
+
   .mode {
     width: 90%;
   }
@@ -230,29 +225,40 @@ input::placeholder {
   }
 
   .cert-form {
-    margin: 5.5% 10% 6%;
+    margin: 5.5% 10% 12%;
   }
 }
 
 @media screen and (max-width: 480px) {
+  .header {
+    font-size: 24px;
+    line-height: 30px;
+    text-align: center;
+  }
+
   .prompt {
     font-size: 16px;
     line-height: 24px;
   }
+
   .mode {
     width: 90%;
+
     button {
       font-size: 16px;
     }
   }
+
   .mobile-none {
     display: none;
   }
+
   .cert-img {
     flex-direction: column;
     width: 50% !important;
     margin: auto !important;
   }
+
   .cert-form {
     width: 100%;
     border: none;
@@ -261,15 +267,22 @@ input::placeholder {
     margin-bottom: 0 !important;
     background-color: #ffffff;
   }
+
   .label {
     margin: 24px 0 12px 0;
   }
+
   input {
     height: 52px;
   }
 }
 
 @media screen and (max-width: 768px) and (min-width: 481px) {
+  .header {
+    font-size: 32px;
+    line-height: 40px;
+  }
+
   .mode {
     width: 90%;
   }
@@ -279,29 +292,40 @@ input::placeholder {
   }
 
   .cert-form {
-    margin: 5.5% 10% 6%;
+    margin: 5.5% 10% 12%;
   }
 }
 
 @media screen and (max-width: 480px) {
+  .header {
+    font-size: 24px;
+    line-height: 30px;
+    text-align: center;
+  }
+
   .prompt {
     font-size: 16px;
     line-height: 24px;
   }
+
   .mode {
     width: 90%;
+
     button {
       font-size: 16px;
     }
   }
+
   .mobile-none {
     display: none;
   }
+
   .cert-img {
     flex-direction: column;
     width: 50% !important;
     margin: auto !important;
   }
+
   .cert-form {
     width: 100%;
     border: none;
@@ -309,12 +333,15 @@ input::placeholder {
     margin: 0;
     margin-bottom: 0 !important;
   }
+
   .label {
     margin: 24px 0 12px 0;
   }
+
   input {
     height: 52px;
   }
+
   .submit-btn {
     width: 100%;
   }
