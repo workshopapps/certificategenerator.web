@@ -105,8 +105,10 @@ const userSignup = async (req, res, next) => {
 };
 
 const userLogin = async (req, res, next) => {
-  const { email, password } = req.body;
+  const { email, password, accessToken } = req.body;
   try {
+    if(req.body.accessToken)
+
     if (!email || !password) {
       return res.status(400).json("Please provide email and password");
     }

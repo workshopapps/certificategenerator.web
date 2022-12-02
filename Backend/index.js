@@ -31,6 +31,7 @@ const userPlan = require('./routes/pricingPlanRouter');
 const swaggerUi = require('swagger-ui-express')
 const swaggerFile = require('./swagger_output.json')
 const eventRouter = require("./routes/eventRouter");
+const newsletterRouter = require("./routes/newsletterRouter")
 
 const PORT = process.env.PORT || 5000;
 
@@ -64,6 +65,7 @@ app.use('/api/contactus', contacts)
 app.use('/api/pricing', userPlan)
 app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerFile))
 app.use("/api/events", eventRouter);
+app.use("/api/subscribe", newsletterRouter);
 
 mongoose.connection.once("open", () => {
   console.log("Connected to DB");
