@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 
 import {
   AboutUs,
+  BulkPreview,
   BulkStep,
   Career,
   Choice,
@@ -14,6 +15,7 @@ import {
   Layout,
   Pricing,
   Preview,
+  SinglePreview,
   Team,
   Templates,
   Terms,

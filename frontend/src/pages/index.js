@@ -18,3 +18,5 @@ export { default as Career } from "./Career";
 export { default as Pricing } from "./Pricing";
 export { default as ProfilePage } from "./ProfilePage";
 export { default as UploadCSV } from "./UploadCSV";
+export { default as BulkPreview } from "./BulkPreview";
+export { default as SinglePreview } from "./BulkPreview";
