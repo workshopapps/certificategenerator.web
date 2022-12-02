@@ -4,6 +4,7 @@ import "./template.style.scss";
 
 import Filter from "./modal";
 
+
 // template card images
 import cardimg from "./assets/Rectangle1.webp";
 import cardimg2 from "./assets/Rectangle2.webp";
@@ -25,6 +26,7 @@ export default function Template() {
   const [modalState, setModalState] = useState(false);
 
   const [category, setCategory] = useState([]);
+  const [isFiltering, setisFiltering] = useState(false)
 
   const cardImages = [
     {
@@ -32,14 +34,14 @@ export default function Template() {
       url: cardimg,
       type: "recognition",  
       layout: "landscape",
-      color: "red"
-    
+      color: "red"    
     },
     {
       id: 2,
       url: cardimg2,
       type: "recognition",
       layout: "landscape",
+      color: "blue"
       
     },
     {
@@ -54,13 +56,14 @@ export default function Template() {
       url: cardimg4,
       type: "completion",
       layout: "landscape",
-
+      color: "blue",
     },
     {
       id: 5,
       url: cardimg5,
       type: "appreciation",
       layout: "landscape",
+      color : "green"
     },
     {
       id: 6,
@@ -74,6 +77,7 @@ export default function Template() {
       url: cardimg7,
       type: "completion",
       layout: "landscape",
+      color: "green",
     },
     {
       id: 8,
@@ -87,89 +91,33 @@ export default function Template() {
       url: cardimg9,
       type: "appreciation",
       layout: "landscape",
+      color: "blue",
     },
     {
       id: 10,
       url: cardimg10,
       type: "completion",
       layout: "landscape",
+      color: "blue",
     },
     {
       id: 11,
       url: cardimg11,
       type: "completion",
       layout: "landscape",
-    },
-    {
-      id: 12,
-      url: cardimg,
-      type: "red",
-      layout: "landscape",
-    },
-    {
-      id: 13,
-      url: cardimg3,
-      type: "red",
-      layout: "landscape",
-    },
-    {
-      id: 14,
-      url: cardimg6,
-      type: "red",
-      layout: "landscape",
-    },
-    {
-      id: 15,
-      url: cardimg8,
-      type: "red",
-      layout: "landscape",
-    },
-    {
-      id: 16,
-      url: cardimg2,
-      type: "blue",
-      layout: "landscape",
-    },
-    {
-      id: 17,
-      url: cardimg4,
-      type: "blue",
-      layout: "landscape",
-    },
-    {
-      id: 18,
-      url: cardimg9,
-      type: "blue",
-      layout: "landscape",
-    },
-    {
-      id: 19,
-      url: cardimg10,
-      type: "blue",
-      layout: "landscape",
-    },
-    {
-      id: 20,
-      url: cardimg5,
-      type: "green",
-      layout: "landscape",
-    },
-    {
-      id: 21,
-      url: cardimg7,
-      type: "green",
-      layout: "landscape",
-    },
-    {
-      id: 22,
-      url: cardimg11,
-      type: "green",
-      layout: "landscape",
+      color: "green",
     },
     
 
 
   ];
+
+  const [presentbtncolor, setPresentbtncolor] =useState("");
+  const [presentcategory, setPresentcategory] = useState("");
+  const [filteredImages, setFilteredImages] =useState(cardImages)
+
+    
+   
 
   let categories = category;
 
@@ -183,14 +131,27 @@ export default function Template() {
 
   const errorMsg = document.querySelector('.error-wrapper');
 
-  const applySelectCategories = () => {
-    setCategory(categories);
+  const resetFilter = ()=>{
+    setPresentbtncolor("");
+    setPresentcategory("")
+  }
 
-    if (categories.length === 0) {
-      showErrorMsg();
-    } else {
-      return hideErrorMsg();
-    }
+  const applySelectCategories = () => {
+    //setCategory(categories);    
+    const newImages =  cardImages.filter((item)=>{
+      console.log(presentbtncolor,item.color===presentbtncolor,item.color)
+      if((presentbtncolor && !presentcategory) && item.color===presentbtncolor) return item
+      else if((presentcategory && !presentbtncolor) && item.type === presentcategory) return item
+      else if((presentcategory && presentbtncolor) && (item?.color===presentbtncolor && item.type === presentcategory) ) return item
+    } )
+      setFilteredImages([...newImages])
+      resetFilter();
+      setisFiltering(true)
+   // if (categories.length === 0) {
+    //  showErrorMsg();
+   // } else {
+   //   return hideErrorMsg();
+   // }
   };
 
   const hideErrorMsg = () => {
@@ -216,8 +177,12 @@ export default function Template() {
           <p>All results</p>
 
           {/* hide clear button if no filter is selected */}
-          {categories.length === 0 ? null : (
-            <button onClick={() => setCategory([])} className="clear-btn">
+          {isFiltering && (
+            <button onClick={() => {
+              setFilteredImages(cardImages)
+              setisFiltering(false)
+              resetFilter()
+              }} className="clear-btn">
               Clear All Filters
             </button>
           )}
@@ -240,6 +205,8 @@ export default function Template() {
           selectedCategory={childToParent}
           applyCategories={applySelectCategories}
           setCategory={setCategory}
+          setPresentbtncolor={setPresentbtncolor}
+          setPresentcategory={setPresentcategory}
         />
         
         
@@ -261,10 +228,7 @@ export default function Template() {
           </div>
         </div>
 
-        {cardImages
-          .filter((item) => {
-            return category.length === 0 ? item : category.includes(item.type);
-          })
+        {filteredImages
           .map((item) => {
             return (
               <div key={item.id} className="template-card">
