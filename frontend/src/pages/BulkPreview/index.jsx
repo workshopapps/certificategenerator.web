@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import certificate from "../../assets/images/bulkPreview/Completion - Portrait (2).png";
 import "./bulk.style.scss";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
-import BulkCertDesign from "./BulkCertDesign"
+import BulkCertDesign from "./BulkCertDesign";
 import "@splidejs/react-splide/css";
 import Button from "../../Component/button";
 
@@ -17,8 +17,7 @@ function Index() {
         <img src={certificate} alt="certificate" />
       </div> */}
 
-      <BulkCertDesign/>
-
+      <BulkCertDesign />
 
       {/* PREVIEW OF BULK GENERATED CERTIFICATES  */}
 
@@ -34,7 +33,6 @@ function Index() {
             arrows: true,
             pagination: true,
             breakpoints: {
-              
               640: {
                 perPage: 1
               },
@@ -45,19 +43,19 @@ function Index() {
           }}
         >
           <SplideSlide>
-            <BulkCertDesign/>
+            <BulkCertDesign />
           </SplideSlide>
           <SplideSlide>
-            <BulkCertDesign/>
+            <BulkCertDesign />
           </SplideSlide>
           <SplideSlide>
-            <BulkCertDesign/>
+            <BulkCertDesign />
           </SplideSlide>
           <SplideSlide>
-            <BulkCertDesign/>
+            <BulkCertDesign />
           </SplideSlide>
           <SplideSlide>
-            <BulkCertDesign/>
+            <BulkCertDesign />
           </SplideSlide>
           {/* <SplideSlide>
             <img src={certificate} alt="certificates" />
@@ -113,7 +111,7 @@ function Index() {
           <SplideSlide>
             <img src={certificate} alt="certificates" />
           </SplideSlide> */}
-        </Splide> 
+        </Splide>
       </section>
 
       {/* BUTTONS TO DOWNLOAD OR SHARE THE CRETIFICATES */}
