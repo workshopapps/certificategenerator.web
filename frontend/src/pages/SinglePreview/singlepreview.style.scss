@@ -6,26 +6,26 @@
   text-align: center !important;
 
   .button-container {
-      display: flex !important;
-      align-items: center;
-      justify-content: center;
-      padding: 6px;
-      width: fit-content;
-      height: 100%;
-      margin: auto;
-      border-radius: 20px;
-      border: 0.8px solid rgba(84, 84, 84, 0.26);
-      background-color: white;
-      margin-bottom: 2rem;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    padding: 6px;
+    width: fit-content;
+    height: 100%;
+    margin: auto;
+    border-radius: 20px;
+    border: 0.8px solid rgba(84, 84, 84, 0.26);
+    background-color: white;
+    margin-bottom: 2rem;
   }
 
   .button-container button {
-      margin: 5px 15px 5px 15px;
-      height: 37px;
-      width: 130px;
-      border-radius: 10px;
-      font-family: "Work Sans", sans-serif;
-      cursor: pointer;
+    margin: 5px 15px 5px 15px;
+    height: 37px;
+    width: 130px;
+    border-radius: 10px;
+    font-family: "Work Sans", sans-serif;
+    cursor: pointer;
 
     &.not-active {
       background: transparent;
@@ -58,9 +58,11 @@
       }
     }
   }
+
   .certificate-share-hero {
     text-align: center !important;
   }
+
   .certificate-share-hero h1 {
     font-size: 20px;
     font-weight: 400;
@@ -79,6 +81,7 @@
       background: transparent !important;
       border: 1px solid $primaryColor !important;
       color: $primaryColor !important;
+
       &:hover {
         color: #fff !important;
         background: $primaryColor !important;
@@ -107,14 +110,14 @@
   }
 
   .explore-button {
-    width: 180px;
-    height: 40px;
-    margin: 30px;
-    text-align: center;
-    border-radius: 8px;
-    background: transparent;
-    border: 1px solid $primaryColor;
-    font-family: "Sora", sans-serif;
+    width: 180px!important;
+    height: 40px!important;
+    margin: 30px!important;
+    text-align: center!important;
+    border-radius: 8px!important;
+    background: transparent!important;
+    border: 1px solid $primaryColor!important;
+    font-family: "Sora", sans-serif!important;
 
     &:hover {
       color: #fff;
@@ -131,6 +134,7 @@
     font-weight: 450;
     margin-bottom: 20px;
   }
+
   .sample,
   .sample3 {
     background: #ac0423;
@@ -138,9 +142,11 @@
     height: 50px;
     width: 20px;
   }
+
   .sample3 {
     float: right;
   }
+
   .sample3:after {
     background: #ac0423;
     content: "";
@@ -149,6 +155,7 @@
     right: 10px;
     width: 50px;
   }
+
   .sample:after {
     background: #ac0423;
     content: "";
@@ -231,6 +238,7 @@
     font-weight: bolder;
     margin: 20px 0px 15px 0px;
     color: #ac0423;
+
     .line {
       border-bottom: 1px solid #ac0423;
     }
@@ -238,6 +246,7 @@
     p {
       font-size: 12px;
     }
+
     h6 {
       font-size: 12px;
     }
@@ -274,6 +283,7 @@
   .dropdown-content {
     display: none;
     position: absolute;
+    left:20px;
     background-color: #f1f1f1;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
@@ -286,6 +296,7 @@
     margin: 0px;
     border: none;
     display: block;
+    background: rgb(253, 252, 252);
   }
 
   .dropdown-content button:hover {
@@ -311,6 +322,7 @@
       height: 40px;
       font-size: 13px;
     }
+
     .certificate-header h4,
     h2 {
       font-size: 25px;
@@ -333,6 +345,7 @@
       width: 100%;
       max-width: 400px;
     }
+
     .sample2 {
       top: 14.5%;
     }
@@ -355,6 +368,7 @@
       font-size: 30px !important;
       margin: 20px;
     }
+
     .sample2 {
       width: 100px;
       height: 100px;
@@ -416,6 +430,7 @@
       p {
         font-size: 14px;
       }
+
       h6 {
         font-size: 14px;
       }
@@ -445,6 +460,7 @@
       flex-direction: row;
       justify-content: center;
     }
+
     .single-images img {
       width: 100%;
       max-width: 250px;
@@ -457,6 +473,7 @@
       width: 200px;
       height: 50px;
     }
+
     .certificate-share-hero button {
       font-size: 18px;
       width: 200px;
@@ -475,6 +492,7 @@
     .sample2 {
       top: 30%;
     }
+
     .certificate-share-hero img {
       width: 100%;
       height: auto;
@@ -490,9 +508,15 @@
     }
 
     .explore-button {
-      width: 240px;
-      height: 55px;
-      font-size: 18px;
+      font-size: 14px!important;
+      width: 270px;
+      height: 58px;
+   
     }
+  }
+
+  .template-btn {
+    width: fit-content;
+    margin: 10px 15px;
   }
 }

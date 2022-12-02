@@ -19,12 +19,12 @@ body {
   padding: 0 50px;
   margin: 50px 0px;
   font-family: "Sora" !important;
-}
 
-.testimonial-wrapper {
-  margin: 30px 40px;
-  padding: 0px 50px;
-  overflow: hidden;
+  .testimonial-wrapper {
+    margin: 30px 0px;
+    padding: 0px 50px;
+    overflow: hidden;
+  }
 }
 
 .testimonial-box {
@@ -36,20 +36,20 @@ body {
   margin-bottom: 50px;
 }
 
-.testimonial-flex {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-}
+  .testimonial-flex {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
 
-.testimonial-box .test-image img {
-  width: 80px;
-}
+  .testimonial-box .test-image img {
+    width: 80px;
+  }
 
-.testimonial-flex .text {
-  margin-left: 20px;
-  text-align: left;
-}
+  .testimonial-flex .text {
+    margin-left: 20px;
+    text-align: left;
+  }
 
 .testimonial-name {
   font-size: 16px;
@@ -133,12 +133,17 @@ body {
 }
 
 @media screen and (min-width: 768px) {
+  .testimonial-wrapper {
+    margin: 30px 40px;
+  }
   .testimonial-box {
-    height: 360px!important;
+    height: 360px !important;
+    padding: 25px;
   }
 }
+
 @media screen and (min-width: 1024px) {
   .testimonial-box {
-    height: 315px!important;
+    height: 325px !important;
   }
 }

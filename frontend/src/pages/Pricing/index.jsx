@@ -12,7 +12,7 @@ import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/react-splide/css";
 
 
-function Pricing() {
+function Pricing({access, setAccess}) {
     const [value, setValue] = useState(0);
 
     const { per } = data[value];
@@ -67,9 +67,12 @@ function Pricing() {
                                         })}
                                     </article>
 
-                                    <Link to={sub.linkTo}>
+                                   {access ? <Link to={sub.AfterLogin}>
                                         {sub.linkText}
                                     </Link>
+                                     :  <Link to={sub.linkTo}>
+                                        {sub.linkText}
+                                    </Link>}
                                 </div>
                             );
                         })}

@@ -3,6 +3,7 @@ import "./certificate.style.scss";
 import { Link, useNavigate } from "react-router-dom";
 import UploadCSV from "../../UploadCSV";
 import Button from "../../../Component/button";
+import Input from "../../../Component/Input";
 
 export default function Certificate({
   logo,
@@ -29,7 +30,7 @@ export default function Certificate({
     !issueDate.trim();
   const handleSubmit = e => {
     e.preventDefault();
-    navigate("/single_preview");
+    navigate("/preview");
   };
 
   // const [link, setLink] = useState("isDisabled");
@@ -83,18 +84,19 @@ export default function Certificate({
   return (
     <>
       <p id="certificatee" className="sora header">
-        Create your certificate with ease
-      </p>
-
-      <p className="prompt" style={{ margin: 0, color: "#6C6C70" }}>
-        Select a template, input values and create a certificate right away.
+        Create your <span className="emphasized">certificate </span>
+        with <span className="emphasized">ease</span>
       </p>
 
       {bulkCertificate ? (
         <div className="flex justify-between mode">
           <button
             className="select"
-            style={{ color: "#19A68E", backgroundColor: "#ffffff" }}
+            style={{
+              color: "#222222",
+              backgroundColor: "#ffffff",
+              transition: "300ms ease-in"
+            }}
             onClick={() => {
               setBulkCertificate(false);
             }}
@@ -122,7 +124,11 @@ export default function Certificate({
           </button>
           <button
             className="select"
-            style={{ color: "#19A68E", backgroundColor: "#ffffff" }}
+            style={{
+              color: "#222222",
+              backgroundColor: "#ffffff",
+              transition: "300ms ease-in"
+            }}
             onClick={() => {
               setBulkCertificate(true);
             }}
@@ -218,19 +224,36 @@ export default function Certificate({
             <input
               required
               type="text"
+              placeholder={"Certificate of completion"}
+              value={certificateTitle}
+              callback={e => setCertificateTitle(e.target.value)}
+            />
+
+            <Input
+              id={"awardeeName"}
+              label={"Awardee Name"}
+              type="text"
+              placeholder={"Gabriel Prosper"}
+              value={awardeeName}
+              callback={e => setAwardeeName(e.target.value)}
+            />
+
+            <Input
+              id={"message"}
+              label={" Dedication or message"}
+              type="text"
               value={message}
               onChange={e => setMessage(e.target.value)}
               placeholder="For your exceptional performance this month."
             />
 
-            <label htmlFor="text" className="label">
-              Issued by
-            </label>
-            <input
+            <Input
+              id={"issuedBy"}
+              label={" Issued by"}
               type="text"
-              placeholder="Name of organisation or issuer"
+              placeholder={"Name of organisation or issuer"}
               value={issuedBy}
-              onChange={e => setIssuedBy(e.target.value)}
+              callback={e => setIssuedBy(e.target.value)}
             />
 
             <label htmlFor="date" className="label">

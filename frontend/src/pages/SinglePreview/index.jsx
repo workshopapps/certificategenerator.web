@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Modal from "../../Component/Modal";
+import Button from "../../Component/button";
 import "./singlepreview.style.scss";
 import certificate from "../../assets/images/SinglePreview/Completion - Portrait (2).png";
 import certificate2 from "../../assets/images/SinglePreview/Completion - Portrait (3).png";
@@ -8,15 +9,15 @@ import certificate3 from "../../assets/images/SinglePreview/Completion - Portrai
 import { exportComponentAsPNG } from "react-component-export-image";
 import html2canvas from "html2canvas";
 import { jsPDF } from "jspdf";
-import Button from "../../Component/button";
+// import Button from "../../Component/button";
 
-function Index({
+function SinglePreview({
   logo,
   certificateTitle,
   awardeeName,
   message,
   issuedBy,
-  issueDate,
+  issueDate
 }) {
   const [openModal, setOpenModal] = useState(false);
   const [isAuntheticated, setIsAuntheticated] = useState(false);
@@ -40,7 +41,7 @@ function Index({
     const pdf = new jsPDF({
       orientation: "l",
       unit: "pt",
-      format: [canvas.width, canvas.height],
+      format: [canvas.width, canvas.height]
     });
     pdf.addImage(data, "PNG", 0, 0, canvas.width, canvas.height);
     pdf.save(`${awardeeName}.pdf`);
@@ -52,10 +53,10 @@ function Index({
 
       <div className="button-container">
         <Link to="/single_preview">
-          <button className="active">Single Certificate</button>
+          <Button className="active">Single Certificate</Button>
         </Link>
         <Link to="/signup">
-          <button className="not-active">Bulk Certificate</button>
+          <Button className="not-active btnLight">Bulk Certificate</Button>
         </Link>
       </div>
 
@@ -128,17 +129,17 @@ function Index({
           >
             Send Certificate
           </button>
-          <div class="dropdown">
-            <button class="dropbtn download-button">
+          <div className="dropdown">
+            <button className="dropbtn download-button">
               Download Certificate
             </button>
-            <div class="dropdown-content">
+            <div className="dropdown-content">
               <button
-                onClick={(e) => {
+                onClick={e => {
                   e.preventDefault();
                   exportComponentAsPNG(certificateWrapper, {
                     fileName: `${awardeeName}`,
-                    html2CanvasOptions: { backgroundColor: "#fff" },
+                    html2CanvasOptions: { backgroundColor: "#fff" }
                   });
                 }}
                 className="png-button"
@@ -164,11 +165,16 @@ function Index({
       </div>
 
       {/* BUTTON TO EXPLORE MORE TEMPLATES */}
-      <Link to="/templates">
-        <Button text="Explore More Templates" style={{ margin: "30px auto" }} />
-      </Link>
+      <div className="template-btn">
+        <Link to="/templates" className="explore-btn">
+          <Button
+            name="Explore More Templates"
+            style={{ margin: "30px auto" }}
+          />
+        </Link>
+      </div>
     </div>
   );
 }
 
-export default Index;
+export default SinglePreview;

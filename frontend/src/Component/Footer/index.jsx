@@ -19,12 +19,34 @@ const Footer = () => {
     if (regex.test(email)) {
       setEmail("");
       setMessage("");
+      onSubscribe();
     } else if (!regex.test(email) && email !== "") {
       setMessage("Please enter a valid email");
     } else {
       return;
     }
   };
+
+  function onSubscribe() {
+    setMessage("");
+    let data = { email: email };
+    fetch("https://certify-api.onrender.com/api/mailinglists", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data)
+    })
+      .then(res => {
+        console.log("Request complete! response:", res);
+      })
+      .catch(err => {
+        console.log("error", ":", err);
+      });
+  }
+
+  function formSubscriptionHandler(e) {
+    e.preventDefault();
+    onSubscribe();
+  }
 
   const routePath = useLocation();
   useEffect(() => {
@@ -75,7 +97,7 @@ const Footer = () => {
           </div>
           <div className="footer-form">
             <h3>Stay up to date with Product</h3>
-            <form noValidate>
+            <form onSubmit={formSubscriptionHandler}>
               <div className="footer-input">
                 <input
                   type="email"
@@ -83,7 +105,7 @@ const Footer = () => {
                   onChange={handleChange}
                   value={email}
                   name="name"
-                  onClick={() => handleChange}
+                  onClick={onSubscribe}
                 />
                 <button onClick={handleSubmit}>Subscribe</button>
               </div>
