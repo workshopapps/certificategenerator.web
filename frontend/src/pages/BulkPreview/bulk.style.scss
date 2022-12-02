@@ -124,19 +124,21 @@ h2 {
   }
 
 // CERTIFICATE IMAGES
-
-
+#bulk-images-desktop{
+  width: 90%;
+  margin: 0 auto;
+  overflow: hidden;
+}
 #bulk-images-desktop img{
   width: 100%;
-  max-width: 350px;
+  max-width: 300px;
   height: auto;
-  margin:20px;
-  margin-left: 100px;
-  overflow: hidden; 
+  display: flex;
+  align-items: center;
+  margin: 30px auto 30px auto;
 }
 
 #template1{
-  margin: 50px;
   padding: 0px 0px;
   border: 5px solid $primaryColor!important;
 
@@ -146,6 +148,9 @@ h2 {
 @media screen and (min-width: 500px) {
 .certificate img{
   min-width:450px;
+}
+#bulk-images-desktop img{
+  margin: 30px 0;
 }
 }
 
@@ -187,9 +192,11 @@ h2 {
   }
 
   
-#bulk-images-desktop img{
-  margin-left: 150px;  
 
+#bulk-images-desktop{
+  width: 90%;
+  margin: 0 auto;
+  overflow: hidden;
 }
 
 #template1{
@@ -199,24 +206,24 @@ h2 {
 
 }
 
-.line{
-  padding: 10px;
-  margin: 10px 0px 20px 0px;
-}
-.line1{
-border-radius: 10px;
-background: #acebe0;
+// .line{
+//   padding: 10px;
+//   margin: 10px 0px 20px 0px;
+// }
+// .line1{
+// border-radius: 10px;
+// background: #acebe0;
 
-}
-.line2{
-border: 3px solid $primaryColor;
-background: $primaryColor;
-max-width: 200px;
-width: 100%;
-margin-left: 250px;
-border-radius: 10px;
+// }
+// .line2{
+// border: 3px solid $primaryColor;
+// background: $primaryColor;
+// max-width: 200px;
+// width: 100%;
+// margin-left: 250px;
+// border-radius: 10px;
 
-}
+// }
 }
 
 @media screen and (min-width: 1024px) {
@@ -258,7 +265,7 @@ border-radius: 10px;
       max-width: 600px!important;;
   }
 
-  .bulk-images img {
+  #bulk-images-desktop img {
     width: 100%;
     max-width: 300px;
   }
