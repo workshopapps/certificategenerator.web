@@ -149,7 +149,7 @@ const userLogin = async (req, res, next) => {
       error.statusCode = 401;
       throw error;
     }
-    const isEqual = await bcrypt.compare(
+    const isEqual = await await bcrypt.compare(
       password,
       user.authenticationType.form.password
     );
@@ -160,7 +160,14 @@ const userLogin = async (req, res, next) => {
     }
     const { accessToken, refreshToken } = await generateTokens(user);
 
-    res.status(200).json({
+    const token = jwt.sign(
+      {
+        userId: user._id,
+      },
+      process.env.JWT_SECRET,
+      { expiresIn: "24h" }
+    );
+    return res.status(201).json({
       message: "user logged in successfully",
       token: accessToken,
       refreshToken: refreshToken,

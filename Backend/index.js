@@ -31,8 +31,10 @@ const userPlan = require('./routes/pricingPlanRouter');
 const swaggerUi = require('swagger-ui-express')
 const swaggerFile = require('./swagger_output.json')
 const eventRouter = require("./routes/eventRouter");
+const template = require("./routes/templateRouter");
 const newsletterRouter = require("./routes/newsletterRouter")
 const verifyEmailRouter = require("./routes/verifyEmailRouter")
+
 
 const PORT = process.env.PORT || 5000;
 
@@ -46,7 +48,10 @@ app.use(express.json());
 app.use(bodyParser.json());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(fileUpload());
+app.use(fileUpload({
+  useTempFiles: true
+}));
+
 
 app.get("/", (req, res) => {
   res.send("Welcome to HNG-Certificate Api");
@@ -66,6 +71,7 @@ app.use('/api/contactus', contacts)
 app.use('/api/pricing', userPlan)
 app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerFile))
 app.use("/api/events", eventRouter);
+app.use("/api/templates", template);
 app.use("/api/subscribe", newsletterRouter);
 app.use("/api/verifyEmail", verifyEmailRouter)
 
