@@ -141,7 +141,7 @@ const userLogin = async (req, res, next) => {
       error.statusCode = 401;
       throw error;
     }
-    const isEqual = bcrypt.compare(password, user.password);
+    const isEqual = await bcrypt.compare(password, user.password);
     if (!isEqual) {
       const error = new Error("Wrong password!");
       error.statusCode = 401;
@@ -155,7 +155,7 @@ const userLogin = async (req, res, next) => {
       process.env.JWT_SECRET,
       { expiresIn: "24h" }
     );
-    res.status(201).json({
+    return res.status(201).json({
       message: "user logged in successfully",
       token: token,
       userId: user._id.toString(),
