@@ -2,7 +2,7 @@ const UserToken = require("../models/UserToken.js");
 const jwt = require("jsonwebtoken");
 
 const verifyRefreshToken = (refreshToken) => {
-    const privateKey = process.env.REFRESH;
+    const privateKey = process.env.REFRESH_TOKEN;
 
     return new Promise((resolve, reject) => {
         UserToken.findOne({ token: refreshToken }, (err, doc) => {

@@ -142,9 +142,7 @@ const userLogin = async (req, res, next) => {
         if (!error.statusCode) {
           error.statusCode = 500;
         }
-        return res
-          .status(200)
-          .json({ message: "could not verify accessToken" });
+        return res.status(200).json({ message: "could not verify accessToken" })
       }
     }
 
@@ -169,13 +167,6 @@ const userLogin = async (req, res, next) => {
     }
     const { accessToken, refreshToken } = await generateTokens(user);
 
-    const token = jwt.sign(
-      {
-        userId: user._id,
-      },
-      process.env.JWT_SECRET,
-      { expiresIn: "24h" }
-    );
     return res.status(201).json({
       message: "user logged in successfully",
       token: accessToken,
@@ -190,7 +181,7 @@ const userLogin = async (req, res, next) => {
 
 const userLogout = async (req, res) => {
   try {
-    const userToken = await UserToken.findOne({ token: req.body.refreshToken });
+    const userToken = await UserToken.findOne({ token: req.headers.authorization });
     if (!userToken)
       return res
         .status(200)
