@@ -1,6 +1,6 @@
 const express = require('express');
 const multer = require('multer');
-const { emailNotification } = require('../controllers/EmailNotificationController');
+const { emailNotification } = require('../controllers/emailNotificationController');
 const Router = express.Router();
 
 const multerFilter = (req, file, cb) => {
