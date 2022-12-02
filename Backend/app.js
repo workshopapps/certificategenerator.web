@@ -28,7 +28,7 @@ const contacts = require("./routes/contactRouter");
 const pricing = require("./routes/pricingRouter");
 const swaggerUi = require("swagger-ui-express");
 const swaggerFile = require("./swagger_output.json");
-const template = require("./routes/templateRouter");
+
 
 //middleware
 app.use(cors());
@@ -55,6 +55,5 @@ app.use("/api/pricing", pricing);
 app.use("/api/profile/", profileRouter);
 app.use("/api/contactus", contacts);
 app.use("/api/docs", swaggerUi.serve, swaggerUi.setup(swaggerFile));
-app.use("/api/templates", template);
 
 module.exports = app;

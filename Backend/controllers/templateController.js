@@ -12,17 +12,19 @@ cloudinary.config({
 
 
 exports.createTemplate = async (req, res) => {
+    const { file } = req.files;
     let template
     const auth = req.headers.authorization;
+    console.log(auth)
     if (!auth) {
       return res.status(403).send({ error: "No credentials sent!" });
     }
     const token = auth.split(" ")[1];
     const { userId } = jwt.decode(token);
-    const user = await User.findOne({ _id: userId })
+    const user = await User.findOne({ _id: userId})
     try {
         if (user.subscription === "premium") {
-            const result = await cloudinary.uploader.upload(req.file.path)
+            const result = await cloudinary.uploader.upload(file.tempFilePath)
             if (result) {
                 template = await Template.create({
                     publicId: result.public_id,
@@ -33,6 +35,7 @@ exports.createTemplate = async (req, res) => {
         }
         return res.status(201).send({ template, message: `New Template Created` })
     } catch (err) {
+        console.log(err.message)
         return res.status(422).send({ message: `Unable to process your request`})
     }
     
