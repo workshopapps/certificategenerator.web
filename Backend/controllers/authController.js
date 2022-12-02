@@ -31,7 +31,7 @@ const userExist = async (_email) => {
 
 const userSignup = async (req, res, next) => {
   try {
-    let { accessToken, email, password } = req.body;
+    let { accessToken, email, password, plan } = req.body;
 
     //google signup
     if (req.body.accessToken) {
@@ -89,12 +89,14 @@ const userSignup = async (req, res, next) => {
             password: hash,
           },
         },
+        subscription: plan
       });
       const createdUser = await newUser.save();
       res.status(201).json({
         message: "New User has been created.",
         id: createdUser._id,
         email: createdUser.email,
+        plan: createdUser.subscription
       });
     });
   } catch (err) {
@@ -136,6 +138,7 @@ const userLogin = async (req, res, next) => {
       message: "user logged in successfully",
       token: token,
       userId: user._id.toString(),
+      role: user.subscription
     });
   } catch (err) {
     next(err);
