@@ -157,8 +157,7 @@ function App() {
             <Route path="/FAQ" element={<FAQ />} />
             <Route
               path="/bulk_preview"
-              certificatesData={certificatesData}
-              element={<BulkPreview />}
+              element={<BulkPreview certificatesData={certificatesData} />}
             />
             <Route path="/bulk_step" element={<BulkStep />} />
             <Route path="/edit_bulk" element={<EditBulk />} />
@@ -167,7 +166,7 @@ function App() {
             <Route path="/payment" element={<Checkout />} />
 
             <Route path="/profile" element={<ProfilePage />} />
-            <Route path="/upload" setFile={setFile} element={<UploadCSV />} />
+            <Route path="/upload" element={<UploadCSV setFile={setFile} />} />
 
             <Route path="/privacy" element={<Privacy />} />
           </Route>
