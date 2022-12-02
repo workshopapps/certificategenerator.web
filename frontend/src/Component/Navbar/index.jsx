@@ -77,6 +77,7 @@ function Navbar() {
               })}
             </div>
             <div className="button-container">
+            <NavLink to="/signup" >
               <Button
                 className="btn"
                 onClick={handleToggle}
@@ -84,6 +85,7 @@ function Navbar() {
               >
                 <Link to="/modify" className="link"></Link>
               </Button>
+               </NavLink>
             </div>
           </div>
         </div>
