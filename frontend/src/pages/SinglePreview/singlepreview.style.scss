@@ -110,14 +110,14 @@
   }
 
   .explore-button {
-    width: 180px!important;
-    height: 40px!important;
-    margin: 30px!important;
-    text-align: center!important;
-    border-radius: 8px!important;
-    background: transparent!important;
-    border: 1px solid $primaryColor!important;
-    font-family: "Sora", sans-serif!important;
+    width: 180px !important;
+    height: 40px !important;
+    margin: 30px !important;
+    text-align: center !important;
+    border-radius: 8px !important;
+    background: transparent !important;
+    border: 1px solid $primaryColor !important;
+    font-family: "Sora", sans-serif !important;
 
     &:hover {
       color: #fff;
@@ -129,7 +129,7 @@
 
   // certificate-share-hero IMAGES
 
-  .certificate-header h4 { 
+  .certificate-header h4 {
     font-size: 22px;
     font-weight: 450;
     margin-bottom: 20px;
@@ -283,7 +283,7 @@
   .dropdown-content {
     display: none;
     position: absolute;
-    left:20px;
+    left: 20px;
     background-color: #f1f1f1;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
@@ -508,15 +508,17 @@
     }
 
     .explore-button {
-      font-size: 14px!important;
+      font-size: 14px !important;
       width: 270px;
       height: 58px;
-   
+
     }
   }
 
   .template-btn {
-    width: fit-content;
-    margin: 10px 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
   }
 }
