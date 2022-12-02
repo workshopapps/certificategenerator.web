@@ -1,7 +1,8 @@
 import "./error.style.scss";
-import { BsArrowLeft } from "react-icons/bs";
+import { BsArrowLeft, BsLayoutTextSidebar } from "react-icons/bs";
 import errorImg from "./assets/page-not-found.png";
 import { Link, useNavigate } from "react-router-dom";
+import Button from "../../Component/button";
 
 const Error = () => {
   const navigate = useNavigate();
@@ -14,13 +15,13 @@ const Error = () => {
       </p>
       <div className="error-buttons">
         <Link className="link" to="/">
-          <button className="btn-solid">Go to Certgo Home</button>
+          <Button className="">Go to Certgo Home</Button>
         </Link>
         <Link className="link">
-          <button className="btn-outline" onClick={() => navigate(-1)}>
+          <Button className="btn-outline btnLight" onClick={() => navigate(-1)}>
             <BsArrowLeft className="arrow-left" />
             Go Back
-          </button>
+          </Button>
         </Link>
       </div>
       <div className="error-image">
