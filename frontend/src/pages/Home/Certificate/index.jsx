@@ -32,6 +32,54 @@ export default function Certificate({
     navigate("/single_preview");
   };
 
+  // const [link, setLink] = useState("isDisabled");
+
+  // const certi = document.querySelector(".certi");
+  // function clickedOnLink() {
+  //   certi.addEventListener("click", function (event) {
+  //     if (this.parentElement.classList.contains("isDisabled")) {
+  //       event.preventDefault();
+  //     }
+  //   });
+  // }
+
+  // document.body.addEventListener("click", function (event) {
+  //   // filter out clicks on any other elements
+  //   if (
+  //     event.target.nodeName === "A" &&
+  //     event.target.getAttribute("aria-disabled") === "true"
+  //   ) {
+  //     event.preventDefault();
+  //   }
+  // });
+
+  // function disableLink(link) {
+  //   // 1. Add isDisabled class to parent span
+  //   link.classList.add("isDisabled");
+  //   // 2. Store href so we can add it later
+  //   link.setAttribute("data-href", link.href);
+  //   // 3. Remove href
+  //   link.href = "";
+  //   // 4. Set aria-disabled to 'true'
+  //   link.setAttribute("aria-disabled", "true");
+  //   link.removeAttribute("to");
+  // }
+  // function enableLink(link) {
+  //   // 1. Remove 'isDisabled' class from parent span
+  //   link.classList.remove("isDisabled");
+  //   // 2. Set href
+  //   link.href = link.getAttribute("data-href");
+  //   // 3. Remove 'aria-disabled', better than setting to false
+  //   link.removeAttribute("aria-disabled");
+  //   link.setAttribute("to");
+  // }
+
+  // function checkIfFormIField() {
+  //   if (certi.hasAttribute("aria-disabled")) {
+  //     console.log("ojfhbv ffr");
+  //   }
+  // }
+
   return (
     <>
       <p id="certificatee" className="sora header">
@@ -117,19 +165,33 @@ export default function Certificate({
             onSubmit={handleSubmit}
             className="cert-form text-left work-sans"
           >
-            <label for="img">Upload logo</label>
-            <input
-              type="file"
-              name="uploadfile"
-              id="img"
-              onChange={e => setLogo(URL.createObjectURL(e.target.files[0]))}
-            />
+            <div className="file-input">
+              <span className="upload-file">
+                Upload Logo
+                <input
+                  type="file"
+                  name="uploadfile"
+                  id="img"
+                  className="custom-file-input"
+                  style={{
+                    width: "inherit",
+                    padding: "0px",
+                    border: "none",
+                    position: "absolute"
+                  }}
+                  title=" "
+                  onChange={e =>
+                    setLogo(URL.createObjectURL(e.target.files[0]))
+                  }
+                />
+              </span>
+              {/* <label for="img">Upload Logo</label> */}
 
-            <img style={{ width: "15%" }} src={logo} alt="logo" />
-            <p style={{ fontSize: "12px", margin: "0" }}>
-              Max image upload size: 8mb
-            </p>
-
+              {/* <img style={{ width: "15%" }} src={logo} alt="logo" /> */}
+              <p style={{ fontSize: "12px", margin: "0" }}>
+                Max image upload size: 8mb
+              </p>
+            </div>
             <label htmlFor="text" className="label">
               Certificate Title
             </label>
@@ -154,12 +216,11 @@ export default function Certificate({
               Dedication or message
             </label>
             <input
+              required
               type="text"
               value={message}
               onChange={e => setMessage(e.target.value)}
-              placeholder="For your exceptional performance this month, 
-                in appreciation for your loyalty and the desire to fulfil our goals, 
-                in recognition of your leadership and dedication"
+              placeholder="For your exceptional performance this month."
             />
 
             <label htmlFor="text" className="label">
@@ -176,29 +237,23 @@ export default function Certificate({
               Issue Date
             </label>
             <input
-              type="text"
-              value={issueDate}
-              onChange={e => setIssueDate(e.target.value)}
-            />
-
-            <button
-              disabled={disabledButton}
-              className={`${disabledButton && "btn-disabled"} btn-success`}
-            >
-              Create Certificate
-            </button>
-
-            <label htmlFor="date" className="label">
-              Issue Date
-            </label>
-            <input
               type="date"
               value={issueDate}
               onChange={e => setIssueDate(e.target.value)}
             />
 
-            <Link className="btn-create" to="single_preview">
-              <Button name={"Create Certificate"} />
+            <Link
+              className="btn-create isDisabled certi "
+              style={{ marginTop: "50px", cursor: `${"not-allowed"}` }}
+              to="single_preview"
+            >
+              <Button
+                disabled={disabledButton}
+                name={"Create Certificate"}
+                className={`certi ${
+                  disabledButton && "btn-disabled"
+                } btn-success isDisabled`}
+              />
             </Link>
           </form>
         </div>

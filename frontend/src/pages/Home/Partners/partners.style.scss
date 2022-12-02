@@ -1,5 +1,8 @@
 .partners-containers {
   padding: 0 7rem 7rem;
+  @media screen and (max-width: 1010px) {
+    padding: 0 4rem 7rem;
+  }
   width: 100%;
   .partner-head {
     padding: 0 0 32px 0;
@@ -9,12 +12,25 @@
   .partners {
     width: 100%;
     display: flex;
+    // grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
     align-items: center;
     justify-content: space-between;
-    overflow-x: auto;
+    // overflow-x: auto;
+    img {
+      width: 10%;
+    }
+    .udemy {
+      width: 6%;
+    }
+    .coursera {
+      width: 6%;
+    }
+    .skillshare {
+      width: 8%;
+    }
   }
   @media screen and (max-width: 868px) {
-    width: 90%;
+    width: 100%;
     margin: auto;
     align-items: center;
     gap: 50px;

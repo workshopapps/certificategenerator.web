@@ -73,6 +73,9 @@ body {
 
 .prompt {
   text-align: center;
+  @media screen and (max-width: 740px) {
+    padding: 0 1.5rem;
+  }
 }
 
 .mode {
@@ -83,6 +86,10 @@ body {
   line-height: 19px;
   font-weight: 500;
   margin-block: 56px;
+}
+
+.certi {
+  width: fit-content;
 }
 
 .select {
@@ -116,23 +123,65 @@ body {
 .cert-form {
   max-width: 1440px;
   width: 80%;
-  background-color: #fafafb;
   margin: 5.5% 10% 6%;
   border: 0.8px solid #545454;
   border-radius: 16px;
   padding: 8%;
   gap: 0;
   input {
-    font-size: 18px;
+    font-size: 14px;
+    padding: 0.9rem;
+    height: fit-content;
     ::placeholder {
-      font-size: 18px;
+      font-size: 14px;
+    }
+  }
+  .isDisabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+  [aria-disabled="true"] {
+    cursor: not-allowed;
+    color: currentColor;
+    display: inline-block; /* For IE11/ MS Edge bug */
+    pointer-events: none;
+    text-decoration: none;
+  }
+}
+.file-input {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 1px;
+  .upload-file {
+    position: relative;
+    background-color: #fff;
+    padding: 1rem;
+    border: 1px solid grey;
+    border-radius: 8px;
+    font-weight: 600;
+    color: gray;
+    // z-index: -2;
+
+    cursor: pointer;
+    .custom-file-input {
+      color: transparent;
+      background-color: transparent;
+      cursor: pointer;
+      position: absolute;
+      // z-index: -1;
+      top: 0;
+      width: inherit;
+      height: 100%;
+      left: 0;
     }
   }
 }
 
 label {
   display: block;
-  font-weight: 700;
+  font-weight: 500;
+  font-size: 1.1rem;
 }
 
 input {
@@ -143,10 +192,13 @@ input {
   border-radius: 10px;
   padding: 15px;
 }
-
-input::-webkit-calendar-picker-indicator {
-  display: none;
+input::placeholder {
+  word-break: break-all;
 }
+
+// input::-webkit-calendar-picker-indicator {
+//   display: none;
+// }
 
 .upload {
   font-weight: 500;
