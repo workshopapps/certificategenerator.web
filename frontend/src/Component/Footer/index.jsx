@@ -9,10 +9,10 @@ const Footer = () => {
   const year = new Date().getFullYear();
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
-  const handleChange = (e) => {
+  const handleChange = e => {
     setEmail(e.target.value);
   };
-  const handleSubmit = (e) => {
+  const handleSubmit = e => {
     e.preventDefault();
     const regex =
       /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
@@ -75,7 +75,7 @@ const Footer = () => {
           </div>
           <div className="footer-form">
             <h3>Stay up to date with Product</h3>
-            <form noValidate>              
+            <form noValidate>
               <div className="footer-input">
                 <input
                   type="email"
@@ -83,7 +83,7 @@ const Footer = () => {
                   onChange={handleChange}
                   value={email}
                   name="name"
-                  onClick={() => setMessage("")}
+                  onClick={() => handleChange}
                 />
                 <button onClick={handleSubmit}>Subscribe</button>
               </div>
@@ -104,24 +104,28 @@ const Footer = () => {
               <a
                 href="https://instagram.com/hnginternship?igshid=YmMyMTA2M2Y="
                 target="_blank"
+                rel="noreferrer"
               >
                 <BsInstagram className="social" />
               </a>
               <a
                 href="https://www.linkedin.com/m/company/hng-internship"
                 target="_blank"
+                rel="noreferrer"
               >
                 <BsLinkedin className="social" />
               </a>
               <a
                 href="https://twitter.com/hnginternship?s=21&t=xpk379-T4b-GQ5_UAcEnsg"
                 target="_blank"
+                rel="noreferrer"
               >
                 <BsTwitter className="social" />
               </a>
               <a
                 href="https://github.com/workshopapps/certificategenerator.web"
                 target="_blank"
+                rel="noreferrer"
               >
                 <BsGithub className="social" />
               </a>

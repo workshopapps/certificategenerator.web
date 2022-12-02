@@ -17,21 +17,21 @@ export default function Testimonials() {
         <Splide
           className="testimonial-wrapper"
           options={{
-            gap: "20px",
+            gap: "40px",
             perPage: 3,
 
             breakpoints: {
               1200: {
-                perPage: 2,
+                perPage: 2
               },
-              768: {
-                perPage: 1,
-              },
+              908: {
+                perPage: 1
+              }
             },
 
             arrows: true,
             pagination: true,
-            drag: "free",
+            drag: "free"
           }}
         >
           <SplideSlide>
@@ -44,11 +44,9 @@ export default function Testimonials() {
                 </div>
               </div>
               <p className="testimonial-test">
-                “Certgo is an incredible website for designing certificates! A
-                huge selection of templates, fonts, and colors; endless choices
-                at the tip of your fingers; easy editing and sending/sharing.
-                Best certificate generator I've used for a long time. If you
-                haven't tried it... try it! Victor Hayworth”
+                “This is my first time utilizing Certawi. It is simply
+                brilliant. In a matter of seconds, a full certificate is
+                generated”
               </p>
             </div>
           </SplideSlide>
@@ -63,11 +61,9 @@ export default function Testimonials() {
                 </div>
               </div>
               <p className="testimonial-test">
-                “Certgo is a fantastic piece of software! It saves us a lot of
-                time, as we were able to generate bulk certificates for our
-                students automatically. The customer support is also excellent
-                and helps us navigate the software and recommend a solution for
-                the changes we need.”
+                “The certawi certificate generator is a fantastic tool that
+                helps me create certificates quickly and with plenty of
+                inspiration. Definitely, I would advise.”
               </p>
             </div>
           </SplideSlide>
@@ -82,11 +78,9 @@ export default function Testimonials() {
                 </div>
               </div>
               <p className="testimonial-test">
-                “Certgo is great for designing certificates for my students
-                enrolled in my courses. The various letter font styles and font
-                colors are wonderful to choose from. The final look and design
-                of the certification are professional. I enjoy using this easy
-                website.”
+                “Probably the best platform for anyone needing to generate bulk
+                certificates. Amazing! I love how easy it is to use! Recommended
+                for EVERYONE!”
               </p>
             </div>
           </SplideSlide>
@@ -101,11 +95,9 @@ export default function Testimonials() {
                 </div>
               </div>
               <p className="testimonial-test">
-                “Easy, simple, and fast. The ease of use is really commendable.
-                Setup and configuration is quite fast and simple. I found it
-                really handy in sending out digital certificates for our
-                bootcamp. The certification process has become seamless with
-                only 3 steps to take in order to issue the credentials.”
+                “Probably the best platform for anyone needing to generate bulk
+                certificates. Amazing! I love how easy it is to use! Recommended
+                for EVERYONE!”
               </p>
             </div>
           </SplideSlide>
