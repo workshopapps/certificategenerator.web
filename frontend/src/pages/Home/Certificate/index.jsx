@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import './certificate.style.scss'
-import {Link, useNavigate} from "react-router-dom"
+import {Link} from "react-router-dom"
 import UploadCSV from "../../UploadCSV";
 import Button from "../../../Component/button";
 
@@ -24,7 +24,7 @@ export default function Certificate ({
     const disabledButton = !logo.trim() || !message.trim() || !certificateTitle.trim() || !awardeeName.trim() || !issuedBy.trim() || !issueDate.trim()
     const handleSubmit = (e) => {
       e.preventDefault()
-      navigate('/single_preview')
+      navigate('/preview')
     }
     
     return (

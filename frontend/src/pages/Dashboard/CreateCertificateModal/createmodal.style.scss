@@ -1,0 +1,208 @@
+@import url("https://fonts.googleapis.com/css2?family=Sora:wght@100;200;300;400;500;600;700&display=swap");
+@import "../../../Style/variables";
+
+.modal-wrap {
+  height: 100%;
+  width: 100%;
+  background: rgba(34, 34, 34, 0.4);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10000;
+  overflow: hidden;
+  font-family: "Sora", sans-serif;
+  //Position modal at the center of the page
+  display: flex;
+  justify-content: center;
+
+  * {
+    margin: 0;
+    padding: 0;
+  }
+  .modal-container {
+    background-color: #fff;
+    // max-width: 1000px;
+    width: 95%;
+    border-radius: 10px;
+    position: absolute;
+    top: 2%;
+    align-self: center;
+    padding: 25px 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    .cancel-btn-wrapper {
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .modal-container__cancel {
+      background: transparent;
+      color: #6c6c70;
+      border: none;
+      font-size: 16px;
+      font-family: "Sora", sans-serif;
+      // width: 50px;
+      height: 35px;
+      display: flex;
+      // gap: 8px;
+      justify-content: center;
+      align-items: center;
+      border-radius: 10px;
+      cursor: pointer;
+
+      .cancel-x-btn {
+        width: 35px;
+      }
+    }
+
+    .modal-body {
+      .text-green {
+        color: $primaryColor;
+      }
+      .head {
+        padding: 0;
+        text-align: center;
+        h3 {
+          font-size: 24px;
+          margin-bottom: 1rem;
+        }
+        p {
+          font-size: 16px;
+          margin-bottom: 3rem;
+        }
+        .w-5{
+          width: 100%;
+          margin: 2rem 0 1rem 0;
+        }
+        .button {
+          border: 1px solid black;
+          border-radius: 10px;
+          // width: 100%;
+          margin: 0 auto 2rem auto;
+          padding: 0.3rem 0.4rem;
+          display: flex;
+          gap: 1rem;
+          justify-content: space-between;
+          button {
+            width: 100%;
+            border: 1px solid black;
+            all: unset;
+            padding: 0.5rem 1.5rem;
+            border-radius: 10px;
+          }
+          .active{
+            background-color: $primaryColor;
+            color: #fff;
+          }
+          .inactive{
+            background-color: transparent;
+            color: black;
+          }
+          .d-none {
+            display: none;
+          }
+        }
+      }
+
+      form {
+        max-width: 600px;
+        width: 100%;
+        margin: 0 auto;
+        div {
+          &:first-child{
+            .label{
+              font-weight: 700;
+            }
+            span{
+              display: block;
+            }
+            label{
+              border: 1px solid grey;
+              width: fit-content;
+              padding: .5rem 1rem;
+            }
+          } 
+          .file-type{
+            border: none;
+            display: none;
+          }
+          input {
+            height: 50px;
+            padding: 0 0.6rem;
+            border: 1px solid gray;
+          }
+        }
+
+        .btn-success {
+          all: unset;
+          background-color: $primaryColor;
+          color: #ffffff;
+          padding: 1rem 3rem;
+          text-align: center;
+          margin-top: 2rem;
+          width: fit-content;
+          border-radius: 10px;
+          cursor: pointer;
+        }
+        .btn-disabled {
+          background-color: #8ab9b2;
+          cursor: not-allowed;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 480px) {
+  .modal-wrap {
+    .modal-container {
+      .modal-body {
+        .head {
+          
+          h3 {
+            font-size: 32px;
+            margin-bottom: 1rem;
+          }
+          p {
+            font-size: 16px;
+            margin-bottom: 3rem;
+          }
+        
+        }
+      } 
+    }
+  }
+}
+@media (min-width: 700px) {
+  .modal-wrap {
+    .modal-container {
+      width: 70%;
+      .modal-body {
+        .head {
+          .w-5{
+            width: 45%;
+            margin: 0 auto 2rem auto;
+          }
+          h3 {
+            font-size: 52px;
+            margin-bottom: 1rem;
+          }
+          p {
+            font-size: 24px;
+            margin-bottom: 3rem;
+          }
+          
+        }
+        form{
+          background-color: #FAFAFB;
+          max-width: 760px;
+          margin: 0 auto;
+          padding: 1rem 5rem 3rem 5rem;
+          border-radius: 16px;
+          border: 0.1px solid #545454;
+        }
+      } 
+    }
+  }
+}

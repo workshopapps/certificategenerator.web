@@ -8,15 +8,6 @@ import "@splidejs/react-splide/css";
 function Index() {
   return (
     <div id="bulk-preview">
-      {/* BUTTONS TO TOGGLE BETWEEN SINGLE AND BULK CERTIFICATE */}
-
-      <div className="button-container">
-        <Link to="/single_preview">
-          <button className="not-active">Single Certificate</button>
-        </Link>
-        <button className="active">Bulk Certificate</button>
-      </div>
-
       {/* YOUR BULK CRETIFICATES READY TO BE DOWNLOADED OR SENT */}
 
       <div className="certificate">
