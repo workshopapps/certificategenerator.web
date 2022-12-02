@@ -3,7 +3,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const { validationResult } = require("express-validator");
 const config = require("../utils/config");
-const UserToken = require("../models/UserToken")
+const UserToken = require("../models/userToken")
 const { generateTokens } = require("../utils/generateToken")
 
 const { OAuth2Client } = require("google-auth-library");
