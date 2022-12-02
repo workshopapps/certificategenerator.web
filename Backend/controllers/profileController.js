@@ -1,27 +1,19 @@
 const Profile = require("../models/profileModel");
-const jwt = require("jsonwebtoken");
 
 const addUserProfile = async (req, res, next) => {
-  const auth = req.headers.authorization;
   const payload = req.body;
   const avatar = req.files.avatar;
-  console.log(avatar);
 
   if (!payload) return res.status(400).json({ error: "Bad request" });
-  if (!auth) {
-    return res.status(403).json({ error: "No credentials sent!" });
-  }
 
-  const token = auth.split(" ")[1];
-  const { userId } = jwt.decode(token);
-
-  const user = await Profile.findOne({ user: userId }).exec();
+  const userID = req.user._id;
+  const user = await Profile.findOne(userID);
 
   let userProfile;
   if (!user) {
     userProfile = await Profile.create({
       avatar: avatar.name,
-      user: userId,
+      user: userID,
       name: payload.name,
       job: payload.job,
       location: payload.location,
@@ -35,18 +27,11 @@ const addUserProfile = async (req, res, next) => {
 };
 
 const getUserProfile = async (req, res) => {
-  const auth = req.headers.authorization;
-  if (!auth) {
-    return res.status(403).json({ error: "No credentials sent!" });
-  }
-
-  const token = auth.split(" ")[1];
-  const { userId } = jwt.decode(token);
-
-  const profile = await Profile.findOne({ user: userId }).exec();
+  const id = req.user._id;
+  const profile = await Profile.findOne({ user: id });
 
   if (!profile) {
-    return next(res.status(404).send("no profile with id")).end();
+    return res.status(404).json({ error: "no profile with id" });
   }
 
   res.status(200).json({ profile });
@@ -54,19 +39,12 @@ const getUserProfile = async (req, res) => {
 
 const updateUserProfile = async (req, res) => {
   const payload = { ...req.body };
-  const avatar = req?.files?.avatar;
-  const auth = req.headers.authorization;
-  if (!auth) {
-    return res.status(403).json({ error: "No credentials sent!" }).end();
-  }
-
-  const token = auth.split(" ")[1];
-  const { userId } = jwt.decode(token);
-
-  const profile = await Profile.findOne({ user: userId }).exec();
+  const avatar = req.files?.avatar;
+  const id = req.user._id;
+  const profile = await Profile.findOne({ user: id });
 
   if (!profile) {
-    return next(res.status(404).send("no profile with id")).end();
+    return res.status(404).json({ error: "no user profile with id" });
   }
 
   profile.avatar = avatar.name;
@@ -80,9 +58,22 @@ const updateUserProfile = async (req, res) => {
 
   res.status(201).json({ update: profile });
 };
+const deleteUserProfile = async (req, res) => {
+  const id = req.params.id;
+  const profile = await Profile.findByIdAndDelete({
+    _id: id,
+    user: req.user._id,
+  });
+
+  if (!profile) {
+    return res.status(401).json({ error: "user profile does not exist" });
+  }
+  res.status(201).json({ error: "user profile deleted" });
+};
 
 module.exports = {
   addUserProfile,
   getUserProfile,
   updateUserProfile,
+  deleteUserProfile,
 };
