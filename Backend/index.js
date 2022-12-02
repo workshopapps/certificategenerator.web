@@ -21,13 +21,16 @@ const blog = require("./routes/blogPostRouter");
 const certificate = require("./routes/certificateRouter");
 const downloadCsv = require("./routes/downloadRouter");
 const careers = require("./routes/careerRouter");
+const applyCareer = require('./routes/applyCareerRouter')
 const teamRoute = require("./routes/teamRoutes");
 const mailingLists = require("./routes/mailingListRouter");
+require('./routes/emailNotificationRouter')(app)
 const profileRouter = require("./routes/profileRouters");
 const contacts = require('./routes/contactRouter');
-const pricing = require('./routes/pricingRouter');
+const userPlan = require('./routes/pricingPlanRouter');
 const swaggerUi = require('swagger-ui-express')
 const swaggerFile = require('./swagger_output.json')
+const eventRouter = require("./routes/eventRouter");
 
 const PORT = process.env.PORT || 5000;
 
@@ -53,12 +56,14 @@ app.use("/api/blog", blog);
 app.use("/api/certificates", certificate);
 app.use("/api/download", downloadCsv);
 app.use("/api/careers", careers);
+app.use("/api/applycareers", applyCareer);
 app.use("/api/mailinglists", mailingLists);
 app.use("/api/profile", profileRouter);
 app.use("/api/team", teamRoute);
 app.use('/api/contactus', contacts)
-app.use('/api/pricing', pricing)
+app.use('/api/pricing', userPlan)
 app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerFile))
+app.use("/api/events", eventRouter);
 
 mongoose.connection.once("open", () => {
   console.log("Connected to DB");

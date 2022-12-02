@@ -9,8 +9,8 @@ const authentication = async (req, res, next) => {
   const token = authHeader.split(" ")[1];
   try {
     const payload = jwt.verify(token, process.env.JWT_SECRET);
-    const { id } = payload;
-    req.user = await User.findById(id);
+    const { userId } = payload;
+    req.user = await User.findById(userId);
     next();
   } catch (error) {
     console.error(error);
