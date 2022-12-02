@@ -28,6 +28,13 @@ const UploadCSV = ({ setFile }) => {
       });
     }
   };
+  let formdata = new FormData()
+
+  function handleUpload(e){
+    e.preventDefault()
+    
+  }
+
 
   return (
     <div className="uploadCSVContainer">

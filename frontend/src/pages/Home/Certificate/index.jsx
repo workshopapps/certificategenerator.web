@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./certificate.style.scss";
 import { Link, useNavigate } from "react-router-dom";
 import UploadCSV from "../../UploadCSV";
-import Button from "../../../Component/button";
+// import Button from "../../../Component/button";
 
 export default function Certificate({
   logo,
@@ -18,74 +18,38 @@ export default function Certificate({
   issueDate,
   setIssueDate
 }) {
-  const [bulkCertificate, setBulkCertificate] = useState(false);
-  const navigate = useNavigate();
-  const disabledButton =
-    !logo.trim() ||
-    !message.trim() ||
-    !certificateTitle.trim() ||
-    !awardeeName.trim() ||
-    !issuedBy.trim() ||
-    !issueDate.trim();
-  const handleSubmit = e => {
-    e.preventDefault();
-    navigate("/single_preview");
-  };
+    const [bulkCertificate, setBulkCertificate] = useState(false);
+    const navigate = useNavigate()
+    const disabledButton = !logo.trim() || !message.trim() || !certificateTitle.trim() || !awardeeName.trim() || !issuedBy.trim() || !issueDate.trim()
+    const handleSubmit = (e) => {
+      e.preventDefault()
+      navigate('/preview')
+    }
+    
+    return (
+        <>
+          <p id="certificatee" className="sora header">
+            Create your <span className="emphasized">certificate </span> 
+            with <span className="emphasized">ease</span>
+          </p>
 
-  return (
-    <>
-      <p id="certificatee" className="sora header">
-        Create your certificate with ease
-      </p>
+          <p style={{padding: '10px'}} className="prompt">Select a template, input values and Create a Certificate right away.</p>
 
-      <p className="prompt" style={{ margin: 0, color: "#6C6C70" }}>
-        Select a template, input values and create a certificate right away.
-      </p>
+          {bulkCertificate ? 
+          <div className="flex justify-between mode">
+            <button className="select" style={{color: '#222222', backgroundColor: '#ffffff',  transition:'300ms ease-in'}}  onClick={() => {setBulkCertificate(false)}}>Single <span className="mobile-none">Certificate</span></button>
+            <button className="select" onClick={() => {setBulkCertificate(true)}}>Bulk <span className="mobile-none">Certificate</span></button>
+          </div>
+          :
+          <div className="flex justify-between mode">
+            <button className="select"  onClick={() => {setBulkCertificate(false)}}>Single <span className="mobile-none">Certificate</span></button>
+            <button className="select" style={{color: '#222222', backgroundColor: '#ffffff',  transition:'300ms ease-in'}} onClick={() => {setBulkCertificate(true)}}>Bulk <span className="mobile-none">Certificate</span></button>
+          </div>
+        }
+          
 
-      {bulkCertificate ? (
-        <div className="flex justify-between mode">
-          <button
-            className="select"
-            style={{ color: "#19A68E", backgroundColor: "#ffffff" }}
-            onClick={() => {
-              setBulkCertificate(false);
-            }}
-          >
-            Single <span className="mobile-none">Certificate</span>
-          </button>
-          <button
-            className="select"
-            onClick={() => {
-              setBulkCertificate(true);
-            }}
-          >
-            Bulk <span className="mobile-none">Certificate</span>
-          </button>
-        </div>
-      ) : (
-        <div className="flex justify-between mode">
-          <button
-            className="select"
-            onClick={() => {
-              setBulkCertificate(false);
-            }}
-          >
-            Single <span className="mobile-none">Certificate</span>
-          </button>
-          <button
-            className="select"
-            style={{ color: "#19A68E", backgroundColor: "#ffffff" }}
-            onClick={() => {
-              setBulkCertificate(true);
-            }}
-          >
-            Bulk <span className="mobile-none">Certificate</span>
-          </button>
-        </div>
-      )}
-
-      {bulkCertificate ? (
-        <div>
+          {bulkCertificate ?            
+           <div>
           <form action="" className="cert-form text-left work-sans">
             <UploadCSV />
             {/* <label for='img'>Logo</label>
