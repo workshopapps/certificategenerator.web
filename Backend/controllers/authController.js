@@ -156,7 +156,7 @@ const userLogin = async (req, res, next) => {
       error.statusCode = 401;
       throw error;
     }
-    const isEqual = await await bcrypt.compare(
+    const isEqual = await bcrypt.compare(
       password,
       user.authenticationType.form.password
     );
