@@ -1,13 +1,14 @@
 import React from "react";
-import { useNavigate } from "react-router-dom"
- import './BulkStep.style.scss'
-import example from '../../../assets/images/example.png'
-import one from '../../../assets/images/step-one.png'
-import two from '../../../assets/images/step-two.png'
-import three from '../../../assets/images/step-three.png'
+import { useNavigate } from "react-router-dom";
+import "./BulkStep.style.scss";
+import example from "../../../assets/images/example.png";
+import one from "../../../assets/images/step-one.png";
+import two from "../../../assets/images/step-two.png";
+import three from "../../../assets/images/step-three.png";
+import Button from "../../../Component/button";
 
 export default function BulkStep() {
-  const navigate =useNavigate()
+  const navigate = useNavigate();
   return (
     <div className="bulk">
       <p className="heading sora">
@@ -37,8 +38,11 @@ export default function BulkStep() {
             <p className="steps">Generate bulk certificates</p>
           </div>
         </div>
-      </div> 
-      <button className="bulk-button work-sans" onClick={()=> navigate("/signup")}>Create Bulk Certificates</button>
-    </div>   
-    )
+      </div>
+
+      <Button className="bulk-button " onClick={() => navigate("/signup")}>
+        Create Bulk Certificates
+      </Button>
+    </div>
+  );
 }
