@@ -83,7 +83,7 @@ function Navbar() {
                 onClick={handleToggle}
                 name={"get started"}
               >
-                <Link to="/modify" className="link"></Link>
+                {/* <Link to="/modify" className="link"></Link> */}
               </Button>
                </NavLink>
             </div>
