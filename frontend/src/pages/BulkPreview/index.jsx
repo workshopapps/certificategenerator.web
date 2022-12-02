@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import certificate from "../../assets/images/bulkPreview/Completion - Portrait (2).png";
 import "./bulk.style.scss";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
+import BulkCertDesign from "./BulkCertDesign"
 import "@splidejs/react-splide/css";
 import Button from "../../Component/button";
 
@@ -11,10 +12,13 @@ function Index() {
     <div id="bulk-preview">
       {/* YOUR BULK CRETIFICATES READY TO BE DOWNLOADED OR SENT */}
 
-      <div className="certificate">
+      {/* <div className="certificate">
         <h1>Your certificates are ready!</h1>
         <img src={certificate} alt="certificate" />
-      </div>
+      </div> */}
+
+      <BulkCertDesign/>
+
 
       {/* PREVIEW OF BULK GENERATED CERTIFICATES  */}
 
@@ -24,28 +28,38 @@ function Index() {
         <Splide
           options={{
             rewind: true,
-            gap: "10px",
-            perPage: 4,
+            gap: "30px",
+            perPage: 3,
             drag: "free",
             arrows: true,
             pagination: true,
             breakpoints: {
-              480: {
+              
+              640: {
                 perPage: 1
               },
-              640: {
+              798: {
                 perPage: 2
-              },
-              768: {
-                perPage: 3
               }
             }
           }}
         >
           <SplideSlide>
-            <img id="template1" src={certificate} alt="certificates" />
+            <BulkCertDesign/>
           </SplideSlide>
           <SplideSlide>
+            <BulkCertDesign/>
+          </SplideSlide>
+          <SplideSlide>
+            <BulkCertDesign/>
+          </SplideSlide>
+          <SplideSlide>
+            <BulkCertDesign/>
+          </SplideSlide>
+          <SplideSlide>
+            <BulkCertDesign/>
+          </SplideSlide>
+          {/* <SplideSlide>
             <img src={certificate} alt="certificates" />
           </SplideSlide>
           <SplideSlide>
@@ -98,8 +112,8 @@ function Index() {
           </SplideSlide>
           <SplideSlide>
             <img src={certificate} alt="certificates" />
-          </SplideSlide>
-        </Splide>
+          </SplideSlide> */}
+        </Splide> 
       </section>
 
       {/* BUTTONS TO DOWNLOAD OR SHARE THE CRETIFICATES */}
