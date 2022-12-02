@@ -98,7 +98,7 @@ const Signup = () => {
                 style={{ border: "none" }}
                 // id="input_id"
                 placeholder="Create a password"
-                type={"password"}
+                type={type}
                 required
                 name="password"
                 onChange={handleChange}
