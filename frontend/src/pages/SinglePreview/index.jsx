@@ -9,6 +9,7 @@ import certificate3 from "../../assets/images/SinglePreview/Completion - Portrai
 import { exportComponentAsPNG } from "react-component-export-image";
 import html2canvas from "html2canvas";
 import { jsPDF } from "jspdf";
+// import Button from "../../Component/button";
 
 function SinglePreview({
   logo,

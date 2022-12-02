@@ -48,7 +48,7 @@ export default function Certificate({
         }
           
 
-          {bulkCertificate ?   (         
+          {bulkCertificate ?         
            <div>
           <form action="" className="cert-form text-left work-sans">
             <UploadCSV />
@@ -74,8 +74,8 @@ export default function Certificate({
             <input type="submit" value="Create Certificate" className="submit-btn"/> */}
           </form>
         </div>
-      ) : (
-        <div>
+       : 
+        (<div>
           <form
             action=""
             onSubmit={handleSubmit}
@@ -150,7 +150,8 @@ export default function Certificate({
             </Link>
           </form>
         </div>
-      )}
+        )
+      }
     </>
   );
 }
