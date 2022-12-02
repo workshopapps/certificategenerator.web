@@ -60,7 +60,7 @@ body {
   grid-template-columns: 1fr 1fr;
   margin-bottom: 3rem !important;
   @media screen and (min-width: 1220px) {
-    gap: 5rem;
+    // gap: 5rem;
   }
   .hero-left {
     width: 100%;
@@ -111,9 +111,10 @@ body {
   grid-template-columns: 1fr 1fr 1fr;
   align-items: center;
   justify-content: center;
-  gap: 5rem;
-  width: 100%;
-  padding: 2rem 4.5rem;
+  gap: 1rem;
+  width: 95%;
+  margin: 0 auto;
+  padding: 1rem 2rem;
   .single-perk {
     display: flex;
     align-items: center;
@@ -202,27 +203,28 @@ body {
     }
   }
   .perks {
-    flex-direction: column;
+    width: 100%;
+    grid-template-columns: 1fr;
     .single-perk {
-      margin-bottom: 2rem;
       text-align: center;
     }
   }
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 560px) {
   
   .hero {
     padding-top: 1rem;
     text-align: center;
-    border: 1px solid black;
     display: block;
     .hero-left {
       width: 100%;
       text-align: center;
-      border: 1px solid black;
       button {
         width: 100%;
+      }
+      .hero-caption {
+        margin-bottom: 2rem;
       }
     }
     .hero-right {
@@ -247,9 +249,11 @@ body {
     text-align: center;
     font-weight: 500;
     font-size: 16px;
+    margin-top: 1rem;
   }
   .perks {
     flex-direction: column;
+    padding: 0 1rem;
     .single-perk {
       font-size: 14px !important;
     }
