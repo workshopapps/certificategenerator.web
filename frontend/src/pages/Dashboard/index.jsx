@@ -5,6 +5,8 @@ import Card from "./Card";
 import { cardData, nullDataIcon, actionIcon } from "./utils";
 import Button from "../../Component/button";
 import CreateCertificateModal from "./CreateCertificateModal";
+import axios from "axios";
+
 
 const Dashboard = ({
   logo,
@@ -25,7 +27,7 @@ const Dashboard = ({
   const [openModal, setOpenModal] = useState(false);
 
   useEffect(() => {
-    const fetchData = () => {
+    const fetchData = async () => {
       setIssuedCert(cardData);
       const myHeaders = new Headers();
       myHeaders.append(
