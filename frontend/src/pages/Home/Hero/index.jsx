@@ -20,7 +20,11 @@ export default function Hero() {
             students etc.
           </p>
           <a href="#certificatee">
+<<<<<<< HEAD
             <Button name={"Create a certificate now"} />
+=======
+            <Button name={"Create Certificate"} />
+>>>>>>> e9f8c44d77edb77a39d410ba48c4efb7938a0ae9
           </a>
           {/* <button className="hero-button">Create a certificate now</button> */}
           <p className="mobile-only">It is free and easy to use</p>
