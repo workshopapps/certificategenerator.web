@@ -1,7 +1,9 @@
+require("dotenv").config();
 const Event = require("../models/eventModel");
 const mongoose = require("mongoose");
 const Certificate = require("../models/certificateModel");
 const Joi = require("joi");
+const { buildEventLink } = require("../utils/helpers");
 
 const getAllEvents = async (req, res) => {
   try {
@@ -11,7 +13,6 @@ const getAllEvents = async (req, res) => {
     // Get all events by this user
     const events = await Event.find({ userId: user._id }).select([
       "title",
-      "certCollectionId",
       "customURI",
     ]);
 
@@ -36,11 +37,7 @@ const getEventById = async (req, res) => {
 
     // Get the event whose _id or customURI  is "eventId"
     // this allows users to use a customURI for their events
-    const event = await Event.findOne(query).select([
-      "title",
-      "certCollectionId",
-      "customURI",
-    ]);
+    const event = await Event.findOne(query).select(["title", "customURI"]);
 
     // 404 event not found
     if (!event)
@@ -57,12 +54,11 @@ const getEventById = async (req, res) => {
 const createEvent = async (req, res) => {
   try {
     const user = req.user;
-    const { certCollectionId, customURI } = req.body;
+    const { customURI } = req.body;
 
     // Define validation schema
     const schema = Joi.object({
       title: Joi.string().required(),
-      certCollectionId: Joi.string().required(),
       customURI: Joi.string().alphanum(),
     });
 
@@ -73,22 +69,15 @@ const createEvent = async (req, res) => {
     if (error)
       return res.status(400).json({ message: error.message, success: false });
 
-    // Validate certificate collection Id
-    if (!mongoose.isValidObjectId(certCollectionId))
-      return res
-        .status(400)
-        .json({ message: "Invalid certCollectionId", success: false });
-
-    // Get certificate collection with id of "certCollectionId" and owned by user
+    // Get certificate collection owned by user
     const certCollection = await Certificate.findOne({
-      _id: certCollectionId,
       userId: user._id,
     });
 
     // Verify that certification collection exists
     if (!certCollection)
       return res.status(400).json({
-        message: "certification collection doesn't exist",
+        message: "user has no certificates",
         success: false,
       });
 
@@ -210,7 +199,7 @@ const getCertificateByEmail = async (req, res) => {
         .json({ message: "Event Not Found", success: false });
 
     // Get certificates for this event
-    const collection = await Certificate.findById(event.certCollectionId);
+    const collection = await Certificate.findOne({ userId: event.userId });
 
     if (!collection)
       return res
@@ -252,7 +241,7 @@ const validateCustomURI = async (req, res) => {
     // if customURI is taken
     if (eventWithURI)
       return res
-        .status(200)
+        .status(400)
         .json({ message: "customURI is already taken", success: false });
 
     res.status(200).json({ customURI, success: true });
