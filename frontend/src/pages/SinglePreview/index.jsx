@@ -152,10 +152,10 @@ function SinglePreview({
       </div>
 
       {/* BUTTON TO EXPLORE MORE TEMPLATES */}
-      <div id = 'explore'>
-      <Link to="/templates">
-        <button className = "explore-button">Explore More Templates</button>
-      </Link>
+      <div className="template-btn">
+        <Link to="/templates" className="explore-btn">
+          <Button name="Explore More Templates" style={{ margin: "30px auto" }} />
+       </Link>
       </div>
     </div>
   );

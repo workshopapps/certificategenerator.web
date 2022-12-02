@@ -1,4 +1,5 @@
 import React from "react";
+import Modal from '../../Component/Modal'
 import {useNavigate} from 'react-router-dom'
 import "./profile.style.scss";
 import Avatar from "../../assets/images/Ellipse4.png"
@@ -6,8 +7,20 @@ import Avatar from "../../assets/images/Ellipse4.png"
 const ProfilePage = () => {
   const navigate = useNavigate()
 
-  const handleSignout = () =>{
-    navigate('/')
+  const handleSignout = (e) =>{
+      e.preventDefault();  
+      console.log('Logout');
+      // eslint-disable-next-line no-restricted-globals
+      if(confirm("Are your sure you want to logout your account")){
+        // CLEAR DATA FROM STORAGE
+        localStorage.clear();
+        sessionStorage.clear();
+
+        //navigate back to homepage
+        navigate('/')
+      }else{
+         return false;
+      }
   }
   return (
     <div className="profile-page">
