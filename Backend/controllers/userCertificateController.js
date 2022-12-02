@@ -1,10 +1,14 @@
 const User = require("../models/certificateModel");
 const jwt = require("jsonwebtoken");
 const csvToJson = require("csvtojson");
+const { v4 } = require("uuid");
 const { isValidJsonOutput } = require("../utils/validation");
 
 const addCertificate = async (req, res) => {
   const auth = req.headers.authorization;
+  const uuidv4 = v4();
+
+
   if (!auth) {
     return res.status(403).json({ error: "No credentials sent!" });
   }
@@ -24,6 +28,18 @@ const addCertificate = async (req, res) => {
     const csvFile = files.file.data;
     const csvData = Buffer.from(csvFile).toString();
     certificateData = await csvToJson().fromString(csvData);
+
+    //append uuid and link to the certificate object
+    certificateData = certificateData.map((data) => {
+      let id = v4();
+
+      return {
+        ...data,
+        uuid: id,
+        link: `https://certgo.hng.tech/single_preview?uuid=${id}`
+      }
+    })
+
     if (!isValidJsonOutput(certificateData))
       return res
         .status(400)
@@ -39,6 +55,8 @@ const addCertificate = async (req, res) => {
         description: payload.description,
         date: payload.date,
         signed: payload.signed,
+        uuid: uuidv4,
+        link: `https://certgo.hng.tech/single_preview?uuid=${uuidv4}`
       },
     ];
   } else return res.status(400).json({ message: "bad request" }).end();
@@ -166,7 +184,7 @@ const getCertificateStatus = async (req, res) => {
 
 const updateCertificateDetails = async (req, res) => {
   const {id:certificateId} = req.params;
-  const { name, nameOfOrganization, award, description, date, signed } = req.body;
+  const { name, nameOfOrganization, award, description, date, signed, email } = req.body;
   const auth = req.headers.authorization;
   
   if (!auth) {
@@ -189,8 +207,9 @@ const updateCertificateDetails = async (req, res) => {
     || award == undefined 
     || description == undefined 
     || date == undefined 
-    || signed == undefined) {
-      return res.status(400).json({ error: 'Please enter valid certificate details: name, nameOfOrganization, award, description, date, signed' });
+    || signed == undefined
+    || email == undefined) {
+      return res.status(400).json({ error: 'Please enter valid certificate details: name, nameOfOrganization, award, description, date, signed, email' });
   }
 
 
@@ -198,11 +217,12 @@ const updateCertificateDetails = async (req, res) => {
   const cert = await User.updateOne({ userId: userId, 'records._id' : certificateId }, {
     $set: {
       'records.$.name' : name,
-      'records.$.nameOfOrganization' : nameOfOrganization,
+      'records.$.nameoforganization' : nameOfOrganization,
       'records.$.award' : award, 
       'records.$.description' : description, 
       'records.$.date' : date, 
-      'records.$.signed' : signed
+      'records.$.signed' : signed,
+      'records.$.email' : email
     }
   })
 
