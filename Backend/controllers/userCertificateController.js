@@ -3,6 +3,7 @@ const jwt = require("jsonwebtoken");
 const csvToJson = require("csvtojson");
 const { v4 } = require("uuid");
 const { isValidJsonOutput } = require("../utils/validation");
+const { deleteMany } = require("../models/certificateModel");
 
 const addCertificate = async (req, res) => {
   const auth = req.headers.authorization;
@@ -77,6 +78,26 @@ const addCertificate = async (req, res) => {
 
   res.status(201).json({message: 'user certificate generated'});
 };
+
+const deleteUserCertificates = async(req, res) => {
+  const auth = req.headers.authorization;
+  if (!auth) {
+    return res.status(403).json({ error: "No credentials sent!" });
+  }
+
+  const token = auth.split(" ")[1];
+  const { userId } = jwt.decode(token);
+  const user = await User.findOne({ userId }).exec();
+  if (!user) return res.status(404).json({ message: "user not found" });
+
+  const { userid } = req.params
+  const foundUser = await User.findOneById(userid)
+  if (!foundUser) {
+    return res.status(400).json({ message: "id not found"})
+  }
+  await User.deleteMany({ userId: userid })
+  res.status(204)
+}
 
 const getAllCertificates = async (req, res) => {
   const auth = req.headers.authorization;
@@ -282,4 +303,5 @@ module.exports = {
   getCertificateStatus,
   updateCertificateDetails,
   updateCertificateStatus,
+  deleteUserCertificates
 };
