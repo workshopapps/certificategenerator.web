@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import './certificate.style.scss'
-import {Link} from "react-router-dom"
+import {useNavigate} from "react-router-dom"
 import UploadCSV from "../../UploadCSV";
-import Button from "../../../Component/button";
+// import Button from "../../../Component/button";
 
 
 export default function Certificate ({

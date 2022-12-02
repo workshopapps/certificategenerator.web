@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Modal from "../../Component/Modal";
+import Button from "../../Component/button";
 import "./singlepreview.style.scss";
 import certificate from "../../assets/images/SinglePreview/Completion - Portrait (2).png";
 import certificate2 from "../../assets/images/SinglePreview/Completion - Portrait (3).png";

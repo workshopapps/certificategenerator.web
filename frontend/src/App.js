@@ -114,11 +114,10 @@ function App() {
               }
             />
             <Route path="/signup" element={<Signup />} />
-            <Route path="/login" element={<Login
-            access = {access}
-            setAccess = {setAccess}
-            
-            />} />
+            <Route
+              path="/login"
+              element={<Login access={access} setAccess={setAccess} />}
+            />
             <Route path="/comingsoon" element={<ComingSoon />} />
             <Route
               path="/dashboard"
@@ -145,9 +144,9 @@ function App() {
             <Route path="/team" element={<Team />} />
             <Route path="/terms" element={<Terms />} />
             <Route
-              path="/single_preview"
+              path="/preview"
               element={
-                <SinglePreview
+                <Preview
                   logo={logo}
                   message={message}
                   issuedBy={issuedBy}
@@ -159,10 +158,6 @@ function App() {
             />
             <Route path="/aboutUs" element={<AboutUs />} />
             <Route path="/FAQ" element={<FAQ />} />
-            <Route
-              path="/bulk_preview"
-              element={<BulkPreview certificatesData={certificatesData} />}
-            />
             <Route path="/bulk_step" element={<BulkStep />} />
             <Route path="/edit_bulk" element={<EditBulk />} />
             <Route path="/pricing" element={<Pricing />} />
