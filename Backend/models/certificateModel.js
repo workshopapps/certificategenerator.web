@@ -24,7 +24,6 @@ const CertificateSchema = new mongoose.Schema({
     },
     email: {
       type: String,
-      required: true,
     },
     date: {
         type: String,
@@ -34,6 +33,12 @@ const CertificateSchema = new mongoose.Schema({
       type: String,
       enum: [ 'pending', 'issued', 'canceled' ],
       default: 'pending'
+    },
+    uuid: {
+      type: String
+    },
+    link: {
+      type: String
     }
   }],
   userId:{

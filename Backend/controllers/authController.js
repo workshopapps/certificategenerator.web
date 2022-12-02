@@ -64,9 +64,12 @@ const userSignup = async (req, res, next) => {
     //Form signup
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
+      const error = new Error("validation failed");
       error.statusCode = 422;
       error.data = errors.array();
-      return res.status(error.statusCode).json({message: "user input validation failed", errors: error.data})
+      return res
+        .status(error.statusCode)
+        .json({ message: "user validation failed", error: error });
     }
 
     if (await userExist(email)) {
@@ -139,6 +142,8 @@ const userLogin = async (req, res, next) => {
   }
 };
 
+
+
 const forgotPassword = async (req, res) => {
   const { email } = req.body;
   const user = await User.findOne({ email });
@@ -156,17 +161,11 @@ const forgotPassword = async (req, res) => {
 
 const changePassword = async (req, res) => {
   try {
-    const auth = req.headers.authorization;
-    if (!auth || !auth.startsWith("Bearer")) {
-      return res.status(401).json({ message: "authentication invalid" });
+    const { token } = req.params;
+    if (!token) {
+      return res.status(400).json({ message: "token is required" });
     }
-    const token = auth.split(" ")[1];
     const { newpassword, confirmpassword } = req.body;
-    if (!newpassword || !confirmpassword) {
-      return res
-        .status(400)
-        .json("Please provide new password and confrim password");
-    }
     if (newpassword != confirmpassword) {
       return res
         .status(400)
@@ -174,19 +173,11 @@ const changePassword = async (req, res) => {
     }
     const { email } = jwt.verify(token, process.env.JWT_SECRET);
     const user = await User.findOne({ email });
-
-    bcrypt.hash(newpassword, 10, async function (err, hash) {
-      if (err) {
-        const error = new Error("account could not be created");
-        error.statusCode = 422;
-        throw error;
-      }
-      user.authenticationType.form.password = hash;
-      user.save();
-      res.status(200).send({ message: "password changed" });
-    });
-  } catch (err) {
-    next(err);
+    user.password = newpassword;
+    user.save();
+    res.status(200).send({ message: "password changed" });
+  } catch (error) {
+    return res.status(401).json({ message: "invalid Token" });
   }
 };
 
