@@ -33,54 +33,6 @@ export default function Certificate({
     navigate("/preview");
   };
 
-  // const [link, setLink] = useState("isDisabled");
-
-  // const certi = document.querySelector(".certi");
-  // function clickedOnLink() {
-  //   certi.addEventListener("click", function (event) {
-  //     if (this.parentElement.classList.contains("isDisabled")) {
-  //       event.preventDefault();
-  //     }
-  //   });
-  // }
-
-  // document.body.addEventListener("click", function (event) {
-  //   // filter out clicks on any other elements
-  //   if (
-  //     event.target.nodeName === "A" &&
-  //     event.target.getAttribute("aria-disabled") === "true"
-  //   ) {
-  //     event.preventDefault();
-  //   }
-  // });
-
-  // function disableLink(link) {
-  //   // 1. Add isDisabled class to parent span
-  //   link.classList.add("isDisabled");
-  //   // 2. Store href so we can add it later
-  //   link.setAttribute("data-href", link.href);
-  //   // 3. Remove href
-  //   link.href = "";
-  //   // 4. Set aria-disabled to 'true'
-  //   link.setAttribute("aria-disabled", "true");
-  //   link.removeAttribute("to");
-  // }
-  // function enableLink(link) {
-  //   // 1. Remove 'isDisabled' class from parent span
-  //   link.classList.remove("isDisabled");
-  //   // 2. Set href
-  //   link.href = link.getAttribute("data-href");
-  //   // 3. Remove 'aria-disabled', better than setting to false
-  //   link.removeAttribute("aria-disabled");
-  //   link.setAttribute("to");
-  // }
-
-  // function checkIfFormIField() {
-  //   if (certi.hasAttribute("aria-disabled")) {
-  //     console.log("ojfhbv ffr");
-  //   }
-  // }
-
   return (
     <>
       <p id="certificatee" className="sora header">
@@ -93,9 +45,9 @@ export default function Certificate({
           <button
             className="select"
             style={{
-              color: "#222222",
+              color: "#19A68E",
               backgroundColor: "#ffffff",
-              transition: "300ms ease-in"
+              transition: "250ms ease-in"
             }}
             onClick={() => {
               setBulkCertificate(false);
@@ -125,7 +77,7 @@ export default function Certificate({
           <button
             className="select"
             style={{
-              color: "#222222",
+              color: "#19A68E",
               backgroundColor: "#ffffff",
               transition: "300ms ease-in"
             }}
@@ -244,13 +196,14 @@ export default function Certificate({
             <input
               type="date"
               value={issueDate}
+              className="date_"
               callback={e => setIssueDate(e.target.value)}
             />
 
             <Link
               className="btn-create isDisabled certi "
               style={{ marginTop: "50px", cursor: `${"not-allowed"}` }}
-              to="single_preview"
+              to="/preview"
             >
               <Button
                 disabled={disabledButton}
