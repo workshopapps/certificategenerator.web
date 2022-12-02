@@ -3,6 +3,8 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const { validationResult } = require("express-validator");
 const config = require("../utils/config");
+const UserToken = require("../models/UserToken")
+const { generateTokens } = require("../utils/generateToken")
 
 const { OAuth2Client } = require("google-auth-library");
 const client = new OAuth2Client(config.GOOGLE_CLIENT_ID);
@@ -122,23 +124,34 @@ const userLogin = async (req, res, next) => {
       error.statusCode = 401;
       throw error;
     }
+    const { accessToken, refreshToken } = await generateTokens(user);
 
-    const token = jwt.sign(
-      {
-        userId: user._id,
-      },
-      process.env.JWT_SECRET,
-      { expiresIn: "24h" }
-    );
-    res.status(201).json({
+    res.status(200).json({
       message: "user logged in successfully",
-      token: token,
+      token: accessToken,
+      refreshToken: refreshToken,
       userId: user._id.toString(),
     });
   } catch (err) {
     next(err);
   }
 };
+
+const userLogout = async (req, res) => {
+  try {
+    const userToken = await UserToken.findOne({ token: req.body.refreshToken });
+    if (!userToken)
+      return res
+        .status(200)
+        .json({ error: false, message: "Logged Out Sucessfully" });
+
+    await userToken.remove();
+    res.status(200).json({ error: false, message: "Logged Out Sucessfully" });
+  } catch (error) {
+    console.log(err);
+    res.status(500).json({ error: true, message: "Internal Server Error" });
+  }
+}
 
 const forgotPassword = async (req, res) => {
   const { email } = req.body;
@@ -194,6 +207,7 @@ const changePassword = async (req, res) => {
 module.exports = {
   userSignup,
   userLogin,
+  userLogout,
   forgotPassword,
   changePassword,
 };
