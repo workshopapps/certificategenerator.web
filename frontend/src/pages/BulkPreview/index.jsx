@@ -17,7 +17,7 @@ function Index() {
 
       {/* PREVIEW OF BULK GENERATED CERTIFICATES  */}
 
-      <h2>Preview of Generated Certificates (120 recipents)</h2>
+      <h2>Preview of Generated Certificates</h2>
 
       <section id="bulk-images-desktop">
         <Splide
