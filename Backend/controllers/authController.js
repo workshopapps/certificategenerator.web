@@ -33,7 +33,7 @@ const userExist = async (_email) => {
 
 const userSignup = async (req, res, next) => {
   try {
-    let { accessToken, email, password, plan } = req.body;
+    let { accessToken, email, password, subscriptionPlan } = req.body;
 
     //google signup
     if (req.body.accessToken) {
@@ -54,6 +54,7 @@ const userSignup = async (req, res, next) => {
             uuid: googleUserId,
           },
         },
+        subscription: subscriptionPlan
       });
       const createdUser = await newUser.save();
       return res.status(201).json({
@@ -91,14 +92,13 @@ const userSignup = async (req, res, next) => {
             password: hash,
           },
         },
-        subscription: plan
+        subscription: subscriptionPlan
       });
       const createdUser = await newUser.save();
       res.status(201).json({
         message: "New User has been created.",
         id: createdUser._id,
         email: createdUser.email,
-        plan: createdUser.subscription
       });
     });
   } catch (err) {
@@ -128,6 +128,7 @@ const userLogin = async (req, res, next) => {
           token: accessToken,
           refreshToken: refreshToken,
           userId: user._id.toString(),
+          subscription: user.subscription
         });
       } catch (error) {
         if (!error.statusCode) {
@@ -164,7 +165,7 @@ const userLogin = async (req, res, next) => {
       token: accessToken,
       refreshToken: refreshToken,
       userId: user._id.toString(),
-      role: user.subscription
+      subscription: user.subscription
     });
   } catch (err) {
     next(err);
