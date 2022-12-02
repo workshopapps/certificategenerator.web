@@ -40,3 +40,24 @@ exports.createTemplate = async (req, res) => {
     }
     
 }
+
+exports.getTemplate = async (req, res) => {
+    const { id } = req.params
+    const auth = req.headers.authorization;
+    if (!auth) {
+        return res.status(403).send({ error: "No credentials sent!" });
+    }
+
+    const token = auth.split(" ")[1];
+    
+    const { userId } = jwt.decode(token);
+    
+    const user = await User.findOne({ _id: userId })
+    
+    const template = await Template.findOne({ _id: id })
+
+    if (!template || (user.subscription !== "premium")) {
+        return res.status(404).send(`Template not found`)
+    }
+    return res.status(200).send({ template })
+}
