@@ -34,6 +34,7 @@ const eventRouter = require("./routes/eventRouter");
 const template = require("./routes/templateRouter");
 const newsletterRouter = require("./routes/newsletterRouter")
 const verifyEmailRouter = require("./routes/verifyEmailRouter")
+const paymentRouter = require("./routes/paymentRouter")
 
 
 const PORT = process.env.PORT || 5000;
@@ -74,6 +75,8 @@ app.use("/api/events", eventRouter);
 app.use("/api/templates", template);
 app.use("/api/subscribe", newsletterRouter);
 app.use("/api/verifyEmail", verifyEmailRouter)
+app.use('/api/payment', paymentRouter);
+
 
 mongoose.connection.once("open", () => {
   console.log("Connected to DB");
