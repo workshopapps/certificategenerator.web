@@ -12,13 +12,14 @@ const Footer = () => {
   const handleChange = e => {
     setEmail(e.target.value);
   };
+  const successMSG = "You have successfully subscriped for our newsletter🎉";
   const handleSubmit = e => {
     e.preventDefault();
     const regex =
       /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
     if (regex.test(email)) {
       setEmail("");
-      setMessage("");
+      setMessage(successMSG);
       onSubscribe();
     } else if (!regex.test(email) && email !== "") {
       setMessage("Please enter a valid email");
@@ -28,7 +29,6 @@ const Footer = () => {
   };
 
   function onSubscribe() {
-    setMessage("");
     let data = { email: email };
     fetch("https://certify-api.onrender.com/api/mailinglists", {
       method: "POST",
@@ -104,12 +104,19 @@ const Footer = () => {
                   placeholder="Your Email"
                   onChange={handleChange}
                   value={email}
+                  style={{ color: "black" }}
                   name="name"
                   onClick={onSubscribe}
                 />
                 <button onClick={handleSubmit}>Subscribe</button>
               </div>
-              <p className="error-msg">{message}</p>
+              <p
+                className={`error-msg ${
+                  message === successMSG && "colorChange"
+                }`}
+              >
+                {message}
+              </p>
             </form>
           </div>
         </div>
