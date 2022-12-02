@@ -102,7 +102,7 @@ export default function Certificate ({
             <input type="text" placeholder="Name of organisation or issuer" value={issuedBy} onChange={e => setIssuedBy(e.target.value)} />
 
             <label htmlFor='date' className="label">Issue Date</label>
-            <input type="text" value={issueDate} onChange={e => setIssueDate(e.target.value)} />
+            <input type="date" value={issueDate} onChange={e => setIssueDate(e.target.value)} />
 
             
             
