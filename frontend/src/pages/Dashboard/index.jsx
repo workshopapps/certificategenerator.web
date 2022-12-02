@@ -3,25 +3,26 @@ import "./dashboard.style.scss";
 import profilePic from "../../assets/images/Ellipse4.png";
 import Card from "./Card";
 import { cardData, nullDataIcon, actionIcon } from "./utils";
+import Button from "../../Component/button";
 import CreateCertificateModal from "./CreateCertificateModal";
 
 const Dashboard = ({
-    logo,
-    setLogo,
-    certificateTitle,
-    setCertificateTitle,
-    awardeeName,
-    setAwardeeName,
-    message,
-    setMessage,
-    issuedBy,
-    setIssuedBy,
-    issueDate,
-    setIssueDate
+  logo,
+  setLogo,
+  certificateTitle,
+  setCertificateTitle,
+  awardeeName,
+  setAwardeeName,
+  message,
+  setMessage,
+  issuedBy,
+  setIssuedBy,
+  issueDate,
+  setIssueDate
 }) => {
   const [data, setData] = useState([]);
   const [issuedCert, setIssuedCert] = useState([...cardData]);
-  const [openModal, setOpenModal] = useState(false)
+  const [openModal, setOpenModal] = useState(false);
 
   useEffect(() => {
     const fetchData = () => {
@@ -34,34 +35,34 @@ const Dashboard = ({
 
       let requestOptions = {
         method: "GET",
-        headers: myHeaders,
+        headers: myHeaders
       };
 
       fetch("https://certify-api.onrender.com/api/certificates", requestOptions)
-        .then((response) => response.json())
-        .then((result) => setData(result))
-        .catch((error) => console.log("error", error));
+        .then(response => response.json())
+        .then(result => setData(result))
+        .catch(error => console.log("error", error));
 
       fetch(
         "https://certify-api.onrender.com/api/certificates/issuedCertificates",
         requestOptions
       )
-        .then((response) => response.json())
-        .then((result) => {
+        .then(response => response.json())
+        .then(result => {
           setIssuedCert(
-            issuedCert.map((item) =>
+            issuedCert.map(item =>
               item.title === "Total Number Issued"
                 ? { ...item, count: result.issuedCertificates }
                 : item
             )
           );
         })
-        .catch((error) => console.log("error", error));
+        .catch(error => console.log("error", error));
     };
     fetchData();
   }, []);
 
-  const dataCheck = issuedCert.filter((item) => item.count !== 0);
+  const dataCheck = issuedCert.filter(item => item.count !== 0);
 
   return (
     <>
@@ -96,24 +97,28 @@ const Dashboard = ({
             <p>CERTIFICATE DASHBOARD</p>
             {dataCheck.length > 0 ? (
               <div>
-                <button className="" onClick={() => setOpenModal(true)}>Create New Certificate</button>
+                <Button className="" onClick={() => setOpenModal(true)}>
+                  Create New Certificate
+                </Button>
               </div>
             ) : null}
           </div>
-          <CreateCertificateModal open={openModal} onClose={() => setOpenModal(false)}
-           logo={logo}
-           message={message}
-           setLogo={setLogo}
-           issuedBy={issuedBy}
-           issueDate={issueDate}
-           setMessage={setMessage}
-           awardeeName={awardeeName}
-           setIssuedBy={setIssuedBy}
-           setIssueDate={setIssueDate}
-           setAwardeeName={setAwardeeName}
-           certificateTitle={certificateTitle}
-           setCertificateTitle={setCertificateTitle}
-           />
+          <CreateCertificateModal
+            open={openModal}
+            onClose={() => setOpenModal(false)}
+            logo={logo}
+            message={message}
+            setLogo={setLogo}
+            issuedBy={issuedBy}
+            issueDate={issueDate}
+            setMessage={setMessage}
+            awardeeName={awardeeName}
+            setIssuedBy={setIssuedBy}
+            setIssueDate={setIssueDate}
+            setAwardeeName={setAwardeeName}
+            certificateTitle={certificateTitle}
+            setCertificateTitle={setCertificateTitle}
+          />
           <div className="table">
             <table>
               <thead>
@@ -160,7 +165,9 @@ const Dashboard = ({
                   {nullDataIcon()}
                   <p>You haven't created any Certificates</p>
                   <div>
-                    <button className="" onClick={() => setOpenModal(true)}>Create New Certificate</button>
+                    <button className="" onClick={() => setOpenModal(true)}>
+                      Create New Certificate
+                    </button>
                   </div>
                 </div>
               </div>

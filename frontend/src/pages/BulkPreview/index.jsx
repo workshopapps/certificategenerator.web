@@ -4,6 +4,7 @@ import certificate from "../../assets/images/bulkPreview/Completion - Portrait (
 import "./bulk.style.scss";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/react-splide/css";
+import Button from "../../Component/button";
 
 function Index() {
   return (
@@ -101,13 +102,11 @@ function Index() {
         </Splide>
       </section>
 
-      
-
       {/* BUTTONS TO DOWNLOAD OR SHARE THE CRETIFICATES */}
 
       <div id="bulk-btns">
-        <button className="download-btn">Download Certificates</button>
-        <button className="send-btn">Send Certificates</button>
+        <Button className="">Download Certificates</Button>
+        <Button className="btnLight">Send Certificates</Button>
       </div>
     </div>
   );

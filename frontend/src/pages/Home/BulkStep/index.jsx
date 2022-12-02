@@ -5,6 +5,7 @@ import example from "../../../assets/images/example.png";
 import one from "../../../assets/images/step-one.png";
 import two from "../../../assets/images/step-two.png";
 import three from "../../../assets/images/step-three.png";
+import Button from "../../../Component/button";
 
 export default function BulkStep() {
   const navigate = useNavigate();
@@ -56,12 +57,10 @@ export default function BulkStep() {
           </div>
         </div>
       </div>
-      <button
-        className="bulk-button work-sans"
-        onClick={() => navigate("/signup")}
-      >
+
+      <Button className="bulk-button " onClick={() => navigate("/signup")}>
         Create Bulk Certificates
-      </button>
+      </Button>
     </div>
   );
 }

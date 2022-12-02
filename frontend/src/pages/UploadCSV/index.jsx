@@ -4,7 +4,7 @@ import Button from "../../Component/button";
 // img
 import Certificate from "../../assets/images/uploadPage/cert.svg";
 //import CSVSample from "../../assets/images/uploadPage/CSVSample.svg";
-import CSVSample from "../../assets/images/CSV-sample.png"
+import CSVSample from "../../assets/images/CSV-sample.png";
 import UploadVector from "../../assets/images/uploadPage/uploadVector.svg";
 import Template1 from "../../assets/images/uploadPage/template1.svg";
 import Template2 from "../../assets/images/uploadPage/template2.svg";
@@ -28,13 +28,11 @@ const UploadCSV = ({ setFile }) => {
       });
     }
   };
-  let formdata = new FormData()
+  let formdata = new FormData();
 
-  function handleUpload(e){
-    e.preventDefault()
-    
+  function handleUpload(e) {
+    e.preventDefault();
   }
-
 
   return (
     <div className="uploadCSVContainer">
@@ -77,7 +75,7 @@ const UploadCSV = ({ setFile }) => {
         </span>
       </div>
       {/* <button className='btn btnLight'>Generate Certificate</button> */}
-        <button style={{display:"none"}} >Upload</button>
+      <button style={{ display: "none" }}>Upload</button>
       <div>
         <h2>Even More Template for You</h2>
         <div className="moreTemplate">
@@ -85,7 +83,9 @@ const UploadCSV = ({ setFile }) => {
           <img src={Template2} alt="Template2" />
           <img src={Template3} alt="Template3" />
         </div>
-        <button className="btn btnLight">Explore More Template</button>
+        <Button className="btn btnLight" style={{ margin: "1em auto" }}>
+          Explore More Template
+        </Button>
       </div>
     </div>
   );

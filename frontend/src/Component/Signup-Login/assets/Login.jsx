@@ -9,6 +9,7 @@ import cert from "./assets/Cert.png";
 import emailSVG from "./assets/email.svg";
 import keySVG from "./assets/key.svg";
 import { loginUser } from "../api";
+import Input from "../../Input";
 
 const Login = ({ access, setAccess }) => {
   const navigate = useNavigate();
@@ -41,7 +42,6 @@ const Login = ({ access, setAccess }) => {
       };
     });
   }
-
   async function loginUser(email, password) {
     return fetch("https://certify-api.onrender.com/api/auth/login", {
       method: "POST",
@@ -49,15 +49,14 @@ const Login = ({ access, setAccess }) => {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({ email: email, password: password })
-    })
+    });
   }
 
   const handleSubmit = async e => {
     e.preventDefault();
     const response = await loginUser(useremail, password);
-    const data = await response.json()
-    .catch((error) => {
-      setError('apiError', {message:error});
+    const data = await response.json().catch(error => {
+      setError("apiError", { message: error });
     });
 
     const token = data.token;
@@ -93,25 +92,25 @@ const Login = ({ access, setAccess }) => {
 
             <div id="email">
               <img alt="" src={emailSVG} />
-              <input
+              <Input
                 className="email_input"
                 placeholder=" Email"
                 type="text"
                 name="email"
-                value={useremail}
-                onChange={e => setUserEmail(e.target.value)}
+                callback={e => setUserEmail(e.target.value)}
                 required
-              ></input>
+                style={{ border: "none" }}
+              />
             </div>
             <div id="pwd">
               <img alt="" src={keySVG} />
-              <input
+
+              <Input
                 id="input_id"
                 placeholder="Password"
                 type="text"
                 name="password"
-                value={password}
-                onChange={e => setPassword(e.target.value)}
+                callback={e => setPassword(e.target.value)}
                 required
               />
               <span onClick={handleToggle}>
@@ -123,7 +122,7 @@ const Login = ({ access, setAccess }) => {
               </span>
             </div>
 
-            {error &&  <p className="login-error">Invalid Email or Password</p> }
+            {error && <p className="login-error">Invalid Email or Password</p>}
             <div className="forgotPwd">Forgot password?</div>
             <div id="checkTerms">
               <input
@@ -137,7 +136,7 @@ const Login = ({ access, setAccess }) => {
                 Remember me
               </label>
             </div>
-            <input
+            <Input
               type="submit"
               onClick={handleSubmit}
               value="Login"
@@ -155,7 +154,6 @@ const Login = ({ access, setAccess }) => {
           <img className="cert_img" alt="" src={cert} />
         </div>
       </div>
-    
     </div>
   );
 };

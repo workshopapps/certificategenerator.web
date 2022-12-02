@@ -17,7 +17,7 @@ function SinglePreview({
   awardeeName,
   message,
   issuedBy,
-  issueDate,
+  issueDate
 }) {
   const [openModal, setOpenModal] = useState(false);
   const [isAuntheticated, setIsAuntheticated] = useState(false);
@@ -41,7 +41,7 @@ function SinglePreview({
     const pdf = new jsPDF({
       orientation: "l",
       unit: "pt",
-      format: [canvas.width, canvas.height],
+      format: [canvas.width, canvas.height]
     });
     pdf.addImage(data, "PNG", 0, 0, canvas.width, canvas.height);
     pdf.save(`${awardeeName}.pdf`);
@@ -49,6 +49,17 @@ function SinglePreview({
 
   return (
     <div id="singlePreview">
+      {/* BUTTONS TO TOGGLE BETWEEN SINGLE AND BULK CERTIFICATE */}
+
+      <div className="button-container">
+        <Link to="/single_preview">
+          <Button className="active">Single Certificate</Button>
+        </Link>
+        <Link to="/signup">
+          <Button className="not-active btnLight">Bulk Certificate</Button>
+        </Link>
+      </div>
+
       {/* IMAGE OF YOUR CERTIFICATE READY TO BE DOWNLOADED OR SENT */}
 
       <div className="certificate-header">
@@ -124,11 +135,11 @@ function SinglePreview({
             </button>
             <div className="dropdown-content">
               <button
-                onClick={(e) => {
+                onClick={e => {
                   e.preventDefault();
                   exportComponentAsPNG(certificateWrapper, {
                     fileName: `${awardeeName}`,
-                    html2CanvasOptions: { backgroundColor: "#fff" },
+                    html2CanvasOptions: { backgroundColor: "#fff" }
                   });
                 }}
                 className="png-button"
@@ -156,8 +167,11 @@ function SinglePreview({
       {/* BUTTON TO EXPLORE MORE TEMPLATES */}
       <div className="template-btn">
         <Link to="/templates" className="explore-btn">
-          <Button name="Explore More Templates" style={{ margin: "30px auto" }} />
-       </Link>
+          <Button
+            name="Explore More Templates"
+            style={{ margin: "30px auto" }}
+          />
+        </Link>
       </div>
     </div>
   );
