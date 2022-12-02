@@ -1,11 +1,12 @@
-
-
 const Profile = require("../models/profileModel");
 const jwt = require("jsonwebtoken");
 
 const addUserProfile = async (req, res, next) => {
   const auth = req.headers.authorization;
   const payload = req.body;
+  const avatar = req.files.avatar;
+  console.log(avatar);
+
   if (!payload) return res.status(400).json({ error: "Bad request" });
   if (!auth) {
     return res.status(403).json({ error: "No credentials sent!" });
@@ -19,6 +20,7 @@ const addUserProfile = async (req, res, next) => {
   let userProfile;
   if (!user) {
     userProfile = await Profile.create({
+      avatar: avatar.name,
       user: userId,
       name: payload.name,
       job: payload.job,
@@ -29,7 +31,7 @@ const addUserProfile = async (req, res, next) => {
   } else return res.status(400).json({ error: "profile already exist" });
 
   await userProfile.save();
-  res.status(201).json({ result: userProfile });
+  res.status(201).json({ newProfile: userProfile });
 };
 
 const getUserProfile = async (req, res) => {
@@ -51,7 +53,8 @@ const getUserProfile = async (req, res) => {
 };
 
 const updateUserProfile = async (req, res) => {
-  const payload = req.body;
+  const payload = { ...req.body };
+  const avatar = req?.files?.avatar;
   const auth = req.headers.authorization;
   if (!auth) {
     return res.status(403).json({ error: "No credentials sent!" }).end();
@@ -66,6 +69,7 @@ const updateUserProfile = async (req, res) => {
     return next(res.status(404).send("no profile with id")).end();
   }
 
+  profile.avatar = avatar.name;
   profile.name = payload.name;
   profile.job = payload.job;
   profile.location = payload.location;
@@ -73,7 +77,8 @@ const updateUserProfile = async (req, res) => {
   profile.phoneNumber = payload.phoneNumber;
 
   await profile.save();
-  res.status(201).json({ result: profile });
+
+  res.status(201).json({ update: profile });
 };
 
 module.exports = {
