@@ -329,15 +329,23 @@ main {
     margin: 50px 0px;
     font-family: "Sora" !important;
   }
-  
+ 
   .testimonial-wrapper {
     margin: 30px 40px;
     padding: 0px 50px;
     overflow: hidden;
   }
-  
+  .testimonial h1{
+    font-weight: 600;
+    margin:20px;
+    font-size: 27px!important;
+}
+.testimonial-para{
+    font-size: 16px;
+}
+
   .testimonial-box {
-    min-height: 300px;
+    max-height: 300px;
     padding: 25px;
     border: 1px solid grey;
     border-radius: 10px;
@@ -382,6 +390,13 @@ main {
   @media screen and (min-width: 1024px) {
     .testimonial-box {
       max-height: 315px;
+    }
+    .testimonial h1{
+    font-size: 30px!important;
+    margin: 20px;
+    }
+    .testimonial-para{
+        font-size: 20px;
     }
   }
 

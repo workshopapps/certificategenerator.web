@@ -87,7 +87,7 @@ function Pricing() {
             <section>
             <div className="testimonial">
         <h1>Testimonials</h1>
-        <p>What our users have to say about us</p>
+        <p className = 'testimonial-para'>What our users have to say about us</p>
 
         <Splide
           className="testimonial-wrapper"
