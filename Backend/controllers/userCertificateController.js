@@ -40,6 +40,8 @@ const addCertificate = async (req, res) => {
       }
     })
 
+    console.log(certificateData)
+
     if (!isValidJsonOutput(certificateData))
       return res
         .status(400)
@@ -73,7 +75,7 @@ const addCertificate = async (req, res) => {
     await user.save();
   }
 
-  res.status(200).json(certificateData);
+  res.status(201).json({message: 'user certificate generated'});
 };
 
 const getAllCertificates = async (req, res) => {
@@ -128,7 +130,7 @@ const getNoOfCertificatesIssued = async (req, res) => {
 
   res
     .status(200)
-    .json({ result: certificates, issuedCertificates: certificates.length });
+    .json({ issuedCertificates: certificates.length });
 };
 
 const deleteCertificate = async (req, res) => {

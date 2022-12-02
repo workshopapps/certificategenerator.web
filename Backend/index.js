@@ -24,7 +24,7 @@ const careers = require("./routes/careerRouter");
 const applyCareer = require('./routes/applyCareerRouter')
 const teamRoute = require("./routes/teamRoutes");
 const mailingLists = require("./routes/mailingListRouter");
-require('./routes/emailNotificationRouter')(app)
+// require('./routes/emailNotificationRouter')(app)
 const profileRouter = require("./routes/profileRouters");
 const contacts = require('./routes/contactRouter');
 const userPlan = require('./routes/pricingPlanRouter');

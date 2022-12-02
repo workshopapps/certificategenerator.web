@@ -67,7 +67,9 @@ const userSignup = async (req, res, next) => {
       const error = new Error("validation failed");
       error.statusCode = 422;
       error.data = errors.array();
-      return res.status(error.statusCode).json({message: "user validation failed", error: error})
+      return res
+        .status(error.statusCode)
+        .json({ message: "user validation failed", error: error });
     }
 
     if (await userExist(email)) {
@@ -101,36 +103,8 @@ const userSignup = async (req, res, next) => {
 };
 
 const userLogin = async (req, res, next) => {
-  let { email, password, accessToken } = req.body;
+  const { email, password } = req.body;
   try {
-    //google signin
-    if (req.body.accessToken) {
-      const payload = await verify(accessToken);
-      const googleUserId = payload["sub"];
-      email = payload["email"];
-
-      const user = await User.findOne({ email: email });
-      if (!user) {
-        return res.status(401).json({ message: "email could not find email in database" });
-      }
-      if (googleUserId !== user.authenticationType.google.uuid) {
-        return res.status(401).json({ message: "email could not be verified" });
-      }
-
-      const token = jwt.sign(
-        {
-          userId: user._id,
-        },
-        process.env.JWT_SECRET,
-        { expiresIn: "24h" }
-      );
-      return res.status(201).json({
-        message: "user logged in successfully",
-        token: token,
-        userId: user._id.toString(),
-      });
-      
-    }
     if (!email || !password) {
       return res.status(400).json("Please provide email and password");
     }
@@ -141,7 +115,10 @@ const userLogin = async (req, res, next) => {
       error.statusCode = 401;
       throw error;
     }
-    const isEqual = await bcrypt.compare(password, user.password);
+    const isEqual = await await bcrypt.compare(
+      password,
+      user.authenticationType.form.password
+    );
     if (!isEqual) {
       const error = new Error("Wrong password!");
       error.statusCode = 401;
@@ -160,13 +137,12 @@ const userLogin = async (req, res, next) => {
       token: token,
       userId: user._id.toString(),
     });
-  } catch (error) {
-    if (!error.statusCode) {
-      error.statusCode = 500;
-    }
-    next(error);
+  } catch (err) {
+    next(err);
   }
 };
+
+
 
 const forgotPassword = async (req, res) => {
   const { email } = req.body;
