@@ -23,3 +23,4 @@ router.put("/:id", authentication, updateCertificateDetails);
 router.delete("/:id", authentication, deleteCertificate);
 router.patch("/status/:id", authentication, updateCertificateStatus);
 module.exports = router;
+
