@@ -1,3 +1,5 @@
+import Axios from 'axios';
+
 import "./uploadCSV.style.scss";
 // component
 import Button from "../../Component/button";
@@ -29,6 +31,12 @@ const UploadCSV = ({setFile}) => {
     }
   };
   
+  let formdata = new FormData()
+
+  function handleUpload(e){
+    e.preventDefault()
+    
+  }
 
   return (
     <div className="uploadCSVContainer">
@@ -70,7 +78,7 @@ const UploadCSV = ({setFile}) => {
         </span>
       </div>
       {/* <button className='btn btnLight'>Generate Certificate</button> */}
-
+        <button style={{display:"none"}} onClick={handleUpload}>Upload</button>
       <div>
         <h2>Even More Template for You</h2>
         <div className="moreTemplate">
