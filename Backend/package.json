@@ -13,9 +13,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@paystack/paystack-sdk": "^1.0.1",
     "@sendgrid/mail": "^7.7.0",
+    "axios": "^1.2.0",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.1",
+    "cloudinary": "^1.32.0",
     "cors": "^2.8.5",
     "crypto": "^1.0.1",
     "csvtojson": "^2.0.10",

@@ -29,6 +29,7 @@ const pricing = require("./routes/pricingRouter");
 const swaggerUi = require("swagger-ui-express");
 const swaggerFile = require("./swagger_output.json");
 
+
 //middleware
 app.use(cors());
 app.use(express.json());
