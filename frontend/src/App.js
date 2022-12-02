@@ -44,6 +44,7 @@ function App() {
 
   const [appLoading, setAppLoading] = useState(true);
 
+  const [access, setAccess] = useState();
   useEffect(() => {
     setTimeout(function () {
       setAppLoading(false);
@@ -103,7 +104,11 @@ function App() {
               setCertificateTitle={setCertificateTitle}
             />} />
             <Route path="/signup" element={<Signup />} />
-            <Route path="/login" element={<Login />} />
+            <Route path="/login" element={<Login
+            access = {access}
+            setAccess = {setAccess}
+            
+            />} />
             <Route path="/comingsoon" element={<ComingSoon />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/templates" element={<Templates />} />
