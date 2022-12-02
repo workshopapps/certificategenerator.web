@@ -24,6 +24,7 @@
     cursor: pointer;
   }
   &.btnDisable {
+    opacity: 1;
     background-color: #b2e1d9;
     cursor: not-allowed;
   }
