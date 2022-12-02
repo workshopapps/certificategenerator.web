@@ -53,11 +53,22 @@ body {
 }
 
 .header {
-  padding: 120px 0 0 0;
-  font-size: 48px;
+  padding: 16px 0 0 0;
+  font-size: 30px;
   font-weight: 700;
   line-height: 60.48px;
   text-align: center;
+  padding: 16px;
+  @media screen and (max-width: 900.9px) {
+    font-size: 2rem;
+    line-height: 30px;
+  }
+  @media screen and (max-width: 700.9px) {
+    font-size: 1.6rem;
+  }
+  @media screen and (max-width: 480.9px) {
+    font-size: 1.2rem;
+  }
 }
 
 .prompt {
@@ -65,10 +76,9 @@ body {
 }
 
 .mode {
-  width: 30%;
   margin: auto;
-  border-radius: 20px;
-  border: 0.8px solid rgba(84, 84, 84, 0.26);
+  border: 0.8px solid #b2e1d9;
+  border-radius: 10px;
   background-color: white;
   line-height: 19px;
   font-weight: 500;
@@ -77,14 +87,17 @@ body {
 
 .select {
   border: none;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
   background: none;
-  height: 35px;
+  padding: 10px 23px;
   background-color: #19a68e;
   border-radius: 10px;
   color: #ffffff;
-  margin: 2.5%;
-  width: 50%;
-  font-weight: 500;
+  margin: 4%;
+  font-size: 16px;
+  font-weight: 400;
   cursor: pointer;
   text-align: center;
 }
@@ -104,11 +117,17 @@ body {
   max-width: 1440px;
   width: 80%;
   background-color: #fafafb;
-  margin: 5.5% 10% 12%;
+  margin: 5.5% 10% 6%;
   border: 0.8px solid #545454;
   border-radius: 16px;
   padding: 8%;
   gap: 0;
+  input {
+    font-size: 18px;
+    ::placeholder {
+      font-size: 18px;
+    }
+  }
 }
 
 label {
@@ -161,10 +180,6 @@ input::-webkit-calendar-picker-indicator {
 }
 
 @media screen and (max-width: 768px) and (min-width: 481px) {
-  .header {
-    font-size: 32px;
-    line-height: 40px;
-  }
   .mode {
     width: 90%;
   }
@@ -174,16 +189,11 @@ input::-webkit-calendar-picker-indicator {
   }
 
   .cert-form {
-    margin: 5.5% 10% 12%;
+    margin: 5.5% 10% 6%;
   }
 }
 
 @media screen and (max-width: 480px) {
-  .header {
-    font-size: 24px;
-    line-height: 30px;
-    text-align: center;
-  }
   .prompt {
     font-size: 16px;
     line-height: 24px;
@@ -219,10 +229,6 @@ input::-webkit-calendar-picker-indicator {
 }
 
 @media screen and (max-width: 768px) and (min-width: 481px) {
-  .header {
-    font-size: 32px;
-    line-height: 40px;
-  }
   .mode {
     width: 90%;
   }
@@ -232,16 +238,11 @@ input::-webkit-calendar-picker-indicator {
   }
 
   .cert-form {
-    margin: 5.5% 10% 12%;
+    margin: 5.5% 10% 6%;
   }
 }
 
 @media screen and (max-width: 480px) {
-  .header {
-    font-size: 24px;
-    line-height: 30px;
-    text-align: center;
-  }
   .prompt {
     font-size: 16px;
     line-height: 24px;

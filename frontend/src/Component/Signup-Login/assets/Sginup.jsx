@@ -47,7 +47,8 @@ const Signup = () => {
 
       if (response && response.data) {
         //redirect a successfull signup here ...
-        navigate("/login");
+        // navigate("/login")
+        navigate("/");
       }
     } catch (error) {
       console.log(error);

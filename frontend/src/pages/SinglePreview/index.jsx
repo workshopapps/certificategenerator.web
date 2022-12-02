@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Modal from "../../Component/Modal";
+import Button from "../../Component/button";
 import "./singlepreview.style.scss";
 import certificate from "../../assets/images/SinglePreview/Completion - Portrait (2).png";
 import certificate2 from "../../assets/images/SinglePreview/Completion - Portrait (3).png";
@@ -8,9 +9,8 @@ import certificate3 from "../../assets/images/SinglePreview/Completion - Portrai
 import { exportComponentAsPNG } from "react-component-export-image";
 import html2canvas from "html2canvas";
 import { jsPDF } from "jspdf";
-import Button from "../../Component/button";
 
-function Index({
+function SinglePreview({
   logo,
   certificateTitle,
   awardeeName,
@@ -128,11 +128,11 @@ function Index({
           >
             Send Certificate
           </button>
-          <div class="dropdown">
-            <button class="dropbtn download-button">
+          <div className="dropdown">
+            <button className="dropbtn download-button">
               Download Certificate
             </button>
-            <div class="dropdown-content">
+            <div className="dropdown-content">
               <button
                 onClick={e => {
                   e.preventDefault();
@@ -164,11 +164,16 @@ function Index({
       </div>
 
       {/* BUTTON TO EXPLORE MORE TEMPLATES */}
-      <Link to="/templates">
-        <Button name="Explore More Templates" style={{ margin: "30px auto" }} />
-      </Link>
+      <div className="template-btn">
+        <Link to="/templates" className="explore-btn">
+          <Button
+            name="Explore More Templates"
+            style={{ margin: "30px auto" }}
+          />
+        </Link>
+      </div>
     </div>
   );
 }
 
-export default Index;
+export default SinglePreview;

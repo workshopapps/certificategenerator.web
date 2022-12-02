@@ -30,7 +30,7 @@ export default function Certificate({
     !issueDate.trim();
   const handleSubmit = e => {
     e.preventDefault();
-    navigate("/single_preview");
+    navigate("/preview");
   };
 
   return (
@@ -40,15 +40,15 @@ export default function Certificate({
         with <span className="emphasized">ease</span>
       </p>
 
-      <p style={{ padding: "10px" }} className="prompt">
-        Select a template, input values and Create a Certificate right away.
-      </p>
-
       {bulkCertificate ? (
         <div className="flex justify-between mode">
           <button
             className="select"
-            style={{ color: "#222222", backgroundColor: "#ffffff" }}
+            style={{
+              color: "#222222",
+              backgroundColor: "#ffffff",
+              transition: "300ms ease-in"
+            }}
             onClick={() => {
               setBulkCertificate(false);
             }}
@@ -76,7 +76,11 @@ export default function Certificate({
           </button>
           <button
             className="select"
-            style={{ color: "#222222", backgroundColor: "#ffffff" }}
+            style={{
+              color: "#222222",
+              backgroundColor: "#ffffff",
+              transition: "300ms ease-in"
+            }}
             onClick={() => {
               setBulkCertificate(true);
             }}
@@ -119,13 +123,48 @@ export default function Certificate({
             onSubmit={handleSubmit}
             className="cert-form text-left work-sans"
           >
-            {/* <label for="img">Upload logo</label>
+            <label for="img">Upload logo</label>
             <input
               type="file"
               name="uploadfile"
               id="img"
               onChange={e => setLogo(URL.createObjectURL(e.target.files[0]))}
-            /> */}
+            />
+
+            <img style={{ width: "15%" }} src={logo} alt="logo" />
+            <p style={{ fontSize: "12px", margin: "0" }}>
+              Max image upload size: 8mb
+            </p>
+
+            <label htmlFor="text" className="label">
+              Certificate Title
+            </label>
+            <input
+              type="text"
+              placeholder="Certificate of completion"
+              value={certificateTitle}
+              onChange={e => setCertificateTitle(e.target.value)}
+            />
+
+            <label htmlFor="text" className="label">
+              Awardee Name
+            </label>
+            <input
+              type="text"
+              placeholder="Gabriel Prosper"
+              value={awardeeName}
+              onChange={e => setAwardeeName(e.target.value)}
+            />
+
+            <label htmlFor="text" className="label">
+              Dedication or message
+            </label>
+            <input
+              type="file"
+              name="uploadfile"
+              id="img"
+              onChange={e => setLogo(URL.createObjectURL(e.target.files[0]))}
+            />
             <Input
               id={"uploadfile"}
               label={"Upload logo"}

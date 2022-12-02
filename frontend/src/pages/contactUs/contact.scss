@@ -108,8 +108,16 @@
   &--title {
     font-weight: 700;
     font-size: 2rem;
+    text-align:center;
     @media screen and (min-width: 600px) {
       font-size: 3rem;
+    
+
+    }
+    @media screen and (min-width: 900px) {
+     
+    text-align:left;
+
     }
     // line-height: 60px;
   }
@@ -117,9 +125,18 @@
   &--subtitle {
     font-weight: 400;
     font-size: 1.125rem;
+    text-align:center;
+
 
     @media screen and (min-width: 600px) {
       font-size: 1.5rem;
+   
+
+    }
+    @media screen and (min-width: 900px) {
+      
+    text-align:left;
+
     }
   }
 

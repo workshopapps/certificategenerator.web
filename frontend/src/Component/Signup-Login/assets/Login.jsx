@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import "./Style.css";
 import appleSVG from "./assets/apple.svg";
@@ -11,14 +11,19 @@ import keySVG from "./assets/key.svg";
 import { loginUser } from "../api";
 import Input from "../../Input";
 
-const Login = () => {
+const Login = ({ access, setAccess }) => {
   const navigate = useNavigate();
   const [type, setType] = useState("password");
   const [formData, setFormData] = React.useState({
+    name: "",
     email: "",
     password: "",
     acceptTerms: false
   });
+
+  const [useremail, setUserEmail] = useState();
+  const [password, setPassword] = useState();
+  const [error, setError] = useState();
 
   const handleToggle = () => {
     if (type === "password") {
@@ -27,6 +32,7 @@ const Login = () => {
       setType("password");
     }
   };
+
   function handleChange(event) {
     const { name, value, type, checked } = event.target;
     setFormData(prevFormData => {
@@ -53,13 +59,39 @@ const Login = () => {
       }
     } catch (error) {
       console.log(error);
+  async function loginUser(email, password) {
+    return fetch("https://certify-api.onrender.com/api/auth/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ email: email, password: password })
+    })
+  }
+
+  const handleSubmit = async e => {
+    e.preventDefault();
+    const response = await loginUser(useremail, password);
+    const data = await response.json()
+    .catch((error) => {
+      setError('apiError', {message:error});
+    });
+
+    const token = data.token;
+    setAccess(token);
+    {
+      data.token ? navigate("/dashboard") : navigate("/login");
     }
+
+    localStorage.setItem("token", token);
+    localStorage.setItem("user", data.userId);
   };
+
   return (
     <div>
       <div className="authContainer">
         <div className="formDiv">
-          <form>
+          <form onSubmit={handleSubmit}>
             <div id="heading">Welcome to Certgo</div>
             <small id="startGenerating">
               Start generating certificates by creating a Certgo account
@@ -75,12 +107,13 @@ const Login = () => {
             <div id="hrLine">
               <span id="or">or</span>
             </div>
+
             <div id="email">
               <img alt="" src={emailSVG} />
               <Input
                 className="email_input"
                 placeholder=" Email"
-                type="email"
+                type="text"
                 name="email"
                 callback={handleChange}
                 required
@@ -92,8 +125,8 @@ const Login = () => {
 
               <Input
                 id="input_id"
-                placeholder="Create a password"
-                type={type}
+                placeholder="Password"
+                type="text"
                 name="password"
                 callback={handleChange}
                 required
@@ -106,6 +139,8 @@ const Login = () => {
                 )}
               </span>
             </div>
+
+            {error &&  <p className="login-error">Invalid Email or Password</p> }
             <div className="forgotPwd">Forgot password?</div>
             <div id="checkTerms">
               <input
@@ -121,9 +156,9 @@ const Login = () => {
             </div>
             <Input
               type="submit"
+              onClick={handleSubmit}
               value="Login"
               id="btn"
-              callback={handleOnSubmit}
             />
           </form>
           <p className="haveAccount">
@@ -137,6 +172,7 @@ const Login = () => {
           <img className="cert_img" alt="" src={cert} />
         </div>
       </div>
+    
     </div>
   );
 };

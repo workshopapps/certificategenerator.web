@@ -27,15 +27,33 @@ export default function BulkStep() {
         <div className="text-left work-sans right">
           <div className="process">
             <img src={one} alt="one" />
-            <p className="steps">Select certificate template</p>
+            <div>
+              <p className="steps">Select certificate template</p>
+              <p>
+                Pick your preferred template that best suites your organization,
+                school, academy and modify as you go
+              </p>
+            </div>
           </div>
           <div className="process">
             <img src={two} alt="two" />
-            <p className="steps">Upload a CSV file</p>
+            <div>
+              <p className="steps">Upload a CSV file</p>
+              <p>
+                Pick your preferred template that best suites your organization,
+                school, academy and modify as you go
+              </p>
+            </div>
           </div>
           <div className="process">
             <img src={three} alt="three" />
-            <p className="steps">Generate bulk certificates</p>
+            <div>
+              <p className="steps">Generate bulk certificates</p>
+              <p>
+                Pick your preferred template that best suites your organization,
+                school, academy and modify as you go
+              </p>
+            </div>
           </div>
         </div>
       </div>

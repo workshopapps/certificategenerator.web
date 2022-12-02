@@ -9,15 +9,6 @@ import Button from "../../Component/button";
 function Index() {
   return (
     <div id="bulk-preview">
-      {/* BUTTONS TO TOGGLE BETWEEN SINGLE AND BULK CERTIFICATE */}
-
-      <div className="button-container">
-        <Link to="/single_preview">
-          <button className="not-active">Single Certificate</button>
-        </Link>
-        <button className="active">Bulk Certificate</button>
-      </div>
-
       {/* YOUR BULK CRETIFICATES READY TO BE DOWNLOADED OR SENT */}
 
       <div className="certificate">
@@ -36,9 +27,12 @@ function Index() {
             gap: "10px",
             perPage: 4,
             drag: "free",
-            arrows: false,
-            pagination: false,
+            arrows: true,
+            pagination: true,
             breakpoints: {
+              480: {
+                perPage: 1
+              },
               640: {
                 perPage: 2
               },
@@ -107,12 +101,6 @@ function Index() {
           </SplideSlide>
         </Splide>
       </section>
-
-      <div className="line">
-        <div className="line1">
-          <div className="line2"></div>
-        </div>
-      </div>
 
       {/* BUTTONS TO DOWNLOAD OR SHARE THE CRETIFICATES */}
 
