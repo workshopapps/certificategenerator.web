@@ -62,7 +62,7 @@ const Login = ({ access, setAccess }) => {
     const token = data.token;
     setAccess(token);
     {
-      data.token ? navigate("/dashboard") : navigate("/login");
+      data.token ? navigate("/pricing") : navigate("/login");
     }
 
     localStorage.setItem("token", token);
