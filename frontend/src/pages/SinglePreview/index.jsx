@@ -49,17 +49,6 @@ function SinglePreview({
 
   return (
     <div id="singlePreview">
-      {/* BUTTONS TO TOGGLE BETWEEN SINGLE AND BULK CERTIFICATE */}
-
-      <div className="button-container">
-        <Link to="/single_preview">
-          <Button className="active">Single Certificate</Button>
-        </Link>
-        <Link to="/signup">
-          <Button className="not-active btnLight">Bulk Certificate</Button>
-        </Link>
-      </div>
-
       {/* IMAGE OF YOUR CERTIFICATE READY TO BE DOWNLOADED OR SENT */}
 
       <div className="certificate-header">
@@ -167,10 +156,7 @@ function SinglePreview({
       {/* BUTTON TO EXPLORE MORE TEMPLATES */}
       <div className="template-btn">
         <Link to="/templates" className="explore-btn">
-          <Button
-            name="Explore More Templates"
-            style={{ margin: "30px auto" }}
-          />
+          <button style={{ backgroundColor:'transparent', margin: "30px auto", }}>Explore More Templates</button>
         </Link>
       </div>
     </div>

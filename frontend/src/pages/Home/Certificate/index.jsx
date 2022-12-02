@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import "./certificate.style.scss";
-import { Link, useNavigate } from "react-router-dom";
+import './certificate.style.scss'
+import {Link, useNavigate} from "react-router-dom"
 import UploadCSV from "../../UploadCSV";
 import Button from "../../../Component/button";
-import Input from "../../../Component/Input";
 
-export default function Certificate({
+
+export default function Certificate ({
   logo,
   setLogo,
   certificateTitle,
@@ -19,26 +19,34 @@ export default function Certificate({
   issueDate,
   setIssueDate
 }) {
-  const [bulkCertificate, setBulkCertificate] = useState(false);
-  const navigate = useNavigate();
-  const disabledButton =
-    !logo.trim() ||
-    !message.trim() ||
-    !certificateTitle.trim() ||
-    !awardeeName.trim() ||
-    !issuedBy.trim() ||
-    !issueDate.trim();
-  const handleSubmit = e => {
-    e.preventDefault();
-    navigate("/preview");
-  };
+    const [bulkCertificate, setBulkCertificate] = useState(false);
+    const navigate = useNavigate()
+    const disabledButton = !logo.trim() || !message.trim() || !certificateTitle.trim() || !awardeeName.trim() || !issuedBy.trim() || !issueDate.trim()
+    const handleSubmit = (e) => {
+      e.preventDefault()
+      navigate('/preview')
+    }
+    
+    return (
+        <>
+          <p id="certificatee" className="sora header">
+            Create your <span className="emphasized">certificate </span> 
+            with <span className="emphasized">ease</span>
+          </p>
 
-  return (
-    <>
-      <p id="certificatee" className="sora header">
-        Create your <span className="emphasized">certificate </span>
-        with <span className="emphasized">ease</span>
-      </p>
+          <p style={{padding: '10px'}} className="prompt">Select a template, input values and Create a Certificate right away.</p>
+
+          {bulkCertificate ? 
+          <div className="flex justify-between mode">
+            <button className="select" style={{color: '#222222', backgroundColor: '#ffffff', transition: '300ms ease-in'}}  onClick={() => {setBulkCertificate(false)}}>Single <span className="mobile-none">Certificate</span></button>
+            <button className="select" onClick={() => {setBulkCertificate(true)}}>Bulk <span className="mobile-none">Certificate</span></button>
+          </div>
+          :
+          <div className="flex justify-between mode">
+            <button className="select"  onClick={() => {setBulkCertificate(false)}}>Single <span className="mobile-none">Certificate</span></button>
+            <button className="select" style={{color: '#222222', backgroundColor: '#ffffff', transition: '300ms ease-in'}} onClick={() => {setBulkCertificate(true)}}>Bulk <span className="mobile-none">Certificate</span></button>
+          </div>
+        }
 
       {bulkCertificate ? (
         <div className="flex justify-between mode">
@@ -89,16 +97,12 @@ export default function Certificate({
           </button>
         </div>
       )}
-
-      {bulkCertificate ? (
-        <div>
           <form action="" className="cert-form text-left work-sans">
             <UploadCSV />
             {/* <label for='img'>Logo</label>
             <input type="file" name="uploadfile" id="img" style={{ display:"none"}}/>
             <label for="img" className="upload">Upload logo</label>
             <p style={{fontSize: '12px', margin: '0'}}>Max image upload size: 8mb</p>
-
             <label for='text' className="label">Certificate Title</label>
             <input type="text" placeholder="Certificate of completion"/>
         
@@ -106,13 +110,10 @@ export default function Certificate({
             <input type="text" placeholder="For your exceptional performance this month, 
             in appreciation for your loyalty and the desire to fulfil our goals, 
             in recognition of your leadership and dedication "/>
-
             <label for='text' className="label">Issued by</label>
             <input type="text" placeholder="Name of organisation or issuer"/>
-
             <label for='date' className="label">Issue Date</label>
             <input type="date" />
-
             <input type="submit" value="Create Certificate" className="submit-btn"/> */}
           </form>
         </div>
@@ -181,14 +182,8 @@ export default function Certificate({
               placeholder="For your exceptional performance this month."
             />
 
-            <Input
-              id={"issuedBy"}
-              label={" Issued by"}
-              type="text"
-              placeholder={"Name of organisation or issuer"}
-              value={issuedBy}
-              callback={e => setIssuedBy(e.target.value)}
-            />
+            <label htmlFor='text' className="label">Issued by</label>
+            <input type="text" placeholder="Name of organisation or issuer" value={issuedBy} onChange={e => setIssuedBy(e.target.value)} />
 
             <label htmlFor="date" className="label">
               Issue Date
