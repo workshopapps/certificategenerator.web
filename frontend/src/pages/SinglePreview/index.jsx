@@ -16,7 +16,7 @@ function Index({
   awardeeName,
   message,
   issuedBy,
-  issueDate,
+  issueDate
 }) {
   const [openModal, setOpenModal] = useState(false);
   const [isAuntheticated, setIsAuntheticated] = useState(false);
@@ -40,7 +40,7 @@ function Index({
     const pdf = new jsPDF({
       orientation: "l",
       unit: "pt",
-      format: [canvas.width, canvas.height],
+      format: [canvas.width, canvas.height]
     });
     pdf.addImage(data, "PNG", 0, 0, canvas.width, canvas.height);
     pdf.save(`${awardeeName}.pdf`);
@@ -52,10 +52,10 @@ function Index({
 
       <div className="button-container">
         <Link to="/single_preview">
-          <button className="active">Single Certificate</button>
+          <Button className="active">Single Certificate</Button>
         </Link>
         <Link to="/signup">
-          <button className="not-active">Bulk Certificate</button>
+          <Button className="not-active btnLight">Bulk Certificate</Button>
         </Link>
       </div>
 
@@ -134,11 +134,11 @@ function Index({
             </button>
             <div class="dropdown-content">
               <button
-                onClick={(e) => {
+                onClick={e => {
                   e.preventDefault();
                   exportComponentAsPNG(certificateWrapper, {
                     fileName: `${awardeeName}`,
-                    html2CanvasOptions: { backgroundColor: "#fff" },
+                    html2CanvasOptions: { backgroundColor: "#fff" }
                   });
                 }}
                 className="png-button"
@@ -165,7 +165,7 @@ function Index({
 
       {/* BUTTON TO EXPLORE MORE TEMPLATES */}
       <Link to="/templates">
-        <Button text="Explore More Templates" style={{ margin: "30px auto" }} />
+        <Button name="Explore More Templates" style={{ margin: "30px auto" }} />
       </Link>
     </div>
   );
