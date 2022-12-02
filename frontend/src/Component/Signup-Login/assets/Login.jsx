@@ -59,22 +59,23 @@ const Login = ({ access, setAccess }) => {
       }
     } catch (error) {
       console.log(error);
-  async function loginUser(email, password) {
-    return fetch("https://certify-api.onrender.com/api/auth/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ email: email, password: password })
-    })
-  }
+      async function loginUser(email, password) {
+        return fetch("https://certify-api.onrender.com/api/auth/login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({ email: email, password: password })
+        });
+      }
+    }
+  };
 
   const handleSubmit = async e => {
     e.preventDefault();
     const response = await loginUser(useremail, password);
-    const data = await response.json()
-    .catch((error) => {
-      setError('apiError', {message:error});
+    const data = await response.json().catch(error => {
+      setError("apiError", { message: error });
     });
 
     const token = data.token;
@@ -140,7 +141,7 @@ const Login = ({ access, setAccess }) => {
               </span>
             </div>
 
-            {error &&  <p className="login-error">Invalid Email or Password</p> }
+            {error && <p className="login-error">Invalid Email or Password</p>}
             <div className="forgotPwd">Forgot password?</div>
             <div id="checkTerms">
               <input
@@ -172,7 +173,6 @@ const Login = ({ access, setAccess }) => {
           <img className="cert_img" alt="" src={cert} />
         </div>
       </div>
-    
     </div>
   );
 };
