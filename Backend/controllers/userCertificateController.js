@@ -35,6 +35,7 @@ const addCertificate = async (req, res) => {
         name: payload.name,
         nameOfOrganization: payload.nameOfOrganization,
         award: payload.award,
+        email: payload.email,
         description: payload.description,
         date: payload.date,
         signed: payload.signed,
@@ -119,20 +120,22 @@ const deleteCertificate = async (req, res) => {
   //validate header authorization
   const auth = req.headers.authorization;
   if (!auth) {
-    return res.status(403).json({ error: "No credentials sent!" });
+    return res.status(403).json({ message: 'No auth credentials sent!'});
   }
+
+  const token = auth.split(" ")[1];
+  const { userId } = jwt.decode(token);
 
    //validate param ID
    if (!certificateID.match(/^[0-9a-fA-F]{24}$/)) {
-    return res.status(403).json({ error: "Not a valid certificate ID" });
+    return res.status(403).json({ message: 'Not a valid certificate ID'});
   }
 
   //delete certificate by ID
-  const cert = await User.findOneAndDelete({_id:certificateID})
-
+  const cert = await User.updateOne({ userId: userId}, { $pull: { records: { _id: certificateID } } }, { safe: true })
   
   if(!cert){
-      return res.status(404).json(`No Certificate with id: ${certificateID}`)
+      return res.status(404).json({message: `No Certificate with id ${certificateID}`})
   }
   return res.status(200).json({message: `Certificate has been Deleted`})
 }
@@ -161,10 +164,60 @@ const getCertificateStatus = async (req, res) => {
   return res.status(200).json({status: certificateStatus});
 }
 
+const updateCertificateDetails = async (req, res) => {
+  const {id:certificateId} = req.params;
+  const { name, nameOfOrganization, award, description, date, signed } = req.body;
+  const auth = req.headers.authorization;
+  
+  if (!auth) {
+    return res.status(403).json({ error: 'No auth credentials sent!' });
+  }
+
+  const token = auth.split(" ")[1];
+  const { userId } = jwt.decode(token);
+
+
+  //validate and check certificateId is provided
+   if (!certificateId.match(/^[0-9a-fA-F]{24}$/)) {
+    return res.status(403).json({ message: 'Please provide a valid certificateId as path parameter'});
+  }
+
+
+  //validate certificate data to be updated
+  if(name == undefined 
+    || nameOfOrganization == undefined 
+    || award == undefined 
+    || description == undefined 
+    || date == undefined 
+    || signed == undefined) {
+      return res.status(400).json({ error: 'Please enter valid certificate details: name, nameOfOrganization, award, description, date, signed' });
+  }
+
+
+  //update mongodb
+  const cert = await User.updateOne({ userId: userId, 'records._id' : certificateId }, {
+    $set: {
+      'records.$.name' : name,
+      'records.$.nameOfOrganization' : nameOfOrganization,
+      'records.$.award' : award, 
+      'records.$.description' : description, 
+      'records.$.date' : date, 
+      'records.$.signed' : signed
+    }
+  })
+
+  
+  if(!cert){
+    return res.status(404).json({message: `No Certificate with id ${certificateId}`})
+  }
+
+  return res.status(200).json({message: `Certificate ID ${certificateId} has been updated`})
+}
+
 const updateCertificateStatus = async (req, res) => {
   const auth = req.headers.authorization;
   const payload = req.body;
-  
+
   if (!auth) {
     return res.status(403).json({ error: "No credentials sent!" });
   }
@@ -205,5 +258,6 @@ module.exports = {
   getNoOfCertificatesIssued,
   deleteCertificate,
   getCertificateStatus,
+  updateCertificateDetails,
   updateCertificateStatus,
 };
