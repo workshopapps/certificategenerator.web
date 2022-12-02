@@ -105,9 +105,36 @@ const userSignup = async (req, res, next) => {
 };
 
 const userLogin = async (req, res, next) => {
-  const { email, password, accessToken } = req.body;
+  const { email, password} = req.body;
   try {
-    if(req.body.accessToken)
+    if (req.body.accessToken) {
+      try {
+        const payload = await verify(req.body.accessToken);
+        const googleUserId = payload["sub"];
+        email = payload["email"];
+        const user = await User.findOne({ email })
+        if (!user) {
+          return res.status(401).json({ message: "A user for this email could not be found!" })
+        }
+        if (googleUserId !== user.authenticationType.google.uuid) {
+          return res.status(401).json({ message: "google login hasn't been linked to this email, please login with the form" })
+        }
+        const { accessToken, refreshToken } = await generateTokens(user);
+  
+        return res.status(200).json({
+          message: "user logged in successfully",
+          token: accessToken,
+          refreshToken: refreshToken,
+          userId: user._id.toString(),
+        });
+      } catch (error) {
+        if (!error.statusCode) {
+          error.statusCode = 500;
+        }
+        return res.status(200).json({ message: "could not verify accessToken"})
+      }
+
+    }
 
     if (!email || !password) {
       return res.status(400).json("Please provide email and password");
