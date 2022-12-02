@@ -32,6 +32,7 @@ const swaggerUi = require('swagger-ui-express')
 const swaggerFile = require('./swagger_output.json')
 const eventRouter = require("./routes/eventRouter");
 const newsletterRouter = require("./routes/newsletterRouter")
+const verifyEmailRouter = require("./routes/verifyEmailRouter")
 
 const PORT = process.env.PORT || 5000;
 
@@ -66,6 +67,7 @@ app.use('/api/pricing', userPlan)
 app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerFile))
 app.use("/api/events", eventRouter);
 app.use("/api/subscribe", newsletterRouter);
+app.use("/api/verifyEmail", verifyEmailRouter)
 
 mongoose.connection.once("open", () => {
   console.log("Connected to DB");
