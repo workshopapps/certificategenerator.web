@@ -24,7 +24,7 @@ export default function Certificate ({
     const disabledButton = !logo.trim() || !message.trim() || !certificateTitle.trim() || !awardeeName.trim() || !issuedBy.trim() || !issueDate.trim()
     const handleSubmit = (e) => {
       e.preventDefault()
-      navigate('/single_preview')
+      navigate('/preview')
     }
     
     return (

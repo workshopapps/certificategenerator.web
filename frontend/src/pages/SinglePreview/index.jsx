@@ -9,7 +9,7 @@ import { exportComponentAsPNG } from "react-component-export-image";
 import html2canvas from "html2canvas";
 import { jsPDF } from "jspdf";
 
-function Index({
+function SinglePreview({
   logo,
   certificateTitle,
   awardeeName,
@@ -47,17 +47,6 @@ function Index({
 
   return (
     <div id="singlePreview">
-      {/* BUTTONS TO TOGGLE BETWEEN SINGLE AND BULK CERTIFICATE */}
-
-      <div className="button-container">
-        <Link to="/single_preview">
-          <button className="active">Single Certificate</button>
-        </Link>
-        <Link to="/signup">
-          <button className="not-active">Bulk Certificate</button>
-        </Link>
-      </div>
-
       {/* IMAGE OF YOUR CERTIFICATE READY TO BE DOWNLOADED OR SENT */}
 
       <div className="certificate-header">
@@ -127,11 +116,11 @@ function Index({
           >
             Send Certificate
           </button>
-          <div class="dropdown">
-            <button class="dropbtn download-button">
+          <div className="dropdown">
+            <button className="dropbtn download-button">
               Download Certificate
             </button>
-            <div class="dropdown-content">
+            <div className="dropdown-content">
               <button
                 onClick={(e) => {
                   e.preventDefault();
@@ -168,9 +157,8 @@ function Index({
         <button className = "explore-button">Explore More Templates</button>
       </Link>
       </div>
-     
     </div>
   );
 }
 
-export default Index;
+export default SinglePreview;
