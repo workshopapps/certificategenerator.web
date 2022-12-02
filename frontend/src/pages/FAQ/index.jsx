@@ -1,35 +1,36 @@
-import {useNavigate} from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 import { FaqSection } from "./FaqSection";
 import {
   GettingStartedItems,
   FeaturedItems,
   UploadsItems,
-  DownlaodsItems,
+  DownlaodsItems
 } from "./FaqModule";
 
 import Style from "./faq.module.scss";
 import Button from "../../Component/button";
 
 const FAQ = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   return (
     <>
-      <section className={Style.faqWrap}></section>
+      <section className={Style.faqWrapper}></section>
       <div className={Style.header}>
         <h2>Frequently Asked Questions</h2>
-        <p>
-          Some questions you might have about Certawi Certificate Geneartor as a
-          user. Feel free to contact us for further enquiries that are not
-          provided here.
-        </p>
       </div>
       <FaqSection header={"Getting Started"} questions={GettingStartedItems} />
       <FaqSection header={"Downloads"} questions={DownlaodsItems} />
       <FaqSection header={"Uploads"} questions={UploadsItems} />
       <FaqSection header={"Featured"} questions={FeaturedItems} />
+      <div className={Style.faqFooter}>
+        <p>
+          Do you have more questions on Certgo Certificate Generator? Feel free
+          to contact us for further enquiries that are not provided here.
+        </p>
+      </div>
 
       <div className={Style.faqBtn}>
-        <Button name={"Have more questions?"}onClick={() => navigate("/contact-us")} />
+        <Button name={"Contact Us?"} onClick={() => navigate("/contact-us")} />
       </div>
     </>
   );
