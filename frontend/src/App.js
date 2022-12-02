@@ -162,7 +162,11 @@ function App() {
             <Route path="/FAQ" element={<FAQ />} />
             <Route path="/bulk_step" element={<BulkStep />} />
             <Route path="/edit_bulk" element={<EditBulk />} />
-            <Route path="/pricing" element={<Pricing />} />
+            <Route path="/pricing" element={<Pricing
+            access = {access}
+            setAccess = {setAccess}
+            
+            />} />
             <Route path="/contact-us" element={<ContactUs />} />
             <Route path="/payment" element={<Checkout />} />
             <Route path="/bulk_preview" element={<BulkPreview />} />
