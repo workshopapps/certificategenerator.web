@@ -1,11 +1,22 @@
 import "./input.style.scss";
 import React from "react";
 
-const Input = ({ type, placeholder, value, callback, id, label, style }) => {
+const Input = ({
+  type,
+  placeholder,
+  value,
+  callback,
+  id,
+  label,
+  style,
+  className,
+  error,
+  errorMessage = "Invalid Message"
+}) => {
   return (
     <>
       {type === "submit" ? (
-        <>
+        <div className="input">
           <input
             type={type}
             placeholder={placeholder}
@@ -13,9 +24,9 @@ const Input = ({ type, placeholder, value, callback, id, label, style }) => {
             onClick={callback}
             style={style}
           />
-        </>
+        </div>
       ) : (
-        <>
+        <div className="input">
           {label && (
             <label htmlFor={id} className="label">
               {label}
@@ -29,8 +40,10 @@ const Input = ({ type, placeholder, value, callback, id, label, style }) => {
             value={value}
             onChange={callback}
             style={style}
+            className={` ${className} `}
           />
-        </>
+          {error && <p>{errorMessage}</p>}
+        </div>
       )}
     </>
   );

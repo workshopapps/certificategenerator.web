@@ -155,7 +155,8 @@ form {
   height: 48px;
 }
 
-.email_input {
+.email_input,
+.pw_input {
   border: none;
   width: 90%;
   height: 48px;
