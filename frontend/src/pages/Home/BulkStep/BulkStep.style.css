@@ -35,7 +35,7 @@ body {
 }
 
 .emphasized {
-  color: #19A68E;
+  color: #19a68e;
 }
 
 .text-left {
@@ -53,57 +53,109 @@ body {
 
 .bulk {
   background-color: rgba(178, 225, 217, 0.25);
+  padding: 3rem 0;
 }
 
 .heading {
-  padding: 64px 0 85px 0;
-  font-size: 48px;
+  padding: 0rem 10px 4rem 10px;
+  font-size: 2.6rem;
   font-weight: 700;
-  line-height: 56px;
+  line-height: 40px;
   text-align: center;
 }
+@media screen and (max-width: 900.9px) {
+  .heading {
+    font-size: 2rem;
+  }
+}
+@media screen and (max-width: 700.9px) {
+  .heading {
+    font-size: 1.6rem;
+  }
+}
+@media screen and (max-width: 480.9px) {
+  .heading {
+    font-size: 1.2rem;
+  }
+}
 
-.space {
-  gap: 120px;
+.left,
+.right {
+  width: 50%;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 10px;
+}
+.left :nth-child(2),
+.right :nth-child(2) {
+  align-self: flex-end;
+}
+
+.bulk-process {
+  display: flex;
+  align-items: center;
+  gap: 6rem;
+  width: 90%;
+  margin: 0 auto;
+}
+.bulk-process .left img {
+  width: 110%;
+}
+.bulk-process .right img {
+  width: 60px;
 }
 
 .steps {
-  padding: 0 0 15px 0;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.process {
+  display: flex;
+  margin-bottom: 1.5rem;
+  align-items: center;
+  gap: 34px;
+  width: 70%;
+}
+.process div {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  gap: 10px;
+}
+.process div p + p {
+  font-size: 0.9rem;
+  line-height: 28px;
 }
 
 .bulk-button {
   font-weight: 500;
   width: 250px;
   height: 64px;
-  background-color: #19A68E;
+  background-color: #19a68e;
   border: none;
   border-radius: 10px;
-  color: #FFFFFF;
+  color: #ffffff;
   margin: 59px 40% 48px 40%;
   cursor: pointer;
   text-align: center;
 }
 
-@media screen and (max-width: 768px) and (min-width: 481px) {
-  .heading {
-    font-size: 32px;
+@media screen and (max-width: 800px) and (min-width: 481px) {
+  .bulk-process {
+    flex-direction: column;
+    gap: 3rem;
   }
-  .example {
-    width: 46%;
-    height: 21%;
+  .bulk-process > div {
+    width: 100%;
   }
-  .space {
-    gap: 5%;
+  .bulk-process .left img {
+    width: 100%;
   }
   .process {
     display: flex;
     align-items: center;
-  }
-  .process .steps {
-    padding-left: 5%;
-  }
-  .process img {
-    height: 100%;
   }
   .bulk-button {
     margin: 60px 0 32px 11%;
@@ -112,18 +164,11 @@ body {
 }
 @media screen and (max-width: 480px) {
   .heading {
-    font-size: 24px;
     line-height: 30px;
     text-align: center;
-    padding-inline: 70px;
   }
   .wrap {
     flex-wrap: wrap;
-  }
-  .example {
-    width: 90%;
-    height: 80%;
-    margin: auto;
   }
   .bulk .space {
     gap: 24px;
@@ -132,92 +177,24 @@ body {
     width: 90%;
     margin: auto;
   }
-  .process {
+  .bulk-process {
+    flex-direction: column;
+    gap: 3rem;
+  }
+  .bulk-process > div {
+    width: 100%;
+  }
+  .bulk-process .left img {
+    width: 100%;
+  }
+  .right .process {
     display: flex;
     align-items: center;
-  }
-  .process .steps {
-    padding-left: 5%;
-  }
-  .process img {
-    height: 100%;
+    margin: 0 0 1rem 0;
   }
   .bulk-button {
     margin: 40px 0 24px 11%;
     width: 80%;
-  }
-}
-@media screen and (max-width: 480px) {
-  .heading {
-    font-size: 24px;
-    line-height: 30px;
-    text-align: center;
-    padding-inline: 70px;
-  }
-  .wrap {
-    flex-wrap: wrap;
-  }
-  .example {
-    width: 90%;
-    height: 80%;
-    margin: auto;
-  }
-  .bulk .space {
-    gap: 24px;
-  }
-  .bulk div div {
-    width: 90%;
-    margin: auto;
-  }
-  .process {
-    display: flex;
-    align-items: center;
-  }
-  .process .steps {
-    padding-left: 5%;
-  }
-  .process img {
-    height: 100%;
-  }
-  .bulk-button {
-    margin: 40px 0 24px 11%;
-    width: 80%;
-  }
-}
-@media screen and (max-width: 480px) {
-  .heading {
-    font-size: 24px;
-    line-height: 30px;
-    text-align: center;
-    padding-inline: 70px;
-  }
-  .wrap {
-    flex-wrap: wrap;
-  }
-  .example {
-    width: 90%;
-    height: 80%;
-    margin: auto;
-  }
-  .bulk .space {
-    gap: 24px;
-  }
-  .bulk div div {
-    width: 90%;
-    margin: auto;
-  }
-  .process {
-    display: flex;
-    align-items: center;
-  }
-  .process .steps {
-    padding-left: 5%;
-  }
-  .process img {
-    height: 100%;
-  }
-  .bulk-button {
-    margin: 40px 0 24px 0;
-    width: 80%;
+    font-size: 1.5rem;
   }
 }/*# sourceMappingURL=BulkStep.style.css.map */

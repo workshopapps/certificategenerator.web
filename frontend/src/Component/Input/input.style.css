@@ -1,0 +1,35 @@
+input {
+  width: 100%;
+  outline: none;
+  border: 0.8px solid rgba(44, 44, 44, 0.5215686275);
+  color: rgba(44, 44, 44, 0.5215686275);
+  border-radius: 10px;
+  padding: 1em;
+}
+input::-webkit-calendar-picker-indicator {
+  display: none;
+}
+input[type=submit] {
+  display: block;
+  background: #19a68e;
+  color: #fff;
+  min-width: 200px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  min-height: 40px;
+  text-transform: capitalize;
+  border: 0;
+  border-radius: 10px;
+  margin-top: 1em;
+  font-size: 1.1rem;
+  transition: all 0.3s;
+  outline: none;
+}
+input[type=submit]:hover {
+  cursor: pointer;
+  opacity: 0.8;
+  background-color: #fff;
+  color: #19a68e;
+  border: 1px solid #19a68e;
+}/*# sourceMappingURL=input.style.css.map */

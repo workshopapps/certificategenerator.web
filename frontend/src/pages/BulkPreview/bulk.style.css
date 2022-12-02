@@ -4,18 +4,32 @@
 #bulk-preview .button-container {
   display: block !important;
   margin-top: 0px !important;
-  padding: 10px;
+  padding: 6px;
+  align-items: center;
+  justify-content: center;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: 100%;
+  margin: auto;
+  border-radius: 20px;
+  border: 0.8px solid rgba(84, 84, 84, 0.26);
+  background-color: white;
+  margin-block: 40px;
 }
 #bulk-preview .button-container button {
-  margin: 0px 10px 15px 10px;
+  margin: 5px 15px 5px 15px;
   height: 37px;
-  width: 150px;
+  width: 130px;
   border-radius: 10px;
   font-family: "Work Sans", sans-serif;
 }
 #bulk-preview .button-container button.not-active {
   background: transparent;
-  border: none;
+  width: 140px;
+  height: 40px;
+  font-size: 12px;
+  border: 1px solid #19a68e !important;
 }
 #bulk-preview .button-container button.not-active:hover {
   color: #fff;
@@ -25,6 +39,7 @@
 }
 #bulk-preview .button-container button.active {
   background: #19a68e;
+  border: none !important;
   color: #fff;
   width: 140px;
   height: 40px;
@@ -34,7 +49,7 @@
 #bulk-preview .button-container button.active:hover {
   color: #19a68e;
   background: #fff;
-  border: 1px solid #19a68e;
+  border: 1px solid #19a68e !important;
   transition: 500ms ease-in-out;
 }
 #bulk-preview .certificate h1 {
@@ -53,8 +68,8 @@
   border-radius: 5px !important;
 }
 #bulk-preview #bulk-btns .send-btn {
-  width: 150px !important;
-  height: 35px !important;
+  width: 170px !important;
+  height: 38px !important;
   border-radius: 5px !important;
   background: transparent;
   border: 1px solid #19a68e !important;
@@ -68,8 +83,8 @@
   transition: 500ms ease-in-out;
 }
 #bulk-preview #bulk-btns .download-btn {
-  width: 150px !important;
-  height: 35px !important;
+  width: 170px !important;
+  height: 38px !important;
   border-radius: 5px !important;
   background: #19a68e !important;
   color: #fff;
@@ -90,16 +105,20 @@
   width: 100% !important;
   max-width: 300px !important;
 }
-#bulk-preview #bulk-images-desktop img {
-  width: 100%;
-  max-width: 350px;
-  height: auto;
-  margin: 20px;
-  margin-left: 100px;
+#bulk-preview #bulk-images-desktop {
+  width: 90%;
+  margin: 0 auto;
   overflow: hidden;
 }
+#bulk-preview #bulk-images-desktop img {
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  display: flex;
+  align-items: center;
+  margin: 30px auto 30px auto;
+}
 #bulk-preview #template1 {
-  margin: 50px;
   padding: 0px 0px;
   border: 5px solid #19a68e !important;
 }
@@ -107,20 +126,18 @@
   #bulk-preview .certificate img {
     min-width: 450px;
   }
+  #bulk-preview #bulk-images-desktop img {
+    margin: 30px 0;
+  }
 }
 @media screen and (min-width: 768px) {
-  #bulk-preview .button-container button {
-    font-size: 15px !important;
-    width: 170px;
-    height: 40px;
-    margin: 30px 15px 40px 15px;
-  }
   #bulk-preview #bulk-btns button {
     font-size: 13px;
     padding: 5px;
     margin: 30px 15px 40px 15px;
   }
-  #bulk-preview .send-btn, #bulk-preview .download-btn {
+  #bulk-preview .send-btn,
+#bulk-preview .download-btn {
     width: 200px !important;
     height: 50px;
     padding: 10px;
@@ -128,7 +145,8 @@
   #bulk-preview .certificate img {
     min-width: 600px;
   }
-  #bulk-preview .certificate h1, #bulk-preview h2 {
+  #bulk-preview .certificate h1,
+#bulk-preview h2 {
     font-size: 30px;
     margin: 30px;
   }
@@ -142,29 +160,15 @@
     width: 100%;
     max-width: 400px;
   }
-  #bulk-preview #bulk-images-desktop img {
-    margin-left: 150px;
+  #bulk-preview #bulk-images-desktop {
+    width: 90%;
+    margin: 0 auto;
+    overflow: hidden;
   }
   #bulk-preview #template1 {
     margin: 50px;
     padding: 0px 0px;
     border: 5px solid #19a68e !important;
-  }
-  #bulk-preview .line {
-    padding: 10px;
-    margin: 10px 0px 20px 0px;
-  }
-  #bulk-preview .line1 {
-    border-radius: 10px;
-    background: #acebe0;
-  }
-  #bulk-preview .line2 {
-    border: 3px solid #19a68e;
-    background: #19a68e;
-    max-width: 200px;
-    width: 100%;
-    margin-left: 250px;
-    border-radius: 10px;
   }
 }
 @media screen and (min-width: 1024px) {
@@ -172,33 +176,32 @@
     font-size: 18px;
     width: 200px;
     height: 50px;
-    margin: 10px 15px 40px 15px;
   }
-  #bulk-preview #bulk-btns {
-    margin: 20px;
+  #bulk-preview .button-container button #bulk-images-desktop img {
+    margin-left: 150px;
   }
-  #bulk-preview #bulk-btns button {
-    font-size: 18px;
-    width: 200px;
-    height: 50px;
-    margin: 30px 15px 40px 15px;
+  #bulk-preview .button-container button #template1 {
+    margin: 50px;
+    padding: 0px 0px;
+    border: 5px solid #19a68e !important;
   }
-  #bulk-preview .send-btn, #bulk-preview .download-btn {
-    font-size: 14px !important;
-    width: 220px !important;
-    height: 50px !important;
+  #bulk-preview .button-container button .line {
+    padding: 10px;
+    margin: 10px 0px 20px 0px;
   }
-  #bulk-preview .certificate img {
-    max-width: 700px;
+  #bulk-preview .button-container button .line1 {
+    border-radius: 10px;
+    background: #acebe0;
   }
-  #bulk-preview .bulk-images img {
-    max-width: 300px !important;
+  #bulk-preview .button-container button .line2 {
+    border: 3px solid #19a68e;
+    background: #19a68e;
+    max-width: 200px;
+    width: 100%;
+    margin-left: 250px;
+    border-radius: 10px;
   }
-  #bulk-preview .certificate img {
-    width: 100% !important;
-    max-width: 600px !important;
-  }
-  #bulk-preview .bulk-images img {
+  #bulk-preview #bulk-images-desktop img {
     width: 100%;
     max-width: 300px;
   }

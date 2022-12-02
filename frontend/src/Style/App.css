@@ -23,3 +23,15 @@ body {
   flex-direction: column;
   min-height: 100vh;
 }
+
+button {
+  cursor: pointer;
+}
+
+.btn {
+  cursor: pointer;
+}
+
+#btn {
+  cursor: pointer;
+}/*# sourceMappingURL=App.css.map */

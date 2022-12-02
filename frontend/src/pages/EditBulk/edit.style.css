@@ -5,18 +5,32 @@
 #edit-bulk .button-container {
   display: flex !important;
   align-items: center;
-  justify-content: center !important;
+  justify-content: center;
+  padding: 6px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: 100%;
+  margin: auto;
+  border-radius: 20px;
+  border: 0.8px solid rgba(84, 84, 84, 0.26);
+  background-color: white;
+  margin-bottom: 2rem;
 }
 #edit-bulk .button-container button {
-  margin: 0px 10px 30px 10px;
+  margin: 5px 15px 5px 15px;
   height: 37px;
   width: 130px;
   border-radius: 10px;
   font-family: "Work Sans", sans-serif;
+  cursor: pointer;
 }
 #edit-bulk .button-container button.not-active {
   background: transparent;
-  border: none;
+  width: 140px;
+  height: 40px;
+  font-size: 12px;
+  border: 1px solid #19a68e !important;
 }
 #edit-bulk .button-container button.not-active:hover {
   color: #fff;
@@ -26,6 +40,9 @@
 }
 #edit-bulk .button-container button.active {
   background: #19a68e;
+  width: 140px;
+  height: 40px;
+  font-size: 12px;
   color: #fff;
   border: none;
 }
@@ -96,12 +113,6 @@
   transition: 500ms ease-in-out;
 }
 @media screen and (min-width: 768px) {
-  #edit-bulk .button-container button {
-    font-size: 15px;
-    width: 170px;
-    height: 45px;
-    max-width: 10px 15px 20px 15px;
-  }
   #edit-bulk .modify-container {
     display: flex;
     flex-direction: column;
@@ -157,11 +168,6 @@
   }
 }
 @media screen and (min-width: 1440px) {
-  #edit-bulk .button-container button {
-    font-size: 20px;
-    height: 43px;
-    width: 180px;
-  }
   #edit-bulk h1 {
     font-size: 40px;
     letter-spacing: 1px;

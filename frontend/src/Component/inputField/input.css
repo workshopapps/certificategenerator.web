@@ -10,6 +10,12 @@
   text-transform: capitalize;
   color: #222222;
 }
+.inputContainer input::-webkit-outer-spin-button,
+.inputContainer input::-webkit-inner-spin-button {
+  appearance: none;
+  -webkit-appearance: none;
+  margin: 0;
+}
 .inputContainer__input {
   border: 1.50376px solid rgba(34, 34, 34, 0.2);
   border-radius: 0.625rem;
@@ -35,3 +41,10 @@
   font-size: 1.125rem;
   color: rgba(34, 34, 34, 0.5);
 }
+
+/* Firefox */
+input[type=number] {
+  -webkit-appearance: textfeild;
+          appearance: textfeild;
+  -moz-appearance: textfield;
+}/*# sourceMappingURL=input.css.map */

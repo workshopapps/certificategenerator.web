@@ -13,6 +13,21 @@ import { useState } from "react";
 
 const UploadCSV = ({ setFile }) => {
   const [state, setState] = useState({ active: true });
+  const [csvmessage, setCsvmessage] =useState(false);
+
+  const handleFileInput = (e) => {    
+    
+    if (parts[parts.length-1] === "csv"){
+    
+      alert('enter a valid format')
+      
+      
+    } else alert('give the required format')
+    console.log("hello")
+    
+    }
+    
+  //const handleFileInput = () => {};
 
   const toggleState = e => {
     console.log(Object.values(e.target.classList));
@@ -66,15 +81,18 @@ const UploadCSV = ({ setFile }) => {
               type="file"
               id="uploadCSV"
               name="uploadCSV"
-              accept=".csv"
+              //accept=".csv"
               className="box"
-              onChange={e => {
-                setFile(e.target.files);
-              }}
+              onClick={(e) => {setFile(e.target.files);}}
+
             />
             Browse files
           </label>
-        </span>
+        </span>        
+        <p className="messagecsv">Please submit only csv files</p>
+        <div className="Submitcsv" onClick={handleFileInput}>Submit file</div>        
+        
+        
       </div>
       {/* <button className='btn btnLight'>Generate Certificate</button> */}
         <button style={{display:"none"}} >Upload</button>
@@ -90,5 +108,6 @@ const UploadCSV = ({ setFile }) => {
     </div>
   );
 };
+
 
 export default UploadCSV;

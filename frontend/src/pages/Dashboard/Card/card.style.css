@@ -98,6 +98,7 @@
   border-radius: 5px;
   color: #ffffff;
   background-color: #19a68e;
+  cursor: pointer;
 }
 .dashboard .table-wrapper .table {
   overflow-x: auto;
@@ -119,6 +120,7 @@
   border-radius: 5px;
   color: #ffffff;
   background-color: #19a68e;
+  cursor: pointer;
 }
 .dashboard .table-wrapper .table table {
   width: 768px;
@@ -269,4 +271,4 @@
   .card .count {
     font-size: 27px !important;
   }
-}
+}/*# sourceMappingURL=card.style.css.map */
