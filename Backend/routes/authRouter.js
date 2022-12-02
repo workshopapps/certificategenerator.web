@@ -18,6 +18,6 @@ router.post("/signup", validateSignUp, userSignup);
 router.post("/login", userLogin);
 router.post("/logout", userLogout);
 router.route("/forgotpassword").post(forgotPassword);
-router.route("/changepassword").post(changePassword);
+router.route("/changepassword/:userId/:token").post(changePassword);
 
 module.exports = router;
