@@ -28,7 +28,7 @@ pipeline {
                 sh "sudo pm2 stop static-page-server-3077 "
 				sh "sudo pm2 stop index"
 				sh "sudo pm2 serve /home/sean/certgo/frontend/build --port 3077"
-				sh "cd /home/sean/certgo/backend && npm start"
+				sh "sudo pm2 start /home/sean/certgo/backend/ecosystem.config.js"
 			}
 			
 	}
