@@ -42,34 +42,15 @@ const Login = ({ access, setAccess }) => {
       };
     });
   }
-
-  const handleOnSubmit = async e => {
-    try {
-      e.preventDefault();
-      const response = await loginUser({
-        password: formData?.password,
-        email: formData?.email
-      });
-
-      if (response && response.data) {
-        //redirect a successfull login here ...
-
-        navigate("/dashboard");
-        console.log(response);
-      }
-    } catch (error) {
-      console.log(error);
-      async function loginUser(email, password) {
-        return fetch("https://certify-api.onrender.com/api/auth/login", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({ email: email, password: password })
-        });
-      }
-    }
-  };
+  async function loginUser(email, password) {
+    return fetch("https://certify-api.onrender.com/api/auth/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ email: email, password: password })
+    });
+  }
 
   const handleSubmit = async e => {
     e.preventDefault();
@@ -116,7 +97,7 @@ const Login = ({ access, setAccess }) => {
                 placeholder=" Email"
                 type="text"
                 name="email"
-                callback={handleChange}
+                callback={e => setUserEmail(e.target.value)}
                 required
                 style={{ border: "none" }}
               />
@@ -129,7 +110,7 @@ const Login = ({ access, setAccess }) => {
                 placeholder="Password"
                 type="text"
                 name="password"
-                callback={handleChange}
+                callback={e => setPassword(e.target.value)}
                 required
               />
               <span onClick={handleToggle}>
