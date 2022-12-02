@@ -165,6 +165,8 @@ function App() {
             <Route path="/pricing" element={<Pricing />} />
             <Route path="/contact-us" element={<ContactUs />} />
             <Route path="/payment" element={<Checkout />} />
+            <Route path="/bulk_preview" element={<BulkPreview />} />
+            <Route path="/single_preview" element={<SinglePreview />} />
 
             <Route path="/profile" element={<ProfilePage />} />
             <Route path="/upload" element={<UploadCSV setFile={setFile} />} />
