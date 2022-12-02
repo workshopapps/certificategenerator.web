@@ -107,7 +107,7 @@ const userSignup = async (req, res, next) => {
 };
 
 const userLogin = async (req, res, next) => {
-  const { email, password} = req.body;
+  const { email, password } = req.body;
   try {
     if (req.body.accessToken) {
       try {
@@ -122,7 +122,7 @@ const userLogin = async (req, res, next) => {
           return res.status(401).json({ message: "google login hasn't been linked to this email, please login with the form" })
         }
         const { accessToken, refreshToken } = await generateTokens(user);
-  
+
         return res.status(200).json({
           message: "user logged in successfully",
           token: accessToken,
@@ -134,7 +134,7 @@ const userLogin = async (req, res, next) => {
         if (!error.statusCode) {
           error.statusCode = 500;
         }
-        return res.status(200).json({ message: "could not verify accessToken"})
+        return res.status(200).json({ message: "could not verify accessToken" })
       }
 
     }
@@ -160,13 +160,6 @@ const userLogin = async (req, res, next) => {
     }
     const { accessToken, refreshToken } = await generateTokens(user);
 
-    const token = jwt.sign(
-      {
-        userId: user._id,
-      },
-      process.env.JWT_SECRET,
-      { expiresIn: "24h" }
-    );
     return res.status(201).json({
       message: "user logged in successfully",
       token: accessToken,
