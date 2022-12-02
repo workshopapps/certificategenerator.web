@@ -139,18 +139,6 @@ export default function Certificate({
             <label htmlFor="date" className="label">
               Issue Date
             </label>
-            <input
-              type="text"
-              value={issueDate}
-              onChange={e => setIssueDate(e.target.value)}
-            />
-
-            <button
-              disabled={disabledButton}
-              className={`${disabledButton && "btn-disabled"} btn-success`}
-            >
-              Create Certificate
-            </button>
 
             <label htmlFor="date" className="label">
               Issue Date
@@ -162,7 +150,7 @@ export default function Certificate({
             />
 
             <Link className="btn-create" to="single_preview">
-              <Button name={"Create Certificate"} />
+              <Button name={"Create Certificate"} disabled={disabledButton} className={`${disabledButton && "btn-disabled"} btn-success`} />
             </Link>
           </form>
         </div>
