@@ -33,7 +33,7 @@ const userExist = async (_email) => {
 
 const userSignup = async (req, res, next) => {
   try {
-    let { accessToken, email, password } = req.body;
+    let { accessToken, email, password, subscriptionPlan } = req.body;
 
     //google signup
     if (req.body.accessToken) {
@@ -54,6 +54,7 @@ const userSignup = async (req, res, next) => {
             uuid: googleUserId,
           },
         },
+        subscription: subscriptionPlan
       });
       const createdUser = await newUser.save();
       return res.status(201).json({
@@ -91,6 +92,7 @@ const userSignup = async (req, res, next) => {
             password: hash,
           },
         },
+        subscription: subscriptionPlan
       });
       const createdUser = await newUser.save();
       res.status(201).json({
@@ -105,8 +107,38 @@ const userSignup = async (req, res, next) => {
 };
 
 const userLogin = async (req, res, next) => {
-  const { email, password } = req.body;
+  const { email, password} = req.body;
   try {
+    if (req.body.accessToken) {
+      try {
+        const payload = await verify(req.body.accessToken);
+        const googleUserId = payload["sub"];
+        email = payload["email"];
+        const user = await User.findOne({ email })
+        if (!user) {
+          return res.status(401).json({ message: "A user for this email could not be found!" })
+        }
+        if (googleUserId !== user.authenticationType.google.uuid) {
+          return res.status(401).json({ message: "google login hasn't been linked to this email, please login with the form" })
+        }
+        const { accessToken, refreshToken } = await generateTokens(user);
+  
+        return res.status(200).json({
+          message: "user logged in successfully",
+          token: accessToken,
+          refreshToken: refreshToken,
+          userId: user._id.toString(),
+          subscription: user.subscription
+        });
+      } catch (error) {
+        if (!error.statusCode) {
+          error.statusCode = 500;
+        }
+        return res.status(200).json({ message: "could not verify accessToken"})
+      }
+
+    }
+
     if (!email || !password) {
       return res.status(400).json("Please provide email and password");
     }
@@ -117,7 +149,7 @@ const userLogin = async (req, res, next) => {
       error.statusCode = 401;
       throw error;
     }
-    const isEqual = await bcrypt.compare(
+    const isEqual = await await bcrypt.compare(
       password,
       user.authenticationType.form.password
     );
@@ -128,11 +160,19 @@ const userLogin = async (req, res, next) => {
     }
     const { accessToken, refreshToken } = await generateTokens(user);
 
-    res.status(200).json({
+    const token = jwt.sign(
+      {
+        userId: user._id,
+      },
+      process.env.JWT_SECRET,
+      { expiresIn: "24h" }
+    );
+    return res.status(201).json({
       message: "user logged in successfully",
       token: accessToken,
       refreshToken: refreshToken,
       userId: user._id.toString(),
+      subscription: user.subscription
     });
   } catch (err) {
     next(err);
