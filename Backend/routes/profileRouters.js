@@ -6,14 +6,15 @@ const {
   getUserProfile,
   updateUserProfile,
 } = require("../controllers/profileController");
+const authentication = require("../middleware/authentication");
 
 // for getting each user profile
-router.get("/", getUserProfile);
+router.get("/", authentication, getUserProfile);
 
 // for creating each user profile
-router.post("/", addUserProfile);
+router.post("/", authentication, addUserProfile);
 
 //for updating userProfile
-router.put('/', updateUserProfile);
+router.put("/", authentication, updateUserProfile);
 
 module.exports = router;
