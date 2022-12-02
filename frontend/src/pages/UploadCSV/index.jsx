@@ -1,9 +1,12 @@
+import Axios from 'axios';
+
 import "./uploadCSV.style.scss";
 // component
 import Button from "../../Component/button";
 // img
 import Certificate from "../../assets/images/uploadPage/cert.svg";
-import CSVSample from "../../assets/images/uploadPage/CSVSample.svg";
+//import CSVSample from "../../assets/images/uploadPage/CSVSample.svg";
+import CSVSample from "../../assets/images/CSV-sample.png"
 import UploadVector from "../../assets/images/uploadPage/uploadVector.svg";
 import Template1 from "../../assets/images/uploadPage/template1.svg";
 import Template2 from "../../assets/images/uploadPage/template2.svg";
@@ -69,7 +72,7 @@ const UploadCSV = ({ setFile }) => {
         </span>
       </div>
       {/* <button className='btn btnLight'>Generate Certificate</button> */}
-
+        <button style={{display:"none"}} onClick={handleUpload}>Upload</button>
       <div>
         <h2>Even More Template for You</h2>
         <div className="moreTemplate">
