@@ -7,7 +7,7 @@ const CertificateSchema = new mongoose.Schema({
         type: String,
         required: [true, 'Name of recipient is required']
     },
-    nameoforganization: {
+    nameOfOrganization: {
         type: String,
         required: [true, 'Name of organization (issuer) is required']
     },
@@ -24,7 +24,6 @@ const CertificateSchema = new mongoose.Schema({
     },
     email: {
       type: String,
-      required: true,
     },
     date: {
         type: String,
