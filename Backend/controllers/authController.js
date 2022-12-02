@@ -67,7 +67,7 @@ const userSignup = async (req, res, next) => {
       const error = new Error("validation failed");
       error.statusCode = 422;
       error.data = errors.array();
-      throw error;
+      return res.status(error.statusCode).json({message: "user validation failed", error: error})
     }
 
     if (await userExist(email)) {
@@ -101,8 +101,36 @@ const userSignup = async (req, res, next) => {
 };
 
 const userLogin = async (req, res, next) => {
-  const { email, password } = req.body;
+  let { email, password, accessToken } = req.body;
   try {
+    //google signin
+    if (req.body.accessToken) {
+      const payload = await verify(accessToken);
+      const googleUserId = payload["sub"];
+      email = payload["email"];
+
+      const user = await User.findOne({ email: email });
+      if (!user) {
+        return res.status(401).json({ message: "email could not find email in database" });
+      }
+      if (googleUserId !== user.authenticationType.google.uuid) {
+        return res.status(401).json({ message: "email could not be verified" });
+      }
+
+      const token = jwt.sign(
+        {
+          userId: user._id,
+        },
+        process.env.JWT_SECRET,
+        { expiresIn: "24h" }
+      );
+      return res.status(201).json({
+        message: "user logged in successfully",
+        token: token,
+        userId: user._id.toString(),
+      });
+      
+    }
     if (!email || !password) {
       return res.status(400).json("Please provide email and password");
     }
@@ -113,10 +141,7 @@ const userLogin = async (req, res, next) => {
       error.statusCode = 401;
       throw error;
     }
-    const isEqual = await bcrypt.compare(
-      password,
-      user.authenticationType.form.password
-    );
+    const isEqual = bcrypt.compare(password, user.password);
     if (!isEqual) {
       const error = new Error("Wrong password!");
       error.statusCode = 401;
@@ -135,8 +160,11 @@ const userLogin = async (req, res, next) => {
       token: token,
       userId: user._id.toString(),
     });
-  } catch (err) {
-    next(err);
+  } catch (error) {
+    if (!error.statusCode) {
+      error.statusCode = 500;
+    }
+    next(error);
   }
 };
 
@@ -157,17 +185,11 @@ const forgotPassword = async (req, res) => {
 
 const changePassword = async (req, res) => {
   try {
-    const auth = req.headers.authorization;
-    if (!auth || !auth.startsWith("Bearer")) {
-      return res.status(401).json({ message: "authentication invalid" });
+    const { token } = req.params;
+    if (!token) {
+      return res.status(400).json({ message: "token is required" });
     }
-    const token = auth.split(" ")[1];
     const { newpassword, confirmpassword } = req.body;
-    if (!newpassword || !confirmpassword) {
-      return res
-        .status(400)
-        .json("Please provide new password and confrim password");
-    }
     if (newpassword != confirmpassword) {
       return res
         .status(400)
@@ -175,19 +197,11 @@ const changePassword = async (req, res) => {
     }
     const { email } = jwt.verify(token, process.env.JWT_SECRET);
     const user = await User.findOne({ email });
-
-    bcrypt.hash(newpassword, 10, async function (err, hash) {
-      if (err) {
-        const error = new Error("account could not be created");
-        error.statusCode = 422;
-        throw error;
-      }
-      user.authenticationType.form.password = hash;
-      user.save();
-      res.status(200).send({ message: "password changed" });
-    });
-  } catch (err) {
-    next(err);
+    user.password = newpassword;
+    user.save();
+    res.status(200).send({ message: "password changed" });
+  } catch (error) {
+    return res.status(401).json({ message: "invalid Token" });
   }
 };
 
