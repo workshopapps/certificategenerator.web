@@ -7,7 +7,7 @@ const config = require("../utils/config");
 const UserToken = require("../models/UserToken");
 const { generateTokens } = require("../utils/generateToken");
 const { sendChangePasswordEmail } = require("../utils/email");
-
+const { verifyRefreshToken } = require("../middleware/verifyRefreshToken")
 
 const { OAuth2Client } = require("google-auth-library");
 const client = new OAuth2Client(config.GOOGLE_CLIENT_ID);
@@ -179,9 +179,27 @@ const userLogin = async (req, res, next) => {
   }
 };
 
+const refreshToken = async (req, res) => {
+  verifyRefreshToken(req.body.refreshToken)
+    .then(({ tokenDetails }) => {
+      const payload = { userId: tokenDetails.userId }
+      const accessToken = jwt.sign(
+        payload,
+        process.env.JWT_SECRET,
+        { expiresIn: "5h" }
+      );
+      res.status(200).json({
+        error: false,
+        accessToken,
+        message: "Access token created successfully",
+      });
+    })
+    .catch((err) => res.status(400).json(err));
+}
+
 const userLogout = async (req, res) => {
   try {
-    const userToken = await UserToken.findOne({ token: req.headers.authorization });
+    const userToken = await UserToken.findOne({ token: req.body.refreshToken });
     if (!userToken)
       return res
         .status(200)
@@ -238,6 +256,7 @@ const changePassword = async (req, res) => {
 module.exports = {
   userSignup,
   userLogin,
+  refreshToken,
   userLogout,
   forgotPassword,
   changePassword,
