@@ -29,8 +29,17 @@ const addCertificate = async (req, res) => {
     const csvData = Buffer.from(csvFile).toString();
     certificateData = await csvToJson().fromString(csvData);
 
-    //append uuid and link to the certificate object
-    certificateData = certificateData.map((data) => {
+   
+
+    if (!isValidJsonOutput(certificateData)) {
+      return res
+        .status(400)
+        .json({ message: "Invalid input from uploaded csv file" })
+        .end();
+    }
+
+     //append uuid and link to the certificate object
+     certificateData = certificateData.map((data) => {
       let id = v4();
 
       return {
@@ -39,14 +48,6 @@ const addCertificate = async (req, res) => {
         link: `https://certgo.hng.tech/single_preview?uuid=${id}`
       }
     })
-
-    console.log(certificateData)
-
-    if (!isValidJsonOutput(certificateData))
-      return res
-        .status(400)
-        .json({ message: "Invalid input from uploaded csv file" })
-        .end();
   } else if (payload) {
     certificateData = [
       {
