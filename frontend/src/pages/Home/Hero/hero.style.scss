@@ -68,7 +68,7 @@ body {
     margin-bottom: 1rem;
     .hero-text {
       font-weight: 700;
-      font-size: 40px;
+      font-size: 48px;
       line-height: 60px;
       margin-bottom: 20px;
       margin-top: 0;
@@ -134,7 +134,7 @@ body {
   height: 26.67px;
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 1300px) {
   .hero {
     .hero-left {
       .hero-text {
@@ -144,7 +144,7 @@ body {
     }
   }
 }
-@media screen and (max-width: 868px) {
+@media screen and (max-width: 920px) {
   .hero {
     align-items: initial;
     gap: 1rem;
@@ -168,7 +168,7 @@ body {
     }
   }
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 778px) {
   .hero {
     .hero-left {
       .hero-text {
@@ -180,6 +180,9 @@ body {
         width: 100%;
       }
     }
+  }
+  .perks{
+    grid-template-columns: 1fr;
   }
 }
 @media screen and (max-width: 620px) {
@@ -204,7 +207,6 @@ body {
   }
   .perks {
     width: 100%;
-    grid-template-columns: 1fr;
     .single-perk {
       text-align: center;
     }
