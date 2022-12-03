@@ -94,11 +94,7 @@ const [error, setError] = useState(false);
           throw new Error("Page not found");
         } 
 
-<<<<<<< HEAD
         else if (response.status === 400) {
-=======
-        else if (response.status === 401) {
->>>>>>> eb28e29 (working on error handling)
        
           Toast.fire({
             icon: 'error',
@@ -129,7 +125,6 @@ const [error, setError] = useState(false);
           throw new Error("Something went wrong");
         }
 
-<<<<<<< HEAD
         const token = data.token;
         localStorage.setItem("token", token);
         localStorage.setItem("user", data.userId);
@@ -138,13 +133,6 @@ const [error, setError] = useState(false);
     }
       catch(error) {
         setError(true)
-=======
-      
-
-    }
-      catch(error) {
-        
->>>>>>> eb28e29 (working on error handling)
         console.log(error.message);
       }
   };
@@ -206,11 +194,7 @@ const [error, setError] = useState(false);
                 )}
               </span>
             </div>
-<<<<<<< HEAD
 {error && <p style ={{color:'red'}}>Something went wrong</p>}
-=======
-{error && <p>Invalid Email or Password</p>}
->>>>>>> eb28e29 (working on error handling)
   
             <div className="forgotPwd">Forgot password?</div>
             <div id="checkTerms">
