@@ -10,7 +10,7 @@ import emailSVG from "./assets/email.svg";
 import keySVG from "./assets/key.svg";
 import { createNewUser } from "../api";
 import Input from "../../Input";
-import Swal from 'sweetalert2'
+import Swal from "sweetalert2"
 
 
 const Signup = ({ access, setAccess }) => {
@@ -25,6 +25,8 @@ const Signup = ({ access, setAccess }) => {
 
   const [useremail, setUserEmail] = useState();
   const [password, setPassword] = useState();
+
+  const [error, setError] = useState(false);
 
   const handleToggle = () => {
     if (type === "password") {
@@ -43,19 +45,17 @@ const Signup = ({ access, setAccess }) => {
     });
   }
 
-  
-
     const Toast = Swal.mixin({
     toast: true,
-    position: 'top-end',
+    position: "top-end",
     showConfirmButton: false,
     timer: 3000,
     timerProgressBar: true,
-    didOpen: (toast) => {
-      toast.addEventListener('mouseenter', Swal.stopTimer)
-      toast.addEventListener('mouseleave', Swal.resumeTimer)
+    didOpen: toast => {
+      toast.addEventListener("mouseenter", Swal.stopTimer)
+      toast.addEventListener("mouseleave", Swal.resumeTimer)
     }
-  })
+  });
 
   async function createNewUser(email, password) {
     return fetch("https://certify-api.onrender.com/api/auth/signup", {
@@ -70,19 +70,25 @@ const Signup = ({ access, setAccess }) => {
   const handleSubmit = async e => {
     e.preventDefault();
 
-    const response = await createNewUser(useremail, password)
-      .then(response => {
+    try{
+      const response = await createNewUser(useremail, password)
+      const data = await response.json();
+
+      console.log(response);
+      console.log(response.status);
+
+      // .then(response => {
         
-        if (response.status === 404) {
-          Toast.fire({
-            icon: 'error',
-            title: 'Page not found'
-          })
+        // if (response.status === 404) {
+        //   Toast.fire({
+        //     icon: 'error',
+        //     title: 'Page not found'
+        //   })
         
-          throw new Error("Page not found");
-        } 
+        //   throw new Error("Page not found");
+        // } 
         
-        else if (response.status === 200) {
+         if (response.status === 200 || response.status === 201){
           Toast.fire({
             icon: 'success',
             title: 'Signed up successfully'
@@ -91,48 +97,45 @@ const Signup = ({ access, setAccess }) => {
           setAccess(true)
         }
 
+        // } 
         else if (response.status === 401) {
-       
-          Toast.fire({
-            icon: 'error',
-            title: 'Invalid Email '
-          })
-          throw new Error("Invalid Email");
-       
-        }
-        
-        else if (response.status === 500) {
-          Toast.fire({
-            icon: 'error',
-            title: 'Server Error'
-          })
-       
-          throw new Error("Server Error");
-         
-        }
-     
+        Toast.fire({
+          icon: "error",
+          title: "Page not found"
+        });
 
-        if (!response.ok) {
-          Toast.fire({
-            icon: 'error',
-            title: 'Something went wrong'
-          })
-         
-          throw new Error("Something went wrong");
-        }
-        
-        return response.json();
-      })
+        throw new Error("Page not found");
+      } else if (response.status === 400) {
+        Toast.fire({
+          icon: "error",
+          title: "Invalid Email, please try again"
+        });
+        throw new Error("Invalid Email, please try again");
+      } else if (response.status === 500) {
+        Toast.fire({
+          icon: "error",
+          title: "Server Error"
+        });
+        throw new Error("Server Error");
+      } else {
+        Toast.fire({
+          icon: "error",
+          title: "Something went wrong"
+        });
 
-      .then(() => {
-        const data = response.json();
-        const token = data.token;
-        localStorage.setItem("token", token);
-        localStorage.setItem("user", data.userId);
-      })
-      .catch(e => {
-        console.log(e.message);
-      });
+        throw new Error("Something went wrong");
+      }
+
+
+    
+        
+    const token = data.token;
+    localStorage.setItem("token", token);
+    localStorage.setItem("user", data.userId);
+  } catch (error) {
+    setError(true);
+    console.log(error.message);
+  };
   };
  
 
@@ -189,6 +192,7 @@ const Signup = ({ access, setAccess }) => {
                 )}
               </span>
             </div>
+            {error && <p style={{ color: "red" }}>Something went wrong</p>}
 
             <div id="checkTerms">
               <input
@@ -205,7 +209,7 @@ const Signup = ({ access, setAccess }) => {
               </div>
             </div>
             <div>
-            <button id = 'btn' onClick = {handleSubmit}>
+            <button id = "btn" onClick = {handleSubmit}>
             Create Account
             </button>
             </div>
