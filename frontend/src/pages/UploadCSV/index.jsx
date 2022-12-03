@@ -36,8 +36,10 @@ const UploadCSV = ({ setFile }) => {
 
   return (
     <div className="uploadCSVContainer">
-      <div className="certificateSwitch"></div>
-      <h1>Your certificate is almost ready!</h1>
+      <div className="certificateSwitch">
+      </div>
+      
+      {/* <h1>Your certificate is almost ready!</h1> */}
       <div className="certificatePreview">
         <img src={Certificate} alt="certificate preview" />
       </div>

@@ -54,7 +54,7 @@ body {
 }
 
 .header {
-  padding: 120px 0 0 0;
+  padding: 5rem 1rem 0 1rem;
   font-size: 48px;
   font-weight: 700;
   line-height: 60.48px;
@@ -113,8 +113,8 @@ body {
 .cert-form {
   max-width: 1440px;
   width: 80%;
-  background-color: #fafafb;
-  margin: 5.5% 10% 12%;
+  background-color: #FAFAFB;
+  margin: 4rem auto;
   border: 0.8px solid #545454;
   border-radius: 16px;
   padding: 8%;
@@ -198,7 +198,7 @@ input::placeholder {
   all: unset;
   background-color: $primaryColor;
   color: #ffffff;
-  padding: 1rem 3rem;
+  padding: 1rem 2rem;
   text-align: center;
   margin-top: 2rem;
   width: fit-content;
