@@ -6,6 +6,7 @@ import CheckoutMainLeftInput from "./CheckoutMainLeftInput";
 import CheckoutMainLeftComp from "./CheckoutMainLeftComp";
 import { useState } from "react";
 import PaymentSwitch from "./PaymentSwitch";
+import { Link } from "react-router-dom";
 
 function CheckoutMainLeft() {
   const [firstName, setFirstName] = useState("");
@@ -239,7 +240,9 @@ function CheckoutMainLeft() {
         )}
       </div>
 
-      <button id="CheckoutMainLeft-btn">Pay $23.99</button>
+      <Link to="/bulk_preview">
+        <button id="CheckoutMainLeft-btn">Pay $23.99</button>
+      </Link>
     </div>
   );
 }
