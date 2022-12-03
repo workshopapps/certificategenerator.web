@@ -6,9 +6,8 @@ import Button from "../../../Component/button";
 import Input from "../../../Component/Input";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import Loader from "../Loader";
 
-export default function Certificate({
+export default function Certificate ({
   logo,
   setLogo,
   certificateTitle,
@@ -22,64 +21,34 @@ export default function Certificate({
   issueDate,
   setIssueDate
 }) {
-  const [bulkCertificate, setBulkCertificate] = useState(false);
-  const [date, setDate] = useState(Date.now());
-  const navigate = useNavigate();
-  const disabledButton =
-    !logo.trim() ||
-    !message.trim() ||
-    !certificateTitle.trim() ||
-    !awardeeName.trim() ||
-    !issuedBy.trim() ||
-    !issueDate;
-  const [loading, setLoading] = useState(false);
-  const handleSubmit = e => {
-    e.preventDefault();
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-      navigate("/preview");
-    }, 3000);
-  };
-  const handleDate = date => {
-    setDate(date);
-    setIssueDate(formatDate(date));
-  };
-  function padTo2Digits(num) {
-    return num.toString().padStart(2, "0");
-  }
-  function formatDate(date) {
-    return [
-      padTo2Digits(date.getDate()),
-      padTo2Digits(date.getMonth() + 1),
-      date.getFullYear()
-    ].join("/");
-  }
-
-  function filevalidation() {
-    const fi = document.querySelector(".custom-file-input");
-    // Check if any file is selected.
-    const x = fi.files[0];
-    if (fi.files.length > 0) {
-      for (let i = 0; i <= fi.files.length - 1; i++) {
-        const fsize = fi.files.item(i).size;
-        const file = Math.round(fsize / 1024);
-        document.querySelector("#file-size").textContent = `${file}KB`;
-        document.querySelector(".name-of-file").textContent = `${x.name}`;
-      }
+    const [bulkCertificate, setBulkCertificate] = useState(false);
+    const [date, setDate ] = useState(Date.now())
+    const navigate = useNavigate()
+    const disabledButton = !logo.trim() || !message.trim() || !certificateTitle.trim() || !awardeeName.trim() || !issuedBy.trim() || !issueDate
+    const handleSubmit = (e) => {
+      e.preventDefault()
+      navigate('/preview')
     }
-  }
-
-  // const customFileInput = document.querySelector(".custom-file-input");
-  function uploadFileHandler() {
-    document.querySelector(".custom-file-input").click();
-  }
+    const handleDate = (date) => {
+      setDate(date)
+      setIssueDate(formatDate(date));
+    }
+    function padTo2Digits(num) {
+      return num.toString().padStart(2, '0');
+    }
+    function formatDate(date) {
+      return [
+        padTo2Digits(date.getDate()),
+        padTo2Digits(date.getMonth() + 1),
+        date.getFullYear(),
+      ].join('/');
+    }
 
   return (
     <>
       <p id="certificatee" className="sora header">
-        Create your <span>certificate </span>
-        with <span>ease</span>
+        Create your <span className="emphasized">certificate </span>
+        with <span className="emphasized">ease</span>
       </p>
 
       <p style={{ padding: "10px" }} className="prompt">
@@ -165,52 +134,19 @@ export default function Certificate({
             onSubmit={handleSubmit}
             className="cert-form text-left work-sans"
           >
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                gap: "0.1rem"
-              }}
-              className=" file-input"
-            >
-              <label
-                htmlFor="file"
-                className="label"
-                style={{ marginTop: "0px", marginBottom: "20px" }}
-              >
-                Logo
-              </label>
-              <div
-                style={{ display: "flex", alignItems: "center", gap: "2.5rem" }}
-              >
-                <span className="upload-file" onClick={uploadFileHandler}>
-                  Upload Logo
-                  <input
-                    type="file"
-                    name="uploadfile"
-                    id="img"
-                    className="custom-file-input"
-                    style={{
-                      width: "inherit",
-                      padding: "0px",
-                      border: "none",
-                      position: "absolute"
-                    }}
-                    onMouseOver={uploadFileHandler}
-                    title=" "
-                    // onChange={e =>
-                    //   setLogo(URL.createObjectURL(e.target.files[0]))
-                    // }
-                    onChange={filevalidation}
-                  />
-                </span>
-                <p className="name-of-file"></p>
-              </div>
+            <label for="img">Upload logo</label>
+            <input
+              type="file"
+              name="uploadfile"
+              id="img"
+              onChange={e => setLogo(URL.createObjectURL(e.target.files[0]))}
+            />
 
-              <p style={{ fontSize: "12px", margin: "0" }}>
-                Image upload size: <span id="file-size"></span>
-              </p>
-            </div>
+            <img style={{ width: "15%" }} src={logo} alt="logo" />
+            <p style={{ fontSize: "12px", margin: "0" }}>
+              Max image upload size: 8mb
+            </p>
+
             <label htmlFor="text" className="label">
               Certificate Title
             </label>
@@ -241,11 +177,13 @@ export default function Certificate({
               type="text"
               value={message}
               onChange={e => setMessage(e.target.value)}
-              placeholder="For your exceptional performance this month."
+              placeholder="For your exceptional performance this month, 
+                in appreciation for your loyalty and the desire to fulfil our goals, 
+                in recognition of your leadership and dedication"
             />
 
             <label htmlFor="text" className="label">
-              Issued By
+             Issued By
             </label>
             <input
               label={"Dedication or message"}
@@ -254,22 +192,11 @@ export default function Certificate({
               value={issuedBy}
               onChange={e => setIssuedBy(e.target.value)}
             />
-
-            <label htmlFor="" className="label">
-              Issue Date
-            </label>
-            <DatePicker
-              selected={date}
-              onChange={handleDate}
-              dateFormat="dd/MM/yyyy"
-            />
-
-            <button
-              disabled={disabledButton}
-              className={`${disabledButton && "btn-disabled"} btn-success`}
-            >
-              {loading ? <Loader /> : <span>Create Certificate</span>}
-            </button>
+            
+            <label htmlFor='' className="label">Issue Date</label>
+            <DatePicker selected={date} onChange={handleDate} dateFormat="dd/MM/yyyy" />           
+           
+            <button disabled={disabledButton} className={`${disabledButton && 'btn-disabled'} btn-success`}>Create Certificate</button>
           </form>
         </div>
       )}

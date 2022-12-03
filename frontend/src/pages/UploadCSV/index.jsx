@@ -3,47 +3,40 @@ import "./uploadCSV.style.scss";
 import Button from "../../Component/button";
 // img
 import Certificate from "../../assets/images/uploadPage/cert.svg";
-//import CSVSample from "../../assets/images/uploadPage/CSVSample.svg";
 import CSVSample from "../../assets/images/CSV-sample.png";
 import UploadVector from "../../assets/images/uploadPage/uploadVector.svg";
 import Template1 from "../../assets/images/uploadPage/template1.svg";
 import Template2 from "../../assets/images/uploadPage/template2.svg";
 import Template3 from "../../assets/images/uploadPage/template3.svg";
-import { useState, useRef} from "react";
+import { useState } from "react";
+import axios from "axios";
 
-const UploadCSV = ({ setFile }) => {
-  const [state, setState] = useState({ active: true });
-  const [errorFile, setErrorFile] = useState(false)
-  const fileManager = useRef(null)
+const UploadCSV = () => {
+  const [errorFile, setErrorFile] = useState(false);
+  const [file, setFile] = useState("");
 
   const validateInput= (e) =>{
     setErrorFile(false)
     const myFile = e.target.files[0]
     console.log(e.target,myFile)
     if (myFile.type !== 'text/csv'){
-      setErrorFile(true)
-    } 
-      
+      setErrorFile(true);
+    }
+    setFile(myFile);
   }
 
-  const toggleState = e => {
-    console.log(Object.values(e.target.classList));
-    // console.log( typeof e.target.classList);
-    const active = Object.values(e.target.classList).find(
-      element => element === "active"
-    );
-    //   .forEach(element => {
-    if (!active) {
-      // console.log(3);
-      setState(prev => {
-        return { ...prev, active: !prev.active };
-      });
-    }
-  };
-  let formdata = new FormData();
+  let formData = new FormData();
 
-  function handleUpload(e) {
+  const handleUpload = async e => {
     e.preventDefault();
+    formData.append("file", file);
+
+    try {
+      const res = await axios.post("https://certify-api.onrender.com/api/upload/csv", formData);
+      console.log("Form data", res);
+    } catch (error) {
+      console.log("Error", error);
+    }
   }
 
   return (
