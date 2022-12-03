@@ -10,6 +10,7 @@ import emailSVG from "./assets/email.svg";
 import keySVG from "./assets/key.svg";
 import Swal from "sweetalert2";
 import Input from "../../Input";
+import Button from "../../button";
 
 const Login = ({ access, setAccess }) => {
   const navigate = useNavigate();
@@ -189,9 +190,9 @@ const Login = ({ access, setAccess }) => {
             </div>
 
             <div>
-              <button id="btn" onClick={handleSubmit}>
+              <Button id="btn" onClick={handleSubmit} style={{ width: "100%" }}>
                 Login
-              </button>
+              </Button>
             </div>
           </form>
           <p className="haveAccount">
