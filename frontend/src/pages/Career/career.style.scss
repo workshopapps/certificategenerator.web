@@ -118,12 +118,17 @@ a {
       }
     }
     .hero__image {
-      max-width: 545px;
-      @media screen and (max-width: $small) {
-        display: block;
-        margin: 0 auto;
-        width: 268px;
+      @media screen and (max-width: 880px) {
+        position: absolute;
+        min-width: 13rem;
+        top: 0;
+        right: 0;
       }
+      // @media screen and (max-width: $small) {
+      //   display: block;
+      //   margin: 0 auto;
+      //   width: 268px;
+      // }
       img {
         width: 100%;
       }
