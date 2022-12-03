@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Work+Sans:wght@500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Work+Sans:wght@500;600;700&display=swap");
 
 @mixin flexContainer($direction, $width, $justify) {
   display: flex;
@@ -8,12 +8,14 @@
   width: $width;
   font-family: "Work Sans", sans-serif;
 }
+
 @mixin container {
   margin: 0 auto;
 }
 * {
   font-family: "Work Sans", sans-serif;
 }
+
 .header {
   @include flexContainer(column, 80%, center);
   @include container();
@@ -21,6 +23,8 @@
   font-family: "Work Sans", sans-serif;
 
   h2 {
+    margin-top: 6rem;
+    margin-bottom: 1.5rem;
     font-size: 1.125rem;
     font-weight: 700;
   }
@@ -28,11 +32,13 @@
     font-size: 0.75rem;
   }
 }
+
 .faqContainer {
   @include container();
   width: 80%;
   margin-top: 5rem;
   font-family: "Work Sans", sans-serif;
+
   h2 {
     font-size: 1.2rem;
     margin-bottom: 1rem;
@@ -40,40 +46,41 @@
   }
 
   .faqWrapper {
-    box-shadow: 0px 4px 14px rgba(82, 77, 77, 0.2);
-    background-color: #fff;
-    border-radius: 10px;
-    padding: 1rem 2rem;
-    margin-bottom: 2rem;
+    // box-shadow: 0px 4px 14px rgba(82, 77, 77, 0.2);
+    // background-color: #fff;
+    // border-radius: 10px;
+    padding: 1.5rem 2rem 1.5rem 1rem;
+
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid #6c6c70;
 
     .faqQuestions {
       @include flexContainer(row, 100%, space-between);
       align-items: flex-start;
       gap: 20px;
       cursor: pointer;
+
       .question {
         display: flex;
         align-items: flex-start;
         gap: 10px;
-        
+
         h3 {
           line-height: 160%;
           font-weight: 500;
           font-size: 1rem;
           text-align: left;
         }
-
-
       }
       .icon {
-        font-size: 2.5rem;
+        font-size: 1.1rem;
       }
     }
     .faqAnswers {
       width: 80%;
       margin: 0 auto;
       color: #656565;
-      transition: all .3s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+      transition: all 0.3s cubic-bezier(0.445, 0.05, 0.55, 0.95);
       li {
         line-height: 1.5;
         font-size: 0.9rem;
@@ -82,6 +89,7 @@
     }
   }
 }
+
 @media screen and (min-width: 481px) {
   .header {
     // max-width: 1440px;
@@ -90,33 +98,36 @@
     // text-align: center;
     // font-family: "Roboto", sans-serif;
 
-
     p {
-
       font-weight: 400;
       padding: 0.5rem 5rem;
     }
   }
+
   // Question cards
   .faqContainer {
     @include container();
-   
+
     width: 80%;
     margin-top: 3rem;
-   
+
     h2 {
       font-size: 1.5rem;
-       margin-bottom: 1.5rem;
+      margin-bottom: 1.5rem;
     }
 
     .faqWrapper {
-    box-shadow: 0px 4px 14px rgba(82, 77, 77, 0.1);
-      background-color: #fff;
-      border-radius: 10px;
-      padding: 1rem 2rem;
+      // box-shadow: 0px 4px 14px rgba(82, 77, 77, 0.1);
+      // background-color: #fff;
+      // border-radius: 10px;
+      padding: 1.5rem 2rem 1.5rem 1rem;
+
+      border-bottom: 1px solid #6c6c70;
+
       .faqQuestions {
         @include flexContainer(row, 100%, space-between);
         gap: 20px;
+
         .question {
           display: flex;
           align-items: flex-start;
@@ -126,6 +137,7 @@
             font-weight: 500;
             font-size: 1rem;
           }
+
           .faqIcon {
             width: 50px;
             height: 50px;
@@ -135,13 +147,14 @@
           }
         }
         .icon {
-          font-size: 2.5rem;
+          font-size: 1.1rem;
         }
       }
       .faqAnswers {
         width: 80%;
         margin: 0 auto;
         color: #656565;
+
         li {
           line-height: 1.5;
           font-size: 1rem;
@@ -150,11 +163,20 @@
     }
   }
 }
+
 .faqBtn {
-  margin: 3rem auto;
+  margin: 0 auto 3rem;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.faqFooter {
+  p {
+    text-align: left;
+    color: #6c6c70;
+    margin: 2rem auto;
+    width: 60%;
+  }
 }
 
 @media screen and (min-width: 768px) {
@@ -167,7 +189,6 @@
 
     h2 {
       font-size: 2.25rem;
-
     }
     p {
       font-size: 1.25rem;
@@ -175,24 +196,27 @@
       padding: 0.5rem 5rem;
     }
   }
+
   .faqContainer {
     @include container();
     width: 80%;
     margin-top: 3rem;
     h2 {
       font-size: 2rem;
-     margin-bottom: 2.5rem;
-
+      margin-bottom: 1.5rem;
     }
 
     .faqWrapper {
+      // background-color: #fff;
+      // border-radius: 10px;
+      padding: 1.5rem 2rem 1.5rem 1rem;
 
-      background-color: #fff;
-      border-radius: 10px;
-      padding: 1rem 2rem;
+      border-bottom: 1px solid #6c6c70;
+
       .faqQuestions {
         @include flexContainer(row, 100%, space-between);
         gap: 20px;
+
         .question {
           display: flex;
           align-items: center;
@@ -202,14 +226,14 @@
             font-weight: 500;
             font-size: 1rem;
           }
+
           .faqIcon {
             width: 50px;
             height: 50px;
-
           }
         }
         .icon {
-          font-size: 2.5rem;
+          font-size: 1.1rem;
         }
       }
       .faqAnswers {
@@ -224,6 +248,7 @@
     }
   }
 }
+
 @media screen and (min-width: 1024px) {
   .header {
     max-width: 1440px;
@@ -231,6 +256,7 @@
     // @include container();
     // text-align: center;
     // font-family: "Roboto", sans-serif;
+
     h2 {
       font-size: 3rem;
       font-weight: 600;
@@ -244,21 +270,23 @@
 
   .faqContainer {
     @include container();
-    width: 80%;
+    width: 65%;
     margin-top: 3rem;
     h2 {
       font-size: 2rem;
     }
 
     .faqWrapper {
+      background-color: transparent;
+      // border-radius: 10px;
+      padding: 1.5rem 2rem 1.5rem 1rem;
 
-      background-color: #fff;
-      border-radius: 10px;
-      padding: 1rem 2rem;
+      border-bottom: 1px solid #6c6c70;
 
       .faqQuestions {
         @include flexContainer(row, 100%, space-between);
         gap: 20px;
+
         .question {
           display: flex;
           align-items: center;
@@ -268,6 +296,7 @@
             font-weight: 500;
             font-size: 1rem;
           }
+
           .faqIcon {
             width: 50px;
             height: 50px;
@@ -275,18 +304,18 @@
               width: 100%;
             }
           }
-          .icon {
-            font-size: 2.5rem;
-          }
         }
-        .faqAnswers {
-          width: 80%;
-          margin: 0 auto;
-          color: #656565;
-          li {
-            line-height: 1.5;
-            font-size: 1.4rem;
-          }
+        .icon {
+          font-size: 1.1rem;
+        }
+      }
+      .faqAnswers {
+        width: 80%;
+        margin: 0 auto;
+        color: #656565;
+        li {
+          line-height: 1.5;
+          font-size: 1.4rem;
         }
       }
     }
