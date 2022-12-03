@@ -88,10 +88,10 @@ function App() {
     );
   }
 
- return (
-   <>
-    <Router>
-      <Navbar />
+return (
+  <>
+   <Router>
+     <Navbar />
       <div className="App">
         <Routes>
           <Route path="/" element={<Layout />}>
