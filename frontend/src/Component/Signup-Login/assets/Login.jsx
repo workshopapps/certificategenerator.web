@@ -94,7 +94,7 @@ const [error, setError] = useState(false);
           throw new Error("Page not found");
         } 
 
-        else if (response.status === 401) {
+        else if (response.status === 400) {
        
           Toast.fire({
             icon: 'error',
