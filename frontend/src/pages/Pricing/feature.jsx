@@ -24,8 +24,8 @@ function Feature() {
             <tr>
               <td>Price (monthly billing)</td>
               <td>₦0/month</td>
-              <td>₦2,000/month</td>
-              <td>₦5,000/month</td>
+              <td>₦2000/month</td>
+              <td>₦5000/month</td>
             </tr>
             <tr>
               <td>Price (annual billing)</td>
@@ -128,7 +128,6 @@ function Feature() {
       </article>
 
       <article className="featureEnd">
-        <h2>Trusted by 500+ high performing businesses and startups</h2>
         <div>
           <img src="/assets/ebay.svg" alt="ebay" />
           <img src="/assets/cnn.svg" alt="cnn" />
