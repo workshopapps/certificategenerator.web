@@ -1,0 +1,334 @@
+@charset "UTF-8";
+#login .authContainer {
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 128px;
+}
+#login .formDiv {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 503px;
+  text-align: start;
+}
+#login .logo-container {
+  width: 100%;
+  margin: 29px 64px 58px 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#login .logo-div {
+  width: 100%;
+  height: 40px;
+  display: flex;
+  max-width: 1240px;
+}
+#login .logo {
+  width: 150px;
+  height: 40px;
+}
+#login .menu {
+  display: none;
+}
+#login .emptySpace {
+  width: 608px;
+  height: 583px;
+  background: rgba(178, 225, 217, 0.1);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+}
+#login #hrLine {
+  position: relative;
+  font-size: 30px;
+  z-index: 1;
+  overflow: hidden;
+  text-align: center;
+}
+#login #or {
+  margin: 22px;
+  color: #6c6c70;
+  font-size: 21px;
+}
+#login #hrLine:before,
+#login #hrLine:after {
+  position: absolute;
+  top: 51%;
+  overflow: hidden;
+  width: 50%;
+  height: 1.2px;
+  content: " ";
+  background-color: #222222;
+}
+#login #hrLine:before {
+  margin-left: -50%;
+  text-align: right;
+}
+#login #heading {
+  width: 100%;
+  font-family: "Sora";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 46px;
+  line-height: 59px;
+  letter-spacing: -0.5px;
+  color: #222222;
+}
+#login #startGenerating {
+  font-family: "Work Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: -0.5px;
+  color: #000000;
+}
+#login #signupG,
+#login #signupA {
+  width: 100%;
+  height: 48px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border: 1.2px solid #19a68e;
+  border-radius: 10px;
+  font-family: "Work Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  display: flex;
+  align-items: center;
+  letter-spacing: -0.004em;
+  color: #222222;
+}
+#login #img_id {
+  width: 24px;
+  height: 24px;
+}
+#login form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+#login #pwd {
+  width: 100%;
+  height: 54px;
+  background: #ffffff !important;
+  border: 1.2px solid #222222;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+#login #input_id {
+  border: none;
+  width: 80%;
+  height: 48px;
+}
+#login #email_input {
+  border: none;
+  width: 90%;
+  height: 48px;
+}
+#login input::-moz-placeholder {
+  font-size: 15px;
+}
+#login input:-ms-input-placeholder {
+  font-size: 15px;
+}
+#login input::placeholder {
+  font-size: 15px;
+}
+#login input {
+  font-size: 17px;
+  color: #000;
+}
+#login input:focus {
+  outline: none;
+  border: none;
+}
+#login #email {
+  width: 100%;
+  height: 54px;
+  background: #ffffff;
+  border: 1.2px solid #222222;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+#login #email img {
+  margin-right: 0px;
+}
+#login a {
+  text-decoration: none;
+  color: #222222;
+}
+#login #label {
+  font-family: "Work Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 16px;
+  letter-spacing: -0.5px;
+  color: #222222;
+}
+#login .eye {
+  color: #6c6c70;
+}
+#login #checkTerms {
+  width: 100%;
+  display: flex;
+  height: 32px;
+  gap: 8px;
+  align-items: center;
+}
+#login #acceptTerms {
+  height: 24px;
+  width: 24px;
+}
+#login #btn {
+  width: 100%;
+  height: 43px;
+  background: #19a68e;
+  border-radius: 10px;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Work Sans";
+  font-weight: 400;
+  font-size: 19px;
+  line-height: 19px;
+  letter-spacing: -0.004em;
+  color: #fff !important;
+}
+#login #btn:hover {
+  background: transparent;
+  color: #19a68e !important;
+  border: 1px solid #19a68e;
+}
+#login #coloredTerms {
+  color: #19a68e;
+}
+#login .termsOfUse {
+  font-family: "Work Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 16px;
+  letter-spacing: -0.5px;
+  color: #222222;
+}
+#login .cert_img {
+  width: 100%;
+  height: 56%;
+}
+#login .haveAccount {
+  font-family: "Work Sans";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+  color: #6c6c70;
+  margin-bottom: 40px;
+}
+#login .forgotPwd {
+  width: 100%;
+  display: flex;
+  justify-content: end;
+  font-family: "Work Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  letter-spacing: -0.5px;
+  color: #19a68e;
+}
+@media all and (max-width: 1240px) {
+  #login .container {
+    gap: 90px;
+  }
+  #login .formDiv {
+    width: 450px;
+    margin-left: 20px;
+  }
+  #login .emptySpace {
+    width: 520px;
+    height: 543px;
+  }
+  #login #heading {
+    font-size: 43px;
+  }
+}
+@media all and (max-width: 1024px) {
+  #login .container {
+    gap: 60px;
+  }
+  #login .formDiv {
+    width: 380px;
+    margin-left: 20px;
+  }
+  #login .emptySpace {
+    width: 450px;
+    height: 490px;
+  }
+  #login #heading {
+    font-size: 32px;
+  }
+}
+@media all and (max-width: 768px) {
+  #login .formDiv {
+    width: 400px;
+  }
+  #login .emptySpace {
+    display: none;
+  }
+  #login #heading {
+    font-size: 38px;
+    font-weight: 600;
+  }
+  #login #startGenerating {
+    margin-bottom: 56px;
+    color: #6c6c70;
+  }
+  #login .haveAccount {
+    font-size: 12px;
+  }
+  #login .logo-div {
+    margin: 29px 64px 58px 64px;
+    width: auto;
+    justify-content: space-between;
+  }
+  #login .menu {
+    display: block;
+  }
+}
+@media all and (max-width: 480px) {
+  #login #btn {
+    width: 95%;
+    margin: auto;
+  }
+  #login .formDiv {
+    width: 327px;
+  }
+  #login #heading {
+    font-size: 23px;
+    line-height: 29px;
+  }
+  #login #startGenerating {
+    margin-bottom: 20px;
+  }
+  #login .haveAccount {
+    font-size: 12px;
+    margin-bottom: 40px;
+  }
+  #login .logo-div {
+    margin: 29px 20px 58px 24px;
+  }
+}
