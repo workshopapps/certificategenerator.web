@@ -113,7 +113,7 @@ function Pricing({access, setAccess}) {
           }}
         >
           <SplideSlide>
-            <div className="testimonial-box test">
+            <div className="testimonial-boxn test">
               <div className="testimonial-flex">
                 <img src={person_1} alt="user" />
                 <div className="text">
@@ -132,7 +132,7 @@ function Pricing({access, setAccess}) {
           </SplideSlide>
 
           <SplideSlide>
-            <div className="testimonial-box">
+            <div className="testimonial-boxn">
               <div className="testimonial-flex">
                 <img src={person_2} alt="user" />
                 <div className="text">
@@ -151,7 +151,7 @@ function Pricing({access, setAccess}) {
           </SplideSlide>
 
           <SplideSlide>
-            <div className="testimonial-box">
+            <div className="testimonial-boxn">
               <div className="testimonial-flex">
                 <img src={person_3} alt="user" />
                 <div className="text">
@@ -170,7 +170,7 @@ function Pricing({access, setAccess}) {
           </SplideSlide>
 
           <SplideSlide>
-            <div className="testimonial-box">
+            <div className="testimonial-boxn">
               <div className="testimonial-flex test-image2">
                 <img src={person_1} alt="user" />
                 <div className="text">
@@ -189,7 +189,7 @@ function Pricing({access, setAccess}) {
           </SplideSlide>
 
           <SplideSlide>
-            <div className="testimonial-box">
+            <div className="testimonial-boxn">
               <div className="testimonial-flex test-image">
                 <img src={person_5} alt="user" />
                 <div className="text">

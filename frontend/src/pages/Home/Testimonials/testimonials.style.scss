@@ -16,7 +16,7 @@ body {
 
 .testimonial {
   text-align: center;
-  padding: 0 50px;
+  // padding: 0 50px;
   margin: 50px 0px;
   font-family: "Sora" !important;
 
@@ -28,9 +28,9 @@ body {
 }
 
 .testimonial-box {
-  height: 325px;
+  // height: 325px;
   
-  padding: 25px;
+  padding: 45px 25px;
   border: 1px solid #b2e1d9;
   border-radius: 20px;
   margin-bottom: 50px;
@@ -111,6 +111,21 @@ body {
     line-height: 24px;
   }
 }
+@media screen and (max-width: 600px){
+  .testimonial {
+     margin: 30px 0px;
+    padding: 0px 16px;
+    overflow: hidden;
+  }
+  .testimonial .testimonial-wrapper {
+    margin: 30px 0px;
+    padding: 0px 0px;
+    overflow: hidden;
+}
+  }
+
+
+
 
 @media screen and (max-width: 480px) {
   .testimonials {
@@ -137,13 +152,13 @@ body {
     margin: 30px 40px;
   }
   .testimonial-box {
-    height: 360px !important;
+    height: 280px !important;
     padding: 25px;
   }
 }
 
 @media screen and (min-width: 1024px) {
   .testimonial-box {
-    height: 325px !important;
+    // height: 325px !important;
   }
 }

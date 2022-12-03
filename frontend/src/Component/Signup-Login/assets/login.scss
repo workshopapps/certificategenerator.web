@@ -1,4 +1,6 @@
-@charset "UTF-8";
+#login{
+
+
 .authContainer {
   width: 100vw;
   display: flex;
@@ -60,6 +62,7 @@
 #or {
   margin: 22px;
   color: #6c6c70;
+  font-size:21px;
 }
 
 #hrLine:before,
@@ -149,17 +152,18 @@ form {
   height: 48px;
 }
 
-.email_input,
-.pw_input {
-  border: none;
-  width: 90%;
-  height: 48px;
+#email_input {
+ 
+        border: none;
+        width: 90%;
+        height: 48px;
+      
 }
 input::placeholder{
-  font-size:17px;
+  font-size:15px;
 }
 input{
-  font-size:18px;
+  font-size:17px;
   color:#000;
 }
 
@@ -177,6 +181,9 @@ input:focus {
   display: flex;
   align-items: center;
   justify-content: space-around;
+}
+#email img{
+    margin-right:0px;
 }
 
 a {
@@ -217,19 +224,22 @@ a {
   background: #19a68e;
   border-radius: 10px;
   border: none;
- 
   display: flex;
   justify-content: center;
   align-items: center;
-}
-#btn button{
+
   font-family: "Work Sans";
-  font-style: normal;
   font-weight: 400;
   font-size: 19px;
   line-height: 19px;
   letter-spacing: -0.004em;
-  color: #ffffff!
+  color: #fff!important;
+}
+
+#btn:hover{
+    background:transparent;
+    color:#19a68e!important;
+    border:1px solid #19a68e;
 }
 
 #coloredTerms {
@@ -258,6 +268,8 @@ a {
   font-size: 16px;
   line-height: 19px;
   color: #6c6c70;
+  margin-bottom:40px;
+
 }
 
 .forgotPwd {
@@ -278,6 +290,7 @@ a {
   }
   .formDiv {
     width: 450px;
+    margin-left:20px;
   }
   .emptySpace {
     width: 520px;
@@ -288,16 +301,13 @@ a {
   }
 }
 @media all and (max-width: 1024px) {
-  .login-error {
-    text-align: left;
-    margin-left: 20px;
-    font-size: 17px;
-  }
+
   .container {
     gap: 60px;
   }
   .formDiv {
     width: 380px;
+    margin-left:20px;
   }
   .emptySpace {
     width: 450px;
@@ -308,13 +318,11 @@ a {
   }
 }
 @media all and (max-width: 768px) {
-  .login-error {
-    text-align: center;
-    font-size: 16px;
-    color: red;
-  }
+
+
   .formDiv {
     width: 400px;
+  
   }
   .emptySpace {
     display: none;
@@ -340,7 +348,10 @@ a {
   }
 }
 @media all and (max-width: 480px) {
-
+    #btn {
+        width: 95%;
+        margin:auto;
+    }      
   .formDiv {
     width: 327px;
   }
@@ -358,4 +369,6 @@ a {
   .logo-div {
     margin: 29px 20px 58px 24px;
   }
-} /*# sourceMappingURL=Style.css.map */
+} 
+
+}

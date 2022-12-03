@@ -81,6 +81,7 @@ $size-sm: 12px;
       color: $primaryColor;
       border: 1px solid $primaryColor;
       word-wrap: nowrap;
+      cursor: pointer;
     }
   }
 
@@ -133,6 +134,7 @@ $size-sm: 12px;
           border-radius: 5px;
           color: #ffffff;
           background-color: $primaryColor;
+          cursor: pointer;
         }
       }
 
