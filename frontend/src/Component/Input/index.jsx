@@ -43,11 +43,11 @@ const Input = ({
               {label}
             </label>
           )}
-          {type === "test" ? (
+          {type === "password" ? (
             <input
               name={id}
               id={id}
-              type={type}
+              type={pw}
               placeholder={placeholder}
               value={value}
               onChange={callback}
@@ -58,7 +58,7 @@ const Input = ({
             <input
               name={id}
               id={id}
-              type={pw}
+              type={type}
               placeholder={placeholder}
               value={value}
               onChange={callback}
