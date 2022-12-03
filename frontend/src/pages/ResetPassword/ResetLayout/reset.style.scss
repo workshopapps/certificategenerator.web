@@ -1,0 +1,64 @@
+@import "../../../Style/variables";
+
+.resetPassword {
+  width: 40%;
+  height: 80vh;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  button {
+    width: 100%;
+  }
+
+  section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    &:nth-of-type(1).textarea {
+      width: 90%;
+      margin: 2rem auto;
+      h2 {
+        font-weight: 600;
+        font-size: 32px;
+        line-height: 40px;
+        margin-bottom: 1rem;
+        text-align: center;
+      }
+      p {
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 24px;
+        color: #6c6c70;
+        text-align: center;
+      }
+    }
+    &:nth-of-type(2).resetContainer {
+      width: 100%;
+      background-color: #f7fcfb;
+      box-shadow: 0px 4px 12px rgba(205, 205, 205, 0.24);
+      border-radius: 16px;
+      min-height: 19rem;
+      & > div {
+        width: 70%;
+        margin: 1rem;
+        &.navigateBack {
+          color: $primaryColor;
+          text-align: center;
+          svg {
+            margin-bottom: -2px;
+            margin-right: 0.5rem;
+          }
+          a {
+            text-decoration: none;
+            color: inherit;
+          }
+        }
+      }
+      label {
+      }
+    }
+  }
+}

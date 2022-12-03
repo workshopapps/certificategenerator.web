@@ -54,7 +54,7 @@ body {
 
 .hero {
   padding-top: 2rem;
-  gap: 5.5rem;
+  gap: 4.5rem;
   align-items: center;
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -181,7 +181,7 @@ body {
       }
     }
   }
-  .perks {
+  .perks{
     grid-template-columns: 1fr;
   }
 }
@@ -214,6 +214,7 @@ body {
 }
 
 @media screen and (max-width: 560px) {
+  
   .hero {
     padding-top: 1rem;
     text-align: center;

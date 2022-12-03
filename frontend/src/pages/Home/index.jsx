@@ -5,7 +5,7 @@ import BulkStep from "./BulkStep";
 import Testimonials from "./Testimonials";
 import { Outlet } from "react-router-dom";
 import Partners from "./Partners";
-import bgIMG from "../../assets/Ellipse 569.png";
+
 
 const Home = ({
   logo,
@@ -30,20 +30,6 @@ const Home = ({
         flexDirection: "column"
       }}
     >
-      <img
-        src={bgIMG}
-        className="bgIMG"
-        style={{
-          width: "100%",
-          position: "absolute",
-          zIndex: "-1",
-          right: "50%",
-          top: 0,
-          transform: "translateX(-50%)"
-        }}
-        alt=""
-      />
-
       <Outlet />
       <Hero />
       <Certificate

@@ -5,7 +5,8 @@ const isValidJsonOutput = (jsonArray) => {
     "description",
     "award",
     "signed",
-    "date",
+    "email",
+    "date"
   ];
 
   const csvHeadersCount = Object.keys(jsonArray[0]).length;
