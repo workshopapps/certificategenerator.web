@@ -194,7 +194,7 @@ const [error, setError] = useState(false);
                 )}
               </span>
             </div>
-{error && <p style ={{color:'red'}}>Invalid Email or Password!!!</p>}
+{error && <p style ={{color:'red'}}>Something went wrong</p>}
   
             <div className="forgotPwd">Forgot password?</div>
             <div id="checkTerms">
