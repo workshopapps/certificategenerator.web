@@ -4,27 +4,50 @@ import logo from "../../assets/images/footerIcon.png";
 import "./footer.style.scss";
 import { BsInstagram, BsLinkedin, BsTwitter, BsGithub } from "react-icons/bs";
 import { useEffect } from "react";
+import Button from "../button";
 
 const Footer = () => {
   const year = new Date().getFullYear();
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
-  const handleChange = (e) => {
+  const handleChange = e => {
     setEmail(e.target.value);
   };
-  const handleSubmit = (e) => {
+  const handleSubmit = e => {
     e.preventDefault();
     const regex =
       /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
     if (regex.test(email)) {
       setEmail("");
       setMessage("");
+      onSubscribe();
     } else if (!regex.test(email) && email !== "") {
       setMessage("Please enter a valid email");
     } else {
       return;
     }
   };
+
+  function onSubscribe() {
+    setMessage("");
+    let data = { email: email };
+    fetch("https://certify-api.onrender.com/api/mailinglists", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data)
+    })
+      .then(res => {
+        console.log("Request complete! response:", res);
+      })
+      .catch(err => {
+        console.log("error", ":", err);
+      });
+  }
+
+  function formSubscriptionHandler(e) {
+    e.preventDefault();
+    onSubscribe();
+  }
 
   const routePath = useLocation();
   useEffect(() => {
@@ -75,7 +98,7 @@ const Footer = () => {
           </div>
           <div className="footer-form">
             <h3>Stay up to date with Product</h3>
-            <form noValidate>              
+            <form onSubmit={formSubscriptionHandler}>
               <div className="footer-input">
                 <input
                   type="email"
@@ -83,9 +106,9 @@ const Footer = () => {
                   onChange={handleChange}
                   value={email}
                   name="name"
-                  onClick={() => setMessage("")}
+                  onClick={onSubscribe}
                 />
-                <button onClick={handleSubmit}>Subscribe</button>
+                <Button onClick={handleSubmit}>Subscribe</Button>
               </div>
               <p className="error-msg">{message}</p>
             </form>
@@ -104,24 +127,28 @@ const Footer = () => {
               <a
                 href="https://instagram.com/hnginternship?igshid=YmMyMTA2M2Y="
                 target="_blank"
+                rel="noreferrer"
               >
                 <BsInstagram className="social" />
               </a>
               <a
                 href="https://www.linkedin.com/m/company/hng-internship"
                 target="_blank"
+                rel="noreferrer"
               >
                 <BsLinkedin className="social" />
               </a>
               <a
                 href="https://twitter.com/hnginternship?s=21&t=xpk379-T4b-GQ5_UAcEnsg"
                 target="_blank"
+                rel="noreferrer"
               >
                 <BsTwitter className="social" />
               </a>
               <a
                 href="https://github.com/workshopapps/certificategenerator.web"
                 target="_blank"
+                rel="noreferrer"
               >
                 <BsGithub className="social" />
               </a>

@@ -6,6 +6,13 @@
   align-items: center;
   gap: 128px;
 }
+.login-error {
+  text-align: left;
+  margin-bottom: 0px;
+  margin-left: 30px;
+  font-size: 17px;
+  color: red;
+}
 
 .formDiv {
   display: flex;
@@ -58,10 +65,11 @@
 
 #or {
   margin: 22px;
-  color: #6C6C70;
+  color: #6c6c70;
 }
 
-#hrLine:before, #hrLine:after {
+#hrLine:before,
+#hrLine:after {
   position: absolute;
   top: 51%;
   overflow: hidden;
@@ -97,7 +105,8 @@
   color: #000000;
 }
 
-#signupG, #signupA {
+#signupG,
+#signupA {
   width: 100%;
   height: 48px;
   display: flex;
@@ -105,7 +114,7 @@
   justify-content: center;
   align-items: center;
   gap: 8px;
-  border: 1.2px solid #19A68E;
+  border: 1.2px solid #19a68e;
   border-radius: 10px;
   font-family: "Work Sans";
   font-style: normal;
@@ -132,7 +141,7 @@ form {
 #pwd {
   width: 100%;
   height: 54px;
-  background: #FFFFFF;
+  background: #ffffff;
   border: 1.2px solid #222222;
   border-radius: 10px;
   display: flex;
@@ -146,7 +155,8 @@ form {
   height: 48px;
 }
 
-.email_input {
+.email_input,
+.pw_input {
   border: none;
   width: 90%;
   height: 48px;
@@ -159,7 +169,7 @@ input:focus {
 #email {
   width: 100%;
   height: 54px;
-  background: #FFFFFF;
+  background: #ffffff;
   border: 1.2px solid #222222;
   border-radius: 10px;
   display: flex;
@@ -183,7 +193,7 @@ a {
 }
 
 .eye {
-  color: #6C6C70;
+  color: #6c6c70;
 }
 
 #checkTerms {
@@ -202,7 +212,7 @@ a {
 #btn {
   width: 100% px;
   height: 43px;
-  background: #19A68E;
+  background: #19a68e;
   border-radius: 10px;
   border: none;
   font-family: "Work Sans";
@@ -211,14 +221,14 @@ a {
   font-size: 16px;
   line-height: 19px;
   letter-spacing: -0.004em;
-  color: #FFFFFF;
+  color: #ffffff;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 #coloredTerms {
-  color: #19A68E;
+  color: #19a68e;
 }
 
 .termsOfUse {
@@ -242,7 +252,7 @@ a {
   font-weight: 500;
   font-size: 16px;
   line-height: 19px;
-  color: #6C6C70;
+  color: #6c6c70;
 }
 
 .forgotPwd {
@@ -254,7 +264,7 @@ a {
   font-weight: 400;
   font-size: 12px;
   letter-spacing: -0.5px;
-  color: #19A68E;
+  color: #19a68e;
 }
 
 @media all and (max-width: 1240px) {
@@ -273,6 +283,11 @@ a {
   }
 }
 @media all and (max-width: 1024px) {
+  .login-error {
+    text-align: left;
+    margin-left: 20px;
+    font-size: 17px;
+  }
   .container {
     gap: 60px;
   }
@@ -288,6 +303,11 @@ a {
   }
 }
 @media all and (max-width: 768px) {
+  .login-error {
+    text-align: center;
+    font-size: 16px;
+    color: red;
+  }
   .formDiv {
     width: 400px;
   }
@@ -300,7 +320,7 @@ a {
   }
   #startGenerating {
     margin-bottom: 56px;
-    color: #6C6C70;
+    color: #6c6c70;
   }
   .haveAccount {
     font-size: 12px;
@@ -315,6 +335,11 @@ a {
   }
 }
 @media all and (max-width: 480px) {
+  .login-error {
+    text-align: center;
+    color: red !important;
+    font-size: 15px;
+  }
   .formDiv {
     width: 327px;
   }
@@ -331,4 +356,4 @@ a {
   .logo-div {
     margin: 29px 20px 58px 24px;
   }
-}/*# sourceMappingURL=Style.css.map */
+} /*# sourceMappingURL=Style.css.map */

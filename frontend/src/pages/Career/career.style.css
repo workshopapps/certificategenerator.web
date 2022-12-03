@@ -18,7 +18,7 @@ a {
 }
 
 .section {
-  padding: 0 6.25rem;
+  padding: 0 4.8rem;
 }
 @media screen and (max-width: 912px) {
   .section {
@@ -36,9 +36,12 @@ p {
 }
 
 .career__container {
-  background: #FFFFFF;
+  background: #ffffff;
   font-family: "Sora";
   margin-top: -3rem;
+}
+.career__container > * {
+  font-family: "Sora";
 }
 .career__container .hero__section {
   text-align: initial;
@@ -149,7 +152,7 @@ p {
   font-size: 39px;
 }
 .career__container .section1 h2 b {
-  color: #7B41B4;
+  color: #7b41b4;
 }
 @media screen and (max-width: 912px) {
   .career__container .section1 h2 {
@@ -260,7 +263,7 @@ p {
   .career__container .section3 h2 {
     text-align: center;
     font-size: 1.3rem;
-    color: #08372F;
+    color: #08372f;
   }
   .career__container .section3 h2 b {
     color: #222222;
@@ -348,7 +351,7 @@ p {
   width: 100%;
 }
 .career__container .section4 {
-  background: #E8F6F4;
+  background: #e8f6f4;
   padding: 3rem 5rem;
   text-align: initial;
 }
@@ -358,7 +361,7 @@ p {
   }
 }
 .career__container .section4 h2 {
-  color: #08372F;
+  color: #08372f;
   font-size: 3rem;
   margin-bottom: 3rem;
 }
@@ -373,7 +376,7 @@ p {
   gap: 10px;
 }
 .career__container .section4 form .search__wrapper .input__div {
-  background: #FFFFFF;
+  background: #ffffff;
   display: flex;
   border: 1.2px solid rgba(34, 34, 34, 0.6);
   padding: 5px 10px;
@@ -421,8 +424,8 @@ p {
   padding: 2px;
   width: 25px;
   height: 25px;
-  color: #FFFFFF;
-  background: #6C6C70;
+  color: #ffffff;
+  background: #6c6c70;
   border-radius: 22rem;
   margin-left: 10px;
 }
@@ -442,18 +445,18 @@ p {
   }
 }
 .career__container .section4 .jobs .job__desc h3 {
-  font-size: 1.8rem;
+  font-size: 1rem;
   margin-top: 1rem;
 }
 @media screen and (max-width: 650px) {
   .career__container .section4 .jobs .job__desc h3 {
-    font-size: 1.4rem;
+    font-size: 1rem;
   }
 }
 .career__container .section4 .jobs .job__desc h4 {
-  font-size: 1.2rem;
+  font-size: 0.5rem;
   margin: 1rem 0;
 }
 .career__container .section4 .jobs .job__desc h4 b {
-  color: #6C6C70;
+  color: #6c6c70;
 }

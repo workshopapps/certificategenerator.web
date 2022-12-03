@@ -15,6 +15,8 @@ export default function Filter({
   selectedCategory,
   applyCategories,
   setCategory,
+  setPresentbtncolor,
+  setPresentcategory,
 }) {
   // filter category btn states
   const [btn1active, setBtn1Active] = useState(false);
@@ -31,7 +33,10 @@ export default function Filter({
   const [btn11active, setBtn11Active] = useState(false);
   const [btn12active, setBtn12Active] = useState(false);
   const [btn13active, setBtn13Active] = useState(false);
-  const [btn14active, setBtn14Active] = useState(false);  
+  const [btn14active, setBtn14Active] = useState(false);
+  
+//new states
+  ;  
 
 
   //restore btn states
@@ -66,7 +71,8 @@ export default function Filter({
             <button
               onClick={() => {
                 setBtn1Active(!btn1active);
-                return selectedCategory("completion");
+                //return selectedCategory("completion");
+                setPresentcategory("completion")
               }}
               className="sort-btnmodal"
               style={{
@@ -79,7 +85,8 @@ export default function Filter({
             <button
               onClick={() => {
                 setBtn2Active(!btn2active);
-                return selectedCategory("participation");
+                //return selectedCategory("participation");
+                setPresentcategory("participation")
               }}
               className="sort-btnmodal"
               style={{
@@ -92,7 +99,8 @@ export default function Filter({
             <button
               onClick={() => {
                 setBtn3Active(!btn3active);
-                return selectedCategory("appreciation");
+                setPresentcategory("appreciation")
+                //return selectedCategory("appreciation");
               }}
               className="sort-btnmodal"
               style={{
@@ -105,7 +113,8 @@ export default function Filter({
             <button
               onClick={() => {
                 setBtn4Active(!btn4active);
-                return selectedCategory("recognition");
+                //return selectedCategory("recognition");
+                setPresentcategory("recognition")
               }}
               className="sort-btnmodal"
               style={{
@@ -118,7 +127,8 @@ export default function Filter({
             <button
               onClick={() => {
                 setBtn5Active(!btn5active);
-                return selectedCategory("attendance");
+                //return selectedCategory("attendance");
+                setPresentcategory("attendance")
               }}
               className="sort-btnmodal"
               style={{
@@ -131,7 +141,8 @@ export default function Filter({
             <button
               onClick={() => {
                 setBtn6Active(!btn6active);
-                return selectedCategory("excellence");
+                //return selectedCategory("excellence");
+                setPresentcategory("excellence");
               }}
               className="sort-btnmodal"
               style={{
@@ -144,7 +155,8 @@ export default function Filter({
             <button
               onClick={() => {
                 setBtn7Active(!btn7active);
-                return selectedCategory("achievement");
+                //return selectedCategory("achievement");
+                setPresentcategory("achievement")
               }}
               className="sort-btnmodal"
               style={{
@@ -166,7 +178,8 @@ export default function Filter({
             <button
               onClick={() => {
                 setBtn8Active(!btn8active);
-                return selectedCategory("red");
+                //return selectedCategory("red");
+                setPresentbtncolor("red")
               }}
               className="sort-btnmodal"
               style={{
@@ -182,7 +195,8 @@ export default function Filter({
             <button
               onClick={() => {
                 setBtn9Active(!btn9active);
-                return selectedCategory(<img src={brownimg} alt=""/>);
+                //return selectedCategory(<img src={brownimg} alt=""/>);
+                setPresentbtncolor("brown")
               }}
               className="sort-btnmodal"
               style={{
@@ -197,7 +211,8 @@ export default function Filter({
             <button
               onClick={() => {
                 setBtn10Active(!btn10active);
-                return selectedCategory(<img src={yellowimg} alt=""/>);
+                //return selectedCategory(<img src={yellowimg} alt=""/>);
+                setPresentbtncolor("yellow")
               }}
               className="sort-btnmodal"
               style={{
@@ -212,7 +227,8 @@ export default function Filter({
             <button
               onClick={() => {
                 setBtn11Active(!btn11active);
-                return selectedCategory("green");
+                //return selectedCategory("green");
+                setPresentbtncolor("green")
               }}
               className="sort-btnmodal"
               style={{
@@ -227,7 +243,8 @@ export default function Filter({
             <button
               onClick={() => {
                 setBtn12Active(!btn12active);
-                return selectedCategory("blue");
+                //return selectedCategory("blue");
+                setPresentbtncolor("blue")
               }}
               className="sort-btnmodal"
               style={{
@@ -242,7 +259,8 @@ export default function Filter({
             <button
               onClick={() => {
                 setBtn13Active(!btn13active);
-                return selectedCategory(<img src={blackimg} alt=""/>);
+                //return selectedCategory(<img src={blackimg} alt=""/>);
+                setPresentbtncolor("black")
               }}
               className="sort-btnmodal"
               style={{
@@ -257,7 +275,8 @@ export default function Filter({
             <button
               onClick={() => {
                 setBtn14Active(!btn14active);
-                return selectedCategory(<img src={whiteimg} alt=""/>);
+                //return selectedCategory(<img src={whiteimg} alt=""/>);
+                setPresentbtncolor("white")
               }}
               className="sort-btnmodal"
               style={{
