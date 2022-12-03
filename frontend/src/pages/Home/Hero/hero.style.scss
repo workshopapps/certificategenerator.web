@@ -52,6 +52,22 @@ body {
   margin: auto;
 }
 
+.bg-col{
+  position: relative;
+  height: 90vh;
+  &::before{
+    content: '';
+    position: absolute;
+    top: -25px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: #Edf9f5;
+    border-radius: 0 0 50% 50%/0 0 100% 100%;
+    transform: scaleX(2);
+  }
+}
 .hero {
   padding-top: 2rem;
   gap: 4.5rem;
@@ -59,6 +75,8 @@ body {
   display: grid;
   grid-template-columns: 1fr 1fr;
   margin-bottom: 3rem !important;
+ 
+   
   @media screen and (min-width: 1220px) {
     // gap: 5rem;
   }
@@ -113,7 +131,7 @@ body {
   justify-content: center;
   gap: 1rem;
   width: 95%;
-  margin: 0 auto;
+  margin: -6rem auto 17rem auto;
   padding: 1rem 2rem;
   .single-perk {
     display: flex;
@@ -164,7 +182,7 @@ body {
     }
 
     .hero-img {
-      height: 90%;
+      // height: 90%;
     }
   }
 }
@@ -219,6 +237,8 @@ body {
     padding-top: 1rem;
     text-align: center;
     display: block;
+    flex-direction: column;
+    gap: 4rem;
     .hero-left {
       width: 100%;
       text-align: center;

@@ -6,7 +6,6 @@ import Testimonials from "./Testimonials";
 import { Outlet } from "react-router-dom";
 import Partners from "./Partners";
 
-
 const Home = ({
   logo,
   setLogo,
@@ -32,23 +31,25 @@ const Home = ({
     >
       <Outlet />
       <Hero />
-      <Certificate
-        logo={logo}
-        setLogo={setLogo}
-        certificateTitle={certificateTitle}
-        setCertificateTitle={setCertificateTitle}
-        awardeeName={awardeeName}
-        setAwardeeName={setAwardeeName}
-        message={message}
-        setMessage={setMessage}
-        issuedBy={issuedBy}
-        setIssuedBy={setIssuedBy}
-        issueDate={issueDate}
-        setIssueDate={setIssueDate}
-      />
-      <Partners />
-      <BulkStep />
-      <Testimonials />
+      <div>
+        <Certificate
+          logo={logo}
+          setLogo={setLogo}
+          certificateTitle={certificateTitle}
+          setCertificateTitle={setCertificateTitle}
+          awardeeName={awardeeName}
+          setAwardeeName={setAwardeeName}
+          message={message}
+          setMessage={setMessage}
+          issuedBy={issuedBy}
+          setIssuedBy={setIssuedBy}
+          issueDate={issueDate}
+          setIssueDate={setIssueDate}
+        />
+        <Partners />
+        <BulkStep />
+        <Testimonials />
+      </div>
     </div>
   );
 };
