@@ -91,13 +91,15 @@ function Navbar() {
               })}
             </div>
             <div className="button-container">
+            <NavLink to="/signup" >
               <Button
                 className="btn"
                 onClick={handleToggle}
                 name={"get started"}
               >
-                <Link to="/modify" className="link"></Link>
+                {/* <Link to="/modify" className="link"></Link> */}
               </Button>
+               </NavLink>
             </div>
           </div>
         </div>
