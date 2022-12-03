@@ -3,11 +3,7 @@ import { Link } from "react-router-dom";
 import certificate from "../../assets/images/bulkPreview/Completion - Portrait (2).png";
 import "./bulk.style.scss";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
-<<<<<<< HEAD
-import BulkCertDesign from "./BulkCertDesign"
-=======
 import BulkCertDesign from "./BulkCertDesign";
->>>>>>> c2c9493b4a2222e3de1b51a21b6e8796ee08cb91
 import "@splidejs/react-splide/css";
 import Button from "../../Component/button";
 
@@ -20,13 +16,7 @@ function Index() {
         <h1>Your certificates are ready!</h1>
         <img src={certificate} alt="certificate" />
       </div> */}
-
-<<<<<<< HEAD
-      <BulkCertDesign/>
-
-=======
       <BulkCertDesign />
->>>>>>> c2c9493b4a2222e3de1b51a21b6e8796ee08cb91
 
       {/* PREVIEW OF BULK GENERATED CERTIFICATES  */}
 
@@ -42,10 +32,6 @@ function Index() {
             arrows: true,
             pagination: true,
             breakpoints: {
-<<<<<<< HEAD
-              
-=======
->>>>>>> c2c9493b4a2222e3de1b51a21b6e8796ee08cb91
               640: {
                 perPage: 1
               },
@@ -56,21 +42,6 @@ function Index() {
           }}
         >
           <SplideSlide>
-<<<<<<< HEAD
-            <BulkCertDesign/>
-          </SplideSlide>
-          <SplideSlide>
-            <BulkCertDesign/>
-          </SplideSlide>
-          <SplideSlide>
-            <BulkCertDesign/>
-          </SplideSlide>
-          <SplideSlide>
-            <BulkCertDesign/>
-          </SplideSlide>
-          <SplideSlide>
-            <BulkCertDesign/>
-=======
             <BulkCertDesign />
           </SplideSlide>
           <SplideSlide>
@@ -84,7 +55,6 @@ function Index() {
           </SplideSlide>
           <SplideSlide>
             <BulkCertDesign />
->>>>>>> c2c9493b4a2222e3de1b51a21b6e8796ee08cb91
           </SplideSlide>
           {/* <SplideSlide>
             <img src={certificate} alt="certificates" />
@@ -140,11 +110,7 @@ function Index() {
           <SplideSlide>
             <img src={certificate} alt="certificates" />
           </SplideSlide> */}
-<<<<<<< HEAD
-        </Splide> 
-=======
         </Splide>
->>>>>>> c2c9493b4a2222e3de1b51a21b6e8796ee08cb91
       </section>
 
       {/* BUTTONS TO DOWNLOAD OR SHARE THE CRETIFICATES */}
