@@ -9,6 +9,7 @@ import cert from "./assets/Cert.png";
 import emailSVG from "./assets/email.svg";
 import keySVG from "./assets/key.svg";
 import Swal from "sweetalert2";
+import Input from "../../Input";
 
 const Login = ({ access, setAccess }) => {
   const navigate = useNavigate();
@@ -139,38 +140,40 @@ const Login = ({ access, setAccess }) => {
               <span id="or">or</span>
             </div>
 
-            <div id="email">
-              <img alt="" src={emailSVG} />
-              <input
-                id="email_input"
-                placeholder=" Email"
-                type="text"
-                name="email"
-                onChange = {e => setUserEmail(e.target.value)}
-                required
-                style={{ border: "none" }}
-              />
-            </div>
-            <div id="pwd">
-              <img alt="" src={keySVG} />
+            {/* <div id="email"> */}
+            {/* <img alt="" src={emailSVG} /> */}
+            <Input
+              label={"Email"}
+              id="email_input"
+              placeholder=" Email"
+              type="text"
+              name="email"
+              onChange={e => setUserEmail(e.target.value)}
+              required
+            />
+            {/* </div> */}
+            {/* <div id="pwd"> */}
+            {/* <img alt="" src={keySVG} /> */}
 
-              <input
-                id="input_id"
-                placeholder="Password"
-                type={type}
-                name="password"
-                onChange ={e => setPassword(e.target.value)}
-                required
-                className="pw_input"
-              />
-              <span onClick={handleToggle}>
+            <Input
+              label={"Password"}
+              id="input_id"
+              placeholder="Password"
+              type={type}
+              name="password"
+              onChange={e => setPassword(e.target.value)}
+              required
+              className="pw_input"
+              eyecon={true}
+            />
+            {/* <span onClick={handleToggle}>
                 {type === "text" ? (
                   <AiOutlineEye size={25} className="eye" />
                 ) : (
                   <AiOutlineEyeInvisible size={25} className="eye" />
                 )}
-              </span>
-            </div>
+              </span> */}
+            {/* </div> */}
             {error && <p style={{ color: "red" }}>Something went wrong</p>}
 
             <div className="forgotPwd">Forgot password?</div>
