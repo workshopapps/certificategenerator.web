@@ -4,6 +4,7 @@ import logo from "../../assets/images/footerIcon.png";
 import "./footer.style.scss";
 import { BsInstagram, BsLinkedin, BsTwitter, BsGithub } from "react-icons/bs";
 import { useEffect } from "react";
+import Button from "../button";
 
 const Footer = () => {
   const year = new Date().getFullYear();
@@ -107,7 +108,7 @@ const Footer = () => {
                   name="name"
                   onClick={onSubscribe}
                 />
-                <button onClick={handleSubmit}>Subscribe</button>
+                <Button onClick={handleSubmit}>Subscribe</Button>
               </div>
               <p className="error-msg">{message}</p>
             </form>

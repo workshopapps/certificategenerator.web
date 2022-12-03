@@ -112,6 +112,7 @@ const Login = ({ access, setAccess }) => {
                 name="password"
                 callback={e => setPassword(e.target.value)}
                 required
+                className="pw_input"
               />
               <span onClick={handleToggle}>
                 {type === "text" ? (

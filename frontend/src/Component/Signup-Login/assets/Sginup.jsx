@@ -85,7 +85,7 @@ const Signup = () => {
               <img alt="" src={emailSVG} />
               <Input
                 style={{ border: "none" }}
-                // className="email_input"
+                className="email_input"
                 placeholder=" Email"
                 type="email"
                 required
@@ -98,6 +98,7 @@ const Signup = () => {
               <Input
                 style={{ border: "none" }}
                 // id="input_id"
+                className="pw_input"
                 placeholder="Create a password"
                 type={type}
                 required
