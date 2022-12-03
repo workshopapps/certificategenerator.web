@@ -11,6 +11,7 @@ export const data = [
                     amount: "$0",
                     text: "Key Features",
                     linkTo: "/signup",
+                    AfterLogin: "/",
                     linkText: "Get started",
                     subText: [
                         {
@@ -44,6 +45,7 @@ export const data = [
                     amount: "$11.99",
                     text: "Everything in Lite +",
                     linkTo: "/signup",
+                    AfterLogin: "/payment",
                     linkText: "Choose plan",
                     subText: [
                         {
@@ -86,6 +88,7 @@ export const data = [
                     header: "Best for professionals",
                     amount: "$23.99",
                     text: "Everything in Basic +",
+                    AfterLogin: "/payment",
                     linkTo: "/signup",
                     linkText: "Choose plan",
                     subText: [
@@ -142,6 +145,7 @@ export const data = [
                     amount: "$0",
                     text: "Key Features",
                     linkTo: "/signup",
+                    AfterLogin:"/",
                     linkText: "Get started",
                     subText: [
                         {
@@ -175,6 +179,7 @@ export const data = [
                     amount: "$119.99",
                     text: "Everything in Lite +",
                     linkTo: "/payment",
+                    AfterLogin:"/payment",
                     linkText: "Choose plan",
                     subText: [
                         {
@@ -218,6 +223,7 @@ export const data = [
                     amount: "$239.99",
                     text: "Everything in Basic +",
                     linkTo: "/payment",
+                    AfterLogin:"/payment",
                     linkText: "Choose plan",
                     subText: [
                         {

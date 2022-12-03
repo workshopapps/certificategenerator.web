@@ -24,7 +24,7 @@ export default function Certificate ({
     const disabledButton = !logo.trim() || !message.trim() || !certificateTitle.trim() || !awardeeName.trim() || !issuedBy.trim() || !issueDate.trim()
     const handleSubmit = (e) => {
       e.preventDefault()
-      navigate('/single_preview')
+      navigate('/preview')
     }
     
     return (
@@ -38,13 +38,13 @@ export default function Certificate ({
 
           {bulkCertificate ? 
           <div className="flex justify-between mode">
-            <button className="select" style={{color: '#222222', backgroundColor: '#ffffff'}}  onClick={() => {setBulkCertificate(false)}}>Single <span className="mobile-none">Certificate</span></button>
+            <button className="select" style={{color: '#222222', backgroundColor: '#ffffff', transition: '300ms ease-in'}}  onClick={() => {setBulkCertificate(false)}}>Single <span className="mobile-none">Certificate</span></button>
             <button className="select" onClick={() => {setBulkCertificate(true)}}>Bulk <span className="mobile-none">Certificate</span></button>
           </div>
           :
           <div className="flex justify-between mode">
             <button className="select"  onClick={() => {setBulkCertificate(false)}}>Single <span className="mobile-none">Certificate</span></button>
-            <button className="select" style={{color: '#222222', backgroundColor: '#ffffff'}} onClick={() => {setBulkCertificate(true)}}>Bulk <span className="mobile-none">Certificate</span></button>
+            <button className="select" style={{color: '#222222', backgroundColor: '#ffffff', transition: '300ms ease-in'}} onClick={() => {setBulkCertificate(true)}}>Bulk <span className="mobile-none">Certificate</span></button>
           </div>
         }
           
@@ -58,7 +58,6 @@ export default function Certificate ({
             <input type="file" name="uploadfile" id="img" style={{ display:"none"}}/>
             <label for="img" className="upload">Upload logo</label>
             <p style={{fontSize: '12px', margin: '0'}}>Max image upload size: 8mb</p>
-
             <label for='text' className="label">Certificate Title</label>
             <input type="text" placeholder="Certificate of completion"/>
         
@@ -66,13 +65,10 @@ export default function Certificate ({
             <input type="text" placeholder="For your exceptional performance this month, 
             in appreciation for your loyalty and the desire to fulfil our goals, 
             in recognition of your leadership and dedication "/>
-
             <label for='text' className="label">Issued by</label>
             <input type="text" placeholder="Name of organisation or issuer"/>
-
             <label for='date' className="label">Issue Date</label>
             <input type="date" />
-
             <input type="submit" value="Create Certificate" className="submit-btn"/> */}
           </form>
            </div>
@@ -106,7 +102,7 @@ export default function Certificate ({
             <input type="text" placeholder="Name of organisation or issuer" value={issuedBy} onChange={e => setIssuedBy(e.target.value)} />
 
             <label htmlFor='date' className="label">Issue Date</label>
-            <input type="text" value={issueDate} onChange={e => setIssueDate(e.target.value)} />
+            <input type="date" value={issueDate} onChange={e => setIssueDate(e.target.value)} />
 
             
             

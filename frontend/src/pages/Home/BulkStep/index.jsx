@@ -1,13 +1,14 @@
 import React from "react";
-import { useNavigate } from "react-router-dom"
- import './BulkStep.style.scss'
-import example from '../../../assets/images/example.png'
-import one from '../../../assets/images/step-one.png'
-import two from '../../../assets/images/step-two.png'
-import three from '../../../assets/images/step-three.png'
+import { useNavigate } from "react-router-dom";
+import "./BulkStep.style.scss";
+import example from "../../../assets/images/example.png";
+import one from "../../../assets/images/step-one.png";
+import two from "../../../assets/images/step-two.png";
+import three from "../../../assets/images/step-three.png";
+import Button from "../../../Component/button";
 
 export default function BulkStep() {
-  const navigate =useNavigate()
+  const navigate = useNavigate();
   return (
     <div className="bulk">
       <p className="heading sora">
@@ -26,19 +27,40 @@ export default function BulkStep() {
         <div className="text-left work-sans right">
           <div className="process">
             <img src={one} alt="one" />
-            <p className="steps">Select certificate template</p>
+            <div>
+              <p className="steps">Select certificate template</p>
+              <p>
+                Pick your preferred template that best suites your organization,
+                school, academy and modify as you go
+              </p>
+            </div>
           </div>
           <div className="process">
             <img src={two} alt="two" />
-            <p className="steps">Upload a CSV file</p>
+            <div>
+              <p className="steps">Upload a CSV file</p>
+              <p>
+                Pick your preferred template that best suites your organization,
+                school, academy and modify as you go
+              </p>
+            </div>
           </div>
           <div className="process">
             <img src={three} alt="three" />
-            <p className="steps">Generate bulk certificates</p>
+            <div>
+              <p className="steps">Generate bulk certificates</p>
+              <p>
+                Pick your preferred template that best suites your organization,
+                school, academy and modify as you go
+              </p>
+            </div>
           </div>
         </div>
-      </div> 
-      <button className="bulk-button work-sans" onClick={()=> navigate("/signup")}>Create Bulk Certificates</button>
-    </div>   
-    )
+      </div>
+
+      <Button className="bulk-button " onClick={() => navigate("/signup")}>
+        Create Bulk Certificates
+      </Button>
+    </div>
+  );
 }

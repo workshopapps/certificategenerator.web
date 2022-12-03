@@ -1,9 +1,10 @@
 import Style from "./faq.module.scss";
-import { RiArrowDropRightLine, RiArrowDropDownLine } from "react-icons/ri";
+import { AiOutlinePlus, AiOutlineMinus } from "react-icons/ai";
 import { FaqIcon } from "../../assets/svgs";
 
 export const FaqItems = ({ faq, onToggle, active }) => {
   const { title, body } = faq;
+  // AiOutlinePlus;
 
   return (
     <>
@@ -12,20 +13,20 @@ export const FaqItems = ({ faq, onToggle, active }) => {
           <div className={Style.question}>
             {/* <RiQuestionnaireLine className={Style.icon} /> */}
 
-            <FaqIcon className={Style.faqIcon} />
+            {/* <FaqIcon className={Style.faqIcon} /> */}
 
             <h3>{title}</h3>
           </div>
 
           {active ? (
-            <RiArrowDropRightLine className={Style.icon} />
+            <AiOutlineMinus className={Style.icon} />
           ) : (
-            <RiArrowDropDownLine className={Style.icon} />
+            <AiOutlinePlus className={Style.icon} />
           )}
         </div>
         {active ? (
           <ul className={Style.faqAnswers}>
-            {body.map((item) => {
+            {body.map(item => {
               return <li>{item}</li>;
             })}
           </ul>

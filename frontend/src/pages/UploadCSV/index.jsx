@@ -3,31 +3,36 @@ import "./uploadCSV.style.scss";
 import Button from "../../Component/button";
 // img
 import Certificate from "../../assets/images/uploadPage/cert.svg";
-import CSVSample from "../../assets/images/uploadPage/CSVSample.svg";
+//import CSVSample from "../../assets/images/uploadPage/CSVSample.svg";
+import CSVSample from "../../assets/images/CSV-sample.png";
 import UploadVector from "../../assets/images/uploadPage/uploadVector.svg";
 import Template1 from "../../assets/images/uploadPage/template1.svg";
 import Template2 from "../../assets/images/uploadPage/template2.svg";
 import Template3 from "../../assets/images/uploadPage/template3.svg";
 import { useState } from "react";
 
-const UploadCSV = ({setFile}) => {
+const UploadCSV = ({ setFile }) => {
   const [state, setState] = useState({ active: true });
-  
-  const toggleState = (e) => {
+
+  const toggleState = e => {
     console.log(Object.values(e.target.classList));
     // console.log( typeof e.target.classList);
     const active = Object.values(e.target.classList).find(
-      (element) => element === "active"
+      element => element === "active"
     );
     //   .forEach(element => {
     if (!active) {
       // console.log(3);
-      setState((prev) => {
+      setState(prev => {
         return { ...prev, active: !prev.active };
       });
     }
   };
-  
+  let formdata = new FormData();
+
+  function handleUpload(e) {
+    e.preventDefault();
+  }
 
   return (
     <div className="uploadCSVContainer">
@@ -63,14 +68,16 @@ const UploadCSV = ({setFile}) => {
               name="uploadCSV"
               accept=".csv"
               className="box"
-              onChange={(e) => {setFile(e.target.files);}}
+              onChange={e => {
+                setFile(e.target.files);
+              }}
             />
             Browse files
           </label>
         </span>
       </div>
       {/* <button className='btn btnLight'>Generate Certificate</button> */}
-
+      <button style={{ display: "none" }}>Upload</button>
       <div>
         <h2>Even More Template for You</h2>
         <div className="moreTemplate">
@@ -78,7 +85,9 @@ const UploadCSV = ({setFile}) => {
           <img src={Template2} alt="Template2" />
           <img src={Template3} alt="Template3" />
         </div>
-        <button className="btn btnLight">Explore More Template</button>
+        <Button className="btn btnLight" style={{ margin: "1em auto" }}>
+          Explore More Template
+        </Button>
       </div>
     </div>
   );
