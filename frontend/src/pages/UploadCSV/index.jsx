@@ -45,10 +45,10 @@ const UploadCSV = () => {
       </div>
       
       {/* <h1>Your certificate is almost ready!</h1> */}
-      <div className="certificatePreview">
+      {/* <div className="certificatePreview">
         <img src={Certificate} alt="certificate preview" />
-      </div>
-      <h2>Upload your csv file here in the format below</h2>
+      </div> */}
+      <h2>Upload your csv file in the format below</h2>
       <div className="CSVSample">
         <img src={CSVSample} alt="CSV sample" />
       </div>
@@ -60,33 +60,31 @@ const UploadCSV = () => {
         //   onDragOver={handleDrag}
         //   onDrop={handleDrop}
       >
-        <i>
-          <img src={UploadVector} alt="upload icon" />
-        </i>
-        <span>
-          Drag and drop your CSV file here
-          <br /> or
-          <label htmlFor="uploadCSV" className="fileUpload CSVupload">
-            <input
-              type="file"
-              id="uploadCSV"
-              name="uploadCSV"
-              accept=".csv"
-              className="box"
-              onChange={e=>validateInput(e)}
-            />
-            Browse files
-          </label>
-        </span>  
-        {errorFile && <div className="messagecsv">Invalid file!! submit only csv files</div>}
-        <Button className="btn btnLight" style={{ margin: "1em auto" }} onClick={handleUpload}>
-          Upload file                                                                                                                                                                                                                                     
-        </Button>
+        <div className="dragboxContainer">
+          <i>
+            <img src={UploadVector} alt="upload icon" />
+          </i>
+          <span >
+            Drag and drop your CSV file here
+            <br /> or <br />
+            <label htmlFor="uploadCSV" className="fileUpload CSVupload">
+              <input
+                type="file"
+                id="uploadCSV"
+                name="uploadCSV"
+                accept=".csv"
+                className="box"
+                onChange={e=>validateInput(e)}
+              />
+            </label>
+          </span> 
+        </div> 
+        {errorFile && <div className="messagecsv">Invalid file!! submit only csv files</div>}   
+        <div className="Submitcsv" onClick={validateInput}>Submit CSV</div>
         
       </div>
       {/* <button className='btn btnLight'>Generate Certificate</button> */}
-      <button style={{ display: "none" }}>Upload</button>
-      <div>
+      {/* <div>
         <h2>Even More Template for You</h2>
         <div className="moreTemplate">
           <img src={Template1} alt="Template1" />
@@ -96,7 +94,7 @@ const UploadCSV = () => {
         <Button className="btn btnLight" style={{ margin: "1em auto" }}>
           Explore More Template
         </Button>
-      </div>
+      </div> */}
     </div>
   );
 };

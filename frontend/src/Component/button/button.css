@@ -5,7 +5,7 @@
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
-  border: none;
+  border: 1px solid #19a68e;
   outline: none;
   border-radius: 10px;
   padding: 0.75rem;
@@ -15,4 +15,27 @@
   align-items: center;
   justify-content: center;
   font-weight: 400;
+  text-transform: capitalize;
+  transition: all 0.3s;
+}
+.btn:hover {
+  opacity: 0.7;
+  cursor: pointer;
+}
+.btn.btnDisable {
+  opacity: 1;
+  background-color: #b2e1d9;
+  cursor: not-allowed;
+}
+.btn.btnLight {
+  color: #19a68e;
+  background-color: #fff;
+  border: #19a68e;
+  border: 1px solid #19a68e;
+}
+.btn.btnLight:hover {
+  color: #fff;
+  background-color: #19a68e;
+  border: none;
+  opacity: 0.7;
 }
