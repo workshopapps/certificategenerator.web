@@ -9,7 +9,6 @@ const CertificateSchema = new mongoose.Schema({
     },
     nameoforganization: {
         type: String,
-        required: [true, 'Name of organization (issuer) is required']
     },
     description: {
         type: String,

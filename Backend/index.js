@@ -49,9 +49,7 @@ app.use(express.json());
 app.use(bodyParser.json());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(fileUpload({
-  useTempFiles: true
-}));
+app.use(fileUpload());
 
 
 app.get("/", (req, res) => {

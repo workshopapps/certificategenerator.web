@@ -3,7 +3,6 @@ const Event = require("../models/eventModel");
 const mongoose = require("mongoose");
 const Certificate = require("../models/certificateModel");
 const Joi = require("joi");
-const { buildEventLink } = require("../utils/helpers");
 
 const getAllEvents = async (req, res) => {
   try {
