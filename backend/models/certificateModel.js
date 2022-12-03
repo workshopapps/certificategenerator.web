@@ -7,9 +7,8 @@ const CertificateSchema = new mongoose.Schema({
         type: String,
         required: [true, 'Name of recipient is required']
     },
-    nameOfOrganization: {
+    nameoforganization: {
         type: String,
-        required: [true, 'Name of organization (issuer) is required']
     },
     description: {
         type: String,
@@ -22,9 +21,23 @@ const CertificateSchema = new mongoose.Schema({
     signed: {
         type: String,
     },
+    email: {
+      type: String,
+    },
     date: {
         type: String,
         required: [true, 'Date issued is required']
+    },
+    status: {
+      type: String,
+      enum: [ 'pending', 'issued', 'canceled' ],
+      default: 'pending'
+    },
+    uuid: {
+      type: String
+    },
+    link: {
+      type: String
     }
   }],
   userId:{
