@@ -25,7 +25,7 @@ const ProfileSchema = new mongoose.Schema({
   email: {
     type: String,
     required: [true, "Must provide a valid email address!"],
-    //  unique: true,
+    unique: true,
   },
   phoneNumber: {
     type: String,
