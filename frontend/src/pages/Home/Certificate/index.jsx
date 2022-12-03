@@ -4,8 +4,10 @@ import { Link, useNavigate } from "react-router-dom";
 import UploadCSV from "../../UploadCSV";
 import Button from "../../../Component/button";
 import Input from "../../../Component/Input";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
-export default function Certificate({
+export default function Certificate ({
   logo,
   setLogo,
   certificateTitle,
@@ -19,19 +21,28 @@ export default function Certificate({
   issueDate,
   setIssueDate
 }) {
-  const [bulkCertificate, setBulkCertificate] = useState(false);
-  const navigate = useNavigate();
-  const disabledButton =
-    !logo.trim() ||
-    !message.trim() ||
-    !certificateTitle.trim() ||
-    !awardeeName.trim() ||
-    !issuedBy.trim() ||
-    !issueDate.trim();
-  const handleSubmit = e => {
-    e.preventDefault();
-    navigate("/preview");
-  };
+    const [bulkCertificate, setBulkCertificate] = useState(false);
+    const [date, setDate ] = useState(Date.now())
+    const navigate = useNavigate()
+    const disabledButton = !logo.trim() || !message.trim() || !certificateTitle.trim() || !awardeeName.trim() || !issuedBy.trim() || !issueDate
+    const handleSubmit = (e) => {
+      e.preventDefault()
+      navigate('/preview')
+    }
+    const handleDate = (date) => {
+      setDate(date)
+      setIssueDate(formatDate(date));
+    }
+    function padTo2Digits(num) {
+      return num.toString().padStart(2, '0');
+    }
+    function formatDate(date) {
+      return [
+        padTo2Digits(date.getDate()),
+        padTo2Digits(date.getMonth() + 1),
+        date.getFullYear(),
+      ].join('/');
+    }
 
   return (
     <>
@@ -181,23 +192,11 @@ export default function Certificate({
               value={issuedBy}
               onChange={e => setIssuedBy(e.target.value)}
             />
-
-            {/* <label htmlFor="date" className="label">
-              Issue Date
-            </label> */}
-            <Input
-              label={"Issue Date"}
-              type="date"
-              value={issueDate}
-              onChange={e => setIssueDate(e.target.value)}
-            />
-
-            <Button
-              disabled={disabledButton}
-              className={`${disabledButton && "btnDisable"} btn-success`}
-            >
-              Create Certificate
-            </Button>
+            
+            <label htmlFor='' className="label">Issue Date</label>
+            <DatePicker selected={date} onChange={handleDate} dateFormat="dd/MM/yyyy" />           
+           
+            <button disabled={disabledButton} className={`${disabledButton && 'btn-disabled'} btn-success`}>Create Certificate</button>
           </form>
         </div>
       )}
