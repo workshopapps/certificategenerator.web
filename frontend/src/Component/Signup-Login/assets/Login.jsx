@@ -151,7 +151,7 @@ const Login = ({ access, setAccess }) => {
       accessToken: res.accessToken
     };
 
-    if (token.accessToken) createNewUser(token);
+    if (token.accessToken) loginUser(token);
 
     localStorage.setItem("username", res.profileObj.email);
     localStorage.setItem("name", res.profileObj.name);
@@ -162,7 +162,7 @@ const Login = ({ access, setAccess }) => {
   };
 
   // Send access token to backend
-  function createNewUser(token) {
+  function loginUser(token) {
     console.log(token);
     fetch("https://certgo.hng.tech/api/auth/login", {
       method: "POST",
