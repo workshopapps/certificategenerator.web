@@ -16,54 +16,56 @@ body {
 
 .testimonial {
   text-align: center;
+  // padding: 0 50px;
   margin: 50px 0px;
   font-family: "Sora" !important;
-}
 
-.testimonial-wrapper {
-  margin: 30px 40px;
-  padding: 0px 50px;
-  overflow: hidden;
+  .testimonial-wrapper {
+    margin: 30px 0px;
+    padding: 0px 50px;
+    overflow: hidden;
+  }
 }
 
 .testimonial-box {
-  min-height: 300px;
-  padding: 25px;
-  border: 1px solid grey;
-  border-radius: 10px;
+  // height: 325px;
+  
+  padding: 45px 25px;
+  border: 1px solid #b2e1d9;
+  border-radius: 20px;
   margin-bottom: 50px;
 }
 
-.testimonial-flex {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-}
+  .testimonial-flex {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
 
-.testimonial-box .test-image img {
-  width: 80px;
-}
+  .testimonial-box .test-image img {
+    width: 80px;
+  }
 
-.testimonial-flex .text {
-  margin-left: 20px;
-  text-align: left;
-}
+  .testimonial-flex .text {
+    margin-left: 20px;
+    text-align: left;
+  }
 
 .testimonial-name {
   font-size: 16px;
   font-weight: 600;
   margin: 0px;
 }
-.gap{
-    gap: 2rem;
+.gap {
+  gap: 2rem;
 }
 .testimonial-header {
-    font-weight: 700;
-    font-size: 48px;
-    line-height: 60px;
-    padding: 40px 0 0px 0;
-    text-align: center;
-    margin-bottom: 8px;
+  font-weight: 700;
+  font-size: 48px;
+  line-height: 60px;
+  padding: 40px 0 0px 0;
+  text-align: center;
+  margin-bottom: 8px;
 }
 .testimonial-state {
   font-size: 14px;
@@ -78,60 +80,85 @@ body {
   margin-top: 30px;
   font-weight: 500;
 }
-.testimonials{
-    width: 90%;
+.testimonials {
+  width: 90%;
 }
 .testimonial-container {
-    // width: 33%;
-    border: 1px solid rgba(73, 73, 73, 0.4);
-    border-radius: 24px;
-    padding: 40px 25px 40px 25px;
-    p{
-        margin: 0;
-    }
+  // width: 33%;
+  border: 1px solid rgba(73, 73, 73, 0.4);
+  border-radius: 24px;
+  padding: 40px 25px 40px 25px;
+  p {
+    margin: 0;
+  }
 }
 
 .testimonial-bottom {
-    padding-bottom: 80px !important;
+  padding-bottom: 80px !important;
 }
 
-@media screen  and (max-width: 768px) and (min-width: 481px) {
-    .testimonials {
-        flex-direction: column;
-        width: 80% !important;
-        margin: auto !important;
-        .testimonial-container {
-            width: 100%;
-        }
+@media screen and (max-width: 768px) and (min-width: 481px) {
+  .testimonials {
+    flex-direction: column;
+    width: 80% !important;
+    margin: auto !important;
+    .testimonial-container {
+      width: 100%;
     }
-    .testimonial-caption {
-        font-size: 20px;
-        line-height: 24px;
+  }
+  .testimonial-caption {
+    font-size: 20px;
+    line-height: 24px;
+  }
+}
+@media screen and (max-width: 600px){
+  .testimonial {
+     margin: 30px 0px;
+    padding: 0px 16px;
+    overflow: hidden;
+  }
+  .testimonial .testimonial-wrapper {
+    margin: 30px 0px;
+    padding: 0px 0px;
+    overflow: hidden;
+}
+  }
+
+
+
+
+@media screen and (max-width: 480px) {
+  .testimonials {
+    flex-direction: column;
+    .testimonial-container {
+      width: 100%;
     }
+  }
+  .testimonial-header {
+    font-size: 24px;
+    line-height: 30px;
+  }
+  .testimonial-caption {
+    font-size: 16px;
+    line-height: 24px;
+  }
+  .testimonial-bottom {
+    margin-bottom: 52px !important;
+  }
 }
 
-@media screen  and (max-width: 480px) {
-    .testimonials {
-        flex-direction: column;
-        .testimonial-container {
-            width: 100%;
-        }
-    }
-    .testimonial-header {
-        font-size: 24px;
-        line-height: 30px;
-    }
-    .testimonial-caption {
-        font-size: 16px;
-        line-height: 24px;
-    }
-    .testimonial-bottom {
-        margin-bottom: 52px !important;
-    }
+@media screen and (min-width: 768px) {
+  .testimonial-wrapper {
+    margin: 30px 40px;
+  }
+  .testimonial-box {
+    height: 280px !important;
+    padding: 25px;
+  }
 }
 
 @media screen and (min-width: 1024px) {
   .testimonial-box {
-    max-height: 315px;
+    // height: 325px !important;
   }
 }

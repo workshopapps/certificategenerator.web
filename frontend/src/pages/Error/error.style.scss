@@ -28,29 +28,31 @@
   flex-direction: column;
   gap: 20px;
 
-  button {
-    font-family: "Work Sans", sans-serif;
-    display: block;
-    padding: 14.5px 20px;
-    width: 200px;
-    height: 48px;
-    max-width: 200px;
-    border: none;
-    border-radius: 10px;
-    background-color: white;
-    font-size: 1rem;
+  .btn-outline {
+    // font-family: "Work Sans", sans-serif;
+    // display: block;
+    // padding: 14.5px 20px;
+    // width: 200px;
+    // height: 48px;
+    // max-width: 200px;
+    // border: none;
+    // border-radius: 10px;
+    // background-color: white;
+    // font-size: 1rem;
   }
   .link {
     text-decoration: none;
     .btn-outline {
       cursor: pointer;
-      border: 2px solid #19a68e;
+      border: 1px solid #19a68e;
       background-color: white;
       color: #19a68e;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 10px;
+      padding: auto 20px;
+      width: 200px;
     }
     .btn-solid {
       cursor: pointer;

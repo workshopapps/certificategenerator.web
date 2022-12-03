@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Sora:wght@100;200;300;400;500;600;700&display=swap");
 @import "../../Style/variables";
 
-.modal-wrapper {
+.modal-wrapperx {
   height: 100%;
   width: 100%;
   background: rgba(34, 34, 34, 0.4);
@@ -16,12 +16,12 @@
   display: flex;
   justify-content: center;
 
-  .modal-container {
+  .modal-containerx {
     background-color: #fff;
     width: 90%;
     border-radius: 10px;
     position: absolute;
-    top: 9%;
+    top: 12%;
     align-self: center;
     padding: 25px 15px;
 
@@ -41,7 +41,7 @@
       justify-content: flex-end;
     }
 
-    .modal-container__cancel {
+    .modal-containerx__cancel {
       background: transparent;
       color: #6c6c70;
       border: none;
@@ -82,7 +82,7 @@
       justify-content: center;
       gap: 15px;
       margin-top: 20px;
-      .modal-container__btn {
+      .modal-containerx__btn {
         background: $primaryColor !important;
         color: #fff !important;
         border: 1px solid $primaryColor;
@@ -118,8 +118,8 @@
 }
 
 @media (min-width: 700px) {
-  .modal-wrapper {
-    .modal-container {
+  .modal-wrapperx {
+    .modal-containerx {
       width: 500px;
       top: 300px;
       padding: 35px;

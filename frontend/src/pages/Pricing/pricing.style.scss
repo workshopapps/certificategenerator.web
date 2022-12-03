@@ -166,7 +166,7 @@ main {
                         font-weight: 600;
                         font-size: 16px;
                         line-height: 26px;
-                        width: 335px;
+                        width: 90%;
                         height: 54px;
                         box-shadow: 0px 6px 21px rgba(0, 112, 244, 0.15);
                         border-radius: 5px;
@@ -329,15 +329,23 @@ main {
     margin: 50px 0px;
     font-family: "Sora" !important;
   }
-  
+ 
   .testimonial-wrapper {
     margin: 30px 40px;
     padding: 0px 50px;
     overflow: hidden;
   }
-  
-  .testimonial-box {
-    min-height: 300px;
+  .testimonial h1{
+    font-weight: 600;
+    margin:20px;
+    font-size: 27px!important;
+}
+.testimonial-para{
+    font-size: 16px;
+}
+
+  .testimonial-boxn {
+    height: 360px;
     padding: 25px;
     border: 1px solid grey;
     border-radius: 10px;
@@ -350,7 +358,7 @@ main {
     justify-content: flex-start;
   }
   
-  .testimonial-box .test-image img {
+  .testimonial-boxn .test-image img {
     width: 80px;
   }
   
@@ -378,10 +386,32 @@ main {
     margin-top: 30px;
     font-weight: 500;
   }
-  
+  @media screen and (max-width: 800px) {
+    .testimonial-boxn {
+      height: 380px;
+    }
+}
+  @media screen and (max-width: 360px) {
+    .testimonial-boxn {
+      height: 400px;
+    }
+}
+@media screen and (max-width: 290px) {
+    .testimonial-boxn {
+      height: 450px;
+    }
+} @media screen and (max-width: 450px) {
+    .testimonial-boxn {
+    //   height: 600px;
+    }
+}
   @media screen and (min-width: 1024px) {
-    .testimonial-box {
-      max-height: 315px;
+    .testimonial h1{
+    font-size: 30px!important;
+    margin: 20px;
+    }
+    .testimonial-para{
+        font-size: 20px;
     }
   }
 
@@ -399,7 +429,7 @@ main {
     }
 }
 
-@media (max-width: 1300px) {
+@media (max-width: 1024px) {
     main {
         .pricing{
             background: $pricingBackground;
@@ -673,7 +703,52 @@ main {
         }
     }
 }
+@media (max-width: 600px) {
+    main .pricing .plans .sliderContainer #slider article {
+        width: 287px;
+    }
+        main .pricing .plans {
+            max-width: 100%;
+            width: 90%;
+            margin-left: 0;
+            margin-right: 0;
+        }
+        
+        
 
+    main .pricing .plans .plansContainer .Basic a, main .pricing .plans .plansContainer .Premium a, main .pricing .plans .plansContainer .Standard a {
+        width: 80%;
+    }
+    main .pricing .plans .btnContainer .plan-btn {
+        // color: #191A1B;
+        max-width: 100px;
+        height: 38px;
+    }
+    main .pricing .plans .plansContainer .Basic .others span, main .pricing .plans .plansContainer .Premium .others span, main .pricing .plans .plansContainer .Standard .others span {
+        display: inline-block;
+        margin-left: 20px;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 26px;
+    }
+    // main .testimonial-wrapper {
+    //     margin: 30px 0;
+    //     padding: 0px;
+    //     overflow: hidden;
+    // }
+    // main .testimonial {
+    //     text-align: center;
+    //     margin: 50px 0px;
+    //     font-family: "Sora" !important;
+    // }
+    
+}
+
+@media (max-width: 400px) {
+    main .pricing .plans .sliderContainer #slider article {
+        width: 287px;
+    }
+}
 @media (max-width: 360px) {
     main {
         .pricing{

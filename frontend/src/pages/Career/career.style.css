@@ -30,8 +30,13 @@ a {
     padding: 0 0.5rem;
   }
 }
+@media screen and (min-width: 1300px) {
+  .section {
+    padding: 0 10%;
+  }
+}
 
-p {
+.career__container p {
   margin: 1rem 0;
 }
 
@@ -39,9 +44,6 @@ p {
   background: #ffffff;
   font-family: "Sora";
   margin-top: -3rem;
-}
-.career__container > * {
-  font-family: "Sora";
 }
 .career__container .hero__section {
   text-align: initial;
@@ -394,19 +396,49 @@ p {
   outline: none;
   width: 100%;
 }
-.career__container .section4 form .options select {
-  padding: 10px 12px;
+.career__container .section4 form .options {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.career__container .section4 form .options div {
   width: 141px;
   height: 40px;
   border-radius: 8px;
   border: 1px solid #222222;
   margin: 1rem 1rem 0 0;
   outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+  background-color: #fff;
 }
 @media screen and (max-width: 650px) {
-  .career__container .section4 form .options select {
+  .career__container .section4 form .options div {
     width: 112px;
   }
+}
+.career__container .section4 form .options div select {
+  cursor: pointer;
+  padding-left: 8px;
+  outline: none;
+  border: none;
+  width: 110%;
+  height: 110%;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+.career__container .section4 form .options div select::-ms-expand {
+  display: none;
+}
+.career__container .section4 form .options div .select_dropdown_icon {
+  cursor: pointer;
+  position: absolute;
+  right: 7px;
+  color: #222222;
 }
 .career__container .section4 .jobs {
   margin-top: 2rem;
@@ -445,17 +477,22 @@ p {
   }
 }
 .career__container .section4 .jobs .job__desc h3 {
-  font-size: 1rem;
+  font-size: 1.4rem;
   margin-top: 1rem;
 }
 @media screen and (max-width: 650px) {
   .career__container .section4 .jobs .job__desc h3 {
-    font-size: 1rem;
+    font-size: 1.4rem;
   }
 }
 .career__container .section4 .jobs .job__desc h4 {
-  font-size: 0.5rem;
-  margin: 1rem 0;
+  font-size: 0.95rem;
+  font-weight: 400;
+  line-height: 10px;
+  margin-bottom: 0.7rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 .career__container .section4 .jobs .job__desc h4 b {
   color: #6c6c70;

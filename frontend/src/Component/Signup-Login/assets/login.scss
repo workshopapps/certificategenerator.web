@@ -1,0 +1,374 @@
+#login{
+
+
+.authContainer {
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 128px;
+}
+
+
+.formDiv {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 503px;
+  text-align: start;
+}
+
+.logo-container {
+  width: 100%;
+  margin: 29px 64px 58px 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo-div {
+  width: 100%;
+  height: 40px;
+  display: flex;
+  max-width: 1240px;
+}
+
+.logo {
+  width: 150px;
+  height: 40px;
+}
+
+.menu {
+  display: none;
+}
+
+.emptySpace {
+  width: 608px;
+  height: 583px;
+  background: rgba(178, 225, 217, 0.1);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+}
+
+#hrLine {
+  position: relative;
+  font-size: 30px;
+  z-index: 1;
+  overflow: hidden;
+  text-align: center;
+}
+
+#or {
+  margin: 22px;
+  color: #6c6c70;
+  font-size:21px;
+}
+
+#hrLine:before,
+#hrLine:after {
+  position: absolute;
+  top: 51%;
+  overflow: hidden;
+  width: 50%;
+  height: 1.2px;
+  content: " ";
+  background-color: #222222;
+}
+
+#hrLine:before {
+  margin-left: -50%;
+  text-align: right;
+}
+
+#heading {
+  width: 100%;
+  font-family: "Sora";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 46px;
+  line-height: 59px;
+  letter-spacing: -0.5px;
+  color: #222222;
+}
+
+#startGenerating {
+  font-family: "Work Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: -0.5px;
+  color: #000000;
+}
+
+#signupG,
+#signupA {
+  width: 100%;
+  height: 48px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border: 1.2px solid #19a68e;
+  border-radius: 10px;
+  font-family: "Work Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  display: flex;
+  align-items: center;
+  letter-spacing: -0.004em;
+  color: #222222;
+}
+
+#img_id {
+  width: 24px;
+  height: 24px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+#pwd {
+  width: 100%;
+  height: 54px;
+  background: #ffffff!important;
+  border: 1.2px solid #222222;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+#input_id {
+  border: none;
+  width: 80%;
+  height: 48px;
+}
+
+#email_input {
+ 
+        border: none;
+        width: 90%;
+        height: 48px;
+      
+}
+input::placeholder{
+  font-size:15px;
+}
+input{
+  font-size:17px;
+  color:#000;
+}
+
+input:focus {
+  outline: none;
+  border:none;
+}
+
+#email {
+  width: 100%;
+  height: 54px;
+  background: #ffffff;
+  border: 1.2px solid #222222;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+#email img{
+    margin-right:0px;
+}
+
+a {
+  text-decoration: none;
+  color: #222222;
+}
+
+#label {
+  font-family: "Work Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 16px;
+  letter-spacing: -0.5px;
+  color: #222222;
+}
+
+.eye {
+  color: #6c6c70;
+}
+
+#checkTerms {
+  width: 100%;
+  display: flex;
+  height: 32px;
+  gap: 8px;
+  align-items: center;
+}
+
+#acceptTerms {
+  height: 24px;
+  width: 24px;
+}
+
+ #btn {
+  width: 100%;
+  height: 43px;
+  background: #19a68e;
+  border-radius: 10px;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-family: "Work Sans";
+  font-weight: 400;
+  font-size: 19px;
+  line-height: 19px;
+  letter-spacing: -0.004em;
+  color: #fff!important;
+}
+
+#btn:hover{
+    background:transparent;
+    color:#19a68e!important;
+    border:1px solid #19a68e;
+}
+
+#coloredTerms {
+  color: #19a68e;
+}
+
+.termsOfUse {
+  font-family: "Work Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 16px;
+  letter-spacing: -0.5px;
+  color: #222222;
+}
+
+.cert_img {
+  width: 100%;
+  height: 56%;
+}
+
+.haveAccount {
+  font-family: "Work Sans";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+  color: #6c6c70;
+  margin-bottom:40px;
+
+}
+
+.forgotPwd {
+  width: 100%;
+  display: flex;
+  justify-content: end;
+  font-family: "Work Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  letter-spacing: -0.5px;
+  color: #19a68e;
+}
+
+@media all and (max-width: 1240px) {
+  .container {
+    gap: 90px;
+  }
+  .formDiv {
+    width: 450px;
+    margin-left:20px;
+  }
+  .emptySpace {
+    width: 520px;
+    height: 543px;
+  }
+  #heading {
+    font-size: 43px;
+  }
+}
+@media all and (max-width: 1024px) {
+
+  .container {
+    gap: 60px;
+  }
+  .formDiv {
+    width: 380px;
+    margin-left:20px;
+  }
+  .emptySpace {
+    width: 450px;
+    height: 490px;
+  }
+  #heading {
+    font-size: 32px;
+  }
+}
+@media all and (max-width: 768px) {
+
+
+  .formDiv {
+    width: 400px;
+  
+  }
+  .emptySpace {
+    display: none;
+  }
+  #heading {
+    font-size: 38px;
+    font-weight: 600;
+  }
+  #startGenerating {
+    margin-bottom: 56px;
+    color: #6c6c70;
+  }
+  .haveAccount {
+    font-size: 12px;
+  }
+  .logo-div {
+    margin: 29px 64px 58px 64px;
+    width: auto;
+    justify-content: space-between;
+  }
+  .menu {
+    display: block;
+  }
+}
+@media all and (max-width: 480px) {
+    #btn {
+        width: 95%;
+        margin:auto;
+    }      
+  .formDiv {
+    width: 327px;
+  }
+  #heading {
+    font-size: 23px;
+    line-height: 29px;
+  }
+  #startGenerating {
+    margin-bottom: 20px;
+  }
+  .haveAccount {
+    font-size: 12px;
+    margin-bottom:40px;
+  }
+  .logo-div {
+    margin: 29px 20px 58px 24px;
+  }
+} 
+
+}
