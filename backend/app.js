@@ -29,6 +29,7 @@ const pricing = require("./routes/pricingRouter");
 const swaggerUi = require("swagger-ui-express");
 const swaggerFile = require("./swagger_output.json");
 
+
 //middleware
 app.use(cors());
 app.use(express.json());
@@ -37,7 +38,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(fileUpload());
 
-app.get("/api", (req, res) => {
+app.get("/", (req, res) => {
   res.send("Welcome to HNG-Certificate Api");
 });
 
