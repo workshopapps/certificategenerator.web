@@ -147,10 +147,10 @@ export default function Certificate ({
               Max image upload size: 8mb
             </p>
 
-            {/* <label htmlFor="text" className="label">
+            <label htmlFor="text" className="label">
               Certificate Title
-            </label> */}
-            <Input
+            </label>
+            <input
               label={"Certificate Title"}
               type="text"
               placeholder="Certificate of completion"
@@ -158,10 +158,10 @@ export default function Certificate ({
               onChange={e => setCertificateTitle(e.target.value)}
             />
 
-            {/* <label htmlFor="text" className="label">
+            <label htmlFor="text" className="label">
               Awardee Name
-            </label> */}
-            <Input
+            </label>
+            <input
               label={"Awardee Name"}
               type="text"
               placeholder="Gabriel Prosper"
@@ -169,10 +169,10 @@ export default function Certificate ({
               onChange={e => setAwardeeName(e.target.value)}
             />
 
-            {/* <label htmlFor="text" className="label">
+            <label htmlFor="text" className="label">
               Dedication or message
-            </label> */}
-            <Input
+            </label>
+            <input
               label={"Dedication or message"}
               type="text"
               value={message}
@@ -182,10 +182,10 @@ export default function Certificate ({
                 in recognition of your leadership and dedication"
             />
 
-            {/* <label htmlFor="text" className="label">
-             Dedication or message
-            </label> */}
-            <Input
+            <label htmlFor="text" className="label">
+             Issued By
+            </label>
+            <input
               label={"Dedication or message"}
               type="text"
               placeholder="Name of organisation or issuer"
