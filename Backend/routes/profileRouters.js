@@ -8,6 +8,7 @@ const {
   updateUserProfile,
   deleteUserProfile,
 } = require("../controllers/profileController");
+const authentication = require("../middleware/authentication");
 
 // for getting each user profile
 router.get("/", authentication, getUserProfile);
@@ -16,6 +17,8 @@ router.get("/", authentication, getUserProfile);
 router.post("/", authentication, addUserProfile);
 
 //for updating userProfile
+router.put("/", authentication, updateUserProfile);
+
 router.patch("/", authentication, updateUserProfile);
 
 //for delete userProfile

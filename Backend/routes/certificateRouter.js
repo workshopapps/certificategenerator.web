@@ -1,21 +1,26 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const fileExtLimiter = require('../middleware/fileExtLimiter')
+const fileExtLimiter = require("../middleware/fileExtLimiter");
 
-const { getAllCertificates,
-    addCertificate,
-    getCertificate,
-    getNoOfCertificatesIssued,
-    deleteCertificate, getCertificateStatus, updateCertificateDetails, updateCertificateStatus, deleteUserCertificates } = require('../controllers/userCertificateController');
+const {
+  getAllCertificates,
+  addCertificate,
+  getCertificate,
+  getNoOfCertificatesIssued,
+  deleteCertificate,
+  getCertificateStatus,
+  updateCertificateDetails,
+  updateCertificateStatus,
+} = require("../controllers/userCertificateController");
+const authentication = require("../middleware/authentication");
 
-router.get('/issuedCertificates', getNoOfCertificatesIssued);
-router.get('/', getAllCertificates);
-router.get('/status', getCertificateStatus);
-router.post('/', fileExtLimiter, addCertificate);
-router.get('/:id', getCertificate);
-router.put('/:id', updateCertificateDetails);
-router.delete('/:id', deleteCertificate);
-router.delete('/:userid', deleteUserCertificates);
-router.patch('/status/:id', updateCertificateStatus);
-
+router.get("/issuedCertificates", authentication, getNoOfCertificatesIssued);
+router.get("/", authentication, getAllCertificates);
+router.get("/status", authentication, getCertificateStatus);
+router.post("/", authentication, fileExtLimiter, addCertificate);
+router.get("/:id", authentication, getCertificate);
+router.put("/:id", authentication, updateCertificateDetails);
+router.delete("/:id", authentication, deleteCertificate);
+router.patch("/status/:id", authentication, updateCertificateStatus);
 module.exports = router;
+
