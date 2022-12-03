@@ -93,7 +93,10 @@
   color: red;
   border-radius: 5px;
   margin-top: -10px;
-  font-size: 11px;
+  font-size: 12px;
+}
+#footerId .footer-form .colorChange {
+  color: greenyellow;
 }
 #footerId .footer-info {
   margin-bottom: 40px;

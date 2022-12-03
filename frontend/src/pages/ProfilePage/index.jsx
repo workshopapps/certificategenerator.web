@@ -1,8 +1,25 @@
 import React from "react";
+import axios from 'axios'
+import Modal from '../../Component/Modal'
+import {useNavigate} from 'react-router-dom'
 import "./profile.style.scss";
 import Avatar from "../../assets/images/Ellipse4.png"
 
 const ProfilePage = () => {
+  const navigate = useNavigate()
+
+  const handleLogout = async(e) =>{
+      e.preventDefault();  
+          await axios.delete('https://certify-api.onrender.com/api/auth/logout')
+          .then(() => {
+            console.log('logged out');
+          })
+          localStorage.removeItem('token');
+          localStorage.removeItem('user');
+
+          //navigate back to login
+          navigate('/login')
+  }
   return (
     <div className="profile-page">
       <div>
@@ -27,7 +44,7 @@ const ProfilePage = () => {
         </div>
 
         <div className="btn-wrapper">
-          <button>Log Out</button>
+          <button onClick={handleLogout}>Log Out</button>
         </div>
       </div>
 

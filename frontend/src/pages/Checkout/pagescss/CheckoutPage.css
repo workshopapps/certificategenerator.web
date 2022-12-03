@@ -272,8 +272,8 @@
   width: 100%;
   height: 100%;
 }
-#CheckoutMainLeft-btn {
-  font-family: "Work Sans";
+.CheckoutMainLeft-btn {
+  /* font-family: "Work Sans";
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
@@ -283,8 +283,11 @@
   width: 100%;
   height: 6vh;
   border: none;
+  */
+
   margin-top: 8vh;
   margin-bottom: 6vh;
+  width: 100%;
 }
 
 #CheckoutMainRight-container {

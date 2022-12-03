@@ -1,11 +1,7 @@
 import React from "react";
-import { Link, useNavigate} from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import {
-  AiOutlineEye,
-  AiOutlineEyeInvisible,
-
-} from "react-icons/ai";
+import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import "./Style.css";
 import appleSVG from "./assets/apple.svg";
 import googleSVG from "./assets/google.svg";
@@ -13,15 +9,15 @@ import cert from "./assets/Cert.png";
 import emailSVG from "./assets/email.svg";
 import keySVG from "./assets/key.svg";
 import { createNewUser } from "../api";
-
+import Input from "../../Input";
 
 const Signup = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [type, setType] = useState("password");
   const [formData, setFormData] = React.useState({
     password: "",
     email: "",
-    acceptTerms: false,
+    acceptTerms: false
   });
 
   const handleToggle = () => {
@@ -33,26 +29,26 @@ const Signup = () => {
   };
   function handleChange(event) {
     const { name, value, type, checked } = event.target;
-    setFormData((prevFormData) => {
+    setFormData(prevFormData => {
       return {
         ...prevFormData,
-        [name]: type === "checkbox" ? checked : value,
+        [name]: type === "checkbox" ? checked : value
       };
     });
   }
 
-  const handleOnSubmit = async (e) => {
-    
+  const handleOnSubmit = async e => {
     try {
       e.preventDefault();
       const response = await createNewUser({
         password: formData?.password,
-        email: formData?.email,
+        email: formData?.email
       });
 
       if (response && response.data) {
         //redirect a successfull signup here ...
-        navigate("/login")
+        // navigate("/login")
+        navigate("/");
       }
     } catch (error) {
       console.log(error);
@@ -85,35 +81,39 @@ const Signup = () => {
             <span id="or">or</span>
           </div>
           <form>
-            <div id="email">
-              <img alt="" src={emailSVG} />
-              <input
-                className="email_input"
-                placeholder=" Email"
-                type="email"
-                required
-                name="email"
-                onChange={handleChange}
-              ></input>
-            </div>
-            <div id="pwd">
-              <img alt="" src={keySVG} />
-              <input
-                id="input_id"
-                placeholder="Create a password"
-                type={type}
-                required
-                name="password"
-                onChange={handleChange}
-              />
-              <span onClick={handleToggle}>
+            {/* <div id="email"> */}
+            {/* <img alt="" src={emailSVG} /> */}
+            <Input
+              label="Email"
+              className="email_input"
+              placeholder=" Email"
+              type="email"
+              required
+              name="email"
+              callback={handleChange}
+            />
+            {/* </div> */}
+            {/* <div id="pwd"> */}
+            {/* <img alt="" src={keySVG} /> */}
+            <Input
+              label="Password"
+              eyecon={true}
+              // id="input_id"
+              className="pw_input"
+              placeholder="Create a password"
+              type={"password"}
+              required
+              name="password"
+              onChange={handleChange}
+            />
+            {/* <span onClick={handleToggle}>
                 {type === "text" ? (
                   <AiOutlineEye size={25} className="eye" />
                 ) : (
                   <AiOutlineEyeInvisible size={25} className="eye" />
                 )}
-              </span>
-            </div>
+              </span> */}
+            {/* </div> */}
             <div id="checkTerms">
               <input
                 type="checkbox"
@@ -128,7 +128,7 @@ const Signup = () => {
                 <span id="coloredTerms"> Privacy Policy</span>
               </div>
             </div>
-            <input
+            <Input
               type="submit"
               id="btn"
               value="Create Account"

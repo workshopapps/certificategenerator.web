@@ -5,7 +5,7 @@
 .teamContainer section {
   width: 100%;
   max-height: 1832px;
-  background: #F8FFFE;
+  background: #f8fffe;
 }
 .teamContainer .team {
   font-weight: 700;
@@ -40,11 +40,11 @@
 .teamContainer figure {
   width: 292px;
   max-height: 333px;
-  border: 1px solid #6C6C70;
+  border: 1px solid #6c6c70;
   margin: 6px;
   box-sizing: border-box;
   padding: 24px 23px;
-  background: #FDFDFD;
+  background: #fdfdfd;
   align-items: flex-start;
   justify-content: center;
   border-radius: 24px;
@@ -69,20 +69,14 @@
 .teamContainer button {
   width: 138px;
   height: 48px;
-  border: 1px solid #19A68E;
+  border: 1px solid #19a68e;
   align-items: center;
-  background: #19A68E;
+  background: #19a68e;
   justify-content: center;
   border-radius: 10px;
 }
 .teamContainer .view {
-  color: #FFFFFF;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 19px;
-  align-items: center;
-  margin-bottom: 64px;
-  letter-spacing: -0.004em;
+  margin: 2em auto;
 }
 .teamContainer .right_margin {
   margin-right: 11.04px;

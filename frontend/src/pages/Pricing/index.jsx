@@ -12,7 +12,7 @@ import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/react-splide/css";
 
 
-function Pricing() {
+function Pricing({access, setAccess}) {
     const [value, setValue] = useState(0);
 
     const { per } = data[value];
@@ -67,9 +67,12 @@ function Pricing() {
                                         })}
                                     </article>
 
-                                    <Link to={sub.linkTo}>
+                                   {access ? <Link to={sub.AfterLogin}>
                                         {sub.linkText}
                                     </Link>
+                                     :  <Link to={sub.linkTo}>
+                                        {sub.linkText}
+                                    </Link>}
                                 </div>
                             );
                         })}
@@ -110,7 +113,7 @@ function Pricing() {
           }}
         >
           <SplideSlide>
-            <div className="testimonial-box test">
+            <div className="testimonial-boxn test">
               <div className="testimonial-flex">
                 <img src={person_1} alt="user" />
                 <div className="text">
@@ -129,7 +132,7 @@ function Pricing() {
           </SplideSlide>
 
           <SplideSlide>
-            <div className="testimonial-box">
+            <div className="testimonial-boxn">
               <div className="testimonial-flex">
                 <img src={person_2} alt="user" />
                 <div className="text">
@@ -148,7 +151,7 @@ function Pricing() {
           </SplideSlide>
 
           <SplideSlide>
-            <div className="testimonial-box">
+            <div className="testimonial-boxn">
               <div className="testimonial-flex">
                 <img src={person_3} alt="user" />
                 <div className="text">
@@ -167,7 +170,7 @@ function Pricing() {
           </SplideSlide>
 
           <SplideSlide>
-            <div className="testimonial-box">
+            <div className="testimonial-boxn">
               <div className="testimonial-flex test-image2">
                 <img src={person_1} alt="user" />
                 <div className="text">
@@ -186,7 +189,7 @@ function Pricing() {
           </SplideSlide>
 
           <SplideSlide>
-            <div className="testimonial-box">
+            <div className="testimonial-boxn">
               <div className="testimonial-flex test-image">
                 <img src={person_5} alt="user" />
                 <div className="text">
