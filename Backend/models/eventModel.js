@@ -6,11 +6,6 @@ const EventSchema = new Schema({
     type: String,
     requried: true,
   },
-  certCollectionId: {
-    type: Schema.Types.ObjectId,
-    required: true,
-    ref: "Certificate",
-  },
   userId: {
     type: Schema.Types.ObjectId,
     required: true,
