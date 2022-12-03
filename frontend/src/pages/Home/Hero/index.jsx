@@ -4,11 +4,13 @@ import hero from "../../../assets/images/hero.png";
 import tick from "../../../assets/images/tick.png";
 import Button from "../../../Component/button";
 // import {Link} from "react-router-dom";
+import bgIMG from "../../../assets/Ellipse 569.png";
 
 export default function Hero() {
   return (
     <>
       <div className="center justify-between hero">
+        <img src={bgIMG} className="bgIMG" alt="" />
         <div className="hero-left">
           <p className="hero-text sora">
             Create and download your{" "}

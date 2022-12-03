@@ -52,6 +52,12 @@ body {
   margin: auto;
 }
 
+.bgIMG {
+  width: 100%;
+  position: absolute;
+  z-index: -1;
+}
+
 .hero {
   padding-top: 2rem;
   gap: 5.5rem;
