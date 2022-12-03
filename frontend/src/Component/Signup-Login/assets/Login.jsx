@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState} from "react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import "./login.scss";
 import appleSVG from "./assets/apple.svg";
@@ -8,8 +8,6 @@ import googleSVG from "./assets/google.svg";
 import cert from "./assets/Cert.png";
 import emailSVG from "./assets/email.svg";
 import keySVG from "./assets/key.svg";
-import { loginUser } from "../api";
-import Input from "../../Input";
 import Swal from 'sweetalert2'
 
 
@@ -59,7 +57,7 @@ const [error, setError] = useState(false);
 
 
   async function loginUser(email, password) {
-    return fetch("https://certgo.hng.tech/api/auth/login", {
+    return fetch("https://certify-api.onrender.com/api/auth/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -74,15 +72,9 @@ const [error, setError] = useState(false);
     const response = await loginUser(useremail, password)
   const data = await response.json()
  
-   console.log(data)
    console.log(response)
-  //  const token = data.token;
-  //       localStorage.setItem("token", token);
-  //       localStorage.setItem("user", data.userId);
-  //       console.log(token)
-  //  if(token){
-  //   setError(true)
-  //  }
+   console.log(response.status)
+  
 
     if (response.status === 200 || response.status === 201) {
           Toast.fire({
@@ -133,11 +125,14 @@ const [error, setError] = useState(false);
           throw new Error("Something went wrong");
         }
 
-      
+        const token = data.token;
+        localStorage.setItem("token", token);
+        localStorage.setItem("user", data.userId);
+       
 
     }
       catch(error) {
-        
+        setError(true)
         console.log(error.message);
       }
   };
@@ -168,7 +163,7 @@ const [error, setError] = useState(false);
 
             <div id="email">
               <img alt="" src={emailSVG} />
-              <Input
+              <input
               id="email_input"
                 placeholder=" Email"
                 type="text"
@@ -181,13 +176,14 @@ const [error, setError] = useState(false);
             <div id="pwd">
               <img alt="" src={keySVG} />
 
-              <Input
+              <input
                 id="input_id"
                 placeholder="Password"
-                type="text"
+                type={type}
                 name="password"
                 callback={e => setPassword(e.target.value)}
                 required
+                
                 className="pw_input"
               />
               <span onClick={handleToggle}>
@@ -198,7 +194,7 @@ const [error, setError] = useState(false);
                 )}
               </span>
             </div>
-{error && <p>Invalid Email or Password</p>}
+{error && <p style ={{color:'red'}}>Invalid Email or Password!!!</p>}
   
             <div className="forgotPwd">Forgot password?</div>
             <div id="checkTerms">

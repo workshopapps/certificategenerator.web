@@ -137,9 +137,7 @@ function SinglePreview({
               <button onClick={handleDownloadPdf} className="pdf-button">
                 PDF
               </button>
-              <button>
-                ZIP
-              </button>
+            
             </div>
           </div>
         </div>
