@@ -117,8 +117,8 @@ function Index() {
       {/* BUTTONS TO DOWNLOAD OR SHARE THE CRETIFICATES */}
 
       <div id="bulk-btns">
-        <Button className="">Download Certificates</Button>
-        <Button className="btnLight">Send Certificates</Button>
+        <Button  name='Download Certificates' style={{padding: '10px'}}/>
+        <Button className="btnLight" name='Send Certificates' style={{padding: '10px'}}/>
       </div>
     </div>
   );
