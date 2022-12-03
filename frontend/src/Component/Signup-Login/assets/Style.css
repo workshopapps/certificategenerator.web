@@ -7,7 +7,6 @@
   gap: 128px;
 }
 
-
 .formDiv {
   display: flex;
   flex-direction: column;
@@ -135,7 +134,7 @@ form {
 #pwd {
   width: 100%;
   height: 54px;
-  background: #ffffff!important;
+  background: #ffffff !important;
   border: 1.2px solid #222222;
   border-radius: 10px;
   display: flex;
@@ -143,7 +142,7 @@ form {
   justify-content: space-around;
 }
 
-#input_id {
+/* #input_id {
   border: none;
   width: 80%;
   height: 48px;
@@ -154,18 +153,9 @@ form {
   border: none;
   width: 90%;
   height: 48px;
-}
-input::placeholder{
-  font-size:17px;
-}
-input{
-  font-size:18px;
-  color:#000;
-}
-
-input:focus {
-  outline: none;
-  border:none;
+} */
+input::placeholder {
+  font-size: 17px;
 }
 
 #email {
@@ -211,25 +201,25 @@ a {
   width: 24px;
 }
 
- #btn {
+#btn {
   width: 100%;
   height: 43px;
   background: #19a68e;
   border-radius: 10px;
   border: none;
- 
+
   display: flex;
   justify-content: center;
   align-items: center;
 }
-#btn button{
+#btn button {
   font-family: "Work Sans";
   font-style: normal;
   font-weight: 400;
   font-size: 19px;
   line-height: 19px;
   letter-spacing: -0.004em;
-  color: #ffffff!
+  color: #ffffff!;
 }
 
 #coloredTerms {
@@ -340,7 +330,6 @@ a {
   }
 }
 @media all and (max-width: 480px) {
-
   .formDiv {
     width: 327px;
   }
@@ -353,7 +342,7 @@ a {
   }
   .haveAccount {
     font-size: 12px;
-    margin-bottom:40px;
+    margin-bottom: 40px;
   }
   .logo-div {
     margin: 29px 20px 58px 24px;

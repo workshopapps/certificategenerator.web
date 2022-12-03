@@ -88,97 +88,97 @@ function App() {
     );
   }
 
-return (
-  <>
-   <Router>
-     <Navbar />
-      <div className="App">
-        <Routes>
-          <Route path="/" element={<Layout />}>
-            <Route
-              index
-              element={
-                <Home
-                  logo={logo}
-                  message={message}
-                  setLogo={setLogo}
-                  issuedBy={issuedBy}
-                  issueDate={issueDate}
-                  setMessage={setMessage}
-                  awardeeName={awardeeName}
-                  setIssuedBy={setIssuedBy}
-                  setIssueDate={setIssueDate}
-                  setAwardeeName={setAwardeeName}
-                  certificateTitle={certificateTitle}
-                  setCertificateTitle={setCertificateTitle}
-                />
-              }
-            />
-            <Route path="/signup" element={<Signup />} />
-            <Route
-              path="/login"
-              element={<Login access={access} setAccess={setAccess} />}
-            />
-            <Route path="/comingsoon" element={<ComingSoon />} />
-            <Route
-              path="/dashboard"
-              element={
-                <Dashboard
-                  logo={logo}
-                  message={message}
-                  setLogo={setLogo}
-                  issuedBy={issuedBy}
-                  issueDate={issueDate}
-                  setMessage={setMessage}
-                  awardeeName={awardeeName}
-                  setIssuedBy={setIssuedBy}
-                  setIssueDate={setIssueDate}
-                  setAwardeeName={setAwardeeName}
-                  certificateTitle={certificateTitle}
-                  setCertificateTitle={setCertificateTitle}
-                />
-              }
-            />
-            <Route path="/templates" element={<Templates />} />
-            <Route path="/career" element={<Career />} />
-            <Route path="choice" element={<Choice />} />
-            <Route path="/team" element={<Team />} />
-            <Route path="/terms" element={<Terms />} />
-            <Route
-              path="/preview"
-              element={
-                <Preview
-                  logo={logo}
-                  message={message}
-                  issuedBy={issuedBy}
-                  issueDate={issueDate}
-                  awardeeName={awardeeName}
-                  certificateTitle={certificateTitle}
-                />
-              }
-            />
-            <Route path="/aboutUs" element={<AboutUs />} />
-            <Route path="/FAQ" element={<FAQ />} />
-            <Route path="/bulk_step" element={<BulkStep />} />
-            <Route path="/edit_bulk" element={<EditBulk />} />
-            <Route
-              path="/pricing"
-              element={<Pricing access={access} setAccess={setAccess} />}
-            />
-            <Route path="/contact-us" element={<ContactUs />} />
-            <Route path="/payment" element={<Checkout />} />
-            <Route path="/profile" element={<ProfilePage />} />
-            <Route path="/upload" element={<UploadCSV setFile={setFile} />} />
+  return (
+    <>
+      <Router>
+        <Navbar />
+        <div className="App">
+          <Routes>
+            <Route path="/" element={<Layout />}>
+              <Route
+                index
+                element={
+                  <Home
+                    logo={logo}
+                    message={message}
+                    setLogo={setLogo}
+                    issuedBy={issuedBy}
+                    issueDate={issueDate}
+                    setMessage={setMessage}
+                    awardeeName={awardeeName}
+                    setIssuedBy={setIssuedBy}
+                    setIssueDate={setIssueDate}
+                    setAwardeeName={setAwardeeName}
+                    certificateTitle={certificateTitle}
+                    setCertificateTitle={setCertificateTitle}
+                  />
+                }
+              />
+              <Route path="/signup" element={<Signup />} />
+              <Route
+                path="/login"
+                element={<Login access={access} setAccess={setAccess} />}
+              />
+              <Route path="/comingsoon" element={<ComingSoon />} />
+              <Route
+                path="/dashboard"
+                element={
+                  <Dashboard
+                    logo={logo}
+                    message={message}
+                    setLogo={setLogo}
+                    issuedBy={issuedBy}
+                    issueDate={issueDate}
+                    setMessage={setMessage}
+                    awardeeName={awardeeName}
+                    setIssuedBy={setIssuedBy}
+                    setIssueDate={setIssueDate}
+                    setAwardeeName={setAwardeeName}
+                    certificateTitle={certificateTitle}
+                    setCertificateTitle={setCertificateTitle}
+                  />
+                }
+              />
+              <Route path="/templates" element={<Templates />} />
+              <Route path="/career" element={<Career />} />
+              <Route path="choice" element={<Choice />} />
+              <Route path="/team" element={<Team />} />
+              <Route path="/terms" element={<Terms />} />
+              <Route
+                path="/preview"
+                element={
+                  <Preview
+                    logo={logo}
+                    message={message}
+                    issuedBy={issuedBy}
+                    issueDate={issueDate}
+                    awardeeName={awardeeName}
+                    certificateTitle={certificateTitle}
+                  />
+                }
+              />
+              <Route path="/aboutUs" element={<AboutUs />} />
+              <Route path="/FAQ" element={<FAQ />} />
+              <Route path="/bulk_step" element={<BulkStep />} />
+              <Route path="/edit_bulk" element={<EditBulk />} />
+              <Route
+                path="/pricing"
+                element={<Pricing access={access} setAccess={setAccess} />}
+              />
+              <Route path="/contact-us" element={<ContactUs />} />
+              <Route path="/payment" element={<Checkout />} />
+              <Route path="/profile" element={<ProfilePage />} />
+              <Route path="/upload" element={<UploadCSV setFile={setFile} />} />
 
-            <Route path="/privacy" element={<Privacy />} />
-          </Route>
-          <Route path="*" element={<Error />} />
-        </Routes>
-      </div>
-      {/* <Footer /> */}
-    </Router>
-   </>
- );
+              <Route path="/privacy" element={<Privacy />} />
+            </Route>
+            <Route path="*" element={<Error />} />
+          </Routes>
+        </div>
+        {/* <Footer /> */}
+      </Router>
+    </>
+  );
 }
 
 export default App;

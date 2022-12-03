@@ -205,9 +205,7 @@ const Team = () => {
         ))}
       </div>
       {/* button */}
-      <Button type="button" className="view">
-        View more <img src={ArrowDown} alt="" />
-      </Button>
+      <Button name={"View more"} type="button" className="view"></Button>
     </section>
   );
 };
