@@ -57,7 +57,7 @@ const [error, setError] = useState(false);
 
 
   async function loginUser(email, password) {
-    return fetch("https://certify-api.onrender.com/api/auth/login", {
+    return fetch("https://certgo.hng.tech/api/auth/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
