@@ -107,8 +107,8 @@ const userSignup = async (req, res, next) => {
   } catch (err) {
     if (!err.statusCode) {
       err.statusCode = 500
-  }
-  return res.status(err.statusCode).json(err);
+    }
+    return res.status(err.statusCode).json(err);
   }
 };
 
@@ -132,18 +132,14 @@ const userLogin = async (req, res, next) => {
               "google login hasn't been linked to this email, please login with the form",
           });
         }
-        const token = jwt.sign(
-          {
-            userId: user._id,
-          },
-          process.env.JWT_SECRET,
-          { expiresIn: "24h" }
-        );
-        res.status(201).json({
+        const { accessToken, refreshToken } = await generateTokens(user);
+
+        return res.status(200).json({
           message: "user logged in successfully",
-          token: token,
+          token: accessToken,
+          refreshToken: refreshToken,
           userId: user._id.toString(),
-          subscription: user.subscription
+          subscription: user.subscription,
         });
       } catch (error) {
         return res
@@ -165,25 +161,21 @@ const userLogin = async (req, res, next) => {
     );
     if (!isEqual) {
       return res.status(401).json("Wrong password!");
-      
+
     }
 
-    const token = jwt.sign(
-      {
-        userId: user._id,
-      },
-      process.env.JWT_SECRET,
-      { expiresIn: "24h" }
-    );
-    res.status(201).json({
+    const { accessToken, refreshToken } = await generateTokens(user);
+
+    return res.status(200).json({
       message: "user logged in successfully",
-      token: token,
+      token: accessToken,
+      refreshToken: refreshToken,
       userId: user._id.toString(),
-      subscription: user.subscription
+      subscription: user.subscription,
     });
   } catch (err) {
     if (!err.statusCode) {
-        err.statusCode = 500
+      err.statusCode = 500
     }
     return res.status(err.statusCode).json(err);
   }
