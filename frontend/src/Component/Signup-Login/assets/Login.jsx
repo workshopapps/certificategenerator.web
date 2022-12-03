@@ -71,9 +71,6 @@ const Login = ({ access, setAccess }) => {
       const response = await loginUser(useremail, password);
       const data = await response.json();
 
-      console.log(response);
-      console.log(response.status);
-
       if (response.status === 200 || response.status === 201) {
         Toast.fire({
           icon: "success",
@@ -115,7 +112,6 @@ const Login = ({ access, setAccess }) => {
       localStorage.setItem("user", data.userId);
     } catch (error) {
       setError(true);
-      console.log(error.message);
     }
   };
 
@@ -148,8 +144,9 @@ const Login = ({ access, setAccess }) => {
               placeholder=" Email"
               type="text"
               name="email"
-              onChange={e => setUserEmail(e.target.value)}
+              callback={e => setUserEmail(e.target.value)}
               required
+              value={useremail}
             />
             {/* </div> */}
             {/* <div id="pwd"> */}
@@ -161,7 +158,8 @@ const Login = ({ access, setAccess }) => {
               placeholder="Password"
               type={type}
               name="password"
-              onChange={e => setPassword(e.target.value)}
+              value={password}
+              callback={e => setPassword(e.target.value)}
               required
               className="pw_input"
               eyecon={true}
