@@ -1,5 +1,11 @@
 import { useState, useEffect } from "react";
-import ForgotPassword from "./pages/ResetPassword/ForgotPassword";
+import {
+  ChangePassword,
+  ForgotPassword,
+  PasswordLinkSent,
+  ResetPassword,
+  PasswordChangeSuccessfully
+} from "./pages/ResetPassword";
 
 import {
   AboutUs,
@@ -95,7 +101,12 @@ function App() {
       <div className="App">
         <Routes>
           <Route path="/" element={<Layout />}>
-            <Route path="/fff" element={<ForgotPassword />} />
+            <Route path="/fff5" element={<PasswordChangeSuccessfully />} />
+            <Route path="/fff4" element={<ResetPassword />} />
+            <Route path="/fff3" element={<ChangePassword />} />
+
+            <Route path="/fff2" element={<PasswordLinkSent />} />
+            <Route path="/fff1" element={<ForgotPassword />} />
             <Route
               index
               element={
