@@ -13,6 +13,18 @@ const Input = ({
   error,
   errorMessage = "Invalid Message"
 }) => {
+<<<<<<< HEAD
+=======
+  const [pw, setPw] = useState("text");
+  const handleToggle = () => {
+    console.log(222);
+    if (pw === "password") {
+      setPw("text");
+    } else {
+      setPw("password");
+    }
+  };
+>>>>>>> dec6d6d (fixed login page)
   return (
     <>
       {type === "submit" ? (
