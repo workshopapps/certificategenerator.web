@@ -51,7 +51,7 @@ function App() {
 
   const [appLoading, setAppLoading] = useState(true);
 
-  const [access, setAccess] = useState();
+  const [access, setAccess] = useState(false);
   useEffect(() => {
     setTimeout(function () {
       setAppLoading(false);

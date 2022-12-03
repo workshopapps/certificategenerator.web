@@ -87,6 +87,7 @@ const Login = ({ access, setAccess }) => {
         });
         navigate("/pricing");
         setAccess(true);
+        console.log(access)
       } else if (response.status === 401) {
         Toast.fire({
           icon: "error",
