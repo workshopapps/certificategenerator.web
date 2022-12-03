@@ -91,6 +91,7 @@ const Signup = () => {
               required
               name="email"
               callback={handleChange}
+              value={formData.email}
             />
             {/* </div> */}
             {/* <div id="pwd"> */}
@@ -104,7 +105,8 @@ const Signup = () => {
               type={"password"}
               required
               name="password"
-              onChange={handleChange}
+              callback={handleChange}
+              value={formData.password}
             />
             {/* <span onClick={handleToggle}>
                 {type === "text" ? (
