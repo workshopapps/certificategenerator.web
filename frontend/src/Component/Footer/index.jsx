@@ -10,6 +10,7 @@ const Footer = () => {
   const year = new Date().getFullYear();
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+  
   const handleChange = e => {
     setEmail(e.target.value);
   };
