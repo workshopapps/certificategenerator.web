@@ -77,7 +77,7 @@ const addCertificate = async (req, res) => {
     await user.save();
   }
 
-  res.status(201).json({message: 'user certificate generated'});
+  res.status(201).json({message: 'user certificate generated', data: certificateData });
 };
 
 const deleteUserCertificates = async(req, res) => {
