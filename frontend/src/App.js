@@ -26,7 +26,7 @@ import { Loader } from "./Component";
 import Navbar from "./Component/Navbar";
 import Checkout from "./pages/Checkout";
 import { Privacy } from "./pages/PrivacyPolicy";
-import { HashRouter as Router, Route, Routes, Navigate } from "react-router-dom";
+import { HashRouter as Router, Route, Routes } from "react-router-dom";
 import Signup from "./Component/Signup-Login/assets/Sginup";
 import Login from "./Component/Signup-Login/assets/Login";
 
