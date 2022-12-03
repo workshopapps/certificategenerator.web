@@ -37,7 +37,7 @@ const verifyEmailRouter = require("./routes/verifyEmailRouter")
 const paymentRouter = require("./routes/paymentRouter")
 
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5077;
 
 connectDB();
 
