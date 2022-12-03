@@ -11,7 +11,7 @@ const ForgotPassword = () => {
     "Please enter your registered email address below and a link will be sent to you to reset your password";
   const element = [
     <Input
-      type={"email"}
+      type="email"
       placeholder="Enter your email address"
       value={email}
       onChange={e => setEmail(e.target.value)}
