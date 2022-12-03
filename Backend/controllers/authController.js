@@ -105,31 +105,67 @@ const userSignup = async (req, res, next) => {
       });
     });
   } catch (err) {
-    next(err);
+    if (!err.statusCode) {
+      err.statusCode = 500
+  }
+  return res.status(err.statusCode).json(err);
   }
 };
 
 const userLogin = async (req, res, next) => {
   const { email, password } = req.body;
   try {
+    if (req.body.accessToken) {
+      try {
+        const payload = await verify(req.body.accessToken);
+        const googleUserId = payload["sub"];
+        email = payload["email"];
+        const user = await User.findOne({ email });
+        if (!user) {
+          return res
+            .status(401)
+            .json({ message: "A user for this email could not be found!" });
+        }
+        if (googleUserId !== user.authenticationType.google.uuid) {
+          return res.status(401).json({
+            message:
+              "google login hasn't been linked to this email, please login with the form",
+          });
+        }
+        const token = jwt.sign(
+          {
+            userId: user._id,
+          },
+          process.env.JWT_SECRET,
+          { expiresIn: "24h" }
+        );
+        res.status(201).json({
+          message: "user logged in successfully",
+          token: token,
+          userId: user._id.toString(),
+          subscription: user.subscription
+        });
+      } catch (error) {
+        return res
+          .status(401)
+          .json({ message: "could not verify accessToken" });
+      }
+    }
     if (!email || !password) {
       return res.status(400).json("Please provide email and password");
     }
 
     const user = await User.findOne({ email });
     if (!user) {
-      const error = new Error("A user for this email could not be found!");
-      error.statusCode = 401;
-      throw error;
+      return res.status(401).json("A user for this email could not be found!");
     }
     const isEqual = await bcrypt.compare(
       password,
       user.authenticationType.form.password
     );
     if (!isEqual) {
-      const error = new Error("Wrong password!");
-      error.statusCode = 401;
-      throw error;
+      return res.status(401).json("Wrong password!");
+      
     }
 
     const token = jwt.sign(
@@ -146,7 +182,10 @@ const userLogin = async (req, res, next) => {
       subscription: user.subscription
     });
   } catch (err) {
-    next(err);
+    if (!err.statusCode) {
+        err.statusCode = 500
+    }
+    return res.status(err.statusCode).json(err);
   }
 };
 
