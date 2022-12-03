@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import ForgotPassword from "./pages/ResetPassword/ForgotPassword";
 
 import {
   AboutUs,
@@ -94,6 +95,7 @@ function App() {
       <div className="App">
         <Routes>
           <Route path="/" element={<Layout />}>
+            <Route path="/fff" element={<ForgotPassword />} />
             <Route
               index
               element={
