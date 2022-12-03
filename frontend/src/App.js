@@ -1,4 +1,11 @@
 import { useState, useEffect } from "react";
+import {
+  ChangePassword,
+  ForgotPassword,
+  PasswordLinkSent,
+  ResetPassword,
+  PasswordChangeSuccessfully
+} from "./pages/ResetPassword";
 
 import {
   AboutUs,
@@ -171,6 +178,13 @@ function App() {
               <Route path="/upload" element={<UploadCSV setFile={setFile} />} />
 
               <Route path="/privacy" element={<Privacy />} />
+              {/* ResetPassword */}
+              <Route path="/fff5" element={<PasswordChangeSuccessfully />} />
+              <Route path="/fff4" element={<ResetPassword />} />
+              <Route path="/fff3" element={<ChangePassword />} />
+
+              <Route path="/fff2" element={<PasswordLinkSent />} />
+              <Route path="/fff1" element={<ForgotPassword />} />
             </Route>
             <Route path="*" element={<Error />} />
           </Routes>
