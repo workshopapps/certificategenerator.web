@@ -20,9 +20,6 @@
     margin: 0;
     padding: 0;
   }
-  .label{
-    margin: 0;
-  }
   .modal-container {
     background-color: #fff;
     // max-width: 1000px;
@@ -114,7 +111,6 @@
         max-width: 600px;
         width: 100%;
         margin: 0 auto;
-        padding-top: 0;
         div {
           &:first-child{
             .label{
@@ -137,11 +133,6 @@
             height: 50px;
             padding: 0 0.6rem;
             border: 1px solid gray;
-            color: #000000;
-          }
-          .loading{
-            display: flex;
-            justify-content: space-between;
           }
         }
 
@@ -160,7 +151,6 @@
           background-color: #8ab9b2;
           cursor: not-allowed;
         }
-        
       }
     }
   }
@@ -181,10 +171,6 @@
             margin-bottom: 3rem;
           }
         
-        }
-        .loading{
-          display: flex;
-          justify-content: space-between;
         }
       } 
     }
@@ -214,13 +200,9 @@
           background-color: #FAFAFB;
           max-width: 760px;
           margin: 0 auto;
-          padding: 3rem 5rem 3rem 5rem;
+          padding: 1rem 5rem 3rem 5rem;
           border-radius: 16px;
           border: 0.1px solid #545454;
-          .loading{
-            display: flex;
-            justify-content: space-between;
-          }
         }
       } 
     }

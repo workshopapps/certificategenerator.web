@@ -42,7 +42,7 @@ export const data = [
         sub: {
           subType: "Standard",
           header: "More features customised for you",
-          amount: "₦2000",
+          amount: "₦2,000",
           text: "Everything in Lite +",
           linkTo: "/signup",
           AfterLogin: "/payment",
@@ -86,7 +86,7 @@ export const data = [
         sub: {
           subType: "Premium",
           header: "Best for professionals",
-          amount: "₦5000",
+          amount: "₦5,000",
           text: "Everything in Basic +",
           AfterLogin: "/payment",
           linkTo: "/signup",

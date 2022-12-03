@@ -3,40 +3,47 @@ import "./uploadCSV.style.scss";
 import Button from "../../Component/button";
 // img
 import Certificate from "../../assets/images/uploadPage/cert.svg";
+//import CSVSample from "../../assets/images/uploadPage/CSVSample.svg";
 import CSVSample from "../../assets/images/CSV-sample.png";
 import UploadVector from "../../assets/images/uploadPage/uploadVector.svg";
 import Template1 from "../../assets/images/uploadPage/template1.svg";
 import Template2 from "../../assets/images/uploadPage/template2.svg";
 import Template3 from "../../assets/images/uploadPage/template3.svg";
-import { useState } from "react";
-import axios from "axios";
+import { useState, useRef} from "react";
 
-const UploadCSV = () => {
-  const [errorFile, setErrorFile] = useState(false);
-  const [file, setFile] = useState("");
+const UploadCSV = ({ setFile }) => {
+  const [state, setState] = useState({ active: true });
+  const [errorFile, setErrorFile] = useState(false)
+  const fileManager = useRef(null)
 
   const validateInput= (e) =>{
     setErrorFile(false)
     const myFile = e.target.files[0]
     console.log(e.target,myFile)
     if (myFile.type !== 'text/csv'){
-      setErrorFile(true);
-    }
-    setFile(myFile);
+      setErrorFile(true)
+    } 
+      
   }
 
-  let formData = new FormData();
-
-  const handleUpload = async e => {
-    e.preventDefault();
-    formData.append("file", file);
-
-    try {
-      const res = await axios.post("https://certify-api.onrender.com/api/upload/csv", formData);
-      console.log("Form data", res);
-    } catch (error) {
-      console.log("Error", error);
+  const toggleState = e => {
+    console.log(Object.values(e.target.classList));
+    // console.log( typeof e.target.classList);
+    const active = Object.values(e.target.classList).find(
+      element => element === "active"
+    );
+    //   .forEach(element => {
+    if (!active) {
+      // console.log(3);
+      setState(prev => {
+        return { ...prev, active: !prev.active };
+      });
     }
+  };
+  let formdata = new FormData();
+
+  function handleUpload(e) {
+    e.preventDefault();
   }
 
   return (
@@ -78,10 +85,8 @@ const UploadCSV = () => {
             Browse files
           </label>
         </span>  
-        {errorFile && <div className="messagecsv">Invalid file!! submit only csv files</div>}
-        <Button className="btn btnLight" style={{ margin: "1em auto" }} onClick={handleUpload}>
-          Upload file                                                                                                                                                                                                                                     
-        </Button>
+        {errorFile && <div className="messagecsv">Invalid file!! submit only csv files</div>}   
+        <div className="Submitcsv" onClick={validateInput}>Submit file</div>
         
       </div>
       {/* <button className='btn btnLight'>Generate Certificate</button> */}
