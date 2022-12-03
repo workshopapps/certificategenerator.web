@@ -1,0 +1,29 @@
+#preview .flex {
+  display: flex;
+}
+#preview .justify-between {
+  justify-content: space-between;
+}
+#preview .mode {
+  width: 30%;
+  margin: auto;
+  border-radius: 20px;
+  border: 0.8px solid rgba(84, 84, 84, 0.26);
+  background-color: white;
+  line-height: 19px;
+  font-weight: 500;
+  margin-block: 30px;
+}
+@media screen and (max-width: 480px) {
+  #preview .mode {
+    width: 90%;
+  }
+  #preview .mode button {
+    font-size: 16px;
+  }
+}
+@media screen and (max-width: 768px) and (min-width: 481px) {
+  #preview .mode {
+    width: 90%;
+  }
+}

@@ -113,19 +113,31 @@
 .contact__form--title {
   font-weight: 700;
   font-size: 2rem;
+  text-align: center;
 }
 @media screen and (min-width: 600px) {
   .contact__form--title {
     font-size: 3rem;
   }
 }
+@media screen and (min-width: 900px) {
+  .contact__form--title {
+    text-align: left;
+  }
+}
 .contact__form--subtitle {
   font-weight: 400;
   font-size: 1.125rem;
+  text-align: center;
 }
 @media screen and (min-width: 600px) {
   .contact__form--subtitle {
     font-size: 1.5rem;
+  }
+}
+@media screen and (min-width: 900px) {
+  .contact__form--subtitle {
+    text-align: left;
   }
 }
 .contact__form form {
@@ -142,4 +154,32 @@
   .contact__form--group {
     flex-direction: row;
   }
-}/*# sourceMappingURL=contact.css.map */
+}
+
+.loading {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  -webkit-animation: spin 0.5s linear infinite;
+          animation: spin 0.5s linear infinite;
+  border-top: 2px solid #fff;
+  border-bottom: 2px solid #fff;
+}
+
+@-webkit-keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
