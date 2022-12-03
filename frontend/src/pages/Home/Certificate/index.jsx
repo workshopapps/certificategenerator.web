@@ -208,7 +208,7 @@ export default function Certificate({
               </div>
 
               <p style={{ fontSize: "12px", margin: "0" }}>
-                Max image upload size: <span id="file-size"></span>
+                Image upload size: <span id="file-size"></span>
               </p>
             </div>
             <label htmlFor="text" className="label">
