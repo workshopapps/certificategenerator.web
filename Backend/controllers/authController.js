@@ -7,7 +7,7 @@ const config = require("../utils/config");
 const UserToken = require("../models/UserToken");
 const { generateTokens } = require("../utils/generateToken");
 const { sendChangePasswordEmail } = require("../utils/email");
-const { verifyRefreshToken } = require("../middleware/verifyRefreshToken")
+const { verifyRefreshToken } = require("../middleware/verifyRefreshToken");
 
 const { OAuth2Client } = require("google-auth-library");
 const client = new OAuth2Client(config.GOOGLE_CLIENT_ID);
@@ -106,7 +106,7 @@ const userSignup = async (req, res, next) => {
     });
   } catch (err) {
     if (!err.statusCode) {
-      err.statusCode = 500
+      err.statusCode = 500;
     }
     return res.status(err.statusCode).json(err);
   }
@@ -222,7 +222,9 @@ const userLogin = async (req, res, next) => {
         if (!error.statusCode) {
           error.statusCode = 500;
         }
-        return res.status(200).json({ message: "could not verify accessToken" })
+        return res
+          .status(200)
+          .json({ message: "could not verify accessToken" });
       }
     }
 
@@ -262,12 +264,10 @@ const userLogin = async (req, res, next) => {
 const refreshToken = async (req, res) => {
   verifyRefreshToken(req.body.refreshToken)
     .then(({ tokenDetails }) => {
-      const payload = { userId: tokenDetails.userId }
-      const accessToken = jwt.sign(
-        payload,
-        process.env.JWT_SECRET,
-        { expiresIn: "5h" }
-      );
+      const payload = { userId: tokenDetails.userId };
+      const accessToken = jwt.sign(payload, process.env.JWT_SECRET, {
+        expiresIn: "5h",
+      });
       res.status(200).json({
         error: false,
         accessToken,
@@ -275,7 +275,7 @@ const refreshToken = async (req, res) => {
       });
     })
     .catch((err) => res.status(400).json(err));
-}
+};
 
 const userLogout = async (req, res) => {
   try {
@@ -324,9 +324,16 @@ const changePassword = async (req, res) => {
           .json({ message: "both passwords are not the same" });
       }
       const user = await User.findById(req.params.userId);
-      user.password = newpassword;
-      user.save();
-      res.status(200).send({ message: "password changed" });
+      bcrypt.hash(newpassword, 10, async function (err, hash) {
+        if (err) {
+          const error = new Error("password change process incomplete");
+          error.statusCode = 422;
+          throw error;
+        }
+        user.authenticationType.form.password = hash;
+        user.save();
+        res.status(200).send({ message: "password changed" });
+      });
     }
   } catch (error) {
     return res.status(401).json({ message: "invalid Token" });
