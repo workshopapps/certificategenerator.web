@@ -22,7 +22,7 @@ router.post("/", authentication, fileExtLimiter, addCertificate);
 router.get("/:id", authentication, getCertificate);
 router.put("/:id", authentication, updateCertificateDetails);
 router.delete("/:id", authentication, deleteCertificate);
-router.delete("/:userid", authentication, deleteUserCertificates);
+router.delete("/", authentication, deleteUserCertificates);
 router.patch("/status/:id", authentication, updateCertificateStatus);
 module.exports = router;
 
