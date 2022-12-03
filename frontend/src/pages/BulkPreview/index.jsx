@@ -24,7 +24,7 @@ function Index() {
       <h2>Preview of Generated Certificates</h2>
 
       <section id="bulk-images-desktop">
-        <Splide
+        <Splide className="bulk-images-wrapper"
           options={{
             rewind: true,
             gap: "30px",
