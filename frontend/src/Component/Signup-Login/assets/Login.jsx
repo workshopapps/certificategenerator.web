@@ -2,7 +2,7 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-import "./Style.css";
+import "./login.scss";
 import appleSVG from "./assets/apple.svg";
 import googleSVG from "./assets/google.svg";
 import cert from "./assets/Cert.png";
@@ -10,6 +10,8 @@ import emailSVG from "./assets/email.svg";
 import keySVG from "./assets/key.svg";
 import { loginUser } from "../api";
 import Input from "../../Input";
+import Swal from 'sweetalert2'
+
 
 const Login = ({ access, setAccess }) => {
   const navigate = useNavigate();
@@ -23,7 +25,7 @@ const Login = ({ access, setAccess }) => {
 
   const [useremail, setUserEmail] = useState();
   const [password, setPassword] = useState();
-  const [error, setError] = useState();
+
 
   const handleToggle = () => {
     if (type === "password") {
@@ -42,6 +44,20 @@ const Login = ({ access, setAccess }) => {
       };
     });
   }
+
+  const Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer)
+      toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+  })
+
+
   async function loginUser(email, password) {
     return fetch("https://certify-api.onrender.com/api/auth/login", {
       method: "POST",
@@ -54,23 +70,77 @@ const Login = ({ access, setAccess }) => {
 
   const handleSubmit = async e => {
     e.preventDefault();
-    const response = await loginUser(useremail, password);
-    const data = await response.json().catch(error => {
-      setError("apiError", { message: error });
-    });
 
-    const token = data.token;
-    setAccess(token);
-    {
-      data.token ? navigate("/pricing") : navigate("/login");
-    }
+    const response = await loginUser(useremail, password)
+      .then(response => {
+        
+        if (response.status === 404) {
+          Toast.fire({
+            icon: 'error',
+            title: 'Page not found'
+          })
+        
+          throw new Error("Page not found");
+        } 
+        
+        else if (response.status === 200) {
+          Toast.fire({
+            icon: 'success',
+            title: 'Signed in successfully'
+          })
+          navigate("/pricing");
+          setAccess(true)
+        }
 
-    localStorage.setItem("token", token);
-    localStorage.setItem("user", data.userId);
+        else if (response.status === 401) {
+       
+          Toast.fire({
+            icon: 'error',
+            title: 'Invalid Email or Password, please try again'
+          })
+          throw new Error("Invalid Email or Password, please try again");
+       
+        }
+        
+        else if (response.status === 500) {
+          Toast.fire({
+            icon: 'error',
+            title: 'Server Error'
+          })
+       
+          throw new Error("Server Error");
+         
+        }
+     
+
+        if (!response.ok) {
+          Toast.fire({
+            icon: 'error',
+            title: 'Something went wrong'
+          })
+         
+          throw new Error("Something went wrong");
+        }
+        
+        return response.json();
+      })
+
+      .then(() => {
+        const data = response.json();
+        const token = data.token;
+        localStorage.setItem("token", token);
+        localStorage.setItem("user", data.userId);
+      })
+      .catch(e => {
+        console.log(e.message);
+      });
   };
-
+ 
+  
+ 
   return (
-    <div>
+    <div id = "login">
+  
       <div className="authContainer">
         <div className="formDiv">
           <form onSubmit={handleSubmit}>
@@ -93,7 +163,7 @@ const Login = ({ access, setAccess }) => {
             <div id="email">
               <img alt="" src={emailSVG} />
               <Input
-                className="email_input"
+              id="email_input"
                 placeholder=" Email"
                 type="text"
                 name="email"
@@ -123,7 +193,7 @@ const Login = ({ access, setAccess }) => {
               </span>
             </div>
 
-            {error && <p className="login-error">Invalid Email or Password</p>}
+  
             <div className="forgotPwd">Forgot password?</div>
             <div id="checkTerms">
               <input
@@ -137,12 +207,13 @@ const Login = ({ access, setAccess }) => {
                 Remember me
               </label>
             </div>
-            <Input
-              type="submit"
-              onClick={handleSubmit}
-              value="Login"
-              id="btn"
-            />
+
+            <div>
+            <button id = 'btn' onClick = {handleSubmit}>
+            Login
+            </button>
+            </div>
+
           </form>
           <p className="haveAccount">
             Don’t have a Certgo account?{" "}
