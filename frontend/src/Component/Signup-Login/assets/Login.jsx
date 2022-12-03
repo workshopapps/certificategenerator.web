@@ -141,12 +141,12 @@ const Login = ({ access, setAccess }) => {
 
             <div id="email">
               <img alt="" src={emailSVG} />
-              <input
+              <nput
                 id="email_input"
                 placeholder=" Email"
                 type="text"
                 name="email"
-                onChange = {e => setUserEmail(e.target.value)}
+                onChange={e => setUserEmail(e.target.value)}
                 required
                 style={{ border: "none" }}
               />
@@ -159,7 +159,7 @@ const Login = ({ access, setAccess }) => {
                 placeholder="Password"
                 type={type}
                 name="password"
-                onChange ={e => setPassword(e.target.value)}
+                onChange={e => setPassword(e.target.value)}
                 required
                 className="pw_input"
               />
