@@ -12,7 +12,7 @@ const ForgotPassword = () => {
  
     const element = [
     <Input
-      type={"email"}
+      type="email"
       placeholder="Enter your email address"
       value={email}
       onChange={e => setEmail(e.target.value)}
