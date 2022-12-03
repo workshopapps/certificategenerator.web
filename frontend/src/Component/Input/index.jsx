@@ -15,7 +15,7 @@ const Input = ({
   errorMessage = "Invalid Message",
   eyecon
 }) => {
-  const [pw, setPw] = useState("password");
+  const [pw, setPw] = useState("text");
   const handleToggle = () => {
     console.log(222);
     if (pw === "password") {
