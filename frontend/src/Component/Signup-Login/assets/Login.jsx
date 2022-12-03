@@ -168,7 +168,7 @@ const [error, setError] = useState(false);
                 placeholder=" Email"
                 type="text"
                 name="email"
-                callback={e => setUserEmail(e.target.value)}
+                onChange = {e => setUserEmail(e.target.value)}
                 required
                 style={{ border: "none" }}
               />
@@ -181,7 +181,7 @@ const [error, setError] = useState(false);
                 placeholder="Password"
                 type={type}
                 name="password"
-                callback={e => setPassword(e.target.value)}
+                onChange ={e => setPassword(e.target.value)}
                 required
                 
                 className="pw_input"
