@@ -69,28 +69,39 @@
     margin-bottom: 3em;
   }
   h2 {
-    font-weight: 600;
-    font-size: 32px;
+    font-weight: 500;
+    font-size: 24px;
     line-height: 38px;
     margin: 0.7em;
+    color: #222222;
   }
   .dragBox {
     width: 30em;
-    height: 12.5em;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
+    gap: 32px;
     font-size: 1.1em;
     line-height: 2em;
-
     margin: auto;
-    margin-top: 2em;
-    margin-bottom: 6em;
-
+    margin-top: 32px;
     i {
       margin: 2em;
       margin-bottom: 0;
+    }
+    .dragboxContainer{
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      border: 0.542553px dashed #19A68E;
+      border-radius: 4.34043px;
+    }
+    #uploadCSV{
+      border: none;
+      width: 220px;
     }
     span {
       color: $uploadBtn;
@@ -100,7 +111,7 @@
         font-size: inherit;
         text-decoration: underline;
         display: inline;
-        margin-left: 12px;
+        margin-left: 44px;
       }
     }
   }
@@ -110,16 +121,17 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-    border-radius: 99px;
     margin-top: 20px;
     justify-content: center;
     
   }
   .Submitcsv{
-    width: 200px;
-    height:60px;
-    background: $primaryColor;
-    border-radius: 99px;
+    width: 133px;
+    height: 48px;
+    left: 554px;
+    top: 477px;
+    background: #19A68E;
+    border-radius: 10px;
     color: #fff;
     display: flex;
     justify-content: center;
@@ -194,4 +206,15 @@
   h2 {
     font-size: 20px !important;
   }
+}
+
+@media  screen and (max-width: 480px) {
+  .dragBox{
+    span{
+      font-size: 12px; 
+      .CSVupload {
+        margin-left: 0px;
+      }     
+      }
+}
 }
