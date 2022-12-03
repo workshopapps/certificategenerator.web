@@ -60,7 +60,7 @@ body {
   grid-template-columns: 1fr 1fr;
   margin-bottom: 3rem !important;
   @media screen and (min-width: 1220px) {
-    gap: 6rem;
+    // gap: 5rem;
   }
   .hero-left {
     width: 100%;
@@ -68,7 +68,7 @@ body {
     margin-bottom: 1rem;
     .hero-text {
       font-weight: 700;
-      font-size: 40px;
+      font-size: 48px;
       line-height: 60px;
       margin-bottom: 20px;
       margin-top: 0;
@@ -111,9 +111,10 @@ body {
   grid-template-columns: 1fr 1fr 1fr;
   align-items: center;
   justify-content: center;
-  gap: 5rem;
-  width: 100%;
-  padding: 2rem 4.5rem;
+  gap: 1rem;
+  width: 95%;
+  margin: 0 auto;
+  padding: 1rem 2rem;
   .single-perk {
     display: flex;
     align-items: center;
@@ -133,7 +134,7 @@ body {
   height: 26.67px;
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 1300px) {
   .hero {
     .hero-left {
       .hero-text {
@@ -143,7 +144,7 @@ body {
     }
   }
 }
-@media screen and (max-width: 868px) {
+@media screen and (max-width: 920px) {
   .hero {
     align-items: initial;
     gap: 1rem;
@@ -167,7 +168,7 @@ body {
     }
   }
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 778px) {
   .hero {
     .hero-left {
       .hero-text {
@@ -179,6 +180,9 @@ body {
         width: 100%;
       }
     }
+  }
+  .perks{
+    grid-template-columns: 1fr;
   }
 }
 @media screen and (max-width: 620px) {
@@ -197,32 +201,36 @@ body {
 
     .hero-right {
       .hero-img {
-        height: 96% !important;
+        height: 250px;
       }
     }
   }
   .perks {
-    flex-direction: column;
+    width: 100%;
     .single-perk {
-      margin-bottom: 2rem;
       text-align: center;
     }
   }
 }
 
-@media screen and (max-width: 480px) {
-  .hero-right {
-    display: none;
-  }
+@media screen and (max-width: 560px) {
+  
   .hero {
     padding-top: 1rem;
     text-align: center;
+    display: block;
     .hero-left {
       width: 100%;
       text-align: center;
       button {
         width: 100%;
       }
+      .hero-caption {
+        margin-bottom: 2rem;
+      }
+    }
+    .hero-right {
+      display: none;
     }
   }
 
@@ -243,9 +251,11 @@ body {
     text-align: center;
     font-weight: 500;
     font-size: 16px;
+    margin-top: 1rem;
   }
   .perks {
     flex-direction: column;
+    padding: 0 1rem;
     .single-perk {
       font-size: 14px !important;
     }
