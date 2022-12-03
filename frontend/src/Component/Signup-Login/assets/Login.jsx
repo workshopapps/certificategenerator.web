@@ -25,7 +25,7 @@ const Login = ({ access, setAccess }) => {
 
   const [useremail, setUserEmail] = useState();
   const [password, setPassword] = useState();
-
+const [error, setError] = useState(false);
 
   const handleToggle = () => {
     if (type === "password") {
@@ -59,7 +59,7 @@ const Login = ({ access, setAccess }) => {
 
 
   async function loginUser(email, password) {
-    return fetch("https://certify-api.onrender.com/api/auth/login", {
+    return fetch("https://certgo.hng.tech/api/auth/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -70,20 +70,21 @@ const Login = ({ access, setAccess }) => {
 
   const handleSubmit = async e => {
     e.preventDefault();
-
+    try {
     const response = await loginUser(useremail, password)
-      .then(response => {
-        
-        if (response.status === 404) {
-          Toast.fire({
-            icon: 'error',
-            title: 'Page not found'
-          })
-        
-          throw new Error("Page not found");
-        } 
-        
-        else if (response.status === 200) {
+  const data = await response.json()
+ 
+   console.log(data)
+   console.log(response)
+  //  const token = data.token;
+  //       localStorage.setItem("token", token);
+  //       localStorage.setItem("user", data.userId);
+  //       console.log(token)
+  //  if(token){
+  //   setError(true)
+  //  }
+
+    if (response.status === 200 || response.status === 201) {
           Toast.fire({
             icon: 'success',
             title: 'Signed in successfully'
@@ -91,6 +92,15 @@ const Login = ({ access, setAccess }) => {
           navigate("/pricing");
           setAccess(true)
         }
+
+       else if (response.status === 401) {
+          Toast.fire({
+            icon: 'error',
+            title: 'Page not found'
+          })
+        
+          throw new Error("Page not found");
+        } 
 
         else if (response.status === 401) {
        
@@ -113,7 +123,8 @@ const Login = ({ access, setAccess }) => {
         }
      
 
-        if (!response.ok) {
+       else  {
+    
           Toast.fire({
             icon: 'error',
             title: 'Something went wrong'
@@ -121,22 +132,17 @@ const Login = ({ access, setAccess }) => {
          
           throw new Error("Something went wrong");
         }
-        
-        return response.json();
-      })
 
-      .then(() => {
-        const data = response.json();
-        const token = data.token;
-        localStorage.setItem("token", token);
-        localStorage.setItem("user", data.userId);
-      })
-      .catch(e => {
-        console.log(e.message);
-      });
+      
+
+    }
+      catch(error) {
+        
+        console.log(error.message);
+      }
   };
  
-  
+
  
   return (
     <div id = "login">
@@ -192,7 +198,7 @@ const Login = ({ access, setAccess }) => {
                 )}
               </span>
             </div>
-
+{error && <p>Invalid Email or Password</p>}
   
             <div className="forgotPwd">Forgot password?</div>
             <div id="checkTerms">
