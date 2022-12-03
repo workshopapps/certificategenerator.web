@@ -9,7 +9,7 @@ const PassswordLinkSent = () => {
   const p = `A password reset link has been sent to this registered email ${email}`;
   const element = [
     <a href={`mailto:${email}`}>
-      <Button name={"Go to indox"}></Button>
+      <Button name={"Go to inbox"}></Button>
     </a>
   ];
   return (
@@ -19,7 +19,7 @@ const PassswordLinkSent = () => {
         h2={h2}
         element={element}
         link="Back to Sign in"
-        linkto={"/signin"}
+        linkto={"/login"}
       />
     </>
   );

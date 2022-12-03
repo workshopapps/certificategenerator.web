@@ -13,12 +13,13 @@ const ProfilePage = () => {
           await axios.delete('https://certify-api.onrender.com/api/auth/logout')
           .then(() => {
             console.log('logged out');
-          })
-          localStorage.removeItem('token');
-          localStorage.removeItem('user');
-
-          //navigate back to login
-          navigate('/login')
+              //navigate back to login
+              navigate('/login') 
+             localStorage.removeItem('token');
+             localStorage.removeItem('user');
+          }).catch(err =>{
+            console.log(err || 'couldnt log out')
+          }) 
   }
   return (
     <div className="profile-page">

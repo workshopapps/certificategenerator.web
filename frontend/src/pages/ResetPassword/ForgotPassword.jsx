@@ -9,7 +9,8 @@ const ForgotPassword = () => {
   const h2 = "Forgot Password?";
   const p =
     "Please enter your registered email address below and a link will be sent to you to reset your password";
-  const element = [
+ 
+    const element = [
     <Input
       type={"email"}
       placeholder="Enter your email address"
@@ -27,7 +28,7 @@ const ForgotPassword = () => {
         h2={h2}
         element={element}
         link="Back to Sign in"
-        linkto={"/signin"}
+        linkto={"/login"}
       />
     </>
   );

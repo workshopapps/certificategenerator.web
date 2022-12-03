@@ -47,7 +47,7 @@ const ChangePassword = () => {
         h2={h2}
         element={element}
         link="Back to Sign in"
-        linkto={"/signin"}
+        linkto={"/login"}
       />
     </>
   );
