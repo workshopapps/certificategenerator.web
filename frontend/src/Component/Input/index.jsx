@@ -1,5 +1,5 @@
 import "./input.style.scss";
-import React from "react";
+import React, {useState} from "react";
 
 const Input = ({
   type,
@@ -13,6 +13,15 @@ const Input = ({
   error,
   errorMessage = "Invalid Message"
 }) => {
+  const [pw, setPw] = useState("text");
+  const handleToggle = () => {
+    console.log(222);
+    if (pw === "password") {
+      setPw("text");
+    } else {
+      setPw("password");
+    }
+  };
   return (
     <>
       {type === "submit" ? (

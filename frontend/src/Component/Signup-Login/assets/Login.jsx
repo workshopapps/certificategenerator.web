@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useState} from "react";
+import { useState } from "react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import "./login.scss";
 import appleSVG from "./assets/apple.svg";
@@ -8,8 +8,7 @@ import googleSVG from "./assets/google.svg";
 import cert from "./assets/Cert.png";
 import emailSVG from "./assets/email.svg";
 import keySVG from "./assets/key.svg";
-import Swal from 'sweetalert2'
-
+import Swal from "sweetalert2";
 
 const Login = ({ access, setAccess }) => {
   const navigate = useNavigate();
@@ -23,7 +22,7 @@ const Login = ({ access, setAccess }) => {
 
   const [useremail, setUserEmail] = useState();
   const [password, setPassword] = useState();
-const [error, setError] = useState(false);
+  const [error, setError] = useState(false);
 
   const handleToggle = () => {
     if (type === "password") {
@@ -45,19 +44,18 @@ const [error, setError] = useState(false);
 
   const Toast = Swal.mixin({
     toast: true,
-    position: 'top-end',
+    position: "top-end",
     showConfirmButton: false,
     timer: 3000,
     timerProgressBar: true,
-    didOpen: (toast) => {
-      toast.addEventListener('mouseenter', Swal.stopTimer)
-      toast.addEventListener('mouseleave', Swal.resumeTimer)
+    didOpen: toast => {
+      toast.addEventListener("mouseenter", Swal.stopTimer);
+      toast.addEventListener("mouseleave", Swal.resumeTimer);
     }
-  })
-
+  });
 
   async function loginUser(email, password) {
-    return fetch("https://certify-api.onrender.com/api/auth/login", {
+    return fetch("https://certgo.hng.tech/api/auth/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -69,79 +67,59 @@ const [error, setError] = useState(false);
   const handleSubmit = async e => {
     e.preventDefault();
     try {
-    const response = await loginUser(useremail, password)
-  const data = await response.json()
- 
-  //  console.log(response)
-  //  console.log(response.status)
-  
+      const response = await loginUser(useremail, password);
+      const data = await response.json();
 
-    if (response.status === 200 || response.status === 201) {
-          Toast.fire({
-            icon: 'success',
-            title: 'Signed in successfully'
-          })
-          navigate("/pricing");
-          setAccess(true)
-        }
+      console.log(response);
+      console.log(response.status);
 
-       else if (response.status === 401) {
-          Toast.fire({
-            icon: 'error',
-            title: 'Page not found'
-          })
-        
-          throw new Error("Page not found");
-        } 
+      if (response.status === 200 || response.status === 201) {
+        Toast.fire({
+          icon: "success",
+          title: "Signed in successfully"
+        });
+        navigate("/pricing");
+        setAccess(true);
+      } else if (response.status === 401) {
+        Toast.fire({
+          icon: "error",
+          title: "Page not found"
+        });
 
-        else if (response.status === 400) {
-       
-          Toast.fire({
-            icon: 'error',
-            title: 'Invalid Email or Password, please try again'
-          })
-          throw new Error("Invalid Email or Password, please try again");
-       
-        }
-        
-        else if (response.status === 500) {
-          Toast.fire({
-            icon: 'error',
-            title: 'Server Error'
-          })
-       
-          throw new Error("Server Error");
-         
-        }
-     
+        throw new Error("Page not found");
+      } else if (response.status === 400) {
+        Toast.fire({
+          icon: "error",
+          title: "Invalid Email or Password, please try again"
+        });
+        throw new Error("Invalid Email or Password, please try again");
+      } else if (response.status === 500) {
+        Toast.fire({
+          icon: "error",
+          title: "Server Error"
+        });
 
-       else  {
-    
-          Toast.fire({
-            icon: 'error',
-            title: 'Something went wrong'
-          })
-         
-          throw new Error("Something went wrong");
-        }
+        throw new Error("Server Error");
+      } else {
+        Toast.fire({
+          icon: "error",
+          title: "Something went wrong"
+        });
 
-        const token = data.token;
-        localStorage.setItem("token", token);
-        localStorage.setItem("user", data.userId);
-       
-
-    }
-      catch(error) {
-        setError(true)
-        console.log(error.message);
+        throw new Error("Something went wrong");
       }
-  };
- 
 
- 
+      const token = data.token;
+      localStorage.setItem("token", token);
+      localStorage.setItem("user", data.userId);
+    } catch (error) {
+      setError(true);
+      console.log(error.message);
+    }
+  };
+
   return (
-    <div id = "login">
-  
+    <div id="login">
       <div className="authContainer">
         <div className="formDiv">
           <form onSubmit={handleSubmit}>
@@ -164,7 +142,7 @@ const [error, setError] = useState(false);
             <div id="email">
               <img alt="" src={emailSVG} />
               <input
-              id="email_input"
+                id="email_input"
                 placeholder=" Email"
                 type="text"
                 name="email"
@@ -183,7 +161,6 @@ const [error, setError] = useState(false);
                 name="password"
                 callback={e => setPassword(e.target.value)}
                 required
-                
                 className="pw_input"
               />
               <span onClick={handleToggle}>
@@ -194,8 +171,8 @@ const [error, setError] = useState(false);
                 )}
               </span>
             </div>
-{error && <p style ={{color:'red'}}>Something went wrong</p>}
-  
+            {error && <p style={{ color: "red" }}>Something went wrong</p>}
+
             <div className="forgotPwd">Forgot password?</div>
             <div id="checkTerms">
               <input
@@ -211,11 +188,10 @@ const [error, setError] = useState(false);
             </div>
 
             <div>
-            <button id = 'btn' onClick = {handleSubmit}>
-            Login
-            </button>
+              <button id="btn" onClick={handleSubmit}>
+                Login
+              </button>
             </div>
-
           </form>
           <p className="haveAccount">
             Don’t have a Certgo account?{" "}
