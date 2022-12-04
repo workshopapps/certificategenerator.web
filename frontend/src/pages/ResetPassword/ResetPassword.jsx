@@ -21,10 +21,10 @@ const ResetPassword = () => {
   }
   const handleSubmit = async (e) =>{
     e.preventDefault()
-    if(formData.newPassword.value !== formData.confirmPassword.value){
+    if(formData.newPassword !== formData.confirmPassword){
       alert('password do not match')
     }else{
-      await  axios.post(`https://certgo.hng.tech/api/auth/changepassword/${userId}/${token}`, {...formData})
+      await  axios.post(`https://certify-api.onrender.com/api/auth/changepassword/${userId}/${token}`, {...formData})
       .then((response) => {
             navigate('/fff5')
             console.log(response.data.message);
@@ -44,14 +44,14 @@ const ResetPassword = () => {
       type={"password"}
       placeholder="New password"
       onChange={handleChange}
-      id='newPassword'
+      id='newpassword'
       label="New password"
       eyecon={true}
     />
     <Input
       type={"password"}
       placeholder="Confirm new password"
-      id='confirmPassword'
+      id='confirmpassword'
       onChange={handleChange}
       label="Confirm new password"
       eyecon={true}

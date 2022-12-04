@@ -40,7 +40,7 @@ const navigate = useNavigate()
         return false;
        }else{
        await axios
-            .post('https://certgo.hng.tech/api/auth/forgotpassword', {email})
+            .post('https://certify-api.onrender.com/api/auth/forgotpassword', {email})
              .then((response) => {
                 console.log(response);
                 console.log(response.status);
