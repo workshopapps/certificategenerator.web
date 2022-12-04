@@ -76,8 +76,6 @@ const Signup = () => {
   });
 
   const onSuccess = res => {
-    console.log("success:", res);
-
     setToken({ accessToken: res.tokenId });
 
     // User details from Google
@@ -101,7 +99,6 @@ const Signup = () => {
 
   // Send access token to backend
   async function createNewUser(token) {
-    console.log(token);
     const response = await fetch("https://certgo.hng.tech/api/auth/signup", {
       method: "POST",
       headers: {
@@ -110,7 +107,7 @@ const Signup = () => {
       body: JSON.stringify(token)
     });
 
-    console.log(response.message);
+    console.log("api response: ", response);
 
     if (response.status === 200 || response.status === 201) {
       // route user to dashboard after successful signup/login

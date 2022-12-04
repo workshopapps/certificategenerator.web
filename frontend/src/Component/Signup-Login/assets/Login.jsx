@@ -129,17 +129,15 @@ const Login = ({ access, setAccess }) => {
 
   useEffect(() => {
     const initClient = () => {
-      gapi.client.init({
-        clientId: CLIENT_ID,
-        scope: ""
+      gapi.auth2.init({
+        clientId: CLIENT_ID
+        // scope: ""
       });
     };
     gapi.load("client:auth2", initClient);
   });
 
   const onSuccess = res => {
-    console.log("success:", res);
-
     setToken({ accessToken: res.tokenId });
 
     // User details from Google
@@ -163,7 +161,6 @@ const Login = ({ access, setAccess }) => {
 
   // Send access token to backend
   async function loginUser(token) {
-    console.log(token);
     const response = await fetch("https://certgo.hng.tech/api/auth/login", {
       method: "POST",
       headers: {
@@ -172,7 +169,7 @@ const Login = ({ access, setAccess }) => {
       body: JSON.stringify(token)
     });
 
-    console.log(response.message);
+    console.log(response);
 
     if (response.status === 200) {
       // route user to dashboard after successful login
