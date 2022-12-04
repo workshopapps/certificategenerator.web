@@ -12,14 +12,10 @@ import emailSVG from "./assets/email.svg";
 import keySVG from "./assets/key.svg";
 import { createNewUser } from "../api";
 import Input from "../../Input";
-import axios from "../../../api/axios"
 
 const Signup = () => {
   const navigate = useNavigate();
   const [type, setType] = useState("password");
-  // const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const [formData, setFormData] = React.useState({
     password: "",
     email: "",
@@ -51,26 +47,17 @@ const Signup = () => {
   }
 
   const handleOnSubmit = async e => {
-    console.log('i got here first')
-    e.preventDefault();
-    console.log( password, email)
     try {
-      const response = await axios.post('/auth/signup', {
-        email: email,
-        password: password
-      })
-      
-      console.log(response)
-      // const response = await createNewUser({
-      //   password: formData?.password,
-      //   email: formData?.email,
-      //   name: name
-      // });
+      e.preventDefault();
+      const response = await createNewUser({
+        password: formData?.password,
+        email: formData?.email
+      });
 
       if (response && response.data) {
         //redirect a successfull signup here ...
         // navigate("/login")
-        navigate("#/dashboard");
+        navigate("/");
       }
     } catch (error) {
       console.log(error);
@@ -199,8 +186,8 @@ const Signup = () => {
                 ) : (
                   <AiOutlineEyeInvisible size={25} className="eye" />
                 )}
-              </span>
-            </div>
+              </span> */}
+            {/* </div> */}
             <div id="checkTerms">
               <input
                 type="checkbox"
@@ -215,13 +202,12 @@ const Signup = () => {
                 <span id="coloredTerms"> Privacy Policy</span>
               </div>
             </div>
-            {/* <Input
+            <Input
               type="submit"
               id="btn"
               value="Create Account"
-              onClick={(e)=>handleOnSubmit(e)}
-            /> */}
-            <button onClick={handleOnSubmit}>create Account</button>
+              onClick={handleOnSubmit}
+            />
           </form>
           <p className="haveAccount">
             Already have an account?{" "}

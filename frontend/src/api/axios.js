@@ -1,8 +1,7 @@
 import axios from "axios";
 
 const baseURL="https://certify-api.onrender.com/api"
-const token = localStorage.getItem('accessToken')
-console.log(token);
+const token = localStorage.getItem('refreshToken')
 
 
 export default axios.create({
@@ -16,12 +15,5 @@ const axiosPrivate = axios.create({
     "Authorization" : `Bearer ${token}`
  }
 });
-const axiosFormdata = axios.create({
-  baseURL,
-  headers: { 
-    "Content-Type": "multipart/form-data",
-    "Authorization" : `Bearer ${token}`
- }
-});
 
-export {axiosPrivate, axiosFormdata};
+export {axiosPrivate};

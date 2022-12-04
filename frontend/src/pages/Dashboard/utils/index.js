@@ -135,7 +135,7 @@ export const tableData = [
   },
 ];
 
-export const dummyData = [
+export const cardData = [
   {
     title: "Total Number Issued",
     icon: "",
