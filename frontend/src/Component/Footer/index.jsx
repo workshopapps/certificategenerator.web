@@ -23,6 +23,9 @@ const Footer = () => {
       setEmail("");
       setMessage(successMSG);
       onSubscribe();
+      setTimeout(function () {
+        setMessage("");
+      }, 10000);
     } else if (!regex.test(email) && email !== "") {
       setMessage("Please enter a valid email");
     } else {
