@@ -2,11 +2,13 @@ import React, { useEffect, useState } from "react";
 import "./dashboard.style.scss";
 import profilePic from "../../assets/images/Ellipse4.png";
 import Card from "./Card";
-import { cardData, nullDataIcon, actionIcon } from "./utils";
+import { dummyData, nullDataIcon, actionIcon, tableData } from "./utils";
 import Button from "../../Component/button";
 import CreateCertificateModal from "./CreateCertificateModal";
-import axios from "axios";
-
+import { axiosPrivate } from "../../api/axios";
+import useAppProvider from "../../hooks/useAppProvider";
+import Swal from "sweetalert2";
+import { Loader } from "../../Component";
 
 const Dashboard = ({
   logo,
@@ -23,49 +25,119 @@ const Dashboard = ({
   setIssueDate
 }) => {
   const [data, setData] = useState([]);
-  const [issuedCert, setIssuedCert] = useState([...cardData]);
+  const [cardData, setCardData] = useState([...dummyData]);
+  const [issuedCertCount, setIssuedCertCount] = useState(0);
   const [openModal, setOpenModal] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState(true);
+  const [loading, setLoading] = useState(false);
+  const [pending, setPending] = useState(0);
+  const [selectedIndex, setSelectedIndex] = useState(tableData);
+  const { certificates, setCertificates } = useAppProvider();
 
+  const Toast = Swal.mixin({
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: toast => {
+      toast.addEventListener("mouseenter", Swal.stopTimer);
+      toast.addEventListener("mouseleave", Swal.resumeTimer);
+    }
+  });
+
+  const handleDropdown = (e,itm, index) => {
+    // setSelectedIndex(e.target.id);
+    // console.log(e.target.id);
+    if(index === tableData.indexOf(itm)) setOpenDropdown(!openDropdown);
+  };
   useEffect(() => {
-    const fetchData = async () => {
-      setIssuedCert(cardData);
-      const myHeaders = new Headers();
-      myHeaders.append(
-        "Authorization",
-        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzdmOTg3MDQyODc5MzAwNDJmYzE0M2UiLCJpYXQiOjE2NjkzMDY4MjQsImV4cCI6MTY2OTM5MzIyNH0.x5q4XJDcFvN8EWqc4e0el6CZXJtwQjtcrmo3Id0sQlc"
-      );
-
-      let requestOptions = {
-        method: "GET",
-        headers: myHeaders
-      };
-
-      fetch("https://certify-api.onrender.com/api/certificates", requestOptions)
-        .then(response => response.json())
-        .then(result => setData(result))
-        .catch(error => console.log("error", error));
-
-      fetch(
-        "https://certify-api.onrender.com/api/certificates/issuedCertificates",
-        requestOptions
-      )
-        .then(response => response.json())
-        .then(result => {
-          setIssuedCert(
-            issuedCert.map(item =>
-              item.title === "Total Number Issued"
-                ? { ...item, count: result.issuedCertificates }
-                : item
-            )
-          );
-        })
-        .catch(error => console.log("error", error));
+    const getUserCertificates = async () => {
+      try {
+        // setLoading(true);
+        const res = await axiosPrivate.get("/certificates");
+        // console.log("i got here");
+        console.log(res);
+        if (res.status === 404) {
+          setLoading(false);
+          Toast.fire({
+            icon: "error",
+            title: "Page not found"
+          });
+        } else if (res.status === 401) {
+          setLoading(false);
+          Toast.fire({
+            icon: "error",
+            title: "Request Failed"
+          });
+        } else if (res.status === 500) {
+          setLoading(false);
+          Toast.fire({
+            icon: "error",
+            title: "Internal Server Error"
+          });
+        } else {
+          setData(res.data);
+          console.log(res.data);
+          setLoading(false);
+        }
+      } catch (error) {
+        console.error(error.message);
+      }
     };
-    fetchData();
+    const getIssuedCertificates = async () => {
+      try {
+        const res = await axiosPrivate.get("/certificates/issuedCertificates");
+        // console.log("i got here");
+        console.log(res);
+        setIssuedCertCount(res.data);
+        setCardData(
+          cardData.map(item =>
+            item.title === "Total Number Issued"
+              ? { ...item, count: res.data.issuedCertificates }
+              : item
+          )
+        );
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    getUserCertificates();
+    getIssuedCertificates();
   }, []);
 
-  const dataCheck = issuedCert.filter(item => item.count !== 0);
+  useEffect(() => {
+    const updateCount = () => {
+      const cardSnapshot = [...cardData];
+      const pendingCount = data.filter(
+        item => item.status === "pending"
+      ).length;
+      const newCard = cardSnapshot.map(item =>
+        item.title === "Total number of pending certificates"
+          ? { ...item, count: pendingCount }
+          : item
+      );
+      setCardData(newCard);
+    };
+    updateCount();
+  }, [data]);
 
+  const dataCheck = cardData.filter(item => item.count !== 0);
+  if (loading) {
+    return (
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "90vh"
+        }}
+      >
+        <Loader />
+      </div>
+    );
+  }
   return (
     <>
       <div className="dashboard">
@@ -89,15 +161,14 @@ const Dashboard = ({
         </div>
 
         <div className="dashboard__cards">
-          {issuedCert.map((item, idx) => (
-            <Card key={idx} item={item} />
-          ))}
+          {cardData.length > 0 &&
+            cardData.map((item, idx) => <Card key={idx} item={item} />)}
         </div>
 
         <div className="table-wrapper">
           <div className="table-header">
             <p>CERTIFICATE DASHBOARD</p>
-            {dataCheck.length > 0 ? (
+            {data.length > 0 ? (
               <div>
                 <Button className="" onClick={() => setOpenModal(true)}>
                   Create New Certificate
@@ -135,14 +206,14 @@ const Dashboard = ({
               </thead>
               {data.length > 0 && (
                 <tbody>
-                  {data.map((item, idx) => (
+                  {tableData.map((item, idx) => (
                     <tr key={idx}>
-                      <td>{item.nameOfOrganization.toUpperCase()}</td>
-                      {item.status === "Issued" ? (
+                      <td>{item.nameoforganization}</td>
+                      {item.status === "issued" ? (
                         <td>
-                          <button className="cancel">Canceled</button>
+                          <button className="cancel">canceled</button>
                         </td>
-                      ) : item.status === "Pending" ? (
+                      ) : item.status === "pending" ? (
                         <td>
                           <button className="pending">Pending</button>
                         </td>
@@ -154,14 +225,40 @@ const Dashboard = ({
                       <td>{item.date}</td>
                       <td>{data.length}</td>
                       <td>PDF</td>
-                      <td className="action">{actionIcon()}</td>
+                      <td className="action">
+                        {/* <span>{actionIcon()}</span> */}
+                        <svg
+                          id={idx} onClick={(e) => handleDropdown(item, idx)}
+                          width="6"
+                          height="17"
+                          viewBox="0 0 6 17"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M1.33398 14.3333C1.33398 15.25 2.08398 16 3.00065 16C3.91732 16 4.66732 15.25 4.66732 14.3333C4.66732 13.4167 3.91732 12.6667 3.00065 12.6667C2.08398 12.6667 1.33398 13.4167 1.33398 14.3333ZM1.33398 2.66667C1.33398 3.58333 2.08398 4.33333 3.00065 4.33333C3.91732 4.33333 4.66732 3.58333 4.66732 2.66667C4.66732 1.75 3.91732 1 3.00065 1C2.08398 1 1.33398 1.75 1.33398 2.66667ZM1.33398 8.5C1.33398 9.41667 2.08398 10.1667 3.00065 10.1667C3.91732 10.1667 4.66732 9.41667 4.66732 8.5C4.66732 7.58333 3.91732 6.83333 3.00065 6.83333C2.08398 6.83333 1.33398 7.58333 1.33398 8.5Z"
+                            stroke="#FFFFFF"
+                            strokeWidth="1.5"
+                          />
+                        </svg>
+                        {openDropdown  && (
+                          <div id={idx} className="dropdown">
+                            <ul>
+                              <li>View</li>
+                              <li>Edit</li>
+                              <li>Update Status</li>
+                              <li>Delete</li>
+                            </ul>
+                          </div>
+                        )}
+                      </td>
                     </tr>
                   ))}
                 </tbody>
               )}
             </table>
 
-            {dataCheck.length === 0 && (
+            {data.length === 0 && (
               <div className="null-table-data">
                 <div>
                   {nullDataIcon()}
