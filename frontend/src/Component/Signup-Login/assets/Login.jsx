@@ -65,7 +65,7 @@ const Login = ({ access, setAccess }) => {
   });
 
   async function loginUser(email, password) {
-    return fetch("https://certgo.hng.tech/api/auth/login", {
+    return fetch("https://certify-api.onrender.com/api/auth/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -104,10 +104,10 @@ const Login = ({ access, setAccess }) => {
       } else if (response.status === 500) {
         Toast.fire({
           icon: "error",
-          title: "Server Error"
+          title: "Internal server Error"
         });
 
-        throw new Error("Server Error");
+        throw new Error("Internal server Error");
       } else {
         Toast.fire({
           icon: "error",
