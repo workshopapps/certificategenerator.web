@@ -10,18 +10,19 @@ const { sendChangePasswordEmail } = require("../utils/email");
 const { verifyRefreshToken } = require("../middleware/verifyRefreshToken")
 
 const { OAuth2Client } = require("google-auth-library");
-const client = new OAuth2Client(config.GOOGLE_CLIENT_ID);
+const client = new OAuth2Client("52168821352-4sc11trj4qtq95051mrnrbinfgmla3ai.apps.googleusercontent.com");
 
 //function to verify user google access token
 async function verify(_token) {
   try {
     const ticket = await client.verifyIdToken({
       idToken: _token,
-      audience: config.GOOGLE_CLIENT_ID,
+      audience: "52168821352-4sc11trj4qtq95051mrnrbinfgmla3ai.apps.googleusercontent.com",
     });
+    console.log(ticket)
     return ticket.getPayload();
   } catch (error) {
-    throw error;
+    console.log(error)
   }
 }
 
@@ -36,35 +37,44 @@ const userExist = async (_email) => {
 
 const userSignup = async (req, res, next) => {
   try {
+    console.log("here1")
     let { accessToken, email, password, subscriptionPlan } = req.body;
 
     //google signup
-    if (req.body.accessToken) {
-      const payload = await verify(accessToken);
-      const googleUserId = payload["sub"];
-      email = payload["email"];
-
-      //check db if user already exists
-      if (await userExist(email)) {
-        return res.status(401).json({ message: "email already in use" });
-      }
-
-      //if not create new user
-      const newUser = new User({
-        email: email,
-        authenticationType: {
-          google: {
-            uuid: googleUserId,
+    try {
+      
+      if (req.body.accessToken) {
+        console.log("herr")
+        const payload = await verify(accessToken);
+        console.log(payload)
+        const googleUserId = payload["sub"];
+        email = payload["email"];
+        console.log("here2")
+  
+        //check db if user already exists
+        if (await userExist(email)) {
+          return res.status(401).json({ message: "email already in use" });
+        }
+  
+        //if not create new user
+        const newUser = new User({
+          email: email,
+          authenticationType: {
+            google: {
+              uuid: googleUserId,
+            },
           },
-        },
-        subscription: subscriptionPlan,
-      });
-      const createdUser = await newUser.save();
-      return res.status(201).json({
-        message: "New User has been created.",
-        id: createdUser._id,
-        email: createdUser.email,
-      });
+          subscription: subscriptionPlan,
+        });
+        const createdUser = await newUser.save();
+        return res.status(201).json({
+          message: "New User has been created.",
+          id: createdUser._id,
+          email: createdUser.email,
+        });
+      }
+    } catch (error) {
+      console.log(error, "signup")
     }
 
     //Form signup
@@ -195,6 +205,7 @@ const userLogin = async (req, res, next) => {
     if (req.body.accessToken) {
       try {
         const payload = await verify(req.body.accessToken);
+        console.log("herrl")
         const googleUserId = payload["sub"];
         email = payload["email"];
         const user = await User.findOne({ email });
@@ -222,7 +233,7 @@ const userLogin = async (req, res, next) => {
         if (!error.statusCode) {
           error.statusCode = 500;
         }
-        return res.status(200).json({ message: "could not verify accessToken" })
+        return res.status(500).json({ message: "could not verify accessToken" })
       }
     }
 
