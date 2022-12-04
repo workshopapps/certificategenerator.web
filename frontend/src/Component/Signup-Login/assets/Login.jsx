@@ -162,24 +162,24 @@ const Login = ({ access, setAccess }) => {
   };
 
   // Send access token to backend
-  function loginUser(token) {
+  async function loginUser(token) {
     console.log(token);
-    fetch("https://certgo.hng.tech/api/auth/login", {
+    const response = await fetch("https://certgo.hng.tech/api/auth/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
       body: JSON.stringify(token)
-    }).then(response => {
-      console.log(response.message);
-
-      if (response.status === 200) {
-        // route user to dashboard after successful login
-        navigate("/dashboard");
-      } else {
-        navigate("/login");
-      }
     });
+
+    console.log(response.message);
+
+    if (response.status === 200) {
+      // route user to dashboard after successful login
+      navigate("/dashboard");
+    } else {
+      navigate("/login");
+    }
   }
 
   return (

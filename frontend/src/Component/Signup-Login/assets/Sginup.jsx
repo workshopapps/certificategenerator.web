@@ -100,24 +100,24 @@ const Signup = () => {
   };
 
   // Send access token to backend
-  function createNewUser(token) {
+  async function createNewUser(token) {
     console.log(token);
-    fetch("https://certgo.hng.tech/api/auth/signup", {
+    const response = await fetch("https://certgo.hng.tech/api/auth/signup", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
       body: JSON.stringify(token)
-    }).then(response => {
-      console.log(response.message);
-
-      if (response.status === 200 || response.status === 201) {
-        // route user to dashboard after successful signup/login
-        navigate("/dashboard");
-      } else {
-        navigate("/login");
-      }
     });
+
+    console.log(response.message);
+
+    if (response.status === 200 || response.status === 201) {
+      // route user to dashboard after successful signup/login
+      navigate("/dashboard");
+    } else {
+      navigate("/login");
+    }
   }
 
   return (
