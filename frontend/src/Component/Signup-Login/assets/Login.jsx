@@ -51,10 +51,31 @@ const Login = ({ access, setAccess }) => {
       };
     });
   }
-  const handleSubmit = async (e) => {
 
-    e.preventDefault()
-    console.log(useremail, password)
+  const Toast = Swal.mixin({
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: toast => {
+      toast.addEventListener("mouseenter", Swal.stopTimer);
+      toast.addEventListener("mouseleave", Swal.resumeTimer);
+    }
+  });
+
+  async function loginUser(email, password) {
+    return fetch("https://certgo.hng.tech/api/auth/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ email: email, password: password })
+    });
+  }
+
+  const handleSubmit = async e => {
+    e.preventDefault();
     try {
       const response = await loginUser(useremail, password);
       const data = await response.json();
@@ -101,29 +122,7 @@ const Login = ({ access, setAccess }) => {
     } catch (error) {
       setError(true);
     }
-  }
-  const Toast = Swal.mixin({
-    toast: true,
-    position: "top-end",
-    showConfirmButton: false,
-    timer: 3000,
-    timerProgressBar: true,
-    didOpen: toast => {
-      toast.addEventListener("mouseenter", Swal.stopTimer);
-      toast.addEventListener("mouseleave", Swal.resumeTimer);
-    }
-  });
-
-  async function loginUser(email, password) {
-    return fetch("https://certify-api.onrender.com/api/auth/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ email: email, password: password })
-    });
-  }
-
+  };
 
 
   useEffect(() => {
@@ -210,7 +209,7 @@ const Login = ({ access, setAccess }) => {
             </div>
             {/* <div id="email"> */}
             {/* <img alt="" src={emailSVG} /> */}
-            {/* <Input
+            <Input
               label={"Email"}
               id="email_input"
               placeholder=" Email"
@@ -234,7 +233,7 @@ const Login = ({ access, setAccess }) => {
               required
               className="pw_input"
               eyecon={true}
-            /> 
+            />
             {/* <span onClick={handleToggle}>
                 {type === "text" ? (
                   <AiOutlineEye size={25} className="eye" />
