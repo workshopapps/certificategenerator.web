@@ -11,6 +11,7 @@ import cert from "./assets/Cert.png";
 import emailSVG from "./assets/email.svg";
 import keySVG from "./assets/key.svg";
 import { createNewUser } from "../api";
+import Swal from "sweetalert2";
 import Input from "../../Input";
 
 const Signup = () => {
@@ -28,6 +29,18 @@ const Signup = () => {
   // Google auth client ID
   const CLIENT_ID =
     "52168821352-4sc11trj4qtq95051mrnrbinfgmla3ai.apps.googleusercontent.com";
+
+  const Toast = Swal.mixin({
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: toast => {
+      toast.addEventListener("mouseenter", Swal.stopTimer);
+      toast.addEventListener("mouseleave", Swal.resumeTimer);
+    }
+  });
 
   const handleToggle = () => {
     if (type === "password") {
@@ -110,9 +123,17 @@ const Signup = () => {
     console.log("api response: ", response);
 
     if (response.status === 200 || response.status === 201) {
+      Toast.fire({
+        icon: "success",
+        title: "Signed up successfully"
+      });
       // route user to dashboard after successful signup/login
       navigate("/dashboard");
     } else {
+      Toast.fire({
+        icon: "error",
+        title: "Something went wrong"
+      });
       navigate("/login");
     }
   }
