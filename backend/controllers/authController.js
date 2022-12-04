@@ -21,7 +21,6 @@ async function verify(_token) {
     });
     return ticket.getPayload();
   } catch (error) {
-    console.log(error)
     error = new Error("could not verify access token")
     error.statusCode = 401
     throw err
@@ -212,7 +211,7 @@ const userLogin = async (req, res, next) => {
             .status(401)
             .json({ message: "A user for this email could not be found!" });
         }
-        if (googleUserId !== user.authenticationType.google.uuid) {
+        if (!user.authenticationType.google || googleUserId !== user.authenticationType.google.uuid) {
           return res.status(401).json({
             message:
               "google login hasn't been linked to this email, please login with the form",
