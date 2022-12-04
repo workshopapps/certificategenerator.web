@@ -1,7 +1,17 @@
 require('dotenv').config();
 const sgMail = require('@sendgrid/mail');
 const sgClient = require('@sendgrid/client');
+const nodemailer = require("nodemailer");
+const sendgridTransport = require("nodemailer-sendgrid-transport");
 
+let transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+        user: process.env.AUTH_EMAIL,
+        pass: process.env.AUTH_PASS,
+
+    }
+})
 
 
 
@@ -32,16 +42,23 @@ async function addContact(email) {
 
 exports.subscribe = async (req, res, next) => {
     try {
-        const msg = {
-            to: req.body.email,
-            from: 'adebobolamuhydeen@gmail.com',
-            subject: `Thank you for subscribing to our newsletter`,
-            html: `Hello ${req.body.email},<br>Thank you for subscribing to our newsletter.`
-        }
         await addContact(req.body.email);
-        await sgMail.send(msg);
         res.status(201).json({ message: "You have successfully subscribed to our newsletter" });
+        const mailOptions = {
+            from: process.env.AUTH_EMAIL,
+            to: `${req.body.email}`,
+            subject: `Thank you for subscribing to our newsletter`,
+            html: `Hello ${req.body.email},<br>Thank you for subscribing to our newsletter.<br>You will recieve other important Updates from us.`,
+        }
+        transporter.sendMail(mailOptions, function (error, info) {
+            if (error) {
+                console.log('could not send email');
+            } else {
+                console.log("email sent!")
+            }
+        })
     } catch (err) {
+        console.log(err)
         if (!err.statusCode) {
             err.statusCode = 500
           }
