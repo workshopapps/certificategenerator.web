@@ -49,6 +49,7 @@ const userSignup = async (req, res, next) => {
         console.log(payload)
         const googleUserId = payload["sub"];
         email = payload["email"];
+        console.log(googleUserId, email)
         console.log("here2")
   
         //check db if user already exists

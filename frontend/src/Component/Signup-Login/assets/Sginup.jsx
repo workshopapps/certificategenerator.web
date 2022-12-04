@@ -81,38 +81,41 @@ const Signup = () => {
             <span id="or">or</span>
           </div>
           <form>
-            <div id="email">
-              <img alt="" src={emailSVG} />
-              <Input
-                style={{ border: "none" }}
-                className="email_input"
-                placeholder=" Email"
-                type="email"
-                required
-                name="email"
-                callback={handleChange}
-              />
-            </div>
-            <div id="pwd">
-              <img alt="" src={keySVG} />
-              <Input
-                style={{ border: "none" }}
-                // id="input_id"
-                className="pw_input"
-                placeholder="Create a password"
-                type={type}
-                required
-                name="password"
-                onChange={handleChange}
-              />
-              <span onClick={handleToggle}>
+            {/* <div id="email"> */}
+            {/* <img alt="" src={emailSVG} /> */}
+            <Input
+              label="Email"
+              className="email_input"
+              placeholder=" Email"
+              type="email"
+              required
+              name="email"
+              callback={handleChange}
+              value={formData.email}
+            />
+            {/* </div> */}
+            {/* <div id="pwd"> */}
+            {/* <img alt="" src={keySVG} /> */}
+            <Input
+              label="Password"
+              eyecon={true}
+              // id="input_id"
+              className="pw_input"
+              placeholder="Create a password"
+              type={"password"}
+              required
+              name="password"
+              callback={handleChange}
+              value={formData.password}
+            />
+            {/* <span onClick={handleToggle}>
                 {type === "text" ? (
                   <AiOutlineEye size={25} className="eye" />
                 ) : (
                   <AiOutlineEyeInvisible size={25} className="eye" />
                 )}
-              </span>
-            </div>
+              </span> */}
+            {/* </div> */}
             <div id="checkTerms">
               <input
                 type="checkbox"

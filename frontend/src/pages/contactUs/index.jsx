@@ -17,8 +17,10 @@ const ContactUs = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
+  const [error, setError] = useState();
   const [success, setSuccess] = useState(false);
+  
+
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -97,6 +99,7 @@ const ContactUs = () => {
                 type="text"
                 value={firstName}
                 onChange={e => setFirstName(e.target.value)}
+                required
               />
               <Inputfield
                 placeholder="First name"
@@ -104,6 +107,7 @@ const ContactUs = () => {
                 type="text"
                 value={lastName}
                 onChange={e => setLastName(e.target.value)}
+                required
               />
             </div>
             <Inputfield
@@ -112,6 +116,7 @@ const ContactUs = () => {
               placeholder="gigtot@gmail.com"
               value={email}
               onChange={e => setEmail(e.target.value)}
+              required
             />
             <Inputfield
               label=" Phone no"
@@ -121,14 +126,16 @@ const ContactUs = () => {
               maxlength='13'
               pattern='[0-9]*'
               onChange={e => setPhoneNumber(e.target.value)}
+              required
             />
             <TextArea
               placeholder="type message here"
               label="Message"
               value={message}
               onChange={e => setMessage(e.target.value)}
+              required
             />
-            <Button width="100%">
+            <Button width="100%" >
               {loading ? (
                 <div className="loading"></div>
               ) : success ? (
