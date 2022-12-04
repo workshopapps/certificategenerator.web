@@ -1,11 +1,11 @@
 import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { UploadCSV } from "../../";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "./createmodal.style.scss";
 import Loader from "../Loader"
+import UploadCSV from "../UploadCsv";
 
 function CreateCertificateModal({
   open,
@@ -148,8 +148,8 @@ function CreateCertificateModal({
           <br />
 
           {tab ? (
-            <div>
-              <UploadCSV />
+            <div className="bulk-cert">
+              <UploadCSV/>
             </div>
           ) : (
             <form onSubmit={handleSubmit}>
