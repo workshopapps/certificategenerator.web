@@ -1,18 +1,17 @@
-import React,{useEffect} from "react";
+import React,{ useState, useEffect} from "react";
 import axios from "axios";
-import { useState } from "react";
-import { useParams,useNavigate } from "react-router-dom";
-import Button from "../../Component/button";
+import { useNavigate, useParams,} from "react-router-dom";
 import Input from "../../Component/Input";
 import Layout from "./ResetLayout";
 
-const ResetPassword = () => {
+const ResetPassword = () => { 
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     newPassword: '',
     confirmPassword: ''
   })
   const { userId, token } = useParams();
-  const navigate = useNavigate();
+
   
   const handleChange = (e) =>{
     setFormData({
@@ -20,17 +19,22 @@ const ResetPassword = () => {
          [e.target.name]: e.target.value
     })
   }
-  const handleSubmit = (e) =>{
+  const handleSubmit = async (e) =>{
     e.preventDefault()
-    axios.post(`https://certgo.hng.tech/api/auth/changepassword/${userId}/${token}`, {...formData})
-     .then((response) => {
-            console.log(response.data.message);
+    if(formData.newPassword.value !== formData.confirmPassword.value){
+      alert('password do not match')
+    }else{
+      await  axios.post(`https://certgo.hng.tech/api/auth/changepassword/${userId}/${token}`, {...formData})
+      .then((response) => {
             navigate('/fff5')
-        }).catch(err =>{
-          console.error(err)
-        })
-  }
+            console.log(response.data.message);
+          }).catch(err =>{
+            console.error(err)
+          })
+    }
+    }
 
+    
   const h2 = " Reset Password";
   const p = "Please enter your prefered password";
 
@@ -40,14 +44,14 @@ const ResetPassword = () => {
       type={"password"}
       placeholder="New password"
       onChange={handleChange}
-      name='newPassword'
+      id='newPassword'
       label="New password"
       eyecon={true}
     />
     <Input
       type={"password"}
       placeholder="Confirm new password"
-      name='confirmPassword'
+      id='confirmPassword'
       onChange={handleChange}
       label="Confirm new password"
       eyecon={true}

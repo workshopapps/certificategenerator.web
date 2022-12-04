@@ -22,12 +22,6 @@ const navigate = useNavigate()
     }
   });
   
-// const handleChange = (e) =>{
-//     setEmail({
-//       ...email,
-//         [e.target.name]: e.target.value,
-//     })
-//   }
 
   const h2 = "Forgot Password?";
   const p =
@@ -35,8 +29,14 @@ const navigate = useNavigate()
 
     const handleSubmit = async e =>{
       e.preventDefault()
+
+      // const button = document.querySelector("#submit");
+
+      // button.setAttribute("name", "Loading...");
+      // button.setAttribute("disabled", "");
+
        if(email === ''){
-        
+        alert('email cannot be empty')
         return false;
        }else{
        await axios
@@ -83,11 +83,10 @@ const navigate = useNavigate()
             id="email"
             label={"Enter your email address"}
             placeholder="Enter your email address"
-            name="email"
-            onChange={e => setEmail(e.target.value)}
-            
+            value={email}
+            callback={e => setEmail(e.target.value)}           
           />
-          <Input type='submit' callback={handleSubmit} name={"Send Link"} style={{width: '100%'}} />
+          <Input type='submit' id={'submit'} callback={handleSubmit} name={"Send Link"} style={{width: '100%'}} />
       </form>
   
 
