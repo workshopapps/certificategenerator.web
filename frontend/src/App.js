@@ -10,6 +10,7 @@ import {
 import {
   AboutUs,
   BulkStep,
+  BulkPreview,
   Career,
   Choice,
   ComingSoon,
@@ -168,6 +169,7 @@ function App() {
               <Route path="/FAQ" element={<FAQ />} />
               <Route path="/bulk_step" element={<BulkStep />} />
               <Route path="/edit_bulk" element={<EditBulk />} />
+              <Route path="/bulk_preview" element={<BulkPreview />} />
               <Route
                 path="/pricing"
                 element={<Pricing access={access} setAccess={setAccess} />}
