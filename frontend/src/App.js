@@ -180,7 +180,10 @@ function App() {
               <Route path="/privacy" element={<Privacy />} />
               {/* ResetPassword */}
               <Route path="/fff5" element={<PasswordChangeSuccessfully />} />
-              <Route path="/fff4" element={<ResetPassword />} />
+              <Route
+                path="/changepassword/:userId/:token"
+                element={<ResetPassword />}
+              />
               <Route path="/fff3" element={<ChangePassword />} />
 
               <Route path="/fff2" element={<PasswordLinkSent />} />
