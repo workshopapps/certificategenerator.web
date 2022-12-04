@@ -196,7 +196,7 @@ const userSignup = async (req, res, next) => {
 // };
 
 const userLogin = async (req, res, next) => {
-  const { email, password } = req.body;
+  let { email, password } = req.body;
   try {
     if (req.body.accessToken) {
       try {
