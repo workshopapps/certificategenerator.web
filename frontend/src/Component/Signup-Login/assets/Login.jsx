@@ -146,7 +146,7 @@ const Login = ({ access, setAccess }) => {
       accessToken: res.accessToken
     };
 
-    if (token.accessToken) loginUser(token);
+    if (token.accessToken) loginUserGoogle(token);
 
     localStorage.setItem("username", res.profileObj.email);
     localStorage.setItem("name", res.profileObj.name);
@@ -157,7 +157,7 @@ const Login = ({ access, setAccess }) => {
   };
 
   // Send access token to backend
-  async function loginUser(token) {
+  async function loginUserGoogle(token) {
     const response = await fetch("https://certgo.hng.tech/api/auth/login", {
       method: "POST",
       headers: {
