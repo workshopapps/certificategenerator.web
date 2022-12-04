@@ -25,7 +25,9 @@ pipeline {
 				sh "sudo cp -rf ${WORKSPACE}/backend/* /home/sean/certgo/backend"
 				sh "sudo cp -fr ${WORKSPACE}/frontend/build/* /var/www/certgo.hng.tech/html"
 				sh "sudo su - sean && whoami"
-				sh "sudo systemctl restart certgo.service"
+				//sh "sudo pm2 delete certgo_api"
+				sh "sudo pm2 start /home/sean/certgo/backend/ecosystem.config.js --name 'certgo_api'"
+				sh "sudo pm2 save"
 			}
 			
 		}

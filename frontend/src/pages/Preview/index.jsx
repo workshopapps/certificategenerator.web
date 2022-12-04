@@ -1,8 +1,7 @@
 import React, {useState} from 'react';
-
 import './preview.scss';
-import UploadCSV from '../UploadCSV';
 import SinglePreview from '../SinglePreview';
+import BulkPreview from '../BulkPreview';
 
 export default function Preview({  
   logo,
@@ -10,7 +9,8 @@ export default function Preview({
   awardeeName,
   message,
   issuedBy,
-  issueDate }) {
+  issueDate,
+  certificatesData }) {
 
   const [bulkCertificate, setBulkCertificate] = useState(false);
 
@@ -28,7 +28,7 @@ export default function Preview({
           </div>
         }
           {bulkCertificate ?  (
-            <UploadCSV />
+            <BulkPreview certificatesData={certificatesData} />
           ) : 
            
              <SinglePreview   
