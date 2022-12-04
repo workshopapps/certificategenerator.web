@@ -170,16 +170,8 @@ const Login = ({ access, setAccess }) => {
 
     if (response.status === 200) {
       // route user to dashboard after successful login
-      Toast.fire({
-        icon: "success",
-        title: "Signed in successfully"
-      });
       navigate("/dashboard");
     } else {
-      Toast.fire({
-        icon: "error",
-        title: "Something went wrong"
-      });
       navigate("/login");
     }
   }
