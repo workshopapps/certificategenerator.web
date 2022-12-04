@@ -241,7 +241,7 @@ function CheckoutMainLeft() {
       </div>
 
       <Link to="/bulk_preview">
-        <button id="CheckoutMainLeft-btn">Pay $23.99</button>
+        <button id="CheckoutMainLeft-btn">Pay ₦2000</button>
       </Link>
     </div>
   );
