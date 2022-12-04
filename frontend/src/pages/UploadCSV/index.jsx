@@ -45,7 +45,7 @@ const UploadCSV = () => {
     formData.append("file", file);
 
     try {
-      const res = await axios.post("https://certify-api.onrender.com/api/upload/csv", formData);
+      const res = await axios.post("https://certgo.hng.tech/api/upload/csv", formData);
       console.log("Form data", res.data);
       if (res.status === 200) {
         Toast.fire({
