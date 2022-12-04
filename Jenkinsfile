@@ -25,8 +25,8 @@ pipeline {
 				sh "sudo cp -rf ${WORKSPACE}/backend/* /home/sean/certgo/backend"
 				sh "sudo cp -fr ${WORKSPACE}/frontend/build/* /var/www/certgo.hng.tech/html"
 				sh "sudo su - sean && whoami"
-				sh "sudo pm2 stop index"
-				//sh "pm2 delete index"
+				//sh "sudo pm2 stop certgo"
+				//sh "pm2 delete certgo"
 				sh "sudo pm2 start /home/sean/certgo/backend/ecosystem.config.js"
 				sh "sudo pm2 save"
 			}
