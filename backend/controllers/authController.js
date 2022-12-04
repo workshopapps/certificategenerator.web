@@ -10,18 +10,18 @@ const { sendChangePasswordEmail } = require("../utils/email");
 const { verifyRefreshToken } = require("../middleware/verifyRefreshToken")
 
 const { OAuth2Client } = require("google-auth-library");
-const client = new OAuth2Client(config.GOOGLE_CLIENT_ID);
+const client = new OAuth2Client("52168821352-4sc11trj4qtq95051mrnrbinfgmla3ai.apps.googleusercontent.com");
 
 //function to verify user google access token
 async function verify(_token) {
   try {
     const ticket = await client.verifyIdToken({
       idToken: _token,
-      audience: config.GOOGLE_CLIENT_ID,
+      audience: "52168821352-4sc11trj4qtq95051mrnrbinfgmla3ai.apps.googleusercontent.com",
     });
     return ticket.getPayload();
   } catch (error) {
-    throw error;
+    throw error
   }
 }
 
@@ -39,32 +39,40 @@ const userSignup = async (req, res, next) => {
     let { accessToken, email, password, subscriptionPlan } = req.body;
 
     //google signup
-    if (req.body.accessToken) {
-      const payload = await verify(accessToken);
-      const googleUserId = payload["sub"];
-      email = payload["email"];
-
-      //check db if user already exists
-      if (await userExist(email)) {
-        return res.status(401).json({ message: "email already in use" });
-      }
-
-      //if not create new user
-      const newUser = new User({
-        email: email,
-        authenticationType: {
-          google: {
-            uuid: googleUserId,
+    try {
+      
+      if (req.body.accessToken) {
+        const payload = await verify(accessToken);
+        const googleUserId = payload["sub"];
+        email = payload["email"];
+  
+        //check db if user already exists
+        if (await userExist(email)) {
+          return res.status(401).json({ message: "email already in use" });
+        }
+  
+        //if not create new user
+        const newUser = new User({
+          email: email,
+          authenticationType: {
+            google: {
+              uuid: googleUserId,
+            },
           },
-        },
-        subscription: subscriptionPlan,
-      });
-      const createdUser = await newUser.save();
-      return res.status(201).json({
-        message: "New User has been created.",
-        id: createdUser._id,
-        email: createdUser.email,
-      });
+          subscription: subscriptionPlan,
+        });
+        const createdUser = await newUser.save();
+        return res.status(201).json({
+          message: "New User has been created.",
+          id: createdUser._id,
+          email: createdUser.email,
+        });
+      }
+    } catch (error) {
+      if (!error.statusCode) {
+        error.statusCode = 500
+      }
+      return res.status(error.statusCode).json({ message: "could not verify accessToken", error: error });
     }
 
     //Form signup
@@ -84,9 +92,7 @@ const userSignup = async (req, res, next) => {
 
     bcrypt.hash(password, 10, async function (err, hash) {
       if (err) {
-        const error = new Error("account could not be created");
-        error.statusCode = 422;
-        throw error;
+        return res.status(401).json({ message: "account could not be created" });
       }
       const newUser = new User({
         email: email,
@@ -220,9 +226,9 @@ const userLogin = async (req, res, next) => {
         });
       } catch (error) {
         if (!error.statusCode) {
-          error.statusCode = 500;
+          error.statusCode = 500
         }
-        return res.status(200).json({ message: "could not verify accessToken" })
+        return res.status(error.statusCode).json({ message: "could not verify accessToken", error: error });
       }
     }
 
@@ -232,18 +238,14 @@ const userLogin = async (req, res, next) => {
 
     const user = await User.findOne({ email });
     if (!user) {
-      const error = new Error("A user for this email could not be found!");
-      error.statusCode = 401;
-      throw error;
+      return res.status(401).json("A user for this email could not be found!");
     }
     const isEqual = await bcrypt.compare(
       password,
       user.authenticationType.form.password
     );
     if (!isEqual) {
-      const error = new Error("Wrong password!");
-      error.statusCode = 401;
-      throw error;
+      return res.status(401).json("Wrong password!");
     }
     const { accessToken, refreshToken } = await generateTokens(user);
 
@@ -255,7 +257,10 @@ const userLogin = async (req, res, next) => {
       subscription: user.subscription,
     });
   } catch (err) {
-    next(err);
+    if (!err.statusCode) {
+      err.statusCode = 500
+    }
+    return res.status(err.statusCode).json(err);
   }
 };
 
@@ -288,7 +293,6 @@ const userLogout = async (req, res) => {
     await userToken.remove();
     res.status(200).json({ error: false, message: "Logged Out Sucessfully" });
   } catch (error) {
-    console.log(err);
     res.status(500).json({ error: true, message: "Internal Server Error" });
   }
 };
