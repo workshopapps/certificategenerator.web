@@ -47,7 +47,7 @@
       border-radius: 16px;
       min-height: 19rem;
 
-      &>div {
+      & > div {
         width: 70%;
         margin: 1rem;
 
@@ -66,8 +66,11 @@
           }
         }
       }
-
-      label {}
     }
+  }
+}
+@media (max-width: 486px) {
+  .resetPassword {
+    width: 85%;
   }
 }
