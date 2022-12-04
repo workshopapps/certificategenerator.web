@@ -9,7 +9,6 @@ import certificate3 from "../../assets/images/SinglePreview/Completion - Portrai
 import { exportComponentAsPNG } from "react-component-export-image";
 import html2canvas from "html2canvas";
 import { jsPDF } from "jspdf";
-// import Button from "../../Component/button";
 
 function SinglePreview({
   logo,
@@ -118,11 +117,11 @@ function SinglePreview({
           >
             Send Certificate
           </button>
-          <div className="dropdown">
-            <button className="dropbtn download-button">
+          <div class="dropdown">
+            <button class="dropbtn download-button">
               Download Certificate
             </button>
-            <div className="dropdown-content">
+            <div class="dropdown-content">
               <button
                 onClick={e => {
                   e.preventDefault();
@@ -138,7 +137,6 @@ function SinglePreview({
               <button onClick={handleDownloadPdf} className="pdf-button">
                 PDF
               </button>
-              <button>ZIP</button>
             </div>
           </div>
         </div>
@@ -154,11 +152,12 @@ function SinglePreview({
       </div>
 
       {/* BUTTON TO EXPLORE MORE TEMPLATES */}
-      <div className="template-btn">
-        <Link to="/templates" className="explore-btn">
-          <button style={{ backgroundColor:'transparent', margin: "30px auto", }}>Explore More Templates</button>
-        </Link>
-      </div>
+      <Link to="/templates">
+        <Button
+          name="Explore More Templates"
+          style={{ margin: " 2rem auto" }}
+        ></Button>
+      </Link>
     </div>
   );
 }

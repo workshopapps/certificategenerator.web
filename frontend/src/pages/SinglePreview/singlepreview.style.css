@@ -2,36 +2,53 @@
   text-align: center !important;
 }
 #singlePreview .button-container {
-  display: block !important;
-  margin-top: 0px !important;
-  padding: 10px;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: 100%;
+  margin: auto;
+  border-radius: 20px;
+  border: 0.8px solid rgba(84, 84, 84, 0.26);
+  background-color: white;
+  margin-bottom: 2rem;
 }
 #singlePreview .button-container button {
-  margin: 0px 10px 15px 10px;
+  margin: 5px 15px 5px 15px;
   height: 37px;
-  width: 150px;
+  width: 130px;
   border-radius: 10px;
   font-family: "Work Sans", sans-serif;
+  cursor: pointer;
 }
 #singlePreview .button-container button.not-active {
-  background: transparent !important;
+  background: transparent;
+  width: 140px;
+  height: 40px;
+  font-size: 12px;
   border: 1px solid #19a68e !important;
 }
 #singlePreview .button-container button.not-active:hover {
-  color: #fff !important;
-  background: #19a68e !important;
-  border: none !important;
+  color: #fff;
+  background: #19a68e;
+  border: none;
   transition: 500ms ease-in-out;
 }
 #singlePreview .button-container button.active {
-  background: #19a68e !important;
-  color: #fff !important;
-  border: none !important;
+  background: #19a68e;
+  width: 140px;
+  height: 40px;
+  font-size: 12px;
+  color: #fff;
+  border: none;
 }
 #singlePreview .button-container button.active:hover {
-  color: #19a68e !important;
-  background: #fff !important;
-  border: 1px solid #19a68e !important;
+  color: #19a68e;
+  background: #fff;
+  border: 1px solid #19a68e;
   transition: 500ms ease-in-out;
 }
 #singlePreview .certificate-share-hero {
@@ -74,17 +91,17 @@
 }
 #singlePreview h2 {
   font-size: 20px;
-  margin: 30px;
+  margin: 50px 0px 20px 0px !important;
 }
 #singlePreview .explore-button {
-  width: 180px;
-  height: 40px;
-  margin: 30px;
-  text-align: center;
-  border-radius: 8px;
-  background: transparent;
-  border: 1px solid #19a68e;
-  font-family: "Work Sans", sans-serif;
+  width: 180px !important;
+  height: 40px !important;
+  margin: 30px !important;
+  text-align: center !important;
+  border-radius: 8px !important;
+  background: transparent !important;
+  border: 1px solid #19a68e !important;
+  font-family: "Sora", sans-serif !important;
 }
 #singlePreview .explore-button:hover {
   color: #fff;
@@ -206,6 +223,46 @@
   width: 80%;
   height: auto;
 }
+#singlePreview #preview-text img {
+  width: 20%;
+  position: relative;
+  top: -20px;
+  z-index: 100;
+}
+#singlePreview .dropdown {
+  position: relative;
+  display: inline-block;
+  align-items: center;
+}
+#singlePreview .dropdown-content {
+  display: none;
+  position: absolute;
+  left: 20px;
+  background-color: #f1f1f1;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  padding: 0px;
+  margin: 0px;
+}
+#singlePreview .dropdown-content button {
+  padding: 0px;
+  margin: 0px;
+  border: none;
+  display: block;
+  background: rgb(253, 252, 252);
+}
+#singlePreview .dropdown-content button:hover {
+  background-color: #ddd;
+}
+#singlePreview .dropdown:hover .dropdown-content {
+  display: block;
+  align-items: center;
+  text-align: center;
+}
+#singlePreview .dropbtn {
+  background-color: #19a68e;
+  color: #fff !important;
+}
 @media screen and (min-width: 500px) {
   #singlePreview .certificate-share-hero button {
     width: 160px;
@@ -232,6 +289,15 @@
   }
 }
 @media screen and (min-width: 768px) {
+  #singlePreview .modal-wrapper {
+    top: 28%;
+  }
+  #singlePreview #preview-text img {
+    width: 10%;
+    position: relative;
+    top: -20px;
+    z-index: 100;
+  }
   #singlePreview .certificate-header h4 {
     font-size: 30px !important;
     margin: 20px;
@@ -291,18 +357,20 @@
   }
   #singlePreview h2 {
     font-size: 30px;
-  }
-  #singlePreview .button-container button {
-    font-size: 15px;
-    width: 170px;
-    height: 45px;
-    margin: 10px 15px 20px 15px;
+    margin-top: 40px;
   }
   #singlePreview .certificate-share-hero button {
     font-size: 15px;
     width: 170px;
     height: 40px;
-    margin: 30px 15px 40px 15px;
+    margin: 30px 15px 0px 15px;
+  }
+  #singlePreview .dropdown-content button {
+    font-size: 12px;
+    padding: 0px !important;
+    margin: 0px !important;
+    border: none;
+    display: block;
   }
   #singlePreview .single-images {
     flex-direction: row;
@@ -318,13 +386,19 @@
     font-size: 18px;
     width: 200px;
     height: 50px;
-    margin: 10px 15px 40px 15px;
   }
   #singlePreview .certificate-share-hero button {
     font-size: 18px;
     width: 200px;
     height: 50px;
-    margin: 30px 15px 40px 15px;
+    margin: 30px 15px 0px 15px;
+  }
+  #singlePreview .dropdown-content button {
+    font-size: 13px;
+    padding: 0px !important;
+    margin: 0px !important;
+    border: none;
+    display: block;
   }
   #singlePreview .sample2 {
     top: 30%;
@@ -334,12 +408,45 @@
     height: auto;
     max-width: 700px;
   }
+  #singlePreview h2 {
+    margin-top: 70px !important;
+  }
   #singlePreview .single-images img {
     max-width: 300px;
   }
   #singlePreview .explore-button {
-    width: 240px;
-    height: 55px;
-    font-size: 18px;
+    font-size: 14px !important;
+    width: 270px;
+    height: 58px;
   }
-}/*# sourceMappingURL=singlepreview.style.css.map */
+}
+#singlePreview .template-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+#singlePreview .template-btn button {
+  background: transparent !important;
+  color: #19a68e;
+  padding: 1.125rem;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  border: 1px solid #19a68e;
+  outline: none;
+  border-radius: 10px;
+  padding: 0.75rem;
+  text-align: center;
+  font-size: 1.125rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 400;
+  text-transform: capitalize;
+  transition: all 0.3s;
+}
+#singlePreview .template-btn button:hover {
+  background: #19a68e !important;
+  color: #fff;
+}

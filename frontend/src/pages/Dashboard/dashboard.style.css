@@ -66,6 +66,7 @@
   color: #19a68e;
   border: 1px solid #19a68e;
   word-wrap: nowrap;
+  cursor: pointer;
 }
 .dashboard__cards {
   display: grid;
@@ -91,13 +92,6 @@
   font-weight: 500;
   align-self: flex-start;
 }
-.dashboard .table-wrapper .table-header button {
-  all: unset;
-  padding: 12px 20px;
-  border-radius: 5px;
-  color: #ffffff;
-  background-color: #19a68e;
-}
 .dashboard .table-wrapper .table {
   overflow-x: auto;
 }
@@ -118,6 +112,7 @@
   border-radius: 5px;
   color: #ffffff;
   background-color: #19a68e;
+  cursor: pointer;
 }
 .dashboard .table-wrapper .table table {
   width: 768px;
@@ -127,7 +122,7 @@
   color: #ffffff;
 }
 .dashboard .table-wrapper .table table tr {
-  border-bottom: 1px solid #EFEFEF;
+  border-bottom: 1px solid #efefef;
 }
 .dashboard .table-wrapper .table table th {
   font-size: 12px;
@@ -152,7 +147,7 @@
   border-radius: 16px;
 }
 .dashboard .table-wrapper .table table td button.pending {
-  background-color: #FBECD6;
+  background-color: #fbecd6;
   color: #cb8720;
 }
 .dashboard .table-wrapper .table table td button.issue {

@@ -4,22 +4,28 @@ import logo from "../../assets/images/footerIcon.png";
 import "./footer.style.scss";
 import { BsInstagram, BsLinkedin, BsTwitter, BsGithub } from "react-icons/bs";
 import { useEffect } from "react";
+import Button from "../button";
 
 const Footer = () => {
   const year = new Date().getFullYear();
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+
   const handleChange = e => {
     setEmail(e.target.value);
   };
+  const successMSG = "You have successfully subscribed for our newsletter🎉";
   const handleSubmit = e => {
     e.preventDefault();
     const regex =
       /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
     if (regex.test(email)) {
       setEmail("");
-      setMessage("");
+      setMessage(successMSG);
       onSubscribe();
+      setTimeout(function () {
+        setMessage("");
+      }, 10000);
     } else if (!regex.test(email) && email !== "") {
       setMessage("Please enter a valid email");
     } else {
@@ -28,9 +34,8 @@ const Footer = () => {
   };
 
   function onSubscribe() {
-    setMessage("");
     let data = { email: email };
-    fetch("https://certify-api.onrender.com/api/mailinglists", {
+    fetch("https://certgo.hng.tech/api/subscribe", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data)
@@ -104,12 +109,19 @@ const Footer = () => {
                   placeholder="Your Email"
                   onChange={handleChange}
                   value={email}
+                  style={{ color: "black" }}
                   name="name"
                   onClick={onSubscribe}
                 />
-                <button onClick={handleSubmit}>Subscribe</button>
+                <Button onClick={handleSubmit}>Subscribe</Button>
               </div>
-              <p className="error-msg">{message}</p>
+              <p
+                className={`error-msg ${
+                  message === successMSG && "colorChange"
+                }`}
+              >
+                {message}
+              </p>
             </form>
           </div>
         </div>

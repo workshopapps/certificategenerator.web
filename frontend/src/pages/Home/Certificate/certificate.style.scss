@@ -6,7 +6,6 @@
   padding: 0;
   box-sizing: border-box;
 }
-
 body {
   max-width: $containerWidth;
   color: #222222;
@@ -113,7 +112,6 @@ body {
 .cert-form {
   max-width: 1440px;
   width: 80%;
-  background-color: #FAFAFB;
   margin: 4rem auto;
   border: 0.8px solid #545454;
   border-radius: 16px;
@@ -123,6 +121,7 @@ body {
     font-size: 14px;
     padding: 0.9rem;
     height: fit-content;
+    color: black;
     ::placeholder {
       font-size: 14px;
     }
@@ -145,17 +144,18 @@ body {
   flex-direction: column;
   gap: 1px;
   .upload-file {
-    position: relative;
     background-color: #fff;
     padding: 1rem;
     border: 1px solid grey;
     border-radius: 8px;
-    font-weight: 600;
+    font-weight: 500;
     color: gray;
+    margin-bottom: 8px;
     // z-index: -2;
 
     cursor: pointer;
     .custom-file-input {
+      display: none;
       color: transparent;
       background-color: transparent;
       cursor: pointer;

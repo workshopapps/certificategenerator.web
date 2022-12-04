@@ -1,12 +1,14 @@
 import React, { useState } from "react";
-import './certificate.style.scss'
-import {Link, useNavigate} from "react-router-dom"
+import "./certificate.style.scss";
+import { Link, useNavigate } from "react-router-dom";
 import UploadCSV from "../../UploadCSV";
 import Button from "../../../Component/button";
+import Input from "../../../Component/Input";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import Loader from "../Loader";
 
-export default function Certificate ({
+export default function Certificate({
   logo,
   setLogo,
   certificateTitle,
@@ -20,56 +22,58 @@ export default function Certificate ({
   issueDate,
   setIssueDate
 }) {
-    const [bulkCertificate, setBulkCertificate] = useState(false);
-    const [date, setDate ] = useState(Date.now())
-    const navigate = useNavigate()
-    const disabledButton = !logo.trim() || !message.trim() || !certificateTitle.trim() || !awardeeName.trim() || !issuedBy.trim() || !issueDate
-    const handleSubmit = (e) => {
-      e.preventDefault()
-      navigate('/preview')
-    }
-    const handleDate = (date) => {
-      setDate(date)
-      setIssueDate(formatDate(date));
-    }
-    function padTo2Digits(num) {
-      return num.toString().padStart(2, '0');
-    }
-    function formatDate(date) {
-      return [
-        padTo2Digits(date.getDate()),
-        padTo2Digits(date.getMonth() + 1),
-        date.getFullYear(),
-      ].join('/');
-    }
-    return (
-        <>
-          <p id="certificatee" className="sora header">
-            Create your <span className="emphasized">certificate </span> 
-            with <span className="emphasized">ease</span>
-          </p>
+  const [bulkCertificate, setBulkCertificate] = useState(false);
+  const [date, setDate] = useState(Date.now());
+  const navigate = useNavigate();
+  const disabledButton =
+    !logo.trim() ||
+    !message.trim() ||
+    !certificateTitle.trim() ||
+    !awardeeName.trim() ||
+    !issuedBy.trim() ||
+    !issueDate;
+  const [loading, setLoading] = useState(false);
+  const handleSubmit = e => {
+    e.preventDefault();
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      navigate("/preview");
+    }, 3000);
+  };
+  const handleDate = date => {
+    setDate(date);
+    setIssueDate(formatDate(date));
+  };
+  function padTo2Digits(num) {
+    return num.toString().padStart(2, "0");
+  }
+  function formatDate(date) {
+    return [
+      padTo2Digits(date.getDate()),
+      padTo2Digits(date.getMonth() + 1),
+      date.getFullYear()
+    ].join("/");
+  }
 
-  {/* function filevalidation() {
+  function filevalidation() {
     const fi = document.querySelector(".custom-file-input");
     // Check if any file is selected.
-    console.log(fi.files);
+    const x = fi.files[0];
     if (fi.files.length > 0) {
-      for (const i = 0; i <= fi.files.length - 1; i++) {
+      for (let i = 0; i <= fi.files.length - 1; i++) {
         const fsize = fi.files.item(i).size;
         const file = Math.round(fsize / 1024);
-        // The size of the file.
-        // if (file >= 4096) {
-        //   alert("File too Big, please select a file less than 4mb");
-        // } else if (file < 2048) {
-        //   alert("File too small, please select a file greater than 2mb");
-        // } else {
-        //   document.querySelector("#file-size").textContent =
-        //     "<b>" + file + "</b> KB";
-        //   }
-        document.querySelector("#file-size").textContent = `${file}KB`
+        document.querySelector("#file-size").textContent = `${file}KB`;
+        document.querySelector(".name-of-file").textContent = `${x.name}`;
       }
     }
-  } */}
+  }
+
+  // const customFileInput = document.querySelector(".custom-file-input");
+  function uploadFileHandler() {
+    document.querySelector(".custom-file-input").click();
+  }
 
   return (
     <>
@@ -78,14 +82,18 @@ export default function Certificate ({
         with <span>ease</span>
       </p>
 
+      <p style={{ padding: "10px" }} className="prompt">
+        Select a template, input values and Create a Certificate right away.
+      </p>
+
       {bulkCertificate ? (
         <div className="flex justify-between mode">
           <button
             className="select"
             style={{
-              color: "#19A68E",
+              color: "#222222",
               backgroundColor: "#ffffff",
-              transition: "250ms ease-in"
+              transition: "300ms ease-in"
             }}
             onClick={() => {
               setBulkCertificate(false);
@@ -115,7 +123,7 @@ export default function Certificate ({
           <button
             className="select"
             style={{
-              color: "#19A68E",
+              color: "#222222",
               backgroundColor: "#ffffff",
               transition: "300ms ease-in"
             }}
@@ -128,6 +136,8 @@ export default function Certificate ({
         </div>
       )}
 
+      {bulkCertificate ? (
+        <div>
           <form action="" className="cert-form text-left work-sans">
             <UploadCSV />
             {/* <label for='img'>Logo</label>
@@ -147,7 +157,7 @@ export default function Certificate ({
             <input type="date" />
             <input type="submit" value="Create Certificate" className="submit-btn"/> */}
           </form>
-        {/* </div> */}
+        </div>
       ) : (
         <div>
           <form
@@ -155,38 +165,79 @@ export default function Certificate ({
             onSubmit={handleSubmit}
             className="cert-form text-left work-sans"
           >
-            <div className="file-input">
-              <span className="upload-file">
-                Upload Logo
-                <input
-                  type="file"
-                  name="uploadfile"
-                  id="img"
-                  className="custom-file-input"
-                  style={{
-                    width: "inherit",
-                    padding: "0px",
-                    border: "none",
-                    position: "absolute"
-                  }}
-                  title=" "
-                  // onChange={e =>
-                  //   setLogo(URL.createObjectURL(e.target.files[0]))
-                  // }
-                  onChange={filevalidation}
-                />
-              </span>
-              {/* <label for="img">Upload Logo</label> */}
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                gap: "0.1rem"
+              }}
+              className=" file-input"
+            >
+              <label
+                htmlFor="file"
+                className="label"
+                style={{ marginTop: "0px", marginBottom: "20px" }}
+              >
+                Logo
+              </label>
+              <div
+                style={{ display: "flex", alignItems: "center", gap: "2.5rem" }}
+              >
+                <span className="upload-file" onClick={uploadFileHandler}>
+                  Upload Logo
+                  <input
+                    type="file"
+                    name="uploadfile"
+                    id="img"
+                    className="custom-file-input"
+                    style={{
+                      width: "inherit",
+                      padding: "0px",
+                      border: "none",
+                      position: "absolute"
+                    }}
+                    onMouseOver={uploadFileHandler}
+                    title=" "
+                    // onChange={e =>
+                    //   setLogo(URL.createObjectURL(e.target.files[0]))
+                    // }
+                    onChange={filevalidation}
+                  />
+                </span>
+                <p className="name-of-file"></p>
+              </div>
 
-              {/* <img style={{ width: "15%" }} src={logo} alt="logo" /> */}
               <p style={{ fontSize: "12px", margin: "0" }}>
-                Max image upload size: <span id="file-size"></span>
+                Image upload size: <span id="file-size"></span>
               </p>
             </div>
             <label htmlFor="text" className="label">
               Certificate Title
             </label>
             <input
+              label={"Certificate Title"}
+              type="text"
+              placeholder="Certificate of completion"
+              value={certificateTitle}
+              onChange={e => setCertificateTitle(e.target.value)}
+            />
+
+            <label htmlFor="text" className="label">
+              Awardee Name
+            </label>
+            <input
+              label={"Awardee Name"}
+              type="text"
+              placeholder="Gabriel Prosper"
+              value={awardeeName}
+              onChange={e => setAwardeeName(e.target.value)}
+            />
+
+            <label htmlFor="text" className="label">
+              Dedication or message
+            </label>
+            <input
+              label={"Dedication or message"}
               type="text"
               placeholder="Certificate of completion"
               value={certificateTitle}
@@ -215,26 +266,34 @@ export default function Certificate ({
             />
 
             <label htmlFor="text" className="label">
-              Issued by
+              Issued By
             </label>
             <input
-              id={"issuedBy"}
-              label={" Issued by"}
+              label={"Dedication or message"}
               type="text"
-              placeholder={"Name of organisation or issuer"}
+              placeholder="Name of organisation or issuer"
               value={issuedBy}
-              callback={e => setIssuedBy(e.target.value)}
+              onChange={e => setIssuedBy(e.target.value)}
             />
-            <label htmlFor='' className="label">Issue Date</label>
-            <DatePicker selected={date} onChange={handleDate} dateFormat="dd/MM/yyyy" />
-           
-            
-            
-            <button disabled={disabledButton} className={`${disabledButton && 'btn-disabled'} btn-success`}>Create Certificate</button>
 
+            <label htmlFor="" className="label">
+              Issue Date
+            </label>
+            <DatePicker
+              selected={date}
+              onChange={handleDate}
+              dateFormat="dd/MM/yyyy"
+            />
+
+            <button
+              disabled={disabledButton}
+              className={`${disabledButton && "btn-disabled"} btn-success`}
+            >
+              {loading ? <Loader /> : <span>Create Certificate</span>}
+            </button>
           </form>
         </div>
-      )
+      )}
     </>
   );
 }

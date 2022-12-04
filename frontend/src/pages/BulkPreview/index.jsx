@@ -23,7 +23,7 @@ function Index() {
       <h2>Preview of Generated Certificates</h2>
 
       <section id="bulk-images-desktop">
-        <Splide
+        <Splide className="bulk-images-wrapper"
           options={{
             rewind: true,
             gap: "30px",
@@ -116,8 +116,8 @@ function Index() {
       {/* BUTTONS TO DOWNLOAD OR SHARE THE CRETIFICATES */}
 
       <div id="bulk-btns">
-        <Button className="">Download Certificates</Button>
-        <Button className="btnLight">Send Certificates</Button>
+        <Button  name='Download Certificates' style={{padding: '10px'}}/>
+        <Button className="btnLight" name='Send Certificates' style={{padding: '10px'}}/>
       </div>
     </div>
   );
