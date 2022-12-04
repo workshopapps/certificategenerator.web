@@ -21,7 +21,9 @@ async function verify(_token) {
     });
     return ticket.getPayload();
   } catch (error) {
-    throw error
+    error = new Error("could not verify access token")
+    error.statusCode = 401
+    throw err
   }
 }
 
@@ -72,7 +74,7 @@ const userSignup = async (req, res, next) => {
       if (!error.statusCode) {
         error.statusCode = 500
       }
-      return res.status(error.statusCode).json({ message: "could not verify accessToken", error: error });
+      return res.status(error.statusCode).json({ message: "could not signup using google", error: error });
     }
 
     //Form signup
@@ -110,11 +112,11 @@ const userSignup = async (req, res, next) => {
         email: createdUser.email,
       });
     });
-  } catch (err) {
-    if (!err.statusCode) {
-      err.statusCode = 500
+  } catch (error) {
+    if (!error.statusCode) {
+      error.statusCode = 500
     }
-    return res.status(err.statusCode).json(err);
+    return res.status(error.statusCode).json({ message: "could not signup user", error: error });
   }
 };
 
@@ -196,7 +198,7 @@ const userSignup = async (req, res, next) => {
 // };
 
 const userLogin = async (req, res, next) => {
-  let { email, password } = req.body;
+  var { email, password } = req.body;
   try {
     if (req.body.accessToken) {
       try {
@@ -209,7 +211,7 @@ const userLogin = async (req, res, next) => {
             .status(401)
             .json({ message: "A user for this email could not be found!" });
         }
-        if (googleUserId !== user.authenticationType.google.uuid) {
+        if (!user.authenticationType.google || googleUserId !== user.authenticationType.google.uuid) {
           return res.status(401).json({
             message:
               "google login hasn't been linked to this email, please login with the form",
@@ -228,7 +230,7 @@ const userLogin = async (req, res, next) => {
         if (!error.statusCode) {
           error.statusCode = 500
         }
-        return res.status(error.statusCode).json({ message: "could not verify accessToken", error: error });
+        return res.status(error.statusCode).json({ message: "could not signin using google", error: error });
       }
     }
 
@@ -260,7 +262,7 @@ const userLogin = async (req, res, next) => {
     if (!err.statusCode) {
       err.statusCode = 500
     }
-    return res.status(err.statusCode).json(err);
+    return res.status(err.statusCode).json({ message: "could not sign user in", err: err });
   }
 };
 
