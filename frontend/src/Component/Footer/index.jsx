@@ -10,7 +10,7 @@ const Footer = () => {
   const year = new Date().getFullYear();
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
-  
+
   const handleChange = e => {
     setEmail(e.target.value);
   };
@@ -23,6 +23,9 @@ const Footer = () => {
       setEmail("");
       setMessage(successMSG);
       onSubscribe();
+      setTimeout(function () {
+        setMessage("");
+      }, 10000);
     } else if (!regex.test(email) && email !== "") {
       setMessage("Please enter a valid email");
     } else {
@@ -32,7 +35,7 @@ const Footer = () => {
 
   function onSubscribe() {
     let data = { email: email };
-    fetch("https://certify-api.onrender.com/api/mailinglists", {
+    fetch("https://certgo.hng.tech/api/subscribe", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data)
