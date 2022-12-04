@@ -33,10 +33,19 @@ const UploadCSV = () => {
 
     try {
       const res = await axios.post("https://certify-api.onrender.com/api/upload/csv", formData);
-      console.log("Form data", res);
+      console.log("Form data", res.data);
+      if (res.status === 200) {
+        Toast.fire({
+          icon: "success",
+          title: "Successfully uploaded"
+        });
+        navigate("/bulk_preview");
+      }
     } catch (error) {
       console.log("Error", error);
     }
+
+    // navigate("/bulk_preview");
   }
 
   return (
@@ -79,9 +88,10 @@ const UploadCSV = () => {
             </label>
           </span> 
         </div> 
-        {errorFile && <div className="messagecsv">Invalid file!! submit only csv files</div>}   
-        <div className="Submitcsv" onClick={validateInput}>Submit CSV</div>
-        
+        {errorFile && <div className="messagecsv">Invalid file!! submit only csv files</div>}
+        <Button className="Submitcsv" style={{ margin: "1em auto" }} onClick={handleUpload}>
+          Submit CSV
+        </Button>        
       </div>
       {/* <button className='btn btnLight'>Generate Certificate</button> */}
       {/* <div>
