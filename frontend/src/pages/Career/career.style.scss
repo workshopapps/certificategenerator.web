@@ -45,12 +45,14 @@ a {
 .career__container {
   p {
     margin: $mt-1 0;
+   
   }
 }
 .career__container {
   background: #ffffff;
   font-family: $fontFamily;
   margin-top: -3rem;
+  
   .hero__section {
     text-align: initial;
     @media screen and (max-width: $small) {
@@ -308,6 +310,7 @@ a {
     background: $containerBackground;
     padding: 3rem 5rem;
     text-align: initial;
+    
     @media screen and (max-width: $small) {
       padding: 3rem 2rem;
     }
@@ -443,3 +446,53 @@ a {
     }
   }
 }
+
+.applyModal {
+  position: fixed;
+  // min-height: 100vh;
+  height: 100%;
+  width: 100%;
+  z-index: 5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(101, 98, 98, 0.0529);
+  top: 0;
+  left: 0;
+
+  &__container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  background-color: #fff;
+  max-width:400px;
+  width: 100%;
+  border-radius: 12px;
+  padding: 2.5rem 1.5rem;
+  z-index: 999;
+
+}
+
+&__text {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+&__form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.725rem!important;
+}
+
+.job__title span,.job__type span {
+  font-size: 1.275rem;
+  padding-left: 0.5rem;
+}
+.job__location span {
+color: #ceced6;
+  padding-left: 0.5rem;
+
+}
+}
+
+

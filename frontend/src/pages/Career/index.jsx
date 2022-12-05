@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./career.style.scss";
 import { Persons, Positions, Positions2 } from "./data";
 import SectionCarousel from "./Carousel";
@@ -8,8 +8,12 @@ import Frame from "./assets/Frame 16353.png";
 import Briefcase from "./assets/candidate resumes and briefcase.png";
 import Search from "./assets/search-icon.svg";
 import { FiChevronDown } from "react-icons/fi";
+import PositionCard from "./PositionCard";
+
 
 function Career() {
+  const [openApplyModal, setOpenApplyModal] = useState(false);
+
   return (
     <div className="career__container">
       <div className="section hero__section flex items-center justify-between">
@@ -38,7 +42,7 @@ function Career() {
             <img src={Frame} alt="frame" />
           </div>
           <div className="team">
-            {Persons.map((person) => {
+            {Persons.map(person => {
               return <img key={person.id} src={person.img} alt="" />;
             })}
           </div>
@@ -124,19 +128,15 @@ function Career() {
             <h3>Engineering</h3>
             <span className="number__badge">3</span>
           </div>
-          {Positions.map((position) => {
+          {Positions.map(position => {
             return (
-              <div key={position.id} className="job__cont">
-                <div className="job__desc">
-                  <div>
-                    <h3>{position.role}</h3>
-                    <h4>
-                      {position.type} <p>|</p> <b>{position.location}</b>
-                    </h4>
-                  </div>
-                  <Button name="Apply" />
-                </div>
-                <hr />
+              <div key={position.id}>
+                <PositionCard
+                  position={position}
+                  setOpenApplyMoodal={setOpenApplyModal}
+                  openApplyModal={openApplyModal}
+                />
+                
               </div>
             );
           })}
@@ -146,17 +146,12 @@ function Career() {
           </div>
           {Positions2.map((position, index) => {
             return index < 2 ? (
-              <div key={position.id} className="job__cont">
-                <div className="job__desc">
-                  <div>
-                    <h3>{position.role}</h3>
-                    <h4>
-                      {position.type} <p>|</p> <b>{position.location}</b>
-                    </h4>
-                  </div>
-                  <Button name="Apply" />
-                </div>
-                <hr />
+              <div key={position.id}>
+                <PositionCard
+                  position={position}
+                  setOpenApplyMoodal={setOpenApplyModal}
+                  openApplyModal={openApplyModal}
+                />
               </div>
             ) : null;
           })}

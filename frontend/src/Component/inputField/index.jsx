@@ -15,7 +15,7 @@ const Inputfield = ({label,type, placeholder, onChange, value, pattern, maxlengt
         onChange={onChange}
         value={value}
         pattern={pattern}
-        maxlength={maxlength}
+        maxLength={maxlength}
         required={required}
       />
     </div>
