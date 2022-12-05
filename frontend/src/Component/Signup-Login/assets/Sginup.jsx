@@ -68,7 +68,7 @@ const Signup = ({ access, setAccess }) => {
     });
 
     async function createNewUser(email, password) {
-      return fetch("https://certgo.hng.tech/#/api/auth/signup", {
+      return fetch("https://certgo.hng.tech/api/auth/signup", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
