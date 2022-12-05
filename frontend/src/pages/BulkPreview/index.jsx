@@ -9,6 +9,7 @@ import { Splide, SplideSlide } from "@splidejs/react-splide";
 
 function Index() {
   const { array } = useContext(AppContext);
+  console.log("Array", array);
 
   return (
     <div id="bulk-preview">

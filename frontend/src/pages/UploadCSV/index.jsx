@@ -15,7 +15,7 @@ import UploadVector from "../../assets/images/uploadPage/uploadVector.svg";
 const UploadCSV = () => {
   const navigate = useNavigate();
   const [file, setFile] = useState("");
-  const { setArray } = useContext(AppContext);
+  const { array, setArray } = useContext(AppContext);
   const [loading, setLoading] = useState(false);
   const [errorFile, setErrorFile] = useState(false);
 
@@ -36,6 +36,8 @@ const UploadCSV = () => {
     });
     setArray(array);
   };
+
+  console.log("File", array);
 
   const validateInput = e => {
     setErrorFile(false);

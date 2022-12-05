@@ -1,12 +1,12 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
+import Loader from "../Loader";
 import "./certificate.style.scss";
-import { Link, useNavigate } from "react-router-dom";
 import UploadCSV from "../../UploadCSV";
-import Button from "../../../Component/button";
-import Input from "../../../Component/Input";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import Loader from "../Loader";
+import { AppProvider } from "../../../contexts/AppProvider";
 
 export default function Certificate({
   logo,
@@ -22,18 +22,12 @@ export default function Certificate({
   issueDate,
   setIssueDate
 }) {
-  const [bulkCertificate, setBulkCertificate] = useState(false);
-  const [date, setDate] = useState(Date.now());
   const navigate = useNavigate();
-  const [disabledButton, setDisabledButton] = useState(true);
+  const [date, setDate] = useState(Date.now());
   const [loading, setLoading] = useState(false);
-  // const disabledButton =
-  //   !logo.trim() ||
-  //   !message.trim() ||
-  //   !certificateTitle.trim() ||
-  //   !awardeeName.trim() ||
-  //   !issuedBy.trim();
-  // !issueDate;
+  const [disabledButton, setDisabledButton] = useState(true);
+  const [bulkCertificate, setBulkCertificate] = useState(false);
+
   const handleSubmit = e => {
     e.preventDefault();
     setLoading(true);
@@ -160,23 +154,9 @@ export default function Certificate({
       {bulkCertificate ? (
         <div>
           <form action="" className="cert-form text-left work-sans">
-            <UploadCSV />
-            {/* <label for='img'>Logo</label>
-            <input type="file" name="uploadfile" id="img" style={{ display:"none"}}/>
-            <label for="img" className="upload">Upload logo</label>
-            <p style={{fontSize: '12px', margin: '0'}}>Max image upload size: 8mb</p>
-            <label for='text' className="label">Certificate Title</label>
-            <input type="text" placeholder="Certificate of completion"/>
-        
-            <label for='text' className="label">Dedication or message</label>
-            <input type="text" placeholder="For your exceptional performance this month, 
-            in appreciation for your loyalty and the desire to fulfil our goals, 
-            in recognition of your leadership and dedication "/>
-            <label for='text' className="label">Issued by</label>
-            <input type="text" placeholder="Name of organisation or issuer"/>
-            <label for='date' className="label">Issue Date</label>
-            <input type="date" />
-            <input type="submit" value="Create Certificate" className="submit-btn"/> */}
+            <AppProvider>
+              <UploadCSV />
+            </AppProvider>
           </form>
         </div>
       ) : (
@@ -220,9 +200,6 @@ export default function Certificate({
                     }}
                     onMouseOver={uploadFileHandler}
                     title=" "
-                    // onChange={e =>
-                    //   setLogo(URL.createObjectURL(e.target.files[0]))
-                    // }
                     onChange={() => {
                       filevalidation();
                       checkIfFieldIsEmpty();
@@ -245,7 +222,6 @@ export default function Certificate({
               type="text"
               placeholder="Certificate of completion"
               value={certificateTitle}
-              // onChange={e => setCertificateTitle(e.target.value)}
               onChange={e => {
                 setCertificateTitle(e.target.value);
                 checkIfFieldIsEmpty();
@@ -261,7 +237,6 @@ export default function Certificate({
               type="text"
               placeholder="Gabriel Prosper"
               value={awardeeName}
-              // onChange={e => setAwardeeName(e.target.value)}
               onChange={e => {
                 setAwardeeName(e.target.value);
                 checkIfFieldIsEmpty();
@@ -292,7 +267,6 @@ export default function Certificate({
               type="text"
               placeholder="Name of organisation or issuer"
               value={issuedBy}
-              // onChange={e => setIssuedBy(e.target.value)}
               onChange={e => {
                 setIssuedBy(e.target.value);
                 checkIfFieldIsEmpty();

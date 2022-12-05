@@ -38,6 +38,7 @@ import { AppProvider } from "./contexts/AppProvider";
 import Login from "./Component/Signup-Login/assets/Login";
 import Signup from "./Component/Signup-Login/assets/Sginup";
 import { HashRouter as Router, Route, Routes } from "react-router-dom";
+
 function App() {
   const [logo, setLogo] = useState("");
   const [access, setAccess] = useState();
@@ -143,7 +144,11 @@ function App() {
               <Route path="/FAQ" element={<FAQ />} />
               <Route path="/bulk_step" element={<BulkStep />} />
               <Route path="/edit_bulk" element={<EditBulk />} />
-              <Route path="/bulk_preview" element={<BulkPreview />} />
+              <Route path="/bulk_preview" element={
+                <AppProvider>
+                  <BulkPreview />
+                </AppProvider>
+              } />
               <Route
                 path="/pricing"
                 element={<Pricing access={access} setAccess={setAccess} />}

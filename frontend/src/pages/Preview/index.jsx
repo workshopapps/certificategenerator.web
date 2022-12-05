@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import './preview.scss';
 import UploadCSV from '../UploadCSV';
 import SinglePreview from '../SinglePreview';
+import { AppProvider } from '../../contexts/AppProvider';
 
 export default function Preview({  
   logo,
@@ -27,7 +28,9 @@ export default function Preview({
           </div>
         }
           {bulkCertificate ?  (
-            <UploadCSV />
+            <AppProvider>
+              <UploadCSV />
+            </AppProvider>
           ) : 
            
              <SinglePreview   

@@ -3,6 +3,8 @@ import React from "react";
 import "./bulkcertdesign.style.scss";
 
 const Index = ({ item }) => {
+  console.log("Item", item);
+  
   return (
     <div>
       {/* START OF CERTIFICATE */}
