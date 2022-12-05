@@ -185,24 +185,42 @@ $size-sm: 12px;
         .action {
           padding-right: 0.7rem;
           position: relative;
-          .dropdown{
-            position: absolute;
-            top: 5px;
-            right: 0;
-            background-color: #fff;
-            width: 69px;
-            border-radius: 8px;
-            :active{
-              display: block;
-            }
-            ul{
-              list-style: none;
-              color: black;
-              li{
-                padding: 1rem 1.5rem;
-                border-bottom: 1px solid black;
-              }
-            }
+        }
+        .action-icon {
+          cursor: pointer;
+        }
+        .action__overlay {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          background-color: #fff;
+          position: absolute;
+          top: 1.85rem;
+          right: 0.725rem;
+          // border: solid 1px #efefef;
+          z-index: 2;
+        }
+        .action__overlay--item {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding: 0.5rem 0.825rem;
+          width: 100%;
+          color: $primaryColor;
+          font-size: 0.875rem;
+          font-weight: 600;
+          transition: 0.3s ease;
+          border-bottom: solid 1px #222222;
+          cursor: pointer;
+          &:last-child{
+            border-bottom: none;
+          }
+
+          &:hover {
+            background-color: $primaryColor;
+            color: #efefef;
+            transition: 0.3s ease;
+            border-color: #efefef;
           }
         }
         

@@ -9,6 +9,8 @@ import { axiosPrivate } from "../../api/axios";
 import useAppProvider from "../../hooks/useAppProvider";
 import Swal from "sweetalert2";
 import { Loader } from "../../Component";
+import TableRow from "./TableRow";
+
 
 const Dashboard = ({
   logo,
@@ -31,6 +33,7 @@ const Dashboard = ({
   const [openDropdown, setOpenDropdown] = useState(true);
   const [loading, setLoading] = useState(false);
   const [pending, setPending] = useState(0);
+  const [pricing, setPricing] = useState('')
   const [selectedIndex, setSelectedIndex] = useState(tableData);
   const { certificates, setCertificates } = useAppProvider();
 
@@ -46,40 +49,45 @@ const Dashboard = ({
     }
   });
 
-  const handleDropdown = (e,itm, index) => {
-    // setSelectedIndex(e.target.id);
-    // console.log(e.target.id);
-    if(index === tableData.indexOf(itm)) setOpenDropdown(!openDropdown);
-  };
+  const handleChangeCertificateStatus = async (id, status) => {
+    console.log(id, status)
+    await axiosPrivate.patch(`/certificates/status/${id}`, status)
+    Toast.fire({
+      icon: "success",
+      title: "Successfully updated"
+    });
+    const certificates = await axiosPrivate.get('/certificates')
+    setData(certificates)
+
+  }
   useEffect(() => {
+    setLoading(true);
     const getUserCertificates = async () => {
       try {
-        // setLoading(true);
-        const res = await axiosPrivate.get("/certificates");
-        // console.log("i got here");
-        console.log(res);
-        if (res.status === 404) {
-          setLoading(false);
+        const response = await axiosPrivate.get("/certificates");
+        let sub = localStorage.getItem('subscription')
+        setPricing(sub)
+        console.log(response);
+        if (response.status === 404) {
           Toast.fire({
             icon: "error",
             title: "Page not found"
           });
-        } else if (res.status === 401) {
-          setLoading(false);
+        } else if (response.status === 401) {
           Toast.fire({
             icon: "error",
             title: "Request Failed"
           });
-        } else if (res.status === 500) {
-          setLoading(false);
+        } else if (response.status === 500) {
+          
           Toast.fire({
             icon: "error",
             title: "Internal Server Error"
           });
         } else {
-          setData(res.data);
-          console.log(res.data);
-          setLoading(false);
+          setData(response.data);
+          console.log(response.data);
+          setLoading(false)
         }
       } catch (error) {
         console.error(error.message);
@@ -87,14 +95,16 @@ const Dashboard = ({
     };
     const getIssuedCertificates = async () => {
       try {
-        const res = await axiosPrivate.get("/certificates/issuedCertificates");
+        
+        const response = await axiosPrivate.get("/certificates/issuedCertificates");
         // console.log("i got here");
-        console.log(res);
-        setIssuedCertCount(res.data);
+        console.log(response);
+        setIssuedCertCount(response.data);
+        setLoading(false)
         setCardData(
           cardData.map(item =>
             item.title === "Total Number Issued"
-              ? { ...item, count: res.data.issuedCertificates }
+              ? { ...item, count: response.data.issuedCertificates }
               : item
           )
         );
@@ -102,7 +112,8 @@ const Dashboard = ({
         console.error(error);
       }
     };
-
+    
+    
     getUserCertificates();
     getIssuedCertificates();
   }, []);
@@ -153,6 +164,9 @@ const Dashboard = ({
                 Let’s do the Accounts for you, Get a summary of all the
                 Certificates and Job done here
               </p>
+              <div>
+                <p>Pricing Plan: {pricing.toUpperCase()}</p>
+              </div>
             </div>
             <div className="dashboard__btn">
               <button>Upgrade Account</button>
@@ -206,53 +220,8 @@ const Dashboard = ({
               </thead>
               {data.length > 0 && (
                 <tbody>
-                  {tableData.map((item, idx) => (
-                    <tr key={idx}>
-                      <td>{item.nameoforganization}</td>
-                      {item.status === "issued" ? (
-                        <td>
-                          <button className="cancel">canceled</button>
-                        </td>
-                      ) : item.status === "pending" ? (
-                        <td>
-                          <button className="pending">Pending</button>
-                        </td>
-                      ) : (
-                        <td>
-                          <button className="issue">Issued</button>
-                        </td>
-                      )}
-                      <td>{item.date}</td>
-                      <td>{data.length}</td>
-                      <td>PDF</td>
-                      <td className="action">
-                        {/* <span>{actionIcon()}</span> */}
-                        <svg
-                          id={idx} onClick={(e) => handleDropdown(item, idx)}
-                          width="6"
-                          height="17"
-                          viewBox="0 0 6 17"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="M1.33398 14.3333C1.33398 15.25 2.08398 16 3.00065 16C3.91732 16 4.66732 15.25 4.66732 14.3333C4.66732 13.4167 3.91732 12.6667 3.00065 12.6667C2.08398 12.6667 1.33398 13.4167 1.33398 14.3333ZM1.33398 2.66667C1.33398 3.58333 2.08398 4.33333 3.00065 4.33333C3.91732 4.33333 4.66732 3.58333 4.66732 2.66667C4.66732 1.75 3.91732 1 3.00065 1C2.08398 1 1.33398 1.75 1.33398 2.66667ZM1.33398 8.5C1.33398 9.41667 2.08398 10.1667 3.00065 10.1667C3.91732 10.1667 4.66732 9.41667 4.66732 8.5C4.66732 7.58333 3.91732 6.83333 3.00065 6.83333C2.08398 6.83333 1.33398 7.58333 1.33398 8.5Z"
-                            stroke="#FFFFFF"
-                            strokeWidth="1.5"
-                          />
-                        </svg>
-                        {openDropdown  && (
-                          <div id={idx} className="dropdown">
-                            <ul>
-                              <li>View</li>
-                              <li>Edit</li>
-                              <li>Update Status</li>
-                              <li>Delete</li>
-                            </ul>
-                          </div>
-                        )}
-                      </td>
-                    </tr>
+                  {data.map((item, idx) => (
+                     <TableRow item={item} key={idx} handleChangeCertificateStatus={handleChangeCertificateStatus} />
                   ))}
                 </tbody>
               )}

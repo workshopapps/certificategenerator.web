@@ -6,11 +6,13 @@ import Swal from "sweetalert2";
 import useAppProvider from "../../../hooks/useAppProvider"
 import {axiosFormdata} from "../../../api/axios";
 import Loader from "../Loader";
+import { useNavigate } from "react-router-dom";
 
 const UploadCSV = () => {
   const [state, setState] = useState({ active: true });
   const [loading, setLoading] = useState(false)
   const { setCsvData } = useAppProvider();
+  
 
 //   const toggleState = e => {
 //     console.log(Object.values(e.target.classList));
