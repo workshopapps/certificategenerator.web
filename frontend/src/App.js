@@ -1,11 +1,4 @@
 import { useState, useEffect } from "react";
-import {
-  ChangePassword,
-  ForgotPassword,
-  PasswordLinkSent,
-  ResetPassword,
-  PasswordChangeSuccessfully
-} from "./pages/ResetPassword";
 
 import {
   AboutUs,
@@ -29,58 +22,37 @@ import {
   UploadCSV
 } from "./pages";
 import "./Style/App.scss";
+import {
+  ChangePassword,
+  ForgotPassword,
+  PasswordLinkSent,
+  ResetPassword,
+  PasswordChangeSuccessfully
+} from "./pages/ResetPassword";
 import Home from "./pages/Home";
 import { Loader } from "./Component";
 import Navbar from "./Component/Navbar";
 import Checkout from "./pages/Checkout";
 import { Privacy } from "./pages/PrivacyPolicy";
-import { HashRouter as Router, Route, Routes } from "react-router-dom";
-import Signup from "./Component/Signup-Login/assets/Sginup";
+import { AppProvider } from "./contexts/AppProvider";
 import Login from "./Component/Signup-Login/assets/Login";
-
+import Signup from "./Component/Signup-Login/assets/Sginup";
+import { HashRouter as Router, Route, Routes } from "react-router-dom";
 function App() {
   const [logo, setLogo] = useState("");
+  const [access, setAccess] = useState();
   const [message, setMessage] = useState("");
   const [issuedBy, setIssuedBy] = useState("");
   const [issueDate, setIssueDate] = useState("");
   const [awardeeName, setAwardeeName] = useState("");
+  const [appLoading, setAppLoading] = useState(true);
   const [certificateTitle, setCertificateTitle] = useState("");
 
-  const [file, setFile] = useState("");
-  const [certificatesData, setCertificateData] = useState([]);
-
-  const [appLoading, setAppLoading] = useState(true);
-
-  const [access, setAccess] = useState();
   useEffect(() => {
     setTimeout(function () {
       setAppLoading(false);
     }, 100);
   }, []);
-
-  useEffect(() => {
-    const uploadFile = () => {
-      let myHeaders = new Headers();
-      myHeaders.append(
-        "Authorization",
-        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzdmOTg3MDQyODc5MzAwNDJmYzE0M2UiLCJpYXQiOjE2NjkzMDY4MjQsImV4cCI6MTY2OTM5MzIyNH0.x5q4XJDcFvN8EWqc4e0el6CZXJtwQjtcrmo3Id0sQlc"
-      );
-
-      let formdata = new FormData();
-      formdata.append("file", file[0]);
-      let requestOptions = {
-        method: "POST",
-        headers: myHeaders,
-        body: formdata
-      };
-
-      fetch("https://certify-api.onrender.com/api/certificates", requestOptions)
-        .then(response => response.json())
-        .then(result => setCertificateData(result))
-        .catch(error => console.log("error", error));
-    };
-    file && uploadFile();
-  }, [file]);
 
   if (appLoading) {
     return (
@@ -179,8 +151,14 @@ function App() {
               <Route path="/contact-us" element={<ContactUs />} />
               <Route path="/payment" element={<Checkout />} />
               <Route path="/profile" element={<ProfilePage />} />
-              <Route path="/upload" element={<UploadCSV setFile={setFile} />} />
-
+              <Route
+                path="/upload"
+                element={
+                  <AppProvider>
+                    <UploadCSV />
+                  </AppProvider>
+                }
+              />
               <Route path="/privacy" element={<Privacy />} />
               {/* ResetPassword */}
               <Route path="/fff5" element={<PasswordChangeSuccessfully />} />
@@ -189,7 +167,6 @@ function App() {
                 element={<ResetPassword />}
               />
               <Route path="/fff3" element={<ChangePassword />} />
-
               <Route path="/fff2" element={<PasswordLinkSent />} />
               <Route path="/fff1" element={<ForgotPassword />} />
             </Route>
