@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { GoogleLogin } from "react-google-login";
+import { gapi } from "gapi-script";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import "./login.scss";
 import appleSVG from "./assets/apple.svg";
@@ -22,9 +24,15 @@ const Login = ({ access, setAccess }) => {
     acceptTerms: false
   });
 
+  const CLIENT_ID =
+    "52168821352-4sc11trj4qtq95051mrnrbinfgmla3ai.apps.googleusercontent.com";
+
   const [useremail, setUserEmail] = useState();
   const [password, setPassword] = useState();
   const [error, setError] = useState(false);
+  const [token, setToken] = useState({
+    accessToken: ""
+  });
 
   const handleToggle = () => {
     if (type === "password") {
@@ -116,6 +124,58 @@ const Login = ({ access, setAccess }) => {
     }
   };
 
+  useEffect(() => {
+    const initClient = () => {
+      gapi.auth2.init({
+        clientId: CLIENT_ID
+        // scope: ""
+      });
+    };
+    gapi.load("client:auth2", initClient);
+  });
+
+  const onSuccess = res => {
+    setToken({ accessToken: res.tokenId });
+
+    // User details from Google
+    const userProfile = {
+      email: res.profileObj.email,
+      fullName: res.profileObj.name,
+      userProfile: res.profileObj.imageUrl,
+      userId: res.profileObj.googleId,
+      accessToken: res.accessToken
+    };
+
+    if (token.accessToken) loginUserGoogle(token);
+
+    localStorage.setItem("username", res.profileObj.email);
+    localStorage.setItem("name", res.profileObj.name);
+  };
+
+  const onFailure = err => {
+    console.log("failed:", err);
+  };
+
+  // Send access token to backend
+  async function loginUserGoogle(token) {
+    const response = await fetch("https://certgo.hng.tech/api/auth/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(token)
+    });
+
+    console.log(response);
+
+    if (response.status === 200) {
+      // route user to dashboard after successful login
+      navigate("/dashboard");
+    } else {
+      navigate("/login");
+    }
+  }
+
   return (
     <div id="login">
       <div className="authContainer">
@@ -125,10 +185,20 @@ const Login = ({ access, setAccess }) => {
             <small id="startGenerating">
               Start generating certificates by creating a Certgo account
             </small>
-            <div id="signupG">
-              <img alt="" src={googleSVG} id="imgs" />
-              Signup using Google
-            </div>
+            <GoogleLogin
+              clientId={CLIENT_ID}
+              buttonText="Sign in with Google"
+              onSuccess={onSuccess}
+              onFailure={onFailure}
+              cookiePolicy={"single_host_origin"}
+              isSignedIn={true}
+              render={renderProps => (
+                <div onClick={renderProps.onClick} id="signupG">
+                  <img alt="" src={googleSVG} id="img_id" />
+                  <a href="#">Login using Google</a>
+                </div>
+              )}
+            />
             <div id="signupA">
               <img alt="" src={appleSVG} id="imgs" />
               Signup using Apple
@@ -136,7 +206,6 @@ const Login = ({ access, setAccess }) => {
             <div id="hrLine">
               <span id="or">or</span>
             </div>
-
             {/* <div id="email"> */}
             {/* <img alt="" src={emailSVG} /> */}
             <Input
@@ -152,7 +221,6 @@ const Login = ({ access, setAccess }) => {
             {/* </div> */}
             {/* <div id="pwd"> */}
             {/* <img alt="" src={keySVG} /> */}
-
             <Input
               label={"Password"}
               id="input_id"
@@ -174,7 +242,6 @@ const Login = ({ access, setAccess }) => {
               </span> */}
             {/* </div> */}
             {error && <p style={{ color: "red" }}>Something went wrong</p>}
-
             <div className="forgotPwd">Forgot password?</div>
             <div id="checkTerms">
               <input
@@ -188,7 +255,6 @@ const Login = ({ access, setAccess }) => {
                 Remember me
               </label>
             </div>
-
             <div>
               <Button id="btn" onClick={handleSubmit} style={{ width: "100%" }}>
                 Login
