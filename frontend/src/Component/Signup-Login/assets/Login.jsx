@@ -139,7 +139,7 @@ const Login = ({ access, setAccess }) => {
           icon: "success",
           title: "Signed in successfully"
         });
-        navigate("/dashboard");
+        navigate("/pricing");
         setAccess(true);
       } else if (response.status === 401) {
         Toast.fire({
