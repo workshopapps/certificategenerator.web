@@ -86,6 +86,7 @@
         color: #fff !important;
         background: $primaryColor !important;
         border: none !important;
+        opacity: 0.7;
         transition: 500ms ease-in-out;
       }
     }
@@ -94,12 +95,13 @@
       background: $primaryColor !important;
       color: #fff !important;
       border: none !important;
+      display: inline-block;
 
       &:hover {
-        color: $primaryColor !important;
-        background: #fff !important;
-        border: 1px solid $primaryColor !important;
-        transition: 500ms ease-in-out;
+        // color: $primaryColor !important;
+        // background: #fff !important;
+        // border: 1px solid $primaryColor !important;
+        // transition: 500ms ease-in-out;
       }
     }
   }
@@ -511,7 +513,6 @@
       font-size: 14px !important;
       width: 270px;
       height: 58px;
-
     }
   }
 
