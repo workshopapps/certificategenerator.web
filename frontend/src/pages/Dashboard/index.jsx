@@ -27,7 +27,7 @@ const Dashboard = ({
   setIssueDate
 }) => {
   const [data, setData] = useState([]);
-  const [issuedCert, setIssuedCert] = useState([...cardData]);
+  const [issuedCert, setIssuedCert] = useState([...dummyData]);
   const [cardData, setCardData] = useState([...dummyData]);
   const [issuedCertCount, setIssuedCertCount] = useState(0);
   const [openModal, setOpenModal] = useState(false);
@@ -35,7 +35,7 @@ const Dashboard = ({
   const [loading, setLoading] = useState(false);
   const [pending, setPending] = useState(0);
   const [pricing, setPricing] = useState('')
-  const { certificates, setCertificates } = useAppProvider();
+  // const { certificates, setCertificates } = useAppProvider();
 
   const Toast = Swal.mixin({
     toast: true,
