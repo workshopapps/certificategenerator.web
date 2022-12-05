@@ -4,7 +4,7 @@ import { useState } from "react";
 import { GoogleLogin } from "react-google-login";
 import { gapi } from "gapi-script";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-import "./Style.css";
+import "./signup.scss";
 import appleSVG from "./assets/apple.svg";
 import googleSVG from "./assets/google.svg";
 import cert from "./assets/Cert.png";
@@ -12,57 +12,138 @@ import emailSVG from "./assets/email.svg";
 import keySVG from "./assets/key.svg";
 import { createNewUser } from "../api";
 import Input from "../../Input";
+import Button from "../../button";
+import Swal from "sweetalert2";
 
-const Signup = () => {
+
+
+const Signup = ({ access, setAccess }) => {
   const navigate = useNavigate();
   const [type, setType] = useState("password");
   const [formData, setFormData] = React.useState({
-    password: "",
+    name: "",
     email: "",
+    password: "",
     acceptTerms: false
   });
-  const [token, setToken] = useState({
-    accessToken: ""
-  });
-
   // Google auth client ID
   const CLIENT_ID =
     "52168821352-4sc11trj4qtq95051mrnrbinfgmla3ai.apps.googleusercontent.com";
-
-  const handleToggle = () => {
-    if (type === "password") {
-      setType("text");
-    } else {
-      setType("password");
-    }
-  };
-  function handleChange(event) {
-    const { name, value, type, checked } = event.target;
-    setFormData(prevFormData => {
-      return {
-        ...prevFormData,
-        [name]: type === "checkbox" ? checked : value
-      };
+  
+    const [useremail, setUserEmail] = useState();
+    const [password, setPassword] = useState();
+    const [error, setError] = useState(false);
+    const [token, setToken] = useState({
+      accessToken: ""
     });
-  }
-
-  const handleOnSubmit = async e => {
-    try {
-      e.preventDefault();
-      const response = await createNewUser({
-        password: formData?.password,
-        email: formData?.email
-      });
-
-      if (response && response.data) {
-        //redirect a successfull signup here ...
-        // navigate("/login")
-        navigate("/");
+  
+    const handleToggle = () => {
+      if (type === "password") {
+        setType("text");
+      } else {
+        setType("password");
       }
-    } catch (error) {
-      console.log(error);
+    };
+  
+    function handleChange(event) {
+      const { name, value, type, checked } = event.target;
+      setFormData(prevFormData => {
+        return {
+          ...prevFormData,
+          [name]: type === "checkbox" ? checked : value
+        };
+      });
     }
-  };
+  
+    const Toast = Swal.mixin({
+      toast: true,
+      position: "top-end",
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      didOpen: toast => {
+        toast.addEventListener("mouseenter", Swal.stopTimer);
+        toast.addEventListener("mouseleave", Swal.resumeTimer);
+      }
+    });
+
+    async function createNewUser(email, password) {
+      return fetch("https://certgo.hng.tech/api/auth/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ email: email, password: password })
+      });
+    }
+  
+    const handleSubmit = async e => {
+      e.preventDefault();
+  
+      try{
+        const response = await createNewUser(useremail, password)
+        const data = await response.json();
+  
+        console.log(response);
+        console.log(response.status);
+  
+        // .then(response => {
+  
+          // if (response.status === 404) {
+          //   Toast.fire({
+          //     icon: 'error',
+          //     title: 'Page not found'
+          //   })
+  
+          //   throw new Error("Page not found");
+          // } 
+  
+           if (response.status === 200 || response.status === 201){
+            Toast.fire({
+              icon: 'success',
+              title: 'Signed up successfully'
+            })
+            navigate("/dashboard");
+            setAccess(true)
+          }
+  
+          // } 
+          else if (response.status === 401) {
+          Toast.fire({
+            icon: "error",
+            title: "Page not found"
+          });
+  
+          throw new Error("Page not found");
+        } else if (response.status === 400) {
+          Toast.fire({
+            icon: "error",
+            title: "Invalid Email, please try again"
+          });
+          throw new Error("Invalid Email, please try again");
+        } else if (response.status === 500) {
+          Toast.fire({
+            icon: "error",
+            title: "Server Error"
+          });
+          throw new Error("Server Error");
+        } else {
+          Toast.fire({
+            icon: "error",
+            title: "Something went wrong"
+          });
+  
+          throw new Error("Something went wrong");
+        }
+      const token = data.token;
+      localStorage.setItem("token", token);
+      localStorage.setItem("user", data.userId);
+    } catch (error) {
+      setError(true);
+      console.log(error.message);
+    };
+    };
+  
 
   // Google aunthetication
   useEffect(() => {
@@ -87,7 +168,7 @@ const Signup = () => {
       accessToken: res.accessToken
     };
 
-    if (token.accessToken) createNewUser(token);
+    if (token.accessToken) signupUserGoogle(token);
 
     localStorage.setItem("username", res.profileObj.email);
     localStorage.setItem("name", res.profileObj.name);
@@ -97,8 +178,9 @@ const Signup = () => {
     console.log("failed:", err);
   };
 
+ 
   // Send access token to backend
-  async function createNewUser(token) {
+  async function signupUserGoogle(token) {
     const response = await fetch("https://certgo.hng.tech/api/auth/signup", {
       method: "POST",
       headers: {
@@ -107,26 +189,21 @@ const Signup = () => {
       body: JSON.stringify(token)
     });
 
-    console.log("api response: ", response);
+    console.log(response);
 
-    if (response.status === 200 || response.status === 201) {
-      // route user to dashboard after successful signup/login
+    if (response.status === 200) {
+      // route user to dashboard after successful login
       navigate("/dashboard");
     } else {
-      navigate("/login");
+      navigate("/signup");
     }
   }
 
-  return (
-    <div>
-      {/* <div className="logo-container">
-                <div className="logo-div">
-                    <img className="logo" alt="" src={logoSVG}/>
-                    <img className="menu" alt="" src={menuSVG}/>
-                </div>
-            </div> */}
+return (
+    <div id="signup">
       <div className="authContainer">
         <div className="formDiv">
+        <form onSubmit={handleSubmit}>
           <div id="heading">Welcome to Certgo</div>
           <span id="startGenerating">
             Start generating certificates by creating a Certgo account
@@ -146,39 +223,38 @@ const Signup = () => {
             )}
           />
           <div id="signupA">
-            <img alt="" src={appleSVG} id="img_id" />
-            <a href="#">Signup using Apple</a>
-          </div>
-          <div id="hrLine">
-            <span id="or">or</span>
-          </div>
-          <form>
+              <img alt="" src={appleSVG} id="imgs" />
+              Signup using Apple
+            </div>
+            <div id="hrLine">
+              <span id="or">or</span>
+            </div>
             {/* <div id="email"> */}
             {/* <img alt="" src={emailSVG} /> */}
             <Input
-              label="Email"
-              className="email_input"
+              label={"Email"}
+              id="email_input"
               placeholder=" Email"
-              type="email"
-              required
+              type="text"
               name="email"
-              callback={handleChange}
-              value={formData.email}
+              callback={e => setUserEmail(e.target.value)}
+              required
+              value={useremail}
             />
             {/* </div> */}
             {/* <div id="pwd"> */}
             {/* <img alt="" src={keySVG} /> */}
             <Input
-              label="Password"
-              eyecon={true}
-              // id="input_id"
-              className="pw_input"
-              placeholder="Create a password"
-              type={"password"}
-              required
+              label={"Password"}
+              id="input_id"
+              placeholder=" Create a password"
+              type={type}
               name="password"
-              callback={handleChange}
-              value={formData.password}
+              value={password}
+              callback={e => setPassword(e.target.value)}
+              required
+              className="pw_input"
+              eyecon={true}
             />
             {/* <span onClick={handleToggle}>
                 {type === "text" ? (
@@ -188,6 +264,8 @@ const Signup = () => {
                 )}
               </span> */}
             {/* </div> */}
+            {error && <p style={{ color: "red" }}>Something went wrong</p>}
+
             <div id="checkTerms">
               <input
                 type="checkbox"
@@ -196,18 +274,22 @@ const Signup = () => {
                 onChange={handleChange}
                 name="acceptTerms"
               />
-              <div className="termsOfUse">
+              <label id="labels" htmlFor="acceptTerms">
                 By creating an account, I declare that I have read and accepted
                 Certawi’s <span id="coloredTerms"> Terms of Use</span> and
-                <span id="coloredTerms"> Privacy Policy</span>
-              </div>
+                <span id="coloredTerms"> Privacy Policy</span>Remember me
+              </label>
             </div>
-            <Input
-              type="submit"
-              id="btn"
-              value="Create Account"
-              onClick={handleOnSubmit}
-            />
+            {/* <div> */}
+
+
+      
+            <div>
+              <Button id="btn" onClick={handleSubmit} style={{ width: "100%" }}>
+              Create Account
+              </Button>
+            </div>
+          
           </form>
           <p className="haveAccount">
             Already have an account?{" "}

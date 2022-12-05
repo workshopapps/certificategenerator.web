@@ -122,7 +122,9 @@ function App() {
                   />
                 }
               />
-              <Route path="/signup" element={<Signup />} />
+              <Route 
+              path="/signup" 
+              element={<Signup access={access} setAccess={setAccess} />} />
               <Route
                 path="/login"
                 element={<Login access={access} setAccess={setAccess} />}
