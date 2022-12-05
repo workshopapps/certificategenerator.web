@@ -109,7 +109,13 @@ function SinglePreview({
         });
         throw new Error(resMsg.message);
       }
-    } catch (error) {}
+    } catch (error) {
+      console.log(error);
+      Toast.fire({
+        icon: "error",
+        title: "Internal Server Error"
+      });
+    }
   };
   return (
     <div id="singlePreview">
