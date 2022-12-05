@@ -25,13 +25,29 @@ export default function Certificate({
   const [bulkCertificate, setBulkCertificate] = useState(false);
   const [date, setDate] = useState(Date.now());
   const navigate = useNavigate();
-  const disabledButton =
-    !logo.trim() ||
-    !message.trim() ||
-    !certificateTitle.trim() ||
-    !awardeeName.trim() ||
-    !issuedBy.trim() ||
-    !issueDate;
+  const [fileOBJ, setFileOBJ] = useState({});
+  const [disabledButton, setDisabledButton] = useState(
+    Boolean(
+      Boolean(fileOBJ) &&
+        message.trim() &&
+        certificateTitle.trim() &&
+        awardeeName.trim() &&
+        issuedBy.trim()
+    )
+  );
+  //   !issueDate;
+  // const [disabledButton, setDisabledButton] = useState(true);
+  // const x =
+  //   logo.trim() ||
+  //   message.trim() ||
+  //   certificateTitle.trim() ||
+  //   awardeeName.trim() ||
+  //   issuedBy.trim();
+  // if (x) {
+  //   setDisabledButton(false);
+  // } else {
+  //   setDisabledButton(true);
+  // }
   const [loading, setLoading] = useState(false);
   const handleSubmit = e => {
     e.preventDefault();
@@ -59,6 +75,9 @@ export default function Certificate({
   function filevalidation() {
     const fi = document.querySelector(".custom-file-input");
     // Check if any file is selected.
+    console.log(Boolean(disabledButton));
+    console.log(!Boolean(disabledButton));
+    console.log(issueDate);
     const x = fi.files[0];
     if (fi.files.length > 0) {
       for (let i = 0; i <= fi.files.length - 1; i++) {
@@ -67,7 +86,11 @@ export default function Certificate({
         document.querySelector("#file-size").textContent = `${file}KB`;
         document.querySelector(".name-of-file").textContent = `${x.name}`;
       }
+      setFileOBJ(fi.files[0]);
     }
+    console.log(fi.files[0] && "spkojs dnjdfj ifnjf ");
+    console.log(typeof fi.files[0]);
+    console.log(Boolean(logo));
   }
 
   // const customFileInput = document.querySelector(".custom-file-input");
@@ -219,7 +242,18 @@ export default function Certificate({
               type="text"
               placeholder="Certificate of completion"
               value={certificateTitle}
-              onChange={e => setCertificateTitle(e.target.value)}
+              onChange={e => {
+                setDisabledButton(
+                  Boolean(
+                    Boolean(fileOBJ) &&
+                      message.trim() &&
+                      certificateTitle.trim() &&
+                      awardeeName.trim() &&
+                      issuedBy.trim()
+                  )
+                );
+                return setCertificateTitle(e.target.value);
+              }}
             />
 
             <label htmlFor="text" className="label">
@@ -230,7 +264,18 @@ export default function Certificate({
               type="text"
               placeholder="Gabriel Prosper"
               value={awardeeName}
-              onChange={e => setAwardeeName(e.target.value)}
+              onChange={e => {
+                setDisabledButton(
+                  Boolean(
+                    Boolean(fileOBJ) &&
+                      message.trim() &&
+                      certificateTitle.trim() &&
+                      awardeeName.trim() &&
+                      issuedBy.trim()
+                  )
+                );
+                return setAwardeeName(e.target.value);
+              }}
             />
 
             <label htmlFor="text" className="label">
@@ -239,8 +284,62 @@ export default function Certificate({
             <input
               label={"Dedication or message"}
               type="text"
+              placeholder="Certificate of completion"
+              value={certificateTitle}
+              onChange={e => {
+                setDisabledButton(
+                  Boolean(
+                    Boolean(fileOBJ) &&
+                      message.trim() &&
+                      certificateTitle.trim() &&
+                      awardeeName.trim() &&
+                      issuedBy.trim()
+                  )
+                );
+                return setCertificateTitle(e.target.value);
+              }}
+            />
+
+            <label htmlFor="text" className="label">
+              Awardee Name
+            </label>
+            <input
+              type="text"
+              placeholder="Gabriel Prosper"
+              value={awardeeName}
+              onChange={e => {
+                setDisabledButton(
+                  Boolean(
+                    Boolean(fileOBJ) &&
+                      message.trim() &&
+                      certificateTitle.trim() &&
+                      awardeeName.trim() &&
+                      issuedBy.trim()
+                  )
+                );
+                return setCertificateTitle(e.target.value);
+              }}
+            />
+
+            <label htmlFor="text" className="label">
+              Dedication or message
+            </label>
+            <input
+              required
+              type="text"
               value={message}
-              onChange={e => setMessage(e.target.value)}
+              onChange={e => {
+                setDisabledButton(
+                  Boolean(
+                    Boolean(fileOBJ) &&
+                      message.trim() &&
+                      certificateTitle.trim() &&
+                      awardeeName.trim() &&
+                      issuedBy.trim()
+                  )
+                );
+                return setCertificateTitle(e.target.value);
+              }}
               placeholder="For your exceptional performance this month."
             />
 
@@ -252,7 +351,18 @@ export default function Certificate({
               type="text"
               placeholder="Name of organisation or issuer"
               value={issuedBy}
-              onChange={e => setIssuedBy(e.target.value)}
+              onChange={e => {
+                setDisabledButton(
+                  Boolean(
+                    Boolean(fileOBJ) &&
+                      message.trim() &&
+                      certificateTitle.trim() &&
+                      awardeeName.trim() &&
+                      issuedBy.trim()
+                  )
+                );
+                return setCertificateTitle(e.target.value);
+              }}
             />
 
             <label htmlFor="" className="label">
@@ -265,8 +375,10 @@ export default function Certificate({
             />
 
             <button
-              disabled={disabledButton}
-              className={`${disabledButton && "btn-disabled"} btn-success`}
+              disabled={!Boolean(disabledButton)}
+              className={`${
+                !Boolean(disabledButton) && "btn-disabled"
+              } btn-success`}
             >
               {loading ? <Loader /> : <span>Create Certificate</span>}
             </button>

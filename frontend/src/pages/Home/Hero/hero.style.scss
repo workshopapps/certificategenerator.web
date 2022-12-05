@@ -54,13 +54,21 @@ body {
 
 .hero {
   padding-top: 2rem;
-  gap: 4.5rem;
+  gap: 4rem;
   align-items: center;
   display: grid;
   grid-template-columns: 1fr 1fr;
   margin-bottom: 3rem !important;
   @media screen and (min-width: 1220px) {
     // gap: 5rem;
+  }
+  @media screen and (max-width: 830px) {
+    grid-template-columns: 1fr;
+    padding-left: 5rem;
+    padding-right: 5rem;
+    :nth-child(1) {
+      grid-row-start: 2;
+    }
   }
   .hero-left {
     width: 100%;
