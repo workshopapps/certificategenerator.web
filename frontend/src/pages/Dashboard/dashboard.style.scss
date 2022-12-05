@@ -184,28 +184,7 @@ $size-sm: 12px;
         }
         .action {
           padding-right: 0.7rem;
-          position: relative;
-          .dropdown{
-            position: absolute;
-            top: 5px;
-            right: 0;
-            background-color: #fff;
-            width: 69px;
-            border-radius: 8px;
-            :active{
-              display: block;
-            }
-            ul{
-              list-style: none;
-              color: black;
-              li{
-                padding: 1rem 1.5rem;
-                border-bottom: 1px solid black;
-              }
-            }
-          }
         }
-        
       }
     }
   }

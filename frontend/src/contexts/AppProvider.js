@@ -6,7 +6,6 @@ export const AppProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
   const [user, setUser] = useState({});
   const [csvData, setCsvData] = useState([]);
-  const [certificates, setCertificates] = useState([]);
   const [file, setFile] = useState();
 
   return (
@@ -20,8 +19,6 @@ export const AppProvider = ({ children }) => {
         setCsvData,
         file,
         setFile,
-        certificates,
-        setCertificates,
       }}
     >
       {children}
