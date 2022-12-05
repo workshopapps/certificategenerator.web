@@ -16,7 +16,6 @@ function Index() {
         <h1>Your certificates are ready!</h1>
         <img src={certificate} alt="certificate" />
       </div> */}
-
       <BulkCertDesign />
 
       {/* PREVIEW OF BULK GENERATED CERTIFICATES  */}
