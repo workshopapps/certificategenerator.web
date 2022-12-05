@@ -81,12 +81,14 @@ const createEvent = async (req, res) => {
       });
 
     // Verify that custom URI isn't taken
-    const existingEvent = await Event.findOne({ customURI });
+    if (customURI) {
+      const existingEvent = await Event.findOne({ customURI });
 
-    if (existingEvent)
-      return res
-        .status(400)
-        .json({ message: "customURI is already taken", success: false });
+      if (existingEvent)
+        return res
+          .status(400)
+          .json({ message: "customURI is already taken", success: false });
+    }
 
     // Create new event
     const event = await Event.create({ ...req.body, userId: user._id });
