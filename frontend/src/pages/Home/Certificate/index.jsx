@@ -25,30 +25,15 @@ export default function Certificate({
   const [bulkCertificate, setBulkCertificate] = useState(false);
   const [date, setDate] = useState(Date.now());
   const navigate = useNavigate();
-  const [fileOBJ, setFileOBJ] = useState({});
-  const [disabledButton, setDisabledButton] = useState(
-    Boolean(
-      Boolean(fileOBJ) &&
-        message.trim() &&
-        certificateTitle.trim() &&
-        awardeeName.trim() &&
-        issuedBy.trim()
-    )
-  );
-  //   !issueDate;
-  // const [disabledButton, setDisabledButton] = useState(true);
-  // const x =
-  //   logo.trim() ||
-  //   message.trim() ||
-  //   certificateTitle.trim() ||
-  //   awardeeName.trim() ||
-  //   issuedBy.trim();
-  // if (x) {
-  //   setDisabledButton(false);
-  // } else {
-  //   setDisabledButton(true);
-  // }
+  const [disabledButton, setDisabledButton] = useState(true);
   const [loading, setLoading] = useState(false);
+  // const disabledButton =
+  //   !logo.trim() ||
+  //   !message.trim() ||
+  //   !certificateTitle.trim() ||
+  //   !awardeeName.trim() ||
+  //   !issuedBy.trim();
+  // !issueDate;
   const handleSubmit = e => {
     e.preventDefault();
     setLoading(true);
@@ -75,10 +60,8 @@ export default function Certificate({
   function filevalidation() {
     const fi = document.querySelector(".custom-file-input");
     // Check if any file is selected.
-    console.log(Boolean(disabledButton));
-    console.log(!Boolean(disabledButton));
-    console.log(issueDate);
     const x = fi.files[0];
+    setLogo(fi.files[0]);
     if (fi.files.length > 0) {
       for (let i = 0; i <= fi.files.length - 1; i++) {
         const fsize = fi.files.item(i).size;
@@ -86,16 +69,31 @@ export default function Certificate({
         document.querySelector("#file-size").textContent = `${file}KB`;
         document.querySelector(".name-of-file").textContent = `${x.name}`;
       }
-      setFileOBJ(fi.files[0]);
     }
-    console.log(fi.files[0] && "spkojs dnjdfj ifnjf ");
-    console.log(typeof fi.files[0]);
-    console.log(Boolean(logo));
   }
 
-  // const customFileInput = document.querySelector(".custom-file-input");
   function uploadFileHandler() {
     document.querySelector(".custom-file-input").click();
+  }
+
+  function checkIfFieldIsEmpty() {
+    const file = document.querySelector(".custom-file-input");
+    const certificateTitle = document.querySelector(".certificate-title").value;
+    const awardeeName = document.querySelector(".awardee-name").value;
+    const message = document.querySelector(".edication-or-message").value;
+    const issuedBy = document.querySelector(".issued-by").value;
+
+    if (
+      file.files.length > 0 &&
+      certificateTitle.trim().length > 0 &&
+      awardeeName.trim().length > 0 &&
+      message.trim().length > 0 &&
+      issuedBy.trim().length > 0
+    ) {
+      setDisabledButton(false);
+    } else {
+      setDisabledButton(true);
+    }
   }
 
   return (
@@ -194,7 +192,7 @@ export default function Certificate({
                 flexDirection: "column",
                 gap: "0.1rem"
               }}
-              className=" file-input"
+              className="file-input"
             >
               <label
                 htmlFor="file"
@@ -204,7 +202,8 @@ export default function Certificate({
                 Logo
               </label>
               <div
-                style={{ display: "flex", alignItems: "center", gap: "2.5rem" }}
+                style={{ display: "flex", alignItems: "center" }}
+                className="name_upload_container"
               >
                 <span className="upload-file" onClick={uploadFileHandler}>
                   Upload Logo
@@ -224,7 +223,10 @@ export default function Certificate({
                     // onChange={e =>
                     //   setLogo(URL.createObjectURL(e.target.files[0]))
                     // }
-                    onChange={filevalidation}
+                    onChange={() => {
+                      filevalidation();
+                      checkIfFieldIsEmpty();
+                    }}
                   />
                 </span>
                 <p className="name-of-file"></p>
@@ -239,20 +241,14 @@ export default function Certificate({
             </label>
             <input
               label={"Certificate Title"}
+              className="certificate-title"
               type="text"
               placeholder="Certificate of completion"
               value={certificateTitle}
+              // onChange={e => setCertificateTitle(e.target.value)}
               onChange={e => {
-                setDisabledButton(
-                  Boolean(
-                    Boolean(fileOBJ) &&
-                      message.trim() &&
-                      certificateTitle.trim() &&
-                      awardeeName.trim() &&
-                      issuedBy.trim()
-                  )
-                );
-                return setCertificateTitle(e.target.value);
+                setCertificateTitle(e.target.value);
+                checkIfFieldIsEmpty();
               }}
             />
 
@@ -261,20 +257,14 @@ export default function Certificate({
             </label>
             <input
               label={"Awardee Name"}
+              className="awardee-name"
               type="text"
               placeholder="Gabriel Prosper"
               value={awardeeName}
+              // onChange={e => setAwardeeName(e.target.value)}
               onChange={e => {
-                setDisabledButton(
-                  Boolean(
-                    Boolean(fileOBJ) &&
-                      message.trim() &&
-                      certificateTitle.trim() &&
-                      awardeeName.trim() &&
-                      issuedBy.trim()
-                  )
-                );
-                return setAwardeeName(e.target.value);
+                setAwardeeName(e.target.value);
+                checkIfFieldIsEmpty();
               }}
             />
 
@@ -283,85 +273,29 @@ export default function Certificate({
             </label>
             <input
               label={"Dedication or message"}
+              className="edication-or-message"
               type="text"
-              placeholder="Certificate of completion"
-              value={certificateTitle}
-              onChange={e => {
-                setDisabledButton(
-                  Boolean(
-                    Boolean(fileOBJ) &&
-                      message.trim() &&
-                      certificateTitle.trim() &&
-                      awardeeName.trim() &&
-                      issuedBy.trim()
-                  )
-                );
-                return setCertificateTitle(e.target.value);
-              }}
-            />
-
-            <label htmlFor="text" className="label">
-              Awardee Name
-            </label>
-            <input
-              type="text"
-              placeholder="Gabriel Prosper"
-              value={awardeeName}
-              onChange={e => {
-                setDisabledButton(
-                  Boolean(
-                    Boolean(fileOBJ) &&
-                      message.trim() &&
-                      certificateTitle.trim() &&
-                      awardeeName.trim() &&
-                      issuedBy.trim()
-                  )
-                );
-                return setCertificateTitle(e.target.value);
-              }}
-            />
-
-            <label htmlFor="text" className="label">
-              Dedication or message
-            </label>
-            <input
-              required
-              type="text"
+              placeholder="For your exceptional performance this month."
               value={message}
               onChange={e => {
-                setDisabledButton(
-                  Boolean(
-                    Boolean(fileOBJ) &&
-                      message.trim() &&
-                      certificateTitle.trim() &&
-                      awardeeName.trim() &&
-                      issuedBy.trim()
-                  )
-                );
-                return setCertificateTitle(e.target.value);
+                setMessage(e.target.value);
+                checkIfFieldIsEmpty();
               }}
-              placeholder="For your exceptional performance this month."
             />
 
             <label htmlFor="text" className="label">
               Issued By
             </label>
             <input
-              label={"Dedication or message"}
+              label={"Issued By"}
+              className="issued-by"
               type="text"
               placeholder="Name of organisation or issuer"
               value={issuedBy}
+              // onChange={e => setIssuedBy(e.target.value)}
               onChange={e => {
-                setDisabledButton(
-                  Boolean(
-                    Boolean(fileOBJ) &&
-                      message.trim() &&
-                      certificateTitle.trim() &&
-                      awardeeName.trim() &&
-                      issuedBy.trim()
-                  )
-                );
-                return setCertificateTitle(e.target.value);
+                setIssuedBy(e.target.value);
+                checkIfFieldIsEmpty();
               }}
             />
 
@@ -375,10 +309,8 @@ export default function Certificate({
             />
 
             <button
-              disabled={!Boolean(disabledButton)}
-              className={`${
-                !Boolean(disabledButton) && "btn-disabled"
-              } btn-success`}
+              disabled={disabledButton}
+              className={`${disabledButton && "btn-disabled"} btn-success`}
             >
               {loading ? <Loader /> : <span>Create Certificate</span>}
             </button>
