@@ -2,10 +2,14 @@ import React, { useEffect, useState } from "react";
 import "./dashboard.style.scss";
 import profilePic from "../../assets/images/Ellipse4.png";
 import Card from "./Card";
-import { cardData, nullDataIcon, actionIcon } from "./utils";
+import { dummyData, cardData, nullDataIcon, actionIcon } from "./utils";
 import Button from "../../Component/button";
 import CreateCertificateModal from "./CreateCertificateModal";
-import axios from "axios";
+import { axiosPrivate } from "../../api/axios";
+import useAppProvider from "../../hooks/useAppProvider";
+import Swal from "sweetalert2";
+import { Loader } from "../../Component";
+import TableRow from "./TableRow";
 
 
 const Dashboard = ({
@@ -23,48 +27,129 @@ const Dashboard = ({
   setIssueDate
 }) => {
   const [data, setData] = useState([]);
-  const [issuedCert, setIssuedCert] = useState([...cardData]);
+  const [issuedCert, setIssuedCert] = useState([...dummyData]);
+  const [cardData, setCardData] = useState([...dummyData]);
+  const [issuedCertCount, setIssuedCertCount] = useState(0);
   const [openModal, setOpenModal] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState(true);
+  const [loading, setLoading] = useState(false);
+  const [pending, setPending] = useState(0);
+  const [pricing, setPricing] = useState('')
+  // const { certificates, setCertificates } = useAppProvider();
 
+  const Toast = Swal.mixin({
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: toast => {
+      toast.addEventListener("mouseenter", Swal.stopTimer);
+      toast.addEventListener("mouseleave", Swal.resumeTimer);
+    }
+  });
+
+  const handleChangeCertificateStatus = async (id, status) => {
+    console.log(id, status)
+    await axiosPrivate.patch(`/certificates/status/${id}`, status)
+    Toast.fire({
+      icon: "success",
+      title: "Successfully updated"
+    });
+    const certificates = await axiosPrivate.get('/certificates')
+    setData(certificates)
+
+  }
   useEffect(() => {
-    const fetchData = async () => {
-      setIssuedCert(cardData);
-      const myHeaders = new Headers();
-      myHeaders.append(
-        "Authorization",
-        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzdmOTg3MDQyODc5MzAwNDJmYzE0M2UiLCJpYXQiOjE2NjkzMDY4MjQsImV4cCI6MTY2OTM5MzIyNH0.x5q4XJDcFvN8EWqc4e0el6CZXJtwQjtcrmo3Id0sQlc"
-      );
-
-      let requestOptions = {
-        method: "GET",
-        headers: myHeaders
-      };
-
-      fetch("https://certify-api.onrender.com/api/certificates", requestOptions)
-        .then(response => response.json())
-        .then(result => setData(result))
-        .catch(error => console.log("error", error));
-
-      fetch(
-        "https://certify-api.onrender.com/api/certificates/issuedCertificates",
-        requestOptions
-      )
-        .then(response => response.json())
-        .then(result => {
-          setIssuedCert(
-            issuedCert.map(item =>
-              item.title === "Total Number Issued"
-                ? { ...item, count: result.issuedCertificates }
-                : item
-            )
-          );
-        })
-        .catch(error => console.log("error", error));
+    setLoading(true);
+    const getUserCertificates = async () => {
+      try {
+        const response = await axiosPrivate.get("/certificates");
+        let sub = localStorage.getItem('subscription')
+        setPricing(sub)
+        console.log(response);
+        if (response.status === 404) {
+          Toast.fire({
+            icon: "error",
+            title: "Page not found"
+          });
+        } else if (response.status === 401) {
+          Toast.fire({
+            icon: "error",
+            title: "Request Failed"
+          });
+        } else if (response.status === 500) {
+          
+          Toast.fire({
+            icon: "error",
+            title: "Internal Server Error"
+          });
+        } else {
+          setData(response.data);
+          console.log(response.data);
+          setLoading(false)
+        }
+      } catch (error) {
+        console.error(error.message);
+      }
     };
-    fetchData();
+    const getIssuedCertificates = async () => {
+      try {
+        
+        const response = await axiosPrivate.get("/certificates/issuedCertificates");
+        // console.log("i got here");
+        console.log(response);
+        setIssuedCertCount(response.data);
+        setLoading(false)
+        setCardData(
+          cardData.map(item =>
+            item.title === "Total Number Issued"
+              ? { ...item, count: response.data.issuedCertificates }
+              : item
+          )
+        );
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    
+    
+    getUserCertificates();
+    getIssuedCertificates();
   }, []);
 
-  const dataCheck = issuedCert.filter(item => item.count !== 0);
+  // const dataCheck = issuedCert.filter(item => item.count !== 0);
+  useEffect(() => {
+    const updateCount = () => {
+      const cardSnapshot = [...cardData];
+      const pendingCount = data.filter(
+        item => item.status === "pending"
+      ).length;
+      const newCard = cardSnapshot.map(item =>
+        item.title === "Total number of pending certificates"
+          ? { ...item, count: pendingCount }
+          : item
+      );
+      setCardData(newCard);
+    };
+    updateCount();
+  }, [data]);
+
+  const dataCheck = cardData.filter(item => item.count !== 0);
+  if (loading) {
+    return (
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "90vh"
+        }}
+      >
+        <Loader />
+      </div>
+    );
+  }
 
   return (
     <>
@@ -81,6 +166,9 @@ const Dashboard = ({
                 Let’s do the Accounts for you, Get a summary of all the
                 Certificates and Job done here
               </p>
+              <div>
+                <p>Pricing Plan: {pricing.toUpperCase()}</p>
+              </div>
             </div>
             <div className="dashboard__btn">
               <button>Upgrade Account</button>
@@ -89,9 +177,8 @@ const Dashboard = ({
         </div>
 
         <div className="dashboard__cards">
-          {issuedCert.map((item, idx) => (
-            <Card key={idx} item={item} />
-          ))}
+        {cardData.length > 0 &&
+            cardData.map((item, idx) => <Card key={idx} item={item} />)}
         </div>
 
         <div className="table-wrapper">
@@ -136,26 +223,7 @@ const Dashboard = ({
               {data.length > 0 && (
                 <tbody>
                   {data.map((item, idx) => (
-                    <tr key={idx}>
-                      <td>{item.nameOfOrganization.toUpperCase()}</td>
-                      {item.status === "Issued" ? (
-                        <td>
-                          <button className="cancel">Canceled</button>
-                        </td>
-                      ) : item.status === "Pending" ? (
-                        <td>
-                          <button className="pending">Pending</button>
-                        </td>
-                      ) : (
-                        <td>
-                          <button className="issue">Issued</button>
-                        </td>
-                      )}
-                      <td>{item.date}</td>
-                      <td>{data.length}</td>
-                      <td>PDF</td>
-                      <td className="action">{actionIcon()}</td>
-                    </tr>
+                     <TableRow item={item} key={idx} handleChangeCertificateStatus={handleChangeCertificateStatus} />
                   ))}
                 </tbody>
               )}
