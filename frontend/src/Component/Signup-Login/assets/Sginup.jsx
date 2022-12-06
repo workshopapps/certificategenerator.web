@@ -168,7 +168,7 @@ const Signup = ({ access, setAccess }) => {
       accessToken: res.accessToken
     };
 
-    if (token.accessToken) signupUserGoogle(token);
+    if (token.accessToken) createNewUserGoogle(token);
 
     localStorage.setItem("username", res.profileObj.email);
     localStorage.setItem("name", res.profileObj.name);
@@ -180,7 +180,7 @@ const Signup = ({ access, setAccess }) => {
 
  
   // Send access token to backend
-  async function signupUserGoogle(token) {
+  async function createNewUserGoogle(token) {
     const response = await fetch("https://certgo.hng.tech/api/auth/signup", {
       method: "POST",
       headers: {
