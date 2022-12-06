@@ -4,7 +4,7 @@ import { useState } from "react";
 import { GoogleLogin } from "react-google-login";
 import { gapi } from "gapi-script";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-import "./signup.scss";
+import "./Style.scss";
 import appleSVG from "./assets/apple.svg";
 import googleSVG from "./assets/google.svg";
 import cert from "./assets/Cert.png";

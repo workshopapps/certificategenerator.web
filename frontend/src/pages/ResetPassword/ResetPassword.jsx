@@ -1,16 +1,18 @@
 import React,{ useState, useEffect} from "react";
-import axios from "axios";
+// import axios from "axios";
 import { useNavigate, useParams,} from "react-router-dom";
 import Input from "../../Component/Input";
 import Layout from "./ResetLayout";
 import Swal from "sweetalert2";
+import Loader from "../Home/Loader";
+import Button from "../../Component/button";
 
 const ResetPassword = () => { 
   const navigate = useNavigate();
-  const [formData, setFormData] = useState({
-    newPassword: '',
-    confirmPassword: ''
-  })
+  const [loading, setLoading] = useState(false);
+  // const [disabledButton, setDisabledButton] = useState(true);
+  const [newPassword, setNewPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const { userId, token } = useParams();
 
   const Toast = Swal.mixin({
@@ -26,51 +28,76 @@ const ResetPassword = () => {
   });
   
 
-  
-  const handleChange = (e) =>{
-    setFormData({
-        ...formData,
-         [e.target.name]: e.target.value
-    })
-  }
-    async function resetPassword({...formData}) {
+    async function resetPassword({newPassword, confirmPassword}) {
     return fetch(`https://certify-api.onrender.com/api/auth/changepassword/${userId}/${token}`, {
       method: "POST",
-      //  //mode: 'no-cors',
-      // credentials: 'include',
       headers: {
-        "Content-Type": "application/json",
-        // "Access-Control-Allow-Origin": "*",
-        // "Access-Control-Allow-Methods": "POST",
-        // "Access-Control-Allow-Headers": "Content-Type, Authorization"
+        "Content-type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+        // "Access-Control-Allow-Methods": "POST",     
       },
-      body: JSON.stringify({...formData})
-      
+      body: {newpassword: newPassword, confirmpassword: confirmPassword}
     });
   }
+
   const handleSubmit = async (e) =>{
     e.preventDefault()
+
+    setLoading(true);
     try {
-       if(formData.newPassword !== formData.confirmPassword){
-      alert('password do not match')
+       if(confirmPassword !== newPassword){
+        Toast.fire({
+          icon: "error",
+          title: "Passwords not matched"
+        });
+        setLoading(false)
+        return false;
     }else{
-       const response = await resetPassword({...formData});
+       const response = await resetPassword({newPassword, confirmPassword});
       //  const data = await response.json();
       // await axios.post(`https://certify-api.onrender.com/api/auth/changepassword/${userId}/${token}`, {...formData})
       // .then((response) => {
-         if (response.status === 200 || response.status === 201) {
+         if (response.status === 200) {
               Toast.fire({
                 icon: "success",
-                title: "password reset link sent to your email account"
+                title: "password changed"
               });
             navigate('/fff5')
+            setLoading(false);
             console.log(response);
             console.log(response.data.message);
-         }
+         }else if (response.status === 400){
+            Toast.fire({
+                icon: "error",
+                title: "Both passwords do not match"
+              });
+              console.log(response);
+              setLoading(false)
+          }else if (response.status === 401){
+              Toast.fire({
+                  icon: "error",
+                  title: "Invalid token"
+                });
+                console.log('Invalid token');
+                setLoading(false)
+          }else if (response.status === 500) {
+              Toast.fire({
+                icon: "error",
+                title: "Server Error"
+              });
+           throw new Error("Server Error");
+      } else{
+            setLoading(false)
+            console.log('something went wront');
+          }
           // })
     }
     } catch (error) {
-      
+        if(!error?.response){
+            console.log('No Server Response')
+        }else{
+            console.log('Failed changing password!');
+    }
     }
    
     }
@@ -84,8 +111,9 @@ const ResetPassword = () => {
   <Input
       type={"password"}
       placeholder="New password"
-      onChange={handleChange}
       id='newpassword'
+      value = {newPassword}
+      callback={e => setNewPassword(e.target.value)}
       label="New password"
       eyecon={true}
     />
@@ -93,11 +121,12 @@ const ResetPassword = () => {
       type={"password"}
       placeholder="Confirm new password"
       id='confirmpassword'
-      onChange={handleChange}
+      value = {confirmPassword}
+      callback={e => setConfirmPassword(e.target.value)}
       label="Confirm new password"
       eyecon={true}
     />
-    <Input type='submit' value="Change Password" style={{width: '100%'}} />
+    <Button type='submit' style={{width: '100%'}}>{loading? <Loader /> : <span>Change password</span>}</Button>
     </form>
   ];
   return (

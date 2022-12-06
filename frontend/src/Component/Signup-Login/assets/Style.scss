@@ -13,6 +13,7 @@
   width: 503px;
   text-align: start;
 }
+
 .logo-container {
   width: 100%;
   margin: 29px 64px 58px 0px;
@@ -20,19 +21,23 @@
   justify-content: center;
   align-items: center;
 }
+
 .logo-div {
   width: 100%;
   height: 40px;
   display: flex;
   max-width: 1240px;
 }
+
 .logo {
   width: 150px;
   height: 40px;
 }
+
 .menu {
   display: none;
 }
+
 .emptySpace {
   width: 608px;
   height: 583px;
@@ -41,6 +46,7 @@
   display: flex;
   align-items: center;
 }
+
 #hrLine {
   position: relative;
   font-size: 30px;
@@ -48,10 +54,12 @@
   overflow: hidden;
   text-align: center;
 }
+
 #or {
   margin: 22px;
   color: #6c6c70;
 }
+
 #hrLine:before,
 #hrLine:after {
   position: absolute;
@@ -62,10 +70,12 @@
   content: "\a0";
   background-color: #222222;
 }
+
 #hrLine:before {
   margin-left: -50%;
   text-align: right;
 }
+
 #heading {
   width: 100%;
   font-family: "Sora";
@@ -76,6 +86,7 @@
   letter-spacing: -0.5px;
   color: #222222;
 }
+
 #startGenerating {
   font-family: "Work Sans";
   font-style: normal;
@@ -85,6 +96,7 @@
   letter-spacing: -0.5px;
   color: #000000;
 }
+
 #signupG,
 #signupA {
   width: 100%;
@@ -106,15 +118,18 @@
   letter-spacing: -0.004em;
   color: #222222;
 }
+
 #img_id {
   width: 24px;
   height: 24px;
 }
+
 form {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
+
 #pwd {
   width: 100%;
   height: 54px;
@@ -125,20 +140,24 @@ form {
   align-items: center;
   justify-content: space-around;
 }
+
 #input_id {
   border: none;
   width: 80%;
   height: 48px;
 }
+
 .pw_input,
 .email_input {
   border: none;
   width: 90%;
   height: 48px;
 }
+
 input:focus {
   outline: none;
 }
+
 #email {
   width: 100%;
   height: 54px;
@@ -149,10 +168,12 @@ input:focus {
   align-items: center;
   justify-content: space-around;
 }
+
 a {
   text-decoration: none;
   color: #222222;
 }
+
 #label {
   font-family: "Work Sans";
   font-style: normal;
@@ -162,9 +183,11 @@ a {
   letter-spacing: -0.5px;
   color: #222222;
 }
+
 .eye {
   color: #6c6c70;
 }
+
 #checkTerms {
   width: 100%;
   display: flex;
@@ -172,10 +195,12 @@ a {
   gap: 8px;
   align-items: center;
 }
+
 #acceptTerms {
   height: 24px;
   width: 24px;
 }
+
 #btn {
   width: 100%px;
   height: 43px;
@@ -193,9 +218,11 @@ a {
   justify-content: center;
   align-items: center;
 }
+
 #coloredTerms {
   color: #19a68e;
 }
+
 .termsOfUse {
   font-family: "Work Sans";
   font-style: normal;
@@ -205,10 +232,12 @@ a {
   letter-spacing: -0.5px;
   color: #222222;
 }
+
 .cert_img {
   width: 100%;
   height: 56%;
 }
+
 .haveAccount {
   font-family: "Work Sans";
   font-style: normal;
@@ -217,6 +246,7 @@ a {
   line-height: 19px;
   color: #6c6c70;
 }
+
 .forgotPwd {
   width: 100%;
   display: flex;
@@ -228,77 +258,97 @@ a {
   letter-spacing: -0.5px;
   color: #19a68e;
 }
+
 @media all and (max-width: 1240px) {
   .container {
     gap: 90px;
   }
+
   .formDiv {
     width: 450px;
   }
+
   .emptySpace {
     width: 520px;
     height: 543px;
   }
+
   #heading {
     font-size: 43px;
   }
 }
+
 @media all and (max-width: 1024px) {
   .container {
     gap: 60px;
   }
+
   .formDiv {
     width: 380px;
   }
+
   .emptySpace {
     width: 450px;
     height: 490px;
   }
+
   #heading {
     font-size: 32px;
   }
 }
+
 @media all and (max-width: 768px) {
   .formDiv {
     width: 400px;
   }
+
   .emptySpace {
     display: none;
   }
+
   #heading {
     font-size: 38px;
     font-weight: 600;
   }
+
   #startGenerating {
     margin-bottom: 56px;
     color: #6c6c70;
   }
+
   .haveAccount {
     font-size: 12px;
   }
+
   .logo-div {
     margin: 29px 64px 58px 64px;
     width: auto;
     justify-content: space-between;
   }
+
   .menu {
     display: block;
   }
 }
-@media all and(max-width: 480px) {
+
+@media all and (max-width: 480px) {
   .formDiv {
     width: 327px;
   }
+
   #heading {
     font-size: 23px;
     line-height: 29px;
   }
+
   #startGenerating {
     margin-bottom: 20px;
   }
+
   .haveAccount {
     font-size: 12px;
   }
+
   .logo-div {
     margin: 29px 20px 58px 24px;
   }
