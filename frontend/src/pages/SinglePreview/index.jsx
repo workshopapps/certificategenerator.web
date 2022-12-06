@@ -80,10 +80,9 @@ function SinglePreview({
 
       // create form data and add pdf
       let formData = new FormData();
-      formData.append("file", pdf);
+      formData.append("file", data);
 
       // send the form data
-      // const uploadUrl = "https://certgo.hng.tech/api/sendEmailNotification";
       const uploadUrl = "https://certgo.hng.tech/api/sendEmailNotifications";
       let response = await axios.post(uploadUrl, formData, {
         headers: {
@@ -91,24 +90,23 @@ function SinglePreview({
           "Content-Type": "multipart/form-data"
         }
       });
-      const resMsg = await response.json();
 
       if (response.status === 200) {
         Toast.fire({
           icon: "success",
-          title: resMsg.message
+          title: response.message
         });
       } else if (response.status === 403) {
         Toast.fire({
           icon: "error",
-          title: resMsg.error
+          title: response.error
         });
       } else {
         Toast.fire({
           icon: "error",
-          title: resMsg.message
+          title: response.message
         });
-        throw new Error(resMsg.message);
+        throw new Error(response.message);
       }
     } catch (error) {
       console.log(error);
