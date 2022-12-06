@@ -90,23 +90,23 @@ function SinglePreview({
           "Content-Type": "multipart/form-data"
         }
       });
-
+      const dataMsg = response.data;
       if (response.status === 200) {
         Toast.fire({
           icon: "success",
-          title: response.message
+          title: dataMsg.message
         });
       } else if (response.status === 403) {
         Toast.fire({
           icon: "error",
-          title: response.error
+          title: dataMsg.error
         });
       } else {
         Toast.fire({
           icon: "error",
-          title: response.message
+          title: dataMsg.message
         });
-        throw new Error(response.message);
+        throw new Error(dataMsg.message);
       }
     } catch (error) {
       console.log(error);
