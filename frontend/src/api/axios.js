@@ -16,5 +16,12 @@ const axiosPrivate = axios.create({
     "Authorization" : `Bearer ${token}`
  }
 });
+const axiosFormData = axios.create({
+  baseURL,
+  headers: { 
+    "Content-Type": "multipart/form-data",
+    "Authorization" : `Bearer ${token}`
+ }
+});
 
-export {axiosPrivate};
+export {axiosPrivate, axiosFormData};

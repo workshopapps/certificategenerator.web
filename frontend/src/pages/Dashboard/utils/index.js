@@ -137,17 +137,22 @@ export const tableData = [
 
 export const dummyData = [
   {
-    title: "Total Number Issued",
+    title: "Total Certificates",
     icon: "",
     count: 0,
   },
   {
-    title: "Total number of pending certificates",
+    title: "Total Pending Certificates",
     icon: "",
     count: 0,
   },
   {
-    title: "No of Certificates Declined",
+    title: "Total Issued Certificates",
+    icon: "",
+    count: 0,
+  },
+  {
+    title: "Total Declined Certificates",
     icon: "",
     count: 0,
   },
