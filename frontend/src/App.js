@@ -38,7 +38,7 @@ import { Privacy } from "./pages/PrivacyPolicy";
 import { AppProvider } from "./contexts/AppProvider";
 import Login from "./Component/Signup-Login/assets/Login";
 import Signup from "./Component/Signup-Login/assets/Sginup";
-import { HashRouter as Router, Route, Routes } from "react-router-dom";
+import { HashRouter as Router, Navigate, Route, Routes } from "react-router-dom";
 
 function App() {
   const [logo, setLogo] = useState("");
@@ -49,6 +49,10 @@ function App() {
   const [awardeeName, setAwardeeName] = useState("");
   const [appLoading, setAppLoading] = useState(true);
   const [certificateTitle, setCertificateTitle] = useState("");
+  const user = localStorage.getItem('user') 
+  const token = localStorage.getItem('token') 
+
+  const RequireAuth = ({ children }) => user && token ? children : <Navigate to="/login"/>
 
   useEffect(() => {
     setTimeout(function () {
@@ -107,7 +111,8 @@ function App() {
               <Route
                 path="/dashboard"
                 element={
-                  <Dashboard
+                  <RequireAuth>
+                    <Dashboard
                     logo={logo}
                     message={message}
                     setLogo={setLogo}
@@ -121,6 +126,7 @@ function App() {
                     certificateTitle={certificateTitle}
                     setCertificateTitle={setCertificateTitle}
                   />
+                  </RequireAuth>
                 }
               />
               <Route path="/templates" element={<Templates />} />
