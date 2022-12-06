@@ -178,7 +178,7 @@ const Signup = ({ access, setAccess }) => {
 
     if (response.status === 200) {
       // route user to dashboard after successful login
-      navigate("/dashboard");
+      navigate("/login");
     } else {
       navigate("/signup");
     }
