@@ -3,6 +3,7 @@ const Event = require("../models/eventModel");
 const mongoose = require("mongoose");
 const Certificate = require("../models/certificateModel");
 const Joi = require("joi");
+const crypto = require("crypto");
 
 const getAllEvents = async (req, res) => {
   try {
@@ -53,12 +54,15 @@ const getEventById = async (req, res) => {
 const createEvent = async (req, res) => {
   try {
     const user = req.user;
-    const { customURI } = req.body;
+    const customURI = req.body.customURI || crypto.randomUUID();
+    req.body.customURI = customURI;
 
     // Define validation schema
     const schema = Joi.object({
       title: Joi.string().required(),
-      customURI: Joi.string().alphanum()
+      customURI: Joi.string()
+        .regex(/^[a-zA-Z0-9\-\_]+$/)
+        .required()
     });
 
     // Validate request body against schema
@@ -80,15 +84,13 @@ const createEvent = async (req, res) => {
         success: false
       });
 
-    if (customURI) {
-      // Verify that custom URI isn't taken
-      const existingEvent = await Event.findOne({ customURI });
+    // Verify that custom URI isn't taken
+    const existingEvent = await Event.findOne({ customURI });
 
-      if (existingEvent)
-        return res
-          .status(400)
-          .json({ message: "customURI is already taken", success: false });
-    }
+    if (existingEvent)
+      return res
+        .status(400)
+        .json({ message: "customURI is already taken", success: false });
 
     // Create new event
     const event = await Event.create({ ...req.body, userId: user._id });
