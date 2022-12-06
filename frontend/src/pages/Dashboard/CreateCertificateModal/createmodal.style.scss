@@ -115,6 +115,9 @@
         width: 100%;
         margin: 0 auto;
         padding-top: 0;
+        .form-group{
+          margin-bottom: 1rem;
+        }
         div {
           &:first-child{
             .label{
@@ -134,10 +137,12 @@
             display: none;
           }
           input {
+            width: 100%;
             height: 50px;
             padding: 0 0.6rem;
             border: 1px solid gray;
             color: #000000;
+            border-radius: 8px;
           }
           .loading{
             display: flex;
@@ -211,7 +216,6 @@
           
         }
         form{
-          background-color: #FAFAFB;
           max-width: 760px;
           margin: 0 auto;
           padding: 3rem 5rem 3rem 5rem;
