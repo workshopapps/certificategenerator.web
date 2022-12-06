@@ -6,6 +6,7 @@
   padding: 0;
   box-sizing: border-box;
 }
+
 body {
   max-width: $containerWidth;
   color: #222222;
@@ -62,6 +63,7 @@ body {
 
 .prompt {
   text-align: center;
+
   @media screen and (max-width: 740px) {
     padding: 0 1.5rem;
   }
@@ -76,7 +78,6 @@ body {
   line-height: 19px;
   font-weight: 500;
   margin-block: 56px;
-  min-width: 400px;
 }
 
 .certi {
@@ -117,34 +118,47 @@ body {
   border-radius: 16px;
   padding: 8%;
   gap: 0;
+
   input {
     font-size: 14px;
     padding: 0.9rem;
     height: fit-content;
+    width: 100%;
     color: black;
+    outline: none;
+    border: 0.8px solid #222222;
+    border-radius: 10px;
+    padding: 15px;
+
     ::placeholder {
       font-size: 14px;
     }
   }
+
   .isDisabled {
     cursor: not-allowed;
     opacity: 0.5;
   }
+
   [aria-disabled="true"] {
     cursor: not-allowed;
     color: currentColor;
-    display: inline-block; /* For IE11/ MS Edge bug */
+    display: inline-block;
+    /* For IE11/ MS Edge bug */
     pointer-events: none;
     text-decoration: none;
   }
 }
+
 .file-input {
   display: flex;
   align-items: flex-start;
   flex-direction: column;
   gap: 1px;
+
   .name_upload_container {
     gap: 2.5rem;
+
     @media screen and (max-width: 680px) {
       width: 100%;
       font-size: 12px;
@@ -153,10 +167,12 @@ body {
       flex-direction: column;
       align-items: flex-start;
     }
+
     .upload-file {
       @media screen and (max-width: 680px) {
         align-self: flex-start;
       }
+
       background-color: #fff;
       padding: 1rem;
       border: 1px solid grey;
@@ -167,6 +183,7 @@ body {
       // z-index: -2;
 
       cursor: pointer;
+
       .custom-file-input {
         display: none;
         color: transparent;
@@ -180,13 +197,16 @@ body {
         left: 0;
       }
     }
+
     .name-of-file {
       @media screen and (max-width: 1024px) {
         font-size: 18px;
       }
+
       @media screen and (max-width: 768px) {
         font-size: 12px;
       }
+
       @media screen and (max-width: 680px) {
         font-size: 12px;
         align-self: flex-end;

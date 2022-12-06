@@ -3,18 +3,13 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { GoogleLogin } from "react-google-login";
 import { gapi } from "gapi-script";
-import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-import "./Style.scss";
+import "./signup.scss";
 import appleSVG from "./assets/apple.svg";
 import googleSVG from "./assets/google.svg";
 import cert from "./assets/Cert.png";
-import emailSVG from "./assets/email.svg";
-import keySVG from "./assets/key.svg";
-import { createNewUser } from "../api";
 import Input from "../../Input";
 import Button from "../../button";
 import Swal from "sweetalert2";
-
 
 
 const Signup = ({ access, setAccess }) => {
@@ -29,23 +24,22 @@ const Signup = ({ access, setAccess }) => {
   // Google auth client ID
   const CLIENT_ID =
     "52168821352-4sc11trj4qtq95051mrnrbinfgmla3ai.apps.googleusercontent.com";
-  
-    const [useremail, setUserEmail] = useState();
-    const [password, setPassword] = useState();
-    const [error, setError] = useState(false);
-    const [token, setToken] = useState({
-      accessToken: ""
-    });
-  
-    const handleToggle = () => {
-      if (type === "password") {
-        setType("text");
-      } else {
-        setType("password");
-      }
-    };
-  
-    function handleChange(event) {
+   const [useremail, setUserEmail] = useState();
+  const [password, setPassword] = useState();
+  const [error, setError] = useState(false);
+  const [token, setToken] = useState({
+    accessToken: ""
+  });
+
+  const handleToggle = () => {
+  if (type === "password") {
+    setType("text");
+  } else {
+    setType("password");
+  }
+};
+
+ function handleChange(event) {
       const { name, value, type, checked } = event.target;
       setFormData(prevFormData => {
         return {
@@ -54,8 +48,7 @@ const Signup = ({ access, setAccess }) => {
         };
       });
     }
-  
-    const Toast = Swal.mixin({
+     const Toast = Swal.mixin({
       toast: true,
       position: "top-end",
       showConfirmButton: false,
@@ -67,7 +60,8 @@ const Signup = ({ access, setAccess }) => {
       }
     });
 
-    async function createNewUser(email, password) {
+
+  async function createNewUser(email, password) {
       return fetch("https://certgo.hng.tech/api/auth/signup", {
         method: "POST",
         headers: {
@@ -87,17 +81,6 @@ const Signup = ({ access, setAccess }) => {
         console.log(response);
         console.log(response.status);
   
-        // .then(response => {
-  
-          // if (response.status === 404) {
-          //   Toast.fire({
-          //     icon: 'error',
-          //     title: 'Page not found'
-          //   })
-  
-          //   throw new Error("Page not found");
-          // } 
-  
            if (response.status === 200 || response.status === 201){
             Toast.fire({
               icon: 'success',
@@ -111,7 +94,7 @@ const Signup = ({ access, setAccess }) => {
           else if (response.status === 401) {
           Toast.fire({
             icon: "error",
-            title: "Page not found"
+            title: "Email already exists, login"
           });
   
           throw new Error("Page not found");
@@ -193,17 +176,16 @@ const Signup = ({ access, setAccess }) => {
 
     if (response.status === 200) {
       // route user to dashboard after successful login
-      navigate("/dashboard");
+      navigate("/login");
     } else {
       navigate("/signup");
     }
   }
 
-return (
+  return (
     <div id="signup">
       <div className="authContainer">
         <div className="formDiv">
-        <form onSubmit={handleSubmit}>
           <div id="heading">Welcome to Certgo</div>
           <span id="startGenerating">
             Start generating certificates by creating a Certgo account
@@ -223,19 +205,20 @@ return (
             )}
           />
           <div id="signupA">
-              <img alt="" src={appleSVG} id="imgs" />
-              Signup using Apple
-            </div>
-            <div id="hrLine">
-              <span id="or">or</span>
-            </div>
+            <img alt="" src={appleSVG} id="img_id" />
+            Signup using Apple
+          </div>
+          <div id="hrLine">
+            <span id="or">or</span>
+          </div>
+          <form>
             {/* <div id="email"> */}
             {/* <img alt="" src={emailSVG} /> */}
             <Input
-              label={"Email"}
-              id="email_input"
+              label="Email"
+              className="email_input"
               placeholder=" Email"
-              type="text"
+              type="email"
               name="email"
               callback={e => setUserEmail(e.target.value)}
               required
@@ -264,8 +247,6 @@ return (
                 )}
               </span> */}
             {/* </div> */}
-            {error && <p style={{ color: "red" }}>Something went wrong</p>}
-
             <div id="checkTerms">
               <input
                 type="checkbox"
@@ -274,16 +255,13 @@ return (
                 onChange={handleChange}
                 name="acceptTerms"
               />
-              <label id="labels" htmlFor="acceptTerms">
+              <div className="termsOfUse">
                 By creating an account, I declare that I have read and accepted
                 Certawi’s <span id="coloredTerms"> Terms of Use</span> and
-                <span id="coloredTerms"> Privacy Policy</span>Remember me
-              </label>
+                <span id="coloredTerms"> Privacy Policy</span>
+              </div>
             </div>
-            {/* <div> */}
-
-
-      
+        
             <div>
               <Button id="btn" onClick={handleSubmit} style={{ width: "100%" }}>
               Create Account

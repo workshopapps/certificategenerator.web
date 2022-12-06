@@ -29,12 +29,17 @@ const navigate = useNavigate()
 
     const handleSubmit = async e =>{
       e.preventDefault()
-        try {
-            if(email === '' || email === null){
-            alert('email cannot be empty')
-            return false;
+
+      // const button = document.querySelector("#submit");
+
+      // button.setAttribute("name", "Loading...");
+      // button.setAttribute("disabled", "");
+
+       if(email === ''){
+        alert('email cannot be empty')
+        return false;
        }else{
-           await axios
+       await axios
             .post('https://certify-api.onrender.com/api/auth/forgotpassword', {email})
              .then((response) => {
                 console.log(response);
@@ -63,19 +68,16 @@ const navigate = useNavigate()
                   icon: "error",
                   title: "Something went wrong"
                 });
+
                 throw new Error("Something went wrong");
               } 
             }).catch(err => {
               console.log(err.message);
             })
        }
-        } catch (error) {
-          
-        }
-      
     }
     const element = [
-      <form>
+      <form >
          <Input
             type="email"
             id="email"

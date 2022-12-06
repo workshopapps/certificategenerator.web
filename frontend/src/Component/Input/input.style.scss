@@ -7,14 +7,17 @@
 .input {
   width: 100%;
   position: relative;
+
   label {
     margin: 0 0 0.7rem !important;
   }
+
   span {
     position: absolute;
     top: 2.7rem;
     right: 0.7rem;
   }
+
   input {
     width: 100%;
     height: 3.1875rem;
@@ -28,10 +31,12 @@
     &::-webkit-calendar-picker-indicator {
       display: none;
     }
+
     &.error {
       border: 1px solid $errorRedColor;
     }
-    & + p {
+
+    &+p {
       color: $errorRedColor;
       font-size: 0.8125rem;
     }

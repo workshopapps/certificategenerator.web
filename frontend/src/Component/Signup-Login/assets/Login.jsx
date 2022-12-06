@@ -42,6 +42,7 @@ const Login = ({ access, setAccess }) => {
     }
   };
 
+ 
   function handleChange(event) {
     const { name, value, type, checked } = event.target;
     setFormData(prevFormData => {
@@ -233,7 +234,6 @@ const Login = ({ access, setAccess }) => {
       navigate("/login");
     }
   }
-
   return (
     <div id="login">
       <div className="authContainer">
@@ -275,7 +275,7 @@ const Login = ({ access, setAccess }) => {
               callback={e => setUserEmail(e.target.value)}
               required
               value={useremail}
-            /> 
+            />
             {/* </div> */}
             {/* <div id="pwd"> */}
             {/* <img alt="" src={keySVG} /> */}
@@ -290,14 +290,8 @@ const Login = ({ access, setAccess }) => {
               required
               className="pw_input"
               eyecon={true}
-            /> 
-            <span onClick={handleToggle}>
-                {type === "text" ? (
-                  <AiOutlineEye size={25} className="eye" />
-                ) : (
-                  <AiOutlineEyeInvisible size={25} className="eye" />
-                )}
-              </span>
+            />
+
             {/* </div> */}
             {error && <p style={{ color: "red" }}>Something went wrong</p>}
             <div className="forgotPwd">Forgot password?</div>

@@ -23,16 +23,19 @@
     opacity: 0.7;
     cursor: pointer;
   }
+
   &.btnDisable {
     opacity: 1;
     background-color: #b2e1d9;
     cursor: not-allowed;
   }
+
   &.btnLight {
     color: $primaryColor;
     background-color: #fff;
     border: $primaryColor;
     border: 1px solid $primaryColor;
+
     &:hover {
       color: #fff;
       background-color: $primaryColor;
