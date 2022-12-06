@@ -83,7 +83,6 @@ function SinglePreview({
       formData.append("file", data);
 
       // send the form data
-      // const uploadUrl = "https://certgo.hng.tech/api/sendEmailNotification";
       const uploadUrl = "https://certgo.hng.tech/api/sendEmailNotifications";
       let response = await axios.post(uploadUrl, formData, {
         headers: {
