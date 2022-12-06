@@ -4,14 +4,14 @@ import UploadVector from "../../../assets/images/uploadPage/uploadVector.svg";
 import { useState } from "react";
 import Swal from "sweetalert2";
 import useAppProvider from "../../../hooks/useAppProvider"
-import {axiosFormdata} from "../../../api/axios";
+import {axiosFormData} from "../../../api/axios";
 import Loader from "../Loader";
 import { useNavigate } from "react-router-dom";
 
-const UploadCSV = () => {
+const UploadCsv = () => {
   const [state, setState] = useState({ active: true });
   const [loading, setLoading] = useState(false)
-  const { setCsvData } = useAppProvider();
+  // const { setCsvData } = useAppProvider();
   
 
 //   const toggleState = e => {
@@ -53,7 +53,7 @@ const UploadCSV = () => {
     e.preventDefault();
     setLoading(true)
     try {
-      const res = await axiosFormdata.post('/certificates', formData);
+      const res = await axiosFormData.post('/certificates', formData);
       console.log(res);
       if (res.status === 400) {
         setLoading(false);
@@ -69,7 +69,7 @@ const UploadCSV = () => {
           title: "Internal Server Error"
         });
       } else {
-        setCsvData(res);
+        // setCsvData(res);
         setLoading(false);
       }
     } catch (error) {
@@ -104,4 +104,4 @@ const UploadCSV = () => {
   );
 };
 
-export default UploadCSV;
+export default UploadCsv;
