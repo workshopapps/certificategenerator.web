@@ -3,14 +3,10 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { GoogleLogin } from "react-google-login";
 import { gapi } from "gapi-script";
-import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import "./signup.scss";
 import appleSVG from "./assets/apple.svg";
 import googleSVG from "./assets/google.svg";
 import cert from "./assets/Cert.png";
-import emailSVG from "./assets/email.svg";
-import keySVG from "./assets/key.svg";
-import { createNewUser } from "../api";
 import Input from "../../Input";
 import Button from "../../button";
 import Swal from "sweetalert2";
@@ -87,17 +83,6 @@ const Signup = ({ access, setAccess }) => {
         console.log(response);
         console.log(response.status);
   
-        // .then(response => {
-  
-          // if (response.status === 404) {
-          //   Toast.fire({
-          //     icon: 'error',
-          //     title: 'Page not found'
-          //   })
-  
-          //   throw new Error("Page not found");
-          // } 
-  
            if (response.status === 200 || response.status === 201){
             Toast.fire({
               icon: 'success',
@@ -111,7 +96,7 @@ const Signup = ({ access, setAccess }) => {
           else if (response.status === 401) {
           Toast.fire({
             icon: "error",
-            title: "Page not found"
+            title: "Email already exists, login"
           });
   
           throw new Error("Page not found");
@@ -193,7 +178,7 @@ const Signup = ({ access, setAccess }) => {
 
     if (response.status === 200) {
       // route user to dashboard after successful login
-      navigate("/dashboard");
+      navigate("/login");
     } else {
       navigate("/signup");
     }
