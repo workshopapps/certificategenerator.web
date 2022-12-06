@@ -52,7 +52,7 @@ body {
 }
 
 .header {
-  padding: 120px 0 0 0;
+  padding: 5rem 1rem 0 1rem;
   font-size: 48px;
   font-weight: 700;
   line-height: 60.48px;
@@ -102,8 +102,8 @@ body {
 .cert-form {
   max-width: 1440px;
   width: 80%;
-  background-color: #ffffff;
-  margin: 5.5% 10% 12%;
+  background-color: #FAFAFB;
+  margin: 4rem auto;
   border: 0.8px solid #545454;
   border-radius: 16px;
   padding: 8%;
@@ -143,19 +143,79 @@ input::-webkit-calendar-picker-indicator {
   margin: 48px 0 16px 0;
 }
 
-.submit-btn {
-  display: block;
-  width: 202px;
-  height: 64px;
-  background-color: #19A68E;
-  border: none;
-  border-radius: 10px;
-  color: #FFFFFF;
-  margin-top: 32px;
-  cursor: pointer;
+.btn-success {
+  all: unset;
+  background-color: #19a68e;
+  color: #ffffff;
+  padding: 1rem 2rem;
   text-align: center;
+  margin-top: 2rem;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  border-radius: 10px;
+  cursor: pointer;
 }
 
+.btn-disabled {
+  background-color: #8ab9b2;
+  cursor: not-allowed;
+}
+
+@media screen and (max-width: 768px) and (min-width: 481px) {
+  .header {
+    font-size: 32px;
+    line-height: 40px;
+  }
+  .mode {
+    width: 90%;
+  }
+  .cert-img {
+    overflow-x: scroll;
+  }
+  .cert-form {
+    margin: 5.5% 10% 12%;
+  }
+}
+@media screen and (max-width: 480px) {
+  .header {
+    font-size: 24px;
+    line-height: 30px;
+    text-align: center;
+  }
+  .prompt {
+    font-size: 16px;
+    line-height: 24px;
+  }
+  .mode {
+    width: 90%;
+  }
+  .mode button {
+    font-size: 16px;
+  }
+  .mobile-none {
+    display: none;
+  }
+  .cert-img {
+    flex-direction: column;
+    width: 50% !important;
+    margin: auto !important;
+  }
+  .cert-form {
+    width: 100%;
+    border: none;
+    border-radius: 0;
+    margin: 0;
+    margin-bottom: 0 !important;
+    background-color: #ffffff;
+  }
+  .label {
+    margin: 24px 0 12px 0;
+  }
+  input {
+    height: 52px;
+  }
+}
 @media screen and (max-width: 768px) and (min-width: 481px) {
   .header {
     font-size: 32px;

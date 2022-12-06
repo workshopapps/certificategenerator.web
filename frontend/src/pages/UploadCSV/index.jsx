@@ -1,90 +1,138 @@
+import axios from "axios";
+import Swal from "sweetalert2";
+import { useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
+
 import "./uploadCSV.style.scss";
 // component
+import Loader from "../Dashboard/Loader";
 import Button from "../../Component/button";
+import AppContext from "../../contexts/AppProvider";
 // img
-import Certificate from "../../assets/images/uploadPage/cert.svg";
-//import CSVSample from "../../assets/images/uploadPage/CSVSample.svg";
 import CSVSample from "../../assets/images/CSV-sample.png";
 import UploadVector from "../../assets/images/uploadPage/uploadVector.svg";
-import Template1 from "../../assets/images/uploadPage/template1.svg";
-import Template2 from "../../assets/images/uploadPage/template2.svg";
-import Template3 from "../../assets/images/uploadPage/template3.svg";
-import { useState } from "react";
 
-const UploadCSV = ({ setFile }) => {
-  const [state, setState] = useState({ active: true });
+const UploadCSV = () => {
+  const navigate = useNavigate();
+  const [file, setFile] = useState("");
+  const { array, setArray } = useContext(AppContext);
+  const [loading, setLoading] = useState(false);
+  const [errorFile, setErrorFile] = useState(false);
 
-  const toggleState = e => {
-    console.log(Object.values(e.target.classList));
-    // console.log( typeof e.target.classList);
-    const active = Object.values(e.target.classList).find(
-      element => element === "active"
-    );
-    //   .forEach(element => {
-    if (!active) {
-      // console.log(3);
-      setState(prev => {
-        return { ...prev, active: !prev.active };
+  const fileReader = new FileReader();
+
+  // Function to set certificate data
+  const certificateData = string => {
+    const csvHeader = string.slice(0, string.indexOf("\n")).split(",");
+    const csvRows = string.slice(string.indexOf("\n") + 1).split("\n");
+    console.log("csv", csvRows);
+    const array = csvRows.map(i => {
+      const values = i.split(",");
+      const obj = csvHeader.reduce((object, header, index) => {
+        object[header] = values[index];
+        return object;
+      }, {});
+      return obj;
+    });
+    setArray(array);
+  };
+
+  console.log("File", array);
+
+  const validateInput = e => {
+    setErrorFile(false);
+    const myFile = e.target.files[0];
+    if (myFile.type !== "text/csv") {
+      setErrorFile(true);
+    }
+    setFile(myFile);
+  };
+
+  let formData = new FormData();
+
+  const Toast = Swal.mixin({
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: toast => {
+      toast.addEventListener("mouseenter", Swal.stopTimer);
+      toast.addEventListener("mouseleave", Swal.resumeTimer);
+    }
+  });
+
+  // Function to send uploaded file to the backend
+  const handleUpload = async e => {
+    e.preventDefault();
+    if (file) {
+      fileReader.onload = function (event) {
+        const text = event.target.result;
+        certificateData(text);
+      };
+      fileReader.readAsText(file);
+    }
+    formData.append("file", file);
+    setLoading(true);
+    try {
+      const res = await axios.post(
+        "https://certgo.hng.tech/api/upload/csv",
+        formData
+      );
+      if (res.status === 200) {
+        setLoading(false);
+        Toast.fire({
+          icon: "success",
+          title: "Successfully uploaded"
+        });
+        navigate("/bulk_preview");
+      }
+    } catch (error) {
+      setLoading(false);
+      console.log("Error", error);
+      Toast.fire({
+        icon: "error",
+        title: "Upload failed"
       });
     }
   };
-  let formdata = new FormData();
-
-  function handleUpload(e) {
-    e.preventDefault();
-  }
 
   return (
     <div className="uploadCSVContainer">
       <div className="certificateSwitch"></div>
-      <h1>Your certificate is almost ready!</h1>
-      <div className="certificatePreview">
-        <img src={Certificate} alt="certificate preview" />
-      </div>
-      <h2>Upload your csv file here in the format below</h2>
+      <h2>Upload your csv file in the format below</h2>
       <div className="CSVSample">
         <img src={CSVSample} alt="CSV sample" />
       </div>
-
-      <div
-        className="dragBox"
-        //   onDragEnter={handleDrag}
-        //   onDragLeave={handleDrag}
-        //   onDragOver={handleDrag}
-        //   onDrop={handleDrop}
-      >
-        <i>
-          <img src={UploadVector} alt="upload icon" />
-        </i>
-        <span>
-          Drag and drop your CSV file here
-          <br /> or
-          <label htmlFor="uploadCSV" className="fileUpload CSVupload">
-            <input
-              type="file"
-              id="uploadCSV"
-              name="uploadCSV"
-              accept=".csv"
-              className="box"
-              onChange={e => {
-                setFile(e.target.files);
-              }}
-            />
-            Browse files
-          </label>
-        </span>
-      </div>
-      {/* <button className='btn btnLight'>Generate Certificate</button> */}
-      <button style={{ display: "none" }}>Upload</button>
-      <div>
-        <h2>Even More Template for You</h2>
-        <div className="moreTemplate">
-          <img src={Template1} alt="Template1" />
-          <img src={Template2} alt="Template2" />
-          <img src={Template3} alt="Template3" />
+      <div className="dragBox">
+        <div className="dragboxContainer">
+          <i>
+            <img src={UploadVector} alt="upload icon" />
+          </i>
+          <span>
+            Drag and drop your CSV file here
+            <br /> or <br />
+            <label htmlFor="uploadCSV" className="fileUpload CSVupload">
+              <input
+                type="file"
+                id="uploadCSV"
+                name="uploadCSV"
+                accept=".csv"
+                className="box"
+                onChange={e => validateInput(e)}
+              />
+            </label>
+          </span>
         </div>
-        <Button className="btn btnLight" style={{ margin: "1em auto" }}>
-          Explore More Template
+        {errorFile && (
+          <div className="messagecsv">Invalid file!! submit only csv files</div>
+        )}
+        <Button
+          className="Submitcsv"
+          style={{ margin: "1em auto" }}
+          onClick={e => handleUpload(e)}
+        >
+          {loading ? <Loader /> : "Submit CSV"}
         </Button>
       </div>
     </div>

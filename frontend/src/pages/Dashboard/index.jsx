@@ -2,11 +2,14 @@ import React, { useEffect, useState } from "react";
 import "./dashboard.style.scss";
 import profilePic from "../../assets/images/Ellipse4.png";
 import Card from "./Card";
-import { cardData, nullDataIcon, actionIcon } from "./utils";
+import { dummyData, cardData, nullDataIcon, actionIcon } from "./utils";
 import Button from "../../Component/button";
 import CreateCertificateModal from "./CreateCertificateModal";
-import axios from "axios";
-
+import { axiosPrivate } from "../../api/axios";
+import useAppProvider from "../../hooks/useAppProvider";
+import Swal from "sweetalert2";
+import { Loader } from "../../Component";
+import TableRow from "./TableRow";
 
 const Dashboard = ({
   logo,
@@ -23,48 +26,137 @@ const Dashboard = ({
   setIssueDate
 }) => {
   const [data, setData] = useState([]);
-  const [issuedCert, setIssuedCert] = useState([...cardData]);
+  const [cardData, setCardData] = useState([...dummyData]);
+  const [totalCertificates, setTotalCertificates] = useState(0);
+  const [pending, setPending] = useState(0);
+  const [totalIssued, setTotalIssued] = useState(0)
   const [openModal, setOpenModal] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [pricing, setPricing] = useState("");
+  const [ certificates, setCertificates ] = useState([]);
+
+  const Toast = Swal.mixin({
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: toast => {
+      toast.addEventListener("mouseenter", Swal.stopTimer);
+      toast.addEventListener("mouseleave", Swal.resumeTimer);
+    }
+  });
+
+  const handleChangeCertificateStatus = async (id, status) => {
+    console.log(id, status);
+    await axiosPrivate.patch(`/certificates/status/${id}`, {status});
+    Toast.fire({
+      icon: "success",
+      title: "Successfully updated"
+    });
+    const res = await axiosPrivate.get("/certificates");
+    setData(res.data);
+  };
+  
+  const handleDeleteCertificate = async (id) => {
+    console.log(id);
+    await axiosPrivate.delete(`/certificates/${id}`);
+    Toast.fire({
+      icon: "success",
+      title: "Successfully deleted"
+    });
+    const res = await axiosPrivate.get("/certificates");
+    setData(res.data);
+  };
 
   useEffect(() => {
-    const fetchData = async () => {
-      setIssuedCert(cardData);
-      const myHeaders = new Headers();
-      myHeaders.append(
-        "Authorization",
-        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzdmOTg3MDQyODc5MzAwNDJmYzE0M2UiLCJpYXQiOjE2NjkzMDY4MjQsImV4cCI6MTY2OTM5MzIyNH0.x5q4XJDcFvN8EWqc4e0el6CZXJtwQjtcrmo3Id0sQlc"
+    const getUserCertificates = async () => {
+      try {
+        const response = await axiosPrivate.get("/certificates");
+        let sub = localStorage.getItem("subscription");
+        setPricing(sub);
+        console.log(response);
+        if (response.status === 404) {
+          Toast.fire({
+            icon: "error",
+            title: "Page not found"
+          });
+        } else if (response.status === 401) {
+          Toast.fire({
+            icon: "error",
+            title: "Request Failed"
+          });
+        } else if (response.status === 500) {
+          Toast.fire({
+            icon: "error",
+            title: "Internal Server Error"
+          });
+        } else {
+          setData(response.data);
+          console.log(response.data);
+        }
+      } catch (error) {
+        console.error(error.message);
+      }
+    };
+
+    getUserCertificates();
+    // getIssuedCertificates();
+    // updateCount()
+  }, [certificates]);
+
+  useEffect(() => {
+    const getIssuedCertificates = async () => {
+      try {
+        console.log("issued");
+        const response = await axiosPrivate.get(
+          "/certificates/issuedCertificates"
+        );
+        await setTotalCertificates(response.data.issuedCertificates);
+        updateCount();
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    const updateCount = () => {
+      console.log("updTE", totalCertificates);
+      const cardSnapshot = [...cardData];
+      const pendingCount = data.filter(
+        item => item.status === "pending"
+      ).length;
+      setPending(pendingCount);
+
+      const issuedCount = data.filter(
+        item => item.status === "issued"
+      ).length;
+      setTotalIssued(issuedCount);
+      
+      const allCertCount = data.length
+      const newCard = cardSnapshot.map(item =>
+        item.title === "Total Certificates"
+          ? { ...item, count: allCertCount }
+          : item
       );
 
-      let requestOptions = {
-        method: "GET",
-        headers: myHeaders
-      };
+      const pendingCard = newCard.map(item =>
+        item.title === "Total Pending Certificates"
+          ? { ...item, count: pendingCount }
+          : item
+      );
 
-      fetch("https://certify-api.onrender.com/api/certificates", requestOptions)
-        .then(response => response.json())
-        .then(result => setData(result))
-        .catch(error => console.log("error", error));
-
-      fetch(
-        "https://certify-api.onrender.com/api/certificates/issuedCertificates",
-        requestOptions
-      )
-        .then(response => response.json())
-        .then(result => {
-          setIssuedCert(
-            issuedCert.map(item =>
-              item.title === "Total Number Issued"
-                ? { ...item, count: result.issuedCertificates }
-                : item
-            )
-          );
-        })
-        .catch(error => console.log("error", error));
+      const issuedCard = pendingCard.map(item =>
+        item.title === "Total Issued Certificates"
+          ? { ...item, count: issuedCount }
+          : item
+      );
+      
+      setCardData(issuedCard);
     };
-    fetchData();
-  }, []);
 
-  const dataCheck = issuedCert.filter(item => item.count !== 0);
+    getIssuedCertificates();
+  }, [data]);
+
+  
 
   return (
     <>
@@ -81,6 +173,9 @@ const Dashboard = ({
                 Let’s do the Accounts for you, Get a summary of all the
                 Certificates and Job done here
               </p>
+              <div>
+                <p>Pricing Plan: {pricing.toUpperCase()}</p>
+              </div>
             </div>
             <div className="dashboard__btn">
               <button>Upgrade Account</button>
@@ -89,15 +184,16 @@ const Dashboard = ({
         </div>
 
         <div className="dashboard__cards">
-          {issuedCert.map((item, idx) => (
-            <Card key={idx} item={item} />
-          ))}
+          {console.log(pending, totalCertificates)}
+          {pending && totalCertificates && totalIssued
+            ? cardData.map((item, idx) => <Card key={idx} item={item} />)
+            : null}
         </div>
 
         <div className="table-wrapper">
           <div className="table-header">
             <p>CERTIFICATE DASHBOARD</p>
-            {dataCheck.length > 0 ? (
+            {data.length > 0 ? (
               <div>
                 <Button className="" onClick={() => setOpenModal(true)}>
                   Create New Certificate
@@ -120,6 +216,7 @@ const Dashboard = ({
             setAwardeeName={setAwardeeName}
             certificateTitle={certificateTitle}
             setCertificateTitle={setCertificateTitle}
+            setCertificates={setCertificates}
           />
           <div className="table">
             <table>
@@ -128,40 +225,26 @@ const Dashboard = ({
                   <th>CERTIFICATE NAMES</th>
                   <th>STATUS</th>
                   <th>DATE ISSUED</th>
-                  <th>NO OF CERTIFICATES</th>
-                  <th>FILE TYPE</th>
+                  {/* <th>NO OF CERTIFICATES</th>
+                  <th>FILE TYPE</th> */}
                   <th className="action">ACTION</th>
                 </tr>
               </thead>
               {data.length > 0 && (
                 <tbody>
                   {data.map((item, idx) => (
-                    <tr key={idx}>
-                      <td>{item.nameOfOrganization.toUpperCase()}</td>
-                      {item.status === "Issued" ? (
-                        <td>
-                          <button className="cancel">Canceled</button>
-                        </td>
-                      ) : item.status === "Pending" ? (
-                        <td>
-                          <button className="pending">Pending</button>
-                        </td>
-                      ) : (
-                        <td>
-                          <button className="issue">Issued</button>
-                        </td>
-                      )}
-                      <td>{item.date}</td>
-                      <td>{data.length}</td>
-                      <td>PDF</td>
-                      <td className="action">{actionIcon()}</td>
-                    </tr>
+                    <TableRow
+                      item={item}
+                      key={idx}
+                      handleChangeCertificateStatus={handleChangeCertificateStatus}
+                      handleDeleteCertificate={handleDeleteCertificate}
+                    />
                   ))}
                 </tbody>
               )}
             </table>
 
-            {dataCheck.length === 0 && (
+            {data.length === 0 && (
               <div className="null-table-data">
                 <div>
                   {nullDataIcon()}

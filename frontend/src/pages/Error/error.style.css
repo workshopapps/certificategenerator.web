@@ -26,30 +26,20 @@
   flex-direction: column;
   gap: 20px;
 }
-.error-page .error-buttons button {
-  font-family: "Work Sans", sans-serif;
-  display: block;
-  padding: 14.5px 20px;
-  width: 200px;
-  height: 48px;
-  max-width: 200px;
-  border: none;
-  border-radius: 10px;
-  background-color: white;
-  font-size: 1rem;
-}
 .error-page .error-buttons .link {
   text-decoration: none;
 }
 .error-page .error-buttons .link .btn-outline {
   cursor: pointer;
-  border: 2px solid #19a68e;
+  border: 1px solid #19a68e;
   background-color: white;
   color: #19a68e;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
+  padding: auto 20px;
+  width: 200px;
 }
 .error-page .error-buttons .link .btn-solid {
   cursor: pointer;

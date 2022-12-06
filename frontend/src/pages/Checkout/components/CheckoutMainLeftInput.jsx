@@ -13,7 +13,7 @@ function CheckoutMainLeftInput(props) {
           style={{ width: "100%", height: "110%", overflow: "hidden" }}
           className={props.class}
         >
-          <div>
+          <div style={{ width: "100%" }}>
             <CountryList value={props.label} />
             <FiChevronDown size={20} className="select_dropdown_icon" />
           </div>

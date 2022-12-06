@@ -11,6 +11,8 @@ require("express-async-errors");
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+
+// Note: You MUST import the package in some way for tracing to work
 const fileUpload = require("express-fileupload");
 
 const app = express();
@@ -29,6 +31,7 @@ const pricing = require("./routes/pricingRouter");
 const swaggerUi = require("swagger-ui-express");
 const swaggerFile = require("./swagger_output.json");
 
+
 //middleware
 app.use(cors());
 app.use(express.json());
@@ -37,7 +40,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(fileUpload());
 
-app.get("/api", (req, res) => {
+app.get("/", (req, res) => {
   res.send("Welcome to HNG-Certificate Api");
 });
 

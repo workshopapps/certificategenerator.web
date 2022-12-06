@@ -81,6 +81,7 @@ $size-sm: 12px;
       color: $primaryColor;
       border: 1px solid $primaryColor;
       word-wrap: nowrap;
+      cursor: pointer;
     }
   }
 
@@ -133,6 +134,7 @@ $size-sm: 12px;
           border-radius: 5px;
           color: #ffffff;
           background-color: $primaryColor;
+          cursor: pointer;
         }
       }
 
@@ -182,6 +184,44 @@ $size-sm: 12px;
         }
         .action {
           padding-right: 0.7rem;
+          position: relative;
+        }
+        .action-icon {
+          cursor: pointer;
+        }
+        .action__overlay {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          background-color: #fff;
+          position: absolute;
+          top: 1.85rem;
+          right: 0.725rem;
+          // border: solid 1px #efefef;
+          z-index: 2;
+        }
+        .action__overlay--item {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding: 0.5rem 0.825rem;
+          width: 100%;
+          color: $primaryColor;
+          font-size: 0.875rem;
+          font-weight: 600;
+          transition: 0.3s ease;
+          border-bottom: solid 1px #222222;
+          cursor: pointer;
+          &:last-child{
+            border-bottom: none;
+          }
+
+          &:hover {
+            background-color: $primaryColor;
+            color: #efefef;
+            transition: 0.3s ease;
+            border-color: #efefef;
+          }
         }
       }
     }
@@ -216,7 +256,7 @@ $size-sm: 12px;
     &__cards {
       width: 90%;
       margin: 0 auto 1.2rem auto;
-      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
     }
     .table-wrapper {
       width: 90%;
@@ -239,7 +279,7 @@ $size-sm: 12px;
     }
   }
 }
-@media screen and (min-width: 960px) {
+@media screen and (min-width: 1044px) {
   .dashboard {
     &__hero-section {
       .flexx {
@@ -247,6 +287,11 @@ $size-sm: 12px;
         justify-content: space-between;
         align-items: flex-end;
       }
+    }
+    &__cards {
+      width: 90%;
+      margin: 0 auto 1.2rem auto;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
     }
   }
 }

@@ -13,12 +13,12 @@
     color: $primaryBlackColor;
   }
 
-   input::-webkit-outer-spin-button,
-    input::-webkit-inner-spin-button {
-      appearance: none;
-      -webkit-appearance: none;
-      margin: 0;
-    }
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    appearance: none;
+    -webkit-appearance: none;
+    margin: 0;
+  }
 
   &__input {
     border: 1.50376px solid rgba(34, 34, 34, 0.2);
@@ -28,7 +28,7 @@
     height: max-content;
     font-size: 1.125rem;
 
-   
+
 
     &::placeholder {
       font-weight: 400;
@@ -40,6 +40,6 @@
 
 /* Firefox */
 input[type="number"] {
-  appearance:textfeild;
+  appearance: textfield;
   -moz-appearance: textfield;
 }

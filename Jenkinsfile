@@ -25,10 +25,26 @@ pipeline {
 				sh "sudo cp -rf ${WORKSPACE}/backend/* /home/sean/certgo/backend"
 				sh "sudo cp -fr ${WORKSPACE}/frontend/build/* /var/www/certgo.hng.tech/html"
 				sh "sudo su - sean && whoami"
-				sh "sudo systemctl restart certgo.service"
+				sh "sudo pm2 stop certgo"
+				//sh "pm2 delete certgo"
+				sh "sudo pm2 start /home/sean/certgo/backend/ecosystem.config.js"
+				sh "sudo pm2 save"
 			}
 			
-	}
+		}
+
+		stage("Performance test"){
+
+			steps{
+				echo 'Installing k6'
+                // sh 'sudo chmod +x setup_k6.sh'
+                // sh 'sudo ./setup_k6.sh'
+                echo 'Running K6 performance tests...'
+				sh 'ls -a'
+				sh "pwd"
+                sh 'k6 run Performance_Test_Certgof.js'
+			}
+		}
 
 
 	}
