@@ -4,10 +4,34 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors')
+const Sentry = require("@sentry/node");
+const Tracing = require("@sentry/tracing");
 
 const app = express();
 
+Sentry.init({
+  dsn: "https://d2d07df84791475d88af3fefacd6ce35@o4504279338647552.ingest.sentry.io/4504279342841857",
 
+  // Set tracesSampleRate to 1.0 to capture 100%
+  // of transactions for performance monitoring.
+  // We recommend adjusting this value in production
+  tracesSampleRate: 1.0,
+});
+// Devops Monitoring Test
+// const transaction = Sentry.startTransaction({
+//   op: "test",
+//   name: "My First Test Transaction",
+// });
+
+// setTimeout(() => {
+//   try {
+//     foo();
+//   } catch (e) {
+//     Sentry.captureException(e);
+//   } finally {
+//     transaction.finish();
+//   }
+// }, 99);
 
 //import coustom middlware
 const connectDB = require("./utils/dbConn");

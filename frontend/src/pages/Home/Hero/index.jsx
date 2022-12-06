@@ -4,8 +4,16 @@ import hero from "../../../assets/images/hero.png";
 import tick from "../../../assets/images/tick.png";
 import Button from "../../../Component/button";
 // import {Link} from "react-router-dom";
+import {useRef} from 'react';
 
 export default function Hero() {
+  
+  const ref = useRef(null);
+
+  const handleClick = () => {
+    ref.current?.scrollIntoView({behavior: 'smooth'});
+  };
+
   return (
     <>
       <div className="center justify-between hero">
@@ -19,9 +27,9 @@ export default function Hero() {
             Generate professionally designed certificates for your staff,
             students etc.
           </p>
-          <a href="#certificatee">
-            <Button name={"Create a certificate now"} />
-          </a>
+          {/* <a href="#certificatee"> */}
+            <Button onClick={handleClick} name={"Create certificate"} />
+          {/* </a> */}
           {/* <button className="hero-button">Create a certificate now</button> */}
           <p className="mobile-only">It is free and easy to use</p>
         </div>
@@ -44,8 +52,10 @@ export default function Hero() {
         <div className="flex single-perk" style={{ gap: "10px" }}>
           <img src={tick} alt="tick" className="tick"></img>
           <p>Create and Send single and bulk certificate.</p>
+          <div ref={ref}></div>
         </div>
-      </div>
+      </div >
     </>
   );
 }
+
