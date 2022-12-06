@@ -1,9 +1,10 @@
-import React from "react";
+import React, {useState} from "react";
 import axios from 'axios'
 import Modal from '../../Component/Modal'
 import {useNavigate} from 'react-router-dom'
 import "./profile.style.scss";
 import Avatar from "../../assets/images/Ellipse4.png"
+import Input from "../../Component/Input";
 
 const ProfilePage = () => {
   const navigate = useNavigate()
@@ -20,6 +21,35 @@ const ProfilePage = () => {
           }).catch(err =>{
             console.log(err || 'couldnt log out')
           }) 
+  }
+
+  const[data,setData]= useState({
+    name:"",
+    job:"",
+    location:"",
+    phoneNumber:"",
+    useremail:""
+  })
+  
+  const url= "https://certify-api.onrender.com/api/pricing"
+  function handlePost(e){
+    const newdata={...data}
+    newdata[e.target.id]=e.target.value
+    setData(newdata)
+    console.log(newdata)
+  }
+  function Submit(e){
+    e.preventDefault();
+    axios.post(url,{
+      name:data.name,
+      job:data.job,
+      location:data.location,
+      phoneNumber:data.phoneNumber,
+      useremail:data.useremail
+    })
+    .then(res=>{
+      console.log(res.data)
+    })
   }
   return (
     <div className="profile-page">
@@ -51,29 +81,49 @@ const ProfilePage = () => {
 
       <div className="form">
         <h2>Manage Profile</h2>
-        <form action="">
-            <div className="form-group">
-                <label>Name</label>
-                <input className="form-control" type="text" placeholder="Name"/>
-            </div>
-            <div className="form-group">
-                <label>Job</label>
-                <input className="form-control" type="text" placeholder="Job"/>
-            </div>
-            <div className="form-group">
-                <label>Location</label>
-                <input className="form-control" type="text" placeholder="Location"/>
-            </div>
-            <div className="form-group">
-                <label>Email</label>
-                <input className="form-control" type="email" placeholder="E-mail"/>
-            </div>
-            <div className="form-group">
-                <label>Phone Number</label>
-                <input className="form-control" type="tel" placeholder="(316) 555-0116"/>
-            </div>
-            <div className="form-btn-wrapper">
-                <button>Save Changes</button>
+        <form onSubmit={(e)=>Submit(e)} >
+
+            <Input className="form-group"
+              label={"Name"}
+              onClick={handlePost}
+                id="form-control" 
+                type="text" 
+                placeholder="Name"
+                />
+            <Input className="form-group"
+              label={"Jobs"}
+             onClick={handlePost} 
+                id="form-control" 
+                type="text" 
+                placeholder="Job"
+                />
+
+              <Input className="form-group"
+                label={"Location"}
+                onClick={handlePost} 
+                id="form-control" 
+                type="text" 
+                placeholder="Location"
+                />
+
+            <Input className="form-group"
+                label={"Email"}
+                onClick={handlePost} 
+                id="form-control" 
+                type="email" 
+                placeholder="E-mail"
+                />
+
+            <Input className="form-group"
+                label={"Phone Number"}
+                onClick={handlePost} 
+                id="form-control" 
+                type="tel" 
+                placeholder="(316) 555-0116"
+                />
+
+            <div id="postbtnid" className="form-btn-wrapper">
+                <button onSubmit={Submit}>Save Changes</button>
             </div>
         </form>
       </div>
