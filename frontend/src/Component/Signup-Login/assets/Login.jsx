@@ -294,7 +294,10 @@ const Login = ({ access, setAccess }) => {
 
             {/* </div> */}
             {error && <p style={{ color: "red" }}>Something went wrong</p>}
-            <div className="forgotPwd">Forgot password?</div>
+            <Link to='/fff1'>
+              <div className="forgotPwd">Forgot password?</div>
+            </Link>
+            
             <div id="checkTerms">
               <input
                 type="checkbox"
