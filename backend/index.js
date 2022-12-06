@@ -6,7 +6,6 @@ const bodyParser = require('body-parser');
 const cors = require('cors')
 const Sentry = require("@sentry/node");
 const Tracing = require("@sentry/tracing");
-const fileUpload = require('express-fileupload');
 
 const app = express();
 
@@ -59,6 +58,7 @@ const template = require("./routes/templateRouter");
 const newsletterRouter = require("./routes/newsletterRouter")
 const verifyEmailRouter = require("./routes/verifyEmailRouter")
 const paymentRouter = require("./routes/paymentRouter")
+const userRouter = require("./routes/userRouter")
 
 
 const PORT = process.env.PORT || 5077;
@@ -73,7 +73,6 @@ app.use(express.json());
 app.use(bodyParser.json());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(fileUpload());
 
 
 app.get("/api", (req, res) => {
@@ -98,6 +97,7 @@ app.use("/api/templates", template);
 app.use("/api/subscribe", newsletterRouter);
 app.use("/api/verifyEmail", verifyEmailRouter)
 app.use('/api/payment', paymentRouter);
+app.use('/api/users', userRouter)
 
 
 mongoose.connection.once("open", () => {
