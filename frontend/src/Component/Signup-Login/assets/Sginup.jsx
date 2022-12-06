@@ -88,7 +88,7 @@ const Signup = ({ access, setAccess }) => {
               icon: 'success',
               title: 'Signed up successfully'
             })
-            navigate("/dashboard");
+            navigate("/login");
             setAccess(true)
           }
   
