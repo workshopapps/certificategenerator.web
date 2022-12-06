@@ -47,7 +47,7 @@ const careers = require("./routes/careerRouter");
 const applyCareer = require('./routes/applyCareerRouter')
 const teamRoute = require("./routes/teamRoutes");
 const mailingLists = require("./routes/mailingListRouter");
-require('./routes/emailNotificationRouter')(app)
+const emailRouter = require("./routes/emailNotificationRouter")
 const profileRouter = require("./routes/profileRouters");
 const contacts = require('./routes/contactRouter');
 const userPlan = require('./routes/pricingPlanRouter');
@@ -87,6 +87,7 @@ app.use("/api/download", downloadCsv);
 app.use("/api/careers", careers);
 app.use("/api/applycareers", applyCareer);
 app.use("/api/mailinglists", mailingLists);
+app.use("/api/sendEmailNotifications", emailRouter)
 app.use("/api/profile", profileRouter);
 app.use("/api/team", teamRoute);
 app.use('/api/contactus', contacts)
