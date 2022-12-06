@@ -1,3 +1,4 @@
+import * as Sentry from "@sentry/react";
 import { useState, useEffect } from "react";
 
 import {
@@ -184,4 +185,4 @@ function App() {
   );
 }
 
-export default App;
+export default Sentry.withProfiler(App);
