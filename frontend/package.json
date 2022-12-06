@@ -4,6 +4,8 @@
   "private": true,
   "dependencies": {
     "@react-18-pdf/renderer": "^2.3.4",
+    "@sentry/react": "^7.23.0",
+    "@sentry/tracing": "^7.23.0",
     "@splidejs/react-splide": "^0.7.12",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
