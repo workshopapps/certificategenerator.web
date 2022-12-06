@@ -8,10 +8,10 @@ import {axiosFormData} from "../../../api/axios";
 import Loader from "../Loader";
 import { useNavigate } from "react-router-dom";
 
-const UploadCsv = () => {
+const UploadCsv = ({setCertificates}) => {
   const [state, setState] = useState({ active: true });
   const [loading, setLoading] = useState(false)
-  // const { setCsvData } = useAppProvider();
+  // const { setCertificates } = useAppProvider();
   
 
 //   const toggleState = e => {
@@ -69,7 +69,7 @@ const UploadCsv = () => {
           title: "Internal Server Error"
         });
       } else {
-        // setCsvData(res);
+        setCertificates(res.data);
         setLoading(false);
       }
     } catch (error) {
@@ -99,7 +99,15 @@ const UploadCsv = () => {
       <section>
         <img src={CSVSample} alt="cert" />
       </section>
-      <button onClick={(e) => handleUpload(e)}>{loading ? <Loader/> : "Submit CSV"}</button>
+      <button onClick={(e) => handleUpload(e)}>{loading ? <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center"
+        }}
+      >
+        <Loader />
+      </div> : "Submit CSV"}</button>
     </article>
   );
 };

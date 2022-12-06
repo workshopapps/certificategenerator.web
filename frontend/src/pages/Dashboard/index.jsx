@@ -33,7 +33,7 @@ const Dashboard = ({
   const [openModal, setOpenModal] = useState(false);
   const [loading, setLoading] = useState(false);
   const [pricing, setPricing] = useState("");
-  // const { certificates, setCertificates } = useAppProvider();
+  const [ certificates, setCertificates ] = useState([]);
 
   const Toast = Swal.mixin({
     toast: true,
@@ -82,7 +82,7 @@ const Dashboard = ({
     getUserCertificates();
     // getIssuedCertificates();
     // updateCount()
-  }, []);
+  }, [certificates]);
 
   useEffect(() => {
     const getIssuedCertificates = async () => {
@@ -195,6 +195,7 @@ const Dashboard = ({
             setAwardeeName={setAwardeeName}
             certificateTitle={certificateTitle}
             setCertificateTitle={setCertificateTitle}
+            setCertificates={setCertificates}
           />
           <div className="table">
             <table>
