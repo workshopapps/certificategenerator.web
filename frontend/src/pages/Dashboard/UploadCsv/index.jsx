@@ -56,20 +56,24 @@ const UploadCsv = ({setCertificates}) => {
       const res = await axiosFormData.post('/certificates', formData);
       console.log(res);
       if (res.status === 400) {
-        setLoading(false);
         console.log('load');
         Toast.fire({
           icon: "error",
           title: "Page not found"
         });
-      } else if (res.status === 500) {
         setLoading(false);
+      } else if (res.status === 500) {
         Toast.fire({
           icon: "error",
           title: "Internal Server Error"
         });
+        setLoading(false);
       } else {
         setCertificates(res.data);
+        Toast.fire({
+          icon: "error",
+          title: "Internal Server Error"
+        });
         setLoading(false);
       }
     } catch (error) {
