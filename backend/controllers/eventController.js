@@ -12,7 +12,7 @@ const getAllEvents = async (req, res) => {
     // Get all events by this user
     const events = await Event.find({ userId: user._id }).select([
       "title",
-      "customURI",
+      "customURI"
     ]);
 
     res.status(200).json({ events, success: true });
@@ -58,7 +58,7 @@ const createEvent = async (req, res) => {
     // Define validation schema
     const schema = Joi.object({
       title: Joi.string().required(),
-      customURI: Joi.string().alphanum(),
+      customURI: Joi.string().alphanum()
     });
 
     // Validate request body against schema
@@ -70,23 +70,25 @@ const createEvent = async (req, res) => {
 
     // Get certificate collection owned by user
     const certCollection = await Certificate.findOne({
-      userId: user._id,
+      userId: user._id
     });
 
     // Verify that certification collection exists
     if (!certCollection)
       return res.status(400).json({
         message: "user has no certificates",
-        success: false,
+        success: false
       });
 
-    // Verify that custom URI isn't taken
-    const existingEvent = await Event.findOne({ customURI });
+    if (customURI) {
+      // Verify that custom URI isn't taken
+      const existingEvent = await Event.findOne({ customURI });
 
-    if (existingEvent)
-      return res
-        .status(400)
-        .json({ message: "customURI is already taken", success: false });
+      if (existingEvent)
+        return res
+          .status(400)
+          .json({ message: "customURI is already taken", success: false });
+    }
 
     // Create new event
     const event = await Event.create({ ...req.body, userId: user._id });
@@ -149,7 +151,7 @@ const editEvent = async (req, res) => {
     // Define validation schema
     const schema = Joi.object({
       title: Joi.string(),
-      customURI: Joi.string().alphanum(),
+      customURI: Joi.string().alphanum()
     });
 
     // Validate request body
@@ -206,7 +208,7 @@ const getCertificateByEmail = async (req, res) => {
         .json({ message: "certificate collection Not Found", success: false });
 
     // Get single certificate with user email
-    const certificate = collection.records.find((record) => {
+    const certificate = collection.records.find(record => {
       return record.email === email;
     });
 
@@ -256,5 +258,5 @@ module.exports = {
   createEvent,
   editEvent,
   getCertificateByEmail,
-  validateCustomURI,
+  validateCustomURI
 };
