@@ -140,7 +140,7 @@ const Login = ({ access, setAccess }) => {
           icon: "success",
           title: "Signed in successfully"
         });
-        navigate("/pricing");
+        navigate("/dashboard");
         setAccess(true);
       } else if (response.status === 401) {
         Toast.fire({
@@ -294,10 +294,8 @@ const Login = ({ access, setAccess }) => {
 
             {/* </div> */}
             {error && <p style={{ color: "red" }}>Something went wrong</p>}
-            <Link to='/fff1'>
-              <div className="forgotPwd">Forgot password?</div>
-            </Link>
-            
+            <div className="forgotPwd"><Link to = "/fff1">
+            Forgot password?</Link></div>
             <div id="checkTerms">
               <input
                 type="checkbox"
