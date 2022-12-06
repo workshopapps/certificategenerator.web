@@ -11,36 +11,11 @@ require("express-async-errors");
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-const Sentry = require("@sentry/node");
-const Tracing = require("@sentry/tracing");
 
 // Note: You MUST import the package in some way for tracing to work
 const fileUpload = require("express-fileupload");
 
 const app = express();
-Sentry.init({
-  dsn: "https://d2d07df84791475d88af3fefacd6ce35@o4504279338647552.ingest.sentry.io/4504279342841857",
-
-  // Set tracesSampleRate to 1.0 to capture 100%
-  // of transactions for performance monitoring.
-  // We recommend adjusting this value in production
-  tracesSampleRate: 1.0,
-});
-
-const transaction = Sentry.startTransaction({
-  op: "test",
-  name: "My First Test Transaction",
-});
-
-setTimeout(() => {
-  try {
-    foo();
-  } catch (e) {
-    Sentry.captureException(e);
-  } finally {
-    transaction.finish();
-  }
-}, 99);
 
 //import custom routes
 const auth = require("./routes/authRouter");
