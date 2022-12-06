@@ -47,26 +47,7 @@ const Dashboard = ({
     }
   });
 
-  const handleChangeCertificateStatus = async (id, status) => {
-    console.log(id, status);
-    await axiosPrivate.patch(`/certificates/status/${id}`, {status});
-    Toast.fire({
-      icon: "success",
-      title: "Successfully updated"
-    });
-    const res = await axiosPrivate.get("/certificates");
-    setData(res.data);
-  };
-  const handleDeleteCertificate = async (id) => {
-    console.log(id);
-    await axiosPrivate.delete(`/certificates/${id}`);
-    Toast.fire({
-      icon: "success",
-      title: "Successfully deleted"
-    });
-    const res = await axiosPrivate.get("/certificates");
-    setData(res.data);
-  };
+  
   useEffect(() => {
     const getUserCertificates = async () => {
       try {
@@ -233,10 +214,6 @@ const Dashboard = ({
                     <TableRow
                       item={item}
                       key={idx}
-                      handleChangeCertificateStatus={
-                        handleChangeCertificateStatus
-                      }
-                      handleDeleteCertificate={handleDeleteCertificate}
                     />
                   ))}
                 </tbody>
