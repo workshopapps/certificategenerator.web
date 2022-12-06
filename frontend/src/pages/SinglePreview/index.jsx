@@ -9,6 +9,8 @@ import certificate3 from "../../assets/images/SinglePreview/Completion - Portrai
 import { exportComponentAsPNG } from "react-component-export-image";
 import html2canvas from "html2canvas";
 import { jsPDF } from "jspdf";
+import axios from "axios";
+import Swal from "sweetalert2";
 
 function SinglePreview({
   logo,
@@ -19,13 +21,15 @@ function SinglePreview({
   issueDate
 }) {
   const [openModal, setOpenModal] = useState(false);
-  const [isAuntheticated, setIsAuntheticated] = useState(false);
+  const [isAuntheticated, setIsAuntheticated] = useState(true);
   const [modalMessage, setModalMessage] = useState("");
 
   function handleUnloggedUsers(e) {
     e.preventDefault();
     setOpenModal(!openModal);
   }
+  // get token from localstorage
+  const token = localStorage.getItem("token");
 
   // REF FOR PNG AND PDF
   var certificateWrapper = React.createRef();
@@ -45,7 +49,74 @@ function SinglePreview({
     pdf.addImage(data, "PNG", 0, 0, canvas.width, canvas.height);
     pdf.save(`${awardeeName}.pdf`);
   };
+  const Toast = Swal.mixin({
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: toast => {
+      toast.addEventListener("mouseenter", Swal.stopTimer);
+      toast.addEventListener("mouseleave", Swal.resumeTimer);
+    }
+  });
+  const handleSendCertificate = async e => {
+    try {
+      if (!isAuntheticated) {
+        setOpenModal(!openModal);
+        setModalMessage("You need to sign up to send certificate to your mail");
+        return;
+      }
+      const element = certificateWrapper.current;
+      const canvas = await html2canvas(element);
+      const data = canvas.toDataURL("image/png");
 
+      const pdf = new jsPDF({
+        orientation: "l",
+        unit: "pt",
+        format: [canvas.width, canvas.height]
+      });
+      pdf.addImage(data, "PNG", 0, 0, canvas.width, canvas.height);
+
+      // create form data and add pdf
+      let formData = new FormData();
+      formData.append("file", pdf);
+
+      // send the form data
+      const uploadUrl = "https://certgo.hng.tech/api/sendEmailNotification";
+      let response = await axios.post(uploadUrl, formData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "multipart/form-data"
+        }
+      });
+      const resMsg = await response.json();
+
+      if (response.status === 200) {
+        Toast.fire({
+          icon: "success",
+          title: resMsg.message
+        });
+      } else if (response.status === 403) {
+        Toast.fire({
+          icon: "error",
+          title: resMsg.error
+        });
+      } else {
+        Toast.fire({
+          icon: "error",
+          title: resMsg.message
+        });
+        throw new Error(resMsg.message);
+      }
+    } catch (error) {
+      console.log(error);
+      Toast.fire({
+        icon: "error",
+        title: "Internal Server Error"
+      });
+    }
+  };
   return (
     <div id="singlePreview">
       {/* IMAGE OF YOUR CERTIFICATE READY TO BE DOWNLOADED OR SENT */}
@@ -106,22 +177,19 @@ function SinglePreview({
         {/* BUTTONS FOR EITHER SENDIMG OR DOWNLOADING */}
 
         <div className="buttons">
-          <button
+          <Button
             className="send-button"
-            onClick={() => {
-              setOpenModal(!openModal);
-              setModalMessage(
-                "You need to sign up to send certificate to your mail"
-              );
+            onClick={e => {
+              handleSendCertificate(e);
             }}
           >
             Send Certificate
-          </button>
-          <div class="dropdown">
-            <button class="dropbtn download-button">
+          </Button>
+          <div className="dropdown">
+            <button className="dropbtn download-button">
               Download Certificate
             </button>
-            <div class="dropdown-content">
+            <div className="dropdown-content">
               <button
                 onClick={e => {
                   e.preventDefault();
