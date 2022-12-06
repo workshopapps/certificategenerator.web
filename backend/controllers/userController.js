@@ -29,6 +29,7 @@ exports.uploadUserBrandKit = async (req, res) => {
             if (result) {
              user.avatar = result.secure_url
             }
+            user.save()
         }
         return res.status(200).send({ brandkit: user.avatar, message: `Brand Kit Successfully Updated` })
     } catch (err) {
@@ -37,3 +38,23 @@ exports.uploadUserBrandKit = async (req, res) => {
     }
     
 }
+
+exports.getUserBrandKit = async (req, res) => {
+    let brandkit
+    const auth = req.headers.authorization;
+    if (!auth) {
+        return res.status(403).send({ error: "No credentials sent!" });
+    }
+
+    const token = auth.split(" ")[1];
+    
+    const { userId } = jwt.decode(token);
+    
+    const user = await User.findOne({ _id: userId })
+     console.log(user.avatar)
+    if (user.subscription !== "premium") {
+        return res.status(422).send(`You have to a premium user`)
+    }
+    brandkit = user.avatar
+    return res.status(200).send({ brandkit })
+}    
