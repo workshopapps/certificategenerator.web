@@ -4,8 +4,8 @@ const User = require("../models/userModel");
 const jwt = require("jsonwebtoken");
 
 exports.emailNotification = async (req, res) => {
+    const { file } = req.files;
     const auth = req.headers.authorization;
-    const file = req.file;
 
     if (!auth) {
         return res.status(403).json({ error: "No credentials sent!" });
@@ -34,8 +34,8 @@ exports.emailNotification = async (req, res) => {
                 <p>Your Certificate has been attached below</p>
                 `,
         attachments: [{
-            filename: 'Certificates.pdf',
-            content: fs.createReadStream(file.path)
+            filename: file.name,
+            content: fs.createReadStream(file.tempFilePath)
         }]
 
     }
@@ -46,10 +46,11 @@ exports.emailNotification = async (req, res) => {
         } else {
             res.status(200).json({ message: "Notification for Certificate has been sent to Email" })
             console.log('Email sent: ' + info.response);
-            fs.unlink(`uploads/${file.filename}`, function (err) {
-                if (err) return console.log(err);
-                console.log('file deleted successfully and notification has been sent');
-            })
+            
+            // fs.unlink(`tmp/${file.name}`, function (err) {
+            //     if (err) return console.log(err);
+            //     console.log('file deleted successfully and notification has been sent');
+            // })
         }
     })
 

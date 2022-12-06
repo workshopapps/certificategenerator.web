@@ -11,7 +11,6 @@ import Swal from "sweetalert2";
 import { Loader } from "../../Component";
 import TableRow from "./TableRow";
 
-
 const Dashboard = ({
   logo,
   setLogo,
@@ -27,15 +26,14 @@ const Dashboard = ({
   setIssueDate
 }) => {
   const [data, setData] = useState([]);
-  const [issuedCert, setIssuedCert] = useState([...dummyData]);
   const [cardData, setCardData] = useState([...dummyData]);
-  const [issuedCertCount, setIssuedCertCount] = useState(0);
-  const [openModal, setOpenModal] = useState(false);
-  const [openDropdown, setOpenDropdown] = useState(true);
-  const [loading, setLoading] = useState(false);
+  const [totalCertificates, setTotalCertificates] = useState(0);
   const [pending, setPending] = useState(0);
-  const [pricing, setPricing] = useState('')
-  // const { certificates, setCertificates } = useAppProvider();
+  const [totalIssued, setTotalIssued] = useState(0)
+  const [openModal, setOpenModal] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [pricing, setPricing] = useState("");
+  const [ certificates, setCertificates ] = useState([]);
 
   const Toast = Swal.mixin({
     toast: true,
@@ -50,23 +48,22 @@ const Dashboard = ({
   });
 
   const handleChangeCertificateStatus = async (id, status) => {
-    console.log(id, status)
-    await axiosPrivate.patch(`/certificates/status/${id}`, status)
+    console.log(id, status);
+    await axiosPrivate.patch(`/certificates/status/${id}`, {status});
     Toast.fire({
       icon: "success",
       title: "Successfully updated"
     });
-    const certificates = await axiosPrivate.get('/certificates')
-    setData(certificates)
-
-  }
+    const res = await axiosPrivate.get("/certificates");
+    setData(res.data);
+  };
+  
   useEffect(() => {
-    setLoading(true);
     const getUserCertificates = async () => {
       try {
         const response = await axiosPrivate.get("/certificates");
-        let sub = localStorage.getItem('subscription')
-        setPricing(sub)
+        let sub = localStorage.getItem("subscription");
+        setPricing(sub);
         console.log(response);
         if (response.status === 404) {
           Toast.fire({
@@ -79,7 +76,6 @@ const Dashboard = ({
             title: "Request Failed"
           });
         } else if (response.status === 500) {
-          
           Toast.fire({
             icon: "error",
             title: "Internal Server Error"
@@ -87,69 +83,69 @@ const Dashboard = ({
         } else {
           setData(response.data);
           console.log(response.data);
-          setLoading(false)
         }
       } catch (error) {
         console.error(error.message);
       }
     };
+
+    getUserCertificates();
+    // getIssuedCertificates();
+    // updateCount()
+  }, [certificates]);
+
+  useEffect(() => {
     const getIssuedCertificates = async () => {
       try {
-        
-        const response = await axiosPrivate.get("/certificates/issuedCertificates");
-        // console.log("i got here");
-        console.log(response);
-        setIssuedCertCount(response.data);
-        setLoading(false)
-        setCardData(
-          cardData.map(item =>
-            item.title === "Total Number Issued"
-              ? { ...item, count: response.data.issuedCertificates }
-              : item
-          )
+        console.log("issued");
+        const response = await axiosPrivate.get(
+          "/certificates/issuedCertificates"
         );
+        await setTotalCertificates(response.data.issuedCertificates);
+        updateCount();
       } catch (error) {
         console.error(error);
       }
     };
-    
-    
-    getUserCertificates();
-    getIssuedCertificates();
-  }, []);
-
-  // const dataCheck = issuedCert.filter(item => item.count !== 0);
-  useEffect(() => {
     const updateCount = () => {
+      console.log("updTE", totalCertificates);
       const cardSnapshot = [...cardData];
       const pendingCount = data.filter(
         item => item.status === "pending"
       ).length;
+      setPending(pendingCount);
+
+      const issuedCount = data.filter(
+        item => item.status === "issued"
+      ).length;
+      setTotalIssued(issuedCount);
+      
+      const allCertCount = data.length
       const newCard = cardSnapshot.map(item =>
-        item.title === "Total number of pending certificates"
+        item.title === "Total Certificates"
+          ? { ...item, count: allCertCount }
+          : item
+      );
+
+      const pendingCard = newCard.map(item =>
+        item.title === "Total Pending Certificates"
           ? { ...item, count: pendingCount }
           : item
       );
-      setCardData(newCard);
+
+      const issuedCard = pendingCard.map(item =>
+        item.title === "Total Issued Certificates"
+          ? { ...item, count: issuedCount }
+          : item
+      );
+      
+      setCardData(issuedCard);
     };
-    updateCount();
+
+    getIssuedCertificates();
   }, [data]);
 
-  const dataCheck = cardData.filter(item => item.count !== 0);
-  if (loading) {
-    return (
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          height: "90vh"
-        }}
-      >
-        <Loader />
-      </div>
-    );
-  }
+  
 
   return (
     <>
@@ -177,14 +173,16 @@ const Dashboard = ({
         </div>
 
         <div className="dashboard__cards">
-        {cardData.length > 0 &&
-            cardData.map((item, idx) => <Card key={idx} item={item} />)}
+          {console.log(pending, totalCertificates)}
+          {pending && totalCertificates && totalIssued
+            ? cardData.map((item, idx) => <Card key={idx} item={item} />)
+            : null}
         </div>
 
         <div className="table-wrapper">
           <div className="table-header">
             <p>CERTIFICATE DASHBOARD</p>
-            {dataCheck.length > 0 ? (
+            {data.length > 0 ? (
               <div>
                 <Button className="" onClick={() => setOpenModal(true)}>
                   Create New Certificate
@@ -207,6 +205,7 @@ const Dashboard = ({
             setAwardeeName={setAwardeeName}
             certificateTitle={certificateTitle}
             setCertificateTitle={setCertificateTitle}
+            setCertificates={setCertificates}
           />
           <div className="table">
             <table>
@@ -215,21 +214,25 @@ const Dashboard = ({
                   <th>CERTIFICATE NAMES</th>
                   <th>STATUS</th>
                   <th>DATE ISSUED</th>
-                  <th>NO OF CERTIFICATES</th>
-                  <th>FILE TYPE</th>
+                  {/* <th>NO OF CERTIFICATES</th>
+                  <th>FILE TYPE</th> */}
                   <th className="action">ACTION</th>
                 </tr>
               </thead>
               {data.length > 0 && (
                 <tbody>
                   {data.map((item, idx) => (
-                     <TableRow item={item} key={idx} handleChangeCertificateStatus={handleChangeCertificateStatus} />
+                    <TableRow
+                      item={item}
+                      key={idx}
+                      handleChangeCertificateStatus={handleChangeCertificateStatus}
+                    />
                   ))}
                 </tbody>
               )}
             </table>
 
-            {dataCheck.length === 0 && (
+            {data.length === 0 && (
               <div className="null-table-data">
                 <div>
                   {nullDataIcon()}

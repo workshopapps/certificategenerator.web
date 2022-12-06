@@ -96,7 +96,7 @@
            margin-bottom: 0.5rem;
          }
 
-         .form-control {
+         #form-control {
            border: none;
            outline: none;
            height: 35px;
@@ -106,6 +106,10 @@
 
        .form-btn-wrapper {
          text-align: center;
+         #postbtnid{
+          margin-top: 16px;
+         }
+        
 
          button {
            all: unset;

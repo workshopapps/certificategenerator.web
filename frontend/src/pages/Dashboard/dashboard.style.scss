@@ -256,7 +256,7 @@ $size-sm: 12px;
     &__cards {
       width: 90%;
       margin: 0 auto 1.2rem auto;
-      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
     }
     .table-wrapper {
       width: 90%;
@@ -279,7 +279,7 @@ $size-sm: 12px;
     }
   }
 }
-@media screen and (min-width: 960px) {
+@media screen and (min-width: 1044px) {
   .dashboard {
     &__hero-section {
       .flexx {
@@ -287,6 +287,11 @@ $size-sm: 12px;
         justify-content: space-between;
         align-items: flex-end;
       }
+    }
+    &__cards {
+      width: 90%;
+      margin: 0 auto 1.2rem auto;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
     }
   }
 }
