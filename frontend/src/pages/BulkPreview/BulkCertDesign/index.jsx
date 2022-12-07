@@ -22,7 +22,7 @@ const Index = ({ item }) => {
                 <div id="single-preview-card">
                   <div id="single-preview-text">
                     <div id="preview-text">
-                      <img style={{ width: "40px", marginLeft: "155px" }} alt="logo" />
+                      <img style={{ width: "40px" }} alt="" />
                       <h1>{item.award}</h1>
                       <p>THIS CERTIFIES THAT</p>
                       <h2>{item.name}</h2>
