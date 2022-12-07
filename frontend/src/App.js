@@ -1,6 +1,6 @@
 import * as Sentry from "@sentry/react";
 import { useState, useEffect } from "react";
-
+import { useParams } from "react-router-dom";
 import {
   AboutUs,
   BulkStep,
@@ -30,18 +30,19 @@ import {
   ResetPassword,
   PasswordChangeSuccessfully
 } from "./pages/ResetPassword";
+import Generate from "./pages/Dashboard/Generate";
 import Home from "./pages/Home";
 import { Loader } from "./Component";
 import Navbar from "./Component/Navbar";
 import Checkout from "./pages/Checkout";
 import { Privacy } from "./pages/PrivacyPolicy";
 import { AppProvider } from "./contexts/AppProvider";
+import ProtectedRoutes from "./Component/ProtectedRoutes";
 import Login from "./Component/Signup-Login/assets/Login";
 import Signup from "./Component/Signup-Login/assets/Sginup";
-import ProtectedRoutes from "./Component/ProtectedRoutes";
 import {
-  // HashRouter as Router,
-  // Navigate,
+  HashRouter as Router,
+  Navigate,
   Route,
   Routes
 } from "react-router-dom";
@@ -55,6 +56,13 @@ function App() {
   const [awardeeName, setAwardeeName] = useState("");
   const [appLoading, setAppLoading] = useState(true);
   const [certificateTitle, setCertificateTitle] = useState("");
+  const user = localStorage.getItem("user");
+  const token = localStorage.getItem("token");
+
+  const { generateId } = useParams();
+
+  const RequireAuth = ({ children }) =>
+    user && token ? children : <Navigate to="/login" />;
 
   useEffect(() => {
     setTimeout(function () {
@@ -165,6 +173,7 @@ function App() {
             <Route path="/fff3" element={<ChangePassword />} />
             <Route path="/fff2" element={<PasswordLinkSent />} />
             <Route path="/forgotpassword" element={<ForgotPassword />} />
+            <Route path="/generate/:generateId" element={<Generate />} />
           </Route>
           <Route
             path="/dashboard"

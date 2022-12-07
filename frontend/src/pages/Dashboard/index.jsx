@@ -33,10 +33,8 @@ const Dashboard = ({
   const [loading, setLoading] = useState(false);
   const [pricing, setPricing] = useState("");
   const [certificates, setCertificates] = useState([]);
+  const [eventLink, setEventLink] = useState("")
   const [selectedImage, setSelectedImage] = useState(null)
-    const [token, setToken] = useState({
-    accessToken: ""
-  });
 
     // On file select (from the pop up)
   // Update the state
@@ -141,6 +139,60 @@ const Dashboard = ({
   useEffect(() => {
     getUserCertificates();
   }, []);
+ 
+
+
+  //GET EVENTS
+  const getEvents = async () => {
+    
+    return fetch("https://certgo.hng.tech/api/events", {
+     method: "GET",
+     headers: {
+       "Authorization" : `Bearer ${token}`,
+       "Content-Type": "application/json"
+     }
+   })
+      
+     .then(async response => {
+       const result = await response.json()
+       console.log(result.events[1])
+       var link = result.events[0]._id
+       setEventLink(`https://certgo.hng.tech/generate/:${link}`)
+       
+     })
+       
+    }
+
+
+   //GENERATE LINK
+   const title = "Fela Music School"
+   var token = localStorage.getItem("token")
+    const handleGenerate = async () => {
+     
+     fetch("https://certgo.hng.tech/api/events", {
+       method: "POST",
+       headers: {
+         "Authorization" : `Bearer ${token}`,
+         "Content-Type": "application/json"
+       },
+       body: JSON.stringify({ title:title })
+     })
+     .then(async response => {
+       const result = await response.json()
+        
+       localStorage.setItem("_id", result.event._id);
+       localStorage.setItem("eventTitle", result.event.title);
+       localStorage.setItem("eventCustomURI", result.event.customURI)
+       
+          })
+     getEvents();
+   }
+
+
+
+
+
+
 
   return (
     <>
@@ -183,11 +235,18 @@ const Dashboard = ({
         <div className="table-wrapper">
           <div className="table-header">
             <p>CERTIFICATE DASHBOARD</p>
+            <h5 style = {{padding:'50px!important'}}>Certificate Download Link : {eventLink}</h5>
             {data.length > 0 ? (
-              <div>
+              <div style = {{display: 'flex'}}>
                 <Button className="" onClick={() => setOpenModal(true)}>
                   Create New Certificate
                 </Button>
+
+                
+                <Button style = {{marginLeft: '20px'}} className="" onClick={handleGenerate}>
+                  {/* <Link to = {`/generate/:${generateId}`}>Generate Link</Link> */}
+               Generate Link
+                </Button> 
               </div>
             ) : null}
           </div>
@@ -254,6 +313,6 @@ const Dashboard = ({
       </div>
     </>
   );
-};
+}
 
 export default Dashboard;
