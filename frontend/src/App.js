@@ -42,9 +42,9 @@ function App() {
   return (
     <>
       <div className="App">
-        <Routes>
-          <Route path="/" element={<Layout />}>
-            <Route index element={<Home />} />
+        <Layout>
+          <Routes>
+            <Route path="/" index element={<Home />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/login" element={<Login />} />
             <Route path="/comingsoon" element={<ComingSoon />} />
@@ -83,9 +83,10 @@ function App() {
             <Route path="/fff3" element={<ChangePassword />} />
             <Route path="/fff2" element={<PasswordLinkSent />} />
             <Route path="/fff1" element={<ForgotPassword />} />
-          </Route>
-          <Route path="*" element={<Error />} />
-        </Routes>
+
+            <Route path="*" element={<Error />} />
+          </Routes>
+        </Layout>
       </div>
     </>
   );
