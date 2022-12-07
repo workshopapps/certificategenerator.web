@@ -2,9 +2,7 @@ import React from "react";
 
 import "./bulkcertdesign.style.scss";
 
-const Index = ({ item }) => {
-  console.log("Item", item);
-  
+const Index = ({ item }) => {  
   return (
     <div>
       {/* START OF CERTIFICATE */}
@@ -24,20 +22,20 @@ const Index = ({ item }) => {
                 <div id="single-preview-card">
                   <div id="single-preview-text">
                     <div id="preview-text">
-                      <img style={{ width: "40px" }} alt="logo" />
+                      <img style={{ width: "40px", marginLeft: "155px" }} alt="logo" />
                       <h1>{item.award}</h1>
                       <p>THIS CERTIFIES THAT</p>
-                      <h2>{item?.name}</h2>
-                      <h6>{item?.description}</h6>
+                      <h2>{item.name}</h2>
+                      <h6>{item.description}</h6>
                     </div>
                     <div className="single-preview-issue">
                       <div className="issue-by">
-                        <h6>{item?.nameOfOrganization}</h6>
+                        <h6>{item.nameOfOrganization}</h6>
                         <div className="line"></div>
                         <p>ISSUED BY</p>
                       </div>
                       <div className="issue-by">
-                        <h6>{item?.date}</h6>
+                        <h6>{item.date}</h6>
                         <div className="line"></div>
                         <p>ISSUE DATE</p>
                       </div>
