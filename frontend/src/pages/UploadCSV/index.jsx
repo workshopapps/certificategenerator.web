@@ -197,8 +197,8 @@ const UploadCSV = () => {
       setLoading(false);
       Toast.fire({
         icon: "error",
-        title: error.message
-        // title: "Upload failed due to invalid field(s)"
+        // title: error.message
+        title: "Upload failed due to invalid field(s)"
       });
     }
   };
