@@ -70,27 +70,9 @@
 
      .user-avatar {
        width: 75%;
-       position: relative;
 
-       .avatar {
+       img {
          width: 100%;
-         border-radius: 50%;
-       }
-
-       input[type=file] {
-         display: none;
-       }
-
-       .upload__label {
-         width: 40px;
-         bottom: 10px;
-         right: 10px;
-         position: absolute;
-         z-index: 9;
-
-         img {
-           width: 100%;
-         }
        }
      }
    }
