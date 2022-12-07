@@ -10,28 +10,25 @@ const Tracing = require("@sentry/tracing");
 const app = express();
 
 Sentry.init({
-  dsn: "https://d2d07df84791475d88af3fefacd6ce35@o4504279338647552.ingest.sentry.io/4504279342841857",
+  dsn: "https://68acc277a0e744eab086a7b236226082@o4504279338647552.ingest.sentry.io/4504285079404544",
+  integrations: [
+    // enable HTTP calls tracing
+    new Sentry.Integrations.Http({ tracing: true }),
+    // enable Express.js middleware tracing
+    new Tracing.Integrations.Express({ app }),
+  ],
 
   // Set tracesSampleRate to 1.0 to capture 100%
   // of transactions for performance monitoring.
   // We recommend adjusting this value in production
   tracesSampleRate: 1.0,
 });
-// Devops Monitoring Test
-// const transaction = Sentry.startTransaction({
-//   op: "test",
-//   name: "My First Test Transaction",
-// });
 
-// setTimeout(() => {
-//   try {
-//     foo();
-//   } catch (e) {
-//     Sentry.captureException(e);
-//   } finally {
-//     transaction.finish();
-//   }
-// }, 99);
+// RequestHandler creates a separate execution context using domains, so that every
+// transaction/span/breadcrumb is attached to its own Hub instance
+app.use(Sentry.Handlers.requestHandler());
+// TracingHandler creates a trace for every incoming request
+app.use(Sentry.Handlers.tracingHandler());
 
 //import coustom middlware
 const connectDB = require("./utils/dbConn");
@@ -98,8 +95,9 @@ app.use("/api/templates", template);
 app.use("/api/subscribe", newsletterRouter);
 app.use("/api/verifyEmail", verifyEmailRouter)
 app.use('/api/payment', paymentRouter);
-app.use('/api/users', userRouter)
+app.use('/api/users', userRouter);
 
+app.use(Sentry.Handlers.errorHandler());
 
 mongoose.connection.once("open", () => {
   console.log("Connected to DB");

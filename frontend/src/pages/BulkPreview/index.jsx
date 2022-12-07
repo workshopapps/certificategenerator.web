@@ -1,15 +1,15 @@
-import React, { useContext } from "react";
+import React from "react";
 
 import "./bulk.style.scss";
 import "@splidejs/react-splide/css";
 import Button from "../../Component/button";
 import BulkCertDesign from "./BulkCertDesign";
-import AppContext from "../../contexts/AppProvider";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 
 function Index() {
-  const { array } = useContext(AppContext);
-  console.log("Array", array);
+  // Getting the file data from the local storage and parsing its values
+  const savedData = localStorage.getItem("dataKey");
+  const array = JSON.parse(savedData);
 
   return (
     <div id="bulk-preview">
@@ -35,6 +35,7 @@ function Index() {
             }
           }}
         >
+          {/* Mapping through the data */}
           {array.map((item, id) => (
             <SplideSlide key={id}>
               <BulkCertDesign

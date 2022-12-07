@@ -55,7 +55,8 @@ export default function Certificate({
     const fi = document.querySelector(".custom-file-input");
     // Check if any file is selected.
     const x = fi.files[0];
-    setLogo(fi.files[0]);
+    const url = URL.createObjectURL(fi.files[0]);
+    setLogo(url);
     if (fi.files.length > 0) {
       for (let i = 0; i <= fi.files.length - 1; i++) {
         const fsize = fi.files.item(i).size;
@@ -200,6 +201,7 @@ export default function Certificate({
                     }}
                     onMouseOver={uploadFileHandler}
                     title=" "
+                    // value={logo}
                     onChange={() => {
                       filevalidation();
                       checkIfFieldIsEmpty();
@@ -278,6 +280,7 @@ export default function Certificate({
             </label>
             <DatePicker
               selected={date}
+              value={issueDate}
               onChange={handleDate}
               dateFormat="dd/MM/yyyy"
             />

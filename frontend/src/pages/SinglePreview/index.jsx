@@ -80,10 +80,9 @@ function SinglePreview({
 
       // create form data and add pdf
       let formData = new FormData();
-      formData.append("file", pdf);
+      formData.append("file", data);
 
       // send the form data
-      // const uploadUrl = "https://certgo.hng.tech/api/sendEmailNotification";
       const uploadUrl = "https://certgo.hng.tech/api/sendEmailNotifications";
       let response = await axios.post(uploadUrl, formData, {
         headers: {
@@ -91,24 +90,23 @@ function SinglePreview({
           "Content-Type": "multipart/form-data"
         }
       });
-      const resMsg = await response.json();
-
+      const dataMsg = response.data;
       if (response.status === 200) {
         Toast.fire({
           icon: "success",
-          title: resMsg.message
+          title: dataMsg.message
         });
       } else if (response.status === 403) {
         Toast.fire({
           icon: "error",
-          title: resMsg.error
+          title: dataMsg.error
         });
       } else {
         Toast.fire({
           icon: "error",
-          title: resMsg.message
+          title: dataMsg.message
         });
-        throw new Error(resMsg.message);
+        throw new Error(dataMsg.message);
       }
     } catch (error) {
       console.log(error);
@@ -143,7 +141,7 @@ function SinglePreview({
               <div id="single-preview-card">
                 <div id="single-preview-text">
                   <div id="preview-text">
-                    <img src={logo} style={{ width: "40px" }} alt="logo" />
+                    <img src={logo} style={{ width: "100px" }} alt="logo" />
                     <h1>{certificateTitle}</h1>
 
                     <p>THIS CERTIFIES THAT</p>

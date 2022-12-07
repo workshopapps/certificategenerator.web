@@ -10,7 +10,7 @@ import googleSVG from "./assets/google.svg";
 import cert from "./assets/Cert.png";
 import emailSVG from "./assets/email.svg";
 import keySVG from "./assets/key.svg";
-import Swal from "sweetalert2";
+import { Toast } from '../../ToastAlert'
 import Input from "../../Input";
 import Button from "../../button";
 
@@ -103,18 +103,6 @@ const Login = ({ access, setAccess }) => {
   //     setError(true);
   //   }
   // }
-  const Toast = Swal.mixin({
-    toast: true,
-    position: "top-end",
-    showConfirmButton: false,
-    timer: 3000,
-    timerProgressBar: true,
-    didOpen: toast => {
-      toast.addEventListener("mouseenter", Swal.stopTimer);
-      toast.addEventListener("mouseleave", Swal.resumeTimer);
-    }
-  });
-
   async function loginUser(email, password) {
     return fetch("https://certify-api.onrender.com/api/auth/login", {
       method: "POST",

@@ -1,6 +1,6 @@
 import * as Sentry from "@sentry/react";
 import { useState, useEffect } from "react";
-
+import {useParams} from 'react-router-dom';
 import {
   AboutUs,
   BulkStep,
@@ -30,6 +30,7 @@ import {
   ResetPassword,
   PasswordChangeSuccessfully
 } from "./pages/ResetPassword";
+import Generate from "./pages/Dashboard/Generate"
 import Home from "./pages/Home";
 import { Loader } from "./Component";
 import Navbar from "./Component/Navbar";
@@ -52,6 +53,8 @@ function App() {
   const user = localStorage.getItem('user') 
   const token = localStorage.getItem('token') 
 
+  const {generateId} = useParams();
+  
   const RequireAuth = ({ children }) => user && token ? children : <Navigate to="/login"/>
 
   useEffect(() => {
@@ -76,7 +79,7 @@ function App() {
 
   return (
     <>
-      <Router>
+      {/* <Router> */}
         <Navbar />
         <div className="App">
           <Routes>
@@ -129,6 +132,7 @@ function App() {
                   </RequireAuth>
                 }
               />
+              <Route path="/generate/:generateId" element={<Generate />} />
               <Route path="/templates" element={<Templates />} />
               <Route path="/career" element={<Career />} />
               <Route path="choice" element={<Choice />} />
@@ -186,7 +190,7 @@ function App() {
           </Routes>
         </div>
         {/* <Footer /> */}
-      </Router>
+      {/* </Router> */}
     </>
   );
 }

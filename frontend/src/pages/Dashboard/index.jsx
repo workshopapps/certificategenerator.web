@@ -27,14 +27,11 @@ const Dashboard = ({
 }) => {
   const [data, setData] = useState([]);
   const [cardData, setCardData] = useState([...dummyData]);
-  const [totalCertificates, setTotalCertificates] = useState(0);
-  const [pending, setPending] = useState(0);
-  const [totalIssued, setTotalIssued] = useState(0)
   const [openModal, setOpenModal] = useState(false);
   const [loading, setLoading] = useState(false);
   const [pricing, setPricing] = useState("");
-  const [ certificates, setCertificates ] = useState([]);
-
+  const [certificates, setCertificates] = useState([]);
+const [eventLink, setEventLink] = useState("")
   const Toast = Swal.mixin({
     toast: true,
     position: "top-end",
@@ -49,7 +46,7 @@ const Dashboard = ({
 
   const handleChangeCertificateStatus = async (id, status) => {
     console.log(id, status);
-    await axiosPrivate.patch(`/certificates/status/${id}`, {status});
+    await axiosPrivate.patch(`/certificates/status/${id}`, { status });
     Toast.fire({
       icon: "success",
       title: "Successfully updated"
@@ -57,8 +54,8 @@ const Dashboard = ({
     const res = await axiosPrivate.get("/certificates");
     setData(res.data);
   };
-  
-  const handleDeleteCertificate = async (id) => {
+
+  const handleDeleteCertificate = async id => {
     console.log(id);
     await axiosPrivate.delete(`/certificates/${id}`);
     Toast.fire({
@@ -69,94 +66,122 @@ const Dashboard = ({
     setData(res.data);
   };
 
-  useEffect(() => {
-    const getUserCertificates = async () => {
-      try {
-        const response = await axiosPrivate.get("/certificates");
-        let sub = localStorage.getItem("subscription");
-        setPricing(sub);
-        console.log(response);
-        if (response.status === 404) {
-          Toast.fire({
-            icon: "error",
-            title: "Page not found"
-          });
-        } else if (response.status === 401) {
-          Toast.fire({
-            icon: "error",
-            title: "Request Failed"
-          });
-        } else if (response.status === 500) {
-          Toast.fire({
-            icon: "error",
-            title: "Internal Server Error"
-          });
-        } else {
-          setData(response.data);
-          console.log(response.data);
-        }
-      } catch (error) {
-        console.error(error.message);
+  const getUserCertificates = async () => {
+    try {
+      const response = await axiosPrivate.get("/certificates");
+      let sub = localStorage.getItem("subscription");
+      setPricing(sub);
+      console.log(response);
+      if (response.status === 404) {
+        Toast.fire({
+          icon: "error",
+          title: "Page not found"
+        });
+      } else if (response.status === 401) {
+        Toast.fire({
+          icon: "error",
+          title: "Request Failed"
+        });
+      } else if (response.status === 500) {
+        Toast.fire({
+          icon: "error",
+          title: "Internal Server Error"
+        });
+      } else {
+        setData(response.data);
+        console.log(response.data);
+        updateCount(response.data);
       }
-    };
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
 
+  const updateCount = param => {
+    const cardSnapshot = [...cardData];
+    const pendingCount = param.filter(item => item.status === "pending").length;
+
+    const issuedCount = param.filter(item => item.status === "issued").length;
+
+    const allCertCount = param.length;
+    const newCard = cardSnapshot.map(item =>
+      item.title === "Total Certificates"
+        ? { ...item, count: allCertCount }
+        : item
+    );
+
+    const pendingCard = newCard.map(item =>
+      item.title === "Total Pending Certificates"
+        ? { ...item, count: pendingCount }
+        : item
+    );
+
+    const issuedCard = pendingCard.map(item =>
+      item.title === "Total Issued Certificates"
+        ? { ...item, count: issuedCount }
+        : item
+    );
+
+    setCardData(issuedCard);
+  };
+
+  useEffect(() => {
     getUserCertificates();
-    // getIssuedCertificates();
-    // updateCount()
-  }, [certificates]);
+  }, []);
+ 
 
-  useEffect(() => {
-    const getIssuedCertificates = async () => {
-      try {
-        console.log("issued");
-        const response = await axiosPrivate.get(
-          "/certificates/issuedCertificates"
-        );
-        await setTotalCertificates(response.data.issuedCertificates);
-        updateCount();
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    const updateCount = () => {
-      console.log("updTE", totalCertificates);
-      const cardSnapshot = [...cardData];
-      const pendingCount = data.filter(
-        item => item.status === "pending"
-      ).length;
-      setPending(pendingCount);
 
-      const issuedCount = data.filter(
-        item => item.status === "issued"
-      ).length;
-      setTotalIssued(issuedCount);
+  //GET EVENTS
+  const getEvents = async () => {
+    
+    return fetch("https://certgo.hng.tech/api/events", {
+     method: "GET",
+     headers: {
+       "Authorization" : `Bearer ${token}`,
+       "Content-Type": "application/json"
+     }
+   })
       
-      const allCertCount = data.length
-      const newCard = cardSnapshot.map(item =>
-        item.title === "Total Certificates"
-          ? { ...item, count: allCertCount }
-          : item
-      );
+     .then(async response => {
+       const result = await response.json()
+       console.log(result.events[1])
+       var link = result.events[0]._id
+       setEventLink(`https://certgo.hng.tech/generate/:${link}`)
+       
+     })
+       
+    }
 
-      const pendingCard = newCard.map(item =>
-        item.title === "Total Pending Certificates"
-          ? { ...item, count: pendingCount }
-          : item
-      );
 
-      const issuedCard = pendingCard.map(item =>
-        item.title === "Total Issued Certificates"
-          ? { ...item, count: issuedCount }
-          : item
-      );
-      
-      setCardData(issuedCard);
-    };
+   //GENERATE LINK
+   const title = "Fela Music School"
+   var token = localStorage.getItem("token")
+    const handleGenerate = async () => {
+     
+     fetch("https://certgo.hng.tech/api/events", {
+       method: "POST",
+       headers: {
+         "Authorization" : `Bearer ${token}`,
+         "Content-Type": "application/json"
+       },
+       body: JSON.stringify({ title:title })
+     })
+     .then(async response => {
+       const result = await response.json()
+        
+       localStorage.setItem("_id", result.event._id);
+       localStorage.setItem("eventTitle", result.event.title);
+       localStorage.setItem("eventCustomURI", result.event.customURI)
+       
+          })
+     getEvents();
+   }
 
-    getIssuedCertificates();
-  }, [data]);
 
-  
+
+
+
+
 
   return (
     <>
@@ -184,8 +209,8 @@ const Dashboard = ({
         </div>
 
         <div className="dashboard__cards">
-          {console.log(pending, totalCertificates)}
-          {pending && totalCertificates && totalIssued
+          {console.log(cardData)}
+          {cardData
             ? cardData.map((item, idx) => <Card key={idx} item={item} />)
             : null}
         </div>
@@ -193,11 +218,18 @@ const Dashboard = ({
         <div className="table-wrapper">
           <div className="table-header">
             <p>CERTIFICATE DASHBOARD</p>
+            <h5 style = {{padding:'50px!important'}}>Certificate Download Link : {eventLink}</h5>
             {data.length > 0 ? (
-              <div>
+              <div style = {{display: 'flex'}}>
                 <Button className="" onClick={() => setOpenModal(true)}>
                   Create New Certificate
                 </Button>
+
+                
+                <Button style = {{marginLeft: '20px'}} className="" onClick={handleGenerate}>
+                  {/* <Link to = {`/generate/:${generateId}`}>Generate Link</Link> */}
+               Generate Link
+                </Button> 
               </div>
             ) : null}
           </div>
@@ -216,7 +248,7 @@ const Dashboard = ({
             setAwardeeName={setAwardeeName}
             certificateTitle={certificateTitle}
             setCertificateTitle={setCertificateTitle}
-            setCertificates={setCertificates}
+            getUserCertificates={getUserCertificates}
           />
           <div className="table">
             <table>
@@ -236,7 +268,9 @@ const Dashboard = ({
                     <TableRow
                       item={item}
                       key={idx}
-                      handleChangeCertificateStatus={handleChangeCertificateStatus}
+                      handleChangeCertificateStatus={
+                        handleChangeCertificateStatus
+                      }
                       handleDeleteCertificate={handleDeleteCertificate}
                     />
                   ))}
@@ -262,6 +296,6 @@ const Dashboard = ({
       </div>
     </>
   );
-};
+}
 
 export default Dashboard;
