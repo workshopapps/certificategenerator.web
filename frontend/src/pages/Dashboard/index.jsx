@@ -146,7 +146,7 @@ const [eventLink, setEventLink] = useState("")
        const result = await response.json()
        console.log(result.events[1])
        var link = result.events[0]._id
-       setEventLink(`https://certgo.hng.tech/#/generate/:${link}`)
+       setEventLink(`https://certgo.hng.tech/generate/:${link}`)
        
      })
        
@@ -218,9 +218,9 @@ const [eventLink, setEventLink] = useState("")
         <div className="table-wrapper">
           <div className="table-header">
             <p>CERTIFICATE DASHBOARD</p>
-            <h5 style = {{padding:'50px!important'}}>Certificate Download Link : {eventLink}</h5>
+            <h5 style = {{padding:'50px!important'}}>Certificate Download Link : <a href ={{eventLink}} target = "_blank">Click Here</a></h5>
             {data.length > 0 ? (
-              <div>
+              <div style = {{display: 'flex'}}>
                 <Button className="" onClick={() => setOpenModal(true)}>
                   Create New Certificate
                 </Button>
