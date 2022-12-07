@@ -3,26 +3,20 @@ import "./navbar.style.scss";
 import React, {  useState } from "react";
 import logo from "../../assets/images/navbarIcon.png";
 import { FaBars, FaTimes } from "react-icons/fa";
+import CaretDown from '../../assets/svgs/caret-down.svg'
 import { Link, NavLink, useNavigate } from "react-router-dom";
+import Avatar from '../../assets/Ellipse4.png'
 import Button from "../button";
 
 function Navbar() {
   const [switchFa, setSwitchFa] = useState(false);
   const navigate = useNavigate();
 
+  const isLoggedIn = localStorage.getItem("user", "token")
+
   const handleToggle = () => {
-    
-  
-    
     setSwitchFa(!switchFa);
-   
-    
   };
-
-
-
-  
-  
 
   const links = [
     {
@@ -90,7 +84,18 @@ function Navbar() {
                 );
               })}
             </div>
-            <div className="button-container">
+            {isLoggedIn?
+             <div className="dropdown-container">
+               <div className="dropdown__items">
+                <h3>My Account</h3>
+                <img src={CaretDown} alt='caret-down' />
+                <span className="dropdown__img">
+                  <img src={Avatar} alt="avatar" />
+                </span>
+               </div>
+            </div>
+            : 
+           <div className="button-container">
             <NavLink to="/signup" >
               <Button
                 className="btn"
@@ -99,8 +104,12 @@ function Navbar() {
               >
                 {/* <Link to="/modify" className="link"></Link> */}
               </Button>
-               </NavLink>
+            </NavLink>
             </div>
+            
+            }
+        
+       
           </div>
         </div>
       </div>

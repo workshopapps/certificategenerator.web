@@ -34,6 +34,9 @@ const Dashboard = ({
   const [pricing, setPricing] = useState("");
   const [certificates, setCertificates] = useState([]);
   const [selectedImage, setSelectedImage] = useState(null)
+    const [token, setToken] = useState({
+    accessToken: ""
+  });
 
     // On file select (from the pop up)
   // Update the state
@@ -42,12 +45,14 @@ const Dashboard = ({
           setSelectedImage({ selectedFile: e.target.files[0] });
           setSelectedImage(URL.createObjectURL(e.target.files[0]))
           console.log(e.target.files[0]);
-              e.preventDefault()
+
         const formData = new FormData()
         formData.append('selectedImage', selectedImage)
-         await axios.put("https://certgo.hng.tech/api/users/brand-kit", formData, {
-        }).then(res => {
-            console.log(res)
+        const res = await axiosPrivate.put("https://certgo.hng.tech/api/users/brand-kit", { formData })
+        .then(() => {
+            if(res.status === 200){
+              console.log(res);
+            }
         })
     }
 
@@ -145,9 +150,9 @@ const Dashboard = ({
             <span className="dashboard__profile-pic">
               <img src={selectedImage || profilePic} alt="brand-kit" />   
             </span>
-              <label htmlFor="myFile" className="dashboard__upload-label">
+              <label htmlFor="file" className="dashboard__upload-label">
                    <img src={Upload} alt="upload-icon" />
-                   <input type="file" id="myFile" accept="image/*" name="image" onChange={onFileChange}  />
+                   <input type="file" id="file" accept="image/*" name="image" onChange={onFileChange}  />
             </label>
           </div>
           <div className="flexx">
