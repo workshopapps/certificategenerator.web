@@ -142,9 +142,13 @@ const Dashboard = ({
       <div className="dashboard">
         <div className="dashboard__hero-section">
           <div className="dashboard__profile-pic">
-              <img src={selectedImage || profilePic} alt="Avatar" className="brandkit" />
-              <label htmlFor="myFile" className="upload__label">
-              <img src={Upload} alt="upload-icon" />
+            <span>
+              <img src={selectedImage || profilePic} alt="brand-kit" className="brandkit" />   
+            </span>
+              <label htmlFor="myFile" className="dashboard__upload-label">
+                <span className="upload-icon">
+                   <img src={Upload} alt="upload-icon" />
+                </span>
               <input type="file" id="myFile" accept="image/*" name="image" onChange={onFileChange}  />
             </label>
           </div>
