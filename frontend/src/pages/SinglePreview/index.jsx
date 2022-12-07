@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Modal from "../../Component/Modal";
 import Button from "../../Component/button";
@@ -24,9 +24,11 @@ function SinglePreview({
   const [isAuntheticated, setIsAuntheticated] = useState(false);
   const [modalMessage, setModalMessage] = useState("");
 
-  localStorage.getItem("user", "token")
-    ? setIsAuntheticated(true)
-    : setIsAuntheticated(false);
+  useEffect(() => {
+    localStorage.getItem("user", "token")
+      ? setIsAuntheticated(true)
+      : setIsAuntheticated(false);
+  }, []);
 
   function handleUnloggedUsers(e) {
     e.preventDefault();
@@ -65,6 +67,9 @@ function SinglePreview({
     }
   });
   const handleSendCertificate = async e => {
+    localStorage.getItem("user", "token")
+      ? setIsAuntheticated(true)
+      : setIsAuntheticated(false);
     try {
       if (!isAuntheticated) {
         setOpenModal(!openModal);
