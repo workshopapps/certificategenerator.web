@@ -11,20 +11,21 @@ import Swal from "sweetalert2";
 import { Loader } from "../../Component";
 import TableRow from "./TableRow";
 
-const Dashboard = ({
-  logo,
-  setLogo,
-  certificateTitle,
-  setCertificateTitle,
-  awardeeName,
-  setAwardeeName,
-  message,
-  setMessage,
-  issuedBy,
-  setIssuedBy,
-  issueDate,
-  setIssueDate
-}) => {
+const Dashboard = () => {
+  const {
+    logo,
+    setLogo,
+    certificateTitle,
+    setCertificateTitle,
+    awardeeName,
+    setAwardeeName,
+    message,
+    setMessage,
+    issuedBy,
+    setIssuedBy,
+    issueDate,
+    setIssueDate
+  } = useAppProvider();
   const [data, setData] = useState([]);
   const [cardData, setCardData] = useState([...dummyData]);
   const [openModal, setOpenModal] = useState(false);

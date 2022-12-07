@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
 import { GoogleLogin } from "react-google-login";
 import { gapi } from "gapi-script";
+
 import "./signup.scss";
 import appleSVG from "./assets/apple.svg";
 import googleSVG from "./assets/google.svg";
@@ -10,10 +10,13 @@ import cert from "./assets/Cert.png";
 import Input from "../../Input";
 import Button from "../../button";
 import { Toast } from '../../ToastAlert'
+import useAppProvider from "../../../hooks/useAppProvider";
 
 
-const Signup = ({ access, setAccess }) => {
+const Signup = () => {
+  const { access, setAccess } = useAppProvider();
   const navigate = useNavigate();
+  
   const [type, setType] = useState("password");
   const [formData, setFormData] = React.useState({
     name: "",
