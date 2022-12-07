@@ -16,7 +16,7 @@ function CheckoutMainRight() {
           </span>{" "}
           <br /> <br />
           <span id="CheckoutMainRight-text-4">
-            ₦2000 <sub id="CheckoutMainRight-text-4-sub">/month</sub>
+            $9.99 <sub id="CheckoutMainRight-text-4-sub">/month</sub>
           </span>{" "}
           <br /> <br />
           <span id="CheckoutMainRight-text-5">

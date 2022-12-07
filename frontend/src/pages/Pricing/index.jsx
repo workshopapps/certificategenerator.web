@@ -16,6 +16,13 @@ function Pricing({ access, setAccess }) {
 
   const { per } = data[value];
 
+  const [disabled, setDisabled] = useState(false);
+
+  function disabledHandler(e) {
+    e.preventDefault();
+    setDisabled(true);
+  }
+
   return (
     <main>
       <section className="pricing">
@@ -77,7 +84,21 @@ function Pricing({ access, setAccess }) {
                   </article>
 
                   {access ? (
-                    <Link to={sub.AfterLogin}>{sub.linkText}</Link>
+                    <Link
+                      to={`${sub.subType !== "Basic" && "/payment"}`}
+                      style={
+                        disabled && sub.subType === "Basic"
+                          ? {
+                              cursor: "not-allowed",
+                              backgroundColor: "#8ab9b2",
+                              pointerEvents: "none"
+                            }
+                          : {}
+                      }
+                      onClick={e => disabledHandler(e)}
+                    >
+                      {sub.linkText}
+                    </Link>
                   ) : (
                     <Link to={sub.linkTo}>{sub.linkText}</Link>
                   )}
