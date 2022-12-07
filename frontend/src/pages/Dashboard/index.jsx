@@ -146,7 +146,7 @@ const [eventLink, setEventLink] = useState("")
        const result = await response.json()
        console.log(result.events[1])
        var link = result.events[0]._id
-       setEventLink(`https://certgo.hng.tech/generate/:${link}`)
+       setEventLink(`https://certgo.hng.tech/#/generate/:${link}`)
        
      })
        
