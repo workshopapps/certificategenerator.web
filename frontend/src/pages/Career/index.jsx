@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./career.style.scss";
 import { Persons, Positions, Positions2 } from "./data";
 import SectionCarousel from "./Carousel";
@@ -9,10 +9,32 @@ import Briefcase from "./assets/candidate resumes and briefcase.png";
 import Search from "./assets/search-icon.svg";
 import { FiChevronDown } from "react-icons/fi";
 import PositionCard from "./PositionCard";
-
+import axios from "axios";
 
 function Career() {
-  const [openApplyModal, setOpenApplyModal] = useState(false);
+  const [roles, setRoles] = useState([]);
+  const [categories , setCategories ] = useState([])
+  console.log(categories, roles)
+
+  
+
+  useEffect(() => {
+    const fetchOpenings = async () => {
+      try {
+        const { data } = await axios.get("https://certgo.hng.tech/api/careers");
+        
+        const categorySet = new Set(data.response.map(item => item.category));
+  const newCategories = Array.from(categorySet);
+        setRoles(data.response);
+        setCategories(newCategories)
+  console.log(categories, roles)
+       
+      } catch (err) {
+        console.log(err)
+      }
+    };
+    fetchOpenings();
+  }, [roles, categories]);
 
   return (
     <div className="career__container">
@@ -23,7 +45,7 @@ function Career() {
           </h2>
           <p>
             Join our amazing team as we make magic happen for businesses that
-            are strivining to make magic happen for their teams.
+            are striving to make magic happen for their teams.
           </p>
           <a href="#positions">
             <Button name="See open positions" />
@@ -124,19 +146,26 @@ function Career() {
         </form>
 
         <div className="jobs">
-          <div className="job__type">
-            <h3>Engineering</h3>
-            <span className="number__badge">3</span>
-          </div>
+          {categories.map((category, idx) => {
+            return <>
+              <div className="job__type" key={idx}>
+                <h3>{ category}</h3>
+                <span className="number__badge">3</span>
+              </div>
+              {roles.filter((role) => role.category === category).map((position) => {
+                return (
+                  <div key={position._id}>
+                    <PositionCard position={position} />
+                  </div>
+                );
+              })}
+            </>
+          })}
+         
           {Positions.map(position => {
             return (
               <div key={position.id}>
-                <PositionCard
-                  position={position}
-                  setOpenApplyMoodal={setOpenApplyModal}
-                  openApplyModal={openApplyModal}
-                />
-                
+                <PositionCard position={position} />
               </div>
             );
           })}
@@ -147,11 +176,7 @@ function Career() {
           {Positions2.map((position, index) => {
             return index < 2 ? (
               <div key={position.id}>
-                <PositionCard
-                  position={position}
-                  setOpenApplyMoodal={setOpenApplyModal}
-                  openApplyModal={openApplyModal}
-                />
+                <PositionCard position={position} />
               </div>
             ) : null;
           })}

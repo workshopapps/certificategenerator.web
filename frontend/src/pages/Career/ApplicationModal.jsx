@@ -3,8 +3,10 @@ import Button from "../../Component/button";
 import Inputfield from "../../Component/inputField";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { GrClose } from "react-icons/gr";
 
 const ApplicationModal = ({ position, openApplyModal, setOpenApplyModal }) => {
+
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const role = position.role;
@@ -50,6 +52,7 @@ const ApplicationModal = ({ position, openApplyModal, setOpenApplyModal }) => {
       {openApplyModal && (
         <div className="applyModal">
           <div className="applyModal__container">
+            <div className="close-icon"><GrClose onClick={()=> setOpenApplyModal(!openApplyModal)}/></div>
             <div className="applyModal__text">
               <h4 className="job__title">
                 Role: <span>{position.role}</span>
