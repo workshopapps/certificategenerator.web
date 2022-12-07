@@ -200,6 +200,7 @@ export default function Certificate({
                     }}
                     onMouseOver={uploadFileHandler}
                     title=" "
+                    // value={logo}
                     onChange={() => {
                       filevalidation();
                       checkIfFieldIsEmpty();
@@ -278,6 +279,7 @@ export default function Certificate({
             </label>
             <DatePicker
               selected={date}
+              value={issueDate}
               onChange={handleDate}
               dateFormat="dd/MM/yyyy"
             />
