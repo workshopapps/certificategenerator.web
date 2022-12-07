@@ -42,12 +42,7 @@ function CreateCertificateModal({
     setTimeout(() => {
       setLoading(false);
       navigate("/preview");
-      // setLogo("");
-      // setCertificateTitle("");
-      // setAwardeeName("");
-      // setMessage("");
-      // setIssuedBy("");
-      // setIssueDate(Date.now());
+      
     }, 1500);
     
   };
