@@ -8,6 +8,11 @@ const CareerSchema = new Schema(
       required: [true, "Must provide Job Role"],
       maxlength: [30, "Role can not be more than 30 characters"],
     },
+    category: {
+      type: String,
+      required: [true, "Must provide Job category"],
+      maxlength: [30, "category can not be more than 30 characters"],
+    },
     location: {
       type: String,
       required: [true, "Must provide Job location"],
