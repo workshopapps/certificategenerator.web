@@ -1,11 +1,11 @@
 import axios from "axios";
+import Papa from "papaparse";
 import Swal from "sweetalert2";
 import { CSVLink } from "react-csv";
-import { useState, useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useState, useContext, useEffect } from "react";
 
 import "./uploadCSV.style.scss";
-import SampleCsv from "./sample.csv";
 // component
 import Loader from "../Dashboard/Loader";
 import Button from "../../Component/button";
@@ -123,35 +123,31 @@ const UploadCSV = () => {
   const { array, setArray } = useContext(AppContext);
   const [loading, setLoading] = useState(false);
   const [errorFile, setErrorFile] = useState(false);
-
-  const fileReader = new FileReader();
-
-  // Function to set certificate data
-  const certificateData = string => {
-    const csvHeader = string.slice(0, string.indexOf("\n")).split(",");
-    const csvRows = string.slice(string.indexOf("\n") + 1).split("\n");
-    console.log("csv", csvRows);
-    const array = csvRows.map(i => {
-      const values = i.split(",");
-      const obj = csvHeader.reduce((object, header, index) => {
-        object[header] = values[index];
-        return object;
-      }, {});
-      return obj;
-    });
-    setArray(array);
-  };
-
-  console.log("File", array);
-
+  
+  // Function to handle file change
   const validateInput = e => {
     setErrorFile(false);
     const myFile = e.target.files[0];
     if (myFile.type !== "text/csv") {
       setErrorFile(true);
     }
+
+    // Passing csv file data to parse using Papa.parse
+    Papa.parse(e.target.files[0], {
+      header: true,
+      skipEmptyLines: true,
+      complete: function (results) {
+        setArray(results.data);
+      },
+    });
     setFile(myFile);
   };
+  
+  // Data stored in the local storage
+  useEffect(() => {
+    localStorage.setItem('dataKey', JSON.stringify(array));
+  }, [array]);
+
 
   let formData = new FormData();
 
@@ -170,13 +166,6 @@ const UploadCSV = () => {
   // Function to send uploaded file to the backend
   const handleUpload = async e => {
     e.preventDefault();
-    if (file) {
-      fileReader.onload = function (event) {
-        const text = event.target.result;
-        certificateData(text);
-      };
-      fileReader.readAsText(file);
-    }
     formData.append("file", file);
     setLoading(true);
     try {
@@ -185,7 +174,6 @@ const UploadCSV = () => {
         formData
       );
       if (res.status === 200) {
-        console.log("Response", res);
         setLoading(false);
         Toast.fire({
           icon: "success",
@@ -195,10 +183,9 @@ const UploadCSV = () => {
       }
     } catch (error) {
       setLoading(false);
-      console.log("Error", error);
       Toast.fire({
         icon: "error",
-        title: "Upload failed"
+        title: "Upload failed due to invalid field(s)"
       });
     }
   };
