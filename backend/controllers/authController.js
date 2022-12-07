@@ -7,23 +7,21 @@ const config = require("../utils/config");
 const UserToken = require("../models/UserToken");
 const { generateTokens } = require("../utils/generateToken");
 const { sendChangePasswordEmail } = require("../utils/email");
-const { verifyRefreshToken } = require("../middleware/verifyRefreshToken")
+const { verifyRefreshToken } = require("../middleware/verifyRefreshToken");
 
 const { OAuth2Client } = require("google-auth-library");
-const client = new OAuth2Client("52168821352-4sc11trj4qtq95051mrnrbinfgmla3ai.apps.googleusercontent.com");
+const client = new OAuth2Client(config.GOOGLE_CLIENT_ID);
 
 //function to verify user google access token
 async function verify(_token) {
   try {
     const ticket = await client.verifyIdToken({
       idToken: _token,
-      audience: "52168821352-4sc11trj4qtq95051mrnrbinfgmla3ai.apps.googleusercontent.com",
+      audience: config.GOOGLE_CLIENT_ID,
     });
     return ticket.getPayload();
   } catch (error) {
-    error = new Error("could not verify access token")
-    error.statusCode = 401
-    throw err
+    throw error;
   }
 }
 
@@ -41,40 +39,32 @@ const userSignup = async (req, res, next) => {
     let { accessToken, email, password, subscriptionPlan } = req.body;
 
     //google signup
-    try {
-      
-      if (req.body.accessToken) {
-        const payload = await verify(accessToken);
-        const googleUserId = payload["sub"];
-        email = payload["email"];
-  
-        //check db if user already exists
-        if (await userExist(email)) {
-          return res.status(401).json({ message: "email already in use" });
-        }
-  
-        //if not create new user
-        const newUser = new User({
-          email: email,
-          authenticationType: {
-            google: {
-              uuid: googleUserId,
-            },
+    if (req.body.accessToken) {
+      const payload = await verify(accessToken);
+      const googleUserId = payload["sub"];
+      email = payload["email"];
+
+      //check db if user already exists
+      if (await userExist(email)) {
+        return res.status(401).json({ message: "email already in use" });
+      }
+
+      //if not create new user
+      const newUser = new User({
+        email: email,
+        authenticationType: {
+          google: {
+            uuid: googleUserId,
           },
-          subscription: subscriptionPlan,
-        });
-        const createdUser = await newUser.save();
-        return res.status(201).json({
-          message: "New User has been created.",
-          id: createdUser._id,
-          email: createdUser.email,
-        });
-      }
-    } catch (error) {
-      if (!error.statusCode) {
-        error.statusCode = 500
-      }
-      return res.status(error.statusCode).json({ message: "could not signup using google", error: error });
+        },
+        subscription: subscriptionPlan,
+      });
+      const createdUser = await newUser.save();
+      return res.status(201).json({
+        message: "New User has been created.",
+        id: createdUser._id,
+        email: createdUser.email,
+      });
     }
 
     //Form signup
@@ -94,7 +84,9 @@ const userSignup = async (req, res, next) => {
 
     bcrypt.hash(password, 10, async function (err, hash) {
       if (err) {
-        return res.status(401).json({ message: "account could not be created" });
+        const error = new Error("account could not be created");
+        error.statusCode = 422;
+        throw error;
       }
       const newUser = new User({
         email: email,
@@ -112,11 +104,11 @@ const userSignup = async (req, res, next) => {
         email: createdUser.email,
       });
     });
-  } catch (error) {
-    if (!error.statusCode) {
-      error.statusCode = 500
+  } catch (err) {
+    if (!err.statusCode) {
+      err.statusCode = 500;
     }
-    return res.status(error.statusCode).json({ message: "could not signup user", error: error });
+    return res.status(err.statusCode).json(err);
   }
 };
 
@@ -198,7 +190,7 @@ const userSignup = async (req, res, next) => {
 // };
 
 const userLogin = async (req, res, next) => {
-  var { email, password } = req.body;
+  const { email, password } = req.body;
   try {
     if (req.body.accessToken) {
       try {
@@ -211,7 +203,7 @@ const userLogin = async (req, res, next) => {
             .status(401)
             .json({ message: "A user for this email could not be found!" });
         }
-        if (!user.authenticationType.google || googleUserId !== user.authenticationType.google.uuid) {
+        if (googleUserId !== user.authenticationType.google.uuid) {
           return res.status(401).json({
             message:
               "google login hasn't been linked to this email, please login with the form",
@@ -228,9 +220,11 @@ const userLogin = async (req, res, next) => {
         });
       } catch (error) {
         if (!error.statusCode) {
-          error.statusCode = 500
+          error.statusCode = 500;
         }
-        return res.status(error.statusCode).json({ message: "could not signin using google", error: error });
+        return res
+          .status(200)
+          .json({ message: "could not verify accessToken" });
       }
     }
 
@@ -240,14 +234,18 @@ const userLogin = async (req, res, next) => {
 
     const user = await User.findOne({ email });
     if (!user) {
-      return res.status(401).json("A user for this email could not be found!");
+      const error = new Error("A user for this email could not be found!");
+      error.statusCode = 401;
+      throw error;
     }
     const isEqual = await bcrypt.compare(
       password,
       user.authenticationType.form.password
     );
     if (!isEqual) {
-      return res.status(401).json("Wrong password!");
+      const error = new Error("Wrong password!");
+      error.statusCode = 401;
+      throw error;
     }
     const { accessToken, refreshToken } = await generateTokens(user);
 
@@ -259,22 +257,17 @@ const userLogin = async (req, res, next) => {
       subscription: user.subscription,
     });
   } catch (err) {
-    if (!err.statusCode) {
-      err.statusCode = 500
-    }
-    return res.status(err.statusCode).json({ message: "could not sign user in", err: err });
+    next(err);
   }
 };
 
 const refreshToken = async (req, res) => {
   verifyRefreshToken(req.body.refreshToken)
     .then(({ tokenDetails }) => {
-      const payload = { userId: tokenDetails.userId }
-      const accessToken = jwt.sign(
-        payload,
-        process.env.JWT_SECRET,
-        { expiresIn: "5h" }
-      );
+      const payload = { userId: tokenDetails.userId };
+      const accessToken = jwt.sign(payload, process.env.JWT_SECRET, {
+        expiresIn: "5h",
+      });
       res.status(200).json({
         error: false,
         accessToken,
@@ -282,7 +275,7 @@ const refreshToken = async (req, res) => {
       });
     })
     .catch((err) => res.status(400).json(err));
-}
+};
 
 const userLogout = async (req, res) => {
   try {
@@ -295,6 +288,7 @@ const userLogout = async (req, res) => {
     await userToken.remove();
     res.status(200).json({ error: false, message: "Logged Out Sucessfully" });
   } catch (error) {
+    console.log(err);
     res.status(500).json({ error: true, message: "Internal Server Error" });
   }
 };
@@ -330,9 +324,16 @@ const changePassword = async (req, res) => {
           .json({ message: "both passwords are not the same" });
       }
       const user = await User.findById(req.params.userId);
-      user.password = newpassword;
-      user.save();
-      res.status(200).send({ message: "password changed" });
+      bcrypt.hash(newpassword, 10, async function (err, hash) {
+        if (err) {
+          const error = new Error("password change process incomplete");
+          error.statusCode = 422;
+          throw error;
+        }
+        user.authenticationType.form.password = hash;
+        user.save();
+        res.status(200).send({ message: "password changed" });
+      });
     }
   } catch (error) {
     return res.status(401).json({ message: "invalid Token" });

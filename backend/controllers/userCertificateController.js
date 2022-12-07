@@ -1,5 +1,4 @@
 const User = require("../models/certificateModel");
-const UserBio = require("../models/userModel");
 const jwt = require("jsonwebtoken");
 const csvToJson = require("csvtojson");
 const { v4 } = require("uuid");
@@ -89,9 +88,13 @@ const deleteUserCertificates = async(req, res) => {
 
   const token = auth.split(" ")[1];
   const { userId } = jwt.decode(token);
-  const user = await UserBio.findById(userId).exec();
+  const user = await User.findOne({ userId }).exec();
   if (!user) return res.status(404).json({ message: "user not found" });
 
+  const foundUser = await User.findOneById(userid)
+  if (!foundUser) {
+    return res.status(400).json({ message: "id not found"})
+  }
   await User.deleteMany({ userId })
   res.status(204)
 }

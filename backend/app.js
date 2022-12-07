@@ -11,8 +11,6 @@ require("express-async-errors");
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-
-// Note: You MUST import the package in some way for tracing to work
 const fileUpload = require("express-fileupload");
 
 const app = express();
