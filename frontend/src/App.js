@@ -38,7 +38,13 @@ import { Privacy } from "./pages/PrivacyPolicy";
 import { AppProvider } from "./contexts/AppProvider";
 import Login from "./Component/Signup-Login/assets/Login";
 import Signup from "./Component/Signup-Login/assets/Sginup";
-import { HashRouter as Router, Navigate, Route, Routes } from "react-router-dom";
+import ProtectedRoutes from "./Component/ProtectedRoutes";
+import {
+  HashRouter as Router,
+  Navigate,
+  Route,
+  Routes
+} from "react-router-dom";
 
 function App() {
   const [logo, setLogo] = useState("");
@@ -49,10 +55,6 @@ function App() {
   const [awardeeName, setAwardeeName] = useState("");
   const [appLoading, setAppLoading] = useState(true);
   const [certificateTitle, setCertificateTitle] = useState("");
-  const user = localStorage.getItem('user') 
-  const token = localStorage.getItem('token') 
-
-  const RequireAuth = ({ children }) => user && token ? children : <Navigate to="/login"/>
 
   useEffect(() => {
     setTimeout(function () {
@@ -100,35 +102,15 @@ function App() {
                   />
                 }
               />
-              <Route 
-              path="/signup" 
-              element={<Signup access={access} setAccess={setAccess} />} />
+              <Route
+                path="/signup"
+                element={<Signup access={access} setAccess={setAccess} />}
+              />
               <Route
                 path="/login"
                 element={<Login access={access} setAccess={setAccess} />}
               />
               <Route path="/comingsoon" element={<ComingSoon />} />
-              <Route
-                path="/dashboard"
-                element={
-                  <RequireAuth>
-                    <Dashboard
-                    logo={logo}
-                    message={message}
-                    setLogo={setLogo}
-                    issuedBy={issuedBy}
-                    issueDate={issueDate}
-                    setMessage={setMessage}
-                    awardeeName={awardeeName}
-                    setIssuedBy={setIssuedBy}
-                    setIssueDate={setIssueDate}
-                    setAwardeeName={setAwardeeName}
-                    certificateTitle={certificateTitle}
-                    setCertificateTitle={setCertificateTitle}
-                  />
-                  </RequireAuth>
-                }
-              />
               <Route path="/templates" element={<Templates />} />
               <Route path="/career" element={<Career />} />
               <Route path="choice" element={<Choice />} />
@@ -151,18 +133,20 @@ function App() {
               <Route path="/FAQ" element={<FAQ />} />
               <Route path="/bulk_step" element={<BulkStep />} />
               <Route path="/edit_bulk" element={<EditBulk />} />
-              <Route path="/bulk_preview" element={
-                <AppProvider>
-                  <BulkPreview />
-                </AppProvider>
-              } />
+              <Route
+                path="/bulk_preview"
+                element={
+                  <AppProvider>
+                    <BulkPreview />
+                  </AppProvider>
+                }
+              />
               <Route
                 path="/pricing"
                 element={<Pricing access={access} setAccess={setAccess} />}
               />
               <Route path="/contact-us" element={<ContactUs />} />
               <Route path="/payment" element={<Checkout />} />
-              <Route path="/profile" element={<ProfilePage />} />
               <Route
                 path="/upload"
                 element={
@@ -182,6 +166,35 @@ function App() {
               <Route path="/fff2" element={<PasswordLinkSent />} />
               <Route path="/fff1" element={<ForgotPassword />} />
             </Route>
+            <Route
+              path="/dashboard"
+              element={
+                <ProtectedRoutes>
+                  <Dashboard
+                    logo={logo}
+                    message={message}
+                    setLogo={setLogo}
+                    issuedBy={issuedBy}
+                    issueDate={issueDate}
+                    setMessage={setMessage}
+                    awardeeName={awardeeName}
+                    setIssuedBy={setIssuedBy}
+                    setIssueDate={setIssueDate}
+                    setAwardeeName={setAwardeeName}
+                    certificateTitle={certificateTitle}
+                    setCertificateTitle={setCertificateTitle}
+                  />
+                </ProtectedRoutes>
+              }
+            />
+            <Route
+              path="/profile"
+              element={
+                <ProtectedRoutes>
+                  <ProfilePage />
+                </ProtectedRoutes>
+              }
+            />
             <Route path="*" element={<Error />} />
           </Routes>
         </div>
