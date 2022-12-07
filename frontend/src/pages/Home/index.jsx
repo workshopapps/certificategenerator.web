@@ -1,9 +1,10 @@
 import React from "react";
+import { Outlet } from "react-router-dom";
+
 import Hero from "./Hero";
 import Certificate from "./Certificate";
 import BulkStep from "./BulkStep";
 import Testimonials from "./Testimonials";
-import { Outlet } from "react-router-dom";
 import Partners from "./Partners";
 
 
