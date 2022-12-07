@@ -23,12 +23,11 @@ const ProfilePage = () => {
        // On file select (from the pop up)
       // Update the state
         const onFileChange = (e) => {   
+           e.preventDefault()
               setSelectedImage({ selectedFile: e.target.files[0] });
               setSelectedImage(URL.createObjectURL(e.target.files[0]))
               console.log(e.target.files[0]);
-        }
-        const handleSubmit = (e) =>{
-               e.preventDefault()
+                  e.preventDefault()
             const formData = new FormData()
             formData.append('selectedImage', selectedImage)
             axios.put("https://certgo.hng.tech/api/users/brand-kit", formData, {
@@ -36,6 +35,7 @@ const ProfilePage = () => {
                 console.log(res)
             })
         }
+
   // Handle user Logout
   const handleLogout = async(e) =>{
       e.preventDefault();  
@@ -79,15 +79,10 @@ const ProfilePage = () => {
       <div className="user-info">
         <div className="user-avatar">
           <img src={selectedImage || Avatar} className="avatar" alt="profile-pic" />
-          <form onSubmit={handleSubmit}>
             <label htmlFor="myFile" className="upload__label">
               <img src={Upload} alt="upload-icon" />
               <input type="file" id="myFile" accept="image/*" name="image" onChange={onFileChange}  />
             </label>
-            
-            <button type="submit">upload</button>
-          </form>
-          
         </div>
         <div className="mb-2">
           <h3>Olamiposi Benjamin</h3>
