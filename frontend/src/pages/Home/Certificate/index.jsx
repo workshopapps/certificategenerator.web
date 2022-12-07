@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import Loader from "../Loader";
+import {ButtonLoader} from "../../../Component/";
 import "./certificate.style.scss";
 import UploadCSV from "../../UploadCSV";
 import DatePicker from "react-datepicker";
@@ -286,7 +286,7 @@ export default function Certificate({
               disabled={disabledButton}
               className={`${disabledButton && "btn-disabled"} btn-success`}
             >
-              {loading ? <Loader /> : <span>Create Certificate</span>}
+              {loading ? <ButtonLoader /> : <span>Create Certificate</span>}
             </button>
           </form>
         </div>

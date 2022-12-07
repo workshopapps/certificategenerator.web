@@ -5,7 +5,7 @@ import { useState } from "react";
 import Swal from "sweetalert2";
 import useAppProvider from "../../../hooks/useAppProvider"
 import {axiosFormData} from "../../../api/axios";
-import Loader from "../Loader";
+import {ButtonLoader} from "../../../Component"
 import { useNavigate } from "react-router-dom";
 
 const UploadCsv = ({getUserCertificates}) => {
@@ -96,7 +96,7 @@ const UploadCsv = ({getUserCertificates}) => {
           alignItems: "center"
         }}
       >
-        <Loader />
+        <ButtonLoader />
       </div> : "Submit CSV"}</button>
     </article>
   );

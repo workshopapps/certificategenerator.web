@@ -1,12 +1,12 @@
 import React from "react";
-import axios from 'axios'
+// import axios from 'axios'
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import Input from "../../Component/Input";
 import Layout from "./ResetLayout";
 import { Toast } from '../../Component/ToastAlert'
 import Button from "../../Component/button";
-import Loader from "../Home/Loader";
+import {ButtonLoader} from '../../Component'
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState(); 
@@ -68,23 +68,10 @@ const ForgotPassword = () => {
                 throw new Error("Something went wrong");
               } 
               }}  catch (error) {
-              if(!error?.response){
-                setLoading(false)
-                  Toast.fire({
-                  icon: "error",
-                  title: "Network error"
-                });
-              }else{
-                setLoading(false)
-                  Toast.fire({
-                  icon: "error",
-                  title: "Failed changing password!"
-                });
+                  console.error(error);
+              }
           }
-    }
-   
-      
-    }
+    
     const element = [
       <form onSubmit={handleSubmit}>
          <Input
@@ -95,7 +82,7 @@ const ForgotPassword = () => {
             value={email}
             callback={e => setEmail(e.target.value)}           
           />
-          <Button type='submit' id={'submit'}  style={{width: '100%'}} >{loading? <Loader /> : <span>Send Link</span>}</Button>
+          <Button type='submit' id={'submit'}  style={{width: '100%'}} >{loading? <ButtonLoader /> : <span>Send Link</span>}</Button>
       </form>
   
 

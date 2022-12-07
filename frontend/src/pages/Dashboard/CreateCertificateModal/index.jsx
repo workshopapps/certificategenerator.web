@@ -5,7 +5,7 @@ import UploadCsv from "../UploadCsv";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "./createmodal.style.scss";
-import Loader from "../Loader"
+import {ButtonLoader} from "../../../Component"
 
 
 function CreateCertificateModal({
@@ -227,7 +227,7 @@ function CreateCertificateModal({
                   disabled={disabledButton}
                   className={`${disabledButton && "btn-disabled"} btn-success`}
                 >
-                  {loading ? <Loader/> : <span>Create Certificate</span>}
+                  {loading ? <ButtonLoader/> : <span>Create Certificate</span>}
                 </button>
               </div>
             </form>

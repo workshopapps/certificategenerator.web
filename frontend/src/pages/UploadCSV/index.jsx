@@ -7,7 +7,7 @@ import { useState, useContext, useEffect } from "react";
 
 import "./uploadCSV.style.scss";
 // component
-import Loader from "../Dashboard/Loader";
+import {ButtonLoader} from "../../Component";
 import Button from "../../Component/button";
 import AppContext from "../../contexts/AppProvider";
 // img
@@ -231,7 +231,7 @@ const UploadCSV = () => {
           style={{ margin: "1em auto" }}
           onClick={e => handleUpload(e)}
         >
-          {loading ? <Loader /> : "Submit CSV"}
+          {loading ? <ButtonLoader /> : "Submit CSV"}
         </Button>
       </div>
     </div>
