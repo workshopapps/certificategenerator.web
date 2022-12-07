@@ -8,7 +8,7 @@ import Button from "../../Component/button";
 import Inputfield from "../../Component/inputField";
 import TextArea from "../../Component/textarea";
 import "./contact.scss";
-import axios from "../../api";
+import axios from "../../api/axios";
 
 const ContactUs = () => {
   const [firstName, setFirstName] = useState("");
