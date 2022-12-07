@@ -141,7 +141,7 @@ function SinglePreview({
               <div id="single-preview-card">
                 <div id="single-preview-text">
                   <div id="preview-text">
-                    <img src={logo} style={{ width: "40px" }} alt="logo" />
+                    <img src={logo} style={{ width: "100px" }} alt="logo" />
                     <h1>{certificateTitle}</h1>
 
                     <p>THIS CERTIFIES THAT</p>
