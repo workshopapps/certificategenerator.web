@@ -95,8 +95,9 @@ app.use("/api/templates", template);
 app.use("/api/subscribe", newsletterRouter);
 app.use("/api/verifyEmail", verifyEmailRouter)
 app.use('/api/payment', paymentRouter);
-app.use(Sentry.Handlers.errorHandler());
+app.use('/api/users', userRouter);
 
+app.use(Sentry.Handlers.errorHandler());
 
 mongoose.connection.once("open", () => {
   console.log("Connected to DB");
