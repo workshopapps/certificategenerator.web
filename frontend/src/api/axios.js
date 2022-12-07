@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseURL="https://certgo.hng.tech/api"
+const baseURL="https://certify-api.onrender.com/api"
 const token = localStorage.getItem('token')
 console.log(token);
 
