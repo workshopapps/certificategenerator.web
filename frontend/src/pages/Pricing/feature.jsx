@@ -23,15 +23,15 @@ function Feature() {
           <tbody>
             <tr>
               <td>Price (monthly billing)</td>
-              <td>₦0/month</td>
-              <td>₦2000/month</td>
-              <td>₦5000/month</td>
+              <td>$0/month</td>
+              <td>$2.99/month</td>
+              <td>$6.99/month</td>
             </tr>
             <tr>
               <td>Price (annual billing)</td>
-              <td>₦0/year</td>
-              <td>₦12,000/year</td>
-              <td>₦55,000/year</td>
+              <td>$0/year</td>
+              <td>$14.99/year</td>
+              <td>$74.99/year</td>
             </tr>
             <tr>
               <td>Monthly Active Users</td>
