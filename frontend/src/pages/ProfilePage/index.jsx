@@ -23,14 +23,14 @@ const ProfilePage = () => {
   const handleLogout = async(e) =>{
     setLoading(true);
       e.preventDefault();  
-         await axios.delete('https://certify-api.onrender.com/api/auth/logout')
+         await axios.delete('https://certgo.hng.tech/api/auth/logout')
           .then((res) => {       
              if(res.status === 200){
-               console.log('logged out');
-              setLoading(false);
-              //navigate back to login
-              navigate('/login') 
-             localStorage.clear()
+               console.log('logged out'); 
+               localStorage.clear()
+                setLoading(false); 
+                //navigate back to login
+                navigate('/login') 
              }
           }).catch(err =>{
             console.log(err || 'couldnt log out')

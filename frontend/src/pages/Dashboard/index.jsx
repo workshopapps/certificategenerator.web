@@ -37,7 +37,7 @@ const Dashboard = ({
 
     // On file select (from the pop up)
   // Update the state
-    const onFileChange = (e) => {   
+    const onFileChange = async (e) => {   
         e.preventDefault()
           setSelectedImage({ selectedFile: e.target.files[0] });
           setSelectedImage(URL.createObjectURL(e.target.files[0]))
@@ -45,7 +45,7 @@ const Dashboard = ({
               e.preventDefault()
         const formData = new FormData()
         formData.append('selectedImage', selectedImage)
-        axios.put("https://certgo.hng.tech/api/users/brand-kit", formData, {
+         await axios.put("https://certgo.hng.tech/api/users/brand-kit", formData, {
         }).then(res => {
             console.log(res)
         })
@@ -141,15 +141,13 @@ const Dashboard = ({
     <>
       <div className="dashboard">
         <div className="dashboard__hero-section">
-          <div className="dashboard__profile-pic">
-            <span>
-              <img src={selectedImage || profilePic} alt="brand-kit" className="brandkit" />   
+          <div className="dashboard__profile-pic-wrapper">
+            <span className="dashboard__profile-pic">
+              <img src={selectedImage || profilePic} alt="brand-kit" />   
             </span>
               <label htmlFor="myFile" className="dashboard__upload-label">
-                <span className="upload-icon">
                    <img src={Upload} alt="upload-icon" />
-                </span>
-              <input type="file" id="myFile" accept="image/*" name="image" onChange={onFileChange}  />
+                   <input type="file" id="myFile" accept="image/*" name="image" onChange={onFileChange}  />
             </label>
           </div>
           <div className="flexx">

@@ -79,126 +79,126 @@ function App() {
   return (
     <>
       {/* <Router> */}
-        <Navbar />
-        <div className="App">
-          <Routes>
-            <Route path="/" element={<Layout />}>
-              <Route
-                index
-                element={
-                  <Home
-                    logo={logo}
-                    message={message}
-                    setLogo={setLogo}
-                    issuedBy={issuedBy}
-                    issueDate={issueDate}
-                    setMessage={setMessage}
-                    awardeeName={awardeeName}
-                    setIssuedBy={setIssuedBy}
-                    setIssueDate={setIssueDate}
-                    setAwardeeName={setAwardeeName}
-                    certificateTitle={certificateTitle}
-                    setCertificateTitle={setCertificateTitle}
-                  />
-                }
-              />
-              <Route
-                path="/signup"
-                element={<Signup access={access} setAccess={setAccess} />}
-              />
-              <Route
-                path="/login"
-                element={<Login access={access} setAccess={setAccess} />}
-              />
-              <Route path="/comingsoon" element={<ComingSoon />} />
-              <Route path="/templates" element={<Templates />} />
-              <Route path="/career" element={<Career />} />
-              <Route path="choice" element={<Choice />} />
-              <Route path="/team" element={<Team />} />
-              <Route path="/terms" element={<Terms />} />
-              <Route
-                path="/preview"
-                element={
-                  <Preview
-                    logo={logo}
-                    message={message}
-                    issuedBy={issuedBy}
-                    issueDate={issueDate}
-                    awardeeName={awardeeName}
-                    certificateTitle={certificateTitle}
-                  />
-                }
-              />
-              <Route path="/aboutUs" element={<AboutUs />} />
-              <Route path="/FAQ" element={<FAQ />} />
-              <Route path="/bulk_step" element={<BulkStep />} />
-              <Route path="/edit_bulk" element={<EditBulk />} />
-              <Route
-                path="/bulk_preview"
-                element={
-                  <AppProvider>
-                    <BulkPreview />
-                  </AppProvider>
-                }
-              />
-              <Route
-                path="/pricing"
-                element={<Pricing access={access} setAccess={setAccess} />}
-              />
-              <Route path="/contact-us" element={<ContactUs />} />
-              <Route path="/payment" element={<Checkout />} />
-              <Route
-                path="/upload"
-                element={
-                  <AppProvider>
-                    <UploadCSV />
-                  </AppProvider>
-                }
-              />
-              <Route path="/privacy" element={<Privacy />} />
-              {/* ResetPassword */}
-              <Route path="/fff5" element={<PasswordChangeSuccessfully />} />
-              <Route
-                path="/changepassword/:userId/:token"
-                element={<ResetPassword />}
-              />
-              <Route path="/fff3" element={<ChangePassword />} />
-              <Route path="/fff2" element={<PasswordLinkSent />} />
-              <Route path="/fff1" element={<ForgotPassword />} />
-            </Route>
+      <Navbar />
+      <div className="App">
+        <Routes>
+          <Route path="/" element={<Layout />}>
             <Route
-              path="/dashboard"
+              index
               element={
-                <ProtectedRoutes>
-                  <Dashboard
-                    logo={logo}
-                    message={message}
-                    setLogo={setLogo}
-                    issuedBy={issuedBy}
-                    issueDate={issueDate}
-                    setMessage={setMessage}
-                    awardeeName={awardeeName}
-                    setIssuedBy={setIssuedBy}
-                    setIssueDate={setIssueDate}
-                    setAwardeeName={setAwardeeName}
-                    certificateTitle={certificateTitle}
-                    setCertificateTitle={setCertificateTitle}
-                  />
-                </ProtectedRoutes>
+                <Home
+                  logo={logo}
+                  message={message}
+                  setLogo={setLogo}
+                  issuedBy={issuedBy}
+                  issueDate={issueDate}
+                  setMessage={setMessage}
+                  awardeeName={awardeeName}
+                  setIssuedBy={setIssuedBy}
+                  setIssueDate={setIssueDate}
+                  setAwardeeName={setAwardeeName}
+                  certificateTitle={certificateTitle}
+                  setCertificateTitle={setCertificateTitle}
+                />
               }
             />
             <Route
-              path="/profile"
+              path="/signup"
+              element={<Signup access={access} setAccess={setAccess} />}
+            />
+            <Route
+              path="/login"
+              element={<Login access={access} setAccess={setAccess} />}
+            />
+            <Route path="/comingsoon" element={<ComingSoon />} />
+            <Route path="/templates" element={<Templates />} />
+            <Route path="/career" element={<Career />} />
+            <Route path="choice" element={<Choice />} />
+            <Route path="/team" element={<Team />} />
+            <Route path="/terms" element={<Terms />} />
+            <Route
+              path="/preview"
               element={
-                <ProtectedRoutes>
-                  <ProfilePage />
-                </ProtectedRoutes>
+                <Preview
+                  logo={logo}
+                  message={message}
+                  issuedBy={issuedBy}
+                  issueDate={issueDate}
+                  awardeeName={awardeeName}
+                  certificateTitle={certificateTitle}
+                />
               }
             />
-            <Route path="*" element={<Error />} />
-          </Routes>
-        </div>
-        {/* <Footer /> */}
+            <Route path="/aboutUs" element={<AboutUs />} />
+            <Route path="/FAQ" element={<FAQ />} />
+            <Route path="/bulk_step" element={<BulkStep />} />
+            <Route path="/edit_bulk" element={<EditBulk />} />
+            <Route
+              path="/bulk_preview"
+              element={
+                <AppProvider>
+                  <BulkPreview />
+                </AppProvider>
+              }
+            />
+            <Route
+              path="/pricing"
+              element={<Pricing access={access} setAccess={setAccess} />}
+            />
+            <Route path="/contact-us" element={<ContactUs />} />
+            <Route path="/payment" element={<Checkout />} />
+            <Route
+              path="/upload"
+              element={
+                <AppProvider>
+                  <UploadCSV />
+                </AppProvider>
+              }
+            />
+            <Route path="/privacy" element={<Privacy />} />
+            {/* ResetPassword */}
+            <Route path="/fff5" element={<PasswordChangeSuccessfully />} />
+            <Route
+              path="/changepassword/:userId/:token"
+              element={<ResetPassword />}
+            />
+            <Route path="/fff3" element={<ChangePassword />} />
+            <Route path="/fff2" element={<PasswordLinkSent />} />
+            <Route path="/forgotpassword" element={<ForgotPassword />} />
+          </Route>
+          <Route
+            path="/dashboard"
+            element={
+              <ProtectedRoutes>
+                <Dashboard
+                  logo={logo}
+                  message={message}
+                  setLogo={setLogo}
+                  issuedBy={issuedBy}
+                  issueDate={issueDate}
+                  setMessage={setMessage}
+                  awardeeName={awardeeName}
+                  setIssuedBy={setIssuedBy}
+                  setIssueDate={setIssueDate}
+                  setAwardeeName={setAwardeeName}
+                  certificateTitle={certificateTitle}
+                  setCertificateTitle={setCertificateTitle}
+                />
+              </ProtectedRoutes>
+            }
+          />
+          <Route
+            path="/profile"
+            element={
+              <ProtectedRoutes>
+                <ProfilePage />
+              </ProtectedRoutes>
+            }
+          />
+          <Route path="*" element={<Error />} />
+        </Routes>
+      </div>
+      {/* <Footer /> */}
       {/* </Router> */}
     </>
   );
