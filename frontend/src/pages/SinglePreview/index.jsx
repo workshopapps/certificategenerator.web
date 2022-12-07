@@ -9,7 +9,7 @@ import certificate3 from "../../assets/images/SinglePreview/Completion - Portrai
 import { exportComponentAsPNG } from "react-component-export-image";
 import html2canvas from "html2canvas";
 import { jsPDF } from "jspdf";
-import axios from "axios";
+import { axiosFormData } from "../../api/axios";
 import Swal from "sweetalert2";
 
 function SinglePreview({
@@ -21,8 +21,12 @@ function SinglePreview({
   issueDate
 }) {
   const [openModal, setOpenModal] = useState(false);
-  const [isAuntheticated, setIsAuntheticated] = useState(true);
+  const [isAuntheticated, setIsAuntheticated] = useState(false);
   const [modalMessage, setModalMessage] = useState("");
+
+  localStorage.getItem("user", "token")
+    ? setIsAuntheticated(true)
+    : setIsAuntheticated(false);
 
   function handleUnloggedUsers(e) {
     e.preventDefault();
@@ -83,8 +87,8 @@ function SinglePreview({
       formData.append("file", data);
 
       // send the form data
-      const uploadUrl = "https://certgo.hng.tech/api/sendEmailNotifications";
-      let response = await axios.post(uploadUrl, formData, {
+      const uploadUrl = "/sendEmailNotifications";
+      let response = await axiosFormData.post(uploadUrl, formData, {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "multipart/form-data"

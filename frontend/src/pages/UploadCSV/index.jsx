@@ -170,7 +170,7 @@ const UploadCSV = () => {
     setLoading(true);
     try {
       const res = await axios.post(
-        "https://certify-api.onrender.com/api/upload/csv",
+        "https://certgo.hng.tech/api/upload/csv",
         formData
       );
       if (res.status === 200) {
@@ -180,13 +180,25 @@ const UploadCSV = () => {
           title: "Successfully uploaded"
         });
         navigate("/bulk_preview");
+      } else if (res.status === 502) {
+        setLoading(false);
+        Toast.fire({
+          icon: "success",
+          title: "502 Bad Gateway"
+        });
+      } else if (res.status === 400) {
+        setLoading(false);
+        Toast.fire({
+          icon: "success",
+          title: "Missing file"
+        });
       }
     } catch (error) {
       setLoading(false);
       Toast.fire({
         icon: "error",
-        title: error.message
-        // title: "Upload failed due to invalid field(s)"
+        // title: error.message
+        title: "Upload failed due to invalid field(s)"
       });
     }
   };
