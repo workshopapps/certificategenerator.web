@@ -19,18 +19,20 @@ const ProfilePage = () => {
   useremail:""
 })
 
+
   // Handle user Logout
   const handleLogout = async(e) =>{
     setLoading(true);
       e.preventDefault();  
-         await axios.delete('https://certgo.hng.tech/api/auth/logout')
+         await axios.delete('https://certify-api.onrender.com/api/auth/logout')
           .then((res) => {       
              if(res.status === 200){
-               console.log('logged out'); 
-               localStorage.clear()
-                setLoading(false); 
-                //navigate back to login
-                navigate('/login') 
+               console.log('logged out');
+              setLoading(false);
+              //navigate back to login
+              navigate('/login') 
+             localStorage.removeItem('token');
+             localStorage.removeItem('user');
              }
           }).catch(err =>{
             console.log(err || 'couldnt log out')
@@ -41,8 +43,6 @@ const ProfilePage = () => {
               });
           }) 
   }
-
-
   
   const url= "https://certify-api.onrender.com/api/pricing"
   function handlePost(e){
