@@ -218,7 +218,7 @@ const [eventLink, setEventLink] = useState("")
         <div className="table-wrapper">
           <div className="table-header">
             <p>CERTIFICATE DASHBOARD</p>
-            <h5 style = {{padding:'50px!important'}}>Certificate Download Link : <a href ={{eventLink}} target = "_blank">Click Here</a></h5>
+            <h5 style = {{padding:'50px!important'}}>Certificate Download Link : {eventLink}</h5>
             {data.length > 0 ? (
               <div style = {{display: 'flex'}}>
                 <Button className="" onClick={() => setOpenModal(true)}>
