@@ -14,7 +14,6 @@ const [awardee, setAwardee] = useState("")
 const [description, setDescription] = useState("")
 const [date, setDate] = useState("")
 const [signed, setSigned] = useState("")
-
 var token = localStorage.getItem("token");
 const userEventId = localStorage.getItem("_id");
 
