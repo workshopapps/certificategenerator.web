@@ -19,16 +19,22 @@ export default function Hero() {
       <div className="center justify-between hero">
         <div className="hero-left">
           <p className="hero-text sora">
-            Create and download your{" "}
+            {/* Create and download your{" "}
             <span className="emphasized">professional certificates</span> for
-            <span className="emphasized"> free</span>
+            <span className="emphasized"> free</span> */}
+            <span className="emphasized">Certgo</span> - Create and Download
+            <span className="emphasized"> Free Online Certificates</span>
           </p>
           <p className="work-sans line-height hero-caption">
-            Generate professionally designed certificates for your staff,
-            students etc.
+            {/* Generate professionally designed certificates for your staff,
+            students etc. */}
+            Create any type of certificate using our free online
+            certificate maker. No sign ups are required. Create, share and
+            download amazing single or bulk certificates within split seconds
+            and in any format of your choice.
           </p>
           {/* <a href="#certificatee"> */}
-            <Button onClick={handleClick} name={"Create certificate"} />
+          <Button onClick={handleClick} name={"Create certificate"} />
           {/* </a> */}
           {/* <button className="hero-button">Create a certificate now</button> */}
           <p className="mobile-only">It is free and easy to use</p>
@@ -54,7 +60,7 @@ export default function Hero() {
           <p>Create and Send single and bulk certificate.</p>
           <div ref={ref}></div>
         </div>
-      </div >
+      </div>
     </>
   );
 }
