@@ -24,21 +24,6 @@ Sentry.init({
   tracesSampleRate: 1.0,
 });
 
-const transaction = Sentry.startTransaction({
-op: 'test',
-  name: 'My First Test Transaction',
-});
-
-setTimeout(() => {
-  try {
-    foo();
-  } catch (e) {
-    Sentry.captureException(e);
-  } finally {
-    transaction.finish();
-  }
-}, 99);
-
 // RequestHandler creates a separate execution context using domains, so that every
 // transaction/span/breadcrumb is attached to its own Hub instance
 app.use(Sentry.Handlers.requestHandler());
@@ -90,9 +75,6 @@ app.use(express.urlencoded({ extended: false }));
 app.get("/api", (req, res) => {
   res.send("Welcome to HNG-Certificate Api");
 });
-app.get("/debug-sentry", function mainHandler(req, res) {
-  throw new Error("My first Sentry error!");
-});
 
 app.use("/api/auth", auth);
 app.use("/api/upload/csv", csvRouter);
@@ -113,8 +95,9 @@ app.use("/api/templates", template);
 app.use("/api/subscribe", newsletterRouter);
 app.use("/api/verifyEmail", verifyEmailRouter)
 app.use('/api/payment', paymentRouter);
-app.use(Sentry.Handlers.errorHandler());
+app.use('/api/users', userRouter);
 
+app.use(Sentry.Handlers.errorHandler());
 
 mongoose.connection.once("open", () => {
   console.log("Connected to DB");

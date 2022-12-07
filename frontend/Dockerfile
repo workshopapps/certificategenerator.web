@@ -1,4 +1,4 @@
-FROM node:16.18.1 as builder-step
+FROM node:16.10.0 as builder-step
 
 WORKDIR /frontend
 
