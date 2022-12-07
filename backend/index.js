@@ -10,7 +10,7 @@ const Tracing = require("@sentry/tracing");
 const app = express();
 
 Sentry.init({
-  dsn: "https://3c1942277c89447ab6c9b438105f7516@o4504279338647552.ingest.sentry.io/4504284668952576",
+  dsn: "https://68acc277a0e744eab086a7b236226082@o4504279338647552.ingest.sentry.io/4504285079404544",
   integrations: [
     // enable HTTP calls tracing
     new Sentry.Integrations.Http({ tracing: true }),
@@ -23,6 +23,21 @@ Sentry.init({
   // We recommend adjusting this value in production
   tracesSampleRate: 1.0,
 });
+
+const transaction = Sentry.startTransaction({
+op: 'test',
+  name: 'My First Test Transaction',
+});
+
+setTimeout(() => {
+  try {
+    foo();
+  } catch (e) {
+    Sentry.captureException(e);
+  } finally {
+    transaction.finish();
+  }
+}, 99);
 
 // RequestHandler creates a separate execution context using domains, so that every
 // transaction/span/breadcrumb is attached to its own Hub instance
@@ -74,6 +89,9 @@ app.use(express.urlencoded({ extended: false }));
 
 app.get("/api", (req, res) => {
   res.send("Welcome to HNG-Certificate Api");
+});
+app.get("/debug-sentry", function mainHandler(req, res) {
+  throw new Error("My first Sentry error!");
 });
 
 app.use("/api/auth", auth);
