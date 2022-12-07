@@ -40,8 +40,8 @@ import Login from "./Component/Signup-Login/assets/Login";
 import Signup from "./Component/Signup-Login/assets/Sginup";
 import ProtectedRoutes from "./Component/ProtectedRoutes";
 import {
-  HashRouter as Router,
-  Navigate,
+  // HashRouter as Router,
+  // Navigate,
   Route,
   Routes
 } from "react-router-dom";
@@ -78,7 +78,7 @@ function App() {
 
   return (
     <>
-      <Router>
+      {/* <Router> */}
         <Navbar />
         <div className="App">
           <Routes>
@@ -199,7 +199,7 @@ function App() {
           </Routes>
         </div>
         {/* <Footer /> */}
-      </Router>
+      {/* </Router> */}
     </>
   );
 }
