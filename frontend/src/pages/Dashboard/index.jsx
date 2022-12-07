@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import {Link, useParams} from "react-router-dom";
 import "./dashboard.style.scss";
 import profilePic from "../../assets/images/Ellipse4.png";
 import Card from "./Card";
@@ -10,6 +11,7 @@ import useAppProvider from "../../hooks/useAppProvider";
 import Swal from "sweetalert2";
 import { Loader } from "../../Component";
 import TableRow from "./TableRow";
+
 
 const Dashboard = ({
   logo,
@@ -30,7 +32,7 @@ const Dashboard = ({
   const [openModal, setOpenModal] = useState(false);
   const [loading, setLoading] = useState(false);
   const [pricing, setPricing] = useState("");
-  const [certificates, setCertificates] = useState([]);
+  const [ certificates, setCertificates ] = useState([]);
 
   const Toast = Swal.mixin({
     toast: true,
@@ -54,52 +56,63 @@ const Dashboard = ({
     const res = await axiosPrivate.get("/certificates");
     setData(res.data);
   };
-
-  const handleDeleteCertificate = async id => {
-    console.log(id);
-    await axiosPrivate.delete(`/certificates/${id}`);
-    Toast.fire({
-      icon: "success",
-      title: "Successfully deleted"
-    });
-    const res = await axiosPrivate.get("/certificates");
-    setData(res.data);
-  };
-
-  const getUserCertificates = async () => {
-    try {
-      const response = await axiosPrivate.get("/certificates");
-      let sub = localStorage.getItem("subscription");
-      setPricing(sub);
-      console.log(response);
-      if (response.status === 404) {
-        Toast.fire({
-          icon: "error",
-          title: "Page not found"
-        });
-      } else if (response.status === 401) {
-        Toast.fire({
-          icon: "error",
-          title: "Request Failed"
-        });
-      } else if (response.status === 500) {
-        Toast.fire({
-          icon: "error",
-          title: "Internal Server Error"
-        });
-      } else {
-        setData(response.data);
-        console.log(response.data);
-        updateCount(response.data);
+  
+  useEffect(() => {
+    const getUserCertificates = async () => {
+      try {
+        const response = await axiosPrivate.get("/certificates");
+        let sub = localStorage.getItem("subscription");
+        setPricing(sub);
+        console.log(response);
+        if (response.status === 404) {
+          Toast.fire({
+            icon: "error",
+            title: "Page not found"
+          });
+        } else if (response.status === 401) {
+          Toast.fire({
+            icon: "error",
+            title: "Request Failed"
+          });
+        } else if (response.status === 500) {
+          Toast.fire({
+            icon: "error",
+            title: "Internal Server Error"
+          });
+        } else {
+          setData(response.data);
+          console.log(response.data);
+        }
+      } catch (error) {
+        console.error(error.message);
       }
-    } catch (error) {
-      console.error(error.message);
-    }
-  };
+    };
 
-  const updateCount = param => {
-    const cardSnapshot = [...cardData];
-    const pendingCount = param.filter(item => item.status === "pending").length;
+    getUserCertificates();
+    // getIssuedCertificates();
+    // updateCount()
+  }, [certificates]);
+
+  useEffect(() => {
+    const getIssuedCertificates = async () => {
+      try {
+        console.log("issued");
+        const response = await axiosPrivate.get(
+          "/certificates/issuedCertificates"
+        );
+        await setTotalCertificates(response.data.issuedCertificates);
+        updateCount();
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    const updateCount = () => {
+      console.log("updTE", totalCertificates);
+      const cardSnapshot = [...cardData];
+      const pendingCount = data.filter(
+        item => item.status === "pending"
+      ).length;
+      setPending(pendingCount);
 
     const issuedCount = param.filter(item => item.status === "issued").length;
 
@@ -129,9 +142,55 @@ const Dashboard = ({
     getUserCertificates();
   }, []);
 
+  //GET EVENTS
+  const getEvents = async () => {
+    
+   return fetch("https://certgo.hng.tech/api/events", {
+    method: "GET",
+    headers: {
+      "Authorization" : `Bearer ${token}`,
+      "Content-Type": "application/json"
+    }
+  })
+     
+    .then(async response => {
+      const result = await response.json()
+      console.log(result.events[1])
+      var link = result.events[0]._id
+      setEventLink(`https://certgo.hng.tech/generate/:${link}`)
+      
+    })
+      
+   }
+
+  //GENERATE LINK
+  const title = "hello tolu"
+  var token = localStorage.getItem("token")
+   const handleGenerate = async () => {
+    
+    fetch("https://certgo.hng.tech/api/events", {
+      method: "POST",
+      headers: {
+        "Authorization" : `Bearer ${token}`,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ title:title })
+    })
+    .then(async response => {
+      const result = await response.json()
+       
+      localStorage.setItem("_id", result.event._id);
+      localStorage.setItem("eventTitle", result.event.title);
+      localStorage.setItem("eventCustomURI", result.event.customURI)
+      
+         })
+    getEvents();
+  }
+
   return (
     <>
       <div className="dashboard">
+      
         <div className="dashboard__hero-section">
           <div className="dashboard__profile-pic">
             <img src={profilePic} alt="Avatar" />
@@ -164,11 +223,17 @@ const Dashboard = ({
         <div className="table-wrapper">
           <div className="table-header">
             <p>CERTIFICATE DASHBOARD</p>
+            <h5 style = {{padding:'50px!important'}}>Certificate Download Link : {eventLink}</h5>
             {data.length > 0 ? (
-              <div>
+             
+              <div style = {{display :"flex"}}>
                 <Button className="" onClick={() => setOpenModal(true)}>
                   Create New Certificate
                 </Button>
+                 <Button style = {{marginLeft: '20px'}} className="" onClick={handleGenerate}>
+                  {/* <Link to = {`/generate/:${generateId}`}>Generate Link</Link> */}
+               Generate Link
+                </Button> 
               </div>
             ) : null}
           </div>
@@ -216,7 +281,7 @@ const Dashboard = ({
                 </tbody>
               )}
             </table>
-
+        
             {data.length === 0 && (
               <div className="null-table-data">
                 <div>
@@ -230,6 +295,8 @@ const Dashboard = ({
                 </div>
               </div>
             )}
+
+        
           </div>
         </div>
       </div>
