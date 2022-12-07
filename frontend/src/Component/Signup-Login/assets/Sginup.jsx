@@ -9,7 +9,7 @@ import googleSVG from "./assets/google.svg";
 import cert from "./assets/Cert.png";
 import Input from "../../Input";
 import Button from "../../button";
-import Swal from "sweetalert2";
+import { Toast } from '../../ToastAlert'
 
 
 const Signup = ({ access, setAccess }) => {
@@ -48,17 +48,6 @@ const Signup = ({ access, setAccess }) => {
         };
       });
     }
-     const Toast = Swal.mixin({
-      toast: true,
-      position: "top-end",
-      showConfirmButton: false,
-      timer: 3000,
-      timerProgressBar: true,
-      didOpen: toast => {
-        toast.addEventListener("mouseenter", Swal.stopTimer);
-        toast.addEventListener("mouseleave", Swal.resumeTimer);
-      }
-    });
 
 
   async function createNewUser(email, password) {

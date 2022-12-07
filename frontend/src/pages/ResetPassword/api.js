@@ -10,3 +10,6 @@ const axiosInstance = axios.create({
 export const resetPassword = userData => {
   return axiosInstance.post(`/changepassword/:userId/:token`, userData);
 };
+export const ForgotPassword = userData => {
+  return axiosInstance.post(`/fff1`, userData);
+};
