@@ -4,17 +4,17 @@ import { useEffect } from 'react';
 import { ReactComponent as ActionIcon } from "./assets/actionIcon.svg";
 import "./dashboard.style.scss"
 
-const TableRow = ({item, handleChangeCertificateStatus, handleDeleteCertificate, getUserCertificates }) => {
+const TableRow = ({item, handleChangeCertificateStatus, handleDeleteCertificate, getUserCertificates, wrapper}) => {
   const drop = useRef()
   const handleDelete = async (id) => {
     await handleDeleteCertificate(id)
-    getUserCertificates()
     setOpenOptions(!openOptions)
+    getUserCertificates()
   }
   const handleStatus = async (id, status) => {
     await handleChangeCertificateStatus(id, status)
-    getUserCertificates()
     setOpenOptions(!openOptions)
+    getUserCertificates()
   }
   const [openOptions, setOpenOptions] = useState(false);
   useEffect(() => {
