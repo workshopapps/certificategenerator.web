@@ -4,78 +4,89 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import Input from "../../Component/Input";
 import Layout from "./ResetLayout";
-import Swal from "sweetalert2";
+import { Toast } from '../../Component/ToastAlert'
+import Button from "../../Component/button";
+import Loader from "../Home/Loader";
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState(); 
-const navigate = useNavigate()
-
-  const Toast = Swal.mixin({
-    toast: true,
-    position: "top-end",
-    showConfirmButton: false,
-    timer: 3000,
-    timerProgressBar: true,
-    didOpen: toast => {
-      toast.addEventListener("mouseenter", Swal.stopTimer);
-      toast.addEventListener("mouseleave", Swal.resumeTimer);
-    }
-  });
+  const [loading, setLoading] = useState(false)
+  const navigate = useNavigate()
   
 
   const h2 = "Forgot Password?";
   const p =
     "Please enter your registered email address below and a link will be sent to you to reset your password";
 
-    const handleSubmit = async e =>{
-      e.preventDefault()
+    async function forgotPassword({email}) {
+    return fetch(`https://certify-api.onrender.com/api/auth/forgotpassword`, {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+        // "Access-Control-Allow-Methods": "POST",     
+      },
+      body: JSON.stringify({ email: email})
+    });
+  }
+    const handleSubmit = async e =>{ 
+       e.preventDefault()
+      setLoading(true)
         try {
             if(email === '' || email === null){
             alert('email cannot be empty')
             return false;
        }else{
-           await axios
-            .post('https://certify-api.onrender.com/api/auth/forgotpassword', {email})
-             .then((response) => {
-                console.log(response);
-                console.log(response.status);
+        const response = await forgotPassword({email});
               if (response.status === 200 || response.status === 201) {
                 Toast.fire({
                   icon: "success",
                   title: "password reset link sent to your email account"
                 });
+                setLoading(false)
                 navigate("/fff2");
               }else if (response.status === 400) {
                 Toast.fire({
                   icon: "error",
                   title: "User does not exists"
                 });
+                setLoading(false)
                 throw new Error("User does not exists");
               } else if (response.status === 500) {
                 Toast.fire({
                   icon: "error",
                   title: "Server Error"
                 });
-
+                setLoading(false)
                 throw new Error("Server Error");
               } else {
                 Toast.fire({
                   icon: "error",
                   title: "Something went wrong"
                 });
+                setLoading(false)
                 throw new Error("Something went wrong");
               } 
-            }).catch(err => {
-              console.log(err.message);
-            })
-       }
-        } catch (error) {
-          
-        }
+              }}  catch (error) {
+              if(!error?.response){
+                setLoading(false)
+                  Toast.fire({
+                  icon: "error",
+                  title: "Network error"
+                });
+              }else{
+                setLoading(false)
+                  Toast.fire({
+                  icon: "error",
+                  title: "Failed changing password!"
+                });
+          }
+    }
+   
       
     }
     const element = [
-      <form>
+      <form onSubmit={handleSubmit}>
          <Input
             type="email"
             id="email"
@@ -84,7 +95,7 @@ const navigate = useNavigate()
             value={email}
             callback={e => setEmail(e.target.value)}           
           />
-          <Input type='submit' id={'submit'} callback={handleSubmit} name={"Send Link"} style={{width: '100%'}} />
+          <Button type='submit' id={'submit'}  style={{width: '100%'}} >{loading? <Loader /> : <span>Send Link</span>}</Button>
       </form>
   
 

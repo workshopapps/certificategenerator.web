@@ -8,7 +8,7 @@ export const data = [
         sub: {
           subType: "Basic",
           header: "Get started for free",
-          amount: "₦0",
+          amount: "$0",
           text: "Key Features",
           linkTo: "/signup",
           AfterLogin: "/",
@@ -42,7 +42,7 @@ export const data = [
         sub: {
           subType: "Standard",
           header: "More features customised for you",
-          amount: "₦2000",
+          amount: "$2.99",
           text: "Everything in Lite +",
           linkTo: "/signup",
           AfterLogin: "/payment",
@@ -86,7 +86,7 @@ export const data = [
         sub: {
           subType: "Premium",
           header: "Best for professionals",
-          amount: "₦5000",
+          amount: "$6.99",
           text: "Everything in Basic +",
           AfterLogin: "/payment",
           linkTo: "/signup",
@@ -142,7 +142,7 @@ export const data = [
         sub: {
           subType: "Basic",
           header: "Get started for free",
-          amount: "₦0",
+          amount: "$0",
           text: "Key Features",
           linkTo: "/signup",
           AfterLogin: "/",
@@ -176,7 +176,7 @@ export const data = [
         sub: {
           subType: "Standard",
           header: "More features customised for you",
-          amount: "₦12,000",
+          amount: "$15.99",
           text: "Everything in Lite +",
           linkTo: "/payment",
           AfterLogin: "/payment",
@@ -220,7 +220,7 @@ export const data = [
         sub: {
           subType: "Premium",
           header: "Best for professionals",
-          amount: "₦55,000",
+          amount: "$73.31",
           text: "Everything in Basic +",
           linkTo: "/payment",
           AfterLogin: "/payment",

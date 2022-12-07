@@ -23,7 +23,7 @@ function CreateCertificateModal({
   setIssuedBy,
   issueDate,
   setIssueDate,
-  setCertificates
+  getUserCertificates
 }) {
   const [tab, setTab] = useState(false);
   const [date, setDate] = useState(Date.now());
@@ -151,7 +151,7 @@ function CreateCertificateModal({
 
           {tab ? (
             <div>
-              <UploadCsv setCertificates={setCertificates} />
+              <UploadCsv getUserCertificates={getUserCertificates} />
             </div>
           ) : (
             <form onSubmit={handleSubmit}>

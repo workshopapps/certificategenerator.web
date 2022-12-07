@@ -1,7 +1,9 @@
 import axios from "axios";
+import Papa from "papaparse";
 import Swal from "sweetalert2";
-import { useState, useContext } from "react";
+import { CSVLink } from "react-csv";
 import { useNavigate } from "react-router-dom";
+import { useState, useContext, useEffect } from "react";
 
 import "./uploadCSV.style.scss";
 // component
@@ -12,41 +14,140 @@ import AppContext from "../../contexts/AppProvider";
 import CSVSample from "../../assets/images/CSV-sample.png";
 import UploadVector from "../../assets/images/uploadPage/uploadVector.svg";
 
+const headers = [
+  {label: "name", key: "name"},
+  {label: "nameOfOrganization", key: "nameOfOrganization"},
+  {label: "description", key: "description"},
+  {label: "award", key: "award"},
+  {label: "signed", key: "signed"},
+  {label: "email", key: "email"},
+  {label: "date", key: "date"}
+];
+
+const csvDataSample = [
+  {
+    name: "jane doe",
+    nameOfOrganization: "zuri",
+    description:
+      "this certificate is a proof of completion for HNG internship program",
+    award: "certificate of completion",
+    signed: "###",
+    email: "josepholukunle1107@gmail.com",
+    date: "13-02-2022"
+  },
+  {
+    name: "john champ",
+    nameOfOrganization: "zuri",
+    description:
+      "this certificate is a proof of completion for HNG internship program",
+    award: "certificate of completion",
+    signed: "###",
+    email: "josepholukunle1107@gmail.com",
+    date: "13-02-2022"
+  },
+  {
+    name: "Peter Smith row",
+    nameOfOrganization: "zuri",
+    description:
+      "this certificate is a proof of completion for HNG internship program",
+    award: "certificate of completion",
+    signed: "###",
+    email: "josepholukunle1107@gmail.com",
+    date: "13-02-2022"
+  },
+  {
+    name: "malaang sar konga",
+    nameOfOrganization: "zuri",
+    description:
+      "this certificate is a proof of completion for HNG internship program",
+    award: "certificate of completion",
+    signed: "###",
+    email: "josepholukunle1107@gmail.com",
+    date: "13-02-2022"
+  },
+  {
+    name: "tuchel geraldine",
+    nameOfOrganization: "zuri",
+    description:
+      "this certificate is a proof of completion for HNG internship program",
+    award: "certificate of completion",
+    signed: "###",
+    email: "josepholukunle1107@gmail.com",
+    date: "13-02-2022"
+  },
+  {
+    name: "cecy cardine",
+    nameOfOrganization: "hng",
+    description:
+      "this certificate is a proof of completion for HNG internship program",
+    award: "certificate of completion",
+    signed: "###",
+    email: "josepholukunle1107@gmail.com",
+    date: "13-02-2022"
+  },
+  {
+    name: "get away",
+    nameOfOrganization: "hng",
+    description:
+      "this certificate is a proof of completion for HNG internship program",
+    award: "certificate of completion",
+    signed: "###",
+    email: "josepholukunle1107@gmail.com",
+    date: "13-02-2022"
+  },
+  {
+    name: "Lionel Messi sn.",
+    nameOfOrganization: "hng",
+    description:
+      "this certificate is a proof of completion for HNG internship program",
+    award: "certificate of completion",
+    signed: "###",
+    email: "josepholukunle1107@gmail.com",
+    date: "13-02-2022"
+  },
+  {
+    name: "team headlight",
+    nameOfOrganization: "zuri",
+    description:
+      "this certificate is a proof of completion for HNG internship program",
+    award: "certificate of completion",
+    signed: "###",
+    email: "josepholukunle1107@gmail.com",
+    date: "13-02-2022"
+  }
+];
+
 const UploadCSV = () => {
   const navigate = useNavigate();
   const [file, setFile] = useState("");
   const { array, setArray } = useContext(AppContext);
   const [loading, setLoading] = useState(false);
   const [errorFile, setErrorFile] = useState(false);
-
-  const fileReader = new FileReader();
-
-  // Function to set certificate data
-  const certificateData = string => {
-    const csvHeader = string.slice(0, string.indexOf("\n")).split(",");
-    const csvRows = string.slice(string.indexOf("\n") + 1).split("\n");
-    console.log("csv", csvRows);
-    const array = csvRows.map(i => {
-      const values = i.split(",");
-      const obj = csvHeader.reduce((object, header, index) => {
-        object[header] = values[index];
-        return object;
-      }, {});
-      return obj;
-    });
-    setArray(array);
-  };
-
-  console.log("File", array);
-
+  
+  // Function to handle file change
   const validateInput = e => {
     setErrorFile(false);
     const myFile = e.target.files[0];
     if (myFile.type !== "text/csv") {
       setErrorFile(true);
     }
+
+    // Passing csv file data to parse using Papa.parse
+    Papa.parse(e.target.files[0], {
+      header: true,
+      skipEmptyLines: true,
+      complete: function (results) {
+        setArray(results.data);
+      },
+    });
     setFile(myFile);
   };
+  
+  // Data stored in the local storage
+  useEffect(() => {
+    localStorage.setItem('dataKey', JSON.stringify(array));
+  }, [array]);
+
 
   let formData = new FormData();
 
@@ -65,13 +166,6 @@ const UploadCSV = () => {
   // Function to send uploaded file to the backend
   const handleUpload = async e => {
     e.preventDefault();
-    if (file) {
-      fileReader.onload = function (event) {
-        const text = event.target.result;
-        certificateData(text);
-      };
-      fileReader.readAsText(file);
-    }
     formData.append("file", file);
     setLoading(true);
     try {
@@ -89,10 +183,9 @@ const UploadCSV = () => {
       }
     } catch (error) {
       setLoading(false);
-      console.log("Error", error);
       Toast.fire({
         icon: "error",
-        title: "Upload failed"
+        title: "Upload failed due to invalid field(s)"
       });
     }
   };
@@ -104,6 +197,12 @@ const UploadCSV = () => {
       <div className="CSVSample">
         <img src={CSVSample} alt="CSV sample" />
       </div>
+      {/* Button to download sample CSV */}
+      <Button className="Submitcsv" style={{ margin: "1em auto", width: "200px" }}>
+        <CSVLink data={csvDataSample} headers={headers} filename="sample.csv" style={{ color: "white" }}>
+          Download sample
+        </CSVLink>
+      </Button>
       <div className="dragBox">
         <div className="dragboxContainer">
           <i>
