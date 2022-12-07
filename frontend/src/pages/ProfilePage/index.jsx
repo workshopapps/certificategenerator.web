@@ -4,11 +4,39 @@ import Modal from '../../Component/Modal'
 import {useNavigate} from 'react-router-dom'
 import "./profile.style.scss";
 import Avatar from "../../assets/images/Ellipse4.png"
+import Upload from './assets/upload.png'
 import Input from "../../Component/Input";
 
 const ProfilePage = () => {
   const navigate = useNavigate()
+  const [selectedImage, setSelectedImage] = useState(null)
+  
+  const[data,setData]= useState({
+  name:"",
+  job:"",
+  location:"",
+  phoneNumber:"",
+  useremail:""
+})
 
+
+       // On file select (from the pop up)
+      // Update the state
+        const onFileChange = (e) => {   
+              setSelectedImage({ selectedFile: e.target.files[0] });
+              setSelectedImage(URL.createObjectURL(e.target.files[0]))
+              console.log(e.target.files[0]);
+        }
+        const handleSubmit = (e) =>{
+               e.preventDefault()
+            const formData = new FormData()
+            formData.append('selectedImage', selectedImage)
+            axios.put("https://certgo.hng.tech/api/users/brand-kit", formData, {
+            }).then(res => {
+                console.log(res)
+            })
+        }
+  // Handle user Logout
   const handleLogout = async(e) =>{
       e.preventDefault();  
           await axios.delete('https://certify-api.onrender.com/api/auth/logout')
@@ -23,13 +51,7 @@ const ProfilePage = () => {
           }) 
   }
 
-  const[data,setData]= useState({
-    name:"",
-    job:"",
-    location:"",
-    phoneNumber:"",
-    useremail:""
-  })
+
   
   const url= "https://certify-api.onrender.com/api/pricing"
   function handlePost(e){
@@ -56,7 +78,16 @@ const ProfilePage = () => {
       <div>
       <div className="user-info">
         <div className="user-avatar">
-          <img src={Avatar} alt="profile-pic" />
+          <img src={selectedImage || Avatar} className="avatar" alt="profile-pic" />
+          <form onSubmit={handleSubmit}>
+            <label htmlFor="myFile" className="upload__label">
+              <img src={Upload} alt="upload-icon" />
+              <input type="file" id="myFile" accept="image/*" name="image" onChange={onFileChange}  />
+            </label>
+            
+            <button type="submit">upload</button>
+          </form>
+          
         </div>
         <div className="mb-2">
           <h3>Olamiposi Benjamin</h3>
