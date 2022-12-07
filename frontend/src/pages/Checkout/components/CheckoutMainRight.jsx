@@ -16,7 +16,7 @@ function CheckoutMainRight() {
           </span>{" "}
           <br /> <br />
           <span id="CheckoutMainRight-text-4">
-            $9.99 <sub id="CheckoutMainRight-text-4-sub">/month</sub>
+            $2.99 <sub id="CheckoutMainRight-text-4-sub">/month</sub>
           </span>{" "}
           <br /> <br />
           <span id="CheckoutMainRight-text-5">
