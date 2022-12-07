@@ -6,11 +6,13 @@ import "./profile.style.scss";
 import Avatar from "../../assets/images/Ellipse4.png"
 import Upload from './assets/upload.png'
 import Input from "../../Component/Input";
+import Loader from "../Home/Loader";
+import { Toast } from '../../Component/ToastAlert'
 
 const ProfilePage = () => {
   const navigate = useNavigate()
   const [selectedImage, setSelectedImage] = useState(null)
-  
+  const[loading, setLoading] = useState(false)
   const[data,setData]= useState({
   name:"",
   job:"",
@@ -38,16 +40,25 @@ const ProfilePage = () => {
 
   // Handle user Logout
   const handleLogout = async(e) =>{
+    setLoading(true);
       e.preventDefault();  
-          await axios.delete('https://certify-api.onrender.com/api/auth/logout')
-          .then(() => {
-            console.log('logged out');
+         await axios.delete('https://certify-api.onrender.com/api/auth/logout')
+          .then((res) => {       
+             if(res.status === 200){
+               console.log('logged out');
+              setLoading(false);
               //navigate back to login
               navigate('/login') 
              localStorage.removeItem('token');
              localStorage.removeItem('user');
+             }
           }).catch(err =>{
             console.log(err || 'couldnt log out')
+            setLoading(false)
+                  Toast.fire({
+                icon: "error",
+                title: "Error logging out"
+              });
           }) 
   }
 
@@ -101,7 +112,7 @@ const ProfilePage = () => {
         </div>
 
         <div className="btn-wrapper">
-          <button onClick={handleLogout}>Log Out</button>
+          <button onClick={handleLogout} style={loading ? {background: '#f84343', cursor: 'not-allowed'} : {background: 'transparent', cursor: 'pointer'}}>{loading ? <Loader /> : <span>Log Out</span>}</button>
         </div>
       </div>
 
