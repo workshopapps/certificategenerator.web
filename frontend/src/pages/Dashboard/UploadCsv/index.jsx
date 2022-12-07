@@ -4,14 +4,14 @@ import UploadVector from "../../../assets/images/uploadPage/uploadVector.svg";
 import { useState } from "react";
 import Swal from "sweetalert2";
 import useAppProvider from "../../../hooks/useAppProvider"
-import {axiosFormdata} from "../../../api/axios";
+import {axiosFormData} from "../../../api/axios";
 import Loader from "../Loader";
 import { useNavigate } from "react-router-dom";
 
-const UploadCSV = () => {
+const UploadCsv = ({setCertificates}) => {
   const [state, setState] = useState({ active: true });
   const [loading, setLoading] = useState(false)
-  const { setCsvData } = useAppProvider();
+  // const { setCertificates } = useAppProvider();
   
 
 //   const toggleState = e => {
@@ -53,23 +53,27 @@ const UploadCSV = () => {
     e.preventDefault();
     setLoading(true)
     try {
-      const res = await axiosFormdata.post('/certificates', formData);
+      const res = await axiosFormData.post('/certificates', formData);
       console.log(res);
       if (res.status === 400) {
-        setLoading(false);
         console.log('load');
         Toast.fire({
           icon: "error",
           title: "Page not found"
         });
-      } else if (res.status === 500) {
         setLoading(false);
+      } else if (res.status === 500) {
         Toast.fire({
           icon: "error",
           title: "Internal Server Error"
         });
+        setLoading(false);
       } else {
-        setCsvData(res);
+        setCertificates(res.data);
+        Toast.fire({
+          icon: "error",
+          title: "Internal Server Error"
+        });
         setLoading(false);
       }
     } catch (error) {
@@ -99,9 +103,17 @@ const UploadCSV = () => {
       <section>
         <img src={CSVSample} alt="cert" />
       </section>
-      <button onClick={(e) => handleUpload(e)}>{loading ? <Loader/> : "Submit CSV"}</button>
+      <button onClick={(e) => handleUpload(e)}>{loading ? <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center"
+        }}
+      >
+        <Loader />
+      </div> : "Submit CSV"}</button>
     </article>
   );
 };
 
-export default UploadCSV;
+export default UploadCsv;

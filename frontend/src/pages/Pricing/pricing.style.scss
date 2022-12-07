@@ -11,11 +11,13 @@ $featureHeader: "Sora", sans-serif;
 
 main {
   margin-top: -70px;
+
   .bg {
     width: 100vw;
     height: 60px !important;
     background-color: $pricingBackground !important;
   }
+
   .pricing {
     background-color: $pricingBackground;
     font-family: $text;
@@ -35,6 +37,7 @@ main {
         padding-top: 80px;
         margin-bottom: 20px;
       }
+
       p:nth-of-type(2) {
         font-weight: 400;
         font-size: 16px;
@@ -44,6 +47,7 @@ main {
         width: 100%;
         margin: auto;
       }
+
       h3 {
         font-family: $h3Text;
         font-weight: 700;
@@ -213,6 +217,7 @@ main {
             color: #ffffff;
           }
         }
+
         .Standard {
           background-color: #19a68e;
           box-shadow: 0px 4px 14px rgba(77, 72, 72, 0.1);
@@ -298,9 +303,11 @@ main {
               padding-left: 20px;
             }
           }
+
           tr:nth-of-type(odd) {
             background-color: $featureBackground !important;
           }
+
           tr:nth-child(even) {
             background-color: rgba(178, 225, 217, 0.1);
           }
@@ -332,11 +339,13 @@ main {
     padding: 0px 50px;
     overflow: hidden;
   }
+
   .testimonial h1 {
     font-weight: 600;
     margin: 20px;
     font-size: 27px !important;
   }
+
   .testimonial-para {
     font-size: 16px;
   }
@@ -383,31 +392,37 @@ main {
     margin-top: 30px;
     font-weight: 500;
   }
+
   @media screen and (max-width: 800px) {
     .testimonial-boxn {
       height: 380px;
     }
   }
+
   @media screen and (max-width: 360px) {
     .testimonial-boxn {
       height: 400px;
     }
   }
+
   @media screen and (max-width: 290px) {
     .testimonial-boxn {
       height: 450px;
     }
   }
+
   @media screen and (max-width: 450px) {
     .testimonial-boxn {
       //   height: 600px;
     }
   }
+
   @media screen and (min-width: 1024px) {
     .testimonial h1 {
       font-size: 30px !important;
       margin: 20px;
     }
+
     .testimonial-para {
       font-size: 20px;
     }
@@ -434,11 +449,13 @@ main {
           font-size: 14px;
           line-height: 22px;
         }
+
         p:nth-of-type(2) {
           font-size: 16px;
           line-height: 26px;
           color: #555557;
         }
+
         h3 {
           font-size: 28px;
           line-height: 35px;
@@ -497,6 +514,7 @@ main {
         ::-webkit-scrollbar {
           width: 14px;
         }
+
         ::-webkit-scrollbar-thumb {
           background: #08372f;
           border-radius: 10px;
@@ -507,6 +525,7 @@ main {
     }
   }
 }
+
 @media (max-width: 991px) {
   main {
     .feature {
@@ -563,6 +582,7 @@ main {
       .tableContainer::-webkit-scrollbar {
         width: 14px;
       }
+
       .tableContainer::-webkit-scrollbar-thumb {
         background: $featureBackground;
         border-radius: 10px;
@@ -597,6 +617,7 @@ main {
     }
   }
 }
+
 @media (max-width: 767px) {
   main {
     .pricing {
@@ -605,6 +626,7 @@ main {
           font-size: 14px;
           line-height: 22px;
         }
+
         h3 {
           font-size: 24px;
           line-height: 30px;
@@ -613,6 +635,7 @@ main {
 
       .plans {
         .plansContainer {
+
           .Basic,
           .Premium,
           .Standard {
@@ -671,10 +694,12 @@ main {
     }
 
     .testimonials {
+
       /* Scroll bar */
       .testimonialContainer::-webkit-scrollbar {
         width: 100px !important;
       }
+
       .testimonialContainer::-webkit-scrollbar-thumb {
         background: #08372f;
         border-radius: 10px;
@@ -685,10 +710,12 @@ main {
     }
   }
 }
+
 @media (max-width: 600px) {
   main .pricing .plans .sliderContainer #slider article {
     width: 287px;
   }
+
   main .pricing .plans {
     max-width: 100%;
     width: 90%;
@@ -701,11 +728,14 @@ main {
   main .pricing .plans .plansContainer .Standard a {
     width: 80%;
   }
+
   main .pricing .plans .btnContainer .plan-btn {
     // color: #191A1B;
     max-width: 100px;
     height: 38px;
+    padding: 10px 60px;
   }
+
   main .pricing .plans .plansContainer .Basic .others span,
   main .pricing .plans .plansContainer .Premium .others span,
   main .pricing .plans .plansContainer .Standard .others span {
@@ -715,6 +745,7 @@ main {
     font-size: 12px;
     line-height: 26px;
   }
+
   // main .testimonial-wrapper {
   //     margin: 30px 0;
   //     padding: 0px;
@@ -728,11 +759,14 @@ main {
 }
 
 @media (max-width: 400px) {
+
   main .pricing .plans .sliderContainer #slider article {
     width: 287px;
   }
 }
+
 @media (max-width: 360px) {
+
   main {
     .pricing {
       .textC {
@@ -740,6 +774,7 @@ main {
           font-size: 14px;
           line-height: 22px;
         }
+
         h3 {
           font-size: 24px;
           line-height: 30px;

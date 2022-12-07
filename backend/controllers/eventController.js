@@ -3,6 +3,7 @@ const Event = require("../models/eventModel");
 const mongoose = require("mongoose");
 const Certificate = require("../models/certificateModel");
 const Joi = require("joi");
+const crypto = require("crypto");
 
 const getAllEvents = async (req, res) => {
   try {
@@ -12,7 +13,7 @@ const getAllEvents = async (req, res) => {
     // Get all events by this user
     const events = await Event.find({ userId: user._id }).select([
       "title",
-      "customURI",
+      "customURI"
     ]);
 
     res.status(200).json({ events, success: true });
@@ -53,12 +54,15 @@ const getEventById = async (req, res) => {
 const createEvent = async (req, res) => {
   try {
     const user = req.user;
-    const { customURI } = req.body;
+    const customURI = req.body.customURI || crypto.randomUUID();
+    req.body.customURI = customURI;
 
     // Define validation schema
     const schema = Joi.object({
       title: Joi.string().required(),
-      customURI: Joi.string().alphanum(),
+      customURI: Joi.string()
+        .regex(/^[a-zA-Z0-9\-\_]+$/)
+        .required()
     });
 
     // Validate request body against schema
@@ -70,14 +74,14 @@ const createEvent = async (req, res) => {
 
     // Get certificate collection owned by user
     const certCollection = await Certificate.findOne({
-      userId: user._id,
+      userId: user._id
     });
 
     // Verify that certification collection exists
     if (!certCollection)
       return res.status(400).json({
         message: "user has no certificates",
-        success: false,
+        success: false
       });
 
     // Verify that custom URI isn't taken
@@ -149,7 +153,7 @@ const editEvent = async (req, res) => {
     // Define validation schema
     const schema = Joi.object({
       title: Joi.string(),
-      customURI: Joi.string().alphanum(),
+      customURI: Joi.string().alphanum()
     });
 
     // Validate request body
@@ -206,7 +210,7 @@ const getCertificateByEmail = async (req, res) => {
         .json({ message: "certificate collection Not Found", success: false });
 
     // Get single certificate with user email
-    const certificate = collection.records.find((record) => {
+    const certificate = collection.records.find(record => {
       return record.email === email;
     });
 
@@ -256,5 +260,5 @@ module.exports = {
   createEvent,
   editEvent,
   getCertificateByEmail,
-  validateCustomURI,
+  validateCustomURI
 };

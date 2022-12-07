@@ -6,7 +6,6 @@ const bodyParser = require('body-parser');
 const cors = require('cors')
 const Sentry = require("@sentry/node");
 const Tracing = require("@sentry/tracing");
-const fileUpload = require('express-fileupload');
 
 const app = express();
 
@@ -45,7 +44,7 @@ const careers = require("./routes/careerRouter");
 const applyCareer = require('./routes/applyCareerRouter')
 const teamRoute = require("./routes/teamRoutes");
 const mailingLists = require("./routes/mailingListRouter");
-require('./routes/emailNotificationRouter')(app)
+const emailRouter = require("./routes/emailNotificationRouter")
 const profileRouter = require("./routes/profileRouters");
 const contacts = require('./routes/contactRouter');
 const userPlan = require('./routes/pricingPlanRouter');
@@ -56,6 +55,7 @@ const template = require("./routes/templateRouter");
 const newsletterRouter = require("./routes/newsletterRouter")
 const verifyEmailRouter = require("./routes/verifyEmailRouter")
 const paymentRouter = require("./routes/paymentRouter")
+const userRouter = require("./routes/userRouter")
 
 
 const PORT = process.env.PORT || 5077;
@@ -70,7 +70,6 @@ app.use(express.json());
 app.use(bodyParser.json());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(fileUpload());
 
 
 app.get("/api", (req, res) => {
@@ -85,6 +84,7 @@ app.use("/api/download", downloadCsv);
 app.use("/api/careers", careers);
 app.use("/api/applycareers", applyCareer);
 app.use("/api/mailinglists", mailingLists);
+app.use("/api/sendEmailNotifications", emailRouter)
 app.use("/api/profile", profileRouter);
 app.use("/api/team", teamRoute);
 app.use('/api/contactus', contacts)
@@ -96,6 +96,7 @@ app.use("/api/subscribe", newsletterRouter);
 app.use("/api/verifyEmail", verifyEmailRouter)
 app.use('/api/payment', paymentRouter);
 app.use(Sentry.Handlers.errorHandler());
+
 
 mongoose.connection.once("open", () => {
   console.log("Connected to DB");
