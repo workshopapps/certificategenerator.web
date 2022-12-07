@@ -1,9 +1,11 @@
 import axios from "axios";
 import Swal from "sweetalert2";
+import { CSVLink } from "react-csv";
 import { useState, useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import "./uploadCSV.style.scss";
+import SampleCsv from "./sample.csv";
 // component
 import Loader from "../Dashboard/Loader";
 import Button from "../../Component/button";
@@ -11,6 +13,109 @@ import AppContext from "../../contexts/AppProvider";
 // img
 import CSVSample from "../../assets/images/CSV-sample.png";
 import UploadVector from "../../assets/images/uploadPage/uploadVector.svg";
+
+const headers = [
+  {label: "name", key: "name"},
+  {label: "nameOfOrganization", key: "nameOfOrganization"},
+  {label: "description", key: "description"},
+  {label: "award", key: "award"},
+  {label: "signed", key: "signed"},
+  {label: "email", key: "email"},
+  {label: "date", key: "date"}
+];
+
+const csvDataSample = [
+  {
+    name: "jane doe",
+    nameOfOrganization: "zuri",
+    description:
+      "this certificate is a proof of completion for HNG internship program",
+    award: "certificate of completion",
+    signed: "###",
+    email: "josepholukunle1107@gmail.com",
+    date: "13-02-2022"
+  },
+  {
+    name: "john champ",
+    nameOfOrganization: "zuri",
+    description:
+      "this certificate is a proof of completion for HNG internship program",
+    award: "certificate of completion",
+    signed: "###",
+    email: "josepholukunle1107@gmail.com",
+    date: "13-02-2022"
+  },
+  {
+    name: "Peter Smith row",
+    nameOfOrganization: "zuri",
+    description:
+      "this certificate is a proof of completion for HNG internship program",
+    award: "certificate of completion",
+    signed: "###",
+    email: "josepholukunle1107@gmail.com",
+    date: "13-02-2022"
+  },
+  {
+    name: "malaang sar konga",
+    nameOfOrganization: "zuri",
+    description:
+      "this certificate is a proof of completion for HNG internship program",
+    award: "certificate of completion",
+    signed: "###",
+    email: "josepholukunle1107@gmail.com",
+    date: "13-02-2022"
+  },
+  {
+    name: "tuchel geraldine",
+    nameOfOrganization: "zuri",
+    description:
+      "this certificate is a proof of completion for HNG internship program",
+    award: "certificate of completion",
+    signed: "###",
+    email: "josepholukunle1107@gmail.com",
+    date: "13-02-2022"
+  },
+  {
+    name: "cecy cardine",
+    nameOfOrganization: "hng",
+    description:
+      "this certificate is a proof of completion for HNG internship program",
+    award: "certificate of completion",
+    signed: "###",
+    email: "josepholukunle1107@gmail.com",
+    date: "13-02-2022"
+  },
+  {
+    name: "get away",
+    nameOfOrganization: "hng",
+    description:
+      "this certificate is a proof of completion for HNG internship program",
+    award: "certificate of completion",
+    signed: "###",
+    email: "josepholukunle1107@gmail.com",
+    date: "13-02-2022"
+  },
+  {
+    name: "Lionel Messi sn.",
+    nameOfOrganization: "hng",
+    description:
+      "this certificate is a proof of completion for HNG internship program",
+    award: "certificate of completion",
+    signed: "###",
+    email: "josepholukunle1107@gmail.com",
+    date: "13-02-2022"
+  },
+  {
+    name: "team headlight",
+    nameOfOrganization: "zuri",
+    description:
+      "this certificate is a proof of completion for HNG internship program",
+    award: "certificate of completion",
+    signed: "###",
+    email: "josepholukunle1107@gmail.com",
+    date: "13-02-2022"
+  }
+];
 
 const UploadCSV = () => {
   const navigate = useNavigate();
@@ -80,6 +185,7 @@ const UploadCSV = () => {
         formData
       );
       if (res.status === 200) {
+        console.log("Response", res);
         setLoading(false);
         Toast.fire({
           icon: "success",
@@ -104,6 +210,12 @@ const UploadCSV = () => {
       <div className="CSVSample">
         <img src={CSVSample} alt="CSV sample" />
       </div>
+      {/* Button to download sample CSV */}
+      <Button className="Submitcsv" style={{ margin: "1em auto", width: "200px" }}>
+        <CSVLink data={csvDataSample} headers={headers} filename="sample.csv" style={{ color: "white" }}>
+          Download sample
+        </CSVLink>
+      </Button>
       <div className="dragBox">
         <div className="dragboxContainer">
           <i>
