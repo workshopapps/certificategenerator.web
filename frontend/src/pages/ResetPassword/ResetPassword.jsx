@@ -3,30 +3,18 @@ import React,{ useState, useEffect} from "react";
 import { useNavigate, useParams,} from "react-router-dom";
 import Input from "../../Component/Input";
 import Layout from "./ResetLayout";
-import Swal from "sweetalert2";
+import { Toast } from '../../Component/ToastAlert'
 import Loader from "../Home/Loader";
 import Button from "../../Component/button";
 
 const ResetPassword = () => { 
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
-  const [disabledButton, setDisabledButton] = useState(true);
+  // const [disabledButton, setDisabledButton] = useState(true);
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const { userId, token } = useParams();
 
-  const Toast = Swal.mixin({
-    toast: true,
-    position: "top-end",
-    showConfirmButton: false,
-    timer: 3000,
-    timerProgressBar: true,
-    didOpen: toast => {
-      toast.addEventListener("mouseenter", Swal.stopTimer);
-      toast.addEventListener("mouseleave", Swal.resumeTimer);
-    }
-  });
-  
 
     async function resetPassword({newPassword, confirmPassword}) {
     return fetch(`https://certify-api.onrender.com/api/auth/changepassword/${userId}/${token}`, {
@@ -61,9 +49,6 @@ const ResetPassword = () => {
         return false;
     }else{
        const response = await resetPassword({newPassword, confirmPassword});
-      //  const data = await response.json();
-      // await axios.post(`https://certify-api.onrender.com/api/auth/changepassword/${userId}/${token}`, {...formData})
-      // .then((response) => {
          if (response.status === 200) {
               Toast.fire({
                 icon: "success",
