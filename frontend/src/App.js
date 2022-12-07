@@ -33,25 +33,12 @@ import Generate from "./pages/Dashboard/Generate";
 import Home from "./pages/Home";
 import Checkout from "./pages/Checkout";
 import { Privacy } from "./pages/PrivacyPolicy";
-import { AppProvider } from "./contexts/AppProvider";
 import Login from "./Component/Signup-Login/assets/Login";
 import Signup from "./Component/Signup-Login/assets/Sginup";
-import {
-  HashRouter as Router,
-  Navigate,
-  Route,
-  Routes
-} from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
+import RequireAuth from "./Component/RequireAuth";
 
 function App() {
-  const user = localStorage.getItem("user");
-  const token = localStorage.getItem("token");
-
-  const { generateId } = useParams();
-
-  const RequireAuth = ({ children }) =>
-    user && token ? children : <Navigate to="/login" />;
-
   return (
     <>
       <div className="App">
@@ -80,26 +67,12 @@ function App() {
             <Route path="/FAQ" element={<FAQ />} />
             <Route path="/bulk_step" element={<BulkStep />} />
             <Route path="/edit_bulk" element={<EditBulk />} />
-            <Route
-              path="/bulk_preview"
-              element={
-                <AppProvider>
-                  <BulkPreview />
-                </AppProvider>
-              }
-            />
+            <Route path="/bulk_preview" element={<BulkPreview />} />
             <Route path="/pricing" element={<Pricing />} />
             <Route path="/contact-us" element={<ContactUs />} />
             <Route path="/payment" element={<Checkout />} />
             <Route path="/profile" element={<ProfilePage />} />
-            <Route
-              path="/upload"
-              element={
-                <AppProvider>
-                  <UploadCSV />
-                </AppProvider>
-              }
-            />
+            <Route path="/upload" element={<UploadCSV />} />
             <Route path="/privacy" element={<Privacy />} />
             {/* ResetPassword */}
             <Route path="/fff5" element={<PasswordChangeSuccessfully />} />
@@ -114,8 +87,6 @@ function App() {
           <Route path="*" element={<Error />} />
         </Routes>
       </div>
-      {/* <Footer /> */}
-      {/* </Router> */}
     </>
   );
 }
