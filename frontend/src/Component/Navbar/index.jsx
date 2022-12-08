@@ -1,28 +1,29 @@
-import "./navbar.style.scss";
-//import menu from '../../pages/ComingSoon/images/menu.svg'
-import React, {  useState } from "react";
-import logo from "../../assets/images/navbarIcon.png";
-import { FaBars, FaTimes } from "react-icons/fa";
+import React, { useState, useEffect } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
+import { FaBars, FaTimes } from "react-icons/fa";
+
+import "./navbar.style.scss";
+import logo from "../../assets/images/navbarIcon.png";
+// import profilePic from '../../assets/images/Ellipse4.png';
 import Button from "../button";
 
 function Navbar() {
   const [switchFa, setSwitchFa] = useState(false);
+  // const [istoken, setIstoken] = useState(false);
   const navigate = useNavigate();
 
+  // useEffect(() => {
+  //   const token = localStorage.getItem("token");
+  //   if (token) {
+  //     setIstoken(true);
+  //   } else {
+  //     setIstoken(false);
+  //   }
+  // }, []);
+
   const handleToggle = () => {
-    
-  
-    
     setSwitchFa(!switchFa);
-   
-    
   };
-
-
-
-  
-  
 
   const links = [
     {
@@ -58,6 +59,7 @@ function Navbar() {
               </h2>
               <img src={logo} alt="Certgo bulb" />
             </div>
+
             <div className="nav-click">
               <Button className="btn" name={"get started"}>
                 <Link to="/modify" className="link"></Link>
@@ -90,16 +92,22 @@ function Navbar() {
                 );
               })}
             </div>
+            {/* {istoken ? (
+              <div onClick={navigate('/dashboard')} className="dashboard__profile-pic">
+              <img src={profilePic} alt="Avatar" />
+            </div>
+            ) : ( */}
+
             <div className="button-container">
-            <NavLink to="/signup" >
-              <Button
-                className="btn"
-                onClick={handleToggle}
-                name={"get started"}
-              >
-                {/* <Link to="/modify" className="link"></Link> */}
-              </Button>
-               </NavLink>
+              <NavLink to="/signup">
+                <Button
+                  className="btn"
+                  onClick={handleToggle}
+                  name={"get started"}
+                >
+                  {/* <Link to="/modify" className="link"></Link> */}
+                </Button>
+              </NavLink>
             </div>
           </div>
         </div>

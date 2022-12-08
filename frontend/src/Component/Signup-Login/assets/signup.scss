@@ -11,7 +11,7 @@
   flex-direction: column;
   gap: 20px;
   width: 503px;
-  text-align: start;
+  text-align: left;
 }
 
 .logo-container {
@@ -166,6 +166,7 @@ form {
 // input:focus {
 //   outline: none;
 //   border: none;
+//start
 // }
 
 #email {
@@ -271,7 +272,7 @@ a {
 .forgotPwd {
   width: 100%;
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
   font-family: "Work Sans";
   font-style: normal;
   font-weight: 400;
