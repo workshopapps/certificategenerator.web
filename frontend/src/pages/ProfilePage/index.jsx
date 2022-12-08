@@ -19,7 +19,7 @@ const ProfilePage = () => {
   phoneNumber:"",
   email:""
 })
-const [displayData, setdisplayData] = useState({})
+
 
 
 const userId = localStorage.getItem("user");
