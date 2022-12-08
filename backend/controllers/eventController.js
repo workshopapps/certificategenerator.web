@@ -4,254 +4,195 @@ const mongoose = require("mongoose");
 const Certificate = require("../models/certificateModel");
 const Joi = require("joi");
 const crypto = require("crypto");
+const {
+  handleAsync,
+  handleResponse,
+  createApiError
+} = require("../utils/helpers");
 
-const getAllEvents = async (req, res) => {
-  try {
-    // Get logged in user from req.user via auth middleware
-    const user = req.user;
+const getAllEvents = handleAsync(async (req, res) => {
+  // Get logged in user from req.user via auth middleware
+  const user = req.user;
 
-    // Get all events by this user
-    const events = await Event.find({ userId: user._id }).select([
-      "title",
-      "customURI"
-    ]);
+  // Get all events by this user
+  const events = await Event.find({ userId: user._id }).select([
+    "title",
+    "customURI"
+  ]);
 
-    res.status(200).json({ events, success: true });
-  } catch (error) {
-    res.status(500).json({ message: error.message, success: false });
+  res.status(200).json(handleResponse({ events }));
+});
+
+const getEventById = handleAsync(async (req, res) => {
+  const { eventId } = req.params;
+  const query = {};
+
+  if (mongoose.isValidObjectId(eventId)) {
+    // build query where to return events where _id or customURI is eventId
+    query.$or = [{ customURI: eventId }, { _id: eventId }];
+  } else {
+    // build query to find event with customURI of eventId
+    query.customURI = eventId;
   }
-};
 
-const getEventById = async (req, res) => {
-  try {
-    const { eventId } = req.params;
-    const query = {};
+  // Get the event whose _id or customURI  is "eventId"
+  // this allows users to use a customURI for their events
+  const event = await Event.findOne(query).select(["title", "customURI"]);
 
-    if (mongoose.isValidObjectId(eventId)) {
-      // build query where to return events where _id or customURI is eventId
-      query.$or = [{ customURI: eventId }, { _id: eventId }];
-    } else {
-      // build query to find event with customURI of eventId
-      query.customURI = eventId;
-    }
+  // 404 event not found
+  if (!event) throw createApiError("Event Not Found", 404);
 
-    // Get the event whose _id or customURI  is "eventId"
-    // this allows users to use a customURI for their events
-    const event = await Event.findOne(query).select(["title", "customURI"]);
+  res.status(200).json(handleResponse({ event }));
+});
 
-    // 404 event not found
-    if (!event)
-      return res
-        .status(404)
-        .json({ message: "Event Not Found", success: false });
+const createEvent = handleAsync(async (req, res) => {
+  const user = req.user;
+  const customURI = req.body.customURI || crypto.randomUUID();
+  req.body.customURI = customURI;
 
-    res.status(200).json({ event, success: true });
-  } catch (error) {
-    res.status(500).json({ message: error.message, success: false });
+  // Define validation schema
+  const schema = Joi.object({
+    title: Joi.string().required(),
+    customURI: Joi.string()
+      .regex(/^[a-zA-Z0-9\-\_]+$/)
+      .required()
+  });
+
+  // Validate request body against schema
+  const { error } = schema.validate(req.body);
+
+  // Validation error
+  if (error) throw createApiError(error.message);
+
+  // Get certificate collection owned by user
+  const certCollection = await Certificate.findOne({
+    userId: user._id
+  });
+
+  // Verify that certification collection exists
+  if (!certCollection) throw createApiError("user has no certificates", 400);
+
+  // Verify that custom URI isn't taken
+  const existingEvent = await Event.findOne({ customURI });
+
+  if (existingEvent) throw createApiError("customURI is already taken", 400);
+
+  // Create new event
+  const event = await Event.create({ ...req.body, userId: user._id });
+
+  res.status(201).json(handleResponse({ event }));
+});
+
+const deleteEvent = handleAsync(async (req, res) => {
+  const user = req.user;
+  const { eventId } = req.params;
+
+  // 404 is returned even though id is invalid for security sake
+  if (!mongoose.isValidObjectId(eventId))
+    throw createApiError("Resource Not Found", 404);
+
+  // Get the event with an id of "eventId"
+  const event = await Event.findOne({ _id: eventId, userId: user._id });
+
+  // 404 event not found
+  if (!event) throw createApiError("Event Not Found", 404);
+
+  // Delete event
+  await event.deleteOne();
+
+  res.status(200).json(handleResponse({ deleted: event._id }));
+});
+
+const editEvent = handleAsync(async (req, res) => {
+  const user = req.user;
+
+  const { eventId } = req.params;
+
+  //Validate eventId, 404 is returned even though id is invalid for security sake
+  if (!mongoose.isValidObjectId(eventId))
+    throw createApiError("Resource Not Found", 404);
+
+  const schema = Joi.object({
+    title: Joi.string(),
+    customURI: Joi.string().alphanum()
+  });
+
+  // Validate request body
+  const { error } = schema.validate(req.body);
+
+  if (error) throw createApiError(error.message, 400);
+
+  // Get the event with an id of "eventId" owned by user
+  const event = await Event.findOneAndUpdate(
+    { _id: eventId, userId: user._id },
+    req.body,
+    { new: true }
+  );
+
+  // 404 event not found
+  if (!event) throw createApiError("Event Not Found", 404);
+
+  res.status(200).json(handleResponse({ event }));
+});
+
+const getCertificateByEmail = handleAsync(async (req, res) => {
+  const { eventId } = req.params;
+  const { email } = req.body;
+  const query = {};
+
+  // Email is required
+  if (!email) throw createApiError("Email is required", 400);
+
+  // Generate query
+  if (mongoose.isValidObjectId(eventId)) {
+    // build query where to return events where _id or customURI is eventId
+    query.$or = [{ customURI: eventId }, { _id: eventId }];
+  } else {
+    // build query to find event with customURI of eventId
+    query.customURI = eventId;
   }
-};
 
-const createEvent = async (req, res) => {
-  try {
-    const user = req.user;
-    const customURI = req.body.customURI || crypto.randomUUID();
-    req.body.customURI = customURI;
+  // Get the event whose _id or customURI  is "eventId"
+  const event = await Event.findOne(query);
 
-    // Define validation schema
-    const schema = Joi.object({
-      title: Joi.string().required(),
-      customURI: Joi.string()
-        .regex(/^[a-zA-Z0-9\-\_]+$/)
-        .required()
-    });
+  // 404 event not found
+  if (!event) throw createApiError("Event Not Found", 404);
 
-    // Validate request body against schema
-    const { error } = schema.validate(req.body);
+  // Get certificates for this event
+  const collection = await Certificate.findOne({ userId: event.userId });
 
-    // Validation error
-    if (error)
-      return res.status(400).json({ message: error.message, success: false });
+  if (!collection)
+    throw createApiError("certificate collection Not Found", 404);
 
-    // Get certificate collection owned by user
-    const certCollection = await Certificate.findOne({
-      userId: user._id
-    });
+  // Get single certificate with user email
+  const certificate = collection.records.find(record => {
+    return record.email === email;
+  });
 
-    // Verify that certification collection exists
-    if (!certCollection)
-      return res.status(400).json({
-        message: "user has no certificates",
-        success: false
-      });
+  if (!certificate) throw createApiError("Certificate Not Found", 404);
 
-    // Verify that custom URI isn't taken
-    const existingEvent = await Event.findOne({ customURI });
+  res.status(200).json(handleResponse({ certificate }));
+});
 
-    if (existingEvent)
-      return res
-        .status(400)
-        .json({ message: "customURI is already taken", success: false });
+const validateCustomURI = handleAsync(async (req, res) => {
+  const { customURI } = req.body;
 
-    // Create new event
-    const event = await Event.create({ ...req.body, userId: user._id });
+  // Define validation schema
+  const schema = Joi.string().required().alphanum();
 
-    res.status(201).json({ event, success: true });
-  } catch (error) {
-    res.status(500).json({ message: error.message, success: false });
-  }
-};
+  // Validate customURI against schema
+  const { error } = schema.validate(customURI);
 
-const deleteEvent = async (req, res) => {
-  try {
-    const user = req.user;
-    const { eventId } = req.params;
+  if (error) throw createApiError(error.message, 400);
 
-    // 404 is returned even though id is invalid for security sake
-    if (!mongoose.isValidObjectId(eventId))
-      return res
-        .status(404)
-        .json({ message: "Resource Not Found", success: false });
+  // Check if customURI is unique
+  const eventWithURI = await Event.findOne({ customURI });
 
-    // Get the event with an id of "eventId"
-    const event = await Event.findOne({ _id: eventId, userId: user._id });
+  // if customURI is taken
+  if (eventWithURI) throw createApiError("customURI is already taken", 400);
 
-    // 404 event not found
-    if (!event)
-      return res
-        .status(404)
-        .json({ message: "Event Not Found", success: false });
-
-    // Delete event
-    await event.deleteOne();
-
-    res.status(200).json({ deleted: event._id, success: true });
-  } catch (error) {
-    res.status(500).json({ message: error.message, success: false });
-  }
-};
-
-const editEvent = async (req, res) => {
-  try {
-    const user = req.user;
-    const { eventId } = req.params;
-
-    //Validate eventId, 404 is returned even though id is invalid for security sake
-    if (!mongoose.isValidObjectId(eventId))
-      return res
-        .status(404)
-        .json({ message: "Resource Not Found", success: false });
-
-    // Get the event with an id of "eventId" owned by user
-    const event = await Event.findOne({ _id: eventId, userId: user._id });
-
-    // 404 event not found
-    if (!event)
-      return res
-        .status(404)
-        .json({ message: "Event Not Found", success: false });
-
-    // Define validation schema
-    const schema = Joi.object({
-      title: Joi.string(),
-      customURI: Joi.string().alphanum()
-    });
-
-    // Validate request body
-    const { error } = schema.validate(req.body);
-
-    if (error)
-      return res.status(400).json({ message: error.message, success: false });
-
-    // Delete event
-    await event.updateOne(req.body, { new: true });
-
-    res.status(200).json({ event, success: true });
-  } catch (error) {
-    res.status(500).json({ message: error.message, success: false });
-  }
-};
-
-const getCertificateByEmail = async (req, res) => {
-  try {
-    const { eventId } = req.params;
-    const { email } = req.body;
-    const query = {};
-
-    // Email is required
-    if (!email)
-      return res
-        .status(400)
-        .json({ message: "Email is required", success: false });
-
-    // Generate query
-    if (mongoose.isValidObjectId(eventId)) {
-      // build query where to return events where _id or customURI is eventId
-      query.$or = [{ customURI: eventId }, { _id: eventId }];
-    } else {
-      // build query to find event with customURI of eventId
-      query.customURI = eventId;
-    }
-
-    // Get the event whose _id or customURI  is "eventId"
-    const event = await Event.findOne(query);
-
-    // 404 event not found
-    if (!event)
-      return res
-        .status(404)
-        .json({ message: "Event Not Found", success: false });
-
-    // Get certificates for this event
-    const collection = await Certificate.findOne({ userId: event.userId });
-
-    if (!collection)
-      return res
-        .status(404)
-        .json({ message: "certificate collection Not Found", success: false });
-
-    // Get single certificate with user email
-    const certificate = collection.records.find(record => {
-      return record.email === email;
-    });
-
-    if (!certificate)
-      return res
-        .status(404)
-        .json({ message: "Certificate Not Found", success: false });
-
-    res.status(200).json({ certificate, success: true });
-  } catch (error) {
-    res.status(500).json({ message: error.message, success: false });
-  }
-};
-
-const validateCustomURI = async (req, res) => {
-  try {
-    const { customURI } = req.body;
-
-    // Define validation schema
-    const schema = Joi.string().required().alphanum();
-
-    // Validate customURI against schema
-    const { error } = schema.validate(customURI);
-
-    if (error)
-      return res.status(400).json({ message: error.message, success: false });
-
-    // Check if customURI is unique
-    const eventWithURI = await Event.findOne({ customURI });
-
-    // if customURI is taken
-    if (eventWithURI)
-      return res
-        .status(400)
-        .json({ message: "customURI is already taken", success: false });
-
-    res.status(200).json({ customURI, success: true });
-  } catch (error) {
-    res.status(500).json({ message: error.message, success: false });
-  }
-};
+  res.status(200).json(handleResponse({ customURI }));
+});
 
 module.exports = {
   getAllEvents,
