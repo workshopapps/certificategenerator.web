@@ -20,9 +20,10 @@
     margin: 0;
     padding: 0;
   }
-  .label{
+  .label {
     margin: 0;
   }
+
   .modal-container {
     background-color: #fff;
     // max-width: 1000px;
@@ -76,7 +77,7 @@
           font-size: 16px;
           margin-bottom: 3rem;
         }
-        .w-5{
+        .w-5 {
           width: 100%;
           margin: 2rem 0 1rem 0;
         }
@@ -96,11 +97,11 @@
             padding: 0.5rem 1.5rem;
             border-radius: 10px;
           }
-          .active{
+          .active {
             background-color: $primaryColor;
             color: #fff;
           }
-          .inactive{
+          .inactive {
             background-color: transparent;
             color: black;
           }
@@ -115,24 +116,28 @@
         width: 100%;
         margin: 0 auto;
         padding-top: 0;
-        .form-group{
+        .form-group {
           margin-bottom: 1rem;
         }
         div {
-          &:first-child{
-            .label{
+          &:first-child {
+            .label {
               font-weight: 700;
             }
-            span{
+            span {
               display: block;
             }
-            label{
+            label {
               border: 1px solid grey;
               width: fit-content;
-              padding: .5rem 1rem;
+              padding: 0.5rem 1rem;
             }
-          } 
-          .file-type{
+            img {
+              margin: 1rem 0px;
+              max-width: 9rem;
+            }
+          }
+          .file-type {
             border: none;
             display: none;
           }
@@ -144,7 +149,7 @@
             color: #000000;
             border-radius: 8px;
           }
-          .loading{
+          .loading {
             display: flex;
             justify-content: space-between;
           }
@@ -165,7 +170,6 @@
           background-color: #8ab9b2;
           cursor: not-allowed;
         }
-        
       }
     }
   }
@@ -176,7 +180,6 @@
     .modal-container {
       .modal-body {
         .head {
-          
           h3 {
             font-size: 32px;
             margin-bottom: 1rem;
@@ -185,13 +188,16 @@
             font-size: 16px;
             margin-bottom: 3rem;
           }
-        
         }
-        .loading{
+        .loading {
           display: flex;
           justify-content: space-between;
         }
-      } 
+      }
+      img {
+        margin: 1rem 0px;
+        max-width: 9rem;
+      }
     }
   }
 }
@@ -201,7 +207,7 @@
       width: 70%;
       .modal-body {
         .head {
-          .w-5{
+          .w-5 {
             width: 45%;
             margin: 0 auto 2rem auto;
           }
@@ -213,20 +219,23 @@
             font-size: 24px;
             margin-bottom: 3rem;
           }
-          
         }
-        form{
+        form {
           max-width: 760px;
           margin: 0 auto;
           padding: 3rem 5rem 3rem 5rem;
           border-radius: 16px;
           border: 0.1px solid #545454;
-          .loading{
+          img {
+            margin: 1rem 0px;
+            max-width: 9rem;
+          }
+          .loading {
             display: flex;
             justify-content: space-between;
           }
         }
-      } 
+      }
     }
   }
 }
