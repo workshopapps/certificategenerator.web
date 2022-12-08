@@ -44,7 +44,7 @@ const ProfilePage = () => {
           }) 
   }
   
-  const url= "https://certify-api.onrender.com/api/pricing"
+  const url= "https://certify-api.onrender.com/api/profile"
   function handlePost(e){
     const newdata={...data}
     newdata[e.target.id]=e.target.value
