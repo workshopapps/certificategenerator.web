@@ -13,7 +13,9 @@ function Generate() {
   const [description, setDescription] = useState("");
   const [date, setDate] = useState("");
   const [signed, setSigned] = useState("");
-  var token = localStorage.getItem("token");
+  const getToken = JSON.parse(localStorage.getItem("userData"))
+  const token = getToken.token;
+
   const userEventId = localStorage.getItem("_id");
 
   // REF FOR PNG AND PDF
@@ -52,7 +54,7 @@ function Generate() {
         const result = await response.json();
 
         const certData = result.data.certificate;
-        localStorage.setItem(certData.name, "awardeeName");
+      
         setAward(certData.award);
         setAwardee(certData.name);
         setDescription(certData.description);
