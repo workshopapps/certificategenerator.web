@@ -1,5 +1,5 @@
+import { Route, Routes } from "react-router-dom";
 import * as Sentry from "@sentry/react";
-
 import {
   AboutUs,
   BulkStep,
@@ -19,24 +19,23 @@ import {
   Templates,
   Terms,
   ProfilePage,
-  UploadCSV
-} from "./pages";
-import "./Style/App.scss";
-import {
+  UploadCSV,
   ChangePassword,
   ForgotPassword,
   PasswordLinkSent,
   ResetPassword,
-  PasswordChangeSuccessfully
-} from "./pages/ResetPassword";
-import Generate from "./pages/Dashboard/Generate";
-import Home from "./pages/Home";
-import Checkout from "./pages/Checkout";
-import { Privacy } from "./pages/PrivacyPolicy";
+  PasswordChangeSuccessfully,
+  Home,
+  Privacy,
+  Checkout,
+   Generate 
+} from "./pages";
+
 import Login from "./Component/Signup-Login/assets/Login";
 import Signup from "./Component/Signup-Login/assets/Sginup";
-import { Route, Routes } from "react-router-dom";
 import RequireAuth from "./Component/RequireAuth";
+
+import "./Style/App.scss";
 
 function App() {
   return (
