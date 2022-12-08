@@ -1,5 +1,5 @@
 import * as Sentry from "@sentry/react";
-import { useParams } from "react-router-dom";
+
 import {
   AboutUs,
   BulkStep,
