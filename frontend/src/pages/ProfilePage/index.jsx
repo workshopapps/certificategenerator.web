@@ -19,7 +19,7 @@ const ProfilePage = () => {
   phoneNumber:"",
   email:""
 })
-
+const [displayData, setdisplayData] = useState({})
 
 
 const userId = localStorage.getItem("user");
@@ -155,7 +155,7 @@ const userId = localStorage.getItem("user");
                 id="name" 
                 type="text" 
                 placeholder="Name"
-              
+                value={data.name}
                 />
             <Input className="form-group"
               label={"Jobs"}
@@ -163,7 +163,7 @@ const userId = localStorage.getItem("user");
                 id="job" 
                 type="text" 
                 placeholder="Job"
-                
+                value={data.job}
                 />
 
               <Input className="form-group"
@@ -172,7 +172,7 @@ const userId = localStorage.getItem("user");
                 id="location" 
                 type="text" 
                 placeholder="Location"
-                
+                value={data.location}
                 />
 
             <Input className="form-group"
@@ -181,7 +181,7 @@ const userId = localStorage.getItem("user");
                 id="email" 
                 type="email" 
                 placeholder="E-mail"
-                
+                value={data.email}
                 />
 
             <Input className="form-group"
@@ -190,7 +190,7 @@ const userId = localStorage.getItem("user");
                 id="phoneNumber" 
                 type="tel" 
                 placeholder="(316) 555-0116"
-                
+                value={data.phoneNumber}
                 />
 
             <div id="postbtnid" className="form-btn-wrapper">
