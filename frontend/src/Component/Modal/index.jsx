@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Button from "../button";
 import "./modal.style.scss";
 
 function index({ open, onClose, modalText }) {
@@ -34,17 +35,17 @@ function index({ open, onClose, modalText }) {
         </div>
         <div className="modal-containerx__btns">
           <Link to="/signup">
-            <button onClick={onClose} className="modal-containerx__btn">
+            <Button onClick={onClose} className="modal-containerx__btn">
               Sign Up
-            </button>
+            </Button>
           </Link>
           <Link to="/login">
-            <button
+            <Button
               onClick={onClose}
-              className="modal-containerx__btn modal-containerx__btn--signin"
+              className=" btnLight modal-containerx__btn modal-containerx__btn--signin"
             >
-              Sign In
-            </button>
+              Login
+            </Button>
           </Link>
         </div>
       </div>
