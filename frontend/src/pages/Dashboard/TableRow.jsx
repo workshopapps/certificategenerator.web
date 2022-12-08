@@ -10,12 +10,14 @@ const TableRow = ({item, handleChangeCertificateStatus, handleDeleteCertificate,
     await handleDeleteCertificate(id)
     // getUserCertificates()
     setOpenOptions(!openOptions)
+    getUserCertificates()
   }
   const handleStatus = async (id, status) => {
     console.log(status)
     await handleChangeCertificateStatus(id, status)
     // getUserCertificates()
     setOpenOptions(!openOptions)
+    getUserCertificates()
   }
   const [openOptions, setOpenOptions] = useState(false);
   useEffect(() => {
