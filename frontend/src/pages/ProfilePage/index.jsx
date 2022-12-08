@@ -1,12 +1,14 @@
 import React, {useState} from "react";
 import axios from 'axios'
 import Modal from '../../Component/Modal'
-import {useNavigate} from 'react-router-dom'
+import {Navigate, useNavigate} from 'react-router-dom'
 import "./profile.style.scss";
 import Avatar from "../../assets/images/Ellipse4.png"
 import Input from "../../Component/Input";
 import Loader from "../../Component/ButtonLoader";
 import { Toast } from '../../Component/ToastAlert'
+import { useEffect } from "react";
+
 
 const ProfilePage = () => {
   const navigate = useNavigate()
@@ -19,9 +21,7 @@ const ProfilePage = () => {
   email:""
 })
 
-
 const userId = localStorage.getItem("user");
-
   // Handle user Logout
   const handleLogout = async(e) =>{
     setLoading(true);
@@ -54,43 +54,38 @@ const userId = localStorage.getItem("user");
     //console.log(e)
   };
 
-  const Submit = async e => {
-    e.preventDefault();
-    
+  const userData = JSON.parse(localStorage.getItem("userData"))
+  const token = userData.token;
+  const headers = {
+    Authorization: `Bearer ${token}`,
+    "Content-Type": "application/json"
+  }; 
+
+  function handleDelete(){
     const userData = JSON.parse(localStorage.getItem("userData"))
     const token = userData.token;
-    //console.log(token)
-    try {
-      const headers = {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json"
-      };
-      //console.log(token)
-      const response = await axios.patch(
-        url,
-        {
-          name: data.name,
-          job: data.job,
-          location: data.location,
-          phoneNumber: data.phoneNumber,
-          email: data.email
-        },
-        {
-          headers
-        }
-      );
-      if (response.status === 200) {
-        Toast.fire({
-          icon: "success",
-          title: response.message
-        });
-      } else {
-        throw new Error(response.message);
+    const headers = {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json"
+    };
+    setLoading(true)
+    fetch(url,
+      {
+        method: "DELETE",
+        headers
       }
-    } catch (error) {
-      console.log(error);
-    }
-  };
+      )
+      .then((res) => res.json())
+      .then((res)=>{
+        //setData(res.data.profile)
+        console.log(res.data)
+        console.log("Account deleted")   
+        navigate("/signup")     
+      })
+      .catch(err=>console.log(console.error()))
+      .finally(()=>setLoading(false))   
+}
+
   return (
     <div className="profile-page">
       <div>
@@ -116,12 +111,13 @@ const userId = localStorage.getItem("user");
 
         <div className="btn-wrapper">
           <button onClick={handleLogout} style={loading ? {background: '#f84343', cursor: 'not-allowed'} : {background: 'transparent', cursor: 'pointer'}}>{loading ? <Loader /> : <span>Log Out</span>}</button>
+          <button onClick={handleDelete} style={loading ? {background: '#f84343', cursor: 'not-allowed'} : {background: 'transparent', cursor: 'pointer'}}>{loading ? <Loader /> : <span>Delete Account</span>}</button>
         </div>
       </div>
 
       <div className="form">
         <h2>Manage Profile</h2>
-        <form onSubmit={(e)=>Submit(e)} >
+        <form>
 
             <Input className="form-group"
               label={"Name"}
@@ -129,6 +125,7 @@ const userId = localStorage.getItem("user");
                 id="name" 
                 type="text" 
                 placeholder="Name"
+                value={data.name}
                 />
             <Input className="form-group"
               label={"Jobs"}
@@ -136,6 +133,7 @@ const userId = localStorage.getItem("user");
                 id="job" 
                 type="text" 
                 placeholder="Job"
+                value={data.job}
                 />
 
               <Input className="form-group"
@@ -144,6 +142,7 @@ const userId = localStorage.getItem("user");
                 id="location" 
                 type="text" 
                 placeholder="Location"
+                value={data.location}
                 />
 
             <Input className="form-group"
@@ -152,6 +151,7 @@ const userId = localStorage.getItem("user");
                 id="email" 
                 type="email" 
                 placeholder="E-mail"
+                value={data.email}
                 />
 
             <Input className="form-group"
@@ -160,10 +160,11 @@ const userId = localStorage.getItem("user");
                 id="phoneNumber" 
                 type="tel" 
                 placeholder="(316) 555-0116"
+                value={data.phoneNumber}
                 />
 
             <div id="postbtnid" className="form-btn-wrapper">
-                <button onSubmit={Submit}>Save Changes</button>
+                <button>Save Changes</button>
             </div>
         </form>
       </div>

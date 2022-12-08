@@ -35,6 +35,10 @@
    .user-info {
      width: 60%;
 
+     .btn-wrapper{
+      display: flex;
+      gap: 10px;
+     }
      .btn-wrapper button {
        background-color: transparent;
        color: #f84343;
