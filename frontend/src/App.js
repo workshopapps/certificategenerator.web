@@ -28,12 +28,12 @@ import {
   Home,
   Privacy,
   Checkout,
-   Generate 
+  Generate
 } from "./pages";
 
 import Login from "./Component/Signup-Login/assets/Login";
 import Signup from "./Component/Signup-Login/assets/Sginup";
-import RequireAuth from "./Component/RequireAuth";
+import ProtectedRoutes from "./Component/ProtectedRoutes";
 
 import "./Style/App.scss";
 
@@ -50,9 +50,9 @@ function App() {
             <Route
               path="/dashboard"
               element={
-                <RequireAuth>
+                <ProtectedRoutes>
                   <Dashboard />
-                </RequireAuth>
+                </ProtectedRoutes>
               }
             />
             <Route path="/generate/:generateId" element={<Generate />} />
@@ -70,7 +70,14 @@ function App() {
             <Route path="/pricing" element={<Pricing />} />
             <Route path="/contact-us" element={<ContactUs />} />
             <Route path="/payment" element={<Checkout />} />
-            <Route path="/profile" element={<ProfilePage />} />
+            <Route
+              path="/profile"
+              element={
+                <ProtectedRoutes>
+                  <ProfilePage />
+                </ProtectedRoutes>
+              }
+            />
             <Route path="/upload" element={<UploadCSV />} />
             <Route path="/privacy" element={<Privacy />} />
             {/* ResetPassword */}

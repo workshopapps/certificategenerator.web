@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { FaBars, FaTimes } from "react-icons/fa";
+import Avatar from '../../assets/Ellipse4.png'
+import CaretDown from '../../assets/svgs/caret-down.svg'
 
 import "./navbar.style.scss";
 import logo from "../../assets/images/navbarIcon.png";
@@ -11,7 +13,7 @@ function Navbar() {
   const [switchFa, setSwitchFa] = useState(false);
   // const [istoken, setIstoken] = useState(false);
   const navigate = useNavigate();
-
+    const isLoggedIn = localStorage.getItem("userData")
   // useEffect(() => {
   //   const token = localStorage.getItem("token");
   //   if (token) {
@@ -92,27 +94,34 @@ function Navbar() {
                 );
               })}
             </div>
-            {/* {istoken ? (
-              <div onClick={navigate('/dashboard')} className="dashboard__profile-pic">
-              <img src={profilePic} alt="Avatar" />
-            </div>
-            ) : ( */}
 
-            <div className="button-container">
-              <NavLink to="/signup">
-                <Button
-                  className="btn"
-                  onClick={handleToggle}
-                  name={"get started"}
-                >
-                  {/* <Link to="/modify" className="link"></Link> */}
-                </Button>
-              </NavLink>
+             {isLoggedIn?
+             <div className="dropdown-container">
+               <div className="dropdown__items">
+                <h3>My Account</h3>
+                <img src={CaretDown} alt='caret-down' />
+                <span className="dropdown__img">
+                  <img src={Avatar} alt="avatar" />
+                </span>
+               </div>
             </div>
+            : 
+           <div className="button-container">
+            <NavLink to="/signup" >
+              <Button
+                className="btn"
+                onClick={handleToggle}
+                name={"get started"}
+              >
+              </Button>
+            </NavLink>
+            </div>
+          }
+       
           </div>
         </div>
+        </div>
       </div>
-    </div>
   );
 }
 

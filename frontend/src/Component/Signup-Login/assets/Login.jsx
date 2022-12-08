@@ -149,15 +149,16 @@ const Login = () => {
 
         throw new Error("Something went wrong");
       }
-      const userData = {
-        userId: response.data.userId,
-        token: response.data.token,
-        refreshToken: response.data.refreshToken,
-        subscription: response.data.subscription,
+
+       const userData = {
+        userId: response.data.data.userId,
+        token: response.data.data.token,
+        refreshToken: response.data.data.refreshToken,
+        subscription: response.data.data.subscription,
       }
-      console.log(userData)
       localStorage.setItem('userData', JSON.stringify(userData))
-      localStorage.setItem('token', userData.token)
+     console.log(userData)
+
     } catch (error) {
       setError(true);
       console.log(error.message);
@@ -276,7 +277,7 @@ const Login = () => {
 
             {/* </div> */}
             {error && <p style={{ color: "red" }}>Something went wrong</p>}
-            <div className="forgotPwd"><Link to = "/fff1">
+            <div className="forgotPwd"><Link to = "/forgotpassword">
             Forgot password?</Link></div>
             <div id="checkTerms">
               <input

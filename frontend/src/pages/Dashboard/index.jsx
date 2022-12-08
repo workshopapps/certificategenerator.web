@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import Card from "./Card";
 import { dummyData, nullDataIcon, } from "./utils";
+import {Toast} from '../../Component/ToastAlert'
 import Button from "../../Component/button";
 import CreateCertificateModal from "./CreateCertificateModal";
 // import { axiosPrivate } from "../../api/axios";
@@ -10,6 +11,7 @@ import useAppProvider from "../../hooks/useAppProvider";
 import { Loader } from "../../Component";
 import TableRow from "./TableRow";
 import profilePic from "../../assets/images/Ellipse4.png";
+import Upload from "./assets/upload.png";
 import "./dashboard.style.scss";
 
 const Dashboard = () => {
@@ -36,6 +38,8 @@ const Dashboard = () => {
   const [eventLink, setEventLink] = useState("");
   const baseURL = "https://certgo.hng.tech/api";
   const accessToken = localStorage.getItem("token");
+  const [selectedImage, setSelectedImage] = useState('')
+
 
   const axiosPrivate = axios.create({
     baseURL,
@@ -44,19 +48,20 @@ const Dashboard = () => {
       Authorization: `Bearer ${accessToken}`
     }
   });
-  
 
-  const Toast = Swal.mixin({
-    toast: true,
-    position: "top-end",
-    showConfirmButton: false,
-    timer: 3000,
-    timerProgressBar: true,
-    didOpen: toast => {
-      toast.addEventListener("mouseenter", Swal.stopTimer);
-      toast.addEventListener("mouseleave", Swal.resumeTimer);
-    }
-  });
+
+    // On file select (from the pop up)
+  // Update the state
+    const onFileChange = async (e) => {   
+        e.preventDefault()
+          setSelectedImage({ file: e.target.files[0] });
+          setSelectedImage(URL.createObjectURL(e.target.files[0]))
+          console.log(e.target.files[0]);
+         const formData = new FormData();
+         formData.append('file', selectedImage)
+  
+  }
+
 
   const handleChangeCertificateStatus = async (id, status) => {
     console.log(id, status);
@@ -184,8 +189,14 @@ const Dashboard = () => {
     <>
       <div className="dashboard">
         <div className="dashboard__hero-section">
-          <div className="dashboard__profile-pic">
-            <img src={profilePic} alt="Avatar" />
+           <div className="dashboard__profile-pic-wrapper">
+            <span className="dashboard__profile-pic">
+              <img src={selectedImage || profilePic} alt="brand-kit" />   
+            </span>
+              <label htmlFor="file" className="dashboard__upload-label">
+                   <img src={Upload} alt="upload-icon" />
+                   <input type="file" id="file" accept="image/*" name="image" onChange={onFileChange}  />
+            </label>
           </div>
           <div className="flexx">
             <div className="dashboard__align-start">
