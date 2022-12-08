@@ -87,7 +87,7 @@ const Dashboard = () => {
   const getUserCertificates = async () => {
     try {
       const response = await axiosPrivate.get("/certificates");
-      let sub = localStorage.getItem("subscription");
+      let sub = JSON.parse(localStorage.getItem("userData")).subscription;
       setPricing(sub);
       console.log(response);
       if (response.status === 404) {
