@@ -25,7 +25,7 @@ function SinglePreview({
   const [modalMessage, setModalMessage] = useState("");
 
   useEffect(() => {
-    localStorage.getItem("user", "token")
+    localStorage.getItem("userData")
       ? setIsAuntheticated(true)
       : setIsAuntheticated(false);
   }, []);
@@ -34,8 +34,6 @@ function SinglePreview({
     e.preventDefault();
     setOpenModal(!openModal);
   }
-  // get token from localstorage
-  const token = localStorage.getItem("token");
 
   // REF FOR PNG AND PDF
   var certificateWrapper = React.createRef();
@@ -67,10 +65,14 @@ function SinglePreview({
     }
   });
   const handleSendCertificate = async e => {
-    localStorage.getItem("user", "token")
-      ? setIsAuntheticated(true)
-      : setIsAuntheticated(false);
     try {
+      localStorage.getItem("userData")
+        ? setIsAuntheticated(true)
+        : setIsAuntheticated(false);
+
+      // get token from localstorage
+
+      const token = JSON.parse(localStorage.getItem("userData")).token;
       if (!isAuntheticated) {
         setOpenModal(!openModal);
         setModalMessage("You need to sign up to send certificate to your mail");
