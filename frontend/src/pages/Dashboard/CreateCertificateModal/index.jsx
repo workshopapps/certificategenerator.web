@@ -36,18 +36,13 @@ function CreateCertificateModal({
     !awardeeName.trim() ||
     !issuedBy.trim() ||
     !issueDate.trim();
+
   const handleSubmit = e => {
     e.preventDefault();
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
       navigate("/preview");
-      // setLogo("");
-      // setCertificateTitle("");
-      // setAwardeeName("");
-      // setMessage("");
-      // setIssuedBy("");
-      // setIssueDate(Date.now());
     }, 1500);
     
   };
@@ -151,7 +146,7 @@ function CreateCertificateModal({
 
           {tab ? (
             <div>
-              <UploadCsv getUserCertificates={getUserCertificates} />
+              <UploadCsv getUserCertificates={getUserCertificates} onClose={onClose}/>
             </div>
           ) : (
             <form onSubmit={handleSubmit}>

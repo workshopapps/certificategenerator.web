@@ -1,17 +1,28 @@
-import "./uploadcsv.style.scss";
-import CSVSample from "../../../assets/images/CSV-sample.png";
-import UploadVector from "../../../assets/images/uploadPage/uploadVector.svg";
+import axios from "axios";
 import { useState } from "react";
 import Swal from "sweetalert2";
+import CSVSample from "../../../assets/images/CSV-sample.png";
+import UploadVector from "../../../assets/images/uploadPage/uploadVector.svg";
 import useAppProvider from "../../../hooks/useAppProvider"
 import {axiosFormData} from "../../../api/axios";
 import {ButtonLoader} from "../../../Component"
 import { useNavigate } from "react-router-dom";
+import "./uploadcsv.style.scss";
 
-const UploadCsv = ({getUserCertificates}) => {
+const UploadCsv = ({getUserCertificates, onClose}) => {
   const [state, setState] = useState({ active: true });
   const [loading, setLoading] = useState(false)
+  const baseURL = "https://certgo.hng.tech/api";
+  const accessToken = JSON.parse(localStorage.getItem("userData")).token
+  console.log(accessToken);
 
+  const axiosFormData = axios.create({
+    baseURL,
+    headers: {
+      "Content-Type": "multipart/form-data",
+      Authorization: `Bearer ${accessToken}`
+    }
+  });
 
 
   let formData = new FormData();
@@ -56,6 +67,7 @@ const UploadCsv = ({getUserCertificates}) => {
         });
       } else {
         setLoading(false);
+        onClose();
         getUserCertificates();
         Toast.fire({
           icon: "success",
