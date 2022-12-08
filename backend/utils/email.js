@@ -1,3 +1,4 @@
+const {handleAsync, handleError,handleResponse,createApiError} = require("./helpers")
 const nodemailer = require("nodemailer");
 require("dotenv").config();
 
@@ -34,7 +35,9 @@ const sendMailingEmail = ({ email }, res) => {
     if (error) {
       console.log(error);
     } else {
-      res.status(200).json({ message: "Confirmation Email has been sent" });
+      res
+      .status(200)
+      .json(handleResponse({},"Confirmation Mail has been sent"));
       console.log("Email sent: " + info.response);
     }
   });
@@ -59,8 +62,8 @@ const sendApplicationEmail = ({ email, name, role, location }, res) => {
       console.log(error);
     } else {
       res
-        .status(200)
-        .json({ message: "Career Confirmation Email has been sent" });
+      .status(200)
+      .json(handleResponse({},"Career Confirmation Mail has been sent"));
       console.log("Email sent: " + info.response);
     }
   });
@@ -84,7 +87,9 @@ const sendChangePasswordEmail = ({ email, link }, res) => {
     if (error) {
       console.log(error);
     } else {
-      res.status(200).json({ message: "Confirmation Email has been sent" });
+      res
+      .status(200)
+      .json(handleResponse({},"Confirmation Mail has been sent"));
       console.log("Email sent: " + info.response);
     }
   });
