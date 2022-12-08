@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./career.style.scss";
-import { Persons, Positions, Positions2 } from "./data";
+import { Persons} from "./data";
 import SectionCarousel from "./Carousel";
 import Button from "../../Component/button";
 import Rocket from "./assets/rocket-launcher.webp";
@@ -9,32 +9,31 @@ import Briefcase from "./assets/candidate resumes and briefcase.png";
 import Search from "./assets/search-icon.svg";
 import { FiChevronDown } from "react-icons/fi";
 import PositionCard from "./PositionCard";
-import axios from "axios";
+import axios from "../../api/axios";
+import Loader from "../../Component/loader";
 
 function Career() {
   const [roles, setRoles] = useState([]);
-  const [categories , setCategories ] = useState([])
-  console.log(categories, roles)
-
-  
+  const [categories, setCategories] = useState([]);
+  const [loading, setLoading] = useState(false) 
 
   useEffect(() => {
     const fetchOpenings = async () => {
       try {
-        const { data } = await axios.get("https://certgo.hng.tech/api/careers");
-        
-        const categorySet = new Set(data.response.map(item => item.category));
-  const newCategories = Array.from(categorySet);
-        setRoles(data.response);
+        setLoading(true)
+        const { data } = await axios.get("/careers");
+
+        const categorySet = new Set(data.data.careers.map(item => item.category));
+        const newCategories = Array.from(categorySet);
+        setRoles(data.data.careers);
         setCategories(newCategories)
-  console.log(categories, roles)
-       
+        setLoading(false)
       } catch (err) {
-        console.log(err)
+        
       }
     };
     fetchOpenings();
-  }, [roles, categories]);
+  }, []);
 
   return (
     <div className="career__container">
@@ -145,42 +144,33 @@ function Career() {
           </div>
         </form>
 
-        <div className="jobs">
-          {categories.map((category, idx) => {
-            return <>
-              <div className="job__type" key={idx}>
-                <h3>{ category}</h3>
-                <span className="number__badge">3</span>
-              </div>
-              {roles.filter((role) => role.category === category).map((position) => {
-                return (
-                  <div key={position._id}>
-                    <PositionCard position={position} />
+        {loading ? (
+          <Loader />
+        ) : (
+          <div className="jobs">
+            {categories.map((category, idx) => {
+              return (
+                <div key={idx}>
+                  <div className="job__type">
+                    <h3>{category}</h3>
+                    <span className="number__badge">
+                      {roles.filter(role => role.category === category).length}
+                    </span>
                   </div>
-                );
-              })}
-            </>
-          })}
-         
-          {Positions.map(position => {
-            return (
-              <div key={position.id}>
-                <PositionCard position={position} />
-              </div>
-            );
-          })}
-          <div className="job__type">
-            <h3>Customer Success</h3>
-            <span className="number__badge">2</span>
+                  {roles
+                    .filter(role => role.category === category)
+                    .map(position => {
+                      return (
+                        <div key={position._id}>
+                          <PositionCard position={position} />
+                        </div>
+                      );
+                    })}
+                </div>
+              );
+            })}
           </div>
-          {Positions2.map((position, index) => {
-            return index < 2 ? (
-              <div key={position.id}>
-                <PositionCard position={position} />
-              </div>
-            ) : null;
-          })}
-        </div>
+        )}
       </section>
     </div>
   );
