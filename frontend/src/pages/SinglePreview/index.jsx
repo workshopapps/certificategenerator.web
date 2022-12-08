@@ -70,12 +70,10 @@ function SinglePreview({
         ? setIsAuntheticated(true)
         : setIsAuntheticated(false);
 
-      // get token from localstorage
-
-      const token = JSON.parse(localStorage.getItem("userData")).token;
       if (!isAuntheticated) {
         setOpenModal(!openModal);
         setModalMessage("You need to sign up to send certificate to your mail");
+        console.log("ok");
         return;
       }
       const element = certificateWrapper.current;
@@ -88,6 +86,9 @@ function SinglePreview({
         format: [canvas.width, canvas.height]
       });
       pdf.addImage(data, "PNG", 0, 0, canvas.width, canvas.height);
+
+      // get token from localstorage
+      const token = JSON.parse(localStorage.getItem("userData")).token;
 
       // create form data and add pdf
       let formData = new FormData();
