@@ -4,6 +4,7 @@ import App from "./App";
 import * as Sentry from "@sentry/react";
 import { BrowserTracing } from "@sentry/tracing";
 import { BrowserRouter } from "react-router-dom";
+import { AppProvider } from "./contexts/AppProvider";
 import "./index.css";
 
 process.env.NODE_ENV === "production" &&
@@ -20,8 +21,8 @@ process.env.NODE_ENV === "production" &&
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <BrowserRouter>
-    <React.StrictMode>
+    <AppProvider>
       <App />
-    </React.StrictMode>
+    </AppProvider>
   </BrowserRouter>
 );

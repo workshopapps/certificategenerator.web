@@ -1,18 +1,27 @@
-import "./navbar.style.scss";
-//import menu from '../../pages/ComingSoon/images/menu.svg'
-import React, {  useState } from "react";
-import logo from "../../assets/images/navbarIcon.png";
-import { FaBars, FaTimes } from "react-icons/fa";
-import CaretDown from '../../assets/svgs/caret-down.svg'
+import React, { useState, useEffect } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
+import { FaBars, FaTimes } from "react-icons/fa";
 import Avatar from '../../assets/Ellipse4.png'
+import CaretDown from '../../assets/svgs/caret-down.svg'
+
+import "./navbar.style.scss";
+import logo from "../../assets/images/navbarIcon.png";
+// import profilePic from '../../assets/images/Ellipse4.png';
 import Button from "../button";
 
 function Navbar() {
   const [switchFa, setSwitchFa] = useState(false);
+  // const [istoken, setIstoken] = useState(false);
   const navigate = useNavigate();
-
-  const isLoggedIn = localStorage.getItem("user", "token")
+    const isLoggedIn = localStorage.getItem("userData")
+  // useEffect(() => {
+  //   const token = localStorage.getItem("token");
+  //   if (token) {
+  //     setIstoken(true);
+  //   } else {
+  //     setIstoken(false);
+  //   }
+  // }, []);
 
   const handleToggle = () => {
     setSwitchFa(!switchFa);
@@ -52,6 +61,7 @@ function Navbar() {
               </h2>
               <img src={logo} alt="Certgo bulb" />
             </div>
+
             <div className="nav-click">
               <Button className="btn" name={"get started"}>
                 <Link to="/modify" className="link"></Link>
@@ -84,7 +94,8 @@ function Navbar() {
                 );
               })}
             </div>
-            {isLoggedIn?
+
+             {isLoggedIn?
              <div className="dropdown-container">
                <div className="dropdown__items">
                 <h3>My Account</h3>
@@ -102,18 +113,15 @@ function Navbar() {
                 onClick={handleToggle}
                 name={"get started"}
               >
-                {/* <Link to="/modify" className="link"></Link> */}
               </Button>
             </NavLink>
             </div>
-            
-            }
-        
+          }
        
           </div>
         </div>
+        </div>
       </div>
-    </div>
   );
 }
 

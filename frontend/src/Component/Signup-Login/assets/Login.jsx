@@ -3,20 +3,21 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { GoogleLogin } from "react-google-login";
 import { gapi } from "gapi-script";
-import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
+
 import "./login.scss";
 import appleSVG from "./assets/apple.svg";
 import googleSVG from "./assets/google.svg";
 import cert from "./assets/Cert.png";
-import emailSVG from "./assets/email.svg";
-import keySVG from "./assets/key.svg";
 import { Toast } from '../../ToastAlert'
 import Input from "../../Input";
 import Button from "../../button";
+import useAppProvider from "../../../hooks/useAppProvider";
+import axios from "../../../api/axios";
 
-const Login = ({ access, setAccess }) => {
+const Login = () => {
+  const { setAccess } = useAppProvider();
   const navigate = useNavigate();
-  const [type, setType] = useState("password");
+  const [type] = useState("password");
   const [formData, setFormData] = React.useState({
     name: "",
     email: "",
@@ -34,13 +35,13 @@ const Login = ({ access, setAccess }) => {
     accessToken: ""
   });
 
-  const handleToggle = () => {
-    if (type === "password") {
-      setType("text");
-    } else {
-      setType("password");
-    }
-  };
+  // const handleToggle = () => {
+  //   if (type === "password") {
+  //     setType("text");
+  //   } else {
+  //     setType("password");
+  //   }
+  // };
 
  
   function handleChange(event) {
@@ -104,24 +105,14 @@ const Login = ({ access, setAccess }) => {
   //   }
   // }
   async function loginUser(email, password) {
-    return fetch("https://certify-api.onrender.com/api/auth/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ email: email, password: password })
-    });
+    return axios.post("/auth/login", { email: email, password: password });
   }
 
   const handleSubmit = async e => {
     e.preventDefault();
     try {
       const response = await loginUser(useremail, password);
-      const data = await response.json();
-
-      console.log(response);
-      console.log(data);
-      console.log(response.status);
+      console.log(response)
 
       if (response.status === 200 || response.status === 201) {
         Toast.fire({
@@ -159,11 +150,15 @@ const Login = ({ access, setAccess }) => {
         throw new Error("Something went wrong");
       }
 
-      const token = data.token;
-      localStorage.setItem("token", token);
-      localStorage.setItem("user", data.userId);
-      localStorage.setItem("subscription", data.subscription);
-      localStorage.setItem("refreshToken", data.refreshToken);
+       const userData = {
+        userId: response.data.data.userId,
+        token: response.data.data.token,
+        refreshToken: response.data.data.refreshToken,
+        subscription: response.data.data.subscription,
+      }
+      localStorage.setItem('userData', JSON.stringify(userData))
+     console.log(userData)
+
     } catch (error) {
       setError(true);
       console.log(error.message);
@@ -185,13 +180,13 @@ const Login = ({ access, setAccess }) => {
     setToken({ accessToken: res.tokenId });
 
     // User details from Google
-    const userProfile = {
-      email: res.profileObj.email,
-      fullName: res.profileObj.name,
-      userProfile: res.profileObj.imageUrl,
-      userId: res.profileObj.googleId,
-      accessToken: res.accessToken
-    };
+    // const userProfile = {
+    //   email: res.profileObj.email,
+    //   fullName: res.profileObj.name,
+    //   userProfile: res.profileObj.imageUrl,
+    //   userId: res.profileObj.googleId,
+    //   accessToken: res.accessToken
+    // };
 
     if (token.accessToken) loginUserGoogle(token);
 
@@ -241,7 +236,7 @@ const Login = ({ access, setAccess }) => {
               render={renderProps => (
                 <div onClick={renderProps.onClick} id="signupG">
                   <img alt="" src={googleSVG} id="img_id" />
-                  <a href="#">Login using Google</a>
+                  <Link to={'/dashboard'}>Login using Google</Link>
                 </div>
               )}
             />

@@ -1,26 +1,28 @@
 import React from "react";
+import { Outlet } from "react-router-dom";
+
 import Hero from "./Hero";
 import Certificate from "./Certificate";
 import BulkStep from "./BulkStep";
 import Testimonials from "./Testimonials";
-import { Outlet } from "react-router-dom";
 import Partners from "./Partners";
+import useAppProvider from "../../hooks/useAppProvider";
 
-
-const Home = ({
-  logo,
-  setLogo,
-  certificateTitle,
-  setCertificateTitle,
-  awardeeName,
-  setAwardeeName,
-  message,
-  setMessage,
-  issuedBy,
-  setIssuedBy,
-  issueDate,
-  setIssueDate
-}) => {
+const Home = () => {
+  const {
+    logo,
+    setLogo,
+    certificateTitle,
+    setCertificateTitle,
+    awardeeName,
+    setAwardeeName,
+    message,
+    setMessage,
+    issuedBy,
+    setIssuedBy,
+    issueDate,
+    setIssueDate
+  } = useAppProvider();
   return (
     <div
       style={{

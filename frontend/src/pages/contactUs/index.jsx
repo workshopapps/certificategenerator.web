@@ -8,7 +8,7 @@ import Button from "../../Component/button";
 import Inputfield from "../../Component/inputField";
 import TextArea from "../../Component/textarea";
 import "./contact.scss";
-import axios from "axios";
+import axios from "../../api/axios";
 
 const ContactUs = () => {
   const [firstName, setFirstName] = useState("");
@@ -27,7 +27,7 @@ const ContactUs = () => {
 
     try {
       setLoading(true);
-      await axios.post("https://certgo.hng.tech/api/contactus", {
+      await axios.post("/contactus", {
         firstName,
         lastName,
         email,

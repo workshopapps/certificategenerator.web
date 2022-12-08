@@ -1,8 +1,8 @@
 import axios from "axios";
 
 const baseURL = "https://certgo.hng.tech/api";
+// const userData = JSON.parse(localStorage.getItem('token'));
 const token = localStorage.getItem("token");
-console.log(token);
 
 export default axios.create({
   baseURL

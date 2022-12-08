@@ -1,40 +1,54 @@
-import React, { useEffect, useState } from "react";
 import axios from "axios";
-import "./dashboard.style.scss";
-import profilePic from "../../assets/images/Ellipse4.png";
+import React, { useEffect, useState } from "react";
+import Swal from "sweetalert2";
 import Card from "./Card";
-import { dummyData, cardData, nullDataIcon, actionIcon } from "./utils";
+import { dummyData, nullDataIcon, } from "./utils";
+import {Toast} from '../../Component/ToastAlert'
 import Button from "../../Component/button";
 import CreateCertificateModal from "./CreateCertificateModal";
-import { axiosPrivate } from "../../api/axios";
+// import { axiosPrivate } from "../../api/axios";
 import useAppProvider from "../../hooks/useAppProvider";
 import { Loader } from "../../Component";
-import Upload from './assets/upload.png'
 import TableRow from "./TableRow";
-import { Toast } from "../../Component/ToastAlert";
+import profilePic from "../../assets/images/Ellipse4.png";
+import Upload from "./assets/upload.png";
+import "./dashboard.style.scss";
 
-const Dashboard = ({
-  logo,
-  setLogo,
-  certificateTitle,
-  setCertificateTitle,
-  awardeeName,
-  setAwardeeName,
-  message,
-  setMessage,
-  issuedBy,
-  setIssuedBy,
-  issueDate,
-  setIssueDate
-}) => {
+const Dashboard = () => {
+  const {
+    logo,
+    setLogo,
+    certificateTitle,
+    setCertificateTitle,
+    awardeeName,
+    setAwardeeName,
+    message,
+    setMessage,
+    issuedBy,
+    setIssuedBy,
+    issueDate,
+    setIssueDate
+  } = useAppProvider();
   const [data, setData] = useState([]);
   const [cardData, setCardData] = useState([...dummyData]);
   const [openModal, setOpenModal] = useState(false);
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
   const [pricing, setPricing] = useState("");
   const [certificates, setCertificates] = useState([]);
-  const [eventLink, setEventLink] = useState("")
+  const [eventLink, setEventLink] = useState("");
+  const baseURL = "https://certgo.hng.tech/api";
+  const accessToken = localStorage.getItem("token");
   const [selectedImage, setSelectedImage] = useState('')
+
+
+  const axiosPrivate = axios.create({
+    baseURL,
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${accessToken}`
+    }
+  });
+
 
     // On file select (from the pop up)
   // Update the state
@@ -43,32 +57,10 @@ const Dashboard = ({
           setSelectedImage({ file: e.target.files[0] });
           setSelectedImage(URL.createObjectURL(e.target.files[0]))
           console.log(e.target.files[0]);
-
          const formData = new FormData();
-        formData.append('file', selectedImage)
-        // const res = await axiosPrivate.put("/users/brand-kit",  formData  )
-        // .then(() => {
-        //     const imageUrl = res.data.secure_url;
-        //     if(res.status === 200){
-        //       console.log(res);
-        //       console.log(imageUrl);
-        //     }
-        // })
-        fetch('https://certgo.hng.tech/api/users/brand-kit',{
-          method: "PUT",
-            headers: {
-            "Authorization" : `Bearer ${token}`,
-            "Content-Type": "application/json"
-          },
-             body: JSON.stringify({ file: formData })
-     })
-     .then(async response => {
-       const result = await response.json()
-        
-   console.log(result);
-       
-          })
-    }
+         formData.append('file', selectedImage)
+  
+  }
 
 
   const handleChangeCertificateStatus = async (id, status) => {
@@ -155,66 +147,49 @@ const Dashboard = ({
   useEffect(() => {
     getUserCertificates();
   }, []);
- 
-
 
   //GET EVENTS
   const getEvents = async () => {
-    
     return fetch("https://certgo.hng.tech/api/events", {
-     method: "GET",
-     headers: {
-       "Authorization" : `Bearer ${token}`,
-       "Content-Type": "application/json"
-     }
-   })
-      
-     .then(async response => {
-       const result = await response.json()
-       console.log(result.events[1])
-       var link = result.events[0]._id
-       setEventLink(`https://certgo.hng.tech/generate/:${link}`)
-       
-     })
-       
-    }
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json"
+      }
+    }).then(async response => {
+      const result = await response.json();
+      console.log(result.events[1]);
+      var link = result.events[0]._id;
+      setEventLink(`https://certgo.hng.tech/generate/:${link}`);
+    });
+  };
 
+  //GENERATE LINK
+  const title = "Fela Music School";
+  var token = localStorage.getItem("token");
+  const handleGenerate = async () => {
+    fetch("https://certgo.hng.tech/api/events", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ title: title })
+    }).then(async response => {
+      const result = await response.json();
 
-   //GENERATE LINK
-   const title = "Fela Music School"
-   var token = localStorage.getItem("token")
-    const handleGenerate = async () => {
-     
-     fetch("https://certgo.hng.tech/api/events", {
-       method: "POST",
-       headers: {
-         "Authorization" : `Bearer ${token}`,
-         "Content-Type": "application/json"
-       },
-       body: JSON.stringify({ title:title })
-     })
-     .then(async response => {
-       const result = await response.json()
-        
-       localStorage.setItem("_id", result.event._id);
-       localStorage.setItem("eventTitle", result.event.title);
-       localStorage.setItem("eventCustomURI", result.event.customURI)
-       
-          })
-     getEvents();
-   }
-
-
-
-
-
-
+      localStorage.setItem("_id", result.event._id);
+      localStorage.setItem("eventTitle", result.event.title);
+      localStorage.setItem("eventCustomURI", result.event.customURI);
+    });
+    getEvents();
+  };
 
   return (
     <>
       <div className="dashboard">
         <div className="dashboard__hero-section">
-          <div className="dashboard__profile-pic-wrapper">
+           <div className="dashboard__profile-pic-wrapper">
             <span className="dashboard__profile-pic">
               <img src={selectedImage || profilePic} alt="brand-kit" />   
             </span>
@@ -232,7 +207,7 @@ const Dashboard = ({
                 Certificates and Job done here
               </p>
               <div>
-                <p>Pricing Plan: {pricing.toUpperCase()}</p>
+                <p>Pricing Plan: {pricing}</p>
               </div>
             </div>
             <div className="dashboard__btn">
@@ -251,18 +226,23 @@ const Dashboard = ({
         <div className="table-wrapper">
           <div className="table-header">
             <p>CERTIFICATE DASHBOARD</p>
-            <h5 style = {{padding:'50px!important'}}>Certificate Download Link : {eventLink}</h5>
+            <h5 style={{ padding: "50px!important" }}>
+              Certificate Download Link : {eventLink}
+            </h5>
             {data.length > 0 ? (
-              <div style = {{display: 'flex'}}>
+              <div style={{ display: "flex" }}>
                 <Button className="" onClick={() => setOpenModal(true)}>
                   Create New Certificate
                 </Button>
 
-                
-                <Button style = {{marginLeft: '20px'}} className="" onClick={handleGenerate}>
+                <Button
+                  style={{ marginLeft: "20px" }}
+                  className=""
+                  onClick={handleGenerate}
+                >
                   {/* <Link to = {`/generate/:${generateId}`}>Generate Link</Link> */}
-               Generate Link
-                </Button> 
+                  Generate Link
+                </Button>
               </div>
             ) : null}
           </div>
@@ -305,6 +285,7 @@ const Dashboard = ({
                         handleChangeCertificateStatus
                       }
                       handleDeleteCertificate={handleDeleteCertificate}
+                      getUserCertificates={getUserCertificates}
                     />
                   ))}
                 </tbody>
@@ -329,6 +310,6 @@ const Dashboard = ({
       </div>
     </>
   );
-}
+};
 
 export default Dashboard;
