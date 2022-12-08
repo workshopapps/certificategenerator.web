@@ -1,21 +1,26 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Button from '../../Component/button';
 import ApplicationModal from './ApplicationModal';
 
-const PositionCard = ({position, setOpenApplyMoodal, openApplyModal}) => {
+const PositionCard = ({ position }) => {
+  const [openApplyModal, setOpenApplyModal] = useState(false);
   return (
     <div className="job__cont">
-      <ApplicationModal openApplyModal={openApplyModal} position={position} setOpenApplyModal={ setOpenApplyMoodal} />
+      <ApplicationModal
+        openApplyModal={openApplyModal}
+        position={position}
+        setOpenApplyModal={setOpenApplyModal}
+      />
       <div className="job__desc">
         <div>
           <h3>{position.role}</h3>
           <h4>
-            {position.type} <p>|</p> <b>{position.location}</b>
+            {position.jobType} <p>|</p> <b>{position.location}</b>
           </h4>
         </div>
         <Button
           name="Apply"
-          onClick={() => setOpenApplyMoodal(!openApplyModal)}
+          onClick={() => setOpenApplyModal(!openApplyModal)}
         />
       </div>
       <hr />

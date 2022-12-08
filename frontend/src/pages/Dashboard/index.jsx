@@ -149,6 +149,7 @@ const Dashboard = () => {
 
   //GET EVENTS
   const getEvents = async () => {
+   try {
     return fetch("https://certgo.hng.tech/api/events", {
       method: "GET",
       headers: {
@@ -157,15 +158,41 @@ const Dashboard = () => {
       }
     }).then(async response => {
       const result = await response.json();
-      console.log(result.events[1]);
-      var link = result.events[0]._id;
+     
+      var link = result.data.events[0]._id;
       setEventLink(`https://certgo.hng.tech/generate/:${link}`);
-    });
+    
+      if (response.status === 200 || response.status === 201) {
+        Toast.fire({
+          icon: "success",
+          title: "Link Generated"
+        });
+      } else if (response.status === 401 || response.status === 400) {
+        Toast.fire({
+          icon: "error",
+          title: "Email not found"
+        });
+      } else if (response.status === 500) {
+        Toast.fire({
+          icon: "error",
+          title: "Internal Server Error"
+        });
+      }
+    
+    })
+
+   }
+   catch (error) {
+    console.error(error.message);
+  }
   };
 
   //GENERATE LINK
   const title = "Fela Music School";
-  var token = localStorage.getItem("token");
+  const getToken = JSON.parse(localStorage.getItem("userData"))
+
+  var token = getToken.token;
+
   const handleGenerate = async () => {
     fetch("https://certgo.hng.tech/api/events", {
       method: "POST",
@@ -176,10 +203,9 @@ const Dashboard = () => {
       body: JSON.stringify({ title: title })
     }).then(async response => {
       const result = await response.json();
-
-      localStorage.setItem("_id", result.event._id);
-      localStorage.setItem("eventTitle", result.event.title);
-      localStorage.setItem("eventCustomURI", result.event.customURI);
+      localStorage.setItem("_id", result.data.event._id);
+      localStorage.setItem("eventTitle", result.data.event.title);
+      localStorage.setItem("eventCustomURI", result.data.event.customURI);
     });
     getEvents();
   };
@@ -226,7 +252,9 @@ const Dashboard = () => {
           <div className="table-header">
             <p>CERTIFICATE DASHBOARD</p>
             <h5 style={{ padding: "50px!important" }}>
-              Certificate Download Link : {eventLink}
+              
+                Certificate Download Link : {eventLink && <a style = {{color : 'green'}} target = '_blank' href = {eventLink}>Link generated, Click Here</a>}
+              
             </h5>
             {data.length > 0 ? (
               <div style={{ display: "flex" }}>
