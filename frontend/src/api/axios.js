@@ -1,27 +1,26 @@
 import axios from "axios";
 
-const baseURL="https://certgo.hng.tech/api"
-const token = localStorage.getItem('token')
+const baseURL = "https://certgo.hng.tech/api";
+const token = localStorage.getItem("token");
 console.log(token);
 
-
 export default axios.create({
-    baseURL,
+  baseURL
 });
 
 const axiosPrivate = axios.create({
   baseURL,
-  headers: { 
+  headers: {
     "Content-Type": "application/json",
-    "Authorization" : `Bearer ${token}`
- }
+    Authorization: `Bearer ${token}`
+  }
 });
 const axiosFormData = axios.create({
   baseURL,
-  headers: { 
+  headers: {
     "Content-Type": "multipart/form-data",
-    "Authorization" : `Bearer ${token}`
- }
+    Authorization: `Bearer ${token}`
+  }
 });
 
-export {axiosPrivate, axiosFormData};
+export { axiosPrivate, axiosFormData };

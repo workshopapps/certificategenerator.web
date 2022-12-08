@@ -34,24 +34,40 @@ const Dashboard = ({
   const [pricing, setPricing] = useState("");
   const [certificates, setCertificates] = useState([]);
   const [eventLink, setEventLink] = useState("")
-  const [selectedImage, setSelectedImage] = useState(null)
+  const [selectedImage, setSelectedImage] = useState('')
 
     // On file select (from the pop up)
   // Update the state
     const onFileChange = async (e) => {   
         e.preventDefault()
-          setSelectedImage({ selectedFile: e.target.files[0] });
+          setSelectedImage({ file: e.target.files[0] });
           setSelectedImage(URL.createObjectURL(e.target.files[0]))
           console.log(e.target.files[0]);
 
-        const formData = new FormData()
-        formData.append('selectedImage', selectedImage)
-        const res = await axiosPrivate.put("https://certgo.hng.tech/api/users/brand-kit", { formData })
-        .then(() => {
-            if(res.status === 200){
-              console.log(res);
-            }
-        })
+         const formData = new FormData();
+        formData.append('file', selectedImage)
+        // const res = await axiosPrivate.put("/users/brand-kit",  formData  )
+        // .then(() => {
+        //     const imageUrl = res.data.secure_url;
+        //     if(res.status === 200){
+        //       console.log(res);
+        //       console.log(imageUrl);
+        //     }
+        // })
+        fetch('https://certgo.hng.tech/api/users/brand-kit',{
+          method: "PUT",
+            headers: {
+            "Authorization" : `Bearer ${token}`,
+            "Content-Type": "application/json"
+          },
+             body: JSON.stringify({ file: formData })
+     })
+     .then(async response => {
+       const result = await response.json()
+        
+   console.log(result);
+       
+          })
     }
 
 
