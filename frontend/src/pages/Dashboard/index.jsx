@@ -6,7 +6,6 @@ import { dummyData, nullDataIcon, } from "./utils";
 import {Toast} from '../../Component/ToastAlert'
 import Button from "../../Component/button";
 import CreateCertificateModal from "./CreateCertificateModal";
-// import { axiosPrivate } from "../../api/axios";
 import useAppProvider from "../../hooks/useAppProvider";
 import { Loader } from "../../Component";
 import TableRow from "./TableRow";
@@ -37,7 +36,7 @@ const Dashboard = () => {
   const [certificates, setCertificates] = useState([]);
   const [eventLink, setEventLink] = useState("");
   const baseURL = "https://certgo.hng.tech/api";
-  const accessToken = localStorage.getItem("token");
+  const accessToken = JSON.parse(localStorage.getItem("userData")).token
   const [selectedImage, setSelectedImage] = useState('')
 
 
@@ -71,7 +70,7 @@ const Dashboard = () => {
       title: "Successfully updated"
     });
     const res = await axiosPrivate.get("/certificates");
-    setData(res.data);
+    setData(res.data.data.certificates);
   };
 
   const handleDeleteCertificate = async id => {
@@ -82,7 +81,7 @@ const Dashboard = () => {
       title: "Successfully deleted"
     });
     const res = await axiosPrivate.get("/certificates");
-    setData(res.data);
+    setData(res.data.data.certificates);
   };
 
   const getUserCertificates = async () => {
@@ -107,9 +106,9 @@ const Dashboard = () => {
           title: "Internal Server Error"
         });
       } else {
-        setData(response.data);
-        console.log(response.data);
-        updateCount(response.data);
+        setData(response.data.data.certificates);
+        console.log(response.data.data.certificates);
+        updateCount(response.data.data.certificates);
       }
     } catch (error) {
       console.error(error.message);
