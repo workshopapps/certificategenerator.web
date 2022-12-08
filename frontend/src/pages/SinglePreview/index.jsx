@@ -99,6 +99,7 @@ function SinglePreview({
           "Content-Type": "multipart/form-data"
         }
       });
+      // toast message
       const dataMsg = response.data;
       if (response.status === 200) {
         Toast.fire({

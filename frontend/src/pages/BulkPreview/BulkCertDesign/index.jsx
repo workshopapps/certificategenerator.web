@@ -2,9 +2,9 @@ import React from "react";
 
 import "./bulkcertdesign.style.scss";
 
-const Index = ({ item }) => {  
+const Index = React.forwardRef(({ item }, ref) => {
   return (
-    <div>
+    <div ref={ref}>
       {/* START OF CERTIFICATE */}
       <div id="downloadWrapper">
         <div id="certificateWrapper">
@@ -19,10 +19,9 @@ const Index = ({ item }) => {
                   <p>Certgo</p>
                 </div>
 
-                <div id="single-preview-card">
+                <div id="single-preview-card" style={{ marginTop: "40px" }}>
                   <div id="single-preview-text">
                     <div id="preview-text">
-                      <img style={{ width: "40px" }} alt="" />
                       <h1>{item.award}</h1>
                       <p>THIS CERTIFIES THAT</p>
                       <h2>{item.name}</h2>
@@ -51,6 +50,6 @@ const Index = ({ item }) => {
       {/* END OF CERTIFICATE */}
     </div>
   );
-};
+});
 
 export default Index;
