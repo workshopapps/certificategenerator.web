@@ -1,4 +1,6 @@
-import React from "react";
+import { toPng } from "html-to-image";
+import ReactToPrint from "react-to-print";
+import React, { useRef, useCallback } from "react";
 
 import "./bulk.style.scss";
 import "@splidejs/react-splide/css";
@@ -10,6 +12,24 @@ function Index() {
   // Getting the file data from the local storage and parsing its values
   const savedData = localStorage.getItem("dataKey");
   const array = JSON.parse(savedData);
+
+  const bulkCertDesignRef = useRef();
+
+  const handleClick = useCallback(() => {
+    if (bulkCertDesignRef.current === null) {
+      return;
+    };
+    toPng(bulkCertDesignRef.current, { cacheBust: true, backgroundColor: "#f8fffe", canvasWidth: 388.5, canvasHeight: 299.4 })
+      .then(dataUrl => {
+        const link = document.createElement('a');
+        link.download = 'certgo.png';
+        link.href = dataUrl;
+        link.click();
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }, [bulkCertDesignRef]);
 
   return (
     <div id="bulk-preview">
@@ -40,6 +60,7 @@ function Index() {
             <SplideSlide key={id}>
               <BulkCertDesign
                 item={item}
+                ref={bulkCertDesignRef}
               />
             </SplideSlide>
           ))}
@@ -48,7 +69,12 @@ function Index() {
 
       {/* BUTTONS TO DOWNLOAD OR SHARE THE CRETIFICATES */}
       <div id="bulk-btns">
-        <Button name="Download Certificates" style={{ padding: "10px" }} />
+        <ReactToPrint
+          content={() => bulkCertDesignRef.current}
+          trigger={() => <Button name="Download Certificates as PDF" style={{ padding: "10px" }} />}
+        />
+        <Button name="Download Certificates as PNG" style={{ padding: "10px" }} onClick={handleClick} />
+        {/* <Button name="Download Certificates as PDF" style={{ padding: "10px" }} /> */}
         <Button
           className="btnLight"
           name="Send Certificates"
