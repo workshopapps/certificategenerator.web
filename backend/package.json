@@ -45,10 +45,6 @@
     "nodemon": "^2.0.7",
     "supertest": "^6.3.1"
   },
-  "engine": {
-    "node": "14.x",
-    "npm": "6.9.0"
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/workshopapps/certificategenerator.web"

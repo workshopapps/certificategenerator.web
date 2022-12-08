@@ -7,10 +7,10 @@ import Rocket from "./assets/rocket-launcher.webp";
 import Frame from "./assets/Frame 16353.png";
 import Briefcase from "./assets/candidate resumes and briefcase.png";
 import Search from "./assets/search-icon.svg";
-import { FiChevronDown } from "react-icons/fi";
 import PositionCard from "./PositionCard";
 import axios from "../../api/axios";
 import Loader from "../../Component/loader";
+import {FiChevronDown} from "react-icons/fi"
 
 function Career() {
   const [roles, setRoles] = useState([]);

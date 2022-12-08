@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Modal from "../../Component/Modal";
 import Button from "../../Component/button";
@@ -9,7 +9,7 @@ import certificate3 from "../../assets/images/SinglePreview/Completion - Portrai
 import { exportComponentAsPNG } from "react-component-export-image";
 import html2canvas from "html2canvas";
 import { jsPDF } from "jspdf";
-import axios from "axios";
+import { axiosFormData } from "../../api/axios";
 import Swal from "sweetalert2";
 
 function SinglePreview({
@@ -21,15 +21,19 @@ function SinglePreview({
   issueDate
 }) {
   const [openModal, setOpenModal] = useState(false);
-  const [isAuntheticated, setIsAuntheticated] = useState(true);
+  const [isAuntheticated, setIsAuntheticated] = useState(false);
   const [modalMessage, setModalMessage] = useState("");
+
+  useEffect(() => {
+    localStorage.getItem("userData")
+      ? setIsAuntheticated(true)
+      : setIsAuntheticated(false);
+  }, []);
 
   function handleUnloggedUsers(e) {
     e.preventDefault();
     setOpenModal(!openModal);
   }
-  // get token from localstorage
-  const token = localStorage.getItem("token");
 
   // REF FOR PNG AND PDF
   var certificateWrapper = React.createRef();
@@ -62,9 +66,14 @@ function SinglePreview({
   });
   const handleSendCertificate = async e => {
     try {
+      localStorage.getItem("userData")
+        ? setIsAuntheticated(true)
+        : setIsAuntheticated(false);
+
       if (!isAuntheticated) {
         setOpenModal(!openModal);
         setModalMessage("You need to sign up to send certificate to your mail");
+        console.log("ok");
         return;
       }
       const element = certificateWrapper.current;
@@ -78,18 +87,22 @@ function SinglePreview({
       });
       pdf.addImage(data, "PNG", 0, 0, canvas.width, canvas.height);
 
+      // get token from localstorage
+      const token = JSON.parse(localStorage.getItem("userData")).token;
+
       // create form data and add pdf
       let formData = new FormData();
       formData.append("file", data);
 
       // send the form data
-      const uploadUrl = "https://certgo.hng.tech/api/sendEmailNotifications";
-      let response = await axios.post(uploadUrl, formData, {
+      const uploadUrl = "/sendEmailNotifications";
+      let response = await axiosFormData.post(uploadUrl, formData, {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "multipart/form-data"
         }
       });
+      // toast message
       const dataMsg = response.data;
       if (response.status === 200) {
         Toast.fire({

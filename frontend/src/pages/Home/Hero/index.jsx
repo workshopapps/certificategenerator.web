@@ -1,10 +1,11 @@
 import React from "react";
-import "./hero.style.scss";
+import {useRef} from 'react';
+
 import hero from "../../../assets/images/hero.png";
 import tick from "../../../assets/images/tick.png";
 import Button from "../../../Component/button";
 // import {Link} from "react-router-dom";
-import {useRef} from 'react';
+import "./hero.style.scss";
 
 export default function Hero() {
   
