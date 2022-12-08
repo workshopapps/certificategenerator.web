@@ -1,24 +1,15 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
+
 import "./pricing.style.scss";
 import Feature from "./feature";
 import Slider from "./slider";
-import { Link } from "react-router-dom";
-
-
-import { data} from "./data";
-// import person_1 from "../../assets/images/person-1.png";
-// import person_2 from "../../assets/images/person-2.png";
-// import person_3 from "../../assets/images/person-3.png";
-// import person_5 from "../../assets/images/todd.png";
-// import { Splide, SplideSlide } from "@splidejs/react-splide";
+import { data } from "./data";
 import "@splidejs/react-splide/css";
 import useAppProvider from "../../hooks/useAppProvider";
 
 function Pricing() {
-  const {
-    access,
-    setAccess,
-  } = useAppProvider();
+  const { access } = useAppProvider();
   const [value, setValue] = useState(0);
 
   const { per } = data[value];

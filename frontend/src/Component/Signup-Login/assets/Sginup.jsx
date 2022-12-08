@@ -11,13 +11,15 @@ import Input from "../../Input";
 import Button from "../../button";
 import { Toast } from '../../ToastAlert'
 import useAppProvider from "../../../hooks/useAppProvider";
+import axios from "../../../api/axios";
 
 
 const Signup = () => {
-  const { access, setAccess } = useAppProvider();
+  const { setAccess } = useAppProvider();
   const navigate = useNavigate();
   
-  const [type, setType] = useState("password");
+  // const [type, setType] = useState("password");
+  const type = "password"
   const [formData, setFormData] = React.useState({
     name: "",
     email: "",
@@ -27,20 +29,21 @@ const Signup = () => {
   // Google auth client ID
   const CLIENT_ID =
     "52168821352-4sc11trj4qtq95051mrnrbinfgmla3ai.apps.googleusercontent.com";
+   const [userName, setUserName] = useState();
    const [useremail, setUserEmail] = useState();
   const [password, setPassword] = useState();
-  const [error, setError] = useState(false);
+  // const [error, setError] = useState(false);
   const [token, setToken] = useState({
     accessToken: ""
   });
 
-  const handleToggle = () => {
-  if (type === "password") {
-    setType("text");
-  } else {
-    setType("password");
-  }
-};
+//   const handleToggle = () => {
+//   if (type === "password") {
+//     setType("text");
+//   } else {
+//     setType("password");
+//   }
+// };
 
  function handleChange(event) {
       const { name, value, type, checked } = event.target;
@@ -53,25 +56,16 @@ const Signup = () => {
     }
 
 
-  async function createNewUser(email, password) {
-      return fetch("https://certgo.hng.tech/api/auth/signup", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ email: email, password: password })
-      });
+  async function createNewUser(email, password, name) {
+    console.log(email, password, name)
+      return axios.post("/auth/signup", { email: email, password: password, name: name });
     }
   
     const handleSubmit = async e => {
       e.preventDefault();
   
       try{
-        const response = await createNewUser(useremail, password)
-        const data = await response.json();
-  
-        console.log(response);
-        console.log(response.status);
+        const response = await createNewUser(useremail, password, userName)
   
            if (response.status === 200 || response.status === 201){
             Toast.fire({
@@ -110,11 +104,11 @@ const Signup = () => {
   
           throw new Error("Something went wrong");
         }
-      const token = data.token;
+      const token = response.data.token;
       localStorage.setItem("token", token);
-      localStorage.setItem("user", data.userId);
+      // localStorage.setItem("user", response.userId);
     } catch (error) {
-      setError(true);
+      // setError(true);
       console.log(error.message);
     };
     };
@@ -135,13 +129,13 @@ const Signup = () => {
     setToken({ accessToken: res.tokenId });
 
     // User details from Google
-    const userProfile = {
-      email: res.profileObj.email,
-      fullName: res.profileObj.name,
-      userProfile: res.profileObj.imageUrl,
-      userId: res.profileObj.googleId,
-      accessToken: res.accessToken
-    };
+    // const userProfile = {
+    //   email: res.profileObj.email,
+    //   fullName: res.profileObj.name,
+    //   userProfile: res.profileObj.imageUrl,
+    //   userId: res.profileObj.googleId,
+    //   accessToken: res.accessToken
+    // };
 
     if (token.accessToken) createNewUserGoogle(token);
 
@@ -156,11 +150,7 @@ const Signup = () => {
  
   // Send access token to backend
   async function createNewUserGoogle(token) {
-    const response = await fetch("https://certgo.hng.tech/api/auth/signup", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
+    const response = await axios.post("/auth/signup", {
       body: JSON.stringify(token)
     });
 
@@ -192,7 +182,8 @@ const Signup = () => {
             render={renderProps => (
               <div onClick={renderProps.onClick} id="signupG">
                 <img alt="" src={googleSVG} id="img_id" />
-                <a href="#">Signup using Google</a>
+                <Link to={'/login'}>Signup using Google</Link>
+                {/* <a href="#">Signup using Google</a> */}
               </div>
             )}
           />
@@ -206,6 +197,16 @@ const Signup = () => {
           <form>
             {/* <div id="email"> */}
             {/* <img alt="" src={emailSVG} /> */}
+            <Input
+              label="Name"
+              className="email_input"
+              placeholder=" Name"
+              type="text"
+              name="name"
+              callback={e => setUserName(e.target.value)}
+              required
+              value={userName}
+            />
             <Input
               label="Email"
               className="email_input"
