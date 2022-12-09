@@ -45,7 +45,7 @@ const Login = () => {
   //   }
   // };
 
- 
+
   function handleChange(event) {
     const { name, value, type, checked } = event.target;
     setFormData(prevFormData => {
@@ -125,44 +125,49 @@ const Login = () => {
         navigate("/dashboard");
         setLoading(false)
         setAccess(true);
-      } else if (response.status === 401) {
+      } else if (response.status === 400) {
         Toast.fire({
           icon: "error",
           title: "Page not found"
         });
+        navigate("/login");
         setLoading(false)
         throw new Error("Page not found");
-      } else if (response.status === 400) {
+      } else if (response.status === 401) {
         Toast.fire({
           icon: "error",
           title: "Invalid Email or Password, please try again"
         });
         setLoading(false)
+        navigate("/login");
         throw new Error("Invalid Email or Password, please try again");
       } else if (response.status === 500) {
         Toast.fire({
           icon: "error",
           title: "Server Error"
         });
+        navigate("/login");
         setLoading(false)
+
         throw new Error("Internal Server Error");
       } else {
         Toast.fire({
           icon: "error",
           title: "Something went wrong"
         });
+        navigate("/login");
         setLoading(false)
         throw new Error("Something went wrong");
       }
 
-       const userData = {
+      const userData = {
         userId: response.data.data.userId,
         token: response.data.data.token,
         refreshToken: response.data.data.refreshToken,
         subscription: response.data.data.subscription,
       }
       localStorage.setItem('userData', JSON.stringify(userData))
-     console.log(userData)
+      console.log(userData)
 
     } catch (error) {
       setLoading(false)
@@ -240,9 +245,9 @@ const Login = () => {
               cookiePolicy={"single_host_origin"}
               isSignedIn={true}
               render={renderProps => (
-                <div onClick={renderProps.onClick} id="signupG" style={{cursor:"pointer"}}>
+                <div onClick={renderProps.onClick} id="signupG" style={{ cursor: "pointer" }}>
                   <img alt="" src={googleSVG} id="img_id" />
-                    Login using Google
+                  Login using Google
                 </div>
               )}
             />
@@ -283,8 +288,8 @@ const Login = () => {
 
             {/* </div> */}
             {error && <p style={{ color: "red" }}>Something went wrong</p>}
-            <div className="forgotPwd"><Link to = "/fff1">
-            Forgot password?</Link></div>
+            <div className="forgotPwd"><Link to="/fff1">
+              Forgot password?</Link></div>
             <div id="checkTerms">
               <input
                 type="checkbox"
@@ -299,7 +304,7 @@ const Login = () => {
             </div>
             <div>
               <Button id="btn" onClick={handleSubmit} style={{ width: "100%" }}>
-                {loading ? <Loader /> : <span>Login</span> }
+                {loading ? <Loader /> : <span>Login</span>}
               </Button>
             </div>
           </form>

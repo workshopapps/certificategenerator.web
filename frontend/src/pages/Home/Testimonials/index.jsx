@@ -43,9 +43,8 @@ export default function Testimonials() {
                 </div>
               </div>
               <p className="testimonial-test">
-                “This is my first time utilizing Certawi. It is simply
-                brilliant. In a matter of seconds, a full certificate is
-                generated”
+                “This is my first time utilizing Certgo. It is simply brilliant.
+                In a matter of seconds, a full certificate is generated”
               </p>
             </div>
           </SplideSlide>
@@ -60,9 +59,9 @@ export default function Testimonials() {
                 </div>
               </div>
               <p className="testimonial-test">
-                “The certawi certificate generator is a fantastic tool that
-                helps me create certificates quickly and with plenty of
-                inspiration. Definitely, I would advise.”
+                “The Certgo certificate generator is a fantastic tool that helps
+                me create certificates quickly and with plenty of inspiration.
+                Definitely, I would advise.”
               </p>
             </div>
           </SplideSlide>

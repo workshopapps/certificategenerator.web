@@ -10,7 +10,7 @@ import useAppProvider from "../../hooks/useAppProvider";
 import { Loader } from "../../Component";
 import TableRow from "./TableRow";
 import profilePic from "../../assets/images/Ellipse4.png";
-import Upload from "./assets/upload.png";
+import Ellipse from "../../assets/svgs/hor-ellipse.svg";
 import "./dashboard.style.scss";
 
 const Dashboard = () => {
@@ -37,7 +37,7 @@ const Dashboard = () => {
   const [eventLink, setEventLink] = useState("");
   const baseURL = "https://certgo.hng.tech/api";
   const accessToken = JSON.parse(localStorage.getItem("userData")).token
-  const [selectedImage, setSelectedImage] = useState('')
+  const [file, setFile] = useState('')
 
 
   const axiosPrivate = axios.create({
@@ -48,57 +48,61 @@ const Dashboard = () => {
     }
   });
 
+  const axiosPrivateKit = axios.create({
+    baseURL,
+    headers: {
+      // "Content-Type": "multipart/form-data",
+      Authorization: `Bearer ${accessToken}`
+    }
+  });
+
 
     // On file select (from the pop up)
   // Update the state
-  useEffect(() => {
-        const res = axiosPrivate.get("/users/brand-kit");
-        setSelectedImage(res.brandkit);
-        console.log(res);
-  },[selectedImage])
-
-    const onFileChange = async e => {   
-        e.preventDefault()
-          setSelectedImage( e.target.files[0] );
-          setSelectedImage(URL.createObjectURL(e.target.files[0]))
-          console.log(e.target.files[0]);
-         const formData = new FormData();
-         formData.append('file', selectedImage)
-         try {
-             const res = await axiosPrivate.put("https://certgo.hng.tech/api/users/brand-kit", {
-              method:"PUT",
-              headers:{
-                Authorization: `Bearer ${token}`,
-                "Content-Type": "application/json"
-              },body: JSON.stringify({formData})
-             });
-             if(res.status === 200){
-              Toast.fire({
-                icon: "success",
-                title: "Successfully updated"
-              });
-             }else if (res.status === 502) {
-              Toast.fire({
-                icon: "success",
-                title: "502 Bad Gateway"
-              });
-            } else if (res.status === 400) {
-              Toast.fire({
-                icon: "success",
-                title: "Missing file"
-              });
-            }
-         } catch (error) {
-           Toast.fire({
-            icon: "error",
-            title: "Upload failed due to invalid field(s)"
-          });
-         }
-
-        const res = await axiosPrivate.get("/users/brand-kit");
-         setSelectedImage(res.brandkit);
+  const onFileChange = async (e) => {   
+    e.preventDefault()
+    setFile(e.target.files[0]);
   }
 
+  const onUpdate = async (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append('file', file);
+    try{
+      const response = await axiosPrivateKit.put("/users/brand-kit", formData);
+      console.log("Response", response);
+      if (response.status === 404) {
+        Toast.fire({
+          icon: "error",
+          title: "Page not found"
+        });
+      } else if (response.status === 401) {
+        Toast.fire({
+          icon: "error",
+          title: "Request Failed"
+        });
+      } else if (response.status === 500) {
+        Toast.fire({
+          icon: "error",
+          title: "Internal Server Error"
+        });
+      } else {
+        setFile(response.data.brandkit);
+        console.log(response.data.brandkit);
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  useEffect(() => {
+    const getFile = async (e) => {
+      const res = await axiosPrivate.get("/users/brand-kit");
+      console.log("Brand kit", res.data.brandkit);
+      setFile(res.data.brandkit);
+    }
+    getFile();
+  }, [])  
 
   const handleChangeCertificateStatus = async (id, status) => {
     console.log(id, status);
@@ -247,6 +251,12 @@ const Dashboard = () => {
     });
     getEvents();
   };
+     
+  const handleToggle = () => {
+     let drop = document.querySelector(".brandkit-dropdown")
+     drop.classList.toggle("visible")
+  }
+     
 
   return (
     <>
@@ -254,12 +264,24 @@ const Dashboard = () => {
         <div className="dashboard__hero-section">
            <div className="dashboard__profile-pic-wrapper">
             <span className="dashboard__profile-pic">
-              <img src={selectedImage} alt="brand-kit" />   
+              <img src={file || profilePic} alt="brand-kit" />   
             </span>
-              <label htmlFor="file" className="dashboard__upload-label">
-                   <img src={Upload} alt="upload-icon" />
-                   <input type="file" id="file" accept="image/*" name="image" onChange={onFileChange}  />
-            </label>
+            <div className="ellipses" onClick={handleToggle}>
+              <img src={Ellipse} alt="upload-icon" />
+            </div>
+            <div className="brandkit-dropdown">
+              <ul>
+               <li> 
+                <label htmlFor="file" className="dashboard__upload-label">
+                  <span>View Logo</span>   
+                  <input type="file" id="file" accept="image/*" name="file" onChange={onFileChange}  />
+                </label>
+              </li>
+              <li onClick={onUpdate}>Upload new logo</li>
+              <li>Delete Logo</li>
+              </ul>
+            
+            </div>
           </div>
           <div className="flexx">
             <div className="dashboard__align-start">
