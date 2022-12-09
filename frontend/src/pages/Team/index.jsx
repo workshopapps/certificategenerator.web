@@ -18,6 +18,7 @@ import Asanze from "../../assets/images/team/asanze.svg";
 import Andrew from "../../assets/images/team/andrew.svg";
 import Prosper from "../../assets/images/team/prosper.svg";
 import Muminat from "../../assets/images/team/muminat.svg";
+// import Henzyd from "../../assets/images/team/henzyd.svg";
 // icons
 import Web from "../../assets/images/team/web.svg";
 import Github from "../../assets/images/team/github.svg";
@@ -90,7 +91,7 @@ const members = [
   {
     picture: Abiola,
     name: "Abiola Olanrewaju",
-    title: "Product designer",
+    title: "Frontend developer",
     socialMediaIcon1: Web,
     socialMediaIcon2: LinkedIn,
     socialMediaIcon3: Github
@@ -159,11 +160,19 @@ const members = [
     socialMediaIcon2: LinkedIn,
     socialMediaIcon3: Twitter
   }
+  // {
+  //   picture: Henzyd,
+  //   name: "Uchechukwu Anachuna",
+  //   title: "Frontend developer",
+  //   socialMediaIcon1: Web,
+  //   socialMediaIcon2: LinkedIn,
+  //   socialMediaIcon3: Twitter
+  // }
 ];
 
 const Team = () => {
   return (
-    <section className="teamContainer">
+    <section className="teamContainer" style={{ marginBottom: "2rem" }}>
       {/* title */}
       <div className="team">Our Team</div>
       <div className="meet">
@@ -205,7 +214,7 @@ const Team = () => {
         ))}
       </div>
       {/* button */}
-      <Button name={"View more"} type="button" className="view"></Button>
+      {/* <Button name={"View more"} type="button" className="view"></Button> */}
     </section>
   );
 };

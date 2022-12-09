@@ -11,15 +11,11 @@ import html2canvas from "html2canvas";
 import { jsPDF } from "jspdf";
 import axios from "axios";
 import Swal from "sweetalert2";
+import useAppProvider from "../../hooks/useAppProvider";
 
-function SinglePreview({
-  logo,
-  certificateTitle,
-  awardeeName,
-  message,
-  issuedBy,
-  issueDate
-}) {
+function SinglePreview() {
+  const { logo, certificateTitle, awardeeName, message, issuedBy, issueDate } =
+    useAppProvider();
   const [openModal, setOpenModal] = useState(false);
   const [isAuntheticated, setIsAuntheticated] = useState(true);
   const [modalMessage, setModalMessage] = useState("");
