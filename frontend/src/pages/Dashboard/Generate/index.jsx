@@ -5,6 +5,7 @@ import logo from "../../../assets/images/navbarIcon.png";
 import html2canvas from "html2canvas";
 import { jsPDF } from "jspdf";
 import { Toast } from "../../../Component/ToastAlert";
+import {ButtonLoader} from "../../../Component";
 
 function Generate() {
   const [email, setEmail] = useState("");
@@ -13,7 +14,9 @@ function Generate() {
   const [description, setDescription] = useState("");
   const [date, setDate] = useState("");
   const [signed, setSigned] = useState("");
+  const [loading, setLoading] = useState(false);
   const getToken = JSON.parse(localStorage.getItem("userData"))
+
   const token = getToken.token;
 
   const userEventId = localStorage.getItem("_id");
@@ -41,7 +44,9 @@ function Generate() {
     }
   }, [awardee]);
 
-  const getCert = async () => {
+  const getCert = async (e) => {
+    e.preventDefault();
+    setLoading(true);
     try {
       fetch(`https://certgo.hng.tech/api/events/${userEventId}/certificates`, {
         method: "POST",
@@ -49,34 +54,52 @@ function Generate() {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json"
         },
-        body: JSON.stringify({ email: email })
+        body: JSON.stringify({ email: email.trim().toLowerCase() })
       }).then(async response => {
         const result = await response.json();
 
-        const certData = result.data.certificate;
-      
-        setAward(certData.award);
-        setAwardee(certData.name);
-        setDescription(certData.description);
-        setSigned(certData.signed);
-        setDate(certData.date);
-
+       
         if (response.status === 200 || response.status === 201) {
+          setLoading(false);
           Toast.fire({
             icon: "success",
-            title: "Email Generated"
+            title: "Certificate Generated"
           });
         } else if (response.status === 401 || response.status === 400) {
+         setLoading(false)
           Toast.fire({
             icon: "error",
             title: "Email not found"
           });
-        } else if (response.status === 500) {
+        } 
+        else if (response.status === 404) {
+          setLoading(false)
+          Toast.fire({
+            icon: "error",
+            title: "Email not found"
+          });
+        }
+        
+        else if (response.status === 500) {
+          setLoading(false)
           Toast.fire({
             icon: "error",
             title: "Internal Server Error"
           });
         }
+        else{
+          setLoading(false)
+          Toast.fire({
+            icon: "error",
+            title: "Something went wrong"
+          });
+        }
+        const certData = result.data.certificate;
+        setAward(certData.award);
+        setAwardee(certData.name);
+        setDescription(certData.description);
+        setSigned(certData.signed);
+        setDate(certData.date);
       });
     } catch (error) {
       console.error(error.message);
@@ -145,7 +168,7 @@ function Generate() {
           placeholder="Email address"
         />
 
-        <Button onClick={getCert}>Get certificate</Button>
+        <Button onClick={getCert}>{loading ? <ButtonLoader /> : 'Get certificate'}</Button>
       </div>
     </div>
   );
