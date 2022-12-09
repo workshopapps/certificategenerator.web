@@ -13,11 +13,13 @@ import Input from "../../Input";
 import Button from "../../button";
 import useAppProvider from "../../../hooks/useAppProvider";
 import axios from "../../../api/axios";
+import Loader from "../../ButtonLoader";
 
 const Login = () => {
   const { setAccess } = useAppProvider();
   const navigate = useNavigate();
   const [type] = useState("password");
+  const [loading, setLoading] = useState(false)
   const [formData, setFormData] = React.useState({
     name: "",
     email: "",
@@ -105,11 +107,21 @@ const Login = () => {
   //   }
   // }
   async function loginUser(email, password) {
-    return axios.post("/auth/login", { email: email, password: password });
+    // return axios.post("/auth/login", { email: email, password: password });
+   return fetch(`https://certgo.hng.tech/api/auth/login`, {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+        // "Access-Control-Allow-Methods": "POST",     
+      },
+      body: JSON.stringify({  email: email, password: password })
+    });
   }
 
   const handleSubmit = async e => {
     e.preventDefault();
+    setLoading(true)
     try {
       const response = await loginUser(useremail, password);
       console.log(response)
@@ -120,35 +132,35 @@ const Login = () => {
           title: "Signed in successfully"
         });
         navigate("/dashboard");
+        setLoading(false)
         setAccess(true);
       } else if (response.status === 401) {
         Toast.fire({
           icon: "error",
-          title: "Page not found"
+          title: "Invalid Email or Password"
         });
-        navigate("/login");
+        setLoading(false)
         throw new Error("Page not found");
       } else if (response.status === 400) {
         Toast.fire({
           icon: "error",
           title: "Invalid Email or Password, please try again"
         });
-        navigate("/login");
+        setLoading(false)
         throw new Error("Invalid Email or Password, please try again");
       } else if (response.status === 500) {
         Toast.fire({
           icon: "error",
           title: "Server Error"
         });
-
+        setLoading(false)
         throw new Error("Internal Server Error");
       } else {
         Toast.fire({
           icon: "error",
           title: "Something went wrong"
         });
-        navigate("/login");
-
+        setLoading(false)
         throw new Error("Something went wrong");
       }
 
@@ -162,6 +174,7 @@ const Login = () => {
      console.log(userData)
 
     } catch (error) {
+      setLoading(false)
       setError(true);
       console.log(error.message);
     }
@@ -294,8 +307,8 @@ const Login = () => {
               </label>
             </div>
             <div>
-              <Button id="btn" onClick={handleSubmit} style={{ width: "100%" }}>
-                Login
+               <Button id="btn" onClick={handleSubmit} style={{ width: "100%" }}>
+                {loading ? <Loader /> : <span>Login</span> }
               </Button>
             </div>
           </form>
