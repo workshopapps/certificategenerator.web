@@ -258,6 +258,11 @@ const Dashboard = () => {
   }
      
 
+//GET USERNAME FROM LOCALSTORAGE
+const profileName = localStorage.getItem('userName');
+
+
+
   return (
     <>
       <div className="dashboard">
@@ -286,9 +291,9 @@ const Dashboard = () => {
           <div className="flexx">
             <div className="dashboard__align-start">
               <h3 className="dashboard__text">Welcome</h3>
-              <h2 className="dashboard__title">Team Headlight</h2>
+              <h2 className="dashboard__title">{profileName}</h2>
               <p className="dashboard__description">
-                Let’s do the Accounts for you, Get a summary of all the
+            Get a summary of all the
                 Certificates and Job done here
               </p>
               <div>
