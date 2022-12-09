@@ -88,6 +88,7 @@ const Dashboard = () => {
         });
       } else {
         setFile(response.data.brandkit);
+        // localStorage.setItem("brandkit", response.data.brandkit)
         console.log(response.data.brandkit);
       }
     } catch (error) {
@@ -300,8 +301,8 @@ const profileName = localStorage.getItem('userName');
                   <input type="file" id="file" accept="image/*" name="file" onChange={onFileChange}  />
                 </label>
               </li>
-              <li onClick={onUpdate}>Upload new logo</li>
-              <li>Delete Logo</li>
+                <li onClick={onUpdate}>Upload New Logo</li>
+                <li>Delete Logo</li>
               </ul>
             
             </div>
