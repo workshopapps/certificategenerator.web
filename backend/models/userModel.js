@@ -1,13 +1,14 @@
 const mongoose = require("mongoose");
+const Profile = require("./profileModel");
 
 const UserSchema = new mongoose.Schema({
   name: {
-    type: String,
+    type: String
   },
   email: {
     type: String,
     required: true,
-    unique: true,
+    unique: true
   },
   authenticationType: {
     form: {
@@ -19,40 +20,58 @@ const UserSchema = new mongoose.Schema({
   },
   isAdmin: {
     type: Boolean,
-    default: false,
+    default: false
   },
   avatar: {
-    type: String,
+    type: String
   },
   subscribed: {
     type: Boolean,
-    default: false,
+    default: false
   },
   trialAvailable: {
     type: Boolean,
-    default: true,
+    default: true
   },
   subscription: {
     type: String,
     enum: ["basic", "standard", "premium"],
-    default: "basic",
+    default: "basic"
   },
   records: [
     {
       name: {
         type: String,
-        required: [true, "Name of recipient is required"],
+        required: [true, "Name of recipient is required"]
       },
       studentID: {
         type: String,
-        required: [true, "Student ID is required"],
+        required: [true, "Student ID is required"]
       },
       collectionID: {
         required: true,
-        type: String,
-      },
-    },
-  ],
+        type: String
+      }
+    }
+  ]
+});
+
+UserSchema.pre("save", async function (next) {
+  try {
+    // Check if new user has existing profile
+    const existingProfile = await Profile.findOne({ user: this._id });
+
+    // Don't create new profile if one already exists
+    if (existingProfile) return next();
+
+    // Create new profile if user has no profile
+    await Profile.create({ email: this.email, user: this._id, name: this.name });
+
+    next();
+  } catch (error) {
+    // Prevent new user from being created if profile fails to create
+    next(error);
+  }
 });
 
 module.exports = mongoose.model("User", UserSchema);

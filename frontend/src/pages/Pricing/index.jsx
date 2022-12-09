@@ -1,15 +1,10 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
+
 import "./pricing.style.scss";
 import Feature from "./feature";
 import Slider from "./slider";
-import { Link } from "react-router-dom";
-
 import { data } from "./data";
-// import person_1 from "../../assets/images/person-1.png";
-// import person_2 from "../../assets/images/person-2.png";
-// import person_3 from "../../assets/images/person-3.png";
-// import person_5 from "../../assets/images/todd.png";
-// import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/react-splide/css";
 import useAppProvider from "../../hooks/useAppProvider";
 
@@ -18,6 +13,13 @@ function Pricing() {
   const [value, setValue] = useState(0);
 
   const { per } = data[value];
+
+  const [disabled, setDisabled] = useState(false);
+
+  function disabledHandler(e) {
+    e.preventDefault();
+    setDisabled(true);
+  }
 
   return (
     <main>
@@ -80,7 +82,21 @@ function Pricing() {
                   </article>
 
                   {access ? (
-                    <Link to={sub.AfterLogin}>{sub.linkText}</Link>
+                    <Link
+                      to={`${sub.subType !== "Basic" && "/payment"}`}
+                      style={
+                        disabled && sub.subType === "Basic"
+                          ? {
+                              cursor: "not-allowed",
+                              backgroundColor: "#8ab9b2",
+                              pointerEvents: "none"
+                            }
+                          : {}
+                      }
+                      onClick={e => disabledHandler(e)}
+                    >
+                      {sub.linkText}
+                    </Link>
                   ) : (
                     <Link to={sub.linkTo}>{sub.linkText}</Link>
                   )}

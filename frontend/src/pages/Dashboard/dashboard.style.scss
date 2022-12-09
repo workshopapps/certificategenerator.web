@@ -22,9 +22,13 @@ $size-sm: 12px;
   margin: 0;
   box-sizing: border-box;
   font-family: "Work Sans";
+  list-style: none;
 }
+
+
 .dashboard {
   background: #fff;
+
   &__hero-section {
     background-color: $dashboard-primary-light;
     color: black;
@@ -33,26 +37,102 @@ $size-sm: 12px;
     justify-content: space-between;
     align-items: center;
     gap: 1rem;
+
     .flexx {
       flex: 2;
       display: flex;
       flex-direction: column;
       gap: 1rem;
+
       p {
         margin: 0.3rem 0 0 0;
         font-size: 14px;
       }
     }
   }
-  &__profile-pic {
+
+  .dashboard__profile-pic img {
     width: 100px;
+    height: 100px;
+    border-radius: 50%;
+  }
+
+  &__profile-pic-wrapper {
+    position: relative;
+
+    &__align-start {
+      text-align: start;
+    }
+
+    .dashboard__profile-pic {
+      width: 100px;
+
+      img {
+        width: 100px;
+        border-radius: 50%;
+      }
+    }
+  }
+
+  .ellipses {
+    position: absolute;
+    top: 8px;
+    right: -10px;
+    cursor: pointer;
+  }
+
+
+  .brandkit-dropdown {
+    display: flex;
+    position: absolute;
+    flex-direction: column;
+    gap: 10px;
+    width: 140px;
+    background: linear-gradient(0deg, rgba(240, 249, 247, 0.1), rgba(240, 249, 247, 0.1)), #FFFFFF;
+    ;
+
+    ul {
+      li {
+        list-style: none;
+        width: 100%;
+        display: flex;
+        border-bottom: 1px solid #ddd;
+        cursor: pointer;
+        padding: 8px;
+        font-weight: 400;
+        font-size: 1rem;
+
+        label {
+          span {
+            font-weight: 400;
+            font-size: 1rem;
+          }
+        }
+      }
+    }
+
+
+
+  }
+
+  .visible {
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  &__upload-label {
+    width: 8px;
+
     img {
       width: 100%;
     }
+
+    input[type='file'] {
+      display: none;
+    }
   }
-  &__align-start {
-    text-align: start;
-  }
+
   &__text {
     font-size: $size;
     font-weight: 400;
@@ -60,20 +140,24 @@ $size-sm: 12px;
     letter-spacing: 0.02em;
     line-height: 20px;
   }
+
   &__title {
     font-size: $size-md;
     color: $text-primary;
     font-weight: 500;
     line-height: 19px;
   }
+
   &__description {
     font-size: $size-sm;
     color: #6c6c70;
     line-height: 20px;
   }
+
   &__btn {
     text-align: start;
-    > button {
+
+    >button {
       all: unset;
       padding: 12px 20px;
       border-radius: 5px;
@@ -90,6 +174,7 @@ $size-sm: 12px;
     gap: 1.5rem;
     margin: 1.5rem 1rem;
   }
+
   .table-wrapper {
     margin: 1.5rem 1rem;
     padding: 0 1rem 1.5rem 1rem;
@@ -101,6 +186,7 @@ $size-sm: 12px;
       align-items: center;
       gap: 1rem;
       padding: 1rem 0;
+
       p {
         letter-spacing: 0.02rem;
         color: #222222;
@@ -108,6 +194,7 @@ $size-sm: 12px;
         font-weight: 500;
         align-self: flex-start;
       }
+
       button {
         // all: unset;
         // padding: 12px 20px;
@@ -116,18 +203,23 @@ $size-sm: 12px;
         // background-color: $primaryColor;
       }
     }
+
     .table {
       overflow-x: auto;
+
       .null-table-data {
         display: grid;
         place-items: center;
         min-height: 350px;
-        > div {
+
+        >div {
           text-align: center;
+
           p {
             margin: 1.5rem 0 0.5rem 0;
           }
         }
+
         button {
           all: unset;
           padding: 12px 20px;
@@ -144,9 +236,11 @@ $size-sm: 12px;
         border-collapse: collapse;
         background-color: $primaryColor;
         color: #ffffff;
+
         tr {
           border-bottom: 1px solid #efefef;
         }
+
         th {
           font-size: $size-sm;
           letter-spacing: 0.02em;
@@ -154,6 +248,7 @@ $size-sm: 12px;
           white-space: nowrap;
           padding: 1rem 1rem;
         }
+
         td {
           font-size: $size;
           color: #ffffff;
@@ -169,26 +264,32 @@ $size-sm: 12px;
             background: #ecfdfa;
             border-radius: 16px;
           }
+
           button.pending {
             background-color: #fbecd6;
             color: #cb8720;
           }
+
           button.issue {
             background-color: #ecfdfa;
             color: $primaryColor;
           }
+
           button.cancel {
             background-color: #fbd8d6;
             color: #cb2a20;
           }
         }
+
         .action {
           padding-right: 0.7rem;
           position: relative;
         }
+
         .action-icon {
           cursor: pointer;
         }
+
         .action__overlay {
           display: flex;
           flex-direction: column;
@@ -200,6 +301,7 @@ $size-sm: 12px;
           // border: solid 1px #efefef;
           z-index: 2;
         }
+
         .action__overlay--item {
           display: flex;
           justify-content: center;
@@ -212,7 +314,8 @@ $size-sm: 12px;
           transition: 0.3s ease;
           border-bottom: solid 1px #222222;
           cursor: pointer;
-          &:last-child{
+
+          &:last-child {
             border-bottom: none;
           }
 
@@ -227,9 +330,11 @@ $size-sm: 12px;
     }
   }
 }
+
 @media screen and (min-width: 780px) {
   .dashboard {
     padding: 3rem 0;
+
     &__hero-section {
       .flexx {
         p {
@@ -237,41 +342,51 @@ $size-sm: 12px;
         }
       }
     }
+
     &__title {
       font-size: $size-lg;
       margin-bottom: 0.5rem;
       margin-top: 0.1rem;
     }
+
     &__description {
       font-size: $size-md;
     }
+
     &__hero-section {
       width: 90%;
       margin: 0 auto 1.2rem auto;
     }
+
     &__profile-pic {
       border-radius: 50%;
       overflow: hidden;
     }
+
     &__cards {
       width: 90%;
       margin: 0 auto 1.2rem auto;
       grid-template-columns: 1fr 1fr;
     }
+
     .table-wrapper {
       width: 90%;
       margin: 0 auto 1rem auto;
+
       .table-header {
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
+
         p {
           align-self: center;
         }
       }
+
       .table {
         width: 100%;
         margin: 0 auto 1rem auto;
+
         table {
           width: 100% !important;
         }
@@ -279,6 +394,7 @@ $size-sm: 12px;
     }
   }
 }
+
 @media screen and (min-width: 1044px) {
   .dashboard {
     &__hero-section {
@@ -288,6 +404,7 @@ $size-sm: 12px;
         align-items: flex-end;
       }
     }
+
     &__cards {
       width: 90%;
       margin: 0 auto 1.2rem auto;

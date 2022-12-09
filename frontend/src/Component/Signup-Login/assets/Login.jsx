@@ -3,20 +3,23 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { GoogleLogin } from "react-google-login";
 import { gapi } from "gapi-script";
-import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
+
 import "./login.scss";
 import appleSVG from "./assets/apple.svg";
 import googleSVG from "./assets/google.svg";
 import cert from "./assets/Cert.png";
-import emailSVG from "./assets/email.svg";
-import keySVG from "./assets/key.svg";
 import { Toast } from '../../ToastAlert'
 import Input from "../../Input";
 import Button from "../../button";
+import useAppProvider from "../../../hooks/useAppProvider";
+import axios from "../../../api/axios";
+import Loader from "../../ButtonLoader";
 
-const Login = ({ access, setAccess }) => {
+const Login = () => {
+  const { setAccess } = useAppProvider();
   const navigate = useNavigate();
-  const [type, setType] = useState("password");
+  const [type] = useState("password");
+  const [loading, setLoading] = useState(false)
   const [formData, setFormData] = React.useState({
     name: "",
     email: "",
@@ -29,20 +32,20 @@ const Login = ({ access, setAccess }) => {
 
   const [useremail, setUserEmail] = useState();
   const [password, setPassword] = useState();
-  const [error, setError] = useState(false);
+
   const [token, setToken] = useState({
     accessToken: ""
   });
 
-  const handleToggle = () => {
-    if (type === "password") {
-      setType("text");
-    } else {
-      setType("password");
-    }
-  };
+  // const handleToggle = () => {
+  //   if (type === "password") {
+  //     setType("text");
+  //   } else {
+  //     setType("password");
+  //   }
+  // };
 
- 
+
   function handleChange(event) {
     const { name, value, type, checked } = event.target;
     setFormData(prevFormData => {
@@ -52,76 +55,17 @@ const Login = ({ access, setAccess }) => {
       };
     });
   }
-  // const handleSubmit = async (e) => {
-
-  //   e.preventDefault()
-  //   console.log(useremail, password)
-  //   try {
-  //     const response = await loginUser(useremail, password);
-  //     const data = await response.json();
-
-  //     if (response.status === 200 || response.status === 201) {
-  //       Toast.fire({
-  //         icon: "success",
-  //         title: "Signed in successfully"
-  //       });
-  //       navigate("/pricing");
-  //       setAccess(true);
-  //     } else if (response.status === 401) {
-  //       Toast.fire({
-  //         icon: "error",
-  //         title: "Page not found"
-  //       });
-
-  //       throw new Error("Page not found");
-  //     } else if (response.status === 400) {
-  //       Toast.fire({
-  //         icon: "error",
-  //         title: "Invalid Email or Password, please try again"
-  //       });
-  //       throw new Error("Invalid Email or Password, please try again");
-  //     } else if (response.status === 500) {
-  //       Toast.fire({
-  //         icon: "error",
-  //         title: "Server Error"
-  //       });
-
-  //       throw new Error("Server Error");
-  //     } else {
-  //       Toast.fire({
-  //         icon: "error",
-  //         title: "Something went wrong"
-  //       });
-
-  //       throw new Error("Something went wrong");
-  //     }
-
-  //     const token = data.token;
-  //     localStorage.setItem("token", token);
-  //     localStorage.setItem("user", data.userId);
-  //   } catch (error) {
-  //     setError(true);
-  //   }
-  // }
+ 
   async function loginUser(email, password) {
-    return fetch("https://certify-api.onrender.com/api/auth/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ email: email, password: password })
-    });
+    return axios.post("/auth/login", { email: email, password: password });
   }
 
   const handleSubmit = async e => {
     e.preventDefault();
+    setLoading(true)
     try {
       const response = await loginUser(useremail, password);
-      const data = await response.json();
-
-      console.log(response);
-      console.log(data);
-      console.log(response.status);
+      console.log(response)
 
       if (response.status === 200 || response.status === 201) {
         Toast.fire({
@@ -129,47 +73,78 @@ const Login = ({ access, setAccess }) => {
           title: "Signed in successfully"
         });
         navigate("/dashboard");
+        setLoading(false)
         setAccess(true);
-      } else if (response.status === 401) {
-        Toast.fire({
-          icon: "error",
-          title: "Page not found"
-        });
-
-        throw new Error("Page not found");
-      } else if (response.status === 400) {
-        Toast.fire({
-          icon: "error",
-          title: "Invalid Email or Password, please try again"
-        });
-        throw new Error("Invalid Email or Password, please try again");
-      } else if (response.status === 500) {
-        Toast.fire({
-          icon: "error",
-          title: "Server Error"
-        });
-
-        throw new Error("Server Error");
       } else {
         Toast.fire({
           icon: "error",
           title: "Something went wrong"
         });
-
+        
+        setLoading(false)
         throw new Error("Something went wrong");
       }
 
-      const token = data.token;
-      localStorage.setItem("token", token);
-      localStorage.setItem("user", data.userId);
-      localStorage.setItem("subscription", data.subscription);
-      localStorage.setItem("refreshToken", data.refreshToken);
+      const userData = {
+        userId: response.data.data.userId,
+        token: response.data.data.token,
+        refreshToken: response.data.data.refreshToken,
+        subscription: response.data.data.subscription,
+      }
+      localStorage.setItem('userData', JSON.stringify(userData))
+      console.log(userData)
+
     } catch (error) {
-      setError(true);
-      console.log(error.message);
+     
+      console.log(error)
+     if (error.response.status === 400) {
+       Toast.fire({
+         icon: "error",
+         title: "A user for this email could not be found"
+       });
+
+       setLoading(false);
+       
+     } else if (error.response.status === 401) {
+       Toast.fire({
+         icon: "error",
+         title: "Invalid password, please try again"
+       });
+       setLoading(false);
+
+     } else if (error.response.status === 500) {
+       Toast.fire({
+         icon: "error",
+         title: "Internal server Error"
+       });
+
+       setLoading(false);
+
+      
+     } else {
+       Toast.fire({
+         icon: "error",
+         title: "Something went wrong"
+       });
+
+       setLoading(false);
+      
+     }
+      
+      
     }
   };
 
+
+  // useEffect(() => {
+  //   const initClient = () => {
+  //     gapi.auth2.init({
+  //       clientId: CLIENT_ID
+  //       // scope: ""
+  //     });
+  //   };
+  //   gapi.load("client:auth2", initClient);
+  // });
 
   useEffect(() => {
     const initClient = () => {
@@ -179,7 +154,8 @@ const Login = ({ access, setAccess }) => {
       });
     };
     gapi.load("client:auth2", initClient);
-  });
+  }, [])
+  
 
   const onSuccess = res => {
     setToken({ accessToken: res.tokenId });
@@ -192,11 +168,11 @@ const Login = ({ access, setAccess }) => {
       userId: res.profileObj.googleId,
       accessToken: res.accessToken
     };
-
+localStorage.setItem("userData", JSON.stringify(userProfile));
     if (token.accessToken) loginUserGoogle(token);
 
-    localStorage.setItem("username", res.profileObj.email);
-    localStorage.setItem("name", res.profileObj.name);
+    // localStorage.setItem("username", res.profileObj.email);
+    // localStorage.setItem("name", res.profileObj.name);
   };
 
   const onFailure = err => {
@@ -205,6 +181,9 @@ const Login = ({ access, setAccess }) => {
 
   // Send access token to backend
   async function loginUserGoogle(token) {
+
+     
+    
     const response = await fetch("https://certgo.hng.tech/api/auth/login", {
       method: "POST",
       headers: {
@@ -212,15 +191,17 @@ const Login = ({ access, setAccess }) => {
       },
       body: JSON.stringify(token)
     });
-
     console.log(response);
+     navigate("/dashboard");
 
-    if (response.status === 200) {
-      // route user to dashboard after successful login
-      navigate("/dashboard");
-    } else {
-      navigate("/login");
-    }
+   
+
+    // if (response.status === 200 || response.status === 201) {
+    //   // route user to dashboard after successful login
+    //   navigate("/dashboard");
+    // } else {
+    //   navigate("/login");
+    // }
   }
   return (
     <div id="login">
@@ -239,15 +220,15 @@ const Login = ({ access, setAccess }) => {
               cookiePolicy={"single_host_origin"}
               isSignedIn={true}
               render={renderProps => (
-                <div onClick={renderProps.onClick} id="signupG">
+                <div onClick={renderProps.onClick} id="signupG" style={{ cursor: "pointer" }}>
                   <img alt="" src={googleSVG} id="img_id" />
-                  <a href="#">Login using Google</a>
+                  Login using Google
                 </div>
               )}
             />
             <div id="signupA">
               <img alt="" src={appleSVG} id="imgs" />
-              Signup using Apple
+              Login using Apple
             </div>
             <div id="hrLine">
               <span id="or">or</span>
@@ -281,9 +262,9 @@ const Login = ({ access, setAccess }) => {
             />
 
             {/* </div> */}
-            {error && <p style={{ color: "red" }}>Something went wrong</p>}
-            <div className="forgotPwd"><Link to = "/fff1">
-            Forgot password?</Link></div>
+           
+            <div className="forgotPwd"><Link to="/fff1">
+              Forgot password?</Link></div>
             <div id="checkTerms">
               <input
                 type="checkbox"
@@ -298,7 +279,7 @@ const Login = ({ access, setAccess }) => {
             </div>
             <div>
               <Button id="btn" onClick={handleSubmit} style={{ width: "100%" }}>
-                Login
+                {loading ? <Loader /> : <span>Login</span>}
               </Button>
             </div>
           </form>

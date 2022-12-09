@@ -1,28 +1,30 @@
-import "./navbar.style.scss";
-//import menu from '../../pages/ComingSoon/images/menu.svg'
-import React, {  useState } from "react";
-import logo from "../../assets/images/navbarIcon.png";
-import { FaBars, FaTimes } from "react-icons/fa";
+import React, { useState, useEffect } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
+import { FaBars, FaTimes } from "react-icons/fa";
+import DropDown from './Dropdown'
+
+import "./navbar.style.scss";
+import logo from "../../assets/images/navbarIcon.png";
+// import profilePic from '../../assets/images/Ellipse4.png';
 import Button from "../button";
 
 function Navbar() {
   const [switchFa, setSwitchFa] = useState(false);
+  // const [istoken, setIstoken] = useState(false);
   const navigate = useNavigate();
+    const isLoggedIn = localStorage.getItem("userData")
+  // useEffect(() => {
+  //   const token = localStorage.getItem("token");
+  //   if (token) {
+  //     setIstoken(true);
+  //   } else {
+  //     setIstoken(false);
+  //   }
+  // }, []);
 
   const handleToggle = () => {
-    
-  
-    
     setSwitchFa(!switchFa);
-   
-    
   };
-
-
-
-  
-  
 
   const links = [
     {
@@ -58,10 +60,19 @@ function Navbar() {
               </h2>
               <img src={logo} alt="Certgo bulb" />
             </div>
+
             <div className="nav-click">
-              <Button className="btn" name={"get started"}>
-                <Link to="/modify" className="link"></Link>
-              </Button>
+              {isLoggedIn ? (
+                <div className="dropdown-tab">
+                  <DropDown/>
+                </div>
+              ) : (
+                <Button className="btn" name={"get started"}>
+                 <Link to="/modify" className="link"></Link>
+                </Button>
+              ) 
+              }
+             
 
               {switchFa === true ? (
                 <FaTimes className="times" onClick={handleToggle} />
@@ -90,21 +101,31 @@ function Navbar() {
                 );
               })}
             </div>
-            <div className="button-container">
-            <NavLink to="/signup" >
-              <Button
-                className="btn"
-                onClick={handleToggle}
-                name={"get started"}
-              >
-                {/* <Link to="/modify" className="link"></Link> */}
-              </Button>
-               </NavLink>
-            </div>
+
+
+        {isLoggedIn?
+              <div className="dropdown-wrapper">
+                    <DropDown />
+              </div>
+                 : 
+              <div className="button-container">
+              <NavLink to="/signup" >
+                <Button
+                  className="btn"
+                  onClick={handleToggle}
+                  name={"get started"}
+                >
+                </Button>
+              </NavLink>
+              </div>
+        }
+
+             
+       
           </div>
         </div>
+        </div>
       </div>
-    </div>
   );
 }
 

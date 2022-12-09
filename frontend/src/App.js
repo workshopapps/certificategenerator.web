@@ -1,5 +1,5 @@
+import { Route, Routes } from "react-router-dom";
 import * as Sentry from "@sentry/react";
-import { useParams } from "react-router-dom";
 import {
   AboutUs,
   BulkStep,
@@ -19,24 +19,23 @@ import {
   Templates,
   Terms,
   ProfilePage,
-  UploadCSV
-} from "./pages";
-import "./Style/App.scss";
-import {
+  UploadCSV,
   ChangePassword,
   ForgotPassword,
   PasswordLinkSent,
   ResetPassword,
-  PasswordChangeSuccessfully
-} from "./pages/ResetPassword";
-import Generate from "./pages/Dashboard/Generate";
-import Home from "./pages/Home";
-import Checkout from "./pages/Checkout";
-import { Privacy } from "./pages/PrivacyPolicy";
+  PasswordChangeSuccessfully,
+  Home,
+  Privacy,
+  Checkout,
+  Generate
+} from "./pages";
+
 import Login from "./Component/Signup-Login/assets/Login";
-import Signup from "./Component/Signup-Login/assets/Sginup";
-import { Route, Routes } from "react-router-dom";
-import RequireAuth from "./Component/RequireAuth";
+import Signup from "./Component/Signup-Login/assets/Signup";
+import ProtectedRoutes from "./Component/ProtectedRoutes";
+
+import "./Style/App.scss";
 
 function App() {
   return (
@@ -51,9 +50,9 @@ function App() {
             <Route
               path="/dashboard"
               element={
-                <RequireAuth>
+                <ProtectedRoutes>
                   <Dashboard />
-                </RequireAuth>
+                </ProtectedRoutes>
               }
             />
             <Route path="/generate/:generateId" element={<Generate />} />
@@ -71,7 +70,14 @@ function App() {
             <Route path="/pricing" element={<Pricing />} />
             <Route path="/contact-us" element={<ContactUs />} />
             <Route path="/payment" element={<Checkout />} />
-            <Route path="/profile" element={<ProfilePage />} />
+            <Route
+              path="/profile"
+              element={
+                <ProtectedRoutes>
+                  <ProfilePage />
+                </ProtectedRoutes>
+              }
+            />
             <Route path="/upload" element={<UploadCSV />} />
             <Route path="/privacy" element={<Privacy />} />
             {/* ResetPassword */}
@@ -82,7 +88,7 @@ function App() {
             />
             <Route path="/fff3" element={<ChangePassword />} />
             <Route path="/fff2" element={<PasswordLinkSent />} />
-            <Route path="/fff1" element={<ForgotPassword />} />
+            <Route path="/forgotpassword" element={<ForgotPassword />} />
 
             <Route path="*" element={<Error />} />
           </Routes>

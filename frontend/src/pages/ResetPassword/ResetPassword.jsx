@@ -1,11 +1,12 @@
-import React,{ useState, useEffect} from "react";
+import React,{ useState} from "react";
 // import axios from "axios";
 import { useNavigate, useParams,} from "react-router-dom";
 import Input from "../../Component/Input";
 import Layout from "./ResetLayout";
 import { Toast } from '../../Component/ToastAlert'
-import Loader from "../Home/Loader";
+import {ButtonLoader} from '../../Component'
 import Button from "../../Component/button";
+
 
 const ResetPassword = () => { 
   const navigate = useNavigate();
@@ -118,7 +119,7 @@ const ResetPassword = () => {
       label="Confirm new password"
       eyecon={true}
     />
-    <Button type='submit' style={{width: '100%'}}>{loading? <Loader /> : <span>Change password</span>}</Button>
+    <Button type='submit' style={{width: '100%'}}>{loading? <ButtonLoader /> : <span>Change password</span>}</Button>
     </form>
   ];
   return (

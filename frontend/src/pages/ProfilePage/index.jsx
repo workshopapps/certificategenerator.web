@@ -4,39 +4,26 @@ import Modal from '../../Component/Modal'
 import {useNavigate} from 'react-router-dom'
 import "./profile.style.scss";
 import Avatar from "../../assets/images/Ellipse4.png"
-import Upload from './assets/upload.png'
 import Input from "../../Component/Input";
-import Loader from "../Home/Loader";
+import Loader from "../../Component/ButtonLoader";
 import { Toast } from '../../Component/ToastAlert'
+import { useEffect } from "react";
 
 const ProfilePage = () => {
   const navigate = useNavigate()
-  const [selectedImage, setSelectedImage] = useState(null)
   const[loading, setLoading] = useState(false)
-  const[data,setData]= useState({
+  const [isLoadingDelete, setIsLoadingDelete] = useState(false)
+  const[data, setData]= useState({
   name:"",
   job:"",
   location:"",
   phoneNumber:"",
-  useremail:""
+  email:""
 })
 
 
-       // On file select (from the pop up)
-      // Update the state
-        const onFileChange = (e) => {   
-           e.preventDefault()
-              setSelectedImage({ selectedFile: e.target.files[0] });
-              setSelectedImage(URL.createObjectURL(e.target.files[0]))
-              console.log(e.target.files[0]);
-                  e.preventDefault()
-            const formData = new FormData()
-            formData.append('selectedImage', selectedImage)
-            axios.put("https://certgo.hng.tech/api/users/brand-kit", formData, {
-            }).then(res => {
-                console.log(res)
-            })
-        }
+
+const userId = localStorage.getItem("user");
 
   // Handle user Logout
   const handleLogout = async(e) =>{
@@ -49,8 +36,7 @@ const ProfilePage = () => {
               setLoading(false);
               //navigate back to login
               navigate('/login') 
-             localStorage.removeItem('token');
-             localStorage.removeItem('user');
+             localStorage.clear()
              }
           }).catch(err =>{
             console.log(err || 'couldnt log out')
@@ -61,39 +47,109 @@ const ProfilePage = () => {
               });
           }) 
   }
-
-
   
-  const url= "https://certify-api.onrender.com/api/pricing"
-  function handlePost(e){
-    const newdata={...data}
-    newdata[e.target.id]=e.target.value
-    setData(newdata)
-    console.log(newdata)
-  }
-  function Submit(e){
+  const url = "https://certgo.hng.tech/api/profile";
+  const handleOnchange = e => {
+    const newdata = { ...data };
+    newdata[e.target.id] = e.target.value;
+    setData(newdata);
+    //console.log(e)
+  };
+
+  const userData = JSON.parse(localStorage.getItem("userData"))
+  const token = userData.token;
+  const headers = {
+    Authorization: `Bearer ${token}`,
+    "Content-Type": "application/json"
+  };
+ 
+      function getDATA(){
+        fetch(url,
+          {
+            headers
+          }
+          )
+          .then((res) => res.json())
+          .then((res)=>{
+            setData(res.data.profile)
+          
+          })
+    }
+    useEffect(() =>{
+      getDATA()
+    },[])
+
+  const Submit = async e => {
     e.preventDefault();
-    axios.post(url,{
-      name:data.name,
-      job:data.job,
-      location:data.location,
-      phoneNumber:data.phoneNumber,
-      useremail:data.useremail
-    })
-    .then(res=>{
-      console.log(res.data)
-    })
-  }
+    
+    const userData = JSON.parse(localStorage.getItem("userData"))
+    const token = userData.token;
+    //console.log(token)
+    try {
+      const headers = {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json"
+      };
+      //console.log(token)
+      const response = await axios.patch(
+        url,
+        {
+          name: data.name,
+          job: data.job,
+          location: data.location,
+          phoneNumber: data.phoneNumber,
+          email: data.email
+        },
+        {
+          headers
+        }
+      );
+      console.log(response)
+      if (response.status === 201) {
+        Toast.fire({
+          icon: "success",
+          title: response.message
+        });
+      } else {
+        throw new Error(response.message);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  function handleDelete(){
+    const userData = JSON.parse(localStorage.getItem("userData"))
+    const token = userData.token;
+    const headers = {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json"
+    };
+    setIsLoadingDelete(true)
+    fetch(url,
+      {
+        method: "DELETE",
+        headers
+      }
+      )
+      .then((res) => res.json())
+      .then((res)=>{
+        //setData(res.data.profile)
+        console.log(res.data)
+        console.log("Account deleted")   
+        navigate("/signup")   
+        localStorage.clear()  
+      })
+      .catch(err=>console.log(console.error()))
+      .finally(()=>setIsLoadingDelete(false))   
+}
+
   return (
     <div className="profile-page">
       <div>
       <div className="user-info">
         <div className="user-avatar">
-          <img src={selectedImage || Avatar} className="avatar" alt="profile-pic" />
-            <label htmlFor="myFile" className="upload__label">
-              <img src={Upload} alt="upload-icon" />
-              <input type="file" id="myFile" accept="image/*" name="image" onChange={onFileChange}  />
-            </label>
+          <img src={Avatar} className="avatar" alt="profile-pic" />
         </div>
         <div className="mb-2">
           <h3>Olamiposi Benjamin</h3>
@@ -113,6 +169,7 @@ const ProfilePage = () => {
 
         <div className="btn-wrapper">
           <button onClick={handleLogout} style={loading ? {background: '#f84343', cursor: 'not-allowed'} : {background: 'transparent', cursor: 'pointer'}}>{loading ? <Loader /> : <span>Log Out</span>}</button>
+          <button onClick={handleDelete} style={isLoadingDelete ? {background: '#f84343', cursor: 'not-allowed'} : {background: 'transparent', cursor: 'pointer'}}>{isLoadingDelete ? <Loader /> : <span>Delete Account</span>}</button>
         </div>
       </div>
 
@@ -122,41 +179,46 @@ const ProfilePage = () => {
 
             <Input className="form-group"
               label={"Name"}
-              onClick={handlePost}
-                id="form-control" 
+              callback={handleOnchange}
+                id="name" 
                 type="text" 
                 placeholder="Name"
+                value={data.name}
                 />
             <Input className="form-group"
               label={"Jobs"}
-             onClick={handlePost} 
-                id="form-control" 
+             callback={handleOnchange} 
+                id="job" 
                 type="text" 
                 placeholder="Job"
+                value={data.job}
                 />
 
               <Input className="form-group"
                 label={"Location"}
-                onClick={handlePost} 
-                id="form-control" 
+                callback={handleOnchange} 
+                id="location" 
                 type="text" 
                 placeholder="Location"
+                value={data.location}
                 />
 
             <Input className="form-group"
                 label={"Email"}
-                onClick={handlePost} 
-                id="form-control" 
+                callback={handleOnchange} 
+                id="email" 
                 type="email" 
                 placeholder="E-mail"
+                value={data.email}
                 />
 
             <Input className="form-group"
                 label={"Phone Number"}
-                onClick={handlePost} 
-                id="form-control" 
+                callback={handleOnchange} 
+                id="phoneNumber" 
                 type="tel" 
                 placeholder="(316) 555-0116"
+                value={data.phoneNumber}
                 />
 
             <div id="postbtnid" className="form-btn-wrapper">

@@ -1,14 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
+import reportWebVitals from './reportWebVitals';
 import * as Sentry from "@sentry/react";
 import { BrowserTracing } from "@sentry/tracing";
 import { BrowserRouter } from "react-router-dom";
-import {AppProvider} from "./contexts/AppProvider";
+import { AppProvider } from "./contexts/AppProvider";
 import "./index.css";
 
-process.env.NODE_ENV === "production" &&
-  Sentry.init({
+process.env.NODE_ENV === "production" && Sentry.init({
     dsn: "https://ff49b09dfdb14d119fe71ea3974a9042@o4504279338647552.ingest.sentry.io/4504279342841856",
     integrations: [new BrowserTracing()],
 
@@ -21,8 +21,10 @@ process.env.NODE_ENV === "production" &&
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <BrowserRouter>
-      <AppProvider>
-        <App />
-      </AppProvider>
+    <AppProvider>
+      <App />
+    </AppProvider>
   </BrowserRouter>
 );
+
+reportWebVitals();

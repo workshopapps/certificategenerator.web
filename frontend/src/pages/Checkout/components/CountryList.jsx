@@ -2,7 +2,7 @@ import React from "react";
 
 const CountryList = props => {
   return (
-    <select id="country_select" name="Country">
+    <select id="country_select" style={{ height: "7vh" }} name="Country">
       <option>{props.value}</option>
       <option value="AF">Afghanistan</option>
       <option value="AX">Aland Islands</option>

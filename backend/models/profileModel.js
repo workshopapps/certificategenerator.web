@@ -5,32 +5,28 @@ const ProfileSchema = new mongoose.Schema({
   user: {
     type: Schema.Types.ObjectId,
     required: true,
-    ref: "User",
+    ref: "User"
   },
   avatar: {
-    type: String,
+    type: String
   },
   name: {
-    type: String,
-    required: [true, "Must provide your name!"],
+    type: String
   },
   job: {
-    type: String,
-    required: [true, "Must provide a job!"],
+    type: String
   },
   location: {
-    type: String,
-    required: [true, "Must provide a location"],
+    type: String
   },
   email: {
     type: String,
-    required: [true, "Must provide a valid email address!"],
+    required: [true, "Must provide a valid email address!"]
     //  unique: true,
   },
   phoneNumber: {
-    type: String,
-    required: [true, "Must provide a valid phone number!"],
-  },
+    type: String
+  }
 });
 
 module.exports = mongoose.model("Profile", ProfileSchema);

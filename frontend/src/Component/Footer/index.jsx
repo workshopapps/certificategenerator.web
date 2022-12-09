@@ -35,7 +35,7 @@ const Footer = () => {
 
   function onSubscribe() {
     let data = { email: email };
-    fetch("https://certgo.hng.tech/api/subscribe", {
+    fetch("https://certgo.hng.tech/api/mailinglists", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data)

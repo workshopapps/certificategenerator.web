@@ -1,3 +1,5 @@
+const {handleAsync, handleError,handleResponse,createApiError} = require("../utils/helpers")
+
 const nodemailer = require('nodemailer')
 fs = require('fs');
 const User = require("../models/userModel");
@@ -6,14 +8,12 @@ const jwt = require("jsonwebtoken");
 exports.emailNotification = async (req, res) => {
     const auth = req.headers.authorization;
 
-    if (!auth) {
-        return res.status(403).json({ error: "No credentials sent!" });
-    }
+    if (!auth) throw createApiError("No credentials sent!", 403);
 
     const token = auth.split(" ")[1];
     const { userId } = jwt.decode(token);
     const user = await User.findById(userId).exec();
-    if (!user) return res.status(404).json({ message: "user not found" });
+    if (!user) throw createApiError("user not found!", 404);
 
     const email = user.email;
     let transporter = nodemailer.createTransport({
@@ -45,14 +45,11 @@ exports.emailNotification = async (req, res) => {
         if (error) {
             console.log(error);
         } else {
-            res.status(200).json({ message: "Notification for Certificate has been sent to Email" 
-        })
+            res
+            .status(200)
+            .json(handleResponse({},"Notification for Certificate has been sent to Email"));
             console.log('Email sent: ' + info.response);
-            
-            // fs.unlink(`tmp/${file.name}`, function (err) {
-            //     if (err) return console.log(err);
-            //     console.log('file deleted successfully and notification has been sent');
-            // })
+     
         }
     })
 }

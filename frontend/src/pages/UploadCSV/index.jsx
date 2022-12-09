@@ -7,7 +7,7 @@ import { useState, useContext, useEffect } from "react";
 
 import "./uploadCSV.style.scss";
 // component
-import Loader from "../Dashboard/Loader";
+import {ButtonLoader} from "../../Component";
 import Button from "../../Component/button";
 import AppContext from "../../contexts/AppProvider";
 // img
@@ -180,11 +180,24 @@ const UploadCSV = () => {
           title: "Successfully uploaded"
         });
         navigate("/bulk_preview");
+      } else if (res.status === 502) {
+        setLoading(false);
+        Toast.fire({
+          icon: "success",
+          title: "502 Bad Gateway"
+        });
+      } else if (res.status === 400) {
+        setLoading(false);
+        Toast.fire({
+          icon: "success",
+          title: "Missing file"
+        });
       }
     } catch (error) {
       setLoading(false);
       Toast.fire({
         icon: "error",
+        // title: error.message
         title: "Upload failed due to invalid field(s)"
       });
     }
@@ -231,7 +244,7 @@ const UploadCSV = () => {
           style={{ margin: "1em auto" }}
           onClick={e => handleUpload(e)}
         >
-          {loading ? <Loader /> : "Submit CSV"}
+          {loading ? <ButtonLoader /> : "Submit CSV"}
         </Button>
       </div>
     </div>

@@ -7,6 +7,7 @@ export const AppProvider = ({ children }) => {
   const [array, setArray] = useState([]);
   const [csvData, setCsvData] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [token, setToken] = useState("");
 
   const [logo, setLogo] = useState("");
   const [access, setAccess] = useState();
@@ -40,6 +41,8 @@ export const AppProvider = ({ children }) => {
   return (
     <AppContext.Provider
       value={{
+        token,
+        setToken,
         logo,
         setLogo,
         access,

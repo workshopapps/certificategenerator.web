@@ -1,15 +1,17 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
-import "./dashboard.style.scss";
-import profilePic from "../../assets/images/Ellipse4.png";
+import Swal from "sweetalert2";
 import Card from "./Card";
-import { dummyData, cardData, nullDataIcon, actionIcon } from "./utils";
+import { dummyData, nullDataIcon, } from "./utils";
+import {Toast} from '../../Component/ToastAlert'
 import Button from "../../Component/button";
 import CreateCertificateModal from "./CreateCertificateModal";
-import { axiosPrivate } from "../../api/axios";
 import useAppProvider from "../../hooks/useAppProvider";
-import Swal from "sweetalert2";
 import { Loader } from "../../Component";
 import TableRow from "./TableRow";
+import profilePic from "../../assets/images/Ellipse4.png";
+import Ellipse from "../../assets/svgs/hor-ellipse.svg";
+import "./dashboard.style.scss";
 
 const Dashboard = () => {
   const {
@@ -29,21 +31,78 @@ const Dashboard = () => {
   const [data, setData] = useState([]);
   const [cardData, setCardData] = useState([...dummyData]);
   const [openModal, setOpenModal] = useState(false);
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
   const [pricing, setPricing] = useState("");
   const [certificates, setCertificates] = useState([]);
-const [eventLink, setEventLink] = useState("")
-  const Toast = Swal.mixin({
-    toast: true,
-    position: "top-end",
-    showConfirmButton: false,
-    timer: 3000,
-    timerProgressBar: true,
-    didOpen: toast => {
-      toast.addEventListener("mouseenter", Swal.stopTimer);
-      toast.addEventListener("mouseleave", Swal.resumeTimer);
+  const [eventLink, setEventLink] = useState("");
+  const baseURL = "https://certgo.hng.tech/api";
+  const accessToken = JSON.parse(localStorage.getItem("userData")).token
+  const [file, setFile] = useState('')
+
+
+  const axiosPrivate = axios.create({
+    baseURL,
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${accessToken}`
     }
   });
+
+  const axiosPrivateKit = axios.create({
+    baseURL,
+    headers: {
+      // "Content-Type": "multipart/form-data",
+      Authorization: `Bearer ${accessToken}`
+    }
+  });
+
+
+    // On file select (from the pop up)
+  // Update the state
+  const onFileChange = async (e) => {   
+    e.preventDefault()
+    setFile(e.target.files[0]);
+  }
+
+  const onUpdate = async (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append('file', file);
+    try{
+      const response = await axiosPrivateKit.put("/users/brand-kit", formData);
+      console.log("Response", response);
+      if (response.status === 404) {
+        Toast.fire({
+          icon: "error",
+          title: "Page not found"
+        });
+      } else if (response.status === 401) {
+        Toast.fire({
+          icon: "error",
+          title: "Request Failed"
+        });
+      } else if (response.status === 500) {
+        Toast.fire({
+          icon: "error",
+          title: "Internal Server Error"
+        });
+      } else {
+        setFile(response.data.brandkit);
+        console.log(response.data.brandkit);
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  useEffect(() => {
+    const getFile = async (e) => {
+      const res = await axiosPrivate.get("/users/brand-kit");
+      console.log("Brand kit", res.data.brandkit);
+      setFile(res.data.brandkit);
+    }
+    getFile();
+  }, [])  
 
   const handleChangeCertificateStatus = async (id, status) => {
     console.log(id, status);
@@ -53,7 +112,7 @@ const [eventLink, setEventLink] = useState("")
       title: "Successfully updated"
     });
     const res = await axiosPrivate.get("/certificates");
-    setData(res.data);
+    setData(res.data.data.certificates);
   };
 
   const handleDeleteCertificate = async id => {
@@ -64,13 +123,23 @@ const [eventLink, setEventLink] = useState("")
       title: "Successfully deleted"
     });
     const res = await axiosPrivate.get("/certificates");
-    setData(res.data);
+    setData(res.data.data.certificates);
+  };
+
+  const handleDeleteAllCertificates = async () => {
+    await axiosPrivate.delete(`/certificates`);
+    Toast.fire({
+      icon: "success",
+      title: "You have deleted all your certificates"
+    });
+    const res = await axiosPrivate.get("/certificates");
+    setData(res.data.data.certificates);
   };
 
   const getUserCertificates = async () => {
     try {
       const response = await axiosPrivate.get("/certificates");
-      let sub = localStorage.getItem("subscription");
+      let sub = JSON.parse(localStorage.getItem("userData")).subscription;
       setPricing(sub);
       console.log(response);
       if (response.status === 404) {
@@ -89,9 +158,9 @@ const [eventLink, setEventLink] = useState("")
           title: "Internal Server Error"
         });
       } else {
-        setData(response.data);
-        console.log(response.data);
-        updateCount(response.data);
+        setData(response.data.data.certificates);
+        console.log(response.data.data.certificates);
+        updateCount(response.data.data.certificates);
       }
     } catch (error) {
       console.error(error.message);
@@ -129,58 +198,86 @@ const [eventLink, setEventLink] = useState("")
   useEffect(() => {
     getUserCertificates();
   }, []);
- 
-
 
   //GET EVENTS
   const getEvents = async () => {
-    
+   try {
     return fetch("https://certgo.hng.tech/api/events", {
-     method: "GET",
-     headers: {
-       "Authorization" : `Bearer ${token}`,
-       "Content-Type": "application/json"
-     }
-   })
-      
-     .then(async response => {
-       const result = await response.json()
-       console.log(result.events[1])
-       var link = result.events[0]._id
-       setEventLink(`https://certgo.hng.tech/generate/:${link}`)
-       
-     })
-       
-    }
-
-
-   //GENERATE LINK
-   const title = "Fela Music School"
-   var token = localStorage.getItem("token")
-    const handleGenerate = async () => {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json"
+      }
+    }).then(async response => {
+      const result = await response.json();
      
-     fetch("https://certgo.hng.tech/api/events", {
-       method: "POST",
-       headers: {
-         "Authorization" : `Bearer ${token}`,
-         "Content-Type": "application/json"
-       },
-       body: JSON.stringify({ title:title })
-     })
-     .then(async response => {
-       const result = await response.json()
-        
-       localStorage.setItem("_id", result.event._id);
-       localStorage.setItem("eventTitle", result.event.title);
-       localStorage.setItem("eventCustomURI", result.event.customURI)
-       
-          })
-     getEvents();
+      var link = result.data.events[0]._id;
+      setEventLink(`https://certgo.hng.tech/generate/:${link}`);
+    
+      if (response.status === 200 || response.status === 201) {
+        Toast.fire({
+          icon: "success",
+          title: "Link Generated"
+        });
+      } else if (response.status === 401 || response.status === 400) {
+        Toast.fire({
+          icon: "error",
+          title: "Email not found"
+        });
+      } else if (response.status === 500) {
+        Toast.fire({
+          icon: "error",
+          title: "Internal Server Error"
+        });
+      }
+    
+    })
+
    }
+   catch (error) {
+    console.error(error.message);
+  }
+  };
 
+  //GENERATE LINK
+  const title = "Fela Music School";
+  const getToken = JSON.parse(localStorage.getItem("userData"))
 
+  var token = getToken.token;
 
+  const handleGenerate = async () => {
+    fetch("https://certgo.hng.tech/api/events", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ title: title })
+    }).then(async response => {
+      const result = await response.json();
+      localStorage.setItem("_id", result.data.event._id);
+      localStorage.setItem("eventTitle", result.data.event.title);
+      localStorage.setItem("eventCustomURI", result.data.event.customURI);
+    });
+    getEvents();
+  };
+     
+  const handleToggle = () => {
+     let drop = document.querySelector(".brandkit-dropdown")
+     drop.classList.toggle("visible")
+  }
 
+  //DELETE ALL USER CERTIFICATES
+  const handleDeleteAll = async () => {
+    await handleDeleteAllCertificates()
+    // getUserCertificates()
+    // setOpenOptions(!openOptions)
+    getUserCertificates()
+  }
+     
+
+//GET USERNAME FROM LOCALSTORAGE
+const profileName = localStorage.getItem('userName');
 
 
 
@@ -188,19 +285,37 @@ const [eventLink, setEventLink] = useState("")
     <>
       <div className="dashboard">
         <div className="dashboard__hero-section">
-          <div className="dashboard__profile-pic">
-            <img src={profilePic} alt="Avatar" />
+           <div className="dashboard__profile-pic-wrapper">
+            <span className="dashboard__profile-pic">
+              <img src={file || profilePic} alt="brand-kit" />   
+            </span>
+            <div className="ellipses" onClick={handleToggle}>
+              <img src={Ellipse} alt="upload-icon" />
+            </div>
+            <div className="brandkit-dropdown">
+              <ul>
+               <li> 
+                <label htmlFor="file" className="dashboard__upload-label">
+                  <span>View Logo</span>   
+                  <input type="file" id="file" accept="image/*" name="file" onChange={onFileChange}  />
+                </label>
+              </li>
+              <li onClick={onUpdate}>Upload new logo</li>
+              <li>Delete Logo</li>
+              </ul>
+            
+            </div>
           </div>
           <div className="flexx">
             <div className="dashboard__align-start">
               <h3 className="dashboard__text">Welcome</h3>
-              <h2 className="dashboard__title">Team Headlight</h2>
+              <h2 style = {{textTransform : 'capitalize'}} className="dashboard__title">{profileName}</h2>
               <p className="dashboard__description">
-                Let’s do the Accounts for you, Get a summary of all the
+            Get a summary of all the
                 Certificates and Job done here
               </p>
               <div>
-                <p>Pricing Plan: {pricing.toUpperCase()}</p>
+                <p>Pricing Plan: {pricing}</p>
               </div>
             </div>
             <div className="dashboard__btn">
@@ -219,18 +334,29 @@ const [eventLink, setEventLink] = useState("")
         <div className="table-wrapper">
           <div className="table-header">
             <p>CERTIFICATE DASHBOARD</p>
-            <h5 style = {{padding:'50px!important'}}>Certificate Download Link : {eventLink}</h5>
+            <h5 style={{ padding: "50px!important" }}>
+              
+                Certificate Download Link : {eventLink && <a style = {{color : 'green'}} target = '_blank' href = {eventLink}>Link generated, Click Here</a>}
+              
+            </h5>
             {data.length > 0 ? (
-              <div style = {{display: 'flex'}}>
+              <div style={{ display: "flex" }}>
                 <Button className="" onClick={() => setOpenModal(true)}>
                   Create New Certificate
                 </Button>
 
-                
-                <Button style = {{marginLeft: '20px'}} className="" onClick={handleGenerate}>
+                <Button className="" onClick={handleDeleteAll}>
+                  Delete All Certificates
+                </Button>
+
+                <Button
+                  style={{ marginLeft: "20px" }}
+                  className=""
+                  onClick={handleGenerate}
+                >
                   {/* <Link to = {`/generate/:${generateId}`}>Generate Link</Link> */}
-               Generate Link
-                </Button> 
+                  Generate Link
+                </Button>
               </div>
             ) : null}
           </div>
@@ -273,6 +399,7 @@ const [eventLink, setEventLink] = useState("")
                         handleChangeCertificateStatus
                       }
                       handleDeleteCertificate={handleDeleteCertificate}
+                      getUserCertificates={getUserCertificates}
                     />
                   ))}
                 </tbody>
@@ -297,6 +424,6 @@ const [eventLink, setEventLink] = useState("")
       </div>
     </>
   );
-}
+};
 
 export default Dashboard;

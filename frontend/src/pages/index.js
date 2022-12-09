@@ -1,5 +1,7 @@
 //Pages
 
+export * from "./ResetPassword";
+export * from "./PrivacyPolicy";
 export { default as Layout } from "../Component/Layout";
 export { default as ComingSoon } from "./ComingSoon";
 export { default as Dashboard } from "./Dashboard";
@@ -20,3 +22,7 @@ export { default as ProfilePage } from "./ProfilePage";
 export { default as UploadCSV } from "./UploadCSV";
 export { default as BulkPreview } from "./BulkPreview";
 export { default as SinglePreview } from "./SinglePreview";
+export { default as Checkout } from "./Checkout";
+export { default as Generate } from "./Dashboard/Generate";
+
+export { default as Home } from "./Home";

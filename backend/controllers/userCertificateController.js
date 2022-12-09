@@ -17,7 +17,7 @@ const addCertificate = handleAsync(async (req, res) => {
   const payload = req.body;
 
   if (!files && Object.keys(payload).length === 0) {
-    throw createApiError("bad request", 400).end();
+    throw createApiError("bad request", 400)
   }
 
   let certificateData;
@@ -27,7 +27,7 @@ const addCertificate = handleAsync(async (req, res) => {
     certificateData = await csvToJson().fromString(csvData);
 
     if (!isValidJsonOutput(certificateData)) {
-      throw createApiError("Invalid input from uploaded csv file", 400).end();
+      throw createApiError("Invalid input from uploaded csv file", 400)
     }
 
     //append uuid and link to the certificate object
@@ -53,7 +53,7 @@ const addCertificate = handleAsync(async (req, res) => {
         link: `https://certgo.hng.tech/single_preview?uuid=${uuidv4}`
       }
     ];
-  } else throw createApiError("bad request", 400).end();
+  } else throw createApiError("bad request", 400)
 
   const user = await User.findOne({ userId }).exec();
 
@@ -78,7 +78,7 @@ const deleteUserCertificates = handleAsync(async (req, res) => {
   const userId = req.user._id;
   const user = await UserBio.findById(userId).exec();
 
-  if (!user) throw createApiError("user not found", 404).end();
+  if (!user) throw createApiError("user not found", 404)
 
   await User.deleteMany({ userId });
   res.status(204).json(handleResponse("Successfully deleted certificated"));
@@ -88,7 +88,7 @@ const getAllCertificates = handleAsync(async (req, res) => {
   const userId = req.user._id;
 
   const user = await User.findOne({ userId }).exec();
-  if (!user) throw createApiError("user not found", 404).end();
+  if (!user) throw createApiError("user not found", 404)
 
   const certificates = user.records;
   res.status(200).json(handleResponse({ certificates }));
@@ -99,13 +99,13 @@ const getCertificate = handleAsync(async (req, res) => {
   const userId = req.user._id;
 
   const user = await User.findOne({ userId });
-  if (!user) throw createApiError("user not found", 404).end();
+  if (!user) throw createApiError("user not found", 404)
 
   const certificateId = req.params.id;
   const certificate = user.records.find(cert => certificateId == cert._id);
 
   if (!certificate) {
-    throw createApiError("Certificate not found", 404).end();
+    throw createApiError("Certificate not found", 404)
   }
 
   return res.status(200).json(handleResponse({ certificate }));
@@ -127,7 +127,7 @@ const deleteCertificate = handleAsync(async (req, res) => {
 
   //validate param ID
   if (!certificateID.match(/^[0-9a-fA-F]{24}$/)) {
-    throw createApiError("Not a valid certificate ID", 403).end();
+    throw createApiError("Not a valid certificate ID", 403)
   }
 
   //delete certificate by ID
@@ -138,24 +138,46 @@ const deleteCertificate = handleAsync(async (req, res) => {
   );
 
   if (!cert) {
-    throw createApiError(`No Certificate with id ${certificateID}`, 404).end();
+    throw createApiError(`No Certificate with id ${certificateID}`, 404)
   }
   return res
     .status(200)
     .json(handleResponse({ message: `Certificate has been Deleted` }));
 });
 
+const verifyCertificate = handleAsync(async (req, res) => {
+  const { id: certificateID } = req.params;
+
+  if (!certificateID.match(/^[0-9a-fA-F]{24}$/)) {
+    throw createApiError("Not a valid certificate ID", 403)
+  }
+
+  //delete certificate by ID
+  const cert = await User.findOne(
+    { _id: certificateID },
+  );
+
+  if (!cert) {
+    throw createApiError(`Not a Valid Certificate`, 404)
+  }
+  return res
+    .status(200)
+    .json(handleResponse({ message: `Certificate Is Valid` }));
+
+})
+
 const getCertificateStatus = handleAsync(async (req, res) => {
   const userId = req.user._id;
 
+
   const user = await User.findOne({ userId });
-  if (!user) throw createApiError("user not found", 404).end();
+  if (!user) throw createApiError("user not found", 404)
 
   const certificateId = req.params.id;
   const certificate = user.records.find(cert => cert._id !== certificateId);
 
   if (!certificate) {
-    throw createApiError(`Certificate not found`, 404).end();
+    throw createApiError(`Certificate not found`, 404)
   }
 
   const certificateStatus = certificate.status;
@@ -173,7 +195,7 @@ const updateCertificateDetails = handleAsync(async (req, res) => {
     throw createApiError(
       "Please provide a valid certificateId as path parameter",
       403
-    ).end();
+    )
   }
 
   //validate certificate data to be updated
@@ -189,7 +211,7 @@ const updateCertificateDetails = handleAsync(async (req, res) => {
     throw createApiError(
       "Please enter valid certificate details: name, nameOfOrganization, award, description, date, signed, email",
       403
-    ).end();
+    )
   }
 
   //update mongodb
@@ -209,7 +231,7 @@ const updateCertificateDetails = handleAsync(async (req, res) => {
   );
 
   if (!cert) {
-    throw createApiError(`No Certificate with id ${certificateId}`, 404).end();
+    throw createApiError(`No Certificate with id ${certificateId}`, 404)
   }
 
   return res.status(200).json(
@@ -221,15 +243,16 @@ const updateCertificateDetails = handleAsync(async (req, res) => {
 
 const updateCertificateStatus = handleAsync(async (req, res) => {
   const userId = req.user._id;
+  const payload = req.body
 
   const user = await User.findOne({ userId });
-  if (!user) throw createApiError("user not found", 404).end();
+  if (!user) throw createApiError("user not found", 404)
 
   const certificateId = req.params.id;
   const certificate = user.records.find(cert => certificateId == cert._id);
 
   if (!certificate) {
-    throw createApiError(`Certificate not found`, 404).end();
+    throw createApiError(`Certificate not found`, 404)
   }
 
   const certificateStatus = payload.status.toLowerCase();
@@ -241,7 +264,7 @@ const updateCertificateStatus = handleAsync(async (req, res) => {
   );
 
   if (!certifiCateStatusTest) {
-    throw createApiError("invalid status", 400).end();
+    throw createApiError("invalid status", 400)
   }
 
   certificate.status = certificateStatus;
@@ -260,6 +283,7 @@ module.exports = {
   getCertificate,
   getNoOfCertificatesIssued,
   deleteCertificate,
+  verifyCertificate,
   getCertificateStatus,
   updateCertificateDetails,
   updateCertificateStatus,

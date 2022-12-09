@@ -111,7 +111,7 @@ body {
   div {
     display: flex;
     flex-direction: column;
-    justify-content: start;
+    justify-content: flex-start;
     gap: 10px;
     p + p {
       font-size: 0.9rem;
