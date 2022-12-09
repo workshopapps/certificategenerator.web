@@ -69,11 +69,16 @@ function Index() {
 
       {/* BUTTONS TO DOWNLOAD OR SHARE THE CRETIFICATES */}
       <div id="bulk-btns">
-        <ReactToPrint
-          content={() => bulkCertDesignRef.current}
-          trigger={() => <Button name="Download Certificates as PDF" style={{ padding: "10px" }} />}
-        />
-        <Button name="Download Certificates as PNG" style={{ padding: "10px" }} onClick={handleClick} />
+        <div className="dropdown">
+          <Button name="Download Certificates" style={{ padding: "10px" }} />
+          <div className="dropdown-content" style={{ marginTop: "0px" }}>
+            <ReactToPrint
+              content={() => bulkCertDesignRef.current}
+              trigger={() => <Button name="PDF" style={{ padding: "10px", width: "150px" }} className="bulk_dropdown" />}
+            />
+            <Button name="PNG" style={{ padding: "10px", width: "150px" }} onClick={handleClick} className="bulk_dropdown" />
+          </div>
+        </div>
         {/* <Button name="Download Certificates as PDF" style={{ padding: "10px" }} /> */}
         <Button
           className="btnLight"
