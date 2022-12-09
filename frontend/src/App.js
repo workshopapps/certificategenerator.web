@@ -88,7 +88,7 @@ function App() {
             />
             <Route path="/fff3" element={<ChangePassword />} />
             <Route path="/fff2" element={<PasswordLinkSent />} />
-            <Route path="/fff1" element={<ForgotPassword />} />
+            <Route path="/forgotpassword" element={<ForgotPassword />} />
 
             <Route path="*" element={<Error />} />
           </Routes>
