@@ -35,8 +35,7 @@ const userId = localStorage.getItem("user");
               setLoading(false);
               //navigate back to login
               navigate('/login') 
-             localStorage.removeItem('token');
-             localStorage.removeItem('user');
+             localStorage.clear()
              }
           }).catch(err =>{
             console.log(err || 'couldnt log out')

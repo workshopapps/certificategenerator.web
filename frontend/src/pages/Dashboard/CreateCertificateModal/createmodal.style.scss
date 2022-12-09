@@ -20,6 +20,7 @@
     margin: 0;
     padding: 0;
   }
+
   .label {
     margin: 0;
   }
@@ -37,6 +38,7 @@
     flex-direction: column;
     gap: 15px;
     margin-bottom: 5rem;
+
     .cancel-btn-wrapper {
       display: flex;
       justify-content: flex-end;
@@ -66,21 +68,26 @@
       .text-green {
         color: $primaryColor;
       }
+
       .head {
         padding: 0;
         text-align: center;
+
         h3 {
           font-size: 24px;
           margin-bottom: 1rem;
         }
+
         p {
           font-size: 16px;
           margin-bottom: 3rem;
         }
+
         .w-5 {
           width: 100%;
           margin: 2rem 0 1rem 0;
         }
+
         .button {
           border: 1px solid black;
           border-radius: 10px;
@@ -90,6 +97,7 @@
           display: flex;
           gap: 1rem;
           justify-content: space-between;
+
           button {
             width: 100%;
             border: 1px solid black;
@@ -97,14 +105,17 @@
             padding: 0.5rem 1.5rem;
             border-radius: 10px;
           }
+
           .active {
             background-color: $primaryColor;
             color: #fff;
           }
+
           .inactive {
             background-color: transparent;
             color: black;
           }
+
           .d-none {
             display: none;
           }
@@ -116,31 +127,33 @@
         width: 100%;
         margin: 0 auto;
         padding-top: 0;
+
         .form-group {
           margin-bottom: 1rem;
         }
+
         div {
           &:first-child {
             .label {
               font-weight: 700;
             }
+
             span {
               display: block;
             }
+
             label {
               border: 1px solid grey;
               width: fit-content;
-              padding: 0.5rem 1rem;
-            }
-            img {
-              margin: 1rem 0px;
-              max-width: 9rem;
+              padding: .5rem 1rem;
             }
           }
+
           .file-type {
             border: none;
             display: none;
           }
+
           input {
             width: 100%;
             height: 50px;
@@ -149,6 +162,7 @@
             color: #000000;
             border-radius: 8px;
           }
+
           .loading {
             display: flex;
             justify-content: space-between;
@@ -166,10 +180,12 @@
           border-radius: 10px;
           cursor: pointer;
         }
+
         .btn-disabled {
           background-color: #8ab9b2;
           cursor: not-allowed;
         }
+
       }
     }
   }
@@ -180,56 +196,59 @@
     .modal-container {
       .modal-body {
         .head {
+
           h3 {
             font-size: 32px;
             margin-bottom: 1rem;
           }
+
           p {
             font-size: 16px;
             margin-bottom: 3rem;
           }
+
         }
+
         .loading {
           display: flex;
           justify-content: space-between;
         }
       }
-      img {
-        margin: 1rem 0px;
-        max-width: 9rem;
-      }
     }
   }
 }
+
 @media (min-width: 700px) {
   .modal-wrap {
     .modal-container {
       width: 70%;
+
       .modal-body {
         .head {
           .w-5 {
             width: 45%;
             margin: 0 auto 2rem auto;
           }
+
           h3 {
             font-size: 52px;
             margin-bottom: 1rem;
           }
+
           p {
             font-size: 24px;
             margin-bottom: 3rem;
           }
+
         }
+
         form {
           max-width: 760px;
           margin: 0 auto;
           padding: 3rem 5rem 3rem 5rem;
           border-radius: 16px;
           border: 0.1px solid #545454;
-          img {
-            margin: 1rem 0px;
-            max-width: 9rem;
-          }
+
           .loading {
             display: flex;
             justify-content: space-between;
