@@ -130,7 +130,7 @@ const Login = () => {
           icon: "error",
           title: "Page not found"
         });
-        navigate("/login");
+        
         setLoading(false)
         throw new Error("Page not found");
       } else if (response.status === 401) {
@@ -139,14 +139,14 @@ const Login = () => {
           title: "Invalid Email or Password, please try again"
         });
         setLoading(false)
-        navigate("/login");
+       
         throw new Error("Invalid Email or Password, please try again");
       } else if (response.status === 500) {
         Toast.fire({
           icon: "error",
           title: "Server Error"
         });
-        navigate("/login");
+       
         setLoading(false)
 
         throw new Error("Internal Server Error");
@@ -155,7 +155,7 @@ const Login = () => {
           icon: "error",
           title: "Something went wrong"
         });
-        navigate("/login");
+        
         setLoading(false)
         throw new Error("Something went wrong");
       }
@@ -170,22 +170,57 @@ const Login = () => {
       console.log(userData)
 
     } catch (error) {
-      setLoading(false)
-      setError(true);
-      console.log(error.message);
+     
+      console.log(error)
+     if (error.response.status === 400) {
+       Toast.fire({
+         icon: "error",
+         title: "A user for this email could not be found"
+       });
+
+       setLoading(false);
+       throw new Error("Page not found");
+     } else if (error.response.status === 401) {
+       Toast.fire({
+         icon: "error",
+         title: "Invalid password, please try again"
+       });
+       setLoading(false);
+
+       throw new Error("Invalid Email or Password, please try again");
+     } else if (error.response.status === 500) {
+       Toast.fire({
+         icon: "error",
+         title: "Server Error"
+       });
+
+       setLoading(false);
+
+       throw new Error("Internal Server Error");
+     } else {
+       Toast.fire({
+         icon: "error",
+         title: "Something went wrong"
+       });
+
+       setLoading(false);
+       throw new Error("Something went wrong");
+     }
+      
+      
     }
   };
 
 
-  useEffect(() => {
-    const initClient = () => {
-      gapi.auth2.init({
-        clientId: CLIENT_ID
-        // scope: ""
-      });
-    };
-    gapi.load("client:auth2", initClient);
-  });
+  // useEffect(() => {
+  //   const initClient = () => {
+  //     gapi.auth2.init({
+  //       clientId: CLIENT_ID
+  //       // scope: ""
+  //     });
+  //   };
+  //   gapi.load("client:auth2", initClient);
+  // });
 
   const onSuccess = res => {
     setToken({ accessToken: res.tokenId });
