@@ -57,7 +57,6 @@ const updateUserProfile = handleAsync(async (req, res) => {
     name: Joi.string(),
     job: Joi.string(),
     location: Joi.string(),
-    email: Joi.string().email(),
     phoneNumber: Joi.string()
   });
 
@@ -71,6 +70,7 @@ const updateUserProfile = handleAsync(async (req, res) => {
     new: true
   });
 
+  console.log(profile.name);
   if (!profile) throw createApiError("User has no profile", 404);
 
   res.status(201).json(handleResponse({ profile }));
