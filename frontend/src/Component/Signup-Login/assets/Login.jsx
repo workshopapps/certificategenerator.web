@@ -130,6 +130,7 @@ const Login = () => {
           icon: "error",
           title: "Page not found"
         });
+        navigate("/login");
         setLoading(false)
         throw new Error("Page not found");
       } else if (response.status === 400) {
@@ -138,19 +139,23 @@ const Login = () => {
           title: "Invalid Email or Password, please try again"
         });
         setLoading(false)
+        navigate("/login");
         throw new Error("Invalid Email or Password, please try again");
       } else if (response.status === 500) {
         Toast.fire({
           icon: "error",
           title: "Server Error"
         });
+        navigate("/login");
         setLoading(false)
+
         throw new Error("Internal Server Error");
       } else {
         Toast.fire({
           icon: "error",
           title: "Something went wrong"
         });
+        navigate("/login");
         setLoading(false)
         throw new Error("Something went wrong");
       }
