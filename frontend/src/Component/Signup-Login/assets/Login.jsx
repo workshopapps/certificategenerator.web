@@ -168,7 +168,7 @@ const Login = () => {
       userId: res.profileObj.googleId,
       accessToken: res.accessToken
     };
-localStorage.setItem("userData", JSON.stringify(userProfile));
+localStorage.setItem("userDataGoogle", JSON.stringify(userProfile));
     if (token.accessToken) loginUserGoogle(token);
 
     // localStorage.setItem("username", res.profileObj.email);
