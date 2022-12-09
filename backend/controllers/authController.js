@@ -52,9 +52,7 @@ const userSignup = handleAsync(async (req, res, next) => {
     email = payload["email"];
 
     //check db if user already exists
-    if (await userExist(email)){
-      
-    }
+    if (await userExist(email)) throw createApiError("email already in use", 401);
 
 
     //if not create new user
