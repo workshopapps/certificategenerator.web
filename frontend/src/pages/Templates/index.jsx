@@ -233,9 +233,9 @@ export default function Template() {
             return (
               <div key={item.id} className="template-card">
                 <div className="template-card__img">
-                  <a href="#">
+                  <Link to="/pricing">
                     <img src={item.url} alt="card" />
-                  </a>
+                  </Link>
                 </div>
               </div>
             );

@@ -67,8 +67,8 @@ body {
 
   @media screen and (max-width: 830px) {
     grid-template-columns: 1fr;
-    padding-left: 5rem;
-    padding-right: 5rem;
+    // padding-left: 5rem;
+    // padding-right: 5rem;
 
     :nth-child(1) {
       grid-row-start: 2;

@@ -228,7 +228,7 @@ localStorage.setItem("userData", JSON.stringify(userProfile));
             />
             <div id="signupA">
               <img alt="" src={appleSVG} id="imgs" />
-              Signup using Apple
+              Login using Apple
             </div>
             <div id="hrLine">
               <span id="or">or</span>

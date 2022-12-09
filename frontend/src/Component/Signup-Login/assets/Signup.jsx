@@ -9,19 +9,17 @@ import googleSVG from "./assets/google.svg";
 import cert from "./assets/Cert.png";
 import Input from "../../Input";
 import Button from "../../button";
-import { Toast } from '../../ToastAlert'
+import { Toast } from "../../ToastAlert";
 import useAppProvider from "../../../hooks/useAppProvider";
-import axios from "../../../api/axios";
 import Loader from "../../ButtonLoader";
-
 
 const Signup = () => {
   const { setAccess } = useAppProvider();
   const navigate = useNavigate();
-  
+
   // const [type, setType] = useState("password");
-  const type = "password"
-  const [loading, setLoading] = useState(false)
+  const type = "password";
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = React.useState({
     name: "",
     email: "",
@@ -31,104 +29,106 @@ const Signup = () => {
   // Google auth client ID
   const CLIENT_ID =
     "52168821352-4sc11trj4qtq95051mrnrbinfgmla3ai.apps.googleusercontent.com";
-   const [userName, setUserName] = useState();
-   const [useremail, setUserEmail] = useState();
+  const [userName, setUserName] = useState();
+  const [useremail, setUserEmail] = useState();
   const [password, setPassword] = useState();
+  
+  //SAVE USERNAME TO LOCALSTORAGE
+  localStorage.setItem('userName', userName);
+  
   // const [error, setError] = useState(false);
   const [token, setToken] = useState({
     accessToken: ""
   });
 
-//   const handleToggle = () => {
-//   if (type === "password") {
-//     setType("text");
-//   } else {
-//     setType("password");
-//   }
-// };
+  //   const handleToggle = () => {
+  //   if (type === "password") {
+  //     setType("text");
+  //   } else {
+  //     setType("password");
+  //   }
+  // };
 
- function handleChange(event) {
-      const { name, value, type, checked } = event.target;
-      setFormData(prevFormData => {
-        return {
-          ...prevFormData,
-          [name]: type === "checkbox" ? checked : value
-        };
-      });
-    }
-
+  function handleChange(event) {
+    const { name, value, type, checked } = event.target;
+    setFormData(prevFormData => {
+      return {
+        ...prevFormData,
+        [name]: type === "checkbox" ? checked : value
+      };
+    });
+  }
 
   async function createNewUser(email, password, name) {
-    console.log(email, password, name)
-      // return axios.post("/auth/signup", { email: email, password: password, name: name });
-         return fetch(`https://certgo.hng.tech/api/auth/signup`, {
+    console.log(email, password, name);
+    // return axios.post("/auth/signup", { email: email, password: password, name: name });
+    return fetch(`https://certgo.hng.tech/api/auth/signup`, {
       method: "POST",
       headers: {
         "Content-type": "application/json",
-        "Access-Control-Allow-Origin": "*",
-        // "Access-Control-Allow-Methods": "POST",     
+        "Access-Control-Allow-Origin": "*"
+        // "Access-Control-Allow-Methods": "POST",
       },
-      body: JSON.stringify({  email: email, password: password, name: name })
+      body: JSON.stringify({ email: email, password: password, name: name })
     });
-    }
-  
-    const handleSubmit = async e => {
-      e.preventDefault();
-      setLoading(true)
-  
-      try{
-        const response = await createNewUser(useremail, password, userName)
-  
-           if (response.status === 200 || response.status === 201){
-            Toast.fire({
-              icon: 'success',
-              title: 'Signed up successfully'
-            })
-            navigate("/login");
-            setLoading(false)
-            setAccess(true)
-          }
-  
-          // } 
-          else if (response.status === 401) {
-          Toast.fire({
-            icon: "error",
-            title: "Email already exists, login"
-          });
-          setLoading(false)
-          throw new Error("Page not found");
-        } else if (response.status === 400) {
-          Toast.fire({
-            icon: "error",
-            title: "Invalid Email, please try again"
-          });
-          setLoading(false)
-          throw new Error("Invalid Email, please try again");
-        } else if (response.status === 500) {
-          Toast.fire({
-            icon: "error",
-            title: "Server Error"
-          });
-          setLoading(false)
-          throw new Error("Server Error");
-        } else {
-          Toast.fire({
-            icon: "error",
-            title: "Something went wrong"
-          });
-         setLoading(false)
-          throw new Error("Something went wrong");
-        }
+  }
+
+  const handleSubmit = async e => {
+    e.preventDefault();
+    setLoading(true);
+
+    try {
+      const response = await createNewUser(useremail, password, userName);
+
+      if (response.status === 200 || response.status === 201) {
+        Toast.fire({
+          icon: "success",
+          title: "Signed up successfully"
+        });
+        navigate("/login");
+        setLoading(false);
+        setAccess(true);
+      }
+
+      // }
+      else if (response.status === 401) {
+        Toast.fire({
+          icon: "error",
+          title: "Email already exists, login"
+        });
+        setLoading(false);
+        throw new Error("Page not found");
+      } else if (response.status === 400) {
+        Toast.fire({
+          icon: "error",
+          title: "Invalid Email, please try again"
+        });
+        setLoading(false);
+        throw new Error("Invalid Email, please try again");
+      } else if (response.status === 500) {
+        Toast.fire({
+          icon: "error",
+          title: "Server Error"
+        });
+        setLoading(false);
+        throw new Error("Server Error");
+      } else {
+        Toast.fire({
+          icon: "error",
+          title: "Something went wrong"
+        });
+        setLoading(false);
+        throw new Error("Something went wrong");
+      }
       const token = response.data.token;
       localStorage.setItem("token", token);
       // localStorage.setItem("user", response.userId);
     } catch (error) {
       // setError(true);
-      setLoading(false)
+      setLoading(false);
       console.log(error.message);
-    };
-    };
-  
+    }
+  };
 
   // Google aunthetication
   useEffect(() => {
@@ -164,7 +164,6 @@ const Signup = () => {
     console.log("failed:", err);
   };
 
- 
   // Send access token to backend
   async function createNewUserGoogle(token) {
     const response = await fetch("https://certgo.hng.tech/api/auth/signup", {
@@ -180,14 +179,13 @@ const Signup = () => {
     if (response.status === 200 || response.status === 201) {
       // route user to dashboard after successful login
       navigate("/login");
-      
-    }else if (response.status === 401) {
-       Toast.fire({
-          icon: "error",
-          title: "Email already in use"
-        });
-        console.log("in use");
-      } else {
+    } else if (response.status === 401) {
+      Toast.fire({
+        icon: "error",
+        title: "Email already in use"
+      });
+      console.log("in use");
+    } else {
       navigate("/signup");
     }
   }
@@ -208,7 +206,11 @@ const Signup = () => {
             cookiePolicy={"single_host_origin"}
             isSignedIn={true}
             render={renderProps => (
-              <div onClick={renderProps.onClick} id="signupG" style={{cursor:"pointer"}}>
+              <div
+                onClick={renderProps.onClick}
+                id="signupG"
+                style={{ cursor: "pointer" }}
+              >
                 <img alt="" src={googleSVG} id="img_id" />
                 Signup using Google
                 {/* <a href="#">Signup using Google</a> */}
@@ -282,13 +284,12 @@ const Signup = () => {
                 <span id="coloredTerms"> Privacy Policy</span>
               </div>
             </div>
-        
+
             <div>
               <Button id="btn" onClick={handleSubmit} style={{ width: "100%" }}>
-                   {loading ? <Loader /> : <span>Create Account</span> }
+                {loading ? <Loader /> : <span>Create Account</span>}
               </Button>
             </div>
-          
           </form>
           <p className="haveAccount">
             Already have an account?{" "}
