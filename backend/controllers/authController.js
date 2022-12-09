@@ -129,15 +129,6 @@ const userLogin = handleAsync(async (req, res, next) => {
     if (!user)
       throw createApiError("A user for this email could not be found!", 401);
 
-    if (
-      !user.authenticationType.google ||
-      googleUserId !== user.authenticationType.google.uuid
-    )
-      throw createApiError(
-        "google login hasn't been linked to this email, please login with the form",
-        401
-      );
-
     const { accessToken, refreshToken } = await generateTokens(user);
 
     return res.status(200).json(

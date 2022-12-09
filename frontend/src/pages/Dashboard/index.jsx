@@ -3,13 +3,14 @@ import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import Card from "./Card";
 import { dummyData, nullDataIcon, } from "./utils";
+import {Toast} from '../../Component/ToastAlert'
 import Button from "../../Component/button";
 import CreateCertificateModal from "./CreateCertificateModal";
-// import { axiosPrivate } from "../../api/axios";
 import useAppProvider from "../../hooks/useAppProvider";
 import { Loader } from "../../Component";
 import TableRow from "./TableRow";
 import profilePic from "../../assets/images/Ellipse4.png";
+import Upload from "./assets/upload.png";
 import "./dashboard.style.scss";
 
 const Dashboard = () => {
@@ -35,7 +36,9 @@ const Dashboard = () => {
   const [certificates, setCertificates] = useState([]);
   const [eventLink, setEventLink] = useState("");
   const baseURL = "https://certgo.hng.tech/api";
-  const accessToken = localStorage.getItem("token");
+  const accessToken = JSON.parse(localStorage.getItem("userData")).token
+  const [selectedImage, setSelectedImage] = useState('')
+
 
   const axiosPrivate = axios.create({
     baseURL,
@@ -44,19 +47,20 @@ const Dashboard = () => {
       Authorization: `Bearer ${accessToken}`
     }
   });
-  
 
-  const Toast = Swal.mixin({
-    toast: true,
-    position: "top-end",
-    showConfirmButton: false,
-    timer: 3000,
-    timerProgressBar: true,
-    didOpen: toast => {
-      toast.addEventListener("mouseenter", Swal.stopTimer);
-      toast.addEventListener("mouseleave", Swal.resumeTimer);
-    }
-  });
+
+    // On file select (from the pop up)
+  // Update the state
+    const onFileChange = async (e) => {   
+        e.preventDefault()
+          setSelectedImage({ file: e.target.files[0] });
+          setSelectedImage(URL.createObjectURL(e.target.files[0]))
+          console.log(e.target.files[0]);
+         const formData = new FormData();
+         formData.append('file', selectedImage)
+  
+  }
+
 
   const handleChangeCertificateStatus = async (id, status) => {
     console.log(id, status);
@@ -66,7 +70,7 @@ const Dashboard = () => {
       title: "Successfully updated"
     });
     const res = await axiosPrivate.get("/certificates");
-    setData(res.data);
+    setData(res.data.data.certificates);
   };
 
   const handleDeleteCertificate = async id => {
@@ -77,13 +81,13 @@ const Dashboard = () => {
       title: "Successfully deleted"
     });
     const res = await axiosPrivate.get("/certificates");
-    setData(res.data);
+    setData(res.data.data.certificates);
   };
 
   const getUserCertificates = async () => {
     try {
       const response = await axiosPrivate.get("/certificates");
-      let sub = localStorage.getItem("subscription");
+      let sub = JSON.parse(localStorage.getItem("userData")).subscription;
       setPricing(sub);
       console.log(response);
       if (response.status === 404) {
@@ -102,9 +106,9 @@ const Dashboard = () => {
           title: "Internal Server Error"
         });
       } else {
-        setData(response.data);
-        console.log(response.data);
-        updateCount(response.data);
+        setData(response.data.data.certificates);
+        console.log(response.data.data.certificates);
+        updateCount(response.data.data.certificates);
       }
     } catch (error) {
       console.error(error.message);
@@ -145,6 +149,7 @@ const Dashboard = () => {
 
   //GET EVENTS
   const getEvents = async () => {
+   try {
     return fetch("https://certgo.hng.tech/api/events", {
       method: "GET",
       headers: {
@@ -153,15 +158,41 @@ const Dashboard = () => {
       }
     }).then(async response => {
       const result = await response.json();
-      console.log(result.events[1]);
-      var link = result.events[0]._id;
+     
+      var link = result.data.events[0]._id;
       setEventLink(`https://certgo.hng.tech/generate/:${link}`);
-    });
+    
+      if (response.status === 200 || response.status === 201) {
+        Toast.fire({
+          icon: "success",
+          title: "Link Generated"
+        });
+      } else if (response.status === 401 || response.status === 400) {
+        Toast.fire({
+          icon: "error",
+          title: "Email not found"
+        });
+      } else if (response.status === 500) {
+        Toast.fire({
+          icon: "error",
+          title: "Internal Server Error"
+        });
+      }
+    
+    })
+
+   }
+   catch (error) {
+    console.error(error.message);
+  }
   };
 
   //GENERATE LINK
   const title = "Fela Music School";
-  var token = localStorage.getItem("token");
+  const getToken = JSON.parse(localStorage.getItem("userData"))
+
+  var token = getToken.token;
+
   const handleGenerate = async () => {
     fetch("https://certgo.hng.tech/api/events", {
       method: "POST",
@@ -172,10 +203,9 @@ const Dashboard = () => {
       body: JSON.stringify({ title: title })
     }).then(async response => {
       const result = await response.json();
-
-      localStorage.setItem("_id", result.event._id);
-      localStorage.setItem("eventTitle", result.event.title);
-      localStorage.setItem("eventCustomURI", result.event.customURI);
+      localStorage.setItem("_id", result.data.event._id);
+      localStorage.setItem("eventTitle", result.data.event.title);
+      localStorage.setItem("eventCustomURI", result.data.event.customURI);
     });
     getEvents();
   };
@@ -184,8 +214,14 @@ const Dashboard = () => {
     <>
       <div className="dashboard">
         <div className="dashboard__hero-section">
-          <div className="dashboard__profile-pic">
-            <img src={profilePic} alt="Avatar" />
+           <div className="dashboard__profile-pic-wrapper">
+            <span className="dashboard__profile-pic">
+              <img src={selectedImage || profilePic} alt="brand-kit" />   
+            </span>
+              <label htmlFor="file" className="dashboard__upload-label">
+                   <img src={Upload} alt="upload-icon" />
+                   <input type="file" id="file" accept="image/*" name="image" onChange={onFileChange}  />
+            </label>
           </div>
           <div className="flexx">
             <div className="dashboard__align-start">
@@ -216,7 +252,9 @@ const Dashboard = () => {
           <div className="table-header">
             <p>CERTIFICATE DASHBOARD</p>
             <h5 style={{ padding: "50px!important" }}>
-              Certificate Download Link : {eventLink}
+              
+                Certificate Download Link : {eventLink && <a style = {{color : 'green'}} target = '_blank' href = {eventLink}>Link generated, Click Here</a>}
+              
             </h5>
             {data.length > 0 ? (
               <div style={{ display: "flex" }}>

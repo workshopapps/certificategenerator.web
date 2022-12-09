@@ -6,7 +6,7 @@ const {
   addUserProfile,
   getUserProfile,
   updateUserProfile,
-  deleteUserProfile,
+  deleteUserProfile
 } = require("../controllers/profileController");
 
 // for getting each user profile
@@ -21,6 +21,6 @@ router.put("/", authentication, updateUserProfile);
 router.patch("/", authentication, updateUserProfile);
 
 //for delete userProfile
-router.delete("/:id", authentication, deleteUserProfile);
+router.delete("/", authentication, deleteUserProfile);
 
 module.exports = router;

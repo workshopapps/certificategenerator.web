@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { FaBars, FaTimes } from "react-icons/fa";
+import DropDown from './Dropdown'
 
 import "./navbar.style.scss";
 import logo from "../../assets/images/navbarIcon.png";
@@ -11,7 +12,7 @@ function Navbar() {
   const [switchFa, setSwitchFa] = useState(false);
   // const [istoken, setIstoken] = useState(false);
   const navigate = useNavigate();
-
+    const isLoggedIn = localStorage.getItem("userData")
   // useEffect(() => {
   //   const token = localStorage.getItem("token");
   //   if (token) {
@@ -61,9 +62,17 @@ function Navbar() {
             </div>
 
             <div className="nav-click">
-              <Button className="btn" name={"get started"}>
-                <Link to="/modify" className="link"></Link>
-              </Button>
+              {isLoggedIn ? (
+                <div className="dropdown-tab">
+                  <DropDown/>
+                </div>
+              ) : (
+                <Button className="btn" name={"get started"}>
+                 <Link to="/modify" className="link"></Link>
+                </Button>
+              ) 
+              }
+             
 
               {switchFa === true ? (
                 <FaTimes className="times" onClick={handleToggle} />
@@ -92,27 +101,31 @@ function Navbar() {
                 );
               })}
             </div>
-            {/* {istoken ? (
-              <div onClick={navigate('/dashboard')} className="dashboard__profile-pic">
-              <img src={profilePic} alt="Avatar" />
-            </div>
-            ) : ( */}
 
-            <div className="button-container">
-              <NavLink to="/signup">
+
+        {isLoggedIn?
+              <div className="dropdown-wrapper">
+                    <DropDown />
+              </div>
+                 : 
+              <div className="button-container">
+              <NavLink to="/signup" >
                 <Button
                   className="btn"
                   onClick={handleToggle}
                   name={"get started"}
                 >
-                  {/* <Link to="/modify" className="link"></Link> */}
                 </Button>
               </NavLink>
-            </div>
+              </div>
+        }
+
+             
+       
           </div>
         </div>
+        </div>
       </div>
-    </div>
   );
 }
 

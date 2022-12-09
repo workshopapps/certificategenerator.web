@@ -45,14 +45,13 @@ a {
 .career__container {
   p {
     margin: $mt-1 0;
-   
   }
 }
 .career__container {
   background: #ffffff;
   font-family: $fontFamily;
   margin-top: -3rem;
-  
+
   .hero__section {
     text-align: initial;
     @media screen and (max-width: $small) {
@@ -310,7 +309,7 @@ a {
     background: $containerBackground;
     padding: 3rem 5rem;
     text-align: initial;
-    
+
     @media screen and (max-width: $small) {
       padding: 3rem 2rem;
     }
@@ -456,43 +455,68 @@ a {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(101, 98, 98, 0.0529);
+  background-color: rgba(101, 98, 98, 0.1929);
   top: 0;
   left: 0;
 
   &__container {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  background-color: #fff;
-  max-width:400px;
-  width: 100%;
-  border-radius: 12px;
-  padding: 2.5rem 1.5rem;
-  z-index: 999;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    background-color: #fff;
+    max-width: 500px;
+    width: 100%;
+    border-radius: 12px;
+    padding: 2.5rem 1.5rem;
+    z-index: 999;
+    position: relative;
+    box-shadow: 1px 1px 2px rgba(#000000, 0.2);
+  }
 
-}
+  &__text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.725rem;
+  }
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.725rem !important;
+  }
 
-&__text {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+  .job__title span,
+  .job__type span {
+    font-size: 1.275rem;
+    padding-left: 0.5rem;
+  }
+  .job__location span {
+    color: #ceced6;
+    padding-left: 0.5rem;
+  }
+  .job__descr {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  .job__desc span {
+    font-size: 0.875rem;
+    padding-left: 0.5rem;
+    font-weight: normal;
+    display: flex;
+    justify-content: flex-start;
+  }
+  .close-icon {
+    position: absolute;
+    top: 0.725rem;
+    right: 1.125rem;
+    // font-size: 2rem;
+    font-weight: 700;
+    cursor: pointer;
+    border-radius: 100%;
+    padding: 5px;
+    box-shadow: 1px 1px 2px rgba(#000000, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }
-&__form {
-  display: flex;
-  flex-direction: column;
-  gap: 0.725rem!important;
-}
-
-.job__title span,.job__type span {
-  font-size: 1.275rem;
-  padding-left: 0.5rem;
-}
-.job__location span {
-color: #ceced6;
-  padding-left: 0.5rem;
-
-}
-}
-
-

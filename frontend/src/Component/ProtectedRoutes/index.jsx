@@ -2,7 +2,7 @@ import React from 'react'
 import { Navigate } from 'react-router-dom'
 
 const userAuth = () => {
-  const userDetails = localStorage.getItem("user", "token")
+  const userDetails = localStorage.getItem("userData")
   
   return userDetails;
 };

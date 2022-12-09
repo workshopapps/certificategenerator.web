@@ -1,79 +1,94 @@
 const Profile = require("../models/profileModel");
+const {
+  handleAsync,
+  handleResponse,
+  createApiError
+} = require("../utils/helpers");
+const Joi = require("joi");
 
-const addUserProfile = async (req, res, next) => {
-  const payload = req.body;
-  const avatar = req.files.avatar;
-
-  if (!payload) return res.status(400).json({ error: "Bad request" });
-
+const addUserProfile = handleAsync(async (req, res) => {
   const userID = req.user._id;
-  const user = await Profile.findOne(userID);
 
-  let userProfile;
-  if (!user) {
-    userProfile = await Profile.create({
-      avatar: avatar.name,
-      user: userID,
-      name: payload.name,
-      job: payload.job,
-      location: payload.location,
-      email: payload.email,
-      phoneNumber: payload.phoneNumber,
-    });
-  } else return res.status(400).json({ error: "profile already exist" });
+  // Define validatio schema
+  const schema = Joi.object({
+    avatar: Joi.string(),
+    name: Joi.string().required(),
+    job: Joi.string().required(),
+    location: Joi.string().required(),
+    email: Joi.string().email().required(),
+    phoneNumber: Joi.string().required()
+  });
 
-  await userProfile.save();
-  res.status(201).json({ newProfile: userProfile });
-};
+  // Validate payload against schema
+  const { error } = schema.validate(req.body);
 
-const getUserProfile = async (req, res) => {
-  const id = req.user._id;
-  const profile = await Profile.findOne({ user: id });
+  // Validation error occured
+  if (error) throw createApiError(error.message, 400);
 
-  if (!profile) {
-    return res.status(404).json({ error: "no profile with id" });
-  }
+  // Check if user already has a profile
+  const user = await Profile.findOne({ user: userID });
 
-  res.status(200).json({ profile });
-};
+  if (user) throw createApiError("profile already exist", 400);
 
-const updateUserProfile = async (req, res) => {
-  const payload = { ...req.body };
-  const avatar = req.files?.avatar;
-  const id = req.user._id;
-  const profile = await Profile.findOne({ user: id });
-
-  if (!profile) {
-    return res.status(404).json({ error: "no user profile with id" });
-  }
-
-  profile.avatar = avatar.name;
-  profile.name = payload.name;
-  profile.job = payload.job;
-  profile.location = payload.location;
-  profile.email = payload.email;
-  profile.phoneNumber = payload.phoneNumber;
+  // Create new profile
+  const profile = await Profile.create({ ...req.body, user: userID });
 
   await profile.save();
 
-  res.status(201).json({ update: profile });
-};
-const deleteUserProfile = async (req, res) => {
-  const id = req.params.id;
-  const profile = await Profile.findByIdAndDelete({
-    _id: id,
-    user: req.user._id,
+  res.status(201).json(handleResponse({ profile }));
+});
+
+const getUserProfile = handleAsync(async (req, res) => {
+  const id = req.user._id;
+
+  // Get user's profile from db
+  const profile = await Profile.findOne({ user: id });
+
+  if (!profile) throw createApiError("No profile for this user", 404);
+
+  res.status(200).json(handleResponse({ profile }));
+});
+
+const updateUserProfile = handleAsync(async (req, res) => {
+  const id = req.user._id;
+
+  const schema = Joi.object({
+    avatar: Joi.string(),
+    name: Joi.string(),
+    job: Joi.string(),
+    location: Joi.string(),
+    email: Joi.string().email(),
+    phoneNumber: Joi.string()
   });
 
-  if (!profile) {
-    return res.status(401).json({ error: "user profile does not exist" });
-  }
-  res.status(201).json({ error: "user profile deleted" });
-};
+  // Validate payload against schema
+  const { error } = schema.validate(req.body);
+
+  // Validation failed
+  if (error) throw createApiError(error.message, 400);
+
+  const profile = await Profile.findOneAndUpdate({ user: id }, req.body, {
+    new: true
+  });
+
+  if (!profile) throw createApiError("User has no profile", 404);
+
+  res.status(201).json(handleResponse({ profile }));
+});
+
+const deleteUserProfile = handleAsync(async (req, res) => {
+  const profile = await Profile.findOneAndDelete({
+    user: req.user._id
+  });
+
+  if (!profile) throw createApiError("user profile does not exist", 401);
+
+  res.status(201).json(handleResponse({ profile }));
+});
 
 module.exports = {
   addUserProfile,
   getUserProfile,
   updateUserProfile,
-  deleteUserProfile,
+  deleteUserProfile
 };

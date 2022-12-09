@@ -5,7 +5,7 @@ import UploadCsv from "../UploadCsv";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "./createmodal.style.scss";
-import Loader from "../Loader"
+import {ButtonLoader} from "../../../Component"
 
 
 function CreateCertificateModal({
@@ -36,18 +36,13 @@ function CreateCertificateModal({
     !awardeeName.trim() ||
     !issuedBy.trim() ||
     !issueDate.trim();
+
   const handleSubmit = e => {
     e.preventDefault();
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
       navigate("/preview");
-      // setLogo("");
-      // setCertificateTitle("");
-      // setAwardeeName("");
-      // setMessage("");
-      // setIssuedBy("");
-      // setIssueDate(Date.now());
     }, 1500);
     
   };
@@ -151,7 +146,7 @@ function CreateCertificateModal({
 
           {tab ? (
             <div>
-              <UploadCsv getUserCertificates={getUserCertificates} />
+              <UploadCsv getUserCertificates={getUserCertificates} onClose={onClose}/>
             </div>
           ) : (
             <form onSubmit={handleSubmit}>
@@ -227,7 +222,7 @@ function CreateCertificateModal({
                   disabled={disabledButton}
                   className={`${disabledButton && "btn-disabled"} btn-success`}
                 >
-                  {loading ? <Loader/> : <span>Create Certificate</span>}
+                  {loading ? <ButtonLoader/> : <span>Create Certificate</span>}
                 </button>
               </div>
             </form>
