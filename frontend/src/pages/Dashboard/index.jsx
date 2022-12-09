@@ -37,7 +37,7 @@ const Dashboard = () => {
   const [eventLink, setEventLink] = useState("");
   const baseURL = "https://certgo.hng.tech/api";
   const accessToken = JSON.parse(localStorage.getItem("userData")).token
-  const [selectedImage, setSelectedImage] = useState('')
+  const [file, setFile] = useState('')
 
 
   const axiosPrivate = axios.create({
@@ -51,16 +51,55 @@ const Dashboard = () => {
 
     // On file select (from the pop up)
   // Update the state
-    const onFileChange = async (e) => {   
-        e.preventDefault()
-          setSelectedImage({ file: e.target.files[0] });
-          setSelectedImage(URL.createObjectURL(e.target.files[0]))
-          console.log(e.target.files[0]);
-         const formData = new FormData();
-         formData.append('file', selectedImage)
-  
-  }
+  // const onFileChange = async (e) => {   
+  //   e.preventDefault()
+    // setFile({ file: e.target.files[0] });
+    // setFile(URL.createObjectURL(e.target.files[0]))
+    // console.log(e.target.files[0]);
+    // const formData = new FormData();
+    // formData.append('file', file);
+  // }
 
+  // const onUpdate = async (e) => {
+  //   e.preventDefault();
+  //   const formData = new FormData();
+  //   formData.append('file', file);
+  //   console.log("Form", formData);
+  //   try{
+  //     const response = await axiosPrivate.put("/users/brand-kit", formData);
+  //     console.log("Response", response);
+      // if (response.status === 404) {
+      //   Toast.fire({
+      //     icon: "error",
+      //     title: "Page not found"
+      //   });
+      // } else if (response.status === 401) {
+      //   Toast.fire({
+      //     icon: "error",
+      //     title: "Request Failed"
+      //   });
+      // } else if (response.status === 500) {
+      //   Toast.fire({
+      //     icon: "error",
+      //     title: "Internal Server Error"
+      //   });
+      // } else {
+      //   setFile(response.data.data.brandkit);
+      //   console.log(response.data.data.brandkit);
+      // }
+  //   } catch (error) {
+  //     console.log(error.message);
+  //   }
+  // };
+
+  useEffect(() => {
+    const getFile = async (e) => {
+      const res = await axiosPrivate.get("/users/brand-kit");
+      console.log("Brand kit", res.data.brandkit);
+      setFile(res.data.brandkit);
+    }
+    getFile();
+  }, [])  
 
   const handleChangeCertificateStatus = async (id, status) => {
     console.log(id, status);
@@ -216,12 +255,13 @@ const Dashboard = () => {
         <div className="dashboard__hero-section">
            <div className="dashboard__profile-pic-wrapper">
             <span className="dashboard__profile-pic">
-              <img src={selectedImage || profilePic} alt="brand-kit" />   
+              <img src={file || profilePic} alt="brand-kit" />   
             </span>
-              <label htmlFor="file" className="dashboard__upload-label">
-                   <img src={Upload} alt="upload-icon" />
-                   <input type="file" id="file" accept="image/*" name="image" onChange={onFileChange}  />
+            {/* <label htmlFor="file" className="dashboard__upload-label">
+              <img src={Upload} alt="upload-icon" />
+              <input type="file" id="file" accept="image/*" name="file" onChange={onFileChange}  />
             </label>
+            <Button name="Update Brand Kit" onClick={onUpdate} /> */}
           </div>
           <div className="flexx">
             <div className="dashboard__align-start">
