@@ -32,7 +32,7 @@ import {
 } from "./pages";
 
 import Login from "./Component/Signup-Login/assets/Login";
-import Signup from "./Component/Signup-Login/assets/Sginup";
+import Signup from "./Component/Signup-Login/assets/Signup";
 import ProtectedRoutes from "./Component/ProtectedRoutes";
 
 import "./Style/App.scss";

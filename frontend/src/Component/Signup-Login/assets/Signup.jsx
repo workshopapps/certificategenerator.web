@@ -278,7 +278,7 @@ const Signup = () => {
               />
               <div className="termsOfUse">
                 By creating an account, I declare that I have read and accepted
-                Certawi’s <span id="coloredTerms"> Terms of Use</span> and
+                Certgo’s <span id="coloredTerms"> Terms of Use</span> and
                 <span id="coloredTerms"> Privacy Policy</span>
               </div>
             </div>
