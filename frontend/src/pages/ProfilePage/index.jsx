@@ -116,6 +116,32 @@ const userId = localStorage.getItem("user");
       console.log(error);
     }
   };
+
+  function handleDelete(){
+    const userData = JSON.parse(localStorage.getItem("userData"))
+    const token = userData.token;
+    const headers = {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json"
+    };
+    setLoading(true)
+    fetch(url,
+      {
+        method: "DELETE",
+        headers
+      }
+      )
+      .then((res) => res.json())
+      .then((res)=>{
+        //setData(res.data.profile)
+        console.log(res.data)
+        console.log("Account deleted")   
+        navigate("/signup")     
+      })
+      .catch(err=>console.log(console.error()))
+      .finally(()=>setLoading(false))   
+}
+
   return (
     <div className="profile-page">
       <div>
@@ -141,6 +167,7 @@ const userId = localStorage.getItem("user");
 
         <div className="btn-wrapper">
           <button onClick={handleLogout} style={loading ? {background: '#f84343', cursor: 'not-allowed'} : {background: 'transparent', cursor: 'pointer'}}>{loading ? <Loader /> : <span>Log Out</span>}</button>
+          <button onClick={handleDelete} style={loading ? {background: '#f84343', cursor: 'not-allowed'} : {background: 'transparent', cursor: 'pointer'}}>{loading ? <Loader /> : <span>Delete Account</span>}</button>
         </div>
       </div>
 
