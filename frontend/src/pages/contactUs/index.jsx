@@ -19,8 +19,6 @@ const ContactUs = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState();
   const [success, setSuccess] = useState(false);
-  
-
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -34,11 +32,11 @@ const ContactUs = () => {
         phoneNumber,
         message
       });
-       setFirstName("");
-       setLastName("");
-       setEmail("");
-       setPhoneNumber("");
-       setMessage("");
+      setFirstName("");
+      setLastName("");
+      setEmail("");
+      setPhoneNumber("");
+      setMessage("");
       setLoading(false);
       setSuccess(true);
     } catch (err) {
@@ -63,7 +61,7 @@ const ContactUs = () => {
             <div className="contact__info--itemText">
               <h4 className="contact__info--key">Chat with customer suport</h4>
               <span>Chat with sales team</span>
-              <p className="contact__info--address">support@certawi.com</p>
+              <p className="contact__info--address">support@certgo.com</p>
             </div>
           </div>
           <div className="contact__info--item">
@@ -123,8 +121,8 @@ const ContactUs = () => {
               placeholder="+234900000 "
               type="number"
               value={phoneNumber}
-              maxlength='13'
-              pattern='[0-9]*'
+              maxlength="13"
+              pattern="[0-9]*"
               onChange={e => setPhoneNumber(e.target.value)}
               required
             />
@@ -135,7 +133,7 @@ const ContactUs = () => {
               onChange={e => setMessage(e.target.value)}
               required
             />
-            <Button width="100%" >
+            <Button width="100%">
               {loading ? (
                 <div className="loading"></div>
               ) : success ? (

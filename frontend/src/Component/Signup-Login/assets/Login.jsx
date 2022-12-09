@@ -13,11 +13,13 @@ import Input from "../../Input";
 import Button from "../../button";
 import useAppProvider from "../../../hooks/useAppProvider";
 import axios from "../../../api/axios";
+import Loader from "../../ButtonLoader";
 
 const Login = () => {
   const { setAccess } = useAppProvider();
   const navigate = useNavigate();
   const [type] = useState("password");
+  const [loading, setLoading] = useState(false)
   const [formData, setFormData] = React.useState({
     name: "",
     email: "",
@@ -110,6 +112,7 @@ const Login = () => {
 
   const handleSubmit = async e => {
     e.preventDefault();
+    setLoading(true)
     try {
       const response = await loginUser(useremail, password);
       console.log(response)
@@ -120,6 +123,7 @@ const Login = () => {
           title: "Signed in successfully"
         });
         navigate("/dashboard");
+        setLoading(false)
         setAccess(true);
       } else if (response.status === 400) {
         Toast.fire({
@@ -127,12 +131,14 @@ const Login = () => {
           title: "Page not found"
         });
         navigate("/login");
+        setLoading(false)
         throw new Error("Page not found");
       } else if (response.status === 401) {
         Toast.fire({
           icon: "error",
           title: "Invalid Email or Password, please try again"
         });
+        setLoading(false)
         navigate("/login");
         throw new Error("Invalid Email or Password, please try again");
       } else if (response.status === 500) {
@@ -140,6 +146,8 @@ const Login = () => {
           icon: "error",
           title: "Server Error"
         });
+        navigate("/login");
+        setLoading(false)
 
         throw new Error("Internal Server Error");
       } else {
@@ -148,7 +156,7 @@ const Login = () => {
           title: "Something went wrong"
         });
         navigate("/login");
-
+        setLoading(false)
         throw new Error("Something went wrong");
       }
 
@@ -162,6 +170,7 @@ const Login = () => {
       console.log(userData)
 
     } catch (error) {
+      setLoading(false)
       setError(true);
       console.log(error.message);
     }
@@ -212,7 +221,7 @@ const Login = () => {
 
     console.log(response);
 
-    if (response.status === 200) {
+    if (response.status === 200 || response.status === 201) {
       // route user to dashboard after successful login
       navigate("/dashboard");
     } else {
@@ -236,9 +245,9 @@ const Login = () => {
               cookiePolicy={"single_host_origin"}
               isSignedIn={true}
               render={renderProps => (
-                <div onClick={renderProps.onClick} id="signupG">
+                <div onClick={renderProps.onClick} id="signupG" style={{ cursor: "pointer" }}>
                   <img alt="" src={googleSVG} id="img_id" />
-                  <Link to={'/dashboard'}>Login using Google</Link>
+                  Login using Google
                 </div>
               )}
             />
@@ -279,7 +288,7 @@ const Login = () => {
 
             {/* </div> */}
             {error && <p style={{ color: "red" }}>Something went wrong</p>}
-            <div className="forgotPwd"><Link to="/forgotpassword">
+            <div className="forgotPwd"><Link to="/fff1">
               Forgot password?</Link></div>
             <div id="checkTerms">
               <input
@@ -295,7 +304,7 @@ const Login = () => {
             </div>
             <div>
               <Button id="btn" onClick={handleSubmit} style={{ width: "100%" }}>
-                Login
+                {loading ? <Loader /> : <span>Login</span>}
               </Button>
             </div>
           </form>

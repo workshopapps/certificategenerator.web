@@ -169,6 +169,7 @@ const verifyCertificate = handleAsync(async (req, res) => {
 const getCertificateStatus = handleAsync(async (req, res) => {
   const userId = req.user._id;
 
+
   const user = await User.findOne({ userId });
   if (!user) throw createApiError("user not found", 404)
 
@@ -242,6 +243,7 @@ const updateCertificateDetails = handleAsync(async (req, res) => {
 
 const updateCertificateStatus = handleAsync(async (req, res) => {
   const userId = req.user._id;
+  const payload = req.body
 
   const user = await User.findOne({ userId });
   if (!user) throw createApiError("user not found", 404)

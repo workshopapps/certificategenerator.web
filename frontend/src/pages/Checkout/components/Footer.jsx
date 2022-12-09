@@ -52,7 +52,7 @@ function Footer() {
 
           <div className="col-xs-12 col-sm-12 col-md-4 col-lg-2 col-xl-2 col-xxl-2" id='Footer-row-col-5'>
             <img src={Logo2} alt="Logo2" />
-            <h5 id='Footer-row-col-5-text'>Info@certawi.com</h5>
+            <h5 id='Footer-row-col-5-text'>Info@certgo.com</h5>
           </div>
 
           <div className="col-xs-12 col-sm-12 col-md-4 col-lg-2 col-xl-2 col-xxl-2" id='Footer-row-col-6'>
