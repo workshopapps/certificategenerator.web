@@ -13,7 +13,7 @@ cloudinary.config({
 
 
 exports.uploadUserBrandKit = async (req, res) => {
-    const file = req.files;
+    const { file } = req.files;
     
     const auth = req.headers.authorization;
     
