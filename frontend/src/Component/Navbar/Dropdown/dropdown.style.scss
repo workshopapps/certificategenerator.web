@@ -1,0 +1,34 @@
+.drop {
+    background: #FEFFFF;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+    width: fit-content;
+    padding: 10px;
+    gap: 15px;
+    display: none;
+    transition: 300ms all;
+
+    &__item {
+        border-bottom: 1px solid #eee;
+        padding: 5px;
+        cursor: pointer;
+    }
+}
+
+.dropdown-container {
+    position: relative;
+}
+
+// .dropdown-container:hover+.drop {
+//     display: flex;
+//     transition: .5s all;
+// }
+
+
+
+.hidden {
+    display: flex;
+    transition: 300ms all;
+}

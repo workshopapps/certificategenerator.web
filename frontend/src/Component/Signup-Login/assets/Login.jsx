@@ -107,16 +107,7 @@ const Login = () => {
   //   }
   // }
   async function loginUser(email, password) {
-    // return axios.post("/auth/login", { email: email, password: password });
-   return fetch(`https://certgo.hng.tech/api/auth/login`, {
-      method: "POST",
-      headers: {
-        "Content-type": "application/json",
-        "Access-Control-Allow-Origin": "*",
-        // "Access-Control-Allow-Methods": "POST",     
-      },
-      body: JSON.stringify({  email: email, password: password })
-    });
+    return axios.post("/auth/login", { email: email, password: password });
   }
 
   const handleSubmit = async e => {
@@ -137,7 +128,7 @@ const Login = () => {
       } else if (response.status === 401) {
         Toast.fire({
           icon: "error",
-          title: "Invalid Email or Password"
+          title: "Page not found"
         });
         setLoading(false)
         throw new Error("Page not found");
@@ -307,7 +298,7 @@ const Login = () => {
               </label>
             </div>
             <div>
-               <Button id="btn" onClick={handleSubmit} style={{ width: "100%" }}>
+              <Button id="btn" onClick={handleSubmit} style={{ width: "100%" }}>
                 {loading ? <Loader /> : <span>Login</span> }
               </Button>
             </div>
