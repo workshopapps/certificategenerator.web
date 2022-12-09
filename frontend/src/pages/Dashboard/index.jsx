@@ -10,7 +10,6 @@ import useAppProvider from "../../hooks/useAppProvider";
 import { Loader } from "../../Component";
 import TableRow from "./TableRow";
 import profilePic from "../../assets/images/Ellipse4.png";
-import Upload from "./assets/upload.png";
 import "./dashboard.style.scss";
 
 const Dashboard = () => {
@@ -260,11 +259,12 @@ const Dashboard = () => {
             <span className="dashboard__profile-pic">
               <img src={file || profilePic} alt="brand-kit" />   
             </span>
-            <label htmlFor="file" className="dashboard__upload-label">
-              <img src={Upload} alt="upload-icon" />
+            <form onSubmit={onUpdate}>
+              <label htmlFor="file" className="dashboard__upload-label">
+              </label>
               <input type="file" id="file" accept="image/*" name="file" onChange={onFileChange}  />
-            </label>
-            <Button name="Update Brand Kit" onClick={onUpdate} />
+              <Button name="Submit" type="submit" />
+            </form>
           </div>
           <div className="flexx">
             <div className="dashboard__align-start">
