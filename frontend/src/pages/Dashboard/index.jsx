@@ -274,7 +274,7 @@ const profileName = localStorage.getItem('userName');
           <div className="flexx">
             <div className="dashboard__align-start">
               <h3 className="dashboard__text">Welcome</h3>
-              <h2 className="dashboard__title">{profileName}</h2>
+              <h2 style = {{textTransform : 'capitalize'}} className="dashboard__title">{profileName}</h2>
               <p className="dashboard__description">
             Get a summary of all the
                 Certificates and Job done here
