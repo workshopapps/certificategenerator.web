@@ -126,6 +126,16 @@ const Dashboard = () => {
     setData(res.data.data.certificates);
   };
 
+  const handleDeleteAllCertificates = async () => {
+    await axiosPrivate.delete(`/certificates`);
+    Toast.fire({
+      icon: "success",
+      title: "You have deleted all your certificates"
+    });
+    const res = await axiosPrivate.get("/certificates");
+    setData(res.data.data.certificates);
+  };
+
   const getUserCertificates = async () => {
     try {
       const response = await axiosPrivate.get("/certificates");
@@ -256,6 +266,14 @@ const Dashboard = () => {
      let drop = document.querySelector(".brandkit-dropdown")
      drop.classList.toggle("visible")
   }
+
+  //DELETE ALL USER CERTIFICATES
+  const handleDeleteAll = async () => {
+    await handleDeleteAllCertificates()
+    // getUserCertificates()
+    // setOpenOptions(!openOptions)
+    getUserCertificates()
+  }
      
 
 //GET USERNAME FROM LOCALSTORAGE
@@ -325,6 +343,10 @@ const profileName = localStorage.getItem('userName');
               <div style={{ display: "flex" }}>
                 <Button className="" onClick={() => setOpenModal(true)}>
                   Create New Certificate
+                </Button>
+
+                <Button className="" onClick={handleDeleteAll}>
+                  Delete All Certificates
                 </Button>
 
                 <Button
