@@ -11,6 +11,10 @@ import html2canvas from "html2canvas";
 import { jsPDF } from "jspdf";
 import { axiosFormData } from "../../api/axios";
 import Swal from "sweetalert2";
+import Template1 from "./Templates/template1";
+import Template2 from "./Templates/template2";
+import Template3 from "./Templates/template3";
+
 
 function SinglePreview({
   logo,
@@ -20,6 +24,29 @@ function SinglePreview({
   issuedBy,
   issueDate
 }) {
+  //STATES FOR TEMPLATES
+  const [templateone, setTemplateOne] = useState(true);
+  const [templatetwo, setTemplateTwo] = useState(false);
+  const [templatethree, setTemplateThree] = useState(false);
+
+  //FUNCTIONS TO HANDLE TEMPLATES
+
+  const handleTemplate1 = () => {
+    setTemplateOne(true);
+    setTemplateTwo(false);
+    setTemplateThree(false);
+  };
+  const handleTemplate2 = () => {
+    setTemplateTwo(true);
+    setTemplateOne(false);
+    setTemplateThree(false);
+  };
+  const handleTemplate3 = () => {
+    setTemplateThree(true);
+    setTemplateOne(false);
+    setTemplateTwo(false);
+  };
+
   const [openModal, setOpenModal] = useState(false);
   const [isAuntheticated, setIsAuntheticated] = useState(false);
   const [modalMessage, setModalMessage] = useState("");
@@ -144,44 +171,42 @@ function SinglePreview({
 
       {/* START OF CERTIFICATE */}
 
-      <div id="downloadWrapper" ref={certificateWrapper}>
-        <div id="certificateWrapper">
-          <div id="container-wrapper">
-            <div id="container-design">
-              <div className="sample3"></div>
-              <div className="sample"></div>
-
-              <div id="single-preview-card">
-                <div id="single-preview-text">
-                  <div id="preview-text">
-                    <img src={logo} style={{ width: "100px" }} alt="logo" />
-                    <h1>{certificateTitle}</h1>
-
-                    <p>THIS CERTIFIES THAT</p>
-                    <h2>{awardeeName}</h2>
-                    <h6>{message}</h6>
-                  </div>
-
-                  <div className="single-preview-issue">
-                    <div className="issue-by">
-                      <h6>{issuedBy}</h6>
-                      <div className="line"></div>
-                      <p>ISSUED BY</p>
-                    </div>
-
-                    <div className="issue-by">
-                      <h6>{issueDate}</h6>
-                      <div className="line"></div>
-                      <p>ISSUE DATE</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="sample2"></div>
-            </div>
-          </div>
+      {templateone && (
+        <div id="downloadWrapper" ref={certificateWrapper}>
+          <Template1
+            logo={logo}
+            certificateTitle={certificateTitle}
+            awardeeName={awardeeName}
+            message={message}
+            issuedBy={issuedBy}
+            issueDate={issueDate}
+          />
         </div>
-      </div>
+      )}
+      {templatetwo && (
+        <div id="downloadWrapper" ref={certificateWrapper}>
+          <Template2
+            logo={logo}
+            certificateTitle={certificateTitle}
+            awardeeName={awardeeName}
+            message={message}
+            issuedBy={issuedBy}
+            issueDate={issueDate}
+          />
+        </div>
+      )}
+      {templatethree && (
+        <div id="downloadWrapper" ref={certificateWrapper}>
+          <Template3
+            logo={logo}
+            certificateTitle={certificateTitle}
+            awardeeName={awardeeName}
+            message={message}
+            issuedBy={issuedBy}
+            issueDate={issueDate}
+          />
+        </div>
+      )}
 
       {/* END OF CERTIFICATE */}
 
@@ -223,13 +248,15 @@ function SinglePreview({
       </div>
 
       {/* OTHER TEMPLATES TO CHOOSE FROM */}
-
       <h2>Even More Templates for you</h2>
       <div className="single-images">
-        <img src={certificate} alt="templates" />
-        <img src={certificate2} alt="templates" />
-        <img src={certificate3} alt="templates" />
+        <img onClick={handleTemplate1} src={certificate} alt="templates" />
+        <img onClick={handleTemplate2} src={certificate2} alt="templates" />
+        <img onClick={handleTemplate3} src={certificate3} alt="templates" />
       </div>
+
+
+
 
       {/* BUTTON TO EXPLORE MORE TEMPLATES */}
       <Link to="/templates">

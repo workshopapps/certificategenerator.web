@@ -126,13 +126,14 @@ const Login = () => {
           icon: "error",
           title: "Page not found"
         });
-
+        navigate("/login");
         throw new Error("Page not found");
       } else if (response.status === 400) {
         Toast.fire({
           icon: "error",
           title: "Invalid Email or Password, please try again"
         });
+        navigate("/login");
         throw new Error("Invalid Email or Password, please try again");
       } else if (response.status === 500) {
         Toast.fire({
@@ -140,12 +141,13 @@ const Login = () => {
           title: "Server Error"
         });
 
-        throw new Error("Server Error");
+        throw new Error("Internal Server Error");
       } else {
         Toast.fire({
           icon: "error",
           title: "Something went wrong"
         });
+        navigate("/login");
 
         throw new Error("Something went wrong");
       }

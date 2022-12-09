@@ -7,18 +7,22 @@ import Avatar from "../../assets/images/Ellipse4.png"
 import Input from "../../Component/Input";
 import Loader from "../../Component/ButtonLoader";
 import { Toast } from '../../Component/ToastAlert'
+import { useEffect } from "react";
 
 const ProfilePage = () => {
   const navigate = useNavigate()
   const[loading, setLoading] = useState(false)
-  const[data,setData]= useState({
+  const[data, setData]= useState({
   name:"",
   job:"",
   location:"",
   phoneNumber:"",
-  useremail:""
+  email:""
 })
 
+
+
+const userId = localStorage.getItem("user");
 
   // Handle user Logout
   const handleLogout = async(e) =>{
@@ -44,26 +48,75 @@ const ProfilePage = () => {
           }) 
   }
   
-  const url= "https://certify-api.onrender.com/api/profile"
-  function handlePost(e){
-    const newdata={...data}
-    newdata[e.target.id]=e.target.value
-    setData(newdata)
-    console.log(newdata)
-  }
-  function Submit(e){
+  const url = "https://certgo.hng.tech/api/profile";
+  const handleOnchange = e => {
+    const newdata = { ...data };
+    newdata[e.target.id] = e.target.value;
+    setData(newdata);
+    //console.log(e)
+  };
+
+  const userData = JSON.parse(localStorage.getItem("userData"))
+  const token = userData.token;
+  const headers = {
+    Authorization: `Bearer ${token}`,
+    "Content-Type": "application/json"
+  };
+ 
+      function getDATA(){
+        fetch(url,
+          {
+            headers
+          }
+          )
+          .then((res) => res.json())
+          .then((res)=>{
+            setData(res.data.profile)
+          
+          })
+    }
+    useEffect(() =>{
+      getDATA()
+    },[])
+
+  const Submit = async e => {
     e.preventDefault();
-    axios.post(url,{
-      name:data.name,
-      job:data.job,
-      location:data.location,
-      phoneNumber:data.phoneNumber,
-      useremail:data.useremail
-    })
-    .then(res=>{
-      console.log(res.data)
-    })
-  }
+    
+    const userData = JSON.parse(localStorage.getItem("userData"))
+    const token = userData.token;
+    //console.log(token)
+    try {
+      const headers = {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json"
+      };
+      //console.log(token)
+      const response = await axios.patch(
+        url,
+        {
+          name: data.name,
+          job: data.job,
+          location: data.location,
+          phoneNumber: data.phoneNumber,
+          email: data.email
+        },
+        {
+          headers
+        }
+      );
+      console.log(response)
+      if (response.status === 201) {
+        Toast.fire({
+          icon: "success",
+          title: response.message
+        });
+      } else {
+        throw new Error(response.message);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <div className="profile-page">
       <div>
@@ -98,41 +151,46 @@ const ProfilePage = () => {
 
             <Input className="form-group"
               label={"Name"}
-              onClick={handlePost}
-                id="form-control" 
+              callback={handleOnchange}
+                id="name" 
                 type="text" 
                 placeholder="Name"
+                value={data.name}
                 />
             <Input className="form-group"
               label={"Jobs"}
-             onClick={handlePost} 
-                id="form-control" 
+             callback={handleOnchange} 
+                id="job" 
                 type="text" 
                 placeholder="Job"
+                value={data.job}
                 />
 
               <Input className="form-group"
                 label={"Location"}
-                onClick={handlePost} 
-                id="form-control" 
+                callback={handleOnchange} 
+                id="location" 
                 type="text" 
                 placeholder="Location"
+                value={data.location}
                 />
 
             <Input className="form-group"
                 label={"Email"}
-                onClick={handlePost} 
-                id="form-control" 
+                callback={handleOnchange} 
+                id="email" 
                 type="email" 
                 placeholder="E-mail"
+                value={data.email}
                 />
 
             <Input className="form-group"
                 label={"Phone Number"}
-                onClick={handlePost} 
-                id="form-control" 
+                callback={handleOnchange} 
+                id="phoneNumber" 
                 type="tel" 
                 placeholder="(316) 555-0116"
+                value={data.phoneNumber}
                 />
 
             <div id="postbtnid" className="form-btn-wrapper">
