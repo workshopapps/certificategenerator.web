@@ -145,7 +145,7 @@
             label {
               border: 1px solid grey;
               width: fit-content;
-              padding: .5rem 1rem;
+              padding: 0.5rem 1rem;
             }
           }
 
@@ -185,7 +185,6 @@
           background-color: #8ab9b2;
           cursor: not-allowed;
         }
-
       }
     }
   }
@@ -196,7 +195,6 @@
     .modal-container {
       .modal-body {
         .head {
-
           h3 {
             font-size: 32px;
             margin-bottom: 1rem;
@@ -206,7 +204,6 @@
             font-size: 16px;
             margin-bottom: 3rem;
           }
-
         }
 
         .loading {
@@ -239,7 +236,6 @@
             font-size: 24px;
             margin-bottom: 3rem;
           }
-
         }
 
         form {
@@ -253,6 +249,10 @@
             display: flex;
             justify-content: space-between;
           }
+        }
+        img {
+          max-width: 20%;
+          margin: 1rem 0;
         }
       }
     }
