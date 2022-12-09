@@ -1,18 +1,10 @@
-require("dotenv").config();
 const Profile = require("../models/profileModel");
-const cloudinary = require("cloudinary").v2;
 const {
   handleAsync,
   handleResponse,
   createApiError
 } = require("../utils/helpers");
 const Joi = require("joi");
-
-cloudinary.config({
-  cloud_name: process.env.CLOUD_NAME,
-  api_key: process.env.API_KEY,
-  api_secret: process.env.API_SECRET
-});
 
 const addUserProfile = handleAsync(async (req, res) => {
   const userID = req.user._id;
@@ -94,36 +86,9 @@ const deleteUserProfile = handleAsync(async (req, res) => {
   res.status(201).json(handleResponse({ profile }));
 });
 
-const uploadUserAvatar = handleAsync(async (req, res) => {
-  const avatar = req.files.avatar;
-  const { width = 400, height = 400 } = req.query; // certogo.hng.tech/api/profile?width=20&height=20
-  const user = req.user;
-
-  // Verify that avatar was sent
-  if (!avatar) throw createApiError("avatar is required", 400);
-
-  // Upload avatar to cloudinary
-  const result = await cloudinary.uploader.upload(avatar.tempFilePath, {
-    // Crop image to focus on faces, resize image to have width and height
-    eager: [{ width, height, gravity: "faces", crop: "thumb" }]
-  });
-
-  // Add avatar image url to user profile
-  const profile = await Profile.findOneAndUpdate(
-    { user: user._id },
-    { avatar: result.eager[0].secure_url },
-    { new: true }
-  );
-
-  if (!profile) throw createApiError("User has no profile", 404);
-
-  res.status(200).json(handleResponse({ avatar: profile.avatar }));
-});
-
 module.exports = {
   addUserProfile,
   getUserProfile,
   updateUserProfile,
-  deleteUserProfile,
-  uploadUserAvatar
+  deleteUserProfile
 };

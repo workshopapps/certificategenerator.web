@@ -10,6 +10,7 @@ import useAppProvider from "../../hooks/useAppProvider";
 import { Loader } from "../../Component";
 import TableRow from "./TableRow";
 import profilePic from "../../assets/images/Ellipse4.png";
+import Ellipse from "../../assets/svgs/hor-ellipse.svg";
 import "./dashboard.style.scss";
 
 const Dashboard = () => {
@@ -250,6 +251,12 @@ const Dashboard = () => {
     });
     getEvents();
   };
+     
+  const handleToggle = () => {
+     let drop = document.querySelector(".brandkit-dropdown")
+     drop.classList.toggle("visible")
+  }
+     
 
 //GET USERNAME FROM LOCALSTORAGE
 const profileName = localStorage.getItem('userName');
@@ -264,12 +271,22 @@ const profileName = localStorage.getItem('userName');
             <span className="dashboard__profile-pic">
               <img src={file || profilePic} alt="brand-kit" />   
             </span>
-            <form onSubmit={onUpdate}>
-              <label htmlFor="file" className="dashboard__upload-label">
-              </label>
-              <input type="file" id="file" accept="image/*" name="file" onChange={onFileChange}  />
-              <Button name="Submit" type="submit" />
-            </form>
+            <div className="ellipses" onClick={handleToggle}>
+              <img src={Ellipse} alt="upload-icon" />
+            </div>
+            <div className="brandkit-dropdown">
+              <ul>
+               <li> 
+                <label htmlFor="file" className="dashboard__upload-label">
+                  <span>View Logo</span>   
+                  <input type="file" id="file" accept="image/*" name="file" onChange={onFileChange}  />
+                </label>
+              </li>
+              <li onClick={onUpdate}>Upload new logo</li>
+              <li>Delete Logo</li>
+              </ul>
+            
+            </div>
           </div>
           <div className="flexx">
             <div className="dashboard__align-start">
