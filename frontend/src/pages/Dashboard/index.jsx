@@ -48,49 +48,52 @@ const Dashboard = () => {
     }
   });
 
+  const axiosPrivateKit = axios.create({
+    baseURL,
+    headers: {
+      // "Content-Type": "multipart/form-data",
+      Authorization: `Bearer ${accessToken}`
+    }
+  });
+
 
     // On file select (from the pop up)
   // Update the state
-  // const onFileChange = async (e) => {   
-  //   e.preventDefault()
-    // setFile({ file: e.target.files[0] });
-    // setFile(URL.createObjectURL(e.target.files[0]))
-    // console.log(e.target.files[0]);
-    // const formData = new FormData();
-    // formData.append('file', file);
-  // }
+  const onFileChange = async (e) => {   
+    e.preventDefault()
+    setFile(e.target.files[0]);
+  }
 
-  // const onUpdate = async (e) => {
-  //   e.preventDefault();
-  //   const formData = new FormData();
-  //   formData.append('file', file);
-  //   console.log("Form", formData);
-  //   try{
-  //     const response = await axiosPrivate.put("/users/brand-kit", formData);
-  //     console.log("Response", response);
-      // if (response.status === 404) {
-      //   Toast.fire({
-      //     icon: "error",
-      //     title: "Page not found"
-      //   });
-      // } else if (response.status === 401) {
-      //   Toast.fire({
-      //     icon: "error",
-      //     title: "Request Failed"
-      //   });
-      // } else if (response.status === 500) {
-      //   Toast.fire({
-      //     icon: "error",
-      //     title: "Internal Server Error"
-      //   });
-      // } else {
-      //   setFile(response.data.data.brandkit);
-      //   console.log(response.data.data.brandkit);
-      // }
-  //   } catch (error) {
-  //     console.log(error.message);
-  //   }
-  // };
+  const onUpdate = async (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append('file', file);
+    try{
+      const response = await axiosPrivateKit.put("/users/brand-kit", formData);
+      console.log("Response", response);
+      if (response.status === 404) {
+        Toast.fire({
+          icon: "error",
+          title: "Page not found"
+        });
+      } else if (response.status === 401) {
+        Toast.fire({
+          icon: "error",
+          title: "Request Failed"
+        });
+      } else if (response.status === 500) {
+        Toast.fire({
+          icon: "error",
+          title: "Internal Server Error"
+        });
+      } else {
+        setFile(response.data.brandkit);
+        console.log(response.data.brandkit);
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
 
   useEffect(() => {
     const getFile = async (e) => {
@@ -257,11 +260,11 @@ const Dashboard = () => {
             <span className="dashboard__profile-pic">
               <img src={file || profilePic} alt="brand-kit" />   
             </span>
-            {/* <label htmlFor="file" className="dashboard__upload-label">
+            <label htmlFor="file" className="dashboard__upload-label">
               <img src={Upload} alt="upload-icon" />
               <input type="file" id="file" accept="image/*" name="file" onChange={onFileChange}  />
             </label>
-            <Button name="Update Brand Kit" onClick={onUpdate} /> */}
+            <Button name="Update Brand Kit" onClick={onUpdate} />
           </div>
           <div className="flexx">
             <div className="dashboard__align-start">
