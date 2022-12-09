@@ -43,7 +43,7 @@ const Login = () => {
   //   }
   // };
 
- 
+
   function handleChange(event) {
     const { name, value, type, checked } = event.target;
     setFormData(prevFormData => {
@@ -121,14 +121,14 @@ const Login = () => {
         });
         navigate("/dashboard");
         setAccess(true);
-      } else if (response.status === 401) {
+      } else if (response.status === 400) {
         Toast.fire({
           icon: "error",
           title: "Page not found"
         });
         navigate("/login");
         throw new Error("Page not found");
-      } else if (response.status === 400) {
+      } else if (response.status === 401) {
         Toast.fire({
           icon: "error",
           title: "Invalid Email or Password, please try again"
@@ -152,14 +152,14 @@ const Login = () => {
         throw new Error("Something went wrong");
       }
 
-       const userData = {
+      const userData = {
         userId: response.data.data.userId,
         token: response.data.data.token,
         refreshToken: response.data.data.refreshToken,
         subscription: response.data.data.subscription,
       }
       localStorage.setItem('userData', JSON.stringify(userData))
-     console.log(userData)
+      console.log(userData)
 
     } catch (error) {
       setError(true);
@@ -279,8 +279,8 @@ const Login = () => {
 
             {/* </div> */}
             {error && <p style={{ color: "red" }}>Something went wrong</p>}
-            <div className="forgotPwd"><Link to = "/forgotpassword">
-            Forgot password?</Link></div>
+            <div className="forgotPwd"><Link to="/forgotpassword">
+              Forgot password?</Link></div>
             <div id="checkTerms">
               <input
                 type="checkbox"
