@@ -30,11 +30,7 @@ exports.uploadUserBrandKit = async (req, res) => {
              user.avatar = result.secure_url
             }
             user.save()
-<<<<<<< HEAD
-          return res.status(200).send({ brandkit: user.avatar, message: `Brand Kit Successfully Updated` }) 
-=======
           return res.status(200).send({ brandkit: user.avatar, message: 'Brand Kit Successfully Updated' }) 
->>>>>>> 29577282fd6fd9b08f2895d7860b5ee98ce47321
         } else {
             return res.status(422).send({ message: `Unable to process your request`})
         }
