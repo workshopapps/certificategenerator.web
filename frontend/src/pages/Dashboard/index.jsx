@@ -51,14 +51,52 @@ const Dashboard = () => {
 
     // On file select (from the pop up)
   // Update the state
-    const onFileChange = async (e) => {   
+  useEffect(() => {
+        const res = axiosPrivate.get("/users/brand-kit");
+        setSelectedImage(res.brandkit);
+        console.log(res);
+  },[selectedImage])
+
+    const onFileChange = async e => {   
         e.preventDefault()
-          setSelectedImage({ file: e.target.files[0] });
+          setSelectedImage( e.target.files[0] );
           setSelectedImage(URL.createObjectURL(e.target.files[0]))
           console.log(e.target.files[0]);
          const formData = new FormData();
          formData.append('file', selectedImage)
-  
+         try {
+             const res = await axiosPrivate.put("https://certgo.hng.tech/api/users/brand-kit", {
+              method:"PUT",
+              headers:{
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "application/json"
+              },body: JSON.stringify({formData})
+             });
+             if(res.status === 200){
+              Toast.fire({
+                icon: "success",
+                title: "Successfully updated"
+              });
+             }else if (res.status === 502) {
+              Toast.fire({
+                icon: "success",
+                title: "502 Bad Gateway"
+              });
+            } else if (res.status === 400) {
+              Toast.fire({
+                icon: "success",
+                title: "Missing file"
+              });
+            }
+         } catch (error) {
+           Toast.fire({
+            icon: "error",
+            title: "Upload failed due to invalid field(s)"
+          });
+         }
+
+        const res = await axiosPrivate.get("/users/brand-kit");
+         setSelectedImage(res.brandkit);
   }
 
 
@@ -216,7 +254,7 @@ const Dashboard = () => {
         <div className="dashboard__hero-section">
            <div className="dashboard__profile-pic-wrapper">
             <span className="dashboard__profile-pic">
-              <img src={selectedImage || profilePic} alt="brand-kit" />   
+              <img src={selectedImage} alt="brand-kit" />   
             </span>
               <label htmlFor="file" className="dashboard__upload-label">
                    <img src={Upload} alt="upload-icon" />
