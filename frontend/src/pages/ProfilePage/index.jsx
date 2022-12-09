@@ -12,6 +12,7 @@ import { useEffect } from "react";
 const ProfilePage = () => {
   const navigate = useNavigate()
   const[loading, setLoading] = useState(false)
+  const [isLoadingDelete, setIsLoadingDelete] = useState(false)
   const[data, setData]= useState({
   name:"",
   job:"",
@@ -124,7 +125,7 @@ const userId = localStorage.getItem("user");
       Authorization: `Bearer ${token}`,
       "Content-Type": "application/json"
     };
-    setLoading(true)
+    setIsLoadingDelete(true)
     fetch(url,
       {
         method: "DELETE",
@@ -136,10 +137,11 @@ const userId = localStorage.getItem("user");
         //setData(res.data.profile)
         console.log(res.data)
         console.log("Account deleted")   
-        navigate("/signup")     
+        navigate("/signup")   
+        localStorage.clear()  
       })
       .catch(err=>console.log(console.error()))
-      .finally(()=>setLoading(false))   
+      .finally(()=>setIsLoadingDelete(false))   
 }
 
   return (
@@ -167,7 +169,7 @@ const userId = localStorage.getItem("user");
 
         <div className="btn-wrapper">
           <button onClick={handleLogout} style={loading ? {background: '#f84343', cursor: 'not-allowed'} : {background: 'transparent', cursor: 'pointer'}}>{loading ? <Loader /> : <span>Log Out</span>}</button>
-          <button onClick={handleDelete} style={loading ? {background: '#f84343', cursor: 'not-allowed'} : {background: 'transparent', cursor: 'pointer'}}>{loading ? <Loader /> : <span>Delete Account</span>}</button>
+          <button onClick={handleDelete} style={isLoadingDelete ? {background: '#f84343', cursor: 'not-allowed'} : {background: 'transparent', cursor: 'pointer'}}>{isLoadingDelete ? <Loader /> : <span>Delete Account</span>}</button>
         </div>
       </div>
 
