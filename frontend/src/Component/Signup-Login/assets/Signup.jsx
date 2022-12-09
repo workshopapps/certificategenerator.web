@@ -26,7 +26,7 @@ const Signup = () => {
     name: "",
     email: "",
     password: "",
-    acceptTerms: false
+    acceptTerms: true
   });
   // Google auth client ID
   const CLIENT_ID =
@@ -34,6 +34,8 @@ const Signup = () => {
    const [userName, setUserName] = useState();
    const [useremail, setUserEmail] = useState();
   const [password, setPassword] = useState();
+  const [checkbox, setCheckbox] = useState();
+  const [error, setError] = useState(false);
   
   //SAVE USERNAME TO LOCALSTORAGE
   localStorage.setItem('userName', userName);
@@ -62,8 +64,8 @@ const Signup = () => {
     }
 
 
-  async function createNewUser(email, password, name) {
-    console.log(email, password, name)
+  async function createNewUser(email, password, name, chekbox) {
+    console.log(email, password, name, checkbox)
       // return axios.post("/auth/signup", { email: email, password: password, name: name });
          return fetch(`https://certgo.hng.tech/api/auth/signup`, {
       method: "POST",
@@ -72,7 +74,7 @@ const Signup = () => {
         "Access-Control-Allow-Origin": "*",
         // "Access-Control-Allow-Methods": "POST",     
       },
-      body: JSON.stringify({  email: email, password: password, name: name })
+      body: JSON.stringify({  email: email, password: password, name: name, checkbox: checkbox })
     });
     }
   
@@ -276,10 +278,14 @@ const Signup = () => {
               <input
                 type="checkbox"
                 id="acceptTerms"
+                value={checkbox}
                 checked={formData.acceptTerms}
-                onChange={handleChange}
+                // onChange={handleChange}
                 name="acceptTerms"
+                callback={e => setCheckbox(e.target.value)}
+                required
               />
+              {error && <p style={{ color: "red" }}>Agree to terms and conditions</p>}
               <div className="termsOfUse">
                 By creating an account, I declare that I have read and accepted
                 Certgo’s <span id="coloredTerms"> Terms of Use</span> and
