@@ -346,7 +346,7 @@ const profileName = localStorage.getItem('userName');
                 </Button>
 
                 <Button className="" onClick={handleDeleteAll}>
-                  Create New Certificate
+                  Delete All Certificates
                 </Button>
 
                 <Button
