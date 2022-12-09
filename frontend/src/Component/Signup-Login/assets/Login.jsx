@@ -210,7 +210,7 @@ const Login = () => {
 
     console.log(response);
 
-    if (response.status === 200) {
+    if (response.status === 200 || response.status === 201) {
       // route user to dashboard after successful login
       navigate("/dashboard");
     } else {
@@ -234,9 +234,9 @@ const Login = () => {
               cookiePolicy={"single_host_origin"}
               isSignedIn={true}
               render={renderProps => (
-                <div onClick={renderProps.onClick} id="signupG">
+                <div onClick={renderProps.onClick} id="signupG" style={{cursor:"pointer"}}>
                   <img alt="" src={googleSVG} id="img_id" />
-                  <Link to={'/dashboard'}>Login using Google</Link>
+                    Login using Google
                 </div>
               )}
             />
@@ -277,7 +277,7 @@ const Login = () => {
 
             {/* </div> */}
             {error && <p style={{ color: "red" }}>Something went wrong</p>}
-            <div className="forgotPwd"><Link to = "/forgotpassword">
+            <div className="forgotPwd"><Link to = "/fff1">
             Forgot password?</Link></div>
             <div id="checkTerms">
               <input
