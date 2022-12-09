@@ -100,7 +100,7 @@ const ContactUs = () => {
                 required
               />
               <Inputfield
-                placeholder="First name"
+                placeholder="Last name"
                 label="Last Name"
                 type="text"
                 value={lastName}

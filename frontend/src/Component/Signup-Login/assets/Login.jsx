@@ -32,7 +32,7 @@ const Login = () => {
 
   const [useremail, setUserEmail] = useState();
   const [password, setPassword] = useState();
-  const [error, setError] = useState(false);
+
   const [token, setToken] = useState({
     accessToken: ""
   });
@@ -55,57 +55,7 @@ const Login = () => {
       };
     });
   }
-  // const handleSubmit = async (e) => {
-
-  //   e.preventDefault()
-  //   console.log(useremail, password)
-  //   try {
-  //     const response = await loginUser(useremail, password);
-  //     const data = await response.json();
-
-  //     if (response.status === 200 || response.status === 201) {
-  //       Toast.fire({
-  //         icon: "success",
-  //         title: "Signed in successfully"
-  //       });
-  //       navigate("/pricing");
-  //       setAccess(true);
-  //     } else if (response.status === 401) {
-  //       Toast.fire({
-  //         icon: "error",
-  //         title: "Page not found"
-  //       });
-
-  //       throw new Error("Page not found");
-  //     } else if (response.status === 400) {
-  //       Toast.fire({
-  //         icon: "error",
-  //         title: "Invalid Email or Password, please try again"
-  //       });
-  //       throw new Error("Invalid Email or Password, please try again");
-  //     } else if (response.status === 500) {
-  //       Toast.fire({
-  //         icon: "error",
-  //         title: "Server Error"
-  //       });
-
-  //       throw new Error("Server Error");
-  //     } else {
-  //       Toast.fire({
-  //         icon: "error",
-  //         title: "Something went wrong"
-  //       });
-
-  //       throw new Error("Something went wrong");
-  //     }
-
-  //     const token = data.token;
-  //     localStorage.setItem("token", token);
-  //     localStorage.setItem("user", data.userId);
-  //   } catch (error) {
-  //     setError(true);
-  //   }
-  // }
+ 
   async function loginUser(email, password) {
     return axios.post("/auth/login", { email: email, password: password });
   }
@@ -125,37 +75,12 @@ const Login = () => {
         navigate("/dashboard");
         setLoading(false)
         setAccess(true);
-      } else if (response.status === 400) {
-        Toast.fire({
-          icon: "error",
-          title: "Page not found"
-        });
-        navigate("/login");
-        setLoading(false)
-        throw new Error("Page not found");
-      } else if (response.status === 401) {
-        Toast.fire({
-          icon: "error",
-          title: "Invalid Email or Password, please try again"
-        });
-        setLoading(false)
-        navigate("/login");
-        throw new Error("Invalid Email or Password, please try again");
-      } else if (response.status === 500) {
-        Toast.fire({
-          icon: "error",
-          title: "Server Error"
-        });
-        navigate("/login");
-        setLoading(false)
-
-        throw new Error("Internal Server Error");
       } else {
         Toast.fire({
           icon: "error",
           title: "Something went wrong"
         });
-        navigate("/login");
+        
         setLoading(false)
         throw new Error("Something went wrong");
       }
@@ -170,12 +95,56 @@ const Login = () => {
       console.log(userData)
 
     } catch (error) {
-      setLoading(false)
-      setError(true);
-      console.log(error.message);
+     
+      console.log(error)
+     if (error.response.status === 400) {
+       Toast.fire({
+         icon: "error",
+         title: "A user for this email could not be found"
+       });
+
+       setLoading(false);
+       
+     } else if (error.response.status === 401) {
+       Toast.fire({
+         icon: "error",
+         title: "Invalid password, please try again"
+       });
+       setLoading(false);
+
+     } else if (error.response.status === 500) {
+       Toast.fire({
+         icon: "error",
+         title: "Internal server Error"
+       });
+
+       setLoading(false);
+
+      
+     } else {
+       Toast.fire({
+         icon: "error",
+         title: "Something went wrong"
+       });
+
+       setLoading(false);
+      
+     }
+      
+      
     }
   };
 
+
+  // useEffect(() => {
+  //   const initClient = () => {
+  //     gapi.auth2.init({
+  //       clientId: CLIENT_ID
+  //       // scope: ""
+  //     });
+  //   };
+  //   gapi.load("client:auth2", initClient);
+  // });
 
   useEffect(() => {
     const initClient = () => {
@@ -185,24 +154,25 @@ const Login = () => {
       });
     };
     gapi.load("client:auth2", initClient);
-  });
+  }, [])
+  
 
   const onSuccess = res => {
     setToken({ accessToken: res.tokenId });
 
     // User details from Google
-    // const userProfile = {
-    //   email: res.profileObj.email,
-    //   fullName: res.profileObj.name,
-    //   userProfile: res.profileObj.imageUrl,
-    //   userId: res.profileObj.googleId,
-    //   accessToken: res.accessToken
-    // };
-
+    const userProfile = {
+      email: res.profileObj.email,
+      fullName: res.profileObj.name,
+      userProfile: res.profileObj.imageUrl,
+      userId: res.profileObj.googleId,
+      accessToken: res.accessToken
+    };
+localStorage.setItem("userData", JSON.stringify(userProfile));
     if (token.accessToken) loginUserGoogle(token);
 
-    localStorage.setItem("username", res.profileObj.email);
-    localStorage.setItem("name", res.profileObj.name);
+    // localStorage.setItem("username", res.profileObj.email);
+    // localStorage.setItem("name", res.profileObj.name);
   };
 
   const onFailure = err => {
@@ -211,6 +181,9 @@ const Login = () => {
 
   // Send access token to backend
   async function loginUserGoogle(token) {
+
+     
+    
     const response = await fetch("https://certgo.hng.tech/api/auth/login", {
       method: "POST",
       headers: {
@@ -218,15 +191,17 @@ const Login = () => {
       },
       body: JSON.stringify(token)
     });
-
     console.log(response);
+     navigate("/dashboard");
 
-    if (response.status === 200 || response.status === 201) {
-      // route user to dashboard after successful login
-      navigate("/dashboard");
-    } else {
-      navigate("/login");
-    }
+   
+
+    // if (response.status === 200 || response.status === 201) {
+    //   // route user to dashboard after successful login
+    //   navigate("/dashboard");
+    // } else {
+    //   navigate("/login");
+    // }
   }
   return (
     <div id="login">
@@ -287,7 +262,7 @@ const Login = () => {
             />
 
             {/* </div> */}
-            {error && <p style={{ color: "red" }}>Something went wrong</p>}
+           
             <div className="forgotPwd"><Link to="/fff1">
               Forgot password?</Link></div>
             <div id="checkTerms">

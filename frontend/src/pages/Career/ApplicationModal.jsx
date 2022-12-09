@@ -38,7 +38,7 @@ const ApplicationModal = ({ position, openApplyModal, setOpenApplyModal }) => {
       setOpenApplyModal(!ApplicationModal);
       Toast.fire({
         icon: "success",
-        title: "registration successfull"
+        title: "Application successfull"
       });
     } catch (err) {
       Toast.fire({
