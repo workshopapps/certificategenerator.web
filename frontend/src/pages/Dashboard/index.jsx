@@ -61,18 +61,13 @@ const Dashboard = () => {
   // Update the state
   const onFileChange = async (e) => {   
     e.preventDefault()
-    setFile({ file: e.target.files[0] });
-    setFile(URL.createObjectURL(e.target.files[0]))
-    console.log(e.target.files[0]);
-    const formData = new FormData();
-    formData.append('file', file);
+    setFile(e.target.files[0]);
   }
 
   const onUpdate = async (e) => {
     e.preventDefault();
     const formData = new FormData();
     formData.append('file', file);
-    console.log("Form", formData);
     try{
       const response = await axiosPrivateKit.put("/users/brand-kit", formData);
       console.log("Response", response);
