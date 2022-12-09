@@ -272,7 +272,10 @@ const profileName = localStorage.getItem('userName');
            
            
           </div>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 88aeb43 (made username dynamic)
           <div className="flexx">
             <div className="dashboard__align-start">
               <h3 className="dashboard__text">Welcome</h3>
