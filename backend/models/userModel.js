@@ -65,7 +65,7 @@ UserSchema.pre("save", async function (next) {
     if (existingProfile) return next();
 
     // Create new profile if user has no profile
-    await Profile.create({ email: this.email, user: this._id });
+    await Profile.create({ email: this.email, user: this._id, name: this.name });
 
     next();
   } catch (error) {
