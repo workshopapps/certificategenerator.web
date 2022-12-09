@@ -32,6 +32,10 @@ const Signup = () => {
   const [userName, setUserName] = useState();
   const [useremail, setUserEmail] = useState();
   const [password, setPassword] = useState();
+  
+  //SAVE USERNAME TO LOCALSTORAGE
+  localStorage.setItem('userName', userName);
+  
   // const [error, setError] = useState(false);
   const [token, setToken] = useState({
     accessToken: ""

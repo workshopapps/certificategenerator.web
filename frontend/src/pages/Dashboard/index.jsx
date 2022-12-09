@@ -10,7 +10,6 @@ import useAppProvider from "../../hooks/useAppProvider";
 import { Loader } from "../../Component";
 import TableRow from "./TableRow";
 import profilePic from "../../assets/images/Ellipse4.png";
-import Upload from "./assets/upload.png";
 import "./dashboard.style.scss";
 
 const Dashboard = () => {
@@ -37,7 +36,7 @@ const Dashboard = () => {
   const [eventLink, setEventLink] = useState("");
   const baseURL = "https://certgo.hng.tech/api";
   const accessToken = JSON.parse(localStorage.getItem("userData")).token
-  const [selectedImage, setSelectedImage] = useState('')
+  const [file, setFile] = useState('')
 
 
   const axiosPrivate = axios.create({
@@ -48,19 +47,61 @@ const Dashboard = () => {
     }
   });
 
+  const axiosPrivateKit = axios.create({
+    baseURL,
+    headers: {
+      // "Content-Type": "multipart/form-data",
+      Authorization: `Bearer ${accessToken}`
+    }
+  });
+
 
     // On file select (from the pop up)
   // Update the state
-    const onFileChange = async (e) => {   
-        e.preventDefault()
-          setSelectedImage({ file: e.target.files[0] });
-          setSelectedImage(URL.createObjectURL(e.target.files[0]))
-          console.log(e.target.files[0]);
-         const formData = new FormData();
-         formData.append('file', selectedImage)
-  
+  const onFileChange = async (e) => {   
+    e.preventDefault()
+    setFile(e.target.files[0]);
   }
 
+  const onUpdate = async (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append('file', file);
+    try{
+      const response = await axiosPrivateKit.put("/users/brand-kit", formData);
+      console.log("Response", response);
+      if (response.status === 404) {
+        Toast.fire({
+          icon: "error",
+          title: "Page not found"
+        });
+      } else if (response.status === 401) {
+        Toast.fire({
+          icon: "error",
+          title: "Request Failed"
+        });
+      } else if (response.status === 500) {
+        Toast.fire({
+          icon: "error",
+          title: "Internal Server Error"
+        });
+      } else {
+        setFile(response.data.brandkit);
+        console.log(response.data.brandkit);
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  useEffect(() => {
+    const getFile = async (e) => {
+      const res = await axiosPrivate.get("/users/brand-kit");
+      console.log("Brand kit", res.data.brandkit);
+      setFile(res.data.brandkit);
+    }
+    getFile();
+  }, [])  
 
   const handleChangeCertificateStatus = async (id, status) => {
     console.log(id, status);
@@ -210,25 +251,32 @@ const Dashboard = () => {
     getEvents();
   };
 
+//GET USERNAME FROM LOCALSTORAGE
+const profileName = localStorage.getItem('userName');
+
+
+
   return (
     <>
       <div className="dashboard">
         <div className="dashboard__hero-section">
            <div className="dashboard__profile-pic-wrapper">
             <span className="dashboard__profile-pic">
-              <img src={selectedImage || profilePic} alt="brand-kit" />   
+              <img src={file || profilePic} alt="brand-kit" />   
             </span>
+            <form onSubmit={onUpdate}>
               <label htmlFor="file" className="dashboard__upload-label">
-                   <img src={Upload} alt="upload-icon" />
-                   <input type="file" id="file" accept="image/*" name="image" onChange={onFileChange}  />
-            </label>
+              </label>
+              <input type="file" id="file" accept="image/*" name="file" onChange={onFileChange}  />
+              <Button name="Submit" type="submit" />
+            </form>
           </div>
           <div className="flexx">
             <div className="dashboard__align-start">
               <h3 className="dashboard__text">Welcome</h3>
-              <h2 className="dashboard__title">Team Headlight</h2>
+              <h2 className="dashboard__title">{profileName}</h2>
               <p className="dashboard__description">
-                Let’s do the Accounts for you, Get a summary of all the
+            Get a summary of all the
                 Certificates and Job done here
               </p>
               <div>
