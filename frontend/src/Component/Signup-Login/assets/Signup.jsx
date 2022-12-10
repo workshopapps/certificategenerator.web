@@ -33,7 +33,8 @@ const Signup = () => {
     "52168821352-4sc11trj4qtq95051mrnrbinfgmla3ai.apps.googleusercontent.com";
   const [userName, setUserName] = useState();
   const [useremail, setUserEmail] = useState();
-  const [password, setPassword] = useState()
+  const [password, setPassword] = useState();
+  const [checkbox, setCheckbox] = useState(false);
   
   setProfileName(userName);
   // const [error, setError] = useState(false);
