@@ -15,6 +15,7 @@ import Loader from "../../ButtonLoader";
 
 const Signup = () => {
   const { setAccess } = useAppProvider();
+  const { setProfileName } = useAppProvider();
   const navigate = useNavigate();
 
   // const [type, setType] = useState("password");
@@ -33,9 +34,8 @@ const Signup = () => {
   const [useremail, setUserEmail] = useState();
   const [password, setPassword] = useState();
   
-  //SAVE USERNAME TO LOCALSTORAGE
-  localStorage.setItem('userName', userName);
-  
+  setProfileName(userName);
+
   // const [error, setError] = useState(false);
   const [token, setToken] = useState({
     accessToken: ""

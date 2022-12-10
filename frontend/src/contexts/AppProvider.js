@@ -17,7 +17,7 @@ export const AppProvider = ({ children }) => {
   const [awardeeName, setAwardeeName] = useState("");
   const [appLoading, setAppLoading] = useState(true);
   const [certificateTitle, setCertificateTitle] = useState("");
-
+  const [profileName, setProfileName] = useState("");
   useEffect(() => {
     setTimeout(function () {
       setAppLoading(false);
@@ -69,6 +69,8 @@ export const AppProvider = ({ children }) => {
         setArray,
         setLoading,
         setCsvData,
+        profileName,
+        setProfileName
       }}
     >
       {children}
