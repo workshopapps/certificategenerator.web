@@ -260,10 +260,10 @@ const Dashboard = () => {
 
   //DELETE ALL USER CERTIFICATES
   const handleDeleteAll = async () => {
-    await handleDeleteAllCertificates();
+    handleDeleteAllCertificates();
     // getUserCertificates()
     // setOpenOptions(!openOptions)
-    getUserCertificates();
+    // getUserCertificates();
   };
 
   var profileName = localStorage.getItem("profileName");
@@ -321,7 +321,7 @@ const Dashboard = () => {
         </div>
 
         <div className="dashboard__cards">
-          {cardData
+          {cardData[0].count !== 0
             ? cardData.map((item, idx) => <Card key={idx} item={item} />)
             : null}
         </div>
@@ -336,7 +336,11 @@ const Dashboard = () => {
             </h5> */}
             {data.length > 0 ? (
               <div style={{ display: "flex" }}>
-                <Button className="" onClick={() => setOpenModal(true)}>
+                <Button
+                  className="new-certificate"
+                  style={{ fontSize: "16px" }}
+                  onClick={() => setOpenModal(true)}
+                >
                   + New Certificate
                 </Button>
 
