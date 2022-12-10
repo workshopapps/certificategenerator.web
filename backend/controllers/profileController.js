@@ -85,11 +85,13 @@ const updateUserProfile = handleAsync(async (req, res) => {
 });
 
 const deleteUserProfile = handleAsync(async (req, res) => {
-  const profile = await Profile.findOneAndDelete({
+  const profile = await Profile.findOne({
     user: req.user._id
   });
 
   if (!profile) throw createApiError("user profile does not exist", 401);
+
+  await profile.deleteOne();
 
   res.status(201).json(handleResponse({ profile }));
 });
