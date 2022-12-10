@@ -284,11 +284,11 @@ const Dashboard = () => {
     <>
       <div className="dashboard">
         <div className="dashboard__hero-section">
-           <div className="dashboard__profile-pic-wrapper">
+          <div className="dashboard__profile-pic-wrapper">
             <span className="dashboard__profile-pic">
               <img src={file || profilePic} alt="brand-kit" />   
             </span>
-            <div className="ellipses" onClick={handleToggle}>
+            {/* <div className="ellipses" onClick={handleToggle}>
               <img src={Ellipse} alt="upload-icon" />
             </div>
             <div className="brandkit-dropdown">
@@ -303,7 +303,13 @@ const Dashboard = () => {
                 <li>Delete Logo</li>
               </ul>
             
-            </div>
+            </div> */}
+            <form onSubmit={onUpdate}>
+              <label htmlFor="file" className="dashboard__upload-label">
+              </label>
+              <input type="file" id="file" accept="image/*" name="file" onChange={onFileChange}  />
+              <Button name="Submit" type="submit" />
+            </form>
           </div>
           <div className="flexx">
             <div className="dashboard__align-start">
