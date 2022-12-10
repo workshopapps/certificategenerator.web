@@ -164,7 +164,7 @@ function CreateCertificateModal({
                     }
                   />
                 </label>
-                <img src={logo} alt="logo" />
+                <img src={logo} alt="logo" className="logo"/>
                 <span>Max image upload size: 8mb</span>
               </div>
               <div>

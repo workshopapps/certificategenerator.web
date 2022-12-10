@@ -1,13 +1,14 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
-import Card from "./Card";
 import { dummyData, nullDataIcon, } from "./utils";
 import {Toast} from '../../Component/ToastAlert'
 import Button from "../../Component/button";
 import CreateCertificateModal from "./CreateCertificateModal";
-import useAppProvider from "../../hooks/useAppProvider";
+import Card from "./Card";
 import { Loader } from "../../Component";
+import useAppProvider from "../../hooks/useAppProvider";
 import TableRow from "./TableRow";
 import profilePic from '../../assets/svgs/default-brandkit.svg'
 import Ellipse from "../../assets/svgs/hor-ellipse.svg";
@@ -32,7 +33,6 @@ const Dashboard = () => {
   const [data, setData] = useState([]);
   const [cardData, setCardData] = useState([...dummyData]);
   const [openModal, setOpenModal] = useState(false);
-  // const [loading, setLoading] = useState(false);
   const [pricing, setPricing] = useState("");
   const [certificates, setCertificates] = useState([]);
   const [eventLink, setEventLink] = useState("");
@@ -143,7 +143,7 @@ const Dashboard = () => {
       const response = await axiosPrivate.get("/certificates");
       let sub = JSON.parse(localStorage.getItem("userData")).subscription;
       setPricing(sub);
-      console.log(response);
+      // console.log(response);
       if (response.status === 404) {
         Toast.fire({
           icon: "error",
@@ -161,7 +161,7 @@ const Dashboard = () => {
         });
       } else {
         setData(response.data.data.certificates);
-        console.log(response.data.data.certificates);
+        // console.log(response.data.data.certificates);
         updateCount(response.data.data.certificates);
       }
     } catch (error) {
@@ -183,16 +183,16 @@ const Dashboard = () => {
     );
 
     const pendingCard = newCard.map(item =>
-      item.title === "Total Pending Certificates"
+      item.title === "Pending Certificates"
         ? { ...item, count: pendingCount }
         : item
     );
 
     const issuedCard = pendingCard.map(item =>
-      item.title === "Total Issued Certificates"
+      item.title === "Issued Certificates"
         ? { ...item, count: issuedCount }
         : item
-    );
+    )
 
     setCardData(issuedCard);
   };
@@ -330,7 +330,6 @@ const Dashboard = () => {
         </div>
 
         <div className="dashboard__cards">
-          {console.log(cardData)}
           {cardData
             ? cardData.map((item, idx) => <Card key={idx} item={item} />)
             : null}
@@ -347,7 +346,7 @@ const Dashboard = () => {
             {data.length > 0 ? (
               <div style={{ display: "flex" }}>
                 <Button className="" onClick={() => setOpenModal(true)}>
-                  Create New Certificate
+                  + New Certificate
                 </Button>
 
                 <Button className="" onClick={handleDeleteAll}>
@@ -356,7 +355,7 @@ const Dashboard = () => {
 
                 <Button
                   style={{ marginLeft: "20px" }}
-                  className=""
+                  className="btn-generate"
                   onClick={handleGenerate}
                 >
                   {/* <Link to = {`/generate/:${generateId}`}>Generate Link</Link> */}

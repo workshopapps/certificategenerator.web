@@ -52,12 +52,12 @@ const UploadCsv = ({getUserCertificates, onClose}) => {
     try {
       const res = await axiosFormData.post('/certificates', formData);
       console.log(res);
-      if (res.status === 400) {
+      if (res.status === 401) {
         setLoading(false);
         console.log('load');
         Toast.fire({
           icon: "error",
-          title: "Page not found"
+          title: "Bad Request"
         });
       } else if (res.status === 500) {
         setLoading(false);
