@@ -57,7 +57,7 @@ const userSignup = handleAsync(async (req, res, next) => {
 
     //if not create new user
     const newUser = new User({
-      name: name,
+      name: payload.name,
       email: email,
       authenticationType: {
         google: {
