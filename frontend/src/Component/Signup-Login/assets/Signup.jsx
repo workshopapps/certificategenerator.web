@@ -35,12 +35,8 @@ const Signup = () => {
   const [password, setPassword] = useState();
   const [checkbox, setCheckbox] = useState(false);
   
-<<<<<<< HEAD
-  setProfileName(userName);
-=======
  
 
->>>>>>> 0d852e7 (worked on saving profile name in local storage)
   // const [error, setError] = useState(false);
   const [token, setToken] = useState({
     accessToken: ""
@@ -197,7 +193,7 @@ const Signup = () => {
 
 
   //SAVING PROFILENAME TO LOCAL STORAGE
-localStorage.setItem("profileName", userName);
+  localStorage.setItem("profileName", userName);
 
   return (
     <div id="signup">
