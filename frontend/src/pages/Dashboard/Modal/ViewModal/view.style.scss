@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Sora:wght@100;200;300;400;500;600;700&display=swap");
 @import "../../../../Style/variables";
 
+#viewModal {
 .view-modal-wrapper {
   height: 100%;
   width: 100%;
@@ -392,7 +393,4 @@
       height: 58px;
     }
   }
-
-  
-
-
+}
