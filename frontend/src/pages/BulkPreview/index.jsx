@@ -116,9 +116,9 @@ function Index() {
           <div className="dropdown-content" style={{ marginTop: "0px" }}>
             <ReactToPrint
               content={() => bulkCertDesignRef.current}
-              trigger={() => <Button name="PDF" style={{ padding: "10px", width: "150px" }} className="bulk_dropdown" />}
+              trigger={() => <Button name="PDF" style={{ padding: "10px", width: "120px" }} className="bulk_dropdown" />}
             />
-            <Button name="PNG" style={{ padding: "10px", width: "150px" }} onClick={handleClick} className="bulk_dropdown" />
+            <Button name="PNG" style={{ padding: "10px", width: "120px" }} onClick={handleClick} className="bulk_dropdown" />
           </div>
         </div>
         {/* <Button name="Download Certificates as PDF" style={{ padding: "10px" }} /> */}
