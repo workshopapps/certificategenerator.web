@@ -8,7 +8,7 @@ function ViewModal({ open, onClose, getUserCertificates, viewData }) {
   if (!open) return null;
   console.log(viewData);
   return (
-    <div onClick={onClose} id="viewModal" className="view-modal-wrapper">
+    <div onClick={onClose} className="view-modal-wrapper">
       <div className="modal-container" onClick={e => e.stopPropagation()}>
         <div className="modal-container__header">
           <h4>Certificate Preview</h4>

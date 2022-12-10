@@ -51,19 +51,24 @@ function Index() {
     if (bulkCertDesignRef.current === null) {
       setLoading(false);
       return;
-    };
-    toPng(bulkCertDesignRef.current, { cacheBust: true, backgroundColor: "#f8fffe", canvasWidth: 388.5, canvasHeight: 299.4 })
+    }
+    toPng(bulkCertDesignRef.current, {
+      cacheBust: true,
+      backgroundColor: "#f8fffe",
+      canvasWidth: 388.5,
+      canvasHeight: 299.4
+    })
       .then(dataUrl => {
         setLoading(false);
-        const link = document.createElement('a');
-        link.download = 'certgo.png';
+        const link = document.createElement("a");
+        link.download = "certgo.png";
         link.href = dataUrl;
         link.click();
       })
-      .catch((err) => {
+      .catch(err => {
         setLoading(false);
-        console.log(err)
-      })
+        console.log(err);
+      });
   }, [bulkCertDesignRef]);
 
   const downloadMultiplePdfs = async () => {
@@ -86,30 +91,38 @@ function Index() {
       const el = elements.item(i);
       console.log("El", el);
       const imgData = await htmlToImage.toPng(el);
-  
+
       let elHeight = el.offsetHeight;
       console.log("Height", elHeight);
       let elWidth = el.offsetWidth;
       console.log("Width", elWidth);
-  
+
       const pageWidth = doc.internal.pageSize.getWidth();
       console.log("Page width", pageWidth);
-  
+
       if (elWidth > pageWidth) {
         const ratio = pageWidth / elWidth;
         elHeight = elHeight * ratio - padding * 2;
         elWidth = elWidth * ratio - padding * 2;
       }
-  
+
       const pageHeight = doc.internal.pageSize.getHeight();
       console.log("Page height", pageHeight);
-  
+
       if (top + elHeight > pageHeight) {
         doc.addPage();
         top = marginTop;
       }
-  
-      doc.addImage(imgData, "PNG", padding, top, elWidth, elHeight, `image${i}`);
+
+      doc.addImage(
+        imgData,
+        "PNG",
+        padding,
+        top,
+        elWidth,
+        elHeight,
+        `image${i}`
+      );
       top += elHeight + marginTop;
     }
   };
@@ -141,24 +154,15 @@ function Index() {
           {/* Mapping through the data */}
           {array.map((item, id) => (
             <SplideSlide key={id}>
-              {templateone &&
-                <BulkCertDesign1
-                  item={item}
-                  ref={bulkCertDesignRef}
-                />
-              }
-              {templatetwo &&
-                <BulkCertDesign2
-                  item={item}
-                  ref={bulkCertDesignRef}
-                />
-              }
-              {templatethree &&
-                <BulkCertDesign3
-                  item={item}
-                  ref={bulkCertDesignRef}
-                />
-              }
+              {templateone && (
+                <BulkCertDesign1 item={item} ref={bulkCertDesignRef} />
+              )}
+              {templatetwo && (
+                <BulkCertDesign2 item={item} ref={bulkCertDesignRef} />
+              )}
+              {templatethree && (
+                <BulkCertDesign3 item={item} ref={bulkCertDesignRef} />
+              )}
             </SplideSlide>
           ))}
         </Splide>
@@ -167,22 +171,38 @@ function Index() {
       {/* BUTTONS TO DOWNLOAD OR SHARE THE CRETIFICATES */}
       <div id="bulk-btns">
         <div className="dropdown">
-          {loading ? <div><Button name="Files downloading..." style={{ padding: "10px" }} /></div> : <Button name="Download Certificates" style={{ padding: "10px" }} />}
+          {loading ? (
+            <div>
+              <Button name="Files downloading..." style={{ padding: "10px" }} />
+            </div>
+          ) : (
+            <Button name="Download Certificates" style={{ padding: "10px" }} />
+          )}
           <div className="dropdown-content" style={{ marginTop: "0px" }}>
             {/* <ReactToPrint
               content={() => bulkCertDesignRef.current}
               trigger={() => <Button name="PDF" style={{ padding: "10px", width: "120px" }} className="bulk_dropdown" />}
             /> */}
-            <Button name="PDF" style={{ padding: "10px", width: "120px" }} onClick={downloadMultiplePdfs} className="bulk_dropdown" />
-            <Button name="PNG" style={{ padding: "10px", width: "120px" }} onClick={handleClick} className="bulk_dropdown" />
+            <Button
+              name="PDF"
+              style={{ padding: "10px", width: "120px" }}
+              onClick={downloadMultiplePdfs}
+              className="bulk_dropdown"
+            />
+            <Button
+              name="PNG"
+              style={{ padding: "10px", width: "120px" }}
+              onClick={handleClick}
+              className="bulk_dropdown"
+            />
           </div>
         </div>
         {/* <Button name="Download Certificates as PDF" style={{ padding: "10px" }} /> */}
-        <Button
+        {/* <Button
           className="btnLight"
           name="Send Certificates"
           style={{ padding: "10px" }}
-        />
+        /> */}
       </div>
 
       {/* OTHER TEMPLATES TO CHOOSE FROM */}

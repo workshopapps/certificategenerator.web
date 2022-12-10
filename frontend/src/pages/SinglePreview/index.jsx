@@ -4,8 +4,8 @@ import Modal from "../../Component/Modal";
 import Button from "../../Component/button";
 import "./singlepreview.style.scss";
 import certificate from "../../assets/images/SinglePreview/Completion - Portrait (2).png";
-import certificate2 from "../../assets/images/bulkPreview/template_two.png";
-import certificate3 from "../../assets/images/bulkPreview/template_three.png";
+import certificate2 from "../../assets/images/SinglePreview/Completion - Portrait (3).png";
+import certificate3 from "../../assets/images/SinglePreview/Completion - Portrait.png";
 import { exportComponentAsPNG } from "react-component-export-image";
 import html2canvas from "html2canvas";
 import { jsPDF } from "jspdf";
@@ -99,7 +99,6 @@ function SinglePreview({
       if (!isAuntheticated) {
         setOpenModal(!openModal);
         setModalMessage("You need to sign up to send certificate to your mail");
-        console.log("ok");
         return;
       }
       const element = certificateWrapper.current;

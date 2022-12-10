@@ -69,7 +69,6 @@
         &__body {
           padding: 25px 15px;
         }
-
       }
 
       .certificate-header h4 {
@@ -249,11 +248,11 @@
       .sample2 {
         top: 14.5%;
       }
-
     }
   }
 
-  @media screen and (min-width: 768px) {}
+  @media screen and (min-width: 768px) {
+  }
 
   @media screen and (min-width: 1024px) {
     .button-container button {
@@ -301,5 +300,4 @@
       height: 58px;
     }
   }
-
 }
