@@ -33,7 +33,8 @@ const sendContact =  async (req, res) => {
     newContact.save();
 
     const mail = `
-    <p>Your message has been received.</p>
+    <p>Your message has been received.
+       You will receive a feedback from us soon</p>
   `
     // Create Transporter
     let transporter = nodemailer.createTransport({
@@ -51,8 +52,8 @@ const sendContact =  async (req, res) => {
     let mailOptions = {
       from: `${process.env.AUTH_EMAIL}`, //Sender address
       to: `${req.body.email}`, // Receiver address
-      subject: 'Hi From Certawi',
-      text: 'Hi from Certawi',
+      subject: 'Hi From Certgo',
+      text: 'Hi from Certgo',
       html: mail
     };
 
