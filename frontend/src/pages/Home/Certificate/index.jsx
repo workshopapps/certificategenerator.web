@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import {ButtonLoader} from "../../../Component/";
+import { ButtonLoader } from "../../../Component/";
 import "./certificate.style.scss";
 import UploadCSV from "../../UploadCSV";
 import DatePicker from "react-datepicker";
