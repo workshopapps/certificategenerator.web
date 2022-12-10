@@ -1,5 +1,7 @@
+import jsPDF from "jspdf";
 import { toPng } from "html-to-image";
-import ReactToPrint from "react-to-print";
+// import ReactToPrint from "react-to-print";
+import * as htmlToImage from "html-to-image";
 import React, { useRef, useCallback, useState } from "react";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 
@@ -14,6 +16,7 @@ import certificate3 from "../../assets/images/bulkPreview/template_three.png";
 import certificate from "../../assets/images/bulkPreview/Completion - Portrait (2).png";
 
 function Index() {
+  const [loading, setLoading] = useState(false);
   // Getting the file data from the local storage and parsing its values
   const savedData = localStorage.getItem("dataKey");
   const array = JSON.parse(savedData);
@@ -44,20 +47,72 @@ function Index() {
   const bulkCertDesignRef = useRef();
 
   const handleClick = useCallback(() => {
+    setLoading(true);
     if (bulkCertDesignRef.current === null) {
+      setLoading(false);
       return;
     };
     toPng(bulkCertDesignRef.current, { cacheBust: true, backgroundColor: "#f8fffe", canvasWidth: 388.5, canvasHeight: 299.4 })
       .then(dataUrl => {
+        setLoading(false);
         const link = document.createElement('a');
         link.download = 'certgo.png';
         link.href = dataUrl;
         link.click();
       })
       .catch((err) => {
+        setLoading(false);
         console.log(err)
       })
   }, [bulkCertDesignRef]);
+
+  const downloadMultiplePdfs = async () => {
+    const doc = new jsPDF("p", "px", [339.4, 339.4]);
+    console.log("Doc", doc);
+    const elements = document.getElementsByClassName("multiple");
+    console.log("Elements", elements);
+    setLoading(true);
+    await createPdf({ doc, elements });
+    setLoading(false);
+    doc.save(`certgo.pdf`);
+  };
+
+  const createPdf = async ({ doc, elements }) => {
+    const padding = 10;
+    const marginTop = 20;
+    let top = marginTop;
+
+    for (let i = 0; i < elements.length; i++) {
+      const el = elements.item(i);
+      console.log("El", el);
+      const imgData = await htmlToImage.toPng(el);
+  
+      let elHeight = el.offsetHeight;
+      console.log("Height", elHeight);
+      let elWidth = el.offsetWidth;
+      console.log("Width", elWidth);
+  
+      const pageWidth = doc.internal.pageSize.getWidth();
+      console.log("Page width", pageWidth);
+  
+      if (elWidth > pageWidth) {
+        const ratio = pageWidth / elWidth;
+        elHeight = elHeight * ratio - padding * 2;
+        elWidth = elWidth * ratio - padding * 2;
+      }
+  
+      const pageHeight = doc.internal.pageSize.getHeight();
+      console.log("Page height", pageHeight);
+  
+      if (top + elHeight > pageHeight) {
+        doc.addPage();
+        top = marginTop;
+      }
+  
+      doc.addImage(imgData, "PNG", padding, top, elWidth, elHeight, `image${i}`);
+      top += elHeight + marginTop;
+    }
+  };
 
   return (
     <div id="bulk-preview">
@@ -112,12 +167,13 @@ function Index() {
       {/* BUTTONS TO DOWNLOAD OR SHARE THE CRETIFICATES */}
       <div id="bulk-btns">
         <div className="dropdown">
-          <Button name="Download Certificates" style={{ padding: "10px" }} />
+          {loading ? <div><Button name="Files downloading..." style={{ padding: "10px" }} /></div> : <Button name="Download Certificates" style={{ padding: "10px" }} />}
           <div className="dropdown-content" style={{ marginTop: "0px" }}>
-            <ReactToPrint
+            {/* <ReactToPrint
               content={() => bulkCertDesignRef.current}
               trigger={() => <Button name="PDF" style={{ padding: "10px", width: "120px" }} className="bulk_dropdown" />}
-            />
+            /> */}
+            <Button name="PDF" style={{ padding: "10px", width: "120px" }} onClick={downloadMultiplePdfs} className="bulk_dropdown" />
             <Button name="PNG" style={{ padding: "10px", width: "120px" }} onClick={handleClick} className="bulk_dropdown" />
           </div>
         </div>
