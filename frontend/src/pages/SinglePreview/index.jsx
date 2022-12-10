@@ -99,7 +99,6 @@ function SinglePreview({
       if (!isAuntheticated) {
         setOpenModal(!openModal);
         setModalMessage("You need to sign up to send certificate to your mail");
-        console.log("ok");
         return;
       }
       const element = certificateWrapper.current;

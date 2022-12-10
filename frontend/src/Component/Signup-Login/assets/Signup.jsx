@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { GoogleLogin } from "react-google-login";
 import { gapi } from "gapi-script";
 
@@ -18,6 +18,7 @@ const Signup = () => {
   const { setAccess } = useAppProvider();
   const { setProfileName } = useAppProvider();
   const navigate = useNavigate();
+  const location = useLocation();
 
   // const [type, setType] = useState("password");
   const type = "password";
@@ -35,7 +36,7 @@ const Signup = () => {
   const [useremail, setUserEmail] = useState();
   const [password, setPassword] = useState();
   const [checkbox, setCheckbox] = useState(false);
-  
+
   setProfileName(userName);
   // const [error, setError] = useState(false);
   const [token, setToken] = useState({
@@ -70,7 +71,12 @@ const Signup = () => {
         "Access-Control-Allow-Origin": "*"
         // "Access-Control-Allow-Methods": "POST",
       },
-      body: JSON.stringify({ email: email, password: password, name: name, checkbox: checkbox })
+      body: JSON.stringify({
+        email: email,
+        password: password,
+        name: name,
+        checkbox: checkbox
+      })
     });
   }
 
@@ -86,7 +92,11 @@ const Signup = () => {
           icon: "success",
           title: "Signed up successfully"
         });
-        navigate("/login");
+        if (location.state?.from.pathname) {
+          navigate(location.state.from);
+        } else {
+          navigate("/login");
+        }
         setLoading(false);
         setAccess(true);
       }

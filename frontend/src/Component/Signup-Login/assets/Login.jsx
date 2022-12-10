@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { GoogleLogin } from "react-google-login";
 import { gapi } from "gapi-script";
@@ -8,7 +8,7 @@ import "./login.scss";
 import appleSVG from "./assets/apple.svg";
 import googleSVG from "./assets/google.svg";
 import cert from "./assets/Cert.png";
-import { Toast } from '../../ToastAlert'
+import { Toast } from "../../ToastAlert";
 import Input from "../../Input";
 import Button from "../../button";
 import useAppProvider from "../../../hooks/useAppProvider";
@@ -19,7 +19,7 @@ const Login = () => {
   const { setAccess } = useAppProvider();
   const navigate = useNavigate();
   const [type] = useState("password");
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = React.useState({
     name: "",
     email: "",
@@ -37,8 +37,7 @@ const Login = () => {
     accessToken: ""
   });
 
-
-
+  const location = useLocation();
 
   function handleChange(event) {
     const { name, value, type, checked } = event.target;
@@ -49,33 +48,38 @@ const Login = () => {
       };
     });
   }
- 
+
   async function loginUser(email, password) {
     return axios.post("/auth/login", { email: email, password: password });
   }
 
   const handleSubmit = async e => {
     e.preventDefault();
-    setLoading(true)
+    setLoading(true);
+    // console.log(location.state.from.pathname);
     try {
       const response = await loginUser(useremail, password);
-      console.log(response)
+      console.log(response);
 
       if (response.status === 200 || response.status === 201) {
         Toast.fire({
           icon: "success",
           title: "Signed in successfully"
         });
-        navigate("/dashboard");
-        setLoading(false)
+        if (location.state?.from.pathname) {
+          navigate(location.state.from);
+        } else {
+          navigate("/dashboard");
+        }
+        setLoading(false);
         setAccess(true);
       } else {
         Toast.fire({
           icon: "error",
           title: "Something went wrong"
         });
-        
-        setLoading(false)
+
+        setLoading(false);
         throw new Error("Something went wrong");
       }
 
@@ -83,54 +87,42 @@ const Login = () => {
         userId: response.data.data.userId,
         token: response.data.data.token,
         refreshToken: response.data.data.refreshToken,
-        subscription: response.data.data.subscription,
-      }
-      localStorage.setItem('userData', JSON.stringify(userData))
-      console.log(userData)
-
+        subscription: response.data.data.subscription
+      };
+      localStorage.setItem("userData", JSON.stringify(userData));
+      console.log(userData);
     } catch (error) {
-     
-      console.log(error)
-     if (error.response.status === 400) {
-       Toast.fire({
-         icon: "error",
-         title: "A user for this email could not be found"
-       });
+      console.log(error);
+      if (error.response.status === 400) {
+        Toast.fire({
+          icon: "error",
+          title: "A user for this email could not be found"
+        });
 
-       setLoading(false);
-       
-     } else if (error.response.status === 401) {
-       Toast.fire({
-         icon: "error",
-         title: "Invalid password, please try again"
-       });
-       setLoading(false);
+        setLoading(false);
+      } else if (error.response.status === 401) {
+        Toast.fire({
+          icon: "error",
+          title: "Invalid password, please try again"
+        });
+        setLoading(false);
+      } else if (error.response.status === 500) {
+        Toast.fire({
+          icon: "error",
+          title: "Internal server Error"
+        });
 
-     } else if (error.response.status === 500) {
-       Toast.fire({
-         icon: "error",
-         title: "Internal server Error"
-       });
+        setLoading(false);
+      } else {
+        Toast.fire({
+          icon: "error",
+          title: "Something went wrong"
+        });
 
-       setLoading(false);
-
-      
-     } else {
-       Toast.fire({
-         icon: "error",
-         title: "Something went wrong"
-       });
-
-       setLoading(false);
-      
-     }
-      
-      
+        setLoading(false);
+      }
     }
   };
-
-
-
 
   useEffect(() => {
     const initClient = () => {
@@ -140,15 +132,12 @@ const Login = () => {
       });
     };
     gapi.load("client:auth2", initClient);
-  }, [])
-  
+  }, []);
 
   const onSuccess = res => {
     setToken({ accessToken: res.tokenId });
 
     if (token.accessToken) loginUserGoogle(token);
-
-    
   };
 
   const onFailure = err => {
@@ -167,11 +156,12 @@ const Login = () => {
       subscription: response.data.data.subscription
     };
     localStorage.setItem("userData", JSON.stringify(userData));
-    
-  
-    navigate("/dashboard");
 
-   
+    if (location.state?.from.pathname) {
+      navigate(location.state.from);
+    } else {
+      navigate("/dashboard");
+    }
   }
   return (
     <div id="login">
@@ -190,7 +180,11 @@ const Login = () => {
               cookiePolicy={"single_host_origin"}
               isSignedIn={true}
               render={renderProps => (
-                <div onClick={renderProps.onClick} id="signupG" style={{ cursor: "pointer" }}>
+                <div
+                  onClick={renderProps.onClick}
+                  id="signupG"
+                  style={{ cursor: "pointer" }}
+                >
                   <img alt="" src={googleSVG} id="img_id" />
                   Login using Google
                 </div>
@@ -232,9 +226,10 @@ const Login = () => {
             />
 
             {/* </div> */}
-           
-            <div className="forgotPwd"><Link to="/fff1">
-              Forgot password?</Link></div>
+
+            <div className="forgotPwd">
+              <Link to="/fff1">Forgot password?</Link>
+            </div>
             <div id="checkTerms">
               <input
                 type="checkbox"
