@@ -9,7 +9,7 @@ import CreateCertificateModal from "./CreateCertificateModal";
 import useAppProvider from "../../hooks/useAppProvider";
 import { Loader } from "../../Component";
 import TableRow from "./TableRow";
-import profilePic from "../../assets/images/Ellipse4.png";
+import profilePic from "../../assets/svgs/default-brandkit.svg";
 import Ellipse from "../../assets/svgs/hor-ellipse.svg";
 import "./dashboard.style.scss";
 
@@ -57,15 +57,11 @@ const Dashboard = () => {
 
   // On file select (from the pop up)
   // Update the state
-  const onFileChange = async e => {
-    e.preventDefault();
-    setFile(e.target.files[0]);
-  };
-
-  const onUpdate = async e => {
-    e.preventDefault();
+   const onUpdate = async image => {
     const formData = new FormData();
-    formData.append("file", file);
+    formData.append("file", image);
+    console.log(image);
+    console.log(formData);
     try {
       const response = await axiosPrivateKit.put("/users/brand-kit", formData);
       console.log("Response", response);
@@ -92,7 +88,14 @@ const Dashboard = () => {
       console.log(error.message);
     }
   };
+  const onFileChange = async e => {
+    e.preventDefault();
+    setFile(URL.createObjectURL(e.target.files[0]));
+    console.log(e.target.files[0]);
+    onUpdate(e.target.files[0])
+  };
 
+ 
   useEffect(() => {
     const getFile = async e => {
       const res = await axiosPrivate.get("/users/brand-kit");
@@ -281,20 +284,14 @@ const Dashboard = () => {
             </div>
             <div className="brandkit-dropdown">
               <ul>
-                <li>
-                  <label htmlFor="file" className="dashboard__upload-label">
-                    <span>View Logo</span>
-                    <input
-                      type="file"
-                      id="file"
-                      accept="image/*"
-                      name="file"
-                      onChange={onFileChange}
-                    />
-                  </label>
-                </li>
-                <li onClick={onUpdate}>Upload new logo</li>
-                <li>Delete Logo</li>
+               <li> 
+                <label htmlFor="file" className="dashboard__upload-label">
+                  <span>Upload New Logo</span>   
+                  <input type="file" id="file" accept="image/*" name="file" onChange={onFileChange}  />
+                </label>
+              </li>
+                <li >View Logo</li>
+                {/* <li>Delete Logo</li> */}
               </ul>
             </div>
           </div>
