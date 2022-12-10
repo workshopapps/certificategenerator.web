@@ -192,7 +192,7 @@ const Dashboard = () => {
       item.title === "Issued Certificates"
         ? { ...item, count: issuedCount }
         : item
-    );
+    )
 
     setCardData(issuedCard);
   };
