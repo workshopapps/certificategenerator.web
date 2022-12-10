@@ -133,8 +133,7 @@ const Dashboard = () => {
       icon: "success",
       title: "You have deleted all your certificates"
     });
-    const res = await axiosPrivate.get("/certificates");
-    setData(res.data.data.certificates);
+    setData([]);
   };
 
   const getUserCertificates = async () => {
@@ -322,38 +321,37 @@ var profileName = localStorage.getItem("profileName")
         </div>
 
         <div className="dashboard__cards">
-          {console.log(cardData)}
-          {cardData
+          {cardData[0].count !== 0
             ? cardData.map((item, idx) => <Card key={idx} item={item} />)
             : null}
         </div>
 
         <div className="table-wrapper">
           <div className="table-header">
-            <p>CERTIFICATE DASHBOARD</p>
-            <h5 style={{ padding: "50px!important" }}>
+            <p>CERTIFICATES</p>
+            {/* <h5 style={{ padding: "50px!important" }}>
               
                 Certificate Download Link : {eventLink && <a style = {{color : 'green'}} target = '_blank' href = {eventLink}>Link generated, Click Here</a>}
               
-            </h5>
+            </h5> */}
             {data.length > 0 ? (
               <div style={{ display: "flex" }}>
                 <Button className="" onClick={() => setOpenModal(true)}>
                   Create New Certificate
                 </Button>
 
-                <Button className="" onClick={handleDeleteAll}>
+                {/* <Button style={{ fontSize: "16px" }} className="" onClick={handleDeleteAll}>
                   Delete All Certificates
                 </Button>
 
                 <Button
-                  style={{ marginLeft: "20px" }}
-                  className=""
+                  style={{ marginLeft: "16px", fontSize: "16px" }}
+                  className="btn-generate"
                   onClick={handleGenerate}
                 >
-                  {/* <Link to = {`/generate/:${generateId}`}>Generate Link</Link> */}
+                  <Link to = {`/generate/:${generateId}`}>Generate Link</Link> 
                   Generate Link
-                </Button>
+                </Button> */}
               </div>
             ) : null}
           </div>
@@ -407,10 +405,10 @@ var profileName = localStorage.getItem("profileName")
               <div className="null-table-data">
                 <div>
                   {nullDataIcon()}
-                  <p>You haven't created any Certificates</p>
+                  <p style={{ fontSize: "16px" }}>You haven't created any Certificates</p>
                   <div>
                     <button className="" onClick={() => setOpenModal(true)}>
-                      Create New Certificate
+                      + New Certificate
                     </button>
                   </div>
                 </div>

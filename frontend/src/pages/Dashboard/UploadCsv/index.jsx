@@ -94,11 +94,12 @@ const UploadCsv = ({getUserCertificates, onClose}) => {
           Download sample
         </CSVLink>
       </Button>
-      <h6>Upload your CSV file here in the format below</h6>
+      <h6 style={{ textAlign: "center" }}>Upload your CSV file here in the format below</h6>
       <div>
-        <div>
+        <div style={{ marginBottom: "16px" }}>
           <img src={UploadVector} alt="upload" />
         </div>
+        
         <p>Drag and drop your CSV file here</p>
         <div>
           <span>or</span>
