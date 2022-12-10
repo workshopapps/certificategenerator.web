@@ -6,14 +6,24 @@ const {
   addUserProfile,
   getUserProfile,
   updateUserProfile,
-  deleteUserProfile
+  deleteUserProfile,
+  uploadUserAvatar
 } = require("../controllers/profileController");
+const fileUpload = require("express-fileupload");
 
 // for getting each user profile
 router.get("/", authentication, getUserProfile);
 
 // for creating each user profile
 router.post("/", authentication, addUserProfile);
+
+// Upload user avatar
+router.post(
+  "/avatar",
+  authentication,
+  fileUpload({ useTempFiles: true }),
+  uploadUserAvatar
+);
 
 //for updating userProfile
 router.put("/", authentication, updateUserProfile);
