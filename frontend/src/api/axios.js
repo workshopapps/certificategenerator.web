@@ -15,6 +15,7 @@ const axiosPrivate = axios.create({
     Authorization: `Bearer ${token}`
   }
 });
+
 const axiosFormData = axios.create({
   baseURL,
   headers: {
