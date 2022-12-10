@@ -46,17 +46,22 @@ function Index() {
   const handleClick = useCallback(() => {
     if (bulkCertDesignRef.current === null) {
       return;
-    };
-    toPng(bulkCertDesignRef.current, { cacheBust: true, backgroundColor: "#f8fffe", canvasWidth: 388.5, canvasHeight: 299.4 })
+    }
+    toPng(bulkCertDesignRef.current, {
+      cacheBust: true,
+      backgroundColor: "#f8fffe",
+      canvasWidth: 388.5,
+      canvasHeight: 299.4
+    })
       .then(dataUrl => {
-        const link = document.createElement('a');
-        link.download = 'certgo.png';
+        const link = document.createElement("a");
+        link.download = "certgo.png";
         link.href = dataUrl;
         link.click();
       })
-      .catch((err) => {
-        console.log(err)
-      })
+      .catch(err => {
+        console.log(err);
+      });
   }, [bulkCertDesignRef]);
 
   return (
@@ -86,24 +91,15 @@ function Index() {
           {/* Mapping through the data */}
           {array.map((item, id) => (
             <SplideSlide key={id}>
-              {templateone &&
-                <BulkCertDesign1
-                  item={item}
-                  ref={bulkCertDesignRef}
-                />
-              }
-              {templatetwo &&
-                <BulkCertDesign2
-                  item={item}
-                  ref={bulkCertDesignRef}
-                />
-              }
-              {templatethree &&
-                <BulkCertDesign3
-                  item={item}
-                  ref={bulkCertDesignRef}
-                />
-              }
+              {templateone && (
+                <BulkCertDesign1 item={item} ref={bulkCertDesignRef} />
+              )}
+              {templatetwo && (
+                <BulkCertDesign2 item={item} ref={bulkCertDesignRef} />
+              )}
+              {templatethree && (
+                <BulkCertDesign3 item={item} ref={bulkCertDesignRef} />
+              )}
             </SplideSlide>
           ))}
         </Splide>
@@ -116,17 +112,28 @@ function Index() {
           <div className="dropdown-content" style={{ marginTop: "0px" }}>
             <ReactToPrint
               content={() => bulkCertDesignRef.current}
-              trigger={() => <Button name="PDF" style={{ padding: "10px", width: "120px" }} className="bulk_dropdown" />}
+              trigger={() => (
+                <Button
+                  name="PDF"
+                  style={{ padding: "10px", width: "120px" }}
+                  className="bulk_dropdown"
+                />
+              )}
             />
-            <Button name="PNG" style={{ padding: "10px", width: "120px" }} onClick={handleClick} className="bulk_dropdown" />
+            <Button
+              name="PNG"
+              style={{ padding: "10px", width: "120px" }}
+              onClick={handleClick}
+              className="bulk_dropdown"
+            />
           </div>
         </div>
         {/* <Button name="Download Certificates as PDF" style={{ padding: "10px" }} /> */}
-        <Button
+        {/* <Button
           className="btnLight"
           name="Send Certificates"
           style={{ padding: "10px" }}
-        />
+        /> */}
       </div>
 
       {/* OTHER TEMPLATES TO CHOOSE FROM */}
