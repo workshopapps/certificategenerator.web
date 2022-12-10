@@ -149,6 +149,7 @@ $size-sm: 12px;
     color: $text-primary;
     font-weight: 500;
     line-height: 19px;
+    margin-left: 0;
   }
 
   &__description {
@@ -230,7 +231,7 @@ $size-sm: 12px;
       }
 
       table {
-        width: 580px;
+        width: 720px;
         text-align: left;
         border-collapse: collapse;
         background-color: #fff;

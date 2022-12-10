@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useRef } from 'react';
 import { useEffect } from 'react';
 import axios from 'axios';
-import { BsCaretRightFill } from 'react-icons/bs';
+import { BsCaretDownFill } from 'react-icons/bs';
 import { ReactComponent as ActionIcon } from "./assets/actionIcon.svg";
 import ViewModal from './Modal/ViewModal';
 import EditModal from './Modal/EditModal';
@@ -104,7 +104,7 @@ const TableRow = ({item, handleChangeCertificateStatus, handleDeleteCertificate,
           <ul ref={drop} className="action__overlay">
             <li className="action__overlay--item" onClick={() => handleViewModal(item)}>View</li>
             <li className="action__overlay--item" onClick={() => handleEditModal(item)}>Edit</li>
-            <li className="action__overlay--item status" onClick={() => setOpenStatus(!openStatus)}><div>Status <span><BsCaretRightFill/></span></div>
+            <li className="action__overlay--item status" onClick={() => setOpenStatus(!openStatus)}><div>Status <span><BsCaretDownFill/></span></div>
               {openStatus && (
                 <ul>
                   <li className='status__pending' onClick={() => handleStatus(item._id, 'pending')}>Pending</li>
