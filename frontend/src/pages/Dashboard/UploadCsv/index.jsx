@@ -72,7 +72,7 @@ const UploadCsv = ({getUserCertificates, onClose}) => {
       } else {
         setLoading(false);
         setArray(res.data.data.certificateData)
-        localStorage.setItem('dataKey', JSON.stringify(array));
+        localStorage.setItem('dataKey', JSON.stringify(res.data.data.certificateData));
         navigate('/bulk_preview')
         onClose();
         getUserCertificates();
