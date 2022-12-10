@@ -2,14 +2,15 @@ import axios from "axios";
 import { useState, useContext, useEffect } from "react";
 import Swal from "sweetalert2";
 import CSVSample from "../../../assets/images/CSV-sample.png";
+import { CSVLink } from "react-csv";
 import UploadVector from "../../../assets/images/uploadPage/uploadVector.svg";
 import useAppProvider from "../../../hooks/useAppProvider"
 import {axiosFormData} from "../../../api/axios";
 import {ButtonLoader} from "../../../Component"
 import { useNavigate } from "react-router-dom";
-
 import AppContext from "../../../contexts/AppProvider";
 import "./uploadcsv.style.scss";
+import Button from "../../../Component/button";
 
 const UploadCsv = ({getUserCertificates, onClose}) => {
   const { array, setArray } = useContext(AppContext);
@@ -71,6 +72,7 @@ const UploadCsv = ({getUserCertificates, onClose}) => {
       } else {
         setLoading(false);
         setArray(res.data.data.certificateData)
+        localStorage.setItem('dataKey', JSON.stringify(array));
         navigate('/bulk_preview')
         onClose();
         getUserCertificates();
@@ -84,11 +86,14 @@ const UploadCsv = ({getUserCertificates, onClose}) => {
     }
   };
 
-  useEffect(() => {
-    localStorage.setItem('dataKey', JSON.stringify(array));
-  }, [array]);
+  
   return (
     <article id="uploadCSVContainer">
+      <Button className="Submitcsv" style={{ margin: "1em auto", width: "200px" }}>
+        <CSVLink data={csvDataSample} headers={headers} filename="sample.csv" style={{ color: "white" }}>
+          Download sample
+        </CSVLink>
+      </Button>
       <h6>Upload your CSV file here in the format below</h6>
       <div>
         <div>
@@ -123,3 +128,106 @@ const UploadCsv = ({getUserCertificates, onClose}) => {
 };
 
 export default UploadCsv;
+
+const headers = [
+  {label: "name", key: "name"},
+  {label: "nameOfOrganization", key: "nameOfOrganization"},
+  {label: "description", key: "description"},
+  {label: "award", key: "award"},
+  {label: "signed", key: "signed"},
+  {label: "email", key: "email"},
+  {label: "date", key: "date"}
+];
+
+const csvDataSample = [
+  {
+    name: "jane doe",
+    nameOfOrganization: "zuri",
+    description:
+      "this certificate is a proof of completion for HNG internship program",
+    award: "certificate of completion",
+    signed: "###",
+    email: "josepholukunle1107@gmail.com",
+    date: "13-02-2022"
+  },
+  {
+    name: "john champ",
+    nameOfOrganization: "zuri",
+    description:
+      "this certificate is a proof of completion for HNG internship program",
+    award: "certificate of completion",
+    signed: "###",
+    email: "josepholukunle1107@gmail.com",
+    date: "13-02-2022"
+  },
+  {
+    name: "Peter Smith row",
+    nameOfOrganization: "zuri",
+    description:
+      "this certificate is a proof of completion for HNG internship program",
+    award: "certificate of completion",
+    signed: "###",
+    email: "josepholukunle1107@gmail.com",
+    date: "13-02-2022"
+  },
+  {
+    name: "malaang sar konga",
+    nameOfOrganization: "zuri",
+    description:
+      "this certificate is a proof of completion for HNG internship program",
+    award: "certificate of completion",
+    signed: "###",
+    email: "josepholukunle1107@gmail.com",
+    date: "13-02-2022"
+  },
+  {
+    name: "tuchel geraldine",
+    nameOfOrganization: "zuri",
+    description:
+      "this certificate is a proof of completion for HNG internship program",
+    award: "certificate of completion",
+    signed: "###",
+    email: "josepholukunle1107@gmail.com",
+    date: "13-02-2022"
+  },
+  {
+    name: "cecy cardine",
+    nameOfOrganization: "hng",
+    description:
+      "this certificate is a proof of completion for HNG internship program",
+    award: "certificate of completion",
+    signed: "###",
+    email: "josepholukunle1107@gmail.com",
+    date: "13-02-2022"
+  },
+  {
+    name: "get away",
+    nameOfOrganization: "hng",
+    description:
+      "this certificate is a proof of completion for HNG internship program",
+    award: "certificate of completion",
+    signed: "###",
+    email: "josepholukunle1107@gmail.com",
+    date: "13-02-2022"
+  },
+  {
+    name: "Lionel Messi sn.",
+    nameOfOrganization: "hng",
+    description:
+      "this certificate is a proof of completion for HNG internship program",
+    award: "certificate of completion",
+    signed: "###",
+    email: "josepholukunle1107@gmail.com",
+    date: "13-02-2022"
+  },
+  {
+    name: "team headlight",
+    nameOfOrganization: "zuri",
+    description:
+      "this certificate is a proof of completion for HNG internship program",
+    award: "certificate of completion",
+    signed: "###",
+    email: "josepholukunle1107@gmail.com",
+    date: "13-02-2022"
+  }
+];
