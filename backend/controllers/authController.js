@@ -50,11 +50,10 @@ const userSignup = handleAsync(async (req, res, next) => {
     const payload = await verify(accessToken);
     const googleUserId = payload["sub"];
     email = payload["email"];
+    name = payload["name"]
 
     //check db if user already exists
-    if (await userExist(email)){
-      
-    }
+    if (await userExist(email)) throw createApiError("email already in use", 401);
 
 
     //if not create new user
