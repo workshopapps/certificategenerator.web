@@ -70,6 +70,26 @@
          font-weight: 400;
          color: rgba(34, 34, 34, 0.6);
        }
+       .data-avatar{
+        display: flex;
+        flex-direction: column;
+        gap: 0;        
+       }
+       .avatar-name{
+          border: none;
+          font-weight: 1000px;
+          font-size: 36px;
+       }
+       .avatar-job{
+        border: none;
+        font-size: 19px;
+        font-weight: 500px;
+       }
+       .avatar-location{
+        border: none;
+        font-size: 14px;
+        font-weight: 200px;
+       }
      }
 
      .user-avatar {

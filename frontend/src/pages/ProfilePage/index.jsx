@@ -3,7 +3,7 @@ import axios from 'axios'
 import Modal from '../../Component/Modal'
 import {useNavigate} from 'react-router-dom'
 import "./profile.style.scss";
-import Avatar from "../../assets/svgs/default-brandkit.svg"
+import Avatar from "../../assets/svgs/profileavatar.jpg"
 import Input from "../../Component/Input";
 import Loader from "../../Component/ButtonLoader";
 import { Toast } from '../../Component/ToastAlert'
@@ -152,19 +152,19 @@ const userId = localStorage.getItem("user");
           <img src={Avatar} className="avatar" alt="profile-pic" />
         </div>
         <div className="mb-2">
-          <h3>Olamiposi Benjamin</h3>
-          <p className="job-title">Advisor at Stripe Inc.</p>
-          <div className="location-wrapper">
-            <span></span><span>Lagos, Nigeria</span>
-          </div>
+        <form className="data-avatar">
+            <div className="avatar-name" >{data.name} </div>
+            <div  className="avatar-job"  > {data.job}</div>
+            <div className="avatar-location" >{data.location}</div>
+          </form> 
         </div>
         <div className="mb-2">
-          <p>Lite Plan</p>
-          <span className="lite-plan-exp">Expires 23rd December 2022</span>
+          <p>No Plan</p>
+          <span className="lite-plan-exp">No Subscription yet</span>
         </div>
         <div className="mb-2">
-          <p>Last bulk certificate generated</p>
-          <span className="last-gen-date">12th November 2022</span>
+          <p>Last certificate generated</p>
+          <span className="last-gen-date">No Certificate yet</span>
         </div>
 
         <div className="btn-wrapper">
@@ -205,7 +205,7 @@ const userId = localStorage.getItem("user");
 
             <Input className="form-group"
                 label={"Email"}
-                callback={handleOnchange} 
+               // callback={handleOnchange} 
                 id="email" 
                 type="email" 
                 placeholder="E-mail"
