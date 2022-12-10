@@ -1,7 +1,6 @@
 .drop {
     background: #FEFFFF;
     position: absolute;
-    display: flex;
     flex-direction: column;
     height: fit-content;
     width: fit-content;
@@ -12,14 +11,30 @@
 
     &__item {
         border-bottom: 1px solid #eee;
+        color: #6C6C70;
+        font-size: 14px;
         padding: 5px;
         cursor: pointer;
     }
+
+
 }
 
 .dropdown-container {
     position: relative;
+
+    .dropdown__img {
+        img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+        }
+    }
 }
+
+// #caret-down {
+//     transform: rotate(180deg);
+// }
 
 // .dropdown-container:hover+.drop {
 //     display: flex;
@@ -31,4 +46,8 @@
 .hidden {
     display: flex;
     transition: 300ms all;
+}
+
+.caret-up {
+    transform: rotate(180deg);
 }
