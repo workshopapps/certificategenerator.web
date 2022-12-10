@@ -37,13 +37,7 @@ const Login = () => {
     accessToken: ""
   });
 
-  // const handleToggle = () => {
-  //   if (type === "password") {
-  //     setType("text");
-  //   } else {
-  //     setType("password");
-  //   }
-  // };
+
 
 
   function handleChange(event) {
@@ -136,15 +130,7 @@ const Login = () => {
   };
 
 
-  // useEffect(() => {
-  //   const initClient = () => {
-  //     gapi.auth2.init({
-  //       clientId: CLIENT_ID
-  //       // scope: ""
-  //     });
-  //   };
-  //   gapi.load("client:auth2", initClient);
-  // });
+
 
   useEffect(() => {
     const initClient = () => {
@@ -160,19 +146,9 @@ const Login = () => {
   const onSuccess = res => {
     setToken({ accessToken: res.tokenId });
 
-    // User details from Google
-    const userProfile = {
-      email: res.profileObj.email,
-      fullName: res.profileObj.name,
-      userProfile: res.profileObj.imageUrl,
-      userId: res.profileObj.googleId,
-      accessToken: res.accessToken
-    };
-localStorage.setItem("userDataGoogle", JSON.stringify(userProfile));
     if (token.accessToken) loginUserGoogle(token);
 
-    // localStorage.setItem("username", res.profileObj.email);
-    // localStorage.setItem("name", res.profileObj.name);
+    
   };
 
   const onFailure = err => {
@@ -181,27 +157,21 @@ localStorage.setItem("userDataGoogle", JSON.stringify(userProfile));
 
   // Send access token to backend
   async function loginUserGoogle(token) {
+    const response = await axios.post("/auth/login", token);
 
-     
+    // send response to localstorage
+    const userData = {
+      userId: response.data.data.userId,
+      token: response.data.data.token,
+      refreshToken: response.data.data.refreshToken,
+      subscription: response.data.data.subscription
+    };
+    localStorage.setItem("userData", JSON.stringify(userData));
     
-    const response = await fetch("https://certgo.hng.tech/api/auth/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(token)
-    });
-    console.log(response);
-     navigate("/dashboard");
+  
+    navigate("/dashboard");
 
    
-
-    // if (response.status === 200 || response.status === 201) {
-    //   // route user to dashboard after successful login
-    //   navigate("/dashboard");
-    // } else {
-    //   navigate("/login");
-    // }
   }
   return (
     <div id="login">

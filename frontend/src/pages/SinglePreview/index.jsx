@@ -15,7 +15,6 @@ import Template1 from "./Templates/template1";
 import Template2 from "./Templates/template2";
 import Template3 from "./Templates/template3";
 
-
 function SinglePreview({
   logo,
   certificateTitle,
@@ -254,9 +253,6 @@ function SinglePreview({
         <img onClick={handleTemplate2} src={certificate2} alt="templates" />
         <img onClick={handleTemplate3} src={certificate3} alt="templates" />
       </div>
-
-
-
 
       {/* BUTTON TO EXPLORE MORE TEMPLATES */}
       <Link to="/templates">
