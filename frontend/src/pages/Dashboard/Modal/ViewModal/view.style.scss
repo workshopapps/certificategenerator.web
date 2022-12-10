@@ -197,154 +197,44 @@
 }
 
 @media screen and (min-width: 500px) {
-    .certificate-share-hero button {
-      width: 160px;
-      height: 40px;
-      font-size: 13px;
-    }
+ .view-modal-wrapper{
+  .certificate-share-hero button {
+    width: 160px;
+    height: 40px;
+    font-size: 13px;
+  }
 
-    .certificate-header h4,
-    h2 {
-      font-size: 25px;
-      margin: 20px;
-    }
+  .certificate-header h4,
+  h2 {
+    font-size: 25px;
+    margin: 20px;
+  }
 
-    #single-preview-text {
-      #preview-text {
-        h1 {
-          font-size: 28px !important;
-        }
-
-        h2 {
-          font-size: 25px;
-        }
+  #single-preview-text {
+    #preview-text {
+      h1 {
+        font-size: 28px !important;
       }
-    }
 
-    #container-wrapper {
-      width: 100%;
-      max-width: 400px;
-    }
-
-    .sample2 {
-      top: 14.5%;
+      h2 {
+        font-size: 25px;
+      }
     }
   }
 
+  #container-wrapper {
+    width: 100%;
+    max-width: 400px;
+  }
+
+  .sample2 {
+    top: 14.5%;
+  }
+
+ }   
+}
   @media screen and (min-width: 768px) {
-    .modal-wrapper {
-      top: 28%;
-    }
-
-    #preview-text img {
-      width: 10%;
-      position: relative;
-      top: -20px;
-      z-index: 100;
-    }
-
-    // certificate-share-hero IMAGES
-    .certificate-header h4 {
-      font-size: 30px !important;
-      margin: 20px;
-    }
-
-    .sample2 {
-      width: 100px;
-      height: 100px;
-      top: 25.5%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-    }
-
-    #container-wrapper {
-      width: 70%;
-      margin: auto;
-      padding: 10px;
-      max-width: 600px;
-    }
-
-    #container-design {
-      border: 2px solid #ac0423;
-    }
-
-    #single-preview-card {
-      position: relative;
-    }
-
-    #single-preview-text {
-      position: relative;
-
-      #preview-text {
-        position: relative;
-        top: -10px;
-
-        h1 {
-          font-size: 30px !important;
-          margin: 0px !important;
-        }
-
-        p {
-          font-size: 15px !important;
-        }
-
-        h2 {
-          font-size: 26px !important;
-          border-bottom: 1px solid #ac0423;
-        }
-
-        h6 {
-          font-size: 15px !important;
-          padding: 5px 20px;
-        }
-      }
-    }
-
-    .single-preview-issue {
-      margin: 20px 0px 15px 0px;
-
-      .line {
-        border-bottom: 1px solid #ac0423;
-      }
-
-      p {
-        font-size: 14px;
-      }
-
-      h6 {
-        font-size: 14px;
-      }
-    }
-
-    h2 {
-      font-size: 30px;
-      margin-top: 40px;
-    }
-
-    .certificate-share-hero button {
-      font-size: 15px;
-      width: 170px;
-      height: 40px;
-      margin: 30px 15px 0px 15px;
-    }
-
-    .dropdown-content button {
-      font-size: 12px;
-      padding: 0px !important;
-      margin: 0px !important;
-      border: none;
-      display: block;
-    }
-
-    .single-images {
-      flex-direction: row;
-      justify-content: center;
-    }
-
-    .single-images img {
-      width: 100%;
-      max-width: 250px;
-    }
+    
   }
 
   @media screen and (min-width: 1024px) {
