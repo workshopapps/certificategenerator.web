@@ -12,6 +12,7 @@ import TableRow from "./TableRow";
 import profilePic from "../../assets/svgs/default-brandkit.svg";
 import Ellipse from "../../assets/svgs/hor-ellipse.svg";
 import "./dashboard.style.scss";
+import { useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
   const {
@@ -38,6 +39,7 @@ const Dashboard = () => {
   const baseURL = "https://certgo.hng.tech/api";
   const accessToken = JSON.parse(localStorage.getItem("userData")).token;
   const [file, setFile] = useState("");
+  let navigate = useNavigate()
 
   const axiosPrivate = axios.create({
     baseURL,
@@ -312,7 +314,7 @@ const Dashboard = () => {
               </div>
             </div>
             <div className="dashboard__btn">
-              <button>Upgrade Account</button>
+              <button onClick={() => navigate("/pricing")}>Upgrade Account</button>
             </div>
           </div>
         </div>

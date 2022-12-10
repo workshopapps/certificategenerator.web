@@ -52,6 +52,7 @@
     &>div:nth-child(3) {
       display: flex;
       justify-content: center;
+      flex-direction: column-reverse;
       align-items: center;
 
       span {
@@ -62,7 +63,7 @@
       }
 
       input {
-        display: none;
+        // display: none;
       }
 
       label {

@@ -102,14 +102,14 @@ const UploadCsv = ({getUserCertificates, onClose}) => {
         
         <p>Drag and drop your CSV file here</p>
         <div>
-          <span>or</span>
           <input
             type="file"
             id="files"
             className="file-upload"
             onChange={onFileChange}
-          />
+            />
           <label htmlFor="files">Browse File</label>
+            <span>or</span>
         </div>
       </div>
       <section>
