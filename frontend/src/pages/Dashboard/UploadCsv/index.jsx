@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState } from "react";
+import { useState, useContext, useEffect } from "react";
 import Swal from "sweetalert2";
 import CSVSample from "../../../assets/images/CSV-sample.png";
 import UploadVector from "../../../assets/images/uploadPage/uploadVector.svg";
@@ -7,10 +7,13 @@ import useAppProvider from "../../../hooks/useAppProvider"
 import {axiosFormData} from "../../../api/axios";
 import {ButtonLoader} from "../../../Component"
 import { useNavigate } from "react-router-dom";
+
+import AppContext from "../../../contexts/AppProvider";
 import "./uploadcsv.style.scss";
 
 const UploadCsv = ({getUserCertificates, onClose}) => {
-  const [state, setState] = useState({ active: true });
+  const { array, setArray } = useContext(AppContext);
+  let navigate = useNavigate()
   const [loading, setLoading] = useState(false)
   const baseURL = "https://certgo.hng.tech/api";
   const accessToken = JSON.parse(localStorage.getItem("userData")).token
@@ -67,6 +70,8 @@ const UploadCsv = ({getUserCertificates, onClose}) => {
         });
       } else {
         setLoading(false);
+        setArray(res.data.data.certificateData)
+        navigate('/bulk_preview')
         onClose();
         getUserCertificates();
         Toast.fire({
@@ -79,6 +84,9 @@ const UploadCsv = ({getUserCertificates, onClose}) => {
     }
   };
 
+  useEffect(() => {
+    localStorage.setItem('dataKey', JSON.stringify(array));
+  }, [array]);
   return (
     <article id="uploadCSVContainer">
       <h6>Upload your CSV file here in the format below</h6>
