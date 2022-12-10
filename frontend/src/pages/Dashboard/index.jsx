@@ -9,7 +9,7 @@ import CreateCertificateModal from "./CreateCertificateModal";
 import useAppProvider from "../../hooks/useAppProvider";
 import { Loader } from "../../Component";
 import TableRow from "./TableRow";
-import profilePic from "../../assets/images/Ellipse4.png";
+import profilePic from "../../assets/svgs/default-brandkit.svg";
 import Ellipse from "../../assets/svgs/hor-ellipse.svg";
 import "./dashboard.style.scss";
 
