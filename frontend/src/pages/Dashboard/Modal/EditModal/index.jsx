@@ -7,18 +7,18 @@ import "./edit.style.scss";
 import Swal from "sweetalert2";
 
 const EditModal = ({ open, onClose, getUserCertificates, editData }) => {
-  const [name, setName] = useState("");
-  const [nameOfOrganization, setNameOfOrg] = useState("");
-  const [award, setAward] = useState("");
-  const [description, setDescription] = useState("");
-  const [date, setDate] = useState("");
-  const [signed, setSigned] = useState("");
-  const [email, setEmail] = useState("");
+  const [name, setName] = useState(editData.name);
+  const [nameOfOrganization, setNameOfOrganization] = useState(editData.nameoforganization);
+  const [award, setAward] = useState(editData.award);
+  const [description, setDescription] = useState(editData.description);
+  const [date, setDate] = useState(editData.date);
+  const [signed, setSigned] = useState(editData.signed);
+  const [email, setEmail] = useState(editData.email);
   const [loading, setLoading] = useState(false);
   const baseURL = "https://certgo.hng.tech/api";
   const accessToken = JSON.parse(localStorage.getItem("userData")).token;
 
-
+console.log(name);
   const axiosPrivate = axios.create({
     baseURL,
     headers: {
@@ -39,19 +39,21 @@ const EditModal = ({ open, onClose, getUserCertificates, editData }) => {
   });
   // const nameRef = useRef()
   const formData = {
-    name,
-    nameOfOrganization,
-    description,
-    signed,
-    email,
-    award,
-    date
+    name: name,
+    nameOfOrganization : nameOfOrganization,
+    award: award,
+    description: description,
+    date: date,
+    signed: signed,
+    email: email
+    
   }
   const data = JSON.stringify(formData)
   const handleSubmit = async (e) => {
+    console.log(formData);
     e.preventDefault()
     try {
-      const res = await axiosPrivate.put(`/certificates/${editData._id}`, data);
+      const res = await axiosPrivate.put(`/certificates/${editData._id}`, formData);
       console.log(res);
       if (res.status === 403) {
         setLoading(false);
@@ -108,7 +110,7 @@ const EditModal = ({ open, onClose, getUserCertificates, editData }) => {
                 type="text"
                 className="form-input"
                 defaultValue={editData.nameoforganization}
-                onChange={e => setNameOfOrg(e.target.value)}
+                onChange={e => setNameOfOrganization(e.target.value)}
               />
             </div>
             <div className="form-group">
@@ -117,7 +119,7 @@ const EditModal = ({ open, onClose, getUserCertificates, editData }) => {
                 type="text"
                 className="form-input"
                 defaultValue={editData.award}
-                onChange={e => setNameOfOrg(e.target.value)}
+                onChange={e => setAward(e.target.value)}
               />
             </div>
             <div className="form-group">

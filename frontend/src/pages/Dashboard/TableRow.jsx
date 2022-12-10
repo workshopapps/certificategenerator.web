@@ -36,7 +36,7 @@ const TableRow = ({item, handleChangeCertificateStatus, handleDeleteCertificate,
     setViewData(item);
   }
   const editCertificate = (item) => {
-      console.log(item);
+      console.log(item._id);
       setEditData(item);
      
    
