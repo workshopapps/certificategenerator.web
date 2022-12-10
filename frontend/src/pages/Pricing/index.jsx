@@ -7,6 +7,7 @@ import Slider from "./slider";
 import { data } from "./data";
 import "@splidejs/react-splide/css";
 import useAppProvider from "../../hooks/useAppProvider";
+import conatctLocatonIconStar from "../../assets/svgs/Conatct-locaton-icon-star.svg";
 
 function Pricing() {
   const { access } = useAppProvider();
@@ -16,8 +17,10 @@ function Pricing() {
 
   const [disabled, setDisabled] = useState(false);
 
-  function disabledHandler(e) {
-    e.preventDefault();
+  function disabledHandler(e, subType) {
+    if (subType === "Basic") {
+      e.preventDefault();
+    }
     setDisabled(true);
   }
 
@@ -58,11 +61,41 @@ function Pricing() {
               const { id, sub } = item;
               return (
                 <div className={sub.subType} key={id}>
-                  <h4>{sub.subType}</h4>
+                  {sub.subType === "Standard" ? (
+                    <div
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "16px",
+                        marginBottom: "0.5rem"
+                      }}
+                    >
+                      <h4>{sub.subType}</h4>
+                      <div
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          gap: "6px",
+                          padding: "6px 16px",
+                          borderRadius: "12px",
+                          backgroundColor: "#08372F1A"
+                        }}
+                      >
+                        <p style={{ fontSize: "12px" }}>Recommended</p>
+                        <img
+                          style={{ width: "13px" }}
+                          src={conatctLocatonIconStar}
+                          alt="Conatct-locaton-icon-star"
+                        />
+                      </div>
+                    </div>
+                  ) : (
+                    <h4 style={{ marginBottom: "0.5rem" }}>{sub.subType}</h4>
+                  )}
 
                   <p>{sub.header}</p>
 
-                  <h3>
+                  <h3 style={{ paddingTop: "0.8rem", paddingBottom: "0.8rem" }}>
                     {sub.amount}
                     <span>{per}</span>
                   </h3>
@@ -83,7 +116,7 @@ function Pricing() {
 
                   {access ? (
                     <Link
-                      to={`${sub.subType !== "Basic" && "/payment"}`}
+                      to={`${sub.subType !== "Basic" ? "/payment" : ""}`}
                       style={
                         disabled && sub.subType === "Basic"
                           ? {
@@ -93,7 +126,7 @@ function Pricing() {
                             }
                           : {}
                       }
-                      onClick={e => disabledHandler(e)}
+                      onClick={e => disabledHandler(e, sub.subType)}
                     >
                       {sub.linkText}
                     </Link>
