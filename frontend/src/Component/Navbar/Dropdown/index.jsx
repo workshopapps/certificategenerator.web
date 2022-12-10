@@ -4,7 +4,7 @@ import {Toast} from '../../ToastAlert'
 import {Link, useNavigate} from "react-router-dom"
 import Loader from '../../ButtonLoader'
 import './dropdown.style.scss'
-import Avatar from '../../../assets/Ellipse4.png'
+import Avatar from '../../../assets/svgs/default-brandkit.svg'
 import CaretDown from '../../../assets/svgs/caret-down.svg'
 
  function DropDown() {

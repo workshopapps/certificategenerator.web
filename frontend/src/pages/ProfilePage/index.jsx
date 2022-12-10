@@ -3,7 +3,7 @@ import axios from 'axios'
 import Modal from '../../Component/Modal'
 import {useNavigate} from 'react-router-dom'
 import "./profile.style.scss";
-import Avatar from "../../assets/images/Ellipse4.png"
+import Avatar from "../../assets/svgs/default-brandkit.svg"
 import Input from "../../Component/Input";
 import Loader from "../../Component/ButtonLoader";
 import { Toast } from '../../Component/ToastAlert'
