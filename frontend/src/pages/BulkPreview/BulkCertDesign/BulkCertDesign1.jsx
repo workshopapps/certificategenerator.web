@@ -6,7 +6,7 @@ const BulkCertDesign1 = React.forwardRef(({ item }, ref) => {
   return (
     <div ref={ref}>
       {/* START OF CERTIFICATE */}
-      <div id="downloadWrapper">
+      <div id="downloadWrapper" className="multiple">
         <div id="certificateWrapper">
           {item.award === undefined ? null : (
             <div id="container-wrapper">
