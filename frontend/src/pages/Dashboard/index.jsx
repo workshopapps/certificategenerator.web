@@ -1,15 +1,16 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-import Card from "./Card";
-import { dummyData, nullDataIcon, } from "./utils";
-import {Toast} from '../../Component/ToastAlert'
+import { dummyData, nullDataIcon } from "./utils";
+import { Toast } from "../../Component/ToastAlert";
 import Button from "../../Component/button";
 import CreateCertificateModal from "./CreateCertificateModal";
-import useAppProvider from "../../hooks/useAppProvider";
+import Card from "./Card";
 import { Loader } from "../../Component";
+import useAppProvider from "../../hooks/useAppProvider";
 import TableRow from "./TableRow";
-import profilePic from '../../assets/svgs/default-brandkit.svg'
+import profilePic from "../../assets/svgs/default-brandkit.svg";
 import Ellipse from "../../assets/svgs/hor-ellipse.svg";
 import "./dashboard.style.scss";
 
@@ -32,14 +33,14 @@ const Dashboard = () => {
   const [data, setData] = useState([]);
   const [cardData, setCardData] = useState([...dummyData]);
   const [openModal, setOpenModal] = useState(false);
-  // const [loading, setLoading] = useState(false);
   const [pricing, setPricing] = useState("");
   const [certificates, setCertificates] = useState([]);
   const [eventLink, setEventLink] = useState("");
   const baseURL = "https://certgo.hng.tech/api";
-  const accessToken = JSON.parse(localStorage.getItem("userData")).token
-  const [file, setFile] = useState('')
-
+  const accessToken = JSON.parse(localStorage.getItem("userData")).token;
+  const [file, setFile] = useState("");
+  const [selectedImage, setSelectedImage] = useState("");
+  let navigate = useNavigate();
 
   const axiosPrivate = axios.create({
     baseURL,
@@ -57,19 +58,18 @@ const Dashboard = () => {
     }
   });
 
-
-    // On file select (from the pop up)
+  // On file select (from the pop up)
   // Update the state
-  const onFileChange = async (e) => {   
-    e.preventDefault()
+  const onFileChange = async e => {
+    e.preventDefault();
     setFile(e.target.files[0]);
-  }
+  };
 
-  const onUpdate = async (e) => {
+  const onUpdate = async e => {
     e.preventDefault();
     const formData = new FormData();
-    formData.append('file', file);
-    try{
+    formData.append("file", file);
+    try {
       const response = await axiosPrivateKit.put("/users/brand-kit", formData);
       console.log("Response", response);
       if (response.status === 404) {
@@ -98,13 +98,13 @@ const Dashboard = () => {
   };
 
   useEffect(() => {
-    const getFile = async (e) => {
+    const getFile = async e => {
       const res = await axiosPrivate.get("/users/brand-kit");
       console.log("Brand kit", res.data.brandkit);
       setFile(res.data.brandkit);
-    }
+    };
     getFile();
-  }, [])  
+  }, []);
 
   const handleChangeCertificateStatus = async (id, status) => {
     console.log(id, status);
@@ -143,7 +143,7 @@ const Dashboard = () => {
       const response = await axiosPrivate.get("/certificates");
       let sub = JSON.parse(localStorage.getItem("userData")).subscription;
       setPricing(sub);
-      console.log(response);
+      // console.log(response);
       if (response.status === 404) {
         Toast.fire({
           icon: "error",
@@ -161,7 +161,7 @@ const Dashboard = () => {
         });
       } else {
         setData(response.data.data.certificates);
-        console.log(response.data.data.certificates);
+        // console.log(response.data.data.certificates);
         updateCount(response.data.data.certificates);
       }
     } catch (error) {
@@ -183,13 +183,13 @@ const Dashboard = () => {
     );
 
     const pendingCard = newCard.map(item =>
-      item.title === "Total Pending Certificates"
+      item.title === "Pending Certificates"
         ? { ...item, count: pendingCount }
         : item
     );
 
     const issuedCard = pendingCard.map(item =>
-      item.title === "Total Issued Certificates"
+      item.title === "Issued Certificates"
         ? { ...item, count: issuedCount }
         : item
     );
@@ -203,47 +203,44 @@ const Dashboard = () => {
 
   //GET EVENTS
   const getEvents = async () => {
-   try {
-    return fetch("https://certgo.hng.tech/api/events", {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json"
-      }
-    }).then(async response => {
-      const result = await response.json();
-     
-      var link = result.data.events[0]._id;
-      setEventLink(`https://certgo.hng.tech/generate/:${link}`);
-    
-      if (response.status === 200 || response.status === 201) {
-        Toast.fire({
-          icon: "success",
-          title: "Link Generated"
-        });
-      } else if (response.status === 401 || response.status === 400) {
-        Toast.fire({
-          icon: "error",
-          title: "Email not found"
-        });
-      } else if (response.status === 500) {
-        Toast.fire({
-          icon: "error",
-          title: "Internal Server Error"
-        });
-      }
-    
-    })
+    try {
+      return fetch("https://certgo.hng.tech/api/events", {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json"
+        }
+      }).then(async response => {
+        const result = await response.json();
 
-   }
-   catch (error) {
-    console.error(error.message);
-  }
+        var link = result.data.events[0]._id;
+        setEventLink(`https://certgo.hng.tech/generate/:${link}`);
+
+        if (response.status === 200 || response.status === 201) {
+          Toast.fire({
+            icon: "success",
+            title: "Link Generated"
+          });
+        } else if (response.status === 401 || response.status === 400) {
+          Toast.fire({
+            icon: "error",
+            title: "Email not found"
+          });
+        } else if (response.status === 500) {
+          Toast.fire({
+            icon: "error",
+            title: "Internal Server Error"
+          });
+        }
+      });
+    } catch (error) {
+      console.error(error.message);
+    }
   };
 
   //GENERATE LINK
   const title = "Fela Music School";
-  const getToken = JSON.parse(localStorage.getItem("userData"))
+  const getToken = JSON.parse(localStorage.getItem("userData"));
 
   var token = getToken.token;
 
@@ -263,22 +260,19 @@ const Dashboard = () => {
     });
     getEvents();
   };
-     
+
   const handleToggle = () => {
-     let drop = document.querySelector(".brandkit-dropdown")
-     drop.classList.toggle("visible")
-  }
+    let drop = document.querySelector(".brandkit-dropdown");
+    drop.classList.toggle("visible");
+  };
 
   //DELETE ALL USER CERTIFICATES
   const handleDeleteAll = async () => {
-    await handleDeleteAllCertificates()
+    await handleDeleteAllCertificates();
     // getUserCertificates()
     // setOpenOptions(!openOptions)
-    getUserCertificates()
-  }
-     
-
-
+    getUserCertificates();
+  };
 
   return (
     <>
@@ -286,7 +280,7 @@ const Dashboard = () => {
         <div className="dashboard__hero-section">
           <div className="dashboard__profile-pic-wrapper">
             <span className="dashboard__profile-pic">
-              <img src={file || profilePic} alt="brand-kit" />   
+              <img src={file || profilePic} alt="brand-kit" />
             </span>
             {/* <div className="ellipses" onClick={handleToggle}>
               <img src={Ellipse} alt="upload-icon" />
@@ -305,32 +299,44 @@ const Dashboard = () => {
             
             </div> */}
             <form onSubmit={onUpdate}>
-              <label htmlFor="file" className="dashboard__upload-label">
-              </label>
-              <input type="file" id="file" accept="image/*" name="file" onChange={onFileChange}  />
+              <label htmlFor="file" className="dashboard__upload-label"></label>
+              <input
+                type="file"
+                id="file"
+                accept="image/*"
+                name="file"
+                onChange={onFileChange}
+              />
               <Button name="Submit" type="submit" />
             </form>
           </div>
           <div className="flexx">
             <div className="dashboard__align-start">
               <h3 className="dashboard__text">Welcome</h3>
-              <h2 style = {{textTransform : 'capitalize'}} className="dashboard__title">{profileName}</h2>
+              <h2
+                style={{ textTransform: "capitalize" }}
+                className="dashboard__title"
+              >
+                {profileName}
+              </h2>
               <p className="dashboard__description">
-            Get a summary of all the
-                Certificates and Job done here
+                Get a summary of all the Certificates and Job done here
               </p>
               <div>
                 <p>Pricing Plan: {pricing}</p>
               </div>
             </div>
             <div className="dashboard__btn">
-              <button>Upgrade Account</button>
+              {/* <Link to={'/pricing'}> */}
+              <button onClick={() => navigate("/pricing")}>
+                Upgrade Account
+              </button>
+              {/* </Link> */}
             </div>
           </div>
         </div>
 
         <div className="dashboard__cards">
-          {console.log(cardData)}
           {cardData
             ? cardData.map((item, idx) => <Card key={idx} item={item} />)
             : null}
@@ -340,14 +346,17 @@ const Dashboard = () => {
           <div className="table-header">
             <p>CERTIFICATE DASHBOARD</p>
             <h5 style={{ padding: "50px!important" }}>
-              
-                Certificate Download Link : {eventLink && <a style = {{color : 'green'}} target = '_blank' href = {eventLink}>Link generated, Click Here</a>}
-              
+              Certificate Download Link :{" "}
+              {eventLink && (
+                <a style={{ color: "green" }} target="_blank" href={eventLink}>
+                  Link generated, Click Here
+                </a>
+              )}
             </h5>
             {data.length > 0 ? (
               <div style={{ display: "flex" }}>
                 <Button className="" onClick={() => setOpenModal(true)}>
-                  Create New Certificate
+                  + New Certificate
                 </Button>
 
                 <Button className="" onClick={handleDeleteAll}>
@@ -356,7 +365,7 @@ const Dashboard = () => {
 
                 <Button
                   style={{ marginLeft: "20px" }}
-                  className=""
+                  className="btn-generate"
                   onClick={handleGenerate}
                 >
                   {/* <Link to = {`/generate/:${generateId}`}>Generate Link</Link> */}
