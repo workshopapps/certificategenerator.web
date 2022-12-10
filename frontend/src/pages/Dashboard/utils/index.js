@@ -142,18 +142,28 @@ export const dummyData = [
     count: 0,
   },
   {
-    title: "Total Pending Certificates",
+    title: "Pending Certificates",
     icon: "",
     count: 0,
   },
   {
-    title: "Total Issued Certificates",
+    title: "Issued Certificates",
     icon: "",
     count: 0,
   },
-  {
-    title: "Total Declined Certificates",
-    icon: "",
-    count: 0,
-  },
+  
 ];
+
+export const certificates = {
+  status: "pending",
+  _id: "6391b35b7b41ca5f16bee913",
+  name: "tuchel geraldine",
+  nameoforganization: "zuri",
+  description:" this certificate is a proof of completion for HNG internship program",
+  award: "certificate of completion",
+  signed: "bola",
+  email: "tuchel@gmail.com",
+  date: "13/02/2022",
+  uuid: "121ae02a-b6f0-473b-a2ee-3547d55826f0",
+  link: "https://certgo.hng.tech/single_preview?uuid=121ae02a-b6f0-473b-a2ee-3547d55826f0"
+}

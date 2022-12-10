@@ -6,6 +6,7 @@
     padding: 1.5rem 1rem;
     border-radius: 12px;
     text-align: start;
+    background-color: #B2E1D933;
     p {
       margin: 0;
       margin-bottom: 1.5rem;
@@ -34,12 +35,12 @@
       }
       
     }
-    &:nth-child(even) {
-      background-color: $card-bg-color-even;
-    }
-    &:nth-child(odd) {
-      background-color: $card-bg-color-odd;
-    }
+    // &:nth-child(even) {
+    //   background-color: $card-bg-color-even;
+    // }
+    // &:nth-child(odd) {
+    //   background-color: $card-bg-color-odd;
+    // }
 }
 
 @media screen and (min-width: 768px) {
