@@ -42,8 +42,8 @@ function Feature() {
             </tr>
             <tr>
               <td>Certificates per month</td>
+              <td>10</td>
               <td>100</td>
-              <td>500</td>
               <td>Unlimited</td>
             </tr>
             <tr>
@@ -120,7 +120,7 @@ function Feature() {
             </tr>
             <tr>
               <td>Certificate download formats</td>
-              <td>zip</td>
+              <td>png</td>
               <td>zip, png</td>
               <td>zip, png, pdf</td>
             </tr>
