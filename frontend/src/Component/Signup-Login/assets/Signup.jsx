@@ -16,7 +16,6 @@ import axios from "../../../api/axios";
 
 const Signup = () => {
   const { setAccess } = useAppProvider();
-  const { setProfileName } = useAppProvider();
   const navigate = useNavigate();
 
   // const [type, setType] = useState("password");
@@ -36,7 +35,12 @@ const Signup = () => {
   const [password, setPassword] = useState();
   const [checkbox, setCheckbox] = useState(false);
   
+<<<<<<< HEAD
   setProfileName(userName);
+=======
+ 
+
+>>>>>>> 0d852e7 (worked on saving profile name in local storage)
   // const [error, setError] = useState(false);
   const [token, setToken] = useState({
     accessToken: ""
@@ -190,6 +194,10 @@ const Signup = () => {
       navigate("/signup");
     }
   }
+
+
+  //SAVING PROFILENAME TO LOCAL STORAGE
+localStorage.setItem("profileName", userName);
 
   return (
     <div id="signup">
