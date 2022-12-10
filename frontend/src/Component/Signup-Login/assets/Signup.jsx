@@ -218,10 +218,10 @@ const Signup = () => {
               </div>
             )}
           />
-          <div id="signupA">
+          {/* <div id="signupA">
             <img alt="" src={appleSVG} id="img_id" />
             Signup using Apple
-          </div>
+          </div> */}
           <div id="hrLine">
             <span id="or">or</span>
           </div>
