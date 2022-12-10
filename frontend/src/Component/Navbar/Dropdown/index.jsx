@@ -4,8 +4,8 @@ import {Toast} from '../../ToastAlert'
 import {Link, useNavigate} from "react-router-dom"
 import Loader from '../../ButtonLoader'
 import './dropdown.style.scss'
-import Avatar from '../../../assets/Ellipse4.png'
-import CaretDown from '../../../assets/svgs/caret-down.svg'
+import Avatar from '../../../assets/svgs/default-brandkit.svg'
+import CaretDown from '../../../assets/svgs/caret-up.svg'
 
  function DropDown() {
    const baseURL = "https://certgo.hng.tech/api";
@@ -24,7 +24,7 @@ import CaretDown from '../../../assets/svgs/caret-down.svg'
      let drop = document.querySelector(".drop")
      let caretDown = document.querySelector("#caret-down")
      drop.classList.toggle("hidden")
-     caretDown.classList.toggle('caret-up')
+     caretDown.classList.toggle('caret-down')
   }
      
     useEffect(() => {
