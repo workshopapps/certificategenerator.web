@@ -46,19 +46,19 @@
     left: 50%;
     transform: translate(-50%, -50%);
   }
-  .water-mark{
-    display: flex;
-    justify-content: space-between;
-    opacity: 0.6;
-    margin: 0 1rem;
-    margin-top: -2.6rem;
+  // .water-mark{
+  //   display: flex;
+  //   justify-content: space-between;
+  //   opacity: 0.1;
+  //   margin: 0 1rem;
+  //   margin-top: -2.6rem;
     
-    p{
-        font-size: 32px;
-        font-weight: 500;
-        color: #fff;
-    }
-  }
+  //   p{
+  //       font-size: 32px;
+  //       font-weight: 500;
+  //       color: #fff;
+  //   }
+  // }
   #certificate-wrapper{
     margin: 0 2rem;
   }
@@ -75,7 +75,7 @@
   
   #container-design {
     border: 2px solid #ac0423;
-    background-color: rgba($color: #000000, $alpha: .1);
+    // background-color: rgba($color: #000000, $alpha: .1);
   }
   
   #single-preview-card {
