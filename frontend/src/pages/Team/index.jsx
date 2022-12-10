@@ -91,7 +91,7 @@ const members = [
   {
     picture: Abiola,
     name: "Abiola Olanrewaju",
-    title: "Frontend developer",
+    title: "Product designer",
     socialMediaIcon1: Web,
     socialMediaIcon2: LinkedIn,
     socialMediaIcon3: Github
@@ -107,7 +107,7 @@ const members = [
   {
     picture: Ehis,
     name: "Aigbiluese Ehidiamhen",
-    title: "Product designer",
+    title: "Frontend developer",
     socialMediaIcon1: LinkedIn,
     socialMediaIcon2: Twitter,
     socialMediaIcon3: Web
