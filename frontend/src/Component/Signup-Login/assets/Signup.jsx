@@ -12,6 +12,7 @@ import Button from "../../button";
 import { Toast } from "../../ToastAlert";
 import useAppProvider from "../../../hooks/useAppProvider";
 import Loader from "../../ButtonLoader";
+import axios from "../../../api/axios";
 
 const Signup = () => {
   const { setAccess } = useAppProvider();
@@ -25,17 +26,16 @@ const Signup = () => {
     name: "",
     email: "",
     password: "",
-    acceptTerms: false
+    acceptTerms: true
   });
   // Google auth client ID
   const CLIENT_ID =
     "52168821352-4sc11trj4qtq95051mrnrbinfgmla3ai.apps.googleusercontent.com";
   const [userName, setUserName] = useState();
   const [useremail, setUserEmail] = useState();
-  const [password, setPassword] = useState();
+  const [password, setPassword] = useState()
   
   setProfileName(userName);
-
   // const [error, setError] = useState(false);
   const [token, setToken] = useState({
     accessToken: ""
@@ -69,7 +69,7 @@ const Signup = () => {
         "Access-Control-Allow-Origin": "*"
         // "Access-Control-Allow-Methods": "POST",
       },
-      body: JSON.stringify({ email: email, password: password, name: name })
+      body: JSON.stringify({ email: email, password: password, name: name, checkbox: checkbox })
     });
   }
 
@@ -274,9 +274,12 @@ const Signup = () => {
               <input
                 type="checkbox"
                 id="acceptTerms"
+                value={checkbox}
                 checked={formData.acceptTerms}
-                onChange={handleChange}
+                // onChange={handleChange}
                 name="acceptTerms"
+                callback={e => setCheckbox(e.target.value)}
+                required
               />
               <div className="termsOfUse">
                 By creating an account, I declare that I have read and accepted
