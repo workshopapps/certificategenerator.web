@@ -16,6 +16,7 @@ import axios from "../../../api/axios";
 
 const Signup = () => {
   const { setAccess } = useAppProvider();
+  const { setProfileName } = useAppProvider();
   const navigate = useNavigate();
 
   // const [type, setType] = useState("password");
@@ -32,13 +33,9 @@ const Signup = () => {
     "52168821352-4sc11trj4qtq95051mrnrbinfgmla3ai.apps.googleusercontent.com";
   const [userName, setUserName] = useState();
   const [useremail, setUserEmail] = useState();
-  const [password, setPassword] = useState();
-  const [checkbox, setCheckbox] = useState();
-  const [error, setError] = useState(false);
-
-  //SAVE USERNAME TO LOCALSTORAGE
-  localStorage.setItem('userName', userName);
+  const [password, setPassword] = useState()
   
+  setProfileName(userName);
   // const [error, setError] = useState(false);
   const [token, setToken] = useState({
     accessToken: ""

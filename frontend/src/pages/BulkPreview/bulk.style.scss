@@ -80,6 +80,8 @@
     margin: 20px;
   }
 
+
+
   #bulk-btns {
     display: flex;
     flex-direction: column;
@@ -91,41 +93,43 @@
     .dropdown {
       position: relative;
       display: inline-block;
+      margin-bottom:20px;
     }
 
     .dropdown-content {
       display: none;
       position: absolute;
-      background-color: #f9f9f9;
-      min-width: 160px;
+      background-color: #eee;
+      min-width: 150px;
+      left: 35px;
       box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
       z-index: 1;
+      margin-bottom:20px;
     }
     
     /* Links inside the dropdown */
-    .dropdown-content .bulk_dropdown {
+     .dropdown-content .bulk_dropdown {
       color: black;
-      padding: 12px 16px;
+      padding: 12px 16px;
       text-decoration: none;
       display: block;
+      font-size: 15px;
+      background: #eee;
+      border-radius: 0px!important;
+    }
+     .dropdown-content:hover .bulk_dropdown:hover {
+     background-color: lightseagreen!important;
     }
     
-    /* Change color of dropdown links on hover */
-    .dropdown-content a:hover {background-color: #f1f1f1}
+   
     
     /* Show the dropdown menu on hover */
     .dropdown:hover .dropdown-content {
       display: block;
+    
     }
     
-    /* Change the background color of the dropdown button when the dropdown content is shown */
-    .dropdown:hover .dropbtn {
-      background-color: #3e8e41;
-    }
-    
-    #bulk-btns button {
-      border-radius: 5px !important;
-    }
+
 
     .send-btn {
       width: 170px !important;
@@ -133,7 +137,6 @@
       border-radius: 5px !important;
       background: transparent;
       border: 1px solid $primaryColor !important;
-      ;
       color: $primaryColor !important;
       margin: 8px 10px !important;
 
@@ -254,6 +257,41 @@
       justify-content: center;
       margin: 20px !important;
     }
+
+    .dropdown {
+      position: relative;
+      display: inline-block;
+      margin-bottom: 0px!important;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #eee;
+      min-width: 150px;
+      left: 20px;
+      top:70%!important;
+      padding: 0px!important;;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      z-index: 1;
+    
+     
+    }
+    
+    /* Links inside the dropdown */
+     .dropdown-content .bulk_dropdown {
+      color: black;
+      margin: 0px!important;
+      text-decoration: none;
+      display: block;
+      background: #eee;
+      border-radius: 0px!important;
+    }
+     .dropdown-content:hover .bulk_dropdown:hover {
+     background-color: lightblue!important;
+    }
+  
+  
 
     .certificate img {
       width: 100%;

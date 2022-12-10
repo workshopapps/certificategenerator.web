@@ -26,7 +26,8 @@ const Dashboard = () => {
     issuedBy,
     setIssuedBy,
     issueDate,
-    setIssueDate
+    setIssueDate,
+    profileName
   } = useAppProvider();
   const [data, setData] = useState([]);
   const [cardData, setCardData] = useState([...dummyData]);
@@ -275,9 +276,6 @@ const Dashboard = () => {
     getUserCertificates()
   }
      
-
-//GET USERNAME FROM LOCALSTORAGE
-const profileName = localStorage.getItem('userName');
 
 
 
