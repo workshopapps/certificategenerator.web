@@ -199,15 +199,6 @@ async function uploadAvatar(image){
           <div  className="avatar-location">{data.location}</div>
         </form>           
       </div>
-      <div className="mb-2">
-        <p>Current Plan</p>
-        <span className="lite-plan-exp">No subscription yet</span>
-      </div>
-      <div className="mb-2">
-        <p>Last certificate generated</p>
-        <span className="last-gen-date">No certificate yet</span>
-      </div>
-
       <div className="btn-wrapper">
         <button onClick={handleLogout} style={loading ? {background: '#f84343', cursor: 'not-allowed'} : {background: 'transparent', cursor: 'pointer'}}>{loading ? <Loader /> : <span>Log Out</span>}</button>
         <button onClick={handleDelete} style={isLoadingDelete ? {background: '#f84343', cursor: 'not-allowed'} : {background: 'transparent', cursor: 'pointer'}}>{isLoadingDelete ? <Loader /> : <span>Delete Account</span>}</button>
