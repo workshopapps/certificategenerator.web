@@ -1,14 +1,13 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import Card from "./Card";
 import { dummyData, nullDataIcon } from "./utils";
 import { Toast } from "../../Component/ToastAlert";
 import Button from "../../Component/button";
 import CreateCertificateModal from "./CreateCertificateModal";
-import Card from "./Card";
-import { Loader } from "../../Component";
 import useAppProvider from "../../hooks/useAppProvider";
+import { Loader } from "../../Component";
 import TableRow from "./TableRow";
 import profilePic from "../../assets/svgs/default-brandkit.svg";
 import Ellipse from "../../assets/svgs/hor-ellipse.svg";
@@ -27,20 +26,18 @@ const Dashboard = () => {
     issuedBy,
     setIssuedBy,
     issueDate,
-    setIssueDate,
-    profileName
+    setIssueDate
   } = useAppProvider();
   const [data, setData] = useState([]);
   const [cardData, setCardData] = useState([...dummyData]);
   const [openModal, setOpenModal] = useState(false);
+  // const [loading, setLoading] = useState(false);
   const [pricing, setPricing] = useState("");
   const [certificates, setCertificates] = useState([]);
   const [eventLink, setEventLink] = useState("");
   const baseURL = "https://certgo.hng.tech/api";
   const accessToken = JSON.parse(localStorage.getItem("userData")).token;
   const [file, setFile] = useState("");
-  const [selectedImage, setSelectedImage] = useState("");
-  let navigate = useNavigate();
 
   const axiosPrivate = axios.create({
     baseURL,
@@ -60,15 +57,11 @@ const Dashboard = () => {
 
   // On file select (from the pop up)
   // Update the state
-  const onFileChange = async e => {
-    e.preventDefault();
-    setFile(e.target.files[0]);
-  };
-
-  const onUpdate = async e => {
-    e.preventDefault();
+   const onUpdate = async image => {
     const formData = new FormData();
-    formData.append("file", file);
+    formData.append("file", image);
+    console.log(image);
+    console.log(formData);
     try {
       const response = await axiosPrivateKit.put("/users/brand-kit", formData);
       console.log("Response", response);
@@ -89,14 +82,20 @@ const Dashboard = () => {
         });
       } else {
         setFile(response.data.brandkit);
-        // localStorage.setItem("brandkit", response.data.brandkit)
         console.log(response.data.brandkit);
       }
     } catch (error) {
       console.log(error.message);
     }
   };
+  const onFileChange = async e => {
+    e.preventDefault();
+    setFile(URL.createObjectURL(e.target.files[0]));
+    console.log(e.target.files[0]);
+    onUpdate(e.target.files[0])
+  };
 
+ 
   useEffect(() => {
     const getFile = async e => {
       const res = await axiosPrivate.get("/users/brand-kit");
@@ -107,7 +106,6 @@ const Dashboard = () => {
   }, []);
 
   const handleChangeCertificateStatus = async (id, status) => {
-    console.log(id, status);
     await axiosPrivate.patch(`/certificates/status/${id}`, { status });
     Toast.fire({
       icon: "success",
@@ -134,8 +132,7 @@ const Dashboard = () => {
       icon: "success",
       title: "You have deleted all your certificates"
     });
-    const res = await axiosPrivate.get("/certificates");
-    setData(res.data.data.certificates);
+    setData([]);
   };
 
   const getUserCertificates = async () => {
@@ -161,7 +158,6 @@ const Dashboard = () => {
         });
       } else {
         setData(response.data.data.certificates);
-        // console.log(response.data.data.certificates);
         updateCount(response.data.data.certificates);
       }
     } catch (error) {
@@ -193,7 +189,6 @@ const Dashboard = () => {
         ? { ...item, count: issuedCount }
         : item
     );
-
     setCardData(issuedCard);
   };
 
@@ -268,11 +263,13 @@ const Dashboard = () => {
 
   //DELETE ALL USER CERTIFICATES
   const handleDeleteAll = async () => {
-    await handleDeleteAllCertificates();
+    handleDeleteAllCertificates();
     // getUserCertificates()
     // setOpenOptions(!openOptions)
-    getUserCertificates();
+    // getUserCertificates();
   };
+
+  var profileName = localStorage.getItem("profileName");
 
   return (
     <>
@@ -282,33 +279,21 @@ const Dashboard = () => {
             <span className="dashboard__profile-pic">
               <img src={file || profilePic} alt="brand-kit" />
             </span>
-            {/* <div className="ellipses" onClick={handleToggle}>
+            <div className="ellipses" onClick={handleToggle}>
               <img src={Ellipse} alt="upload-icon" />
             </div>
             <div className="brandkit-dropdown">
               <ul>
                <li> 
                 <label htmlFor="file" className="dashboard__upload-label">
-                  <span>View Logo</span>   
+                  <span>Upload New Logo</span>   
                   <input type="file" id="file" accept="image/*" name="file" onChange={onFileChange}  />
                 </label>
               </li>
-                <li onClick={onUpdate}>Upload New Logo</li>
-                <li>Delete Logo</li>
+                <li >View Logo</li>
+                {/* <li>Delete Logo</li> */}
               </ul>
-            
-            </div> */}
-            <form onSubmit={onUpdate}>
-              <label htmlFor="file" className="dashboard__upload-label"></label>
-              <input
-                type="file"
-                id="file"
-                accept="image/*"
-                name="file"
-                onChange={onFileChange}
-              />
-              <Button name="Submit" type="submit" />
-            </form>
+            </div>
           </div>
           <div className="flexx">
             <div className="dashboard__align-start">
@@ -317,60 +302,57 @@ const Dashboard = () => {
                 style={{ textTransform: "capitalize" }}
                 className="dashboard__title"
               >
-                {profileName}
+                {profileName ? profileName : ""}
               </h2>
               <p className="dashboard__description">
                 Get a summary of all the Certificates and Job done here
               </p>
               <div>
-                <p>Pricing Plan: {pricing}</p>
+                <p>Package: {pricing}</p>
               </div>
             </div>
             <div className="dashboard__btn">
-              {/* <Link to={'/pricing'}> */}
-              <button onClick={() => navigate("/pricing")}>
-                Upgrade Account
-              </button>
-              {/* </Link> */}
+              <button>Upgrade Account</button>
             </div>
           </div>
         </div>
 
         <div className="dashboard__cards">
-          {cardData
+          {cardData[0].count !== 0
             ? cardData.map((item, idx) => <Card key={idx} item={item} />)
             : null}
         </div>
 
         <div className="table-wrapper">
           <div className="table-header">
-            <p>CERTIFICATE DASHBOARD</p>
-            <h5 style={{ padding: "50px!important" }}>
-              Certificate Download Link :{" "}
-              {eventLink && (
-                <a style={{ color: "green" }} target="_blank" href={eventLink}>
-                  Link generated, Click Here
-                </a>
-              )}
-            </h5>
+            <p>CERTIFICATES</p>
+            {/* <h5 style={{ padding: "50px!important" }}>
+              
+                Certificate Download Link : {eventLink && <a style = {{color : 'green'}} target = '_blank' href = {eventLink}>Link generated, Click Here</a>}
+              
+            </h5> */}
             {data.length > 0 ? (
               <div style={{ display: "flex" }}>
-                <Button className="" onClick={() => setOpenModal(true)}>
+                <Button
+                  className="new-certificate"
+                  style={{ fontSize: "16px" }}
+                  onClick={() => setOpenModal(true)}
+                >
                   + New Certificate
                 </Button>
 
-                <Button className="" onClick={handleDeleteAll}>
+                {/* <Button style={{ fontSize: "16px" }} className="" onClick={handleDeleteAll}>
                   Delete All Certificates
                 </Button>
 
                 <Button
-                  style={{ marginLeft: "20px" }}
+                  style={{ marginLeft: "16px", fontSize: "16px" }}
                   className="btn-generate"
                   onClick={handleGenerate}
                 >
-                  {/* <Link to = {`/generate/:${generateId}`}>Generate Link</Link> */}
+                  <Link to = {`/generate/:${generateId}`}>Generate Link</Link> 
                   Generate Link
-                </Button>
+                </Button> */}
               </div>
             ) : null}
           </div>
@@ -424,10 +406,12 @@ const Dashboard = () => {
               <div className="null-table-data">
                 <div>
                   {nullDataIcon()}
-                  <p>You haven't created any Certificates</p>
+                  <p style={{ fontSize: "16px" }}>
+                    You haven't created any Certificates
+                  </p>
                   <div>
                     <button className="" onClick={() => setOpenModal(true)}>
-                      Create New Certificate
+                      + New Certificate
                     </button>
                   </div>
                 </div>

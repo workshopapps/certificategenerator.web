@@ -29,4 +29,13 @@ const ProfileSchema = new mongoose.Schema({
   }
 });
 
+// Delete User Account on profile delete
+ProfileSchema.post("deleteOne", { document: true }, async function (doc) {
+  // User model imported this way to prevent circular dependency error
+  const User = mongoose.models.User;
+
+  // Check for user account associated with this profile and delete
+  await User.findOneAndDelete({ _id: doc.user.toString() });
+});
+
 module.exports = mongoose.model("Profile", ProfileSchema);

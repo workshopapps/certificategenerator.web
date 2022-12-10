@@ -5,7 +5,6 @@ import axios from 'axios';
 import { BsCaretDownFill } from 'react-icons/bs';
 import { ReactComponent as ActionIcon } from "./assets/actionIcon.svg";
 import ViewModal from './Modal/ViewModal';
-import EditModal from './Modal/EditModal';
 import "./dashboard.style.scss"
 
 const TableRow = ({item, handleChangeCertificateStatus, handleDeleteCertificate, getUserCertificates }) => {
@@ -27,39 +26,33 @@ const TableRow = ({item, handleChangeCertificateStatus, handleDeleteCertificate,
     }
   });
   const viewCertificate = async (item) => {
-    // try {
-    //   const res = await axiosPrivate.get(`/certificates/${id}`);
-    //   console.log(res.data.data.certificate);
-    // } catch (error) {
-    //   console.log(error);
-    // }
     setViewData(item);
   }
-  const editCertificate = (item) => {
-      console.log(item._id);
-      setEditData(item);
-     
-   
-    // const res = await axiosPrivate.get(`/certificates/${id}`);
-  }
+  // const editCertificate = (item) => {
+  //     console.log(item._id);
+  //     setEditData(item);
+  //   // const res = await axiosPrivate.get(`/certificates/${id}`);
+  // }
   const handleViewModal = (id) => {
     setOpenViewModal(true)
     viewCertificate(id)
   }
-  const handleEditModal = (id) => {
-    setOpenEditModal(true)
-    editCertificate(id)
-  }
+  // const handleEditModal = (id) => {
+  //   setOpenEditModal(true)
+  //   editCertificate(id)
+  // }
   const handleDelete = async (id) => {
     await handleDeleteCertificate(id)
     // getUserCertificates()
     setOpenOptions(!openOptions)
     getUserCertificates()
   }
-  const handleStatus = async (id, status) => {
-    console.log(status)
+  const handleStatus = async (item, id, status) => {
+    if(item.status === status) {
+      setOpenOptions(!openOptions)
+      return
+    }
     await handleChangeCertificateStatus(id, status)
-    // getUserCertificates()
     setOpenOptions(!openOptions)
     getUserCertificates()
   }
@@ -103,12 +96,12 @@ const TableRow = ({item, handleChangeCertificateStatus, handleDeleteCertificate,
         {openOptions && (
           <ul ref={drop} className="action__overlay">
             <li className="action__overlay--item" onClick={() => handleViewModal(item)}>View</li>
-            <li className="action__overlay--item" onClick={() => handleEditModal(item)}>Edit</li>
-            <li className="action__overlay--item status" onClick={() => setOpenStatus(!openStatus)}><div>Status <span><BsCaretDownFill/></span></div>
+            {/* <li className="action__overlay--item" onClick={() => handleEditModal(item)}>Edit</li> */}
+            <li className="action__overlay--item status" ><div style={{display: "flex", alignItems: "center" }} onClick={() => setOpenStatus(!openStatus)}><span>Status</span> <span style={{marginTop: "5px", marginLeft: "4px", width: "10px"}}><BsCaretDownFill style={{ width: "10px"}}/></span></div>
               {openStatus && (
                 <ul>
-                  <li className='status__pending' onClick={() => handleStatus(item._id, 'pending')}>Pending</li>
-                  <li className='status__issued' onClick={() => handleStatus(item._id, 'issued')}>Issued</li>
+                  <li className='status__pending' onClick={() => handleStatus(item, item._id, 'pending')}>Pending</li>
+                  <li className='status__issued' onClick={() => handleStatus(item, item._id, 'issued')}>Issued</li>
                   {/* <li className='status__cancel' onClick={() => handleStatus(item._id, 'canceled')}>Cancelled</li> */}
                 </ul>
               )}
@@ -117,7 +110,7 @@ const TableRow = ({item, handleChangeCertificateStatus, handleDeleteCertificate,
           </ul>
         )}
         <ViewModal open={openViewModal} viewData={viewData} onClose={() => setOpenViewModal(false)}/>
-        <EditModal open={openEditModal} editData={editData} getUserCertificates={getUserCertificates} onClose={() => setOpenEditModal(false)}/>
+        {/* <EditModal open={openEditModal} editData={editData} getUserCertificates={getUserCertificates} onClose={() => setOpenEditModal(false)}/> */}
       </td>
     </tr>
   );
