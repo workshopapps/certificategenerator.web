@@ -25,9 +25,10 @@ $size-sm: 12px;
   list-style: none;
 }
 
-.navbar{
+.navbar {
   margin-bottom: 0;
 }
+
 .dashboard {
   background: #fff;
 
@@ -203,7 +204,7 @@ $size-sm: 12px;
         align-self: flex-start;
       }
 
-      .new-certificate{
+      .new-certificate {
         margin-right: 1rem;
       }
     }
@@ -242,6 +243,7 @@ $size-sm: 12px;
         color: #222;
         position: relative;
         z-index: 0;
+
         tr {
           // border-bottom: 1px solid #efefef;
         }
@@ -255,10 +257,11 @@ $size-sm: 12px;
           border-top: 1px solid #EFEFEF;
         }
 
-        .btn-generate{
+        .btn-generate {
           background-color: white;
           border: 1px solid $primaryColor;
         }
+
         td {
           font-size: $size;
           color: #222;
@@ -312,7 +315,7 @@ $size-sm: 12px;
           left: 2rem;
           border: solid 1px #efefef;
           border-radius: 5px;
-          box-shadow: 0px 3px 10px -3px rgba(0,0,0,0.1);
+          box-shadow: 0px 3px 10px -3px rgba(0, 0, 0, 0.1);
           z-index: 2;
         }
 
@@ -340,14 +343,17 @@ $size-sm: 12px;
             // border-color: #efefef;
           }
         }
-        .status{
+
+        .status {
           display: flex;
           flex-direction: column;
-          ul{
+
+          ul {
             transition: 1s;
             all: unset;
             margin-top: .5rem;
-            li{
+
+            li {
               font-size: $size-sm;
               padding: 0.4rem 0.6rem;
               text-align: center;
@@ -358,19 +364,23 @@ $size-sm: 12px;
               margin-bottom: .5rem;
             }
           }
-          &__pending{
+
+          &__pending {
             background-color: #fbecd6;
             color: #cb8720;
           }
-          &__issued{
+
+          &__issued {
             background-color: #ecfdfa;
             color: $primaryColor;
           }
-          &__cancel{
+
+          &__cancel {
             background-color: #fbd8d6;
             color: #cb2a20;
           }
-          &:hover{
+
+          &:hover {
             background-color: unset;
             color: unset;
           }

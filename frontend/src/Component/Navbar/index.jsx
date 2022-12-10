@@ -50,7 +50,7 @@ function Navbar() {
   ];
 
   return (
-    <div id="Nav">
+    <div id="nav">
       <div className="navbar">
         <div className="nav-header-container">
           <div className="nav-header nav-container">
@@ -64,7 +64,7 @@ function Navbar() {
             <div className="nav-click">
               {isLoggedIn ? (
                 <div className="dropdown-tab">
-                  <DropDown/>
+                  {/* <DropDown/> */}
                 </div>
               ) : (
                 <Button className="btn" name={"get started"}>

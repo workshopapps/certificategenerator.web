@@ -5,6 +5,7 @@
   text-align: start;
   position: relative;
   background: #fff;
+  height: 100px;
   z-index: 999;
 
   h2,
@@ -35,6 +36,7 @@
   .nav-logo {
     display: flex;
     align-items: center;
+    justify-content: center;
     cursor: pointer;
 
     h2 {
@@ -172,13 +174,15 @@
 
 }
 
-.dropdown-tab {
-  display: none;
-}
+// .dropdown-tab {
+//   display: none;
+// }
 
-@media only screen and (max-width: 1028px) {
+@media only screen and (max-width: 1017px) {
   .dropdown-wrapper {
-    display: none;
+    position: absolute;
+    top: 28px;
+    right: 6rem;
   }
 
   .dropdown-tab {
