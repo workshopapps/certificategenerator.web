@@ -120,24 +120,33 @@ $size-sm: 12px;
 
   &__text {
     font-size: $size;
-    font-weight: 400;
-    color: #6c6c70;
+    font-weight: 500;
+    color: #222;
     letter-spacing: 0.02em;
     line-height: 20px;
+  }
+  &__plan{
+    font-weight: 500;
+    color: #222;
+    text-transform: capitalize;
+  }
+  &__bold{
+    font-weight: 600;
   }
 
   &__title {
     font-size: $size-md;
     color: $text-primary;
-    font-weight: 500;
+    font-weight: 700;
     line-height: 19px;
     margin-left: 0;
   }
 
   &__description {
     font-size: $size-sm;
-    color: #6c6c70;
+    color: #222;
     line-height: 20px;
+    font-weight: 500 ;
   }
 
   &__btn {
@@ -442,11 +451,5 @@ $size-sm: 12px;
         align-items: flex-end;
       }
     }
-
-    // &__cards {
-    //   width: 90%;
-    //   margin: 0 auto 1.2rem auto;
-    //   grid-template-columns: 1fr 1fr 1fr 1fr;
-    // }
   }
 }
