@@ -86,6 +86,8 @@ const userSignup = handleAsync(async (req, res, next) => {
   if (!errors.isEmpty())
     throw createApiError("user validation failed", 422, errors.array);
 
+  if (!name) throw createApiError("name is required");
+
   if (await userExist(email)) throw createApiError("email already in use", 401);
 
   const hash = await bcrypt.hash(password, 10);
