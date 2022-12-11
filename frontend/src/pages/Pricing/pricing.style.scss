@@ -635,7 +635,6 @@ main {
 
       .plans {
         .plansContainer {
-
           .Basic,
           .Premium,
           .Standard {
@@ -694,7 +693,6 @@ main {
     }
 
     .testimonials {
-
       /* Scroll bar */
       .testimonialContainer::-webkit-scrollbar {
         width: 100px !important;
@@ -759,14 +757,12 @@ main {
 }
 
 @media (max-width: 400px) {
-
   main .pricing .plans .sliderContainer #slider article {
     width: 287px;
   }
 }
 
 @media (max-width: 360px) {
-
   main {
     .pricing {
       .textC {

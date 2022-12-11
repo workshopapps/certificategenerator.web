@@ -8,7 +8,7 @@ import { useState } from "react";
 import PaymentSwitch from "./PaymentSwitch";
 import { Link } from "react-router-dom";
 
-function CheckoutMainLeft() {
+function CheckoutMainLeft({ amount }) {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [country, setCountry] = useState("");
@@ -241,7 +241,7 @@ function CheckoutMainLeft() {
       </div>
 
       <Link to="/bulk_preview">
-        <button id="CheckoutMainLeft-btn">Pay $2.99</button>
+        <button id="CheckoutMainLeft-btn">Pay {`${amount}`}</button>
       </Link>
     </div>
   );
