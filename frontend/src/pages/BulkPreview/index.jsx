@@ -62,7 +62,7 @@ function Index() {
   const handleClick = useCallback(() => {
     if (!isAuntheticated) {
       setOpenModal(true);
-      setModalMessage("You need to sign up to send certificate to your mail");
+      setModalMessage("You need to sign up or login to download bulk certificates");
       return;
     }
     setLoading(true);
@@ -87,7 +87,7 @@ function Index() {
   const downloadMultiplePdfs = async () => {
     if (!isAuntheticated) {
       setOpenModal(true);
-      setModalMessage("You need to sign up to send certificate to your mail");
+      setModalMessage("You need to sign up or login to download bulk certificates");
       return;
     }
     const doc = new jsPDF("p", "px", [339.4, 339.4]); // Initialize a new jsPDF instance
@@ -153,7 +153,7 @@ function Index() {
 
   //     if (!isAuntheticated) {
   //       setOpenModal(true);
-  //       setModalMessage("You need to sign up to send certificate to your mail");
+  //       setModalMessage("You need to sign up or login to download bulk certificates");
   //       return;
   //     }
 
