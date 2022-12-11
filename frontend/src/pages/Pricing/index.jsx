@@ -9,7 +9,7 @@ import "@splidejs/react-splide/css";
 import useAppProvider from "../../hooks/useAppProvider";
 import conatctLocatonIconStar from "../../assets/svgs/Conatct-locaton-icon-star.svg";
 
-function Pricing() {
+function Pricing({ amountHandler }) {
   const { access } = useAppProvider();
   const [value, setValue] = useState(0);
 
@@ -17,10 +17,19 @@ function Pricing() {
 
   const [disabled, setDisabled] = useState(false);
 
-  function disabledHandler(e, subType) {
+  function disabledHandler(
+    e,
+    subType,
+    subAmount,
+    subPer,
+    subHeader,
+    subText,
+    subSubText
+  ) {
     if (subType === "Basic") {
       e.preventDefault();
     }
+    amountHandler(subType, subAmount, subPer, subHeader, subText, subSubText);
     setDisabled(true);
   }
 
@@ -118,15 +127,26 @@ function Pricing() {
                     <Link
                       to={`${sub.subType !== "Basic" ? "/payment" : ""}`}
                       style={
-                        disabled && sub.subType === "Basic"
-                          ? {
-                              cursor: "not-allowed",
-                              backgroundColor: "#8ab9b2",
-                              pointerEvents: "none"
-                            }
-                          : {}
+                        sub.subType === "Basic" ? { display: "none" } : {}
+                        // disabled && sub.subType === "Basic"
+                        //   ? {
+                        //       cursor: "not-allowed",
+                        //       backgroundColor: "#8ab9b2",
+                        //       pointerEvents: "none"
+                        //     }
+                        //   : {}
                       }
-                      onClick={e => disabledHandler(e, sub.subType)}
+                      onClick={e =>
+                        disabledHandler(
+                          e,
+                          sub.subType,
+                          sub.amount,
+                          per,
+                          sub.header,
+                          sub.text,
+                          sub.subText
+                        )
+                      }
                     >
                       {sub.linkText}
                     </Link>
