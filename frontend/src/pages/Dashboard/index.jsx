@@ -41,6 +41,7 @@ const Dashboard = () => {
   const unauthArray = localStorage.getItem("dataKey");
   const [file, setFile] = useState("");
   let navigate = useNavigate();
+  let sub = JSON.parse(localStorage.getItem("userData")).subscription;
 
   const axiosPrivate = axios.create({
     baseURL,
@@ -163,7 +164,6 @@ const Dashboard = () => {
   const getUserCertificates = async () => {
     try {
       const response = await axiosPrivate.get("/certificates");
-      let sub = JSON.parse(localStorage.getItem("userData")).subscription;
       setPricing(sub);
 
       setData(response.data.data.certificates);
@@ -322,7 +322,7 @@ const Dashboard = () => {
                 Get a summary of all the Certificates here
               </p>
               <div>
-                <p className="dashboard__plan">Package: <span className="dashboard__bold">{pricing}</span></p>
+                <p className="dashboard__plan dashboard__bold">Package: <span className="dashboard__bold">{sub}</span></p>
               </div>
             </div>
             <div className="dashboard__btn">
