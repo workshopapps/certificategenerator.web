@@ -84,44 +84,23 @@ $size-sm: 12px;
     cursor: pointer;
   }
 
+  .dashboard__profile-pic:hover+.brandkit-upload {
+    display: block;
+  }
 
-  .brandkit-dropdown {
+  .brandkit-upload {
     display: none;
     position: absolute;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 10px;
-    width: 140px;
-    height: 120px;
-    top: 50px;
-    right: -9rem;
-    background: linear-gradient(0deg, rgba(240, 249, 247, 0.1), rgba(240, 249, 247, 0.1)), #FFFFFF;
+    width: fit-content;
+    top: 28px;
+    border-radius: 50px;
+    right: 1.4rem;
+    background: rgba(240, 249, 247, 0.8);
     ;
-
-    ul {
-      li {
-        list-style: none;
-        width: 100%;
-        display: flex;
-        border-bottom: 1px solid #ddd;
-        color: #6C6C70;
-        cursor: pointer;
-        padding: 8px;
-        font-weight: 400;
-        font-size: 14px;
-
-        label {
-          width: 100%;
-
-          span {
-            font-weight: 400;
-            font-size: 14px;
-          }
-        }
-      }
-    }
-
 
 
   }

@@ -48,6 +48,10 @@
     transition: 300ms all;
 }
 
+.none {
+    display: none;
+}
+
 .caret-down {
     transform: rotate(180deg);
 }

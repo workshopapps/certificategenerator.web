@@ -16,13 +16,7 @@ import CaretDown from '../../../assets/svgs/caret-up.svg'
      caretDown.classList.toggle('caret-down')
     
   }
-    //   function OffWindow (e) {
-    //     let drop = document.querySelector(".drop")
-    //  if (!drop.contains(e.target)) {
-    //       drop.classList.remove("show")
-    //    }
-    //  }
-    //    OffWindow()
+
  const accessToken = JSON.parse(localStorage.getItem("userData")).token;
   const [profilePic, setProfilePic] = useState(null);
   const baseURL = "https://certgo.hng.tech/api";

@@ -10,6 +10,7 @@ import useAppProvider from "../../hooks/useAppProvider";
 import { Loader } from "../../Component";
 import TableRow from "./TableRow";
 import profilePic from "../../assets/svgs/default-brandkit.svg";
+import UploadVector from "../../assets/images/uploadPage/uploadVector.svg";
 import Ellipse from "../../assets/svgs/hor-ellipse.svg";
 import "./dashboard.style.scss";
 import { useNavigate } from "react-router-dom";
@@ -281,20 +282,14 @@ const Dashboard = () => {
             <span className="dashboard__profile-pic">
               <img src={file || profilePic} alt="brand-kit" />
             </span>
-            <div className="ellipses" onClick={handleToggle}>
+            {/* <div className="ellipses" onClick={handleToggle}>
               <img src={Ellipse} alt="upload-icon" />
-            </div>
-            <div className="brandkit-dropdown">
-              <ul>
-               <li> 
+            </div> */}
+            <div className="brandkit-upload">
                 <label htmlFor="file" className="dashboard__upload-label">
-                  <span>Upload New Logo</span>   
+                  <img src={UploadVector} alt='upload' />
                   <input type="file" id="file" accept="image/*" name="file" onChange={onFileChange}  />
                 </label>
-              </li>
-                <li >View Logo</li>
-                {/* <li>Delete Logo</li> */}
-              </ul>
             </div>
           </div>
           <div className="flexx">
