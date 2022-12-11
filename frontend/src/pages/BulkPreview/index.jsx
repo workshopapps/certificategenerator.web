@@ -72,14 +72,12 @@ function Index() {
   }, [bulkCertDesignRef]);
 
   const downloadMultiplePdfs = async () => {
-    const doc = new jsPDF("p", "px", [339.4, 339.4]);
-    console.log("Doc", doc);
-    const elements = document.getElementsByClassName("multiple");
-    console.log("Elements", elements);
+    const doc = new jsPDF("p", "px", [339.4, 339.4]); // Initialize a new jsPDF instance
+    const elements = document.getElementsByClassName("multiple"); // Get all certificates as HTML Elements
     setLoading(true);
     await createPdf({ doc, elements });
     setLoading(false);
-    doc.save(`certgo.pdf`);
+    doc.save(`certgo.pdf`); // Download generated pdf doc using jspdf's save() method
   };
 
   const createPdf = async ({ doc, elements }) => {
@@ -89,17 +87,14 @@ function Index() {
 
     for (let i = 0; i < elements.length; i++) {
       const el = elements.item(i);
-      console.log("El", el);
+      // Convert each HTML Element with certificate into image (with htmlToImage library)
       const imgData = await htmlToImage.toPng(el);
 
       let elHeight = el.offsetHeight;
-      console.log("Height", elHeight);
       let elWidth = el.offsetWidth;
-      console.log("Width", elWidth);
-
+  
       const pageWidth = doc.internal.pageSize.getWidth();
-      console.log("Page width", pageWidth);
-
+  
       if (elWidth > pageWidth) {
         const ratio = pageWidth / elWidth;
         elHeight = elHeight * ratio - padding * 2;
@@ -107,22 +102,15 @@ function Index() {
       }
 
       const pageHeight = doc.internal.pageSize.getHeight();
-      console.log("Page height", pageHeight);
 
+      // As we are adding multiple certificates, create a new pdf page when needed
       if (top + elHeight > pageHeight) {
         doc.addPage();
         top = marginTop;
       }
-
-      doc.addImage(
-        imgData,
-        "PNG",
-        padding,
-        top,
-        elWidth,
-        elHeight,
-        `image${i}`
-      );
+      
+      // Add converted certificate image to the pdf doc with jsPDF's addImage() method
+      doc.addImage(imgData, "PNG", padding, top, elWidth, elHeight, `image${i}`); 
       top += elHeight + marginTop;
     }
   };
