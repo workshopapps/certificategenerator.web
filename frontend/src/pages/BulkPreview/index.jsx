@@ -1,7 +1,7 @@
 import jsPDF from "jspdf";
 // import Swal from "sweetalert2";
 import { toPng } from "html-to-image";
-import ReactToPrint from "react-to-print";
+// import ReactToPrint from "react-to-print";
 import * as htmlToImage from "html-to-image";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import React, { useRef, useCallback, useState, useEffect } from "react";
@@ -293,11 +293,11 @@ function Index() {
             <>
               <Button name="Download Certificates" style={{ padding: "10px" }} />
               <div className="dropdown-content" style={{ marginTop: "0px" }}>
-                <ReactToPrint
+                {/* <ReactToPrint
                   pageStyle={pageStyle}
                   content={() => bulkCertDesignRef.current}
                   trigger={() => <Button name="PDF" style={{ padding: "10px", width: "120px" }} className="bulk_dropdown" />}
-                />
+                /> */}
                 <Button
                   name="PDF"
                   style={{ padding: "10px", width: "120px" }}
