@@ -98,7 +98,7 @@ function CreateCertificateModal({
               away.
             </p>
 
-            {tab ? (
+            {/* {tab ? (
               <div className="flex justify-between mode w-5">
                 <button
                   className="select"
@@ -138,94 +138,109 @@ function CreateCertificateModal({
                   Bulk <span className="mobile-none">Certificate</span>
                 </button>
               </div>
-            )}
+            )} */}
+            {/* <div className="flex justify-between mode w-5"> */}
+                {/* <button
+                  className="select"
+                  style={{ color: "#222222", backgroundColor: "#ffffff" }}
+                  onClick={() => {
+                    setTab(false);
+                  }}
+                >
+                  Single <span className="mobile-none">Certificate</span>
+                </button> */}
+              {/* </div> */}
+                <button
+                  className="select"
+                >
+                  Bulk <span className="mobile-none">Certificate</span>
+                </button>
           </div>
           <br />
           <br />
-          <br />
 
+          <UploadCsv getUserCertificates={getUserCertificates} onClose={onClose}/>
           {tab ? (
             <div>
-              <UploadCsv getUserCertificates={getUserCertificates} onClose={onClose}/>
             </div>
-          ) : (
-            <form onSubmit={handleSubmit}>
+          ) : ( null
+            // <form onSubmit={handleSubmit}>
             
-              <div>
-                <span className="label">Logo</span>
-                <label htmlFor="uploadfile">
-                  Upload logo{" "}
-                  <input
-                    type="file"
-                    id="uploadfile"
-                    className="file-type"
-                    onChange={e =>
-                      setLogo(URL.createObjectURL(e.target.files[0]))
-                    }
-                  />
-                </label>
-                <img src={logo} alt="logo" className="logo"/>
-                <span>Max image upload size: 8mb</span>
-              </div>
-              <div>
-                <label htmlFor="logo">Certificate title</label>
-                <input
-                  type="text"
-                  name="logo"
-                  placeholder="Certificate of Completion"
-                  value={certificateTitle}
-                  onChange={e => setCertificateTitle(e.target.value)}
-                />
-              </div>
-              <div>
-                <label htmlFor="logo">Awardee name</label>
-                <input
-                  type="text"
-                  name="logo"
-                  placeholder="Gabriel prosper"
-                  value={awardeeName}
-                  onChange={e => setAwardeeName(e.target.value)}
-                />
-              </div>
-              <div>
-                <label htmlFor="logo">Dedication or Message</label>
-                <input
-                  type="text"
-                  name="logo"
-                  placeholder="For your exceptional performance this month, in appreciation for your loyalty and the desire to fulfil our goals."
-                  value={message}
-                  onChange={e => setMessage(e.target.value)}
-                />
-              </div>
-              <div>
-                <label htmlFor="logo">Issued by</label>
-                <input
-                  type="text"
-                  name="logo"
-                  placeholder="Name of organisation or issuer"
-                  value={issuedBy}
-                  onChange={e => setIssuedBy(e.target.value)}
-                />
-              </div>
-              <div>
-                <label htmlFor="" className="label">
-                  Issue Date
-                </label>
-                <DatePicker
-                  selected={date}
-                  onChange={handleDate}
-                  dateFormat="dd/MM/yyyy"
-                />
-              </div>
-              <div>
-                <button
-                  disabled={disabledButton}
-                  className={`${disabledButton && "btn-disabled"} btn-success`}
-                >
-                  {loading ? <ButtonLoader/> : <span>Create Certificate</span>}
-                </button>
-              </div>
-            </form>
+            //   <div>
+            //     <span className="label">Logo</span>
+            //     <label htmlFor="uploadfile">
+            //       Upload logo{" "}
+            //       <input
+            //         type="file"
+            //         id="uploadfile"
+            //         className="file-type"
+            //         onChange={e =>
+            //           setLogo(URL.createObjectURL(e.target.files[0]))
+            //         }
+            //       />
+            //     </label>
+            //     <img src={logo} alt="logo" className="logo"/>
+            //     <span>Max image upload size: 8mb</span>
+            //   </div>
+            //   <div>
+            //     <label htmlFor="logo">Certificate title</label>
+            //     <input
+            //       type="text"
+            //       name="logo"
+            //       placeholder="Certificate of Completion"
+            //       value={certificateTitle}
+            //       onChange={e => setCertificateTitle(e.target.value)}
+            //     />
+            //   </div>
+            //   <div>
+            //     <label htmlFor="logo">Awardee name</label>
+            //     <input
+            //       type="text"
+            //       name="logo"
+            //       placeholder="Gabriel prosper"
+            //       value={awardeeName}
+            //       onChange={e => setAwardeeName(e.target.value)}
+            //     />
+            //   </div>
+            //   <div>
+            //     <label htmlFor="logo">Dedication or Message</label>
+            //     <input
+            //       type="text"
+            //       name="logo"
+            //       placeholder="For your exceptional performance this month, in appreciation for your loyalty and the desire to fulfil our goals."
+            //       value={message}
+            //       onChange={e => setMessage(e.target.value)}
+            //     />
+            //   </div>
+            //   <div>
+            //     <label htmlFor="logo">Issued by</label>
+            //     <input
+            //       type="text"
+            //       name="logo"
+            //       placeholder="Name of organisation or issuer"
+            //       value={issuedBy}
+            //       onChange={e => setIssuedBy(e.target.value)}
+            //     />
+            //   </div>
+            //   <div>
+            //     <label htmlFor="" className="label">
+            //       Issue Date
+            //     </label>
+            //     <DatePicker
+            //       selected={date}
+            //       onChange={handleDate}
+            //       dateFormat="dd/MM/yyyy"
+            //     />
+            //   </div>
+            //   <div>
+            //     <button
+            //       disabled={disabledButton}
+            //       className={`${disabledButton && "btn-disabled"} btn-success`}
+            //     >
+            //       {loading ? <ButtonLoader/> : <span>Create Certificate</span>}
+            //     </button>
+            //   </div>
+            // </form>
           )}
         </div>
       </div>
