@@ -11,13 +11,13 @@ const BulkCertDesign1 = React.forwardRef(({ item }, ref) => {
           {item.award === undefined ? null : (
             <div id="container-wrapper">
               <div id="container-design">
-                <div className="overlay"></div>
+                {/* <div className="overlay"></div> */}
                 <div className="sample3"></div>
                 <div className="sample"></div>
-                <div className="water-mark">
+                {/* <div className="water-mark">
                   <p>Certgo</p>
                   <p>Certgo</p>
-                </div>
+                </div> */}
 
                 <div id="single-preview-card" style={{ marginTop: "40px" }}>
                   <div id="single-preview-text">
@@ -41,7 +41,7 @@ const BulkCertDesign1 = React.forwardRef(({ item }, ref) => {
                     </div>
                   </div>
                 </div>
-                <div className="sample2"></div>
+                {/* <div className="sample2"></div> */}
               </div>
             </div>
           )}
