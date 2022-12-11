@@ -10,7 +10,7 @@ import "./bulk.style.scss";
 import "@splidejs/react-splide/css";
 import Modal from "../../Component/Modal"; 
 import Button from "../../Component/button";
-import { axiosFormData } from "../../api/axios";
+// import { axiosFormData } from "../../api/axios";
 import BulkCertDesign1 from "./BulkCertDesign/BulkCertDesign1";
 import BulkCertDesign2 from "./BulkCertDesign/BulkCertDesign2";
 import BulkCertDesign3 from "./BulkCertDesign/BulkCertDesign3";
@@ -123,17 +123,17 @@ function Index() {
     }
   };
 
-  const Toast = Swal.mixin({
-    toast: true,
-    position: "top-end",
-    showConfirmButton: false,
-    timer: 3000,
-    timerProgressBar: true,
-    didOpen: toast => {
-      toast.addEventListener("mouseenter", Swal.stopTimer);
-      toast.addEventListener("mouseleave", Swal.resumeTimer);
-    }
-  });
+  // const Toast = Swal.mixin({
+  //   toast: true,
+  //   position: "top-end",
+  //   showConfirmButton: false,
+  //   timer: 3000,
+  //   timerProgressBar: true,
+  //   didOpen: toast => {
+  //     toast.addEventListener("mouseenter", Swal.stopTimer);
+  //     toast.addEventListener("mouseleave", Swal.resumeTimer);
+  //   }
+  // });
 
   // const handleSendCertificates = async e => {
   //   try {
