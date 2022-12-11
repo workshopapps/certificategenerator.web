@@ -1,5 +1,4 @@
-.drop,
-.drop1 {
+.drop {
     background: #FEFFFF;
     position: absolute;
     flex-direction: column;
@@ -44,7 +43,7 @@
 
 
 
-.hidden {
+.show {
     display: flex;
     transition: 300ms all;
 }

@@ -9,23 +9,49 @@ import CaretDown from '../../../assets/svgs/caret-up.svg'
 
  function DropDown() {
 
-  const handleToggle = () => {
+  const handleToggle = (e) => {
      let drop = document.querySelector(".drop")
      let caretDown = document.querySelector("#caret-down")
-     drop.classList.toggle("hidden")
+     drop.classList.toggle("show")
      caretDown.classList.toggle('caret-down')
+    
   }
+    //   function OffWindow (e) {
+    //     let drop = document.querySelector(".drop")
+    //  if (!drop.contains(e.target)) {
+    //       drop.classList.remove("show")
+    //    }
+    //  }
+    //    OffWindow()
+ const accessToken = JSON.parse(localStorage.getItem("userData")).token;
+  const [profilePic, setProfilePic] = useState(null);
+  const baseURL = "https://certgo.hng.tech/api";
+  const axiosPrivate = axios.create({
+    baseURL,
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${accessToken}`
+    }
+  });
+  useEffect(()=> {
+    const getImage = async () => {
+      const res = await axiosPrivate.get("/profile/avatar")
+      setProfilePic(res.data.data.avatar)
+      console.log("Avatar", res.data.data.avatar);
+    }
+    getImage()
+  },[])
 
   return (
     <div>
-       <div className="dropdown-container" onClick={handleToggle}>
-        <div className="dropdown__items">
+       <div className="dropdown-container" >
+        <div className="dropdown__items" onClick={handleToggle}>
         <h3>My Account</h3>
         <img src={CaretDown} alt='caret-down' id='caret-down' />
        </div>
        <Link to='/profile'>
           <span className="dropdown__img">
-          <img src={Avatar} alt="avatar" />
+          <img src={profilePic || Avatar} alt="avatar" />
           </span>
        </Link>
       
