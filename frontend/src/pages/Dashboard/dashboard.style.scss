@@ -62,14 +62,14 @@ $size-sm: 12px;
 
   &__profile-pic-wrapper {
     position: relative;
-
+    cursor: pointer;
     &__align-start {
       text-align: start;
     }
 
     .dashboard__profile-pic {
       width: 100px;
-
+      
       img {
         width: 100px;
         border-radius: 50%;
@@ -84,25 +84,31 @@ $size-sm: 12px;
     cursor: pointer;
   }
 
-  .dashboard__profile-pic:hover+.brandkit-upload {
+  .dashboard__profile-pic-wrapper:hover .brandkit-upload {
     display: block;
+    cursor: pointer;
   }
-
+  
   .brandkit-upload {
     display: none;
     position: absolute;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     gap: 10px;
-    width: fit-content;
-    top: 28px;
+    width: 100%;
+    height: 100%;
     border-radius: 50px;
     right: 1.4rem;
-    background: rgba(240, 249, 247, 0.8);
-    ;
-
-
+    background: rgba(240, 249, 247, 0.5);
+    
+    .dashboard__upload-label{
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+    }
   }
 
   .visible {
@@ -119,25 +125,34 @@ $size-sm: 12px;
   }
 
   &__text {
-    font-size: $size;
-    font-weight: 400;
-    color: #6c6c70;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #222;
     letter-spacing: 0.02em;
     line-height: 20px;
+  }
+  &__plan{
+    font-weight: 500;
+    color: $card-text-color;
+    text-transform: capitalize;
+  }
+  &__bold{
+    font-weight: 600;
   }
 
   &__title {
     font-size: $size-md;
-    color: $text-primary;
-    font-weight: 500;
+    color: #222;
+    font-weight: 700;
     line-height: 19px;
     margin-left: 0;
   }
 
   &__description {
     font-size: $size-sm;
-    color: #6c6c70;
+    color: $card-text-color;
     line-height: 20px;
+    font-weight: 500 ;
   }
 
   &__btn {
@@ -442,11 +457,5 @@ $size-sm: 12px;
         align-items: flex-end;
       }
     }
-
-    // &__cards {
-    //   width: 90%;
-    //   margin: 0 auto 1.2rem auto;
-    //   grid-template-columns: 1fr 1fr 1fr 1fr;
-    // }
   }
 }
