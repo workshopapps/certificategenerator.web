@@ -16,9 +16,9 @@ const UploadCsv = ({getUserCertificates, onClose}) => {
   const { array, setArray } = useContext(AppContext);
   let navigate = useNavigate()
   const [loading, setLoading] = useState(false)
+  const [fileName, setFileName] = useState("")
   const baseURL = "https://certgo.hng.tech/api";
   const accessToken = JSON.parse(localStorage.getItem("userData")).token
-  console.log(accessToken);
 
   const axiosFormData = axios.create({
     baseURL,
@@ -35,7 +35,8 @@ const UploadCsv = ({getUserCertificates, onClose}) => {
     if (e.target && e.target.files[0]) {
       formData.append("file", e.target.files[0]);
     }
-    console.log(e.target.files[0]);
+    console.log(e.target.files[0].name);
+    setFileName(e.target.files[0].name);
   };
 
   const Toast = Swal.mixin({
@@ -102,14 +103,17 @@ const UploadCsv = ({getUserCertificates, onClose}) => {
         
         <p>Drag and drop your CSV file here</p>
         <div>
+          <span>or</span>
           <input
             type="file"
             id="files"
             className="file-upload"
             onChange={onFileChange}
             />
-          <label htmlFor="files">Browse File</label>
-            <span>or</span>
+         <label htmlFor="files">Browse File</label>
+         <div>
+         <span>{fileName}</span>
+         </div>
         </div>
       </div>
       <section>
