@@ -38,4 +38,28 @@ ProfileSchema.post("deleteOne", { document: true }, async function (doc) {
   await User.findOneAndDelete({ _id: doc.user.toString() });
 });
 
+// Retch user profile and update the profile email to match user email
+ProfileSchema.post("findOne", async function (doc) {
+  try {
+    // User model imported this way to prevent circular dependency error
+    const User = mongoose.models.User;
+
+    // Get user for this profile
+    const user = await User.findById(doc.user.toString());
+
+    // Return if no user
+    if (!user) return;
+
+    // Return if user email and profile email are in sync
+    if (user.email === doc.email) return;
+
+    // Update user profile email
+    await mongoose.models.Profile.findByIdAndUpdate(doc._id, {
+      email: user.email
+    });
+  } catch (error) {
+    console.log("Couldn't Update email, ", error.message);
+  }
+});
+
 module.exports = mongoose.model("Profile", ProfileSchema);

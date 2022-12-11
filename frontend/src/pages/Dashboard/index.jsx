@@ -10,6 +10,7 @@ import useAppProvider from "../../hooks/useAppProvider";
 import { Loader } from "../../Component";
 import TableRow from "./TableRow";
 import profilePic from "../../assets/svgs/default-brandkit.svg";
+import UploadVector from "../../assets/images/uploadPage/uploadVector.svg";
 import Ellipse from "../../assets/svgs/hor-ellipse.svg";
 import "./dashboard.style.scss";
 import { useNavigate } from "react-router-dom";
@@ -39,7 +40,7 @@ const Dashboard = () => {
   const baseURL = "https://certgo.hng.tech/api";
   const accessToken = JSON.parse(localStorage.getItem("userData")).token;
   const [file, setFile] = useState("");
-  let navigate = useNavigate()
+  let navigate = useNavigate();
 
   const axiosPrivate = axios.create({
     baseURL,
@@ -59,7 +60,7 @@ const Dashboard = () => {
 
   // On file select (from the pop up)
   // Update the state
-   const onUpdate = async image => {
+  const onUpdate = async image => {
     const formData = new FormData();
     formData.append("file", image);
     console.log(image);
@@ -94,10 +95,9 @@ const Dashboard = () => {
     e.preventDefault();
     setFile(URL.createObjectURL(e.target.files[0]));
     console.log(e.target.files[0]);
-    onUpdate(e.target.files[0])
+    onUpdate(e.target.files[0]);
   };
 
- 
   useEffect(() => {
     const getFile = async e => {
       const res = await axiosPrivate.get("/users/brand-kit");
@@ -108,13 +108,29 @@ const Dashboard = () => {
   }, []);
 
   const handleChangeCertificateStatus = async (id, status) => {
-    await axiosPrivate.patch(`/certificates/status/${id}`, { status });
-    Toast.fire({
-      icon: "success",
-      title: "Successfully updated"
-    });
-    const res = await axiosPrivate.get("/certificates");
-    setData(res.data.data.certificates);
+    try {
+      await axiosPrivate.patch(`/certificates/status/${id}`, { status });
+      Toast.fire({
+        icon: "success",
+        title: "Successfully updated"
+      });
+      const res = await axiosPrivate.get("/certificates");
+      setData(res.data.data.certificates);
+    } catch (error) {
+      console.error(error.message);
+      if (error.response.status === 400 || error.response.status === 401) {
+        Toast.fire({
+          icon: "error",
+          title: "Failed Request"
+        });
+      } else if (error.response.status === 500) {
+        Toast.fire({
+          icon: "error",
+          title: "Internal Server Error"
+        });
+      }
+    }
+   
   };
 
   const handleDeleteCertificate = async id => {
@@ -142,28 +158,22 @@ const Dashboard = () => {
       const response = await axiosPrivate.get("/certificates");
       let sub = JSON.parse(localStorage.getItem("userData")).subscription;
       setPricing(sub);
-      // console.log(response);
-      if (response.status === 404) {
+
+      setData(response.data.data.certificates);
+      updateCount(response.data.data.certificates);
+    } catch (error) {
+      console.error(error.message);
+      if (error.response.status === 400 || error.response.status === 401) {
         Toast.fire({
           icon: "error",
-          title: "Page not found"
+          title: "Failed Request"
         });
-      } else if (response.status === 401) {
-        Toast.fire({
-          icon: "error",
-          title: "Request Failed"
-        });
-      } else if (response.status === 500) {
+      } else if (error.response.status === 500) {
         Toast.fire({
           icon: "error",
           title: "Internal Server Error"
         });
-      } else {
-        setData(response.data.data.certificates);
-        updateCount(response.data.data.certificates);
       }
-    } catch (error) {
-      console.error(error.message);
     }
   };
 
@@ -281,25 +291,19 @@ const Dashboard = () => {
             <span className="dashboard__profile-pic">
               <img src={file || profilePic} alt="brand-kit" />
             </span>
-            <div className="ellipses" onClick={handleToggle}>
+            {/* <div className="ellipses" onClick={handleToggle}>
               <img src={Ellipse} alt="upload-icon" />
-            </div>
-            <div className="brandkit-dropdown">
-              <ul>
-               <li> 
+            </div> */}
+            <div className="brandkit-upload">
                 <label htmlFor="file" className="dashboard__upload-label">
-                  <span>Upload New Logo</span>   
+                  <img src={UploadVector} alt='upload' />
                   <input type="file" id="file" accept="image/*" name="file" onChange={onFileChange}  />
                 </label>
-              </li>
-                <li >View Logo</li>
-                {/* <li>Delete Logo</li> */}
-              </ul>
             </div>
           </div>
           <div className="flexx">
             <div className="dashboard__align-start">
-              <h3 className="dashboard__text">Welcome</h3>
+              <h3 className="dashboard__text">Welcome </h3>
               <h2
                 style={{ textTransform: "capitalize" }}
                 className="dashboard__title"
@@ -307,14 +311,16 @@ const Dashboard = () => {
                 {profileName ? profileName : ""}
               </h2>
               <p className="dashboard__description">
-                Get a summary of all the Certificates and Job done here
+                Get a summary of all the Certificates here
               </p>
               <div>
-                <p>Package: {pricing}</p>
+                <p className="dashboard__plan">Package: <span className="dashboard__bold">{pricing}</span></p>
               </div>
             </div>
             <div className="dashboard__btn">
-              <button onClick={() => navigate("/pricing")}>Upgrade Account</button>
+              <button onClick={() => navigate("/pricing")}>
+                Upgrade Account
+              </button>
             </div>
           </div>
         </div>
