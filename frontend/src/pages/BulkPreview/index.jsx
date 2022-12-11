@@ -1,5 +1,5 @@
 import jsPDF from "jspdf";
-import Swal from "sweetalert2";
+// import Swal from "sweetalert2";
 import { toPng } from "html-to-image";
 import ReactToPrint from "react-to-print";
 import * as htmlToImage from "html-to-image";
@@ -84,17 +84,17 @@ function Index() {
       })
   }, [bulkCertDesignRef, isAuntheticated]);
 
-  const Toast = Swal.mixin({
-    toast: true,
-    position: "top-end",
-    showConfirmButton: false,
-    timer: 3000,
-    timerProgressBar: true,
-    didOpen: toast => {
-      toast.addEventListener("mouseenter", Swal.stopTimer);
-      toast.addEventListener("mouseleave", Swal.resumeTimer);
-    }
-  });
+  // const Toast = Swal.mixin({
+  //   toast: true,
+  //   position: "top-end",
+  //   showConfirmButton: false,
+  //   timer: 3000,
+  //   timerProgressBar: true,
+  //   didOpen: toast => {
+  //     toast.addEventListener("mouseenter", Swal.stopTimer);
+  //     toast.addEventListener("mouseleave", Swal.resumeTimer);
+  //   }
+  // });
 
   const downloadMultiplePdfs = async () => {
     if (!isAuntheticated) {
@@ -110,10 +110,6 @@ function Index() {
       console.log("Item", item);
       await createPdf({ doc, item });
       doc.save(`certgo${i}.pdf`); // Download generated pdf doc using jspdf's save() method
-      Toast.fire({
-        // icon: "success",
-        title: "Mehn you don beans"
-      });
     }
     setLoading(false);
   };
