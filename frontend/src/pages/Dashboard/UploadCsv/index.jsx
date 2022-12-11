@@ -4,21 +4,21 @@ import Swal from "sweetalert2";
 import CSVSample from "../../../assets/images/CSV-sample.png";
 import { CSVLink } from "react-csv";
 import UploadVector from "../../../assets/images/uploadPage/uploadVector.svg";
-import useAppProvider from "../../../hooks/useAppProvider"
-import {axiosFormData} from "../../../api/axios";
-import {ButtonLoader} from "../../../Component"
+import useAppProvider from "../../../hooks/useAppProvider";
+import { axiosFormData } from "../../../api/axios";
+import { ButtonLoader } from "../../../Component";
 import { useNavigate } from "react-router-dom";
 import AppContext from "../../../contexts/AppProvider";
 import "./uploadcsv.style.scss";
 import Button from "../../../Component/button";
 
-const UploadCsv = ({getUserCertificates, onClose}) => {
+const UploadCsv = ({ getUserCertificates, onClose }) => {
   const { array, setArray } = useContext(AppContext);
-  let navigate = useNavigate()
-  const [loading, setLoading] = useState(false)
-  const [fileName, setFileName] = useState("")
+  let navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+  const [fileName, setFileName] = useState("");
   const baseURL = "https://certgo.hng.tech/api";
-  const accessToken = JSON.parse(localStorage.getItem("userData")).token
+  const accessToken = JSON.parse(localStorage.getItem("userData")).token;
 
   const axiosFormData = axios.create({
     baseURL,
@@ -27,7 +27,6 @@ const UploadCsv = ({getUserCertificates, onClose}) => {
       Authorization: `Bearer ${accessToken}`
     }
   });
-
 
   let formData = new FormData();
 
@@ -51,56 +50,66 @@ const UploadCsv = ({getUserCertificates, onClose}) => {
     }
   });
   const handleUpload = async e => {
-    console.log('i got here')
+    console.log("i got here");
     e.preventDefault();
-    setLoading(true)
+    setLoading(true);
     try {
-      const res = await axiosFormData.post('/certificates', formData);
+      const res = await axiosFormData.post("/certificates", formData);
       console.log(res);
-      if (res.status === 401) {
-        setLoading(false);
-        console.log('load');
+
+      setLoading(false);
+      setArray(res.data.data.certificateData);
+      localStorage.setItem(
+        "dataKey",
+        JSON.stringify(res.data.data.certificateData)
+      );
+      navigate("/bulk_preview");
+      onClose();
+      getUserCertificates();
+      Toast.fire({
+        icon: "success",
+        title: "Successfully Updated"
+      });
+    } catch (error) {
+      onClose();
+      setLoading(false);
+      if (error.response.status === 400 || error.response.status === 401) {
         Toast.fire({
           icon: "error",
-          title: "Bad Request"
+          title: "Failed Request"
         });
-      } else if (res.status === 500) {
-        setLoading(false);
+      } else if (error.response.status === 500) {
         Toast.fire({
           icon: "error",
           title: "Internal Server Error"
         });
-      } else {
-        setLoading(false);
-        setArray(res.data.data.certificateData)
-        localStorage.setItem('dataKey', JSON.stringify(res.data.data.certificateData));
-        navigate('/bulk_preview')
-        onClose();
-        getUserCertificates();
-        Toast.fire({
-          icon: "success",
-          title: "Successfully Updated"
-        });
       }
-    } catch (error) {
-      console.log(error);
     }
   };
 
-  
   return (
     <article id="uploadCSVContainer">
-      <Button className="Submitcsv" style={{ margin: "1em auto", width: "200px" }}>
-        <CSVLink data={csvDataSample} headers={headers} filename="sample.csv" style={{ color: "white" }}>
+      <Button
+        className="Submitcsv"
+        style={{ margin: "1em auto", width: "200px" }}
+      >
+        <CSVLink
+          data={csvDataSample}
+          headers={headers}
+          filename="sample.csv"
+          style={{ color: "white" }}
+        >
           Download sample
         </CSVLink>
       </Button>
-      <h6 style={{ textAlign: "center" }}>Upload your CSV file here in the format below</h6>
+      <h6 style={{ textAlign: "center" }}>
+        Upload your CSV file here in the format below
+      </h6>
       <div>
         <div style={{ marginBottom: "16px" }}>
           <img src={UploadVector} alt="upload" />
         </div>
-        
+
         <p>Drag and drop your CSV file here</p>
         <div>
           <span>or</span>
@@ -109,25 +118,31 @@ const UploadCsv = ({getUserCertificates, onClose}) => {
             id="files"
             className="file-upload"
             onChange={onFileChange}
-            />
-         <label htmlFor="files">Browse File</label>
-         <div>
-         <span>{fileName}</span>
-         </div>
+          />
+          <label htmlFor="files">Browse File</label>
+          <div>
+            <span>{fileName}</span>
+          </div>
         </div>
       </div>
       <section>
         <img src={CSVSample} alt="cert" />
       </section>
-      <button onClick={(e) => handleUpload(e)}>{loading ? <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center"
-        }}
-      >
-        <ButtonLoader />
-      </div> : "Submit CSV"}</button>
+      <button onClick={e => handleUpload(e)}>
+        {loading ? (
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center"
+            }}
+          >
+            <ButtonLoader />
+          </div>
+        ) : (
+          "Submit CSV"
+        )}
+      </button>
     </article>
   );
 };
@@ -135,13 +150,13 @@ const UploadCsv = ({getUserCertificates, onClose}) => {
 export default UploadCsv;
 
 const headers = [
-  {label: "name", key: "name"},
-  {label: "nameOfOrganization", key: "nameOfOrganization"},
-  {label: "description", key: "description"},
-  {label: "award", key: "award"},
-  {label: "signed", key: "signed"},
-  {label: "email", key: "email"},
-  {label: "date", key: "date"}
+  { label: "name", key: "name" },
+  { label: "nameOfOrganization", key: "nameOfOrganization" },
+  { label: "description", key: "description" },
+  { label: "award", key: "award" },
+  { label: "signed", key: "signed" },
+  { label: "email", key: "email" },
+  { label: "date", key: "date" }
 ];
 
 const csvDataSample = [
