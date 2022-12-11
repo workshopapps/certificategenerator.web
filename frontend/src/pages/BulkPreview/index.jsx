@@ -1,5 +1,5 @@
 import jsPDF from "jspdf";
-import Swal from "sweetalert2";
+// import Swal from "sweetalert2";
 import { toPng } from "html-to-image";
 // import ReactToPrint from "react-to-print";
 import * as htmlToImage from "html-to-image";
@@ -60,6 +60,11 @@ function Index() {
   const bulkCertDesignRef = useRef();
 
   const handleClick = useCallback(() => {
+    if (!isAuntheticated) {
+      setOpenModal(true);
+      setModalMessage("You need to sign up to send certificate to your mail");
+      return;
+    }
     setLoading(true);
     if (bulkCertDesignRef.current === null) {
       setLoading(false);
@@ -77,9 +82,14 @@ function Index() {
         setLoading(false);
         console.log(err)
       })
-  }, [bulkCertDesignRef]);
+  }, [bulkCertDesignRef, isAuntheticated]);
 
   const downloadMultiplePdfs = async () => {
+    if (!isAuntheticated) {
+      setOpenModal(true);
+      setModalMessage("You need to sign up to send certificate to your mail");
+      return;
+    }
     const doc = new jsPDF("p", "px", [339.4, 339.4]); // Initialize a new jsPDF instance
     const elements = document.getElementsByClassName("multiple"); // Get all certificates as HTML Elements
     setLoading(true);
