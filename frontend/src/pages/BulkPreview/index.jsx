@@ -22,7 +22,7 @@ function Index() {
   const [loading, setLoading] = useState(false);
   const [openModal, setOpenModal] = useState(false);
   const [modalMessage, setModalMessage] = useState("");
-  const [emailLoading, setEmailLoading] = useState(false);
+  // const [emailLoading, setEmailLoading] = useState(false);
   const [isAuntheticated, setIsAuntheticated] = useState(false);
 
   useEffect(() => {
@@ -135,69 +135,69 @@ function Index() {
     }
   });
 
-  const handleSendCertificates = async e => {
-    try {
-      localStorage.getItem("userData")
-        ? setIsAuntheticated(true)
-        : setIsAuntheticated(false);
+  // const handleSendCertificates = async e => {
+  //   try {
+  //     localStorage.getItem("userData")
+  //       ? setIsAuntheticated(true)
+  //       : setIsAuntheticated(false);
 
-      if (!isAuntheticated) {
-        setOpenModal(true);
-        setModalMessage("You need to sign up to send certificate to your mail");
-        return;
-      }
+  //     if (!isAuntheticated) {
+  //       setOpenModal(true);
+  //       setModalMessage("You need to sign up to send certificate to your mail");
+  //       return;
+  //     }
 
-      const doc = new jsPDF("p", "px", [339.4, 339.4]); // Initialize a new jsPDF instance
-      const elements = document.getElementsByClassName("multiple"); // Get all certificates as HTML Elements
-      setEmailLoading(true);
-      await createPdf({ doc, elements });
-      const data = doc.save(`certgo.pdf`);
+  //     const doc = new jsPDF("p", "px", [339.4, 339.4]); // Initialize a new jsPDF instance
+  //     const elements = document.getElementsByClassName("multiple"); // Get all certificates as HTML Elements
+  //     setEmailLoading(true);
+  //     await createPdf({ doc, elements });
+  //     const data = doc.save(`certgo.pdf`);
 
-      // get token from localstorage
-      const token = JSON.parse(localStorage.getItem("userData")).token;
+  //     // get token from localstorage
+  //     const token = JSON.parse(localStorage.getItem("userData")).token;
 
-      // create form data and add pdf
-      let formData = new FormData();
-      formData.append("file", data);
+  //     // create form data and add pdf
+  //     let formData = new FormData();
+  //     formData.append("file", data);
 
-      // send the form data
-      const uploadUrl = "/sendEmailNotifications";
-      let response = await axiosFormData.post(uploadUrl, formData, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "multipart/form-data"
-        }
-      });
-      // toast message
-      const dataMsg = response.data;
-      if (response.status === 200) {
-        setEmailLoading(false);
-        Toast.fire({
-          icon: "success",
-          title: dataMsg.message
-        });
-      } else if (response.status === 403) {
-        setEmailLoading(false);
-        Toast.fire({
-          icon: "error",
-          title: dataMsg.error
-        });
-      } else {
-        setEmailLoading(false);
-        Toast.fire({
-          icon: "error",
-          title: dataMsg.message
-        });
-        throw new Error(dataMsg.message);
-      }
-    } catch (error) {
-      setEmailLoading(false);
-      Toast.fire({
-        icon: "error",
-        title: "Internal Server Error"
-      });
-    }
-  };
+  //     // send the form data
+  //     const uploadUrl = "/sendEmailNotifications";
+  //     let response = await axiosFormData.post(uploadUrl, formData, {
+  //       headers: {
+  //         Authorization: `Bearer ${token}`,
+  //         "Content-Type": "multipart/form-data"
+  //       }
+  //     });
+  //     // toast message
+  //     const dataMsg = response.data;
+  //     if (response.status === 200) {
+  //       setEmailLoading(false);
+  //       Toast.fire({
+  //         icon: "success",
+  //         title: dataMsg.message
+  //       });
+  //     } else if (response.status === 403) {
+  //       setEmailLoading(false);
+  //       Toast.fire({
+  //         icon: "error",
+  //         title: dataMsg.error
+  //       });
+  //     } else {
+  //       setEmailLoading(false);
+  //       Toast.fire({
+  //         icon: "error",
+  //         title: dataMsg.message
+  //       });
+  //       throw new Error(dataMsg.message);
+  //     }
+  //   } catch (error) {
+  //     setEmailLoading(false);
+  //     Toast.fire({
+  //       icon: "error",
+  //       title: "Internal Server Error"
+  //     });
+  //   }
+  // };
 
   return (
     <div id="bulk-preview">
