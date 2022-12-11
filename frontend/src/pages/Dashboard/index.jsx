@@ -314,12 +314,12 @@ const Dashboard = () => {
           </div>
           <div className="flexx">
             <div className="dashboard__align-start">
-              <h3 className="dashboard__text">Welcome</h3>
+              <h3 className="dashboard__text">Welcome </h3>
               <h2
                 style={{ textTransform: "capitalize" }}
                 className="dashboard__title"
               >
-                {profileName ? profileName : ""}
+                {profileName ? profileName : "Luqman Adeniyi"}
               </h2>
               <p className="dashboard__description">
                 Get a summary of all the Certificates here

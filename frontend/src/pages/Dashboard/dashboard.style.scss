@@ -140,7 +140,7 @@ $size-sm: 12px;
   }
 
   &__text {
-    font-size: $size;
+    font-size: 1rem;
     font-weight: 500;
     color: #222;
     letter-spacing: 0.02em;
@@ -148,7 +148,7 @@ $size-sm: 12px;
   }
   &__plan{
     font-weight: 500;
-    color: #222;
+    color: $card-text-color;
     text-transform: capitalize;
   }
   &__bold{
@@ -157,7 +157,7 @@ $size-sm: 12px;
 
   &__title {
     font-size: $size-md;
-    color: $text-primary;
+    color: #222;
     font-weight: 700;
     line-height: 19px;
     margin-left: 0;
@@ -165,7 +165,7 @@ $size-sm: 12px;
 
   &__description {
     font-size: $size-sm;
-    color: #222;
+    color: $card-text-color;
     line-height: 20px;
     font-weight: 500 ;
   }
