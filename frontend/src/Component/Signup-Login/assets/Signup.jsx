@@ -26,7 +26,7 @@ const Signup = () => {
     name: "",
     email: "",
     password: "",
-    acceptTerms: true
+    checkbox: ""
   });
   // Google auth client ID
   const CLIENT_ID =
@@ -59,9 +59,9 @@ const Signup = () => {
     });
   }
 
-  async function createNewUser(email, password, name) {
-    console.log(email, password, name);
-    // return axios.post("/auth/signup", { email: email, password: password, name: name });
+  async function createNewUser(email, password, name, checkbox) {
+    console.log(email, password, name, checkbox);
+    // return axios.post("/auth/signup", { email: email, password: password, name: name, checkbox: checkbox });
     return fetch(`https://certgo.hng.tech/api/auth/signup`, {
       method: "POST",
       headers: {
@@ -263,7 +263,7 @@ const Signup = () => {
             {/* <div id="pwd"> */}
             {/* <img alt="" src={keySVG} /> */}
             <Input
-              label={"Password"}
+              label="Password"
               id="input_id"
               placeholder=" Create a password"
               type={type}
@@ -285,10 +285,10 @@ const Signup = () => {
             <div id="checkTerms">
               <input
                 type="checkbox"
-                id="acceptTerms"
+                id="checkbox"
                 value={checkbox}
                 checked={formData.acceptTerms}
-                // onChange={handleChange}
+                onChange={handleChange}
                 name="acceptTerms"
                 callback={e => setCheckbox(e.target.value)}
                 required
