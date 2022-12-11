@@ -288,7 +288,7 @@ const Signup = () => {
                 id="checkbox"
                 value={checkbox}
                 checked={formData.acceptTerms}
-                // onChange={handleChange}
+                onChange={handleChange}
                 name="acceptTerms"
                 callback={e => setCheckbox(e.target.value)}
                 required
