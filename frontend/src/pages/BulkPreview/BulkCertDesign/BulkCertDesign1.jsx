@@ -3,6 +3,10 @@ import React from "react";
 import "./bulkcertdesign.style.scss";
 
 const BulkCertDesign1 = React.forwardRef(({ item }, ref) => {
+  const getPageMargins = () => {
+    return `@page { margin: "0px" !important; }`;
+  };
+
   return (
     <div ref={ref}>
       {/* START OF CERTIFICATE */}
@@ -48,6 +52,8 @@ const BulkCertDesign1 = React.forwardRef(({ item }, ref) => {
         </div>
       </div>
       {/* END OF CERTIFICATE */}
+
+      <style>{getPageMargins()}</style>
     </div>
   );
 });
