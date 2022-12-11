@@ -84,27 +84,45 @@ function Index() {
       })
   }, [bulkCertDesignRef, isAuntheticated]);
 
+  // const Toast = Swal.mixin({
+  //   toast: true,
+  //   position: "top-end",
+  //   showConfirmButton: false,
+  //   timer: 3000,
+  //   timerProgressBar: true,
+  //   didOpen: toast => {
+  //     toast.addEventListener("mouseenter", Swal.stopTimer);
+  //     toast.addEventListener("mouseleave", Swal.resumeTimer);
+  //   }
+  // });
+
   const downloadMultiplePdfs = async () => {
     if (!isAuntheticated) {
       setOpenModal(true);
       setModalMessage("You need to sign up or login to download bulk certificates");
       return;
     }
-    const doc = new jsPDF("p", "px", [339.4, 339.4]); // Initialize a new jsPDF instance
     const elements = document.getElementsByClassName("multiple"); // Get all certificates as HTML Elements
     setLoading(true);
-    await createPdf({ doc, elements });
+    for (let i = 0; i < elements.length; i++) {
+      const doc = new jsPDF("p", "px", [339.4, 339.4]); // Initialize a new jsPDF instance
+      const item = elements[i];
+      console.log("Item", item);
+      await createPdf({ doc, item });
+      doc.save(`certgo${i}.pdf`); // Download generated pdf doc using jspdf's save() method
+    }
     setLoading(false);
-    doc.save(`certgo.pdf`); // Download generated pdf doc using jspdf's save() method
   };
 
-  const createPdf = async ({ doc, elements }) => {
+  // const createPdf = async ({ doc, elements }) => {
+  const createPdf = async ({ doc, item }) => {
     const padding = 10;
     const marginTop = 20;
     let top = marginTop;
 
-    for (let i = 0; i < elements.length; i++) {
-      const el = elements.item(i);
+    // for (let i = 0; i < elements.length; i++) {
+      // const el = elements.item(i);
+      const el = item;
       // Convert each HTML Element with certificate into image (with htmlToImage library)
       const imgData = await htmlToImage.toPng(el);
   
@@ -122,28 +140,16 @@ function Index() {
       const pageHeight = doc.internal.pageSize.getHeight();
 
       // As we are adding multiple certificates, create a new pdf page when needed
-      if (top + elHeight > pageHeight) {
-        doc.addPage();
-        top = marginTop;
-      }
+      // if (top + elHeight > pageHeight) {
+      //   doc.addPage();
+      //   top = marginTop;
+      // }
       
       // Add converted certificate image to the pdf doc with jsPDF's addImage() method
-      doc.addImage(imgData, "PNG", padding, top, elWidth, elHeight, `image${i}`); 
+      doc.addImage(imgData, "PNG", padding, top, elWidth, elHeight, `image${item}`); 
       top += elHeight + marginTop;
-    }
+    // }
   };
-
-  // const Toast = Swal.mixin({
-  //   toast: true,
-  //   position: "top-end",
-  //   showConfirmButton: false,
-  //   timer: 3000,
-  //   timerProgressBar: true,
-  //   didOpen: toast => {
-  //     toast.addEventListener("mouseenter", Swal.stopTimer);
-  //     toast.addEventListener("mouseleave", Swal.resumeTimer);
-  //   }
-  // });
 
   // const handleSendCertificates = async e => {
   //   try {
@@ -209,6 +215,24 @@ function Index() {
   //   }
   // };
 
+  const pageStyle = `
+  @page {
+    size: 80mm 50mm;
+  }
+
+  @media all {
+    .pagebreak {
+      display: none;
+    }
+  }
+
+  @media print {
+    .pagebreak {
+      page-break-before: always;
+    }
+  }
+`;
+
   return (
     <div id="bulk-preview">
       {/* PREVIEW OF BULK GENERATED CERTIFICATES  */}
@@ -242,13 +266,13 @@ function Index() {
           {array.map((item, id) => (
             <SplideSlide key={id}>
               {templateone && (
-                <BulkCertDesign1 item={item} ref={bulkCertDesignRef} />
+                <BulkCertDesign1 item={item} ref={bulkCertDesignRef} className="page-break"  />
               )}
               {templatetwo && (
-                <BulkCertDesign2 item={item} ref={bulkCertDesignRef} />
+                <BulkCertDesign2 item={item} ref={bulkCertDesignRef} className="page-break"  />
               )}
               {templatethree && (
-                <BulkCertDesign3 item={item} ref={bulkCertDesignRef} />
+                <BulkCertDesign3 item={item} ref={bulkCertDesignRef} className="page-break"  />
               )}
             </SplideSlide>
           ))}
@@ -270,6 +294,7 @@ function Index() {
               <Button name="Download Certificates" style={{ padding: "10px" }} />
               <div className="dropdown-content" style={{ marginTop: "0px" }}>
                 {/* <ReactToPrint
+                  pageStyle={pageStyle}
                   content={() => bulkCertDesignRef.current}
                   trigger={() => <Button name="PDF" style={{ padding: "10px", width: "120px" }} className="bulk_dropdown" />}
                 /> */}
