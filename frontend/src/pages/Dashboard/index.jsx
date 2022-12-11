@@ -308,7 +308,7 @@ const Dashboard = () => {
                 style={{ textTransform: "capitalize" }}
                 className="dashboard__title"
               >
-                {profileName ? profileName : "Luqman"}
+                {profileName ? profileName : ""}
               </h2>
               <p className="dashboard__description">
                 Get a summary of all the Certificates here
