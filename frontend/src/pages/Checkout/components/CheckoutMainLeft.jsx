@@ -7,6 +7,8 @@ import CheckoutMainLeftComp from "./CheckoutMainLeftComp";
 import { useState } from "react";
 import PaymentSwitch from "./PaymentSwitch";
 import { Link } from "react-router-dom";
+import { Toast } from "../../../Component/ToastAlert";
+import axios from "../../../api/axios";
 
 function CheckoutMainLeft({ amount }) {
   const [firstName, setFirstName] = useState("");
@@ -33,6 +35,8 @@ function CheckoutMainLeft({ amount }) {
   const [paymentBorderCard, setPaymentBorderCard] =
     useState("4px solid #01AA6E");
   const [paymentBorderBank, setPaymentBorderBank] = useState("");
+  const id = JSON.parse(localStorage.getItem("userData")).userId;
+  const userData = JSON.parse(localStorage.getItem("userData"))
 
   function firstNamef(value) {
     setFirstName(value);
@@ -118,6 +122,29 @@ function CheckoutMainLeft({ amount }) {
     setPayment(false);
     setPaymentBorderCard("");
     setPaymentBorderBank("4px solid #01AA6E");
+  }
+  
+  function updateUserPlan(plan) {
+    userData.subscription = plan
+    localStorage.setItem("userData", JSON.stringify(userData));
+  }
+
+  async function handleAccountUpgrade () {
+    try {
+        await axios.put(`https://certgo.hng.tech/api/pricing/${id}`, { plan: "standard"});
+        Toast.fire({
+          icon: "success",
+          title: "Account successfully upgraded!"
+        });
+        updateUserPlan("standard")
+      } 
+      catch (err) {
+        console.log(err)
+        Toast.fire({
+          icon: "error",
+          title: "Something went wrong, please try again"
+        });
+      }
   }
 
   return (
@@ -240,9 +267,9 @@ function CheckoutMainLeft({ amount }) {
         )}
       </div>
 
-      <Link to="/bulk_preview">
-        <button id="CheckoutMainLeft-btn">Pay {`${amount}`}</button>
-      </Link>
+      {/* <Link to="/bulk_preview"> */}
+        <button id="CheckoutMainLeft-btn" onClick={handleAccountUpgrade}>Pay {`${amount}`}</button>
+      {/* </Link> */}
     </div>
   );
 }
