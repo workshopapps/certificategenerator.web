@@ -109,7 +109,7 @@ function Navbar() {
               </div>
                  : 
               <div className="button-container">
-              <NavLink to="/signup" >
+              <NavLink to="/login" >
                 <Button
                   className="btn"
                   onClick={handleToggle}
