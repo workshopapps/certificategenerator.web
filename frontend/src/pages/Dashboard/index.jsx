@@ -28,19 +28,20 @@ const Dashboard = () => {
     issuedBy,
     setIssuedBy,
     issueDate,
-    setIssueDate
+    setIssueDate,
+    array
   } = useAppProvider();
   const [data, setData] = useState([]);
   const [cardData, setCardData] = useState([...dummyData]);
   const [openModal, setOpenModal] = useState(false);
-  // const [loading, setLoading] = useState(false);
   const [pricing, setPricing] = useState("");
-  const [certificates, setCertificates] = useState([]);
   const [eventLink, setEventLink] = useState("");
   const baseURL = "https://certgo.hng.tech/api";
   const accessToken = JSON.parse(localStorage.getItem("userData")).token;
+  const unauthArray = localStorage.getItem("dataKey");
   const [file, setFile] = useState("");
   let navigate = useNavigate();
+  let sub = JSON.parse(localStorage.getItem("userData")).subscription;
 
   const axiosPrivate = axios.create({
     baseURL,
@@ -152,11 +153,17 @@ const Dashboard = () => {
     });
     setData([]);
   };
-
+  const getUnauthUserCertificates = async () => {
+    console.log(unauthArray);
+    const response = await axiosPrivate.post("/certificates", unauthArray);
+    console.log(response);
+    // const res = await axiosPrivate.get("/certificates")
+    // const unauthCertificate = res.data
+    // setData([...data, ...unauthCertificate])
+  }
   const getUserCertificates = async () => {
     try {
       const response = await axiosPrivate.get("/certificates");
-      let sub = JSON.parse(localStorage.getItem("userData")).subscription;
       setPricing(sub);
 
       setData(response.data.data.certificates);
@@ -206,6 +213,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     getUserCertificates();
+    getUnauthUserCertificates()
   }, []);
 
   //GET EVENTS
@@ -314,7 +322,7 @@ const Dashboard = () => {
                 Get a summary of all the Certificates here
               </p>
               <div>
-                <p className="dashboard__plan">Package: <span className="dashboard__bold">{pricing}</span></p>
+                <p className="dashboard__plan dashboard__bold">Package: <span className="dashboard__bold">{sub}</span></p>
               </div>
             </div>
             <div className="dashboard__btn">
@@ -349,11 +357,11 @@ const Dashboard = () => {
                   + New Certificate
                 </Button>
 
-                {/* <Button style={{ fontSize: "16px" }} className="" onClick={handleDeleteAll}>
-                  Delete All Certificates
+                 <Button style={{ fontSize: "16px", backgroundColor: "white", color: "#19a68e"}} onClick={handleDeleteAll}>
+                  Delete All 
                 </Button>
 
-                <Button
+                {/*<Button
                   style={{ marginLeft: "16px", fontSize: "16px" }}
                   className="btn-generate"
                   onClick={handleGenerate}
