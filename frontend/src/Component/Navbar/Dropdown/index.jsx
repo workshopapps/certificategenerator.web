@@ -8,17 +8,6 @@ import Avatar from '../../../assets/svgs/default-brandkit.svg'
 import CaretDown from '../../../assets/svgs/caret-up.svg'
 
  function DropDown() {
-   const baseURL = "https://certgo.hng.tech/api";
-  const accessToken = JSON.parse(localStorage.getItem("userData")).token
-  const [file, setFile] = useState('')
-   
-  const axiosPrivate = axios.create({
-    baseURL,
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${accessToken}`
-    }
-  });
 
   const handleToggle = () => {
      let drop = document.querySelector(".drop")
@@ -26,15 +15,6 @@ import CaretDown from '../../../assets/svgs/caret-up.svg'
      drop.classList.toggle("hidden")
      caretDown.classList.toggle('caret-down')
   }
-     
-    useEffect(() => {
-    const getFile = async (e) => {
-      const res = await axiosPrivate.get("/users/brand-kit");
-      console.log("Brand kit", res.data.brandkit);
-      setFile(res.data.brandkit);
-    }
-    getFile();
-  }, [])  
 
   return (
     <div>
@@ -43,9 +23,12 @@ import CaretDown from '../../../assets/svgs/caret-up.svg'
         <h3>My Account</h3>
         <img src={CaretDown} alt='caret-down' id='caret-down' />
        </div>
-        <span className="dropdown__img">
-          <img src={file || Avatar} alt="avatar" />
-        </span>
+       <Link to='/profile'>
+          <span className="dropdown__img">
+          <img src={Avatar} alt="avatar" />
+          </span>
+       </Link>
+      
     </div>
        <Drop />
     </div>
@@ -53,6 +36,17 @@ import CaretDown from '../../../assets/svgs/caret-up.svg'
   )
 }
   export const Drop = () => {
+  const baseURL = "https://certgo.hng.tech/api";
+  const accessToken = JSON.parse(localStorage.getItem("userData")).token
+
+   
+  const axiosPrivate = axios.create({
+    baseURL,
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${accessToken}`
+    }
+  });
       const [loading, setLoading] = useState()
       const navigate = useNavigate()
 
@@ -60,7 +54,7 @@ import CaretDown from '../../../assets/svgs/caret-up.svg'
   const handleLogout = async(e) =>{
     setLoading(true);
       e.preventDefault();  
-         await axios.delete('https://certify-api.onrender.com/api/auth/logout')
+         await axiosPrivate.delete('https://certify-api.onrender.com/api/auth/logout')
           .then((res) => {       
              if(res.status === 200){
                console.log('logged out');
@@ -79,12 +73,12 @@ import CaretDown from '../../../assets/svgs/caret-up.svg'
           }) 
   }
     return(
-      <div className='drop'>
+      <div className='drop'> 
+        <Link to="/dashboard"><span className='drop__item'>Dashboard</span></Link> 
         <Link to="/profile"><span className='drop__item'>Edit Profile</span> </Link> 
         <span className='drop__item' onClick={handleLogout}>
           {loading ? <span>Logging out...</span> : <span>Log out</span>}
         </span>
-        <Link to="/dashboard"><span className='drop__item'>Manage Account</span></Link> 
       </div>
     )
   }

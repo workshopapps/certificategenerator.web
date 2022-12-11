@@ -11,22 +11,22 @@
   z-index: 10000;
   overflow: hidden;
   font-family: "Sora", sans-serif;
-  
+
   //Position modal at the center of the page
   display: flex;
   justify-content: center;
-  
+
   .modal-container {
     background-color: #fff;
     max-width: 600px;
     width: 100%;
-    margin: 0 1rem;
     border-radius: 10px;
     position: absolute;
     top: 12%;
     display: flex;
     flex-direction: column;
     gap: 15px;
+
     &__header {
       font-family: "Sora", sans-serif;
       font-size: 20px;
@@ -43,6 +43,7 @@
     }
     &__cancel{
         width: 25px;
+        font-weight: bolder;
         cursor: pointer;
     }
     &__body{
@@ -103,7 +104,7 @@
     width: 90%;
     margin: auto;
     padding: 10px;
-    // max-width: 450px;
+    max-width: 300px;
     border-top: 4px solid #ac0423;
     border-bottom: 4px solid #ac0423;
     border-left: 4px solid #ac0423;
@@ -195,204 +196,26 @@
   }
 }
 
-@media screen and (min-width: 500px) {
-    .certificate-share-hero button {
-      width: 160px;
-      height: 40px;
-      font-size: 13px;
-    }
+@media (min-width: 700px) {
+  .modal-wrapperx {
+    .modal-containerx {
+      width: 500px;
+      top: 300px;
+      padding: 35px;
 
-    .certificate-header h4,
-    h2 {
-      font-size: 25px;
-      margin: 20px;
-    }
-
-    #single-preview-text {
-      #preview-text {
-        h1 {
-          font-size: 28px !important;
-        }
-
-        h2 {
-          font-size: 25px;
-        }
+      &__header {
+        font-size: 30px;
       }
-    }
 
-    #container-wrapper {
-      width: 100%;
-      max-width: 400px;
-    }
+      &__text {
+        font-size: 16px;
+        width: 75%;
+        margin-inline: auto;
+      }
 
-    .sample2 {
-      top: 14.5%;
+      &__btns {
+        gap: 20px;
+      }
     }
   }
-
-  @media screen and (min-width: 768px) {
-    .modal-wrapper {
-      top: 28%;
-    }
-
-    #preview-text img {
-      width: 10%;
-      position: relative;
-      top: -20px;
-      z-index: 100;
-    }
-
-    // certificate-share-hero IMAGES
-    .certificate-header h4 {
-      font-size: 30px !important;
-      margin: 20px;
-    }
-
-    .sample2 {
-      width: 100px;
-      height: 100px;
-      top: 25.5%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-    }
-
-    #container-wrapper {
-      width: 70%;
-      margin: auto;
-      padding: 10px;
-      max-width: 600px;
-    }
-
-    #container-design {
-      border: 2px solid #ac0423;
-    }
-
-    #single-preview-card {
-      position: relative;
-    }
-
-    #single-preview-text {
-      position: relative;
-
-      #preview-text {
-        position: relative;
-        top: -10px;
-
-        h1 {
-          font-size: 30px !important;
-          margin: 0px !important;
-        }
-
-        p {
-          font-size: 15px !important;
-        }
-
-        h2 {
-          font-size: 26px !important;
-          border-bottom: 1px solid #ac0423;
-        }
-
-        h6 {
-          font-size: 15px !important;
-          padding: 5px 20px;
-        }
-      }
-    }
-
-    .single-preview-issue {
-      margin: 20px 0px 15px 0px;
-
-      .line {
-        border-bottom: 1px solid #ac0423;
-      }
-
-      p {
-        font-size: 14px;
-      }
-
-      h6 {
-        font-size: 14px;
-      }
-    }
-
-    h2 {
-      font-size: 30px;
-      margin-top: 40px;
-    }
-
-    .certificate-share-hero button {
-      font-size: 15px;
-      width: 170px;
-      height: 40px;
-      margin: 30px 15px 0px 15px;
-    }
-
-    .dropdown-content button {
-      font-size: 12px;
-      padding: 0px !important;
-      margin: 0px !important;
-      border: none;
-      display: block;
-    }
-
-    .single-images {
-      flex-direction: row;
-      justify-content: center;
-    }
-
-    .single-images img {
-      width: 100%;
-      max-width: 250px;
-    }
-  }
-
-  @media screen and (min-width: 1024px) {
-    .button-container button {
-      font-size: 18px;
-      width: 200px;
-      height: 50px;
-    }
-
-    .certificate-share-hero button {
-      font-size: 18px;
-      width: 200px;
-      height: 50px;
-      margin: 30px 15px 0px 15px;
-    }
-
-    .dropdown-content button {
-      font-size: 13px;
-      padding: 0px !important;
-      margin: 0px !important;
-      border: none;
-      display: block;
-    }
-
-    // .sample2 {
-    //   top: 30%;
-    // }
-
-    .certificate-share-hero img {
-      width: 100%;
-      height: auto;
-      max-width: 700px;
-    }
-
-    h2 {
-      margin-top: 70px !important;
-    }
-
-    .single-images img {
-      max-width: 300px;
-    }
-
-    .explore-button {
-      font-size: 14px !important;
-      width: 270px;
-      height: 58px;
-    }
-  }
-
-  
-
-
+}

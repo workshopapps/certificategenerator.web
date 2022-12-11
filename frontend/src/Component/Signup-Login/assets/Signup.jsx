@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { GoogleLogin } from "react-google-login";
 import { gapi } from "gapi-script";
 
@@ -16,8 +16,8 @@ import axios from "../../../api/axios";
 
 const Signup = () => {
   const { setAccess } = useAppProvider();
-  const { setProfileName } = useAppProvider();
   const navigate = useNavigate();
+  const location = useLocation();
 
   // const [type, setType] = useState("password");
   const type = "password";
@@ -26,7 +26,7 @@ const Signup = () => {
     name: "",
     email: "",
     password: "",
-    acceptTerms: true
+    checkbox: ""
   });
   // Google auth client ID
   const CLIENT_ID =
@@ -35,8 +35,7 @@ const Signup = () => {
   const [useremail, setUserEmail] = useState();
   const [password, setPassword] = useState();
   const [checkbox, setCheckbox] = useState(false);
-  
-  setProfileName(userName);
+
   // const [error, setError] = useState(false);
   const [token, setToken] = useState({
     accessToken: ""
@@ -60,9 +59,9 @@ const Signup = () => {
     });
   }
 
-  async function createNewUser(email, password, name) {
-    console.log(email, password, name);
-    // return axios.post("/auth/signup", { email: email, password: password, name: name });
+  async function createNewUser(email, password, name, checkbox) {
+    console.log(email, password, name, checkbox);
+    // return axios.post("/auth/signup", { email: email, password: password, name: name, checkbox: checkbox });
     return fetch(`https://certgo.hng.tech/api/auth/signup`, {
       method: "POST",
       headers: {
@@ -70,7 +69,12 @@ const Signup = () => {
         "Access-Control-Allow-Origin": "*"
         // "Access-Control-Allow-Methods": "POST",
       },
-      body: JSON.stringify({ email: email, password: password, name: name, checkbox: checkbox })
+      body: JSON.stringify({
+        email: email,
+        password: password,
+        name: name,
+        checkbox: checkbox
+      })
     });
   }
 
@@ -86,7 +90,11 @@ const Signup = () => {
           icon: "success",
           title: "Signed up successfully"
         });
-        navigate("/login");
+        if (location.state?.from.pathname) {
+          navigate(location.state.from);
+        } else {
+          navigate("/login");
+        }
         setLoading(false);
         setAccess(true);
       }
@@ -191,6 +199,9 @@ const Signup = () => {
     }
   }
 
+  //SAVING PROFILENAME TO LOCAL STORAGE
+  localStorage.setItem("profileName", userName);
+
   return (
     <div id="signup">
       <div className="authContainer">
@@ -252,7 +263,7 @@ const Signup = () => {
             {/* <div id="pwd"> */}
             {/* <img alt="" src={keySVG} /> */}
             <Input
-              label={"Password"}
+              label="Password"
               id="input_id"
               placeholder=" Create a password"
               type={type}
@@ -274,10 +285,10 @@ const Signup = () => {
             <div id="checkTerms">
               <input
                 type="checkbox"
-                id="acceptTerms"
+                id="checkbox"
                 value={checkbox}
                 checked={formData.acceptTerms}
-                // onChange={handleChange}
+                onChange={handleChange}
                 name="acceptTerms"
                 callback={e => setCheckbox(e.target.value)}
                 required

@@ -85,11 +85,13 @@ const updateUserProfile = handleAsync(async (req, res) => {
 });
 
 const deleteUserProfile = handleAsync(async (req, res) => {
-  const profile = await Profile.findOneAndDelete({
+  const profile = await Profile.findOne({
     user: req.user._id
   });
 
   if (!profile) throw createApiError("user profile does not exist", 401);
+
+  await profile.deleteOne();
 
   res.status(201).json(handleResponse({ profile }));
 });
@@ -120,10 +122,28 @@ const uploadUserAvatar = handleAsync(async (req, res) => {
   res.status(200).json(handleResponse({ avatar: profile.avatar }));
 });
 
+const getUserAvatar = handleAsync(async (req, res) => {
+  const user = req.user;
+
+  // Get user profile from db
+  const profile = await Profile.findOne({ user: user._id });
+
+  // 404 no profile
+  if (!profile) throw createApiError("Avatar not found", 404);
+
+  const { avatar } = profile;
+
+  // 404 profile found but no avatar
+  if (!avatar) throw createApiError("Avatar not found", 404);
+
+  res.status(200).json(handleResponse({ avatar }));
+});
+
 module.exports = {
   addUserProfile,
   getUserProfile,
   updateUserProfile,
   deleteUserProfile,
-  uploadUserAvatar
+  uploadUserAvatar,
+  getUserAvatar
 };

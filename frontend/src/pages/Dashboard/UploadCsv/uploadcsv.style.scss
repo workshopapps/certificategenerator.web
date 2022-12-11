@@ -1,25 +1,25 @@
 @import "../../../Style/variables";
 
 
-  #uploadCSVContainer {
-    width: 100%;
-    height: 100%;
+#uploadCSVContainer {
+  width: 100%;
+  height: 100%;
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 
 
-    h6 {
-      font-weight: 500;
-      font-size: 16px;
-      color: #222222;
-      margin-bottom: 16px;
-    }
+  h6 {
+    font-weight: 500;
+    font-size: 16px;
+    color: #222222;
+    margin-bottom: 16px;
+  }
 
-    &>div { 
-    width: 50%;
+  &>div {
+    width: 80%;
     height: 200px;
     border: 0.542553px dashed #585858;
     border-radius: 4.34043px;
@@ -31,7 +31,7 @@
     align-items: center;
     justify-content: center;
 
-     &>div:nth-child(1) {
+    &>div:nth-child(1) {
       width: 58px;
       height: 45px;
       margin-bottom: 8px;
@@ -41,17 +41,18 @@
         height: 100%;
         object-fit: contain;
       }
-     }
+    }
 
-     p {
+    p {
       font-weight: 500;
       font-size: 11px;
       color: #19A68E;
-     }
+    }
 
-     &>div:nth-child(3) {
+    &>div:nth-child(3) {
       display: flex;
       justify-content: center;
+      flex-direction: column-reverse;
       align-items: center;
 
       span {
@@ -62,7 +63,7 @@
       }
 
       input {
-        display: none;
+        // display: none;
       }
 
       label {
@@ -73,208 +74,209 @@
         border-bottom: 0.662069px solid #19A68E;
         cursor: pointer;
       }
-     }
     }
-
-    section {
-      width: 80%;
-      height: 79px;
-      margin-bottom: 32px;
-
-      img {
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
-      }
-    }
-
-    button {
-      width: 133px;
-      height: 48px;
-      border: 16px;
-      padding: 15px, 20px, 15px, 20px;
-
-      background: #19A68E;
-      border-radius: 16px;
-
-      font-weight: 500;
-      font-size: 16px;
-      color: #FFFFFF;
-    }
-    //   background-color: #fff;
-    //   margin-top: -4em;
-    //   color: #222;
-    //   text-align: center;
-    //   border: 1px solid red;
-
-    //   ::-webkit-scrollbar {
-    //     overflow: visible;
-    //     height: 5px;
-    // }
-    // ::-webkit-scrollbar-thumb {
-    //   background: $primaryColor;
-    //   width: 10px;
-    //   border-radius: 5px;
-    // }
-    //   button {
-    //     &:hover {
-    //       cursor: pointer;
-    //       opacity: 0.8;
-    //     }
-    //   }
-    //   div.certificateSwitch {
-    //     display: flex !important;
-    //     align-items: center;
-    //     justify-content: center;
-    //     padding: 6px;
-    //     width: fit-content;
-    //     height: 100%;
-    //     margin: auto;
-    //     border-radius: 20px;
-    //     border: 0.8px solid rgba(84, 84, 84, 0.26);
-    //     background-color: white;
-    //     margin: 4em auto 2em;
-    //     // margin-bottom: 2em;
-    //     .switchBtn {
-    //       transition: all 0.1s step-end;
-    //       background-color: inherit;
-    //       width: fit-content;
-    //       border: none;
-    //       outline: none;
-    //       border-radius: 10px;
-    //       padding: 0.75rem 2.5em;
-    //       text-align: center;
-    //       font-size: 16px;
-    //       font-weight: 400;
-    //       transition: '300ms ease-in';
-
-    //       &.active {
-    //         color: #fff;
-    //         background: $primaryColor;
-    //         transition: '300ms ease-in';
-    //       }
-    //     }
-    //   }
-    //   h1 {
-    //     font-family: "Sora";
-    //     font-style: normal;
-    //     font-weight: 500;
-    //     font-size: 47px;
-    //     line-height: 55px;
-
-    //     align-items: center;
-    //     letter-spacing: -0.004em;
-    //     margin: -100px auto 1.2em;
-    //   }
-    //   div.certificatePreview {
-    //     margin-bottom: 1em;
-    //     & > * {
-    //       width: 90%;
-    //       max-width: 800px;
-    //     }
-    //   }
-    //   button.modiftyCertificate {
-    //     margin-bottom: 3em;
-    //   }
-    //   h2 {
-    //     font-weight: 600;
-    //     font-size: 32px;
-    //     line-height: 38px;
-    //     margin: 0.7em;
-    //   }
-    //   .dragBox {
-    //     width: 30em;
-    //     height: 12.5em;
-    //     display: flex;
-    //     flex-direction: column;
-    //     justify-content: space-around;
-    //     align-items: center;
-    //     font-size: 1.1em;
-    //     line-height: 2em;
-
-    //     margin: auto;
-    //     margin-top: 2em;
-    //     margin-bottom: 6em;
-
-    //     i {
-    //       margin: 2em;
-    //       margin-bottom: 0;
-    //     }
-    //     span {
-    //       color: $uploadBtn;
-    //       .CSVupload {
-    //         color: inherit;
-    //         background-color: inherit;
-    //         font-size: inherit;
-    //         text-decoration: underline;
-    //         display: inline;
-    //         margin-left: 12px;
-    //       }
-    //     }
-    //   }
-    //   div.moreTemplate {
-    //     display: flex;
-    //     justify-content: center;
-    //     gap: 3em;
-    //     align-items: center;
-    //     margin-bottom: 4em;
-    //     padding: 10px 5px;
-    //     overflow: auto;
-    //     + .btnLight {
-    //       margin-bottom: 4em;
-    //     }
-    //   }
-    //   .btnLight {
-    //     transition: all 0.5s;
-    //     background-color: inherit;
-    //     color: $uploadBtn;
-    //     border: 1px solid$uploadBtn;
-    //     &:hover {
-    //       opacity: 0.8;
-    //       cursor: pointer;
-    //       background-color: $uploadBtn;
-    //       color: #fff;
-    //       border-color: #fff;
-    //     }
-    //   }
-
-    // }
-
-    // @media screen and (max-width: 900px) {
-    //   .uploadCSVContainer {
-    //     .certificatePreview {
-    //       width: 60%;
-    //       margin: auto;
-    //       margin-bottom: 3em;
-    //       img {
-    //         margin: auto;
-    //       }
-    //     }
-    //     .CSVSample {
-    //       img {
-    //         margin: auto;
-    //         width: 70%;
-    //       }
-    //       margin-right: 3em;
-    //       margin-left: 3em;
-    //     }
-    //     img {
-    //       margin-right: 3em;
-    //       margin-left: 3em;
-    //     }
-    //     .dragBox {
-    //       width: 70%;
-    //     }
-    //     div.moreTemplate {
-    //       flex-direction: column;
-    //     }
-    //   }
-    // }
-    // @media screen and (max-width: 768px) {
-    //   h1 {
-    //     font-size: 30px !important;
-    //   }
-    //   h2 {
-    //     font-size: 20px !important;
-    //   }
   }
+
+  section {
+    width: 80%;
+    height: 79px;
+    margin-bottom: 32px;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+  }
+
+  button {
+    width: 133px;
+    height: 48px;
+    border: 16px;
+    padding: 15px, 20px, 15px, 20px;
+
+    background: #19A68E;
+    border-radius: 16px;
+
+    font-weight: 500;
+    font-size: 16px;
+    color: #FFFFFF;
+  }
+
+  //   background-color: #fff;
+  //   margin-top: -4em;
+  //   color: #222;
+  //   text-align: center;
+  //   border: 1px solid red;
+
+  //   ::-webkit-scrollbar {
+  //     overflow: visible;
+  //     height: 5px;
+  // }
+  // ::-webkit-scrollbar-thumb {
+  //   background: $primaryColor;
+  //   width: 10px;
+  //   border-radius: 5px;
+  // }
+  //   button {
+  //     &:hover {
+  //       cursor: pointer;
+  //       opacity: 0.8;
+  //     }
+  //   }
+  //   div.certificateSwitch {
+  //     display: flex !important;
+  //     align-items: center;
+  //     justify-content: center;
+  //     padding: 6px;
+  //     width: fit-content;
+  //     height: 100%;
+  //     margin: auto;
+  //     border-radius: 20px;
+  //     border: 0.8px solid rgba(84, 84, 84, 0.26);
+  //     background-color: white;
+  //     margin: 4em auto 2em;
+  //     // margin-bottom: 2em;
+  //     .switchBtn {
+  //       transition: all 0.1s step-end;
+  //       background-color: inherit;
+  //       width: fit-content;
+  //       border: none;
+  //       outline: none;
+  //       border-radius: 10px;
+  //       padding: 0.75rem 2.5em;
+  //       text-align: center;
+  //       font-size: 16px;
+  //       font-weight: 400;
+  //       transition: '300ms ease-in';
+
+  //       &.active {
+  //         color: #fff;
+  //         background: $primaryColor;
+  //         transition: '300ms ease-in';
+  //       }
+  //     }
+  //   }
+  //   h1 {
+  //     font-family: "Sora";
+  //     font-style: normal;
+  //     font-weight: 500;
+  //     font-size: 47px;
+  //     line-height: 55px;
+
+  //     align-items: center;
+  //     letter-spacing: -0.004em;
+  //     margin: -100px auto 1.2em;
+  //   }
+  //   div.certificatePreview {
+  //     margin-bottom: 1em;
+  //     & > * {
+  //       width: 90%;
+  //       max-width: 800px;
+  //     }
+  //   }
+  //   button.modiftyCertificate {
+  //     margin-bottom: 3em;
+  //   }
+  //   h2 {
+  //     font-weight: 600;
+  //     font-size: 32px;
+  //     line-height: 38px;
+  //     margin: 0.7em;
+  //   }
+  //   .dragBox {
+  //     width: 30em;
+  //     height: 12.5em;
+  //     display: flex;
+  //     flex-direction: column;
+  //     justify-content: space-around;
+  //     align-items: center;
+  //     font-size: 1.1em;
+  //     line-height: 2em;
+
+  //     margin: auto;
+  //     margin-top: 2em;
+  //     margin-bottom: 6em;
+
+  //     i {
+  //       margin: 2em;
+  //       margin-bottom: 0;
+  //     }
+  //     span {
+  //       color: $uploadBtn;
+  //       .CSVupload {
+  //         color: inherit;
+  //         background-color: inherit;
+  //         font-size: inherit;
+  //         text-decoration: underline;
+  //         display: inline;
+  //         margin-left: 12px;
+  //       }
+  //     }
+  //   }
+  //   div.moreTemplate {
+  //     display: flex;
+  //     justify-content: center;
+  //     gap: 3em;
+  //     align-items: center;
+  //     margin-bottom: 4em;
+  //     padding: 10px 5px;
+  //     overflow: auto;
+  //     + .btnLight {
+  //       margin-bottom: 4em;
+  //     }
+  //   }
+  //   .btnLight {
+  //     transition: all 0.5s;
+  //     background-color: inherit;
+  //     color: $uploadBtn;
+  //     border: 1px solid$uploadBtn;
+  //     &:hover {
+  //       opacity: 0.8;
+  //       cursor: pointer;
+  //       background-color: $uploadBtn;
+  //       color: #fff;
+  //       border-color: #fff;
+  //     }
+  //   }
+
+  // }
+
+  // @media screen and (max-width: 900px) {
+  //   .uploadCSVContainer {
+  //     .certificatePreview {
+  //       width: 60%;
+  //       margin: auto;
+  //       margin-bottom: 3em;
+  //       img {
+  //         margin: auto;
+  //       }
+  //     }
+  //     .CSVSample {
+  //       img {
+  //         margin: auto;
+  //         width: 70%;
+  //       }
+  //       margin-right: 3em;
+  //       margin-left: 3em;
+  //     }
+  //     img {
+  //       margin-right: 3em;
+  //       margin-left: 3em;
+  //     }
+  //     .dragBox {
+  //       width: 70%;
+  //     }
+  //     div.moreTemplate {
+  //       flex-direction: column;
+  //     }
+  //   }
+  // }
+  // @media screen and (max-width: 768px) {
+  //   h1 {
+  //     font-size: 30px !important;
+  //   }
+  //   h2 {
+  //     font-size: 20px !important;
+  //   }
+}

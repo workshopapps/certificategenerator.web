@@ -72,7 +72,7 @@ const UploadCsv = ({getUserCertificates, onClose}) => {
       } else {
         setLoading(false);
         setArray(res.data.data.certificateData)
-        localStorage.setItem('dataKey', JSON.stringify(array));
+        localStorage.setItem('dataKey', JSON.stringify(res.data.data.certificateData));
         navigate('/bulk_preview')
         onClose();
         getUserCertificates();
@@ -94,21 +94,22 @@ const UploadCsv = ({getUserCertificates, onClose}) => {
           Download sample
         </CSVLink>
       </Button>
-      <h6>Upload your CSV file here in the format below</h6>
+      <h6 style={{ textAlign: "center" }}>Upload your CSV file here in the format below</h6>
       <div>
-        <div>
+        <div style={{ marginBottom: "16px" }}>
           <img src={UploadVector} alt="upload" />
         </div>
+        
         <p>Drag and drop your CSV file here</p>
         <div>
-          <span>or</span>
           <input
             type="file"
             id="files"
             className="file-upload"
             onChange={onFileChange}
-          />
+            />
           <label htmlFor="files">Browse File</label>
+            <span>or</span>
         </div>
       </div>
       <section>

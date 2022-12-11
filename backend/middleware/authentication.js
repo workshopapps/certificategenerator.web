@@ -12,7 +12,7 @@ const authentication = async (req, res, next) => {
 
   try {
     const authHeader = req.headers.authorization;
-    
+
     if (!authHeader || !authHeader.startsWith("Bearer")) {
       return res
         .status(401)
@@ -29,16 +29,24 @@ const authentication = async (req, res, next) => {
 
     const payload = jwt.verify(token, process.env.JWT_SECRET);
 
-    
+
     const { userId } = payload;
 
-    req.user = await User.findById(userId);
+    const user = await User.findById(userId);
 
+    // Check if user account exists
+    if (!user)
+      res.status(401).json({
+        success: false,
+        msg: "Token not authorized"
+      });
+
+    req.user = user;
 
     next();
   } catch (error) {
     console.error(error);
-    
+
     res.status(401).json({
       success: false,
       msg: "Session Expired",
