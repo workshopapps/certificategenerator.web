@@ -16,9 +16,9 @@ const UploadCsv = ({ getUserCertificates, onClose }) => {
   const { array, setArray } = useContext(AppContext);
   let navigate = useNavigate();
   const [loading, setLoading] = useState(false);
-  const [fileName, setFileName] = useState("");
-  const baseURL = "https://certgo.hng.tech/api";
+  const [file, setFile] = useState("");
   const accessToken = JSON.parse(localStorage.getItem("userData")).token;
+  const baseURL = "https://certgo.hng.tech/api";
 
   const axiosFormData = axios.create({
     baseURL,
@@ -28,14 +28,14 @@ const UploadCsv = ({ getUserCertificates, onClose }) => {
     }
   });
 
-  let formData = new FormData();
+  // let formData = new FormData();
 
   const onFileChange = e => {
     if (e.target && e.target.files[0]) {
-      formData.append("file", e.target.files[0]);
+      // formData.append("file", e.target.files[0]);
+      setFile(e.target.files[0])
     }
-    console.log(e.target.files[0].name);
-    setFileName(e.target.files[0].name);
+    console.log(e.target.files[0]);
   };
 
   const Toast = Swal.mixin({
@@ -54,7 +54,7 @@ const UploadCsv = ({ getUserCertificates, onClose }) => {
     e.preventDefault();
     setLoading(true);
     try {
-      const res = await axiosFormData.post("/certificates", formData);
+      const res = await axiosFormData.post("/certificates", {file: file});
       console.log(res);
 
       setLoading(false);
@@ -121,7 +121,7 @@ const UploadCsv = ({ getUserCertificates, onClose }) => {
           />
           <label htmlFor="files">Browse File</label>
           <div>
-            <span>{fileName}</span>
+            <span>{file.name}</span>
           </div>
         </div>
       </div>
