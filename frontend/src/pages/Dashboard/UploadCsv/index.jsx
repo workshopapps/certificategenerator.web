@@ -35,7 +35,6 @@ const UploadCsv = ({ getUserCertificates, onClose }) => {
       // formData.append("file", e.target.files[0]);
       setFile(e.target.files[0])
     }
-    console.log(e.target.files[0]);
   };
 
   const Toast = Swal.mixin({
