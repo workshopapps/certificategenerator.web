@@ -6,7 +6,8 @@ import CheckoutMainLeftInput from "./CheckoutMainLeftInput";
 import CheckoutMainLeftComp from "./CheckoutMainLeftComp";
 import { useState } from "react";
 import PaymentSwitch from "./PaymentSwitch";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Toast } from "../../../Component/ToastAlert";
 import axios from "../../../api/axios";
 
@@ -28,6 +29,7 @@ function CheckoutMainLeft({ amount }) {
   const [cardNumberCheck, setCardNumberCheck] = useState(false);
   const [expiryCheck, setExpiryCheck] = useState(false);
   const [cvvCheck, setCvvCheck] = useState(false);
+  const navigate = useNavigate();
 
   const [icon, setIcon] = useState();
 
@@ -36,7 +38,7 @@ function CheckoutMainLeft({ amount }) {
     useState("4px solid #01AA6E");
   const [paymentBorderBank, setPaymentBorderBank] = useState("");
   const id = JSON.parse(localStorage.getItem("userData")).userId;
-  const userData = JSON.parse(localStorage.getItem("userData"))
+  const userData = JSON.parse(localStorage.getItem("userData"));
 
   function firstNamef(value) {
     setFirstName(value);
@@ -123,28 +125,32 @@ function CheckoutMainLeft({ amount }) {
     setPaymentBorderCard("");
     setPaymentBorderBank("4px solid #01AA6E");
   }
-  
+
   function updateUserPlan(plan) {
-    userData.subscription = plan
+    userData.subscription = plan;
     localStorage.setItem("userData", JSON.stringify(userData));
   }
 
-  async function handleAccountUpgrade () {
+  async function handleAccountUpgrade() {
     try {
-        await axios.put(`https://certgo.hng.tech/api/pricing/${id}`, { plan: "standard"});
-        Toast.fire({
-          icon: "success",
-          title: "Account successfully upgraded!"
-        });
-        updateUserPlan("standard")
-      } 
-      catch (err) {
-        console.log(err)
-        Toast.fire({
-          icon: "error",
-          title: "Something went wrong, please try again"
-        });
-      }
+      await axios.put(`https://certgo.hng.tech/api/pricing/${id}`, {
+        plan: "standard"
+      });
+      Toast.fire({
+        icon: "success",
+        title: "Account successfully upgraded!"
+      });
+      updateUserPlan("standard");
+      setTimeout(() => {
+        navigate("/dashboard");
+      }, 3500);
+    } catch (err) {
+      console.log(err);
+      Toast.fire({
+        icon: "error",
+        title: "Something went wrong, please try again"
+      });
+    }
   }
 
   return (
@@ -268,7 +274,9 @@ function CheckoutMainLeft({ amount }) {
       </div>
 
       {/* <Link to="/bulk_preview"> */}
-        <button id="CheckoutMainLeft-btn" onClick={handleAccountUpgrade}>Pay {`${amount}`}</button>
+      <button id="CheckoutMainLeft-btn" onClick={handleAccountUpgrade}>
+        Pay {`${amount}`}
+      </button>
       {/* </Link> */}
     </div>
   );
