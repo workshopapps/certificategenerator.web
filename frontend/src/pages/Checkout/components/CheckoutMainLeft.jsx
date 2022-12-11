@@ -7,6 +7,8 @@ import CheckoutMainLeftComp from "./CheckoutMainLeftComp";
 import { useState } from "react";
 import PaymentSwitch from "./PaymentSwitch";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { ButtonLoader } from "../../../Component";
 
 function CheckoutMainLeft({ amount }) {
   const [firstName, setFirstName] = useState("");
@@ -26,6 +28,8 @@ function CheckoutMainLeft({ amount }) {
   const [cardNumberCheck, setCardNumberCheck] = useState(false);
   const [expiryCheck, setExpiryCheck] = useState(false);
   const [cvvCheck, setCvvCheck] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const [icon, setIcon] = useState();
 
@@ -118,6 +122,16 @@ function CheckoutMainLeft({ amount }) {
     setPayment(false);
     setPaymentBorderCard("");
     setPaymentBorderBank("4px solid #01AA6E");
+  }
+
+  function redirectHandler() {
+    if (!loading) {
+      setLoading(true);
+      setTimeout(() => {
+        navigate("/dashboard");
+        setLoading(false);
+      }, 7000);
+    }
   }
 
   return (
@@ -240,8 +254,21 @@ function CheckoutMainLeft({ amount }) {
         )}
       </div>
 
-      <Link to="/bulk_preview">
-        <button id="CheckoutMainLeft-btn">Pay {`${amount}`}</button>
+      <Link onClick={redirectHandler}>
+        {loading ? (
+          <button
+            id="CheckoutMainLeft-btn"
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center"
+            }}
+          >
+            <ButtonLoader />
+          </button>
+        ) : (
+          <button id="CheckoutMainLeft-btn">{`Pay ${amount}`}</button>
+        )}
       </Link>
     </div>
   );
