@@ -8,15 +8,18 @@ import Avatar from '../../../assets/svgs/default-brandkit.svg'
 import CaretDown from '../../../assets/svgs/caret-up.svg'
 
  function DropDown() {
-
+  let drop = document.querySelector(".drop")
   const handleToggle = (e) => {
      let drop = document.querySelector(".drop")
      let caretDown = document.querySelector("#caret-down")
      drop.classList.toggle("show")
      caretDown.classList.toggle('caret-down')
-    
   }
-
+  // window.addEventListener('click',() =>{
+  //   drop.classList.add('none')
+  // })
+      
+       
  const accessToken = JSON.parse(localStorage.getItem("userData")).token;
   const [profilePic, setProfilePic] = useState(null);
   const baseURL = "https://certgo.hng.tech/api";
@@ -35,10 +38,9 @@ import CaretDown from '../../../assets/svgs/caret-up.svg'
     }
     getImage()
   },[])
-
   return (
     <div>
-       <div className="dropdown-container" >
+       <div className="dropdown-container" onClick={e => e.stopPropagation()}>
         <div className="dropdown__items" onClick={handleToggle}>
         <h3>My Account</h3>
         <img src={CaretDown} alt='caret-down' id='caret-down' />

@@ -228,7 +228,7 @@ const Login = () => {
             {/* </div> */}
 
             <div className="forgotPwd">
-              <Link to="/fff1">Forgot password?</Link>
+              <Link to="/resetpassword">Forgot password?</Link>
             </div>
             <div id="checkTerms">
               <input

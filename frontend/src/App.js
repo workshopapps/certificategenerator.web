@@ -123,7 +123,7 @@ function App() {
             "
               element={<PasswordLinkSent />}
             />
-            <Route path="/fff1" element={<ForgotPassword />} />
+            <Route path="/resetpassword" element={<ForgotPassword />} />
 
             <Route path="*" element={<Error />} />
           </Routes>
