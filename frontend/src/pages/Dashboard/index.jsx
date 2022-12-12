@@ -276,10 +276,6 @@ const Dashboard = () => {
     getEvents();
   };
 
-  const handleToggle = () => {
-    let drop = document.querySelector(".brandkit-dropdown");
-    drop.classList.toggle("visible");
-  };
 
   //DELETE ALL USER CERTIFICATES
   const handleDeleteAll = async () => {
@@ -290,7 +286,15 @@ const Dashboard = () => {
   };
 
   var profileName = localStorage.getItem("profileName");
+  let id = JSON.parse(localStorage.getItem("userData")).userId;
+  console.log(id.slice(19,24));
+  const ShortId = id.slice(19, 24)
 
+  // useEffect(() => {
+  //   if(sub !== "pricing"){
+
+  //   }
+  // }, [])
   return (
     <>
       <div className="dashboard">
@@ -316,7 +320,7 @@ const Dashboard = () => {
                 style={{ textTransform: "capitalize" }}
                 className="dashboard__title"
               >
-                {profileName ? profileName : ""}
+                {profileName ? profileName :  `user - ${ShortId}`}
               </h2>
               <p className="dashboard__description">
                 Get a summary of all the Certificates here

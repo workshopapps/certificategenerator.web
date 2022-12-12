@@ -63,13 +63,14 @@ $size-sm: 12px;
   &__profile-pic-wrapper {
     position: relative;
     cursor: pointer;
+
     &__align-start {
       text-align: start;
     }
 
     .dashboard__profile-pic {
       width: 100px;
-      
+
       img {
         width: 100px;
         border-radius: 50%;
@@ -88,7 +89,7 @@ $size-sm: 12px;
     display: block;
     cursor: pointer;
   }
-  
+
   .brandkit-upload {
     display: none;
     position: absolute;
@@ -101,8 +102,8 @@ $size-sm: 12px;
     border-radius: 50px;
     right: 1.4rem;
     background: rgba(240, 249, 247, 0.5);
-    
-    .dashboard__upload-label{
+
+    .dashboard__upload-label {
       height: 100%;
       display: flex;
       justify-content: center;
@@ -131,19 +132,21 @@ $size-sm: 12px;
     letter-spacing: 0.02em;
     line-height: 20px;
   }
-  &__plan{
+
+  &__plan {
     font-weight: 500;
     color: $card-text-color;
     text-transform: capitalize;
   }
-  &__bold{
+
+  &__bold {
     font-weight: 600;
   }
 
   &__title {
     font-size: $size-md;
     color: #222;
-    font-weight: 700;
+    font-weight: 600;
     line-height: 19px;
     margin-left: 0;
   }
@@ -152,7 +155,7 @@ $size-sm: 12px;
     font-size: $size-sm;
     color: $card-text-color;
     line-height: 20px;
-    font-weight: 500 ;
+    font-weight: 500;
   }
 
   &__btn {
