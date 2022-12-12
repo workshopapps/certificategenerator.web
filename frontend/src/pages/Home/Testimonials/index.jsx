@@ -93,9 +93,7 @@ export default function Testimonials() {
                 </div>
               </div>
               <p className="testimonial-test">
-                “Probably the best platform for anyone needing to generate bulk
-                certificates. Amazing! I love how easy it is to use! Recommended
-                for EVERYONE!”
+                “Certgo certificate generator is an excellent tool that I use to quickly and creatively create certificates. Without a doubt, I highly recommend it.”
               </p>
             </div>
           </SplideSlide>

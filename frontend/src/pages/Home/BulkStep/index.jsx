@@ -30,8 +30,7 @@ export default function BulkStep() {
             <div>
               <p className="steps">Select certificate template</p>
               <p>
-                Pick your preferred template that best suites your organization,
-                school, academy and modify as you go
+                Begin by filling your details in the form provided.
               </p>
             </div>
           </div>
@@ -40,8 +39,7 @@ export default function BulkStep() {
             <div>
               <p className="steps">Upload a CSV file</p>
               <p>
-                Pick your preferred template that best suites your organization,
-                school, academy and modify as you go
+                Upload a CSV file and generate your certificates.
               </p>
             </div>
           </div>
@@ -50,8 +48,7 @@ export default function BulkStep() {
             <div>
               <p className="steps">Generate bulk certificates</p>
               <p>
-                Pick your preferred template that best suites your organization,
-                school, academy and modify as you go
+                Download the certificates in either pdf or png format format.
               </p>
             </div>
           </div>
