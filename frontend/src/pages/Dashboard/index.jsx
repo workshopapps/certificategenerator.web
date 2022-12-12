@@ -38,11 +38,13 @@ const Dashboard = () => {
   const [eventLink, setEventLink] = useState("");
   const baseURL = "https://certgo.hng.tech/api";
   const accessToken = JSON.parse(localStorage.getItem("userData")).token;
-  const unauthArray = localStorage.getItem("dataKey");
   const [file, setFile] = useState("");
   let navigate = useNavigate();
   let sub = JSON.parse(localStorage.getItem("userData")).subscription;
-
+  let unauthArray;
+  if (localStorage.getItem("unauthData")) {
+    unauthArray = JSON.parse(localStorage.getItem("unauthData"));
+  }
   const axiosPrivate = axios.create({
     baseURL,
     headers: {
@@ -131,7 +133,6 @@ const Dashboard = () => {
         });
       }
     }
-   
   };
 
   const handleDeleteCertificate = async id => {
@@ -152,21 +153,27 @@ const Dashboard = () => {
       title: "You have deleted all your certificates"
     });
     setData([]);
+    updateCount([]);
   };
   const getUnauthUserCertificates = async () => {
-    console.log(unauthArray);
-    const response = await axiosPrivate.post("/certificates", unauthArray);
-    console.log(response);
-    // const res = await axiosPrivate.get("/certificates")
-    // const unauthCertificate = res.data
-    // setData([...data, ...unauthCertificate])
-  }
+    if (localStorage.getItem("unauthData")) {
+      localStorage.removeItem("unauthData");
+      await axiosPrivate.post("/certificates", unauthArray);
+      const res = await axiosPrivate.get("/certificates");
+      let allData = res.data.data.certificates
+      updateCount(allData);
+      setData(allData)
+    }
+  };
   const getUserCertificates = async () => {
     try {
       const response = await axiosPrivate.get("/certificates");
       setPricing(sub);
 
+      console.log(response.data.data.certificates);
       setData(response.data.data.certificates);
+      getUnauthUserCertificates();
+      if (localStorage.getItem("unauthData")) return
       updateCount(response.data.data.certificates);
     } catch (error) {
       console.error(error.message);
@@ -213,7 +220,6 @@ const Dashboard = () => {
 
   useEffect(() => {
     getUserCertificates();
-    getUnauthUserCertificates()
   }, []);
 
   //GET EVENTS
@@ -307,10 +313,16 @@ const Dashboard = () => {
               <img src={Ellipse} alt="upload-icon" />
             </div> */}
             <div className="brandkit-upload">
-                <label htmlFor="file" className="dashboard__upload-label">
-                  <img src={UploadVector} alt='upload' />
-                  <input type="file" id="file" accept="image/*" name="file" onChange={onFileChange}  />
-                </label>
+              <label htmlFor="file" className="dashboard__upload-label">
+                <img src={UploadVector} alt="upload" />
+                <input
+                  type="file"
+                  id="file"
+                  accept="image/*"
+                  name="file"
+                  onChange={onFileChange}
+                />
+              </label>
             </div>
           </div>
           <div className="flexx">
@@ -326,7 +338,9 @@ const Dashboard = () => {
                 Get a summary of all the Certificates here
               </p>
               <div>
-                <p className="dashboard__plan dashboard__bold">Package: <span className="dashboard__bold">{sub}</span></p>
+                <p className="dashboard__plan dashboard__bold">
+                  Package: <span className="dashboard__bold">{sub}</span>
+                </p>
               </div>
             </div>
             <div className="dashboard__btn">
@@ -338,7 +352,7 @@ const Dashboard = () => {
         </div>
 
         <div className="dashboard__cards">
-          {cardData[0].count !== 0
+          {cardData
             ? cardData.map((item, idx) => <Card key={idx} item={item} />)
             : null}
         </div>
@@ -361,8 +375,15 @@ const Dashboard = () => {
                   + New Certificate
                 </Button>
 
-                 <Button style={{ fontSize: "16px", backgroundColor: "white", color: "#19a68e"}} onClick={handleDeleteAll}>
-                  Delete All 
+                <Button
+                  style={{
+                    fontSize: "16px",
+                    backgroundColor: "white",
+                    color: "#19a68e"
+                  }}
+                  onClick={handleDeleteAll}
+                >
+                  Delete All
                 </Button>
 
                 {/*<Button

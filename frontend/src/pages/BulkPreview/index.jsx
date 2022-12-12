@@ -33,7 +33,7 @@ function Index() {
   // Getting the file data from the local storage and parsing its values
   const savedData = localStorage.getItem("dataKey");
   const array = JSON.parse(savedData);
-
+  console.log(array);
   //STATES FOR TEMPLATES
   const [templateone, setTemplateOne] = useState(true);
   const [templatetwo, setTemplateTwo] = useState(false);
