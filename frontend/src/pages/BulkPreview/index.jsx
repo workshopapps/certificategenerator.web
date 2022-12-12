@@ -1,6 +1,8 @@
 import jsPDF from "jspdf";
 // import Swal from "sweetalert2";
 import { toPng } from "html-to-image";
+import JSZip from "jszip"
+import { saveAs } from 'file-saver'
 // import ReactToPrint from "react-to-print";
 import * as htmlToImage from "html-to-image";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
@@ -8,7 +10,7 @@ import React, { useRef, useCallback, useState, useEffect } from "react";
 
 import "./bulk.style.scss";
 import "@splidejs/react-splide/css";
-import Modal from "../../Component/Modal"; 
+import Modal from "../../Component/Modal";
 import Button from "../../Component/button";
 // import { axiosFormData } from "../../api/axios";
 import BulkCertDesign1 from "./BulkCertDesign/BulkCertDesign1";
@@ -104,13 +106,20 @@ function Index() {
     }
     const elements = document.getElementsByClassName("multiple"); // Get all certificates as HTML Elements
     setLoading(true);
+    const zip = new JSZip()
     for (let i = 0; i < elements.length; i++) {
       const doc = new jsPDF("p", "px", [339.4, 339.4]); // Initialize a new jsPDF instance
       const item = elements[i];
       console.log("Item", item);
       await createPdf({ doc, item });
-      doc.save(`certgo${i}.pdf`); // Download generated pdf doc using jspdf's save() method
+
+      const pdfs = zip.folder("certificates");
+      pdfs.file(`certgo${i}.pdf`, doc.output('blob'))
+      //doc.save(`certgo${i}.pdf`); // Download generated pdf doc using jspdf's save() method
     }
+    zip.generateAsync({ type: 'blob' }).then(function (content) {
+      saveAs(content, 'certificates.zip');
+    })
     setLoading(false);
   };
 
@@ -121,33 +130,33 @@ function Index() {
     let top = marginTop;
 
     // for (let i = 0; i < elements.length; i++) {
-      // const el = elements.item(i);
-      const el = item;
-      // Convert each HTML Element with certificate into image (with htmlToImage library)
-      const imgData = await htmlToImage.toPng(el);
-  
-      let elHeight = el.offsetHeight;
-      let elWidth = el.offsetWidth;
-  
-      const pageWidth = doc.internal.pageSize.getWidth();
-  
-      if (elWidth > pageWidth) {
-        const ratio = pageWidth / elWidth;
-        elHeight = elHeight * ratio - padding * 2;
-        elWidth = elWidth * ratio - padding * 2;
-      }
-  
-      const pageHeight = doc.internal.pageSize.getHeight();
+    // const el = elements.item(i);
+    const el = item;
+    // Convert each HTML Element with certificate into image (with htmlToImage library)
+    const imgData = await htmlToImage.toPng(el);
 
-      // As we are adding multiple certificates, create a new pdf page when needed
-      // if (top + elHeight > pageHeight) {
-      //   doc.addPage();
-      //   top = marginTop;
-      // }
-      
-      // Add converted certificate image to the pdf doc with jsPDF's addImage() method
-      doc.addImage(imgData, "PNG", padding, top, elWidth, elHeight, `image${item}`); 
-      top += elHeight + marginTop;
+    let elHeight = el.offsetHeight;
+    let elWidth = el.offsetWidth;
+
+    const pageWidth = doc.internal.pageSize.getWidth();
+
+    if (elWidth > pageWidth) {
+      const ratio = pageWidth / elWidth;
+      elHeight = elHeight * ratio - padding * 2;
+      elWidth = elWidth * ratio - padding * 2;
+    }
+
+    const pageHeight = doc.internal.pageSize.getHeight();
+
+    // As we are adding multiple certificates, create a new pdf page when needed
+    // if (top + elHeight > pageHeight) {
+    //   doc.addPage();
+    //   top = marginTop;
+    // }
+
+    // Add converted certificate image to the pdf doc with jsPDF's addImage() method
+    doc.addImage(imgData, "PNG", padding, top, elWidth, elHeight, `image${item}`);
+    top += elHeight + marginTop;
     // }
   };
 
@@ -266,13 +275,13 @@ function Index() {
           {array.map((item, id) => (
             <SplideSlide key={id}>
               {templateone && (
-                <BulkCertDesign1 item={item} ref={bulkCertDesignRef} className="page-break"  />
+                <BulkCertDesign1 item={item} ref={bulkCertDesignRef} className="page-break" />
               )}
               {templatetwo && (
-                <BulkCertDesign2 item={item} ref={bulkCertDesignRef} className="page-break"  />
+                <BulkCertDesign2 item={item} ref={bulkCertDesignRef} className="page-break" />
               )}
               {templatethree && (
-                <BulkCertDesign3 item={item} ref={bulkCertDesignRef} className="page-break"  />
+                <BulkCertDesign3 item={item} ref={bulkCertDesignRef} className="page-break" />
               )}
             </SplideSlide>
           ))}
