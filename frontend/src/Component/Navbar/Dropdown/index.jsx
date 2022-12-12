@@ -77,14 +77,12 @@ import CaretDown from '../../../assets/svgs/caret-up.svg'
     setLoading(true);
       e.preventDefault();  
          await axiosPrivate.delete('https://certify-api.onrender.com/api/auth/logout')
-          .then((res) => {       
-             if(res.status === 200){
+          .then((res) => {    
+               //navigate back to login  
+               navigate('/login') 
                console.log('logged out');
-              setLoading(false);
-              //navigate back to login
-              navigate('/login') 
-             localStorage.clear()
-             }
+               setLoading(false);
+               localStorage.clear()
           }).catch(err =>{
             console.log(err || 'couldnt log out')
             setLoading(false)
