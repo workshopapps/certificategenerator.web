@@ -3,6 +3,7 @@ import JSZip from "jszip";
 // import Swal from "sweetalert2";
 import { saveAs } from 'file-saver';
 import { toPng } from "html-to-image";
+// import domtoimage from 'dom-to-image';
 // import ReactToPrint from "react-to-print";
 import * as htmlToImage from "html-to-image";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
@@ -116,7 +117,7 @@ function Index() {
     setLoading(false);
   };
 
-  const downloadAsZip = async () => {
+  const downloadZipPdf = async () => {
     if (!isAuntheticated) {
       setOpenModal(true);
       setModalMessage("You need to sign up or login to download bulk certificates");
@@ -334,7 +335,7 @@ function Index() {
                 <Button
                   name="ZIP"
                   style={{ padding: "10px", width: "120px" }}
-                  onClick={downloadAsZip}
+                  onClick={downloadZipPdf}
                   className="bulk_dropdown"
                 />
                 <Button

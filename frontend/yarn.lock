@@ -4295,6 +4295,11 @@
     "domelementtype" "^2.0.1"
     "entities" "^2.0.0"
 
+"dom-to-image@^2.6.0":
+  "integrity" "sha512-Dt0QdaHmLpjURjU7Tnu3AgYSF2LuOmksSGsUcE6ItvJoCWTBEmiMXcqBdNSAm9+QbbwD7JMoVsuuKX6ZVQv1qA=="
+  "resolved" "https://registry.npmjs.org/dom-to-image/-/dom-to-image-2.6.0.tgz"
+  "version" "2.6.0"
+
 "domelementtype@^2.0.1", "domelementtype@^2.2.0":
   "integrity" "sha512-OLETBj6w0OsagBwdXnPdN0cnMfF9opN69co+7ZrbfPGrdpPVNBUj02spi6B1N7wChLQiPn4CSH/zJvXw56gmHw=="
   "resolved" "https://registry.npmjs.org/domelementtype/-/domelementtype-2.3.0.tgz"

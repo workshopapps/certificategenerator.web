@@ -48,7 +48,7 @@ export default function BulkStep() {
             <div>
               <p className="steps">Generate bulk certificates</p>
               <p>
-                Download the certificates in either pdf or png format format.
+                Download the certificates in either zip, pdf or png format.
               </p>
             </div>
           </div>
