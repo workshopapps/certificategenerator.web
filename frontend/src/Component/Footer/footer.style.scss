@@ -10,40 +10,48 @@
   box-sizing: border-box;
   font-family: "Work Sans", sans-serif;
   letter-spacing: 0.05em;
+
   h3,
   h2 {
     color: white;
     margin: 0;
     line-height: 152.3%;
   }
+
   h2 {
     font-family: "Sora", sans-serif;
     font-size: 1rem;
     font-weight: 600;
   }
+
   h3 {
     font-size: 13px;
     font-weight: 400;
   }
+
   .footer-container {
     width: 90%;
     margin: 0 auto;
   }
+
   .footer-lists {
     display: flex;
     justify-content: space-between;
     margin-bottom: 2.8rem;
     gap: 5%;
+
     .list {
       display: flex;
       flex-direction: column;
       gap: 10px;
+
       h2 {
         text-transform: capitalize;
         margin-bottom: 5px;
         font-weight: 600;
       }
     }
+
     .link {
       display: block;
       color: white;
@@ -52,16 +60,20 @@
       font-weight: 400;
     }
   }
+
   .footer-form {
     margin-bottom: 50px;
+
     h3 {
       text-align: center;
       margin-bottom: 20px;
     }
+
     .footer-input {
       display: flex;
       flex-direction: column;
       gap: 20px;
+
       input {
         background-color: white;
         border: none;
@@ -71,6 +83,7 @@
         font-weight: 400;
         height: 48px;
       }
+
       button {
         padding: 15px;
         color: white;
@@ -83,10 +96,12 @@
         transition: 0.3s ease;
         width: inherit;
       }
+
       button:hover {
         background-color: #127867;
       }
     }
+
     .error-msg {
       text-align: start;
       letter-spacing: 1.5px;
@@ -95,6 +110,7 @@
       margin-top: -10px;
       font-size: 12px;
     }
+
     .colorChange {
       color: greenyellow;
     }
@@ -102,36 +118,45 @@
 
   .footer-info {
     margin-bottom: 40px;
+
     .footer-logo {
       margin-bottom: 28.5px;
+
       h2 {
         display: flex;
         align-items: center;
         margin-bottom: 5px;
+
         img {
           width: 23px;
         }
       }
     }
+
     .footer-socials {
       display: flex;
       gap: 2rem;
       align-items: center;
+
       div {
         display: flex;
         gap: 1rem;
       }
+
       a {
         color: white;
       }
+
       .social {
         font-size: 20px;
       }
     }
   }
+
   .footer-copyright {
     padding-bottom: 25px;
     text-align: center;
+
     .headlight-text {
       color: #cab3e1;
     }
@@ -141,53 +166,67 @@
     h2 {
       font-size: 19px;
     }
+
     h3 {
       font-size: 1rem;
     }
+
     .footer-lists .list {
       gap: 1rem;
     }
+
     .footer-lists .link {
       font-size: 1rem;
     }
+
     .footer-form {
       h3 {
         text-align: start;
       }
+
       .footer-input {
         flex-direction: row;
         gap: 20px;
+
         input {
           flex: 2;
         }
+
         button {
           flex: 1;
           max-width: 240px;
         }
       }
+
       .error-msg {
         max-width: 63%;
       }
     }
+
     .footer-info {
       margin-bottom: 48px;
       display: flex;
       gap: 50px;
+
       .footer-logo {
         margin-bottom: 0;
+
         h2 {
           font-size: 27px;
+
           img {
             width: 44px;
             padding-bottom: 2px;
           }
         }
       }
+
       .footer-socials {
         flex-direction: column;
         gap: 1rem;
         align-items: flex-start;
         margin-top: 5px;
+
         .social {
           font-size: 30px;
         }
@@ -200,12 +239,15 @@
       display: flex;
       gap: 6%;
     }
+
     .footer-lists {
       width: 48%;
     }
+
     .footer-form {
       width: 46%;
     }
+
     .footer-form .footer-input button {
       max-width: fit-content;
       padding: 15px 20px;
