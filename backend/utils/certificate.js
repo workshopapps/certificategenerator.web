@@ -98,7 +98,8 @@ async function convertCertificate(certificate = {}) {
       name: certificate.name,
       award: certificate.award,
       nameoforganization: "Zuri"
-    }
+    },
+    puppeteerArgs: ["--no-sandbox", "--disabled-setupid-sandbox"]
   });
 
   return imgPath;
