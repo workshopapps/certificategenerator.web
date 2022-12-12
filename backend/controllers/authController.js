@@ -139,6 +139,7 @@ const userLogin = handleAsync(async (req, res, next) => {
           token: accessToken,
           refreshToken: refreshToken,
           userId: user._id.toString(),
+          name: user.name,
           subscription: user.subscription
         },
         "user logged in successfully"
@@ -168,6 +169,7 @@ const userLogin = handleAsync(async (req, res, next) => {
       {
         token: accessToken,
         refreshToken: refreshToken,
+        name: user.name,
         userId: user._id.toString(),
         subscription: user.subscription
       },
