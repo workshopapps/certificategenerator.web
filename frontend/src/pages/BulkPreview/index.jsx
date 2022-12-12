@@ -144,7 +144,7 @@ function Index() {
   // const createPdf = async ({ doc, elements }) => {
   const createPdf = async ({ doc, item }) => {
     const padding = 10;
-    const marginTop = 20;
+    const marginTop = 10;
     let top = marginTop;
 
     // for (let i = 0; i < elements.length; i++) {
