@@ -146,6 +146,7 @@ const UploadCSV = () => {
   // Data stored in the local storage
   useEffect(() => {
     localStorage.setItem('dataKey', JSON.stringify(array));
+    localStorage.setItem('unauthData', JSON.stringify(array));
   }, [array]);
 
 
