@@ -68,7 +68,7 @@ export const AppProvider = ({ children }) => {
         setFile,
         setArray,
         setLoading,
-        setCsvData,
+        setCsvData
       }}
     >
       {children}

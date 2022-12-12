@@ -14,7 +14,7 @@ function Comingsoon() {
   return (
     <section id="comingsoon">
       <article className="welcomeHead">
-        <Link to="/home" className="back">
+        <Link to="/" className="back">
           <AiOutlineArrowLeft className="arrow" />
           <span>Back to Home</span>
         </Link>

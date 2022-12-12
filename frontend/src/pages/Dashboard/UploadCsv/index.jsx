@@ -1,20 +1,24 @@
 import axios from "axios";
-import { useState } from "react";
+import { useState, useContext, useEffect } from "react";
 import Swal from "sweetalert2";
 import CSVSample from "../../../assets/images/CSV-sample.png";
+import { CSVLink } from "react-csv";
 import UploadVector from "../../../assets/images/uploadPage/uploadVector.svg";
-import useAppProvider from "../../../hooks/useAppProvider"
-import {axiosFormData} from "../../../api/axios";
-import {ButtonLoader} from "../../../Component"
+import useAppProvider from "../../../hooks/useAppProvider";
+import { axiosFormData } from "../../../api/axios";
+import { ButtonLoader } from "../../../Component";
 import { useNavigate } from "react-router-dom";
+import AppContext from "../../../contexts/AppProvider";
 import "./uploadcsv.style.scss";
+import Button from "../../../Component/button";
 
-const UploadCsv = ({getUserCertificates, onClose}) => {
-  const [state, setState] = useState({ active: true });
-  const [loading, setLoading] = useState(false)
+const UploadCsv = ({ getUserCertificates, onClose }) => {
+  const { array, setArray } = useContext(AppContext);
+  let navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+  const [file, setFile] = useState("");
+  const accessToken = JSON.parse(localStorage.getItem("userData")).token;
   const baseURL = "https://certgo.hng.tech/api";
-  const accessToken = JSON.parse(localStorage.getItem("userData")).token
-  console.log(accessToken);
 
   const axiosFormData = axios.create({
     baseURL,
@@ -24,14 +28,13 @@ const UploadCsv = ({getUserCertificates, onClose}) => {
     }
   });
 
-
-  let formData = new FormData();
+  // let formData = new FormData();
 
   const onFileChange = e => {
     if (e.target && e.target.files[0]) {
-      formData.append("file", e.target.files[0]);
+      // formData.append("file", e.target.files[0]);
+      setFile(e.target.files[0])
     }
-    console.log(e.target.files[0]);
   };
 
   const Toast = Swal.mixin({
@@ -46,46 +49,66 @@ const UploadCsv = ({getUserCertificates, onClose}) => {
     }
   });
   const handleUpload = async e => {
-    console.log('i got here')
+    console.log("i got here");
     e.preventDefault();
-    setLoading(true)
+    setLoading(true);
     try {
-      const res = await axiosFormData.post('/certificates', formData);
+      const res = await axiosFormData.post("/certificates", {file: file});
       console.log(res);
-      if (res.status === 400) {
-        setLoading(false);
-        console.log('load');
+
+      setLoading(false);
+      setArray(res.data.data.certificateData);
+      localStorage.setItem(
+        "dataKey",
+        JSON.stringify(res.data.data.certificateData)
+      );
+      navigate("/bulk_preview");
+      onClose();
+      getUserCertificates();
+      Toast.fire({
+        icon: "success",
+        title: "Successfully Updated"
+      });
+    } catch (error) {
+      onClose();
+      setLoading(false);
+      if (error.response.status === 400 || error.response.status === 401) {
         Toast.fire({
           icon: "error",
-          title: "Page not found"
+          title: "Failed Request"
         });
-      } else if (res.status === 500) {
-        setLoading(false);
+      } else if (error.response.status === 500) {
         Toast.fire({
           icon: "error",
           title: "Internal Server Error"
         });
-      } else {
-        setLoading(false);
-        onClose();
-        getUserCertificates();
-        Toast.fire({
-          icon: "success",
-          title: "Successfully Updated"
-        });
       }
-    } catch (error) {
-      console.log(error);
     }
   };
 
   return (
     <article id="uploadCSVContainer">
-      <h6>Upload your CSV file here in the format below</h6>
+      <Button
+        className="Submitcsv"
+        style={{ margin: "1em auto", width: "200px" }}
+      >
+        <CSVLink
+          data={csvDataSample}
+          headers={headers}
+          filename="sample.csv"
+          style={{ color: "white" }}
+        >
+          Download sample
+        </CSVLink>
+      </Button>
+      <h6 style={{ textAlign: "center" }}>
+        Upload your CSV file here in the format below
+      </h6>
       <div>
-        <div>
+        <div style={{ marginBottom: "16px" }}>
           <img src={UploadVector} alt="upload" />
         </div>
+
         <p>Drag and drop your CSV file here</p>
         <div>
           <span>or</span>
@@ -96,22 +119,134 @@ const UploadCsv = ({getUserCertificates, onClose}) => {
             onChange={onFileChange}
           />
           <label htmlFor="files">Browse File</label>
+          <div>
+            <span>{file.name}</span>
+          </div>
         </div>
       </div>
       <section>
         <img src={CSVSample} alt="cert" />
       </section>
-      <button onClick={(e) => handleUpload(e)}>{loading ? <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center"
-        }}
-      >
-        <ButtonLoader />
-      </div> : "Submit CSV"}</button>
+      <button onClick={e => handleUpload(e)}>
+        {loading ? (
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center"
+            }}
+          >
+            <ButtonLoader />
+          </div>
+        ) : (
+          "Submit CSV"
+        )}
+      </button>
     </article>
   );
 };
 
 export default UploadCsv;
+
+const headers = [
+  { label: "name", key: "name" },
+  { label: "nameOfOrganization", key: "nameOfOrganization" },
+  { label: "description", key: "description" },
+  { label: "award", key: "award" },
+  { label: "signed", key: "signed" },
+  { label: "email", key: "email" },
+  { label: "date", key: "date" }
+];
+
+const csvDataSample = [
+  {
+    name: "jane doe",
+    nameOfOrganization: "zuri",
+    description:
+      "this certificate is a proof of completion for HNG internship program",
+    award: "certificate of completion",
+    signed: "###",
+    email: "josepholukunle1107@gmail.com",
+    date: "13-02-2022"
+  },
+  {
+    name: "john champ",
+    nameOfOrganization: "zuri",
+    description:
+      "this certificate is a proof of completion for HNG internship program",
+    award: "certificate of completion",
+    signed: "###",
+    email: "josepholukunle1107@gmail.com",
+    date: "13-02-2022"
+  },
+  {
+    name: "Peter Smith row",
+    nameOfOrganization: "zuri",
+    description:
+      "this certificate is a proof of completion for HNG internship program",
+    award: "certificate of completion",
+    signed: "###",
+    email: "josepholukunle1107@gmail.com",
+    date: "13-02-2022"
+  },
+  {
+    name: "malaang sar konga",
+    nameOfOrganization: "zuri",
+    description:
+      "this certificate is a proof of completion for HNG internship program",
+    award: "certificate of completion",
+    signed: "###",
+    email: "josepholukunle1107@gmail.com",
+    date: "13-02-2022"
+  },
+  {
+    name: "tuchel geraldine",
+    nameOfOrganization: "zuri",
+    description:
+      "this certificate is a proof of completion for HNG internship program",
+    award: "certificate of completion",
+    signed: "###",
+    email: "josepholukunle1107@gmail.com",
+    date: "13-02-2022"
+  },
+  {
+    name: "cecy cardine",
+    nameOfOrganization: "hng",
+    description:
+      "this certificate is a proof of completion for HNG internship program",
+    award: "certificate of completion",
+    signed: "###",
+    email: "josepholukunle1107@gmail.com",
+    date: "13-02-2022"
+  },
+  {
+    name: "get away",
+    nameOfOrganization: "hng",
+    description:
+      "this certificate is a proof of completion for HNG internship program",
+    award: "certificate of completion",
+    signed: "###",
+    email: "josepholukunle1107@gmail.com",
+    date: "13-02-2022"
+  },
+  {
+    name: "Lionel Messi sn.",
+    nameOfOrganization: "hng",
+    description:
+      "this certificate is a proof of completion for HNG internship program",
+    award: "certificate of completion",
+    signed: "###",
+    email: "josepholukunle1107@gmail.com",
+    date: "13-02-2022"
+  },
+  {
+    name: "team headlight",
+    nameOfOrganization: "zuri",
+    description:
+      "this certificate is a proof of completion for HNG internship program",
+    award: "certificate of completion",
+    signed: "###",
+    email: "josepholukunle1107@gmail.com",
+    date: "13-02-2022"
+  }
+];

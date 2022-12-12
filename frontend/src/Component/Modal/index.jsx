@@ -1,9 +1,19 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useLocation } from "react-router-dom";
 import Button from "../button";
 import "./modal.style.scss";
 
-function index({ open, onClose, modalText }) {
+function Modal({ open, onClose, modalText }) {
+  const location = useLocation();
+
+  // // but you can use a location instead
+  // const loginLocation = {
+  //   pathname: "/login",
+  //   state: { fromDashboard: true, from: location }
+  // };
+  const handleLoginBtn = () => {
+    console.log("login");
+  };
   if (!open) return null;
   return (
     <div onClick={onClose} className="modal-wrapperx">
@@ -16,13 +26,13 @@ function index({ open, onClose, modalText }) {
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
-                stroke-width="1.5"
+                strokeWidth="1.5"
                 stroke="currentColor"
-                class="w-6 h-6"
+                className="w-6 h-6"
               >
                 <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                   d="M6 18L18 6M6 6l12 12"
                 />
               </svg>
@@ -39,9 +49,9 @@ function index({ open, onClose, modalText }) {
               Sign Up
             </Button>
           </Link>
-          <Link to="/login">
+          <Link to="/login" state={{ from: location }}>
             <Button
-              onClick={onClose}
+              onClick={handleLoginBtn}
               className=" btnLight modal-containerx__btn modal-containerx__btn--signin"
             >
               Login
@@ -53,4 +63,4 @@ function index({ open, onClose, modalText }) {
   );
 }
 
-export default index;
+export default Modal;

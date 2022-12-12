@@ -1,10 +1,19 @@
+require("dotenv").config();
 const Profile = require("../models/profileModel");
+const User = require("../models/userModel");
+const cloudinary = require("cloudinary").v2;
 const {
   handleAsync,
   handleResponse,
   createApiError
 } = require("../utils/helpers");
 const Joi = require("joi");
+
+cloudinary.config({
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.API_KEY,
+  api_secret: process.env.API_SECRET
+});
 
 const addUserProfile = handleAsync(async (req, res) => {
   const userID = req.user._id;
@@ -46,6 +55,30 @@ const getUserProfile = handleAsync(async (req, res) => {
 
   if (!profile) throw createApiError("No profile for this user", 404);
 
+  const allowedFields = [
+    "name",
+    "avatar",
+    "job",
+    "email",
+    "location",
+    "phoneNumber"
+  ];
+
+  // Define validatiobn schema for select query parameter
+  const schema = Joi.string()
+    .allow(...allowedFields)
+    .only()
+    .required();
+
+  // Validate select query param against validation schema
+  const { error, value } = schema.validate(req.query.select);
+
+  // If validation successful, return selected field from profile else return entire profile
+  if (!error)
+    return res
+      .status(200)
+      .json(handleResponse({ [req.query.select]: profile[value] || null }));
+
   res.status(200).json(handleResponse({ profile }));
 });
 
@@ -73,22 +106,74 @@ const updateUserProfile = handleAsync(async (req, res) => {
 
   if (!profile) throw createApiError("User has no profile", 404);
 
+  // Update name on user to match name on profile
+  const user = await User.findByIdAndUpdate(profile.user, {
+    name: profile.name
+  });
+
   res.status(201).json(handleResponse({ profile }));
 });
 
 const deleteUserProfile = handleAsync(async (req, res) => {
-  const profile = await Profile.findOneAndDelete({
+  const profile = await Profile.findOne({
     user: req.user._id
   });
 
   if (!profile) throw createApiError("user profile does not exist", 401);
 
+  await profile.deleteOne();
+
   res.status(201).json(handleResponse({ profile }));
+});
+
+const uploadUserAvatar = handleAsync(async (req, res) => {
+  const avatar = req.files.avatar;
+  const { width = 400, height = 400 } = req.query; // certogo.hng.tech/api/profile?width=20&height=20
+  const user = req.user;
+
+  // Verify that avatar was sent
+  if (!avatar) throw createApiError("avatar is required", 400);
+
+  // Upload avatar to cloudinary
+  const result = await cloudinary.uploader.upload(avatar.tempFilePath, {
+    // Crop image to focus on faces, resize image to have width and height
+    eager: [{ width, height, gravity: "faces", crop: "thumb" }]
+  });
+
+  // Add avatar image url to user profile
+  const profile = await Profile.findOneAndUpdate(
+    { user: user._id },
+    { avatar: result.eager[0].secure_url },
+    { new: true }
+  );
+
+  if (!profile) throw createApiError("User has no profile", 404);
+
+  res.status(200).json(handleResponse({ avatar: profile.avatar }));
+});
+
+const getUserAvatar = handleAsync(async (req, res) => {
+  const user = req.user;
+
+  // Get user profile from db
+  const profile = await Profile.findOne({ user: user._id });
+
+  // 404 no profile
+  if (!profile) throw createApiError("Avatar not found", 404);
+
+  const { avatar } = profile;
+
+  // 404 profile found but no avatar
+  if (!avatar) throw createApiError("Avatar not found", 404);
+
+  res.status(200).json(handleResponse({ avatar }));
 });
 
 module.exports = {
   addUserProfile,
   getUserProfile,
   updateUserProfile,
-  deleteUserProfile
+  deleteUserProfile,
+  uploadUserAvatar,
+  getUserAvatar
 };

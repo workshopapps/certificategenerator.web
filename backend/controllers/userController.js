@@ -11,33 +11,31 @@ cloudinary.config({
 });
 
 exports.uploadUserBrandKit = async (req, res) => {
-  const { file } = req.files;
-
-  const auth = req.headers.authorization;
-
-  if (!auth) {
-    return res.status(403).send({ error: "No credentials sent!" });
-  }
-  const token = auth.split(" ")[1];
-  const { userId } = jwt.decode(token);
-  const user = await User.findOne({ _id: userId });
-  try {
-    if (user.subscription === "premium") {
-      const result = await cloudinary.uploader.upload(file.tempFilePath);
-      if (result) {
-        user.avatar = result.secure_url;
-      }
-      user.save();
-      return res
-        .status(200)
-        .send({
-          brandkit: user.avatar,
-          message: `Brand Kit Successfully Updated`
-        });
-    } else {
-      return res
-        .status(422)
-        .send({ message: `Unable to process your request` });
+    const { file } = req.files;
+    
+    const auth = req.headers.authorization;
+    
+    if (!auth) {
+      return res.status(403).send({ error: "No credentials sent!" });
+    }
+    const token = auth.split(" ")[1];
+    const { userId } = jwt.decode(token);
+    const user = await User.findOne({ _id: userId})
+    try {
+        if (user.subscription === "premium") {
+            const result = await cloudinary.uploader.upload(file.tempFilePath)
+            if (result) {
+             user.avatar = result.secure_url
+            }
+            user.save()
+          return res.status(200).send({ brandkit: user.avatar, message: `Brand Kit Successfully Updated` }) 
+        } else {
+            return res.status(422).send({ message: `Unable to process your request`})
+        }
+        
+    } catch (err) {
+    
+        return res.status(422).send({ message: `Unable to process your request`})
     }
   } catch (err) {
     return res.status(422).send({ message: `Unable to process your request` });

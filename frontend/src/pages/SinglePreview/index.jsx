@@ -4,8 +4,8 @@ import Modal from "../../Component/Modal";
 import Button from "../../Component/button";
 import "./singlepreview.style.scss";
 import certificate from "../../assets/images/SinglePreview/Completion - Portrait (2).png";
-import certificate2 from "../../assets/images/SinglePreview/Completion - Portrait (3).png";
-import certificate3 from "../../assets/images/SinglePreview/Completion - Portrait.png";
+import certificate2 from "../../assets/images/bulkPreview/template_two.png";
+import certificate3 from "../../assets/images/bulkPreview/template_three.png";
 import { exportComponentAsPNG } from "react-component-export-image";
 import html2canvas from "html2canvas";
 import { jsPDF } from "jspdf";
@@ -14,7 +14,6 @@ import Swal from "sweetalert2";
 import Template1 from "./Templates/template1";
 import Template2 from "./Templates/template2";
 import Template3 from "./Templates/template3";
-
 
 function SinglePreview({
   logo,
@@ -100,7 +99,6 @@ function SinglePreview({
       if (!isAuntheticated) {
         setOpenModal(!openModal);
         setModalMessage("You need to sign up to send certificate to your mail");
-        console.log("ok");
         return;
       }
       const element = certificateWrapper.current;
@@ -254,9 +252,6 @@ function SinglePreview({
         <img onClick={handleTemplate2} src={certificate2} alt="templates" />
         <img onClick={handleTemplate3} src={certificate3} alt="templates" />
       </div>
-
-
-
 
       {/* BUTTON TO EXPLORE MORE TEMPLATES */}
       <Link to="/templates">

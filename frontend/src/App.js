@@ -32,12 +32,28 @@ import {
 } from "./pages";
 
 import Login from "./Component/Signup-Login/assets/Login";
-import Signup from "./Component/Signup-Login/assets/Sginup";
+import Signup from "./Component/Signup-Login/assets/Signup";
 import ProtectedRoutes from "./Component/ProtectedRoutes";
 
 import "./Style/App.scss";
+import { useState } from "react";
 
 function App() {
+  const [amount, setAmount] = useState(2.99);
+  const [per, setPer] = useState("month");
+  const [header, setHeader] = useState("More features customised for you");
+  const [type, setType] = useState("Standard");
+  const [text, setText] = useState("Everything in Basic +");
+  const [subText, setSubText] = useState([]);
+
+  function amountHandler(type, price, per, header, text, subText) {
+    setType(type);
+    setAmount(price);
+    setPer(per);
+    setHeader(header);
+    setText(text);
+    setSubText(subText);
+  }
   return (
     <>
       <div className="App">
@@ -67,9 +83,24 @@ function App() {
             <Route path="/bulk_step" element={<BulkStep />} />
             <Route path="/edit_bulk" element={<EditBulk />} />
             <Route path="/bulk_preview" element={<BulkPreview />} />
-            <Route path="/pricing" element={<Pricing />} />
+            <Route
+              path="/pricing"
+              element={<Pricing amountHandler={amountHandler} />}
+            />
             <Route path="/contact-us" element={<ContactUs />} />
-            <Route path="/payment" element={<Checkout />} />
+            <Route
+              path="/payment"
+              element={
+                <Checkout
+                  type={type}
+                  amount={amount}
+                  per={per}
+                  header={header}
+                  text={text}
+                  subText={subText}
+                />
+              }
+            />
             <Route
               path="/profile"
               element={
@@ -87,8 +118,12 @@ function App() {
               element={<ResetPassword />}
             />
             <Route path="/fff3" element={<ChangePassword />} />
-            <Route path="/fff2" element={<PasswordLinkSent />} />
-            <Route path="/fff1" element={<ForgotPassword />} />
+            <Route
+              path="/fff2
+            "
+              element={<PasswordLinkSent />}
+            />
+            <Route path="/resetpassword" element={<ForgotPassword />} />
 
             <Route path="*" element={<Error />} />
           </Routes>
