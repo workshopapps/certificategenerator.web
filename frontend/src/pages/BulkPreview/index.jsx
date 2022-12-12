@@ -1,8 +1,8 @@
 import jsPDF from "jspdf";
+import JSZip from "jszip";
 // import Swal from "sweetalert2";
+import { saveAs } from 'file-saver';
 import { toPng } from "html-to-image";
-import JSZip from "jszip"
-import { saveAs } from 'file-saver'
 // import ReactToPrint from "react-to-print";
 import * as htmlToImage from "html-to-image";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
@@ -99,6 +99,24 @@ function Index() {
   // });
 
   const downloadMultiplePdfs = async () => {
+    if (!isAuntheticated) {
+      setOpenModal(true);
+      setModalMessage("You need to sign up or login to download bulk certificates");
+      return;
+    }
+    const elements = document.getElementsByClassName("multiple"); // Get all certificates as HTML Elements
+    setLoading(true);
+    for (let i = 0; i < elements.length; i++) {
+      const doc = new jsPDF("p", "px", [339.4, 339.4]); // Initialize a new jsPDF instance
+      const item = elements[i];
+      console.log("Item", item);
+      await createPdf({ doc, item });
+      doc.save(`certgo${i}.pdf`); // Download generated pdf doc using jspdf's save() method
+    }
+    setLoading(false);
+  };
+
+  const downloadAsZip = async () => {
     if (!isAuntheticated) {
       setOpenModal(true);
       setModalMessage("You need to sign up or login to download bulk certificates");
@@ -308,9 +326,15 @@ function Index() {
                   trigger={() => <Button name="PDF" style={{ padding: "10px", width: "120px" }} className="bulk_dropdown" />}
                 /> */}
                 <Button
-                  name="PDF"
+                  name="Separate PDFs"
                   style={{ padding: "10px", width: "120px" }}
                   onClick={downloadMultiplePdfs}
+                  className="bulk_dropdown"
+                />
+                <Button
+                  name="ZIP"
+                  style={{ padding: "10px", width: "120px" }}
+                  onClick={downloadAsZip}
                   className="bulk_dropdown"
                 />
                 <Button
