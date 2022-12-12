@@ -6,6 +6,10 @@
   gap: 128px;
   padding: 10px;
 }
+#cert_img{
+  box-shadow: 4px 4px 4px 4px #00000040;
+
+}
 
 .formDiv {
   display: flex;
@@ -42,7 +46,7 @@
 .emptySpace {
   width: 608px;
   height: 583px;
-  background: rgba(178, 225, 217, 0.1);
+  // background: rgba(178, 225, 217, 0.1);
   border-radius: 10px;
   display: flex;
   align-items: center;
