@@ -11,7 +11,7 @@ import { useNavigate } from "react-router-dom";
 import { Toast } from "../../../Component/ToastAlert";
 import axios from "../../../api/axios";
 
-function CheckoutMainLeft({ amount }) {
+function CheckoutMainLeft({ amount, type }) {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [country, setCountry] = useState("");
@@ -134,13 +134,13 @@ function CheckoutMainLeft({ amount }) {
   async function handleAccountUpgrade() {
     try {
       await axios.put(`https://certgo.hng.tech/api/pricing/${id}`, {
-        plan: "standard"
+        plan: `${type}`
       });
       Toast.fire({
         icon: "success",
         title: "Account successfully upgraded!"
       });
-      updateUserPlan("standard");
+      updateUserPlan(`${type}`);
       setTimeout(() => {
         navigate("/dashboard");
       }, 3500);
