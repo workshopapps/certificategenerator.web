@@ -1,5 +1,6 @@
 import jsPDF from "jspdf";
 import JSZip from "jszip";
+import download from "downloadjs";
 // import Swal from "sweetalert2";
 import { saveAs } from 'file-saver';
 // import { toPng } from "html-to-image";
@@ -40,7 +41,8 @@ function Index() {
   // Getting the file data from the local storage and parsing its values
   const savedData = localStorage.getItem("dataKey");
   const array = JSON.parse(savedData);
-  console.log(array);
+  const names = array.map(item => item.name);
+
   //STATES FOR TEMPLATES
   const [templateone, setTemplateOne] = useState(true);
   const [templatetwo, setTemplateTwo] = useState(false);
@@ -66,7 +68,7 @@ function Index() {
 
   const bulkCertDesignRef = useRef();
 
-  const handleClick = useCallback(() => {
+  const handleClick = async () => {
     if (!isAuntheticated) {
       setOpenModal(true);
       setModalMessage("You need to sign up or login to download bulk certificates");
@@ -74,6 +76,32 @@ function Index() {
     }
 
     navigate("/comingsoon");
+
+    // const elements = document.getElementsByClassName("multiple"); // Get all certificates as HTML Elements
+    // setLoading(true);
+    // setInteractiveModal(true);
+    // const zip = new JSZip();
+    // for (let i = 0; i < elements.length; i++) {
+    //   await htmlToImage.toPng(elements[i])
+    //     .then(dataUrl => {
+    //       console.log("Data", dataUrl);
+    //       download(dataUrl, `certgo${i}.png`);
+          // const img = new Image();
+          // img.src = dataUrl;
+          // document.body.appendChild(img);
+          // console.log("Image", document.body.appendChild(img));
+          // const pngs = zip.folder("certificates");
+          // pngs.file(`certgo${i}.png`, dataUrl.output('blob'));
+    //     })
+    //     .catch(function (error) {
+    //       console.error('oops, something went wrong!', error);
+    //     });
+    // }
+    // zip.generateAsync({ type: 'blob' }).then(function (content) {
+    //   saveAs(content, 'certificates.zip');
+    // })
+    // setLoading(false);
+    // setInteractiveModal(false);
     
     // setLoading(true);
     // if (bulkCertDesignRef.current === null) {
@@ -92,7 +120,7 @@ function Index() {
     //     setLoading(false);
     //     console.log(err)
     //   })
-  }, [isAuntheticated, navigate]);
+  };
 
   // const Toast = Swal.mixin({
   //   toast: true,
@@ -119,7 +147,7 @@ function Index() {
       const item = elements[i];
       setInteractiveModal(true);
       await createPdf({ doc, item });
-      doc.save(`certgo${i}.pdf`); // Download generated pdf doc using jspdf's save() method
+      doc.save(`${names[i]}.pdf`); // Download generated pdf doc using jspdf's save() method
     }
     setLoading(false);
     setInteractiveModal(false);
@@ -133,15 +161,15 @@ function Index() {
     }
     const elements = document.getElementsByClassName("multiple"); // Get all certificates as HTML Elements
     setLoading(true);
-    const zip = new JSZip()
+    const zip = new JSZip();
     for (let i = 0; i < elements.length; i++) {
       const doc = new jsPDF("p", "px", [339.4, 339.4]); // Initialize a new jsPDF instance
       const item = elements[i];
       setInteractiveModal(true);
-      await createPdf({ doc, item })
+      await createPdf({ doc, item });
 
       const pdfs = zip.folder("certificates");
-      pdfs.file(`certgo${i}.pdf`, doc.output('blob'))
+      pdfs.file(`${names[i]}.pdf`, doc.output('blob'));
       //doc.save(`certgo${i}.pdf`); // Download generated pdf doc using jspdf's save() method
     }
     zip.generateAsync({ type: 'blob' }).then(function (content) {
