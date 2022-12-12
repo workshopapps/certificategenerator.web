@@ -38,7 +38,7 @@ const Dashboard = () => {
   const [eventLink, setEventLink] = useState("");
   const baseURL = "https://certgo.hng.tech/api";
   const accessToken = JSON.parse(localStorage.getItem("userData")).token;
-  const unauthArray = localStorage.getItem("dataKey");
+  const unauthArray =  JSON.parse(localStorage.getItem("dataKey"));
   const [file, setFile] = useState("");
   let navigate = useNavigate();
   let sub = JSON.parse(localStorage.getItem("userData")).subscription;
@@ -152,10 +152,11 @@ const Dashboard = () => {
       title: "You have deleted all your certificates"
     });
     setData([]);
+    updateCount([])
   };
   const getUnauthUserCertificates = async () => {
     console.log(unauthArray);
-    const response = await axiosPrivate.post("/certificates", unauthArray);
+    const response = await axiosPrivate.post("/certificates",  {unauthArray});
     console.log(response);
     // const res = await axiosPrivate.get("/certificates")
     // const unauthCertificate = res.data
