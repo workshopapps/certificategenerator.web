@@ -16,7 +16,7 @@ const validateSignUp = require("../middleware/authValidators");
 
 //user sign up
 router.post("/signup", validateSignUp, userSignup);
-router.post("/login", userLogin);
+router.post("/login", validateSignUp, userLogin);
 router.post("/refreshToken", refreshToken);
 router.delete("/logout", userLogout);
 router.route("/forgotpassword").post(forgotPassword);
