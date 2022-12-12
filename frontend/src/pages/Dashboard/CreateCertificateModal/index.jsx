@@ -90,8 +90,7 @@ function CreateCertificateModal({
         <div className="modal-body">
           <div className="head">
             <h3>
-              Create your <span className="text-green">certificate</span> with{" "}
-              <span className="text-green">ease</span>
+              Create your certificate with ease
             </h3>
             <p>
               Select a template, input values and Create a Certificate right

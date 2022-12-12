@@ -97,7 +97,6 @@ const Dashboard = () => {
   const onFileChange = async e => {
     e.preventDefault();
     setFile(URL.createObjectURL(e.target.files[0]));
-    console.log(e.target.files[0]);
     onUpdate(e.target.files[0]);
   };
 
