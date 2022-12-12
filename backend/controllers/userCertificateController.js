@@ -9,6 +9,8 @@ const {
   createApiError,
   handleResponse
 } = require("../utils/helpers");
+const { convertCertificates } = require("../utils/certificate");
+const imageToPdf = require("image-to-pdf");
 
 const addCertificate = handleAsync(async (req, res) => {
   const uuidv4 = v4();
@@ -285,6 +287,26 @@ const updateCertificateStatus = handleAsync(async (req, res) => {
   );
 });
 
+const downloadCertificates = handleAsync(async (req, res) => {
+  const user = req.user;
+  //const { certificates } = req.body;
+
+  // I did this because I didn't want to rename user globally
+  // and I wanted to avoid confusion
+  const Certificate = User;
+
+  // Validate certificates
+
+  const collection = await Certificate.findOne({
+    userId: user._id
+  });
+
+  // Generate image for each certificate
+  const paths = await convertCertificates(collection.records);
+
+  imageToPdf(paths, [1180, 760]).pipe(res);
+});
+
 module.exports = {
   getAllCertificates,
   addCertificate,
@@ -295,5 +317,6 @@ module.exports = {
   getCertificateStatus,
   updateCertificateDetails,
   updateCertificateStatus,
-  deleteUserCertificates
+  deleteUserCertificates,
+  downloadCertificates
 };
