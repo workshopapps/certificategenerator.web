@@ -288,8 +288,13 @@ const Dashboard = () => {
   var profileName = localStorage.getItem("profileName");
   let id = JSON.parse(localStorage.getItem("userData")).userId;
   console.log(id.slice(19,24));
-  const ShortId = id.slice(18, 24)
+  const ShortId = id.slice(19, 24)
 
+  // useEffect(() => {
+  //   if(sub !== "pricing"){
+
+  //   }
+  // }, [])
   return (
     <>
       <div className="dashboard">
