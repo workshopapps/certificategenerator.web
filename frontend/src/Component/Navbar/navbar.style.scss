@@ -94,6 +94,7 @@
     text-align: center;
     background: #fff;
     transition: all 0.5s ease-in-out;
+    width: 100%;
 
     .links {
       display: flex;
@@ -147,7 +148,6 @@
     justify-content: center;
 
     div {
-      display: flex;
       align-items: center;
       justify-content: center;
       display: none;
@@ -159,12 +159,14 @@
         font-weight: 400;
       }
 
-
-
       // &:hover {
       //   background: #F4F0F9;
       //   border-radius: 5px;
       // }
+    }
+
+    .caret {
+      display: block;
     }
 
     span {

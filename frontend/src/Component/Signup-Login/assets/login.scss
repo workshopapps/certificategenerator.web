@@ -5,6 +5,7 @@
     justify-content: center;
     align-items: center;
     gap: 128px;
+    padding: 10px;
   }
 
   .formDiv {
@@ -179,6 +180,7 @@
     align-items: center;
     justify-content: space-around;
   }
+
   #email img {
     margin-right: 0px;
   }
@@ -284,81 +286,101 @@
     .container {
       gap: 90px;
     }
+
     .formDiv {
       width: 450px;
       margin-left: 20px;
     }
+
     .emptySpace {
       width: 520px;
       height: 543px;
     }
+
     #heading {
       font-size: 43px;
     }
   }
+
   @media all and (max-width: 1024px) {
     .container {
       gap: 60px;
     }
+
     .formDiv {
       width: 380px;
       margin-left: 20px;
     }
+
     .emptySpace {
       width: 450px;
       height: 490px;
     }
+
     #heading {
       font-size: 32px;
     }
   }
+
   @media all and (max-width: 768px) {
     .formDiv {
       width: 400px;
     }
+
     .emptySpace {
       display: none;
     }
+
     #heading {
       font-size: 38px;
       font-weight: 600;
     }
+
     #startGenerating {
       margin-bottom: 56px;
       color: #6c6c70;
     }
+
     .haveAccount {
       font-size: 12px;
     }
+
     .logo-div {
       margin: 29px 64px 58px 64px;
       width: auto;
       justify-content: space-between;
     }
+
     .menu {
       display: block;
     }
   }
+
   @media all and (max-width: 480px) {
     #btn {
       width: 95%;
       margin: auto;
     }
+
     .formDiv {
       width: 327px;
       margin-left: 0px;
     }
+
     #heading {
       font-size: 23px;
       line-height: 29px;
     }
+
     #startGenerating {
       margin-bottom: 20px;
     }
+
     .haveAccount {
       font-size: 12px;
       margin-bottom: 40px;
     }
+
     .logo-div {
       margin: 29px 20px 58px 24px;
     }
