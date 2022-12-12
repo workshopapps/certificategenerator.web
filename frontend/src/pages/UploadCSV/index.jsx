@@ -55,66 +55,6 @@ const csvDataSample = [
     email: "josepholukunle1107@gmail.com",
     date: "13-02-2022"
   },
-  // {
-  //   name: "malaang sar konga",
-  //   nameOfOrganization: "zuri",
-  //   description:
-  //     "this certificate is a proof of completion for HNG internship program",
-  //   award: "certificate of completion",
-  //   signed: "###",
-  //   email: "josepholukunle1107@gmail.com",
-  //   date: "13-02-2022"
-  // },
-  // {
-  //   name: "tuchel geraldine",
-  //   nameOfOrganization: "zuri",
-  //   description:
-  //     "this certificate is a proof of completion for HNG internship program",
-  //   award: "certificate of completion",
-  //   signed: "###",
-  //   email: "josepholukunle1107@gmail.com",
-  //   date: "13-02-2022"
-  // },
-  // {
-  //   name: "cecy cardine",
-  //   nameOfOrganization: "hng",
-  //   description:
-  //     "this certificate is a proof of completion for HNG internship program",
-  //   award: "certificate of completion",
-  //   signed: "###",
-  //   email: "josepholukunle1107@gmail.com",
-  //   date: "13-02-2022"
-  // },
-  // {
-  //   name: "get away",
-  //   nameOfOrganization: "hng",
-  //   description:
-  //     "this certificate is a proof of completion for HNG internship program",
-  //   award: "certificate of completion",
-  //   signed: "###",
-  //   email: "josepholukunle1107@gmail.com",
-  //   date: "13-02-2022"
-  // },
-  // {
-  //   name: "Lionel Messi sn.",
-  //   nameOfOrganization: "hng",
-  //   description:
-  //     "this certificate is a proof of completion for HNG internship program",
-  //   award: "certificate of completion",
-  //   signed: "###",
-  //   email: "josepholukunle1107@gmail.com",
-  //   date: "13-02-2022"
-  // },
-  // {
-  //   name: "team headlight",
-  //   nameOfOrganization: "zuri",
-  //   description:
-  //     "this certificate is a proof of completion for HNG internship program",
-  //   award: "certificate of completion",
-  //   signed: "###",
-  //   email: "josepholukunle1107@gmail.com",
-  //   date: "13-02-2022"
-  // }
 ];
 
 const UploadCSV = () => {
