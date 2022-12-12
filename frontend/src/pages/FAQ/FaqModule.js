@@ -123,6 +123,6 @@ export const FeaturedItems = [
   },
   {
     title: "What are modifiable in the certificate edit page?",
-    body: "You can edit the colour scheme to suit your preference"
+    body: ["You can edit the colour scheme to suit your preference"]
   }
 ];

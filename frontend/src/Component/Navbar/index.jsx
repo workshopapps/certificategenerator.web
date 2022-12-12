@@ -67,9 +67,10 @@ function Navbar() {
                   {/* <DropDown/> */}
                 </div>
               ) : (
-                <Button className="btn" name={"get started"}>
-                 <Link to="/modify" className="link"></Link>
-                </Button>
+              <Link to="/login" className="link">
+                   <Button className="btn" name={"get started"} />
+              </Link>
+             
               ) 
               }
              
