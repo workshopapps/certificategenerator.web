@@ -19,7 +19,8 @@ export default function Hero() {
       <div className="center justify-between hero">
         <div className="hero-left">
           <p className="hero-text sora">
-            <span className="emphasized hero-title">Certgo</span> - Create and Download
+            {/* <span className="emphasized hero-title">Certgo</span> -  */}
+            Create and Download
             <span className="emphasized"> Free Online Certificates</span>
           </p>
           <p className="work-sans line-height hero-caption">
