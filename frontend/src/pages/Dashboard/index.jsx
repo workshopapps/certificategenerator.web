@@ -158,7 +158,7 @@ const Dashboard = () => {
   const getUnauthUserCertificates = async () => {
     if (localStorage.getItem("unauthData")) {
       localStorage.removeItem("unauthData");
-      const response = await axiosPrivate.post("/certificates", unauthArray);
+      await axiosPrivate.post("/certificates", unauthArray);
       const res = await axiosPrivate.get("/certificates");
       let allData = res.data.data.certificates
       updateCount(allData);
