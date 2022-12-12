@@ -40,20 +40,17 @@ const addCertificate = handleAsync(async (req, res) => {
       };
     });
   } else if (Array.isArray(payload)) {
-    console.log("i am an array", payload);
-    certificateData = payload.map(item => (
-      {
-        name: item.name,
-          nameOfOrganization: item.nameOfOrganization,
-          award: item.award,
-          email: item.email,
-          description: item.description,
-          date: item.date,
-          signed: item.signed,
-          uuid: uuidv4,
-          link: `https://certgo.hng.tech/single_preview?uuid=${uuidv4}`
-      }
-    ))
+    certificateData = payload.map(item => ({
+      name: item.name,
+      nameOfOrganization: item.nameOfOrganization,
+      award: item.award,
+      email: item.email,
+      description: item.description,
+      date: item.date,
+      signed: item.signed,
+      uuid: uuidv4,
+      link: `https://certgo.hng.tech/single_preview?uuid=${uuidv4}`
+    }));
   } else if (payload) {
     certificateData = [
       {
@@ -164,26 +161,22 @@ const verifyCertificate = handleAsync(async (req, res) => {
   const { id: certificateID } = req.params;
 
   if (!certificateID.match(/^[0-9a-fA-F]{24}$/)) {
-    throw createApiError("Not a valid certificate ID", 403)
+    throw createApiError("Not a valid certificate ID", 403);
   }
 
   //delete certificate by ID
-  const cert = await User.findOne(
-    { _id: certificateID },
-  );
+  const cert = await User.findOne({ _id: certificateID });
 
   if (!cert) {
-    throw createApiError(`Not a Valid Certificate`, 404)
+    throw createApiError(`Not a Valid Certificate`, 404);
   }
   return res
     .status(200)
     .json(handleResponse({ message: `Certificate Is Valid` }));
-
-})
+});
 
 const getCertificateStatus = handleAsync(async (req, res) => {
   const userId = req.user._id;
-
 
   const user = await User.findOne({ userId });
   if (!user) throw createApiError("user not found", 404);
@@ -258,7 +251,7 @@ const updateCertificateDetails = handleAsync(async (req, res) => {
 
 const updateCertificateStatus = handleAsync(async (req, res) => {
   const userId = req.user._id;
-  const payload = req.body
+  const payload = req.body;
 
   const user = await User.findOne({ userId });
   if (!user) throw createApiError("user not found", 404);
