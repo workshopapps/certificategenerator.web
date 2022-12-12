@@ -290,11 +290,11 @@ const Dashboard = () => {
   console.log(id.slice(19,24));
   const ShortId = id.slice(19, 24)
 
-  // useEffect(() => {
-  //   if(sub !== "pricing"){
+  useEffect(() => {
+    if(sub !== "pricing"){
 
-  //   }
-  // }, [])
+    }
+  }, [])
   return (
     <>
       <div className="dashboard">
@@ -320,7 +320,7 @@ const Dashboard = () => {
                 style={{ textTransform: "capitalize" }}
                 className="dashboard__title"
               >
-                {profileName ? profileName :  `user - ${ShortId}`}
+                {profileName ? profileName :  `user-${ShortId}`}
               </h2>
               <p className="dashboard__description">
                 Get a summary of all the Certificates here
