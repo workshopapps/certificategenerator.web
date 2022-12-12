@@ -85,6 +85,7 @@ const Login = () => {
 
       const userData = {
         userId: response.data.data.userId,
+        name: response.data.data.name,
         token: response.data.data.token,
         refreshToken: response.data.data.refreshToken,
         subscription: response.data.data.subscription
@@ -151,6 +152,7 @@ const Login = () => {
     // send response to localstorage
     const userData = {
       userId: response.data.data.userId,
+      name: response.data.data.name,
       token: response.data.data.token,
       refreshToken: response.data.data.refreshToken,
       subscription: response.data.data.subscription
