@@ -2,10 +2,11 @@ import jsPDF from "jspdf";
 import JSZip from "jszip";
 // import Swal from "sweetalert2";
 import { saveAs } from 'file-saver';
-import { toPng } from "html-to-image";
+// import { toPng } from "html-to-image";
 // import domtoimage from 'dom-to-image';
 // import ReactToPrint from "react-to-print";
 import * as htmlToImage from "html-to-image";
+import { useNavigate } from "react-router-dom";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import React, { useRef, useCallback, useState, useEffect } from "react";
 
@@ -22,10 +23,11 @@ import certificate3 from "../../assets/images/bulkPreview/template_three.png";
 import certificate from "../../assets/images/bulkPreview/Completion - Portrait (2).png";
 
 function Index() {
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [openModal, setOpenModal] = useState(false);
   const [modalMessage, setModalMessage] = useState("");
-  // const [emailLoading, setEmailLoading] = useState(false);
+  const [emailLoading, setEmailLoading] = useState(false);
   const [isAuntheticated, setIsAuntheticated] = useState(false);
 
   useEffect(() => {
@@ -68,24 +70,27 @@ function Index() {
       setModalMessage("You need to sign up or login to download bulk certificates");
       return;
     }
-    setLoading(true);
-    if (bulkCertDesignRef.current === null) {
-      setLoading(false);
-      return;
-    };
-    toPng(bulkCertDesignRef.current, { cacheBust: true, backgroundColor: "#f8fffe", canvasWidth: 388.5, canvasHeight: 299.4 })
-      .then(dataUrl => {
-        setLoading(false);
-        const link = document.createElement('a');
-        link.download = 'certgo.png';
-        link.href = dataUrl;
-        link.click();
-      })
-      .catch((err) => {
-        setLoading(false);
-        console.log(err)
-      })
-  }, [bulkCertDesignRef, isAuntheticated]);
+
+    navigate("/comingsoon");
+    
+    // setLoading(true);
+    // if (bulkCertDesignRef.current === null) {
+    //   setLoading(false);
+    //   return;
+    // };
+    // toPng(bulkCertDesignRef.current, { cacheBust: true, backgroundColor: "#f8fffe", canvasWidth: 388.5, canvasHeight: 299.4 })
+    //   .then(dataUrl => {
+    //     setLoading(false);
+    //     const link = document.createElement('a');
+    //     link.download = 'certgo.png';
+    //     link.href = dataUrl;
+    //     link.click();
+    //   })
+    //   .catch((err) => {
+    //     setLoading(false);
+    //     console.log(err)
+    //   })
+  }, [isAuntheticated, navigate]);
 
   // const Toast = Swal.mixin({
   //   toast: true,
@@ -165,7 +170,7 @@ function Index() {
       elWidth = elWidth * ratio - padding * 2;
     }
 
-    const pageHeight = doc.internal.pageSize.getHeight();
+    // const pageHeight = doc.internal.pageSize.getHeight();
 
     // As we are adding multiple certificates, create a new pdf page when needed
     // if (top + elHeight > pageHeight) {
@@ -179,87 +184,89 @@ function Index() {
     // }
   };
 
-  // const handleSendCertificates = async e => {
-  //   try {
-  //     localStorage.getItem("userData")
-  //       ? setIsAuntheticated(true)
-  //       : setIsAuntheticated(false);
+  const handleSendCertificates = async e => {
+    try {
+      localStorage.getItem("userData")
+        ? setIsAuntheticated(true)
+        : setIsAuntheticated(false);
 
-  //     if (!isAuntheticated) {
-  //       setOpenModal(true);
-  //       setModalMessage("You need to sign up or login to download bulk certificates");
-  //       return;
-  //     }
+      if (!isAuntheticated) {
+        setOpenModal(true);
+        setModalMessage("You need to sign up or login to download bulk certificates");
+        return;
+      }
 
-  //     const doc = new jsPDF("p", "px", [339.4, 339.4]); // Initialize a new jsPDF instance
-  //     const elements = document.getElementsByClassName("multiple"); // Get all certificates as HTML Elements
-  //     setEmailLoading(true);
-  //     await createPdf({ doc, elements });
-  //     const data = doc.save(`certgo.pdf`);
+      navigate("/comingsoon");
 
-  //     // get token from localstorage
-  //     const token = JSON.parse(localStorage.getItem("userData")).token;
+    //   const doc = new jsPDF("p", "px", [339.4, 339.4]); // Initialize a new jsPDF instance
+    //   const elements = document.getElementsByClassName("multiple"); // Get all certificates as HTML Elements
+    //   setEmailLoading(true);
+    //   await createPdf({ doc, elements });
+    //   const data = doc.save(`certgo.pdf`);
 
-  //     // create form data and add pdf
-  //     let formData = new FormData();
-  //     formData.append("file", data);
+    //   // get token from localstorage
+    //   const token = JSON.parse(localStorage.getItem("userData")).token;
 
-  //     // send the form data
-  //     const uploadUrl = "/sendEmailNotifications";
-  //     let response = await axiosFormData.post(uploadUrl, formData, {
-  //       headers: {
-  //         Authorization: `Bearer ${token}`,
-  //         "Content-Type": "multipart/form-data"
-  //       }
-  //     });
-  //     // toast message
-  //     const dataMsg = response.data;
-  //     if (response.status === 200) {
-  //       setEmailLoading(false);
-  //       Toast.fire({
-  //         icon: "success",
-  //         title: dataMsg.message
-  //       });
-  //     } else if (response.status === 403) {
-  //       setEmailLoading(false);
-  //       Toast.fire({
-  //         icon: "error",
-  //         title: dataMsg.error
-  //       });
-  //     } else {
-  //       setEmailLoading(false);
-  //       Toast.fire({
-  //         icon: "error",
-  //         title: dataMsg.message
-  //       });
-  //       throw new Error(dataMsg.message);
-  //     }
-  //   } catch (error) {
-  //     setEmailLoading(false);
-  //     Toast.fire({
-  //       icon: "error",
-  //       title: "Internal Server Error"
-  //     });
-  //   }
-  // };
+    //   // create form data and add pdf
+    //   let formData = new FormData();
+    //   formData.append("file", data);
 
-  const pageStyle = `
-  @page {
-    size: 80mm 50mm;
-  }
-
-  @media all {
-    .pagebreak {
-      display: none;
+    //   // send the form data
+    //   const uploadUrl = "/sendEmailNotifications";
+    //   let response = await axiosFormData.post(uploadUrl, formData, {
+    //     headers: {
+    //       Authorization: `Bearer ${token}`,
+    //       "Content-Type": "multipart/form-data"
+    //     }
+    //   });
+    //   // toast message
+    //   const dataMsg = response.data;
+    //   if (response.status === 200) {
+    //     setEmailLoading(false);
+    //     Toast.fire({
+    //       icon: "success",
+    //       title: dataMsg.message
+    //     });
+    //   } else if (response.status === 403) {
+    //     setEmailLoading(false);
+    //     Toast.fire({
+    //       icon: "error",
+    //       title: dataMsg.error
+    //     });
+    //   } else {
+    //     setEmailLoading(false);
+    //     Toast.fire({
+    //       icon: "error",
+    //       title: dataMsg.message
+    //     });
+    //     throw new Error(dataMsg.message);
+    //   }
+    } catch (error) {
+      setEmailLoading(false);
+      // Toast.fire({
+      //   icon: "error",
+      //   title: "Internal Server Error"
+      // });
     }
-  }
+  };
 
-  @media print {
-    .pagebreak {
-      page-break-before: always;
-    }
-  }
-`;
+//   const pageStyle = `
+//   @page {
+//     size: 80mm 50mm;
+//   }
+
+//   @media all {
+//     .pagebreak {
+//       display: none;
+//     }
+//   }
+
+//   @media print {
+//     .pagebreak {
+//       page-break-before: always;
+//     }
+//   }
+// `;
 
   return (
     <div id="bulk-preview">
@@ -349,7 +356,7 @@ function Index() {
           )}
         </div>
         {/* <Button name="Download Certificates as PDF" style={{ padding: "10px" }} /> */}
-        {/* <div>
+        <div>
           {emailLoading ? (
             <div>
               <Button
@@ -366,7 +373,7 @@ function Index() {
               onClick={handleSendCertificates}
             />
           )}
-        </div> */}
+        </div>
       </div>
 
       {/* OTHER TEMPLATES TO CHOOSE FROM */}
