@@ -29,7 +29,6 @@ const Dashboard = () => {
     setIssuedBy,
     issueDate,
     setIssueDate,
-    array
   } = useAppProvider();
   const [data, setData] = useState([]);
   const [cardData, setCardData] = useState([...dummyData]);
@@ -97,7 +96,6 @@ const Dashboard = () => {
   const onFileChange = async e => {
     e.preventDefault();
     setFile(URL.createObjectURL(e.target.files[0]));
-    console.log(e.target.files[0]);
     onUpdate(e.target.files[0]);
   };
 
@@ -170,7 +168,6 @@ const Dashboard = () => {
       const response = await axiosPrivate.get("/certificates");
       setPricing(sub);
 
-      console.log(response.data.data.certificates);
       setData(response.data.data.certificates);
       getUnauthUserCertificates();
       if (localStorage.getItem("unauthData")) return
