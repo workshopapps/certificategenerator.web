@@ -21,6 +21,7 @@ import BulkCertDesign3 from "./BulkCertDesign/BulkCertDesign3";
 import certificate2 from "../../assets/images/bulkPreview/template_two.png";
 import certificate3 from "../../assets/images/bulkPreview/template_three.png";
 import certificate from "../../assets/images/bulkPreview/Completion - Portrait (2).png";
+import InteractiveModal from "./interactiveModal";
 
 function Index() {
   const navigate = useNavigate();
@@ -29,6 +30,7 @@ function Index() {
   const [modalMessage, setModalMessage] = useState("");
   const [emailLoading, setEmailLoading] = useState(false);
   const [isAuntheticated, setIsAuntheticated] = useState(false);
+  const [interactiveModal, setInteractiveModal] = useState(false);
 
   useEffect(() => {
     localStorage.getItem("userData")
@@ -115,11 +117,12 @@ function Index() {
     for (let i = 0; i < elements.length; i++) {
       const doc = new jsPDF("p", "px", [339.4, 339.4]); // Initialize a new jsPDF instance
       const item = elements[i];
-      console.log("Item", item);
+      setInteractiveModal(true);
       await createPdf({ doc, item });
       doc.save(`certgo${i}.pdf`); // Download generated pdf doc using jspdf's save() method
     }
     setLoading(false);
+    setInteractiveModal(false);
   };
 
   const downloadZipPdf = async () => {
@@ -134,8 +137,8 @@ function Index() {
     for (let i = 0; i < elements.length; i++) {
       const doc = new jsPDF("p", "px", [339.4, 339.4]); // Initialize a new jsPDF instance
       const item = elements[i];
-      console.log("Item", item);
-      await createPdf({ doc, item });
+      setInteractiveModal(true);
+      await createPdf({ doc, item })
 
       const pdfs = zip.folder("certificates");
       pdfs.file(`certgo${i}.pdf`, doc.output('blob'))
@@ -145,6 +148,7 @@ function Index() {
       saveAs(content, 'certificates.zip');
     })
     setLoading(false);
+    setInteractiveModal(false);
   };
 
   // const createPdf = async ({ doc, elements }) => {
@@ -277,6 +281,7 @@ function Index() {
         modalText={modalMessage}
         onClose={() => setOpenModal(false)}
       />
+      <InteractiveModal open={interactiveModal} onClose={() => setInteractiveModal(false)} />
       <section id="bulk-images-desktop">
         <Splide
           className="bulk-images-wrapper"
