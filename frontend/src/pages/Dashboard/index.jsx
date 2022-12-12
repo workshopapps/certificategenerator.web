@@ -29,7 +29,6 @@ const Dashboard = () => {
     setIssuedBy,
     issueDate,
     setIssueDate,
-    array
   } = useAppProvider();
   const [data, setData] = useState([]);
   const [cardData, setCardData] = useState([...dummyData]);
@@ -169,7 +168,6 @@ const Dashboard = () => {
       const response = await axiosPrivate.get("/certificates");
       setPricing(sub);
 
-      console.log(response.data.data.certificates);
       setData(response.data.data.certificates);
       getUnauthUserCertificates();
       if (localStorage.getItem("unauthData")) return
