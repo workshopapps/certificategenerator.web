@@ -1,5 +1,6 @@
 require("dotenv").config();
 const Profile = require("../models/profileModel");
+const User = require("../models/userModel");
 const cloudinary = require("cloudinary").v2;
 const {
   handleAsync,
@@ -54,6 +55,30 @@ const getUserProfile = handleAsync(async (req, res) => {
 
   if (!profile) throw createApiError("No profile for this user", 404);
 
+  const allowedFields = [
+    "name",
+    "avatar",
+    "job",
+    "email",
+    "location",
+    "phoneNumber"
+  ];
+
+  // Define validatiobn schema for select query parameter
+  const schema = Joi.string()
+    .allow(...allowedFields)
+    .only()
+    .required();
+
+  // Validate select query param against validation schema
+  const { error, value } = schema.validate(req.query.select);
+
+  // If validation successful, return selected field from profile else return entire profile
+  if (!error)
+    return res
+      .status(200)
+      .json(handleResponse({ [req.query.select]: profile[value] || null }));
+
   res.status(200).json(handleResponse({ profile }));
 });
 
@@ -80,6 +105,11 @@ const updateUserProfile = handleAsync(async (req, res) => {
   });
 
   if (!profile) throw createApiError("User has no profile", 404);
+
+  // Update name on user to match name on profile
+  const user = await User.findByIdAndUpdate(profile.user, {
+    name: profile.name
+  });
 
   res.status(201).json(handleResponse({ profile }));
 });

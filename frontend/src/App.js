@@ -34,6 +34,7 @@ import {
 import Login from "./Component/Signup-Login/assets/Login";
 import Signup from "./Component/Signup-Login/assets/Signup";
 import ProtectedRoutes from "./Component/ProtectedRoutes";
+import { IsAuthProtectedRoutes } from "./Component/ProtectedRoutes";
 
 import "./Style/App.scss";
 import { useState } from "react";
@@ -60,8 +61,22 @@ function App() {
         <Layout>
           <Routes>
             <Route path="/" index element={<Home />} />
-            <Route path="/signup" element={<Signup />} />
-            <Route path="/login" element={<Login />} />
+            <Route
+              path="/signup"
+              element={
+                <IsAuthProtectedRoutes>
+                  <Signup />
+                </IsAuthProtectedRoutes>
+              }
+            />
+            <Route
+              path="/login"
+              element={
+                <IsAuthProtectedRoutes>
+                  <Login />
+                </IsAuthProtectedRoutes>
+              }
+            />
             <Route path="/comingsoon" element={<ComingSoon />} />
             <Route
               path="/dashboard"
@@ -123,7 +138,7 @@ function App() {
             "
               element={<PasswordLinkSent />}
             />
-            <Route path="/fff1" element={<ForgotPassword />} />
+            <Route path="/resetpassword" element={<ForgotPassword />} />
 
             <Route path="*" element={<Error />} />
           </Routes>

@@ -7,7 +7,7 @@ function CheckoutMain({ type, amount, per, header, text, subText }) {
       <h4 id="CheckoutMain-text">Checkout</h4>
 
       <div className="row" id="CheckoutMain-row">
-        <CheckoutMainLeft amount={amount} />
+        <CheckoutMainLeft amount={amount} type={type} />
 
         <CheckoutMainRight
           type={type}

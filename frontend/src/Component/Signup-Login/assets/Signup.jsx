@@ -199,9 +199,6 @@ const Signup = () => {
     }
   }
 
-  //SAVING PROFILENAME TO LOCAL STORAGE
-  localStorage.setItem("profileName", userName);
-
   return (
     <div id="signup">
       <div className="authContainer">

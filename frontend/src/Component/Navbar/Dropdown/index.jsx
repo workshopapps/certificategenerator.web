@@ -5,19 +5,11 @@ import {Link, useNavigate} from "react-router-dom"
 import Loader from '../../ButtonLoader'
 import './dropdown.style.scss'
 import Avatar from '../../../assets/svgs/default-brandkit.svg'
-import CaretDown from '../../../assets/svgs/caret-up.svg'
+import CaretUp from '../../../assets/svgs/caret-up.svg'
+import CaretDown from '../../../assets/svgs/caret-down.svg'
 
  function DropDown() {
-
-  const handleToggle = (e) => {
-     let drop = document.querySelector(".drop")
-     let caretDown = document.querySelector("#caret-down")
-     drop.classList.toggle("show")
-     caretDown.classList.toggle('caret-down')
-    
-  }
-
- const accessToken = JSON.parse(localStorage.getItem("userData")).token;
+  const accessToken = JSON.parse(localStorage.getItem("userData")).token;
   const [profilePic, setProfilePic] = useState(null);
   const baseURL = "https://certgo.hng.tech/api";
   const axiosPrivate = axios.create({
@@ -27,6 +19,32 @@ import CaretDown from '../../../assets/svgs/caret-up.svg'
       Authorization: `Bearer ${accessToken}`
     }
   });
+  const [isOpen, setIsOpen] = useState(false);
+  const [loading, setLoading] = useState()
+  const navigate = useNavigate()
+  window.addEventListener("click", () => {
+    setIsOpen(false)
+  })
+  // Handle user Logout
+  const handleLogout = async(e) =>{
+    setLoading(true);
+      e.preventDefault();  
+         await axiosPrivate.delete('auth/logout')
+          .then((res) => {    
+               //navigate back to login  
+               navigate('/login') 
+               console.log('logged out', res);
+               setLoading(false);
+               localStorage.clear()
+          }).catch(err =>{
+            console.log(err || 'couldnt log out')
+            setLoading(false)
+                  Toast.fire({
+                icon: "error",
+                title: "Error logging out"
+              });
+          }) 
+  } 
   useEffect(()=> {
     const getImage = async () => {
       const res = await axiosPrivate.get("/profile/avatar")
@@ -38,11 +56,20 @@ import CaretDown from '../../../assets/svgs/caret-up.svg'
 
   return (
     <div>
-       <div className="dropdown-container" >
-        <div className="dropdown__items" onClick={handleToggle}>
+       <div className="dropdown-container" onClick={e => e.stopPropagation()}>
+        <div className="dropdown__items" onClick={() => setIsOpen(!isOpen)}>
         <h3>My Account</h3>
+        <div>
+          
+    </div>
+  </div>
+      <div className='caret' onClick={() => setIsOpen(!isOpen)}>
+        {isOpen ? (
+        <img src={CaretUp} alt='caret-down' id='caret-down' />
+        ):(
         <img src={CaretDown} alt='caret-down' id='caret-down' />
-       </div>
+        )}
+      </div>
        <Link to='/profile'>
           <span className="dropdown__img">
           <img src={profilePic || Avatar} alt="avatar" />
@@ -50,57 +77,18 @@ import CaretDown from '../../../assets/svgs/caret-up.svg'
        </Link>
       
     </div>
-       <Drop />
-    </div>
-   
-  )
-}
-  export const Drop = () => {
-  const baseURL = "https://certgo.hng.tech/api";
-  const accessToken = JSON.parse(localStorage.getItem("userData")).token
-
-   
-  const axiosPrivate = axios.create({
-    baseURL,
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${accessToken}`
-    }
-  });
-      const [loading, setLoading] = useState()
-      const navigate = useNavigate()
-
-  // Handle user Logout
-  const handleLogout = async(e) =>{
-    setLoading(true);
-      e.preventDefault();  
-         await axiosPrivate.delete('https://certify-api.onrender.com/api/auth/logout')
-          .then((res) => {       
-             if(res.status === 200){
-               console.log('logged out');
-              setLoading(false);
-              //navigate back to login
-              navigate('/login') 
-             localStorage.clear()
-             }
-          }).catch(err =>{
-            console.log(err || 'couldnt log out')
-            setLoading(false)
-                  Toast.fire({
-                icon: "error",
-                title: "Error logging out"
-              });
-          }) 
-  }
-    return(
-      <div className='drop'> 
+    {isOpen && (
+      <div className='drop' onClick={() => setIsOpen(false)}> 
         <Link to="/dashboard"><span className='drop__item'>Dashboard</span></Link> 
-        <Link to="/profile"><span className='drop__item'>Edit Profile</span> </Link> 
+        <Link to="/profile"><span className='drop__item'>View Profile</span> </Link> 
         <span className='drop__item' onClick={handleLogout}>
           {loading ? <span>Logging out...</span> : <span>Log out</span>}
         </span>
       </div>
-    )
-  }
+    )}
+    </div>
+   
+  )
+}
 
-export default DropDown
+export default DropDown;

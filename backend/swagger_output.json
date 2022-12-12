@@ -1,13 +1,13 @@
 {
   "openapi": "3.0.3",
   "info": {
-    "title": "Certonic API",
-    "description": "## Certonic API description.",
+    "title": "Certgo API",
+    "description": "## Certgo API description.",
     "version": "1.0.0"
   },
   "servers": [
     {
-      "url": "https://certify-api.onrender.com/"
+      "url": "https://certgo.hng.tech/api"
     }
   ],
   "tags": [

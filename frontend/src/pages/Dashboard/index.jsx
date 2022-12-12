@@ -28,20 +28,22 @@ const Dashboard = () => {
     issuedBy,
     setIssuedBy,
     issueDate,
-    setIssueDate
+    setIssueDate,
   } = useAppProvider();
   const [data, setData] = useState([]);
   const [cardData, setCardData] = useState([...dummyData]);
   const [openModal, setOpenModal] = useState(false);
-  // const [loading, setLoading] = useState(false);
   const [pricing, setPricing] = useState("");
-  const [certificates, setCertificates] = useState([]);
   const [eventLink, setEventLink] = useState("");
   const baseURL = "https://certgo.hng.tech/api";
   const accessToken = JSON.parse(localStorage.getItem("userData")).token;
   const [file, setFile] = useState("");
   let navigate = useNavigate();
-
+  let sub = JSON.parse(localStorage.getItem("userData")).subscription;
+  let unauthArray;
+  if (localStorage.getItem("unauthData")) {
+    unauthArray = JSON.parse(localStorage.getItem("unauthData"));
+  }
   const axiosPrivate = axios.create({
     baseURL,
     headers: {
@@ -94,7 +96,6 @@ const Dashboard = () => {
   const onFileChange = async e => {
     e.preventDefault();
     setFile(URL.createObjectURL(e.target.files[0]));
-    console.log(e.target.files[0]);
     onUpdate(e.target.files[0]);
   };
 
@@ -130,7 +131,6 @@ const Dashboard = () => {
         });
       }
     }
-   
   };
 
   const handleDeleteCertificate = async id => {
@@ -151,15 +151,26 @@ const Dashboard = () => {
       title: "You have deleted all your certificates"
     });
     setData([]);
+    updateCount([]);
   };
-
+  const getUnauthUserCertificates = async () => {
+    if (localStorage.getItem("unauthData")) {
+      localStorage.removeItem("unauthData");
+      await axiosPrivate.post("/certificates", unauthArray);
+      const res = await axiosPrivate.get("/certificates");
+      let allData = res.data.data.certificates
+      updateCount(allData);
+      setData(allData)
+    }
+  };
   const getUserCertificates = async () => {
     try {
       const response = await axiosPrivate.get("/certificates");
-      let sub = JSON.parse(localStorage.getItem("userData")).subscription;
       setPricing(sub);
 
       setData(response.data.data.certificates);
+      getUnauthUserCertificates();
+      if (localStorage.getItem("unauthData")) return
       updateCount(response.data.data.certificates);
     } catch (error) {
       console.error(error.message);
@@ -268,10 +279,6 @@ const Dashboard = () => {
     getEvents();
   };
 
-  const handleToggle = () => {
-    let drop = document.querySelector(".brandkit-dropdown");
-    drop.classList.toggle("visible");
-  };
 
   //DELETE ALL USER CERTIFICATES
   const handleDeleteAll = async () => {
@@ -281,8 +288,17 @@ const Dashboard = () => {
     // getUserCertificates();
   };
 
-  var profileName = localStorage.getItem("profileName");
+  var profileName = JSON.parse(localStorage.getItem("userData")).name;
+  console.log(profileName);
+  let id = JSON.parse(localStorage.getItem("userData")).userId;
+  console.log(id.slice(19,24));
+  const ShortId = id.slice(19, 24)
 
+  useEffect(() => {
+    if(sub !== "pricing"){
+
+    }
+  }, [])
   return (
     <>
       <div className="dashboard">
@@ -295,10 +311,16 @@ const Dashboard = () => {
               <img src={Ellipse} alt="upload-icon" />
             </div> */}
             <div className="brandkit-upload">
-                <label htmlFor="file" className="dashboard__upload-label">
-                  <img src={UploadVector} alt='upload' />
-                  <input type="file" id="file" accept="image/*" name="file" onChange={onFileChange}  />
-                </label>
+              <label htmlFor="file" className="dashboard__upload-label">
+                <img src={UploadVector} alt="upload" />
+                <input
+                  type="file"
+                  id="file"
+                  accept="image/*"
+                  name="file"
+                  onChange={onFileChange}
+                />
+              </label>
             </div>
           </div>
           <div className="flexx">
@@ -308,13 +330,15 @@ const Dashboard = () => {
                 style={{ textTransform: "capitalize" }}
                 className="dashboard__title"
               >
-                {profileName ? profileName : ""}
+                {profileName ? profileName :  `user - ${ShortId}`}
               </h2>
               <p className="dashboard__description">
                 Get a summary of all the Certificates here
               </p>
               <div>
-                <p className="dashboard__plan">Package: <span className="dashboard__bold">{pricing}</span></p>
+                <p className="dashboard__plan dashboard__bold">
+                  Package: <span className="dashboard__bold">{sub}</span>
+                </p>
               </div>
             </div>
             <div className="dashboard__btn">
@@ -326,7 +350,7 @@ const Dashboard = () => {
         </div>
 
         <div className="dashboard__cards">
-          {cardData[0].count !== 0
+          {cardData
             ? cardData.map((item, idx) => <Card key={idx} item={item} />)
             : null}
         </div>
@@ -349,11 +373,18 @@ const Dashboard = () => {
                   + New Certificate
                 </Button>
 
-                {/* <Button style={{ fontSize: "16px" }} className="" onClick={handleDeleteAll}>
-                  Delete All Certificates
+                <Button
+                  style={{
+                    fontSize: "16px",
+                    backgroundColor: "white",
+                    color: "#19a68e"
+                  }}
+                  onClick={handleDeleteAll}
+                >
+                  Delete All
                 </Button>
 
-                <Button
+                {/*<Button
                   style={{ marginLeft: "16px", fontSize: "16px" }}
                   className="btn-generate"
                   onClick={handleGenerate}

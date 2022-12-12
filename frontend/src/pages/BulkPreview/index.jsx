@@ -1,14 +1,19 @@
 import jsPDF from "jspdf";
+import JSZip from "jszip";
+import download from "downloadjs";
 // import Swal from "sweetalert2";
-import { toPng } from "html-to-image";
+import { saveAs } from 'file-saver';
+// import { toPng } from "html-to-image";
+// import domtoimage from 'dom-to-image';
 // import ReactToPrint from "react-to-print";
 import * as htmlToImage from "html-to-image";
+import { useNavigate } from "react-router-dom";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import React, { useRef, useCallback, useState, useEffect } from "react";
 
 import "./bulk.style.scss";
 import "@splidejs/react-splide/css";
-import Modal from "../../Component/Modal"; 
+import Modal from "../../Component/Modal";
 import Button from "../../Component/button";
 // import { axiosFormData } from "../../api/axios";
 import BulkCertDesign1 from "./BulkCertDesign/BulkCertDesign1";
@@ -17,13 +22,16 @@ import BulkCertDesign3 from "./BulkCertDesign/BulkCertDesign3";
 import certificate2 from "../../assets/images/bulkPreview/template_two.png";
 import certificate3 from "../../assets/images/bulkPreview/template_three.png";
 import certificate from "../../assets/images/bulkPreview/Completion - Portrait (2).png";
+import InteractiveModal from "./interactiveModal";
 
 function Index() {
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [openModal, setOpenModal] = useState(false);
   const [modalMessage, setModalMessage] = useState("");
-  // const [emailLoading, setEmailLoading] = useState(false);
+  const [emailLoading, setEmailLoading] = useState(false);
   const [isAuntheticated, setIsAuntheticated] = useState(false);
+  const [interactiveModal, setInteractiveModal] = useState(false);
 
   useEffect(() => {
     localStorage.getItem("userData")
@@ -33,6 +41,7 @@ function Index() {
   // Getting the file data from the local storage and parsing its values
   const savedData = localStorage.getItem("dataKey");
   const array = JSON.parse(savedData);
+  const names = array.map(item => item.name);
 
   //STATES FOR TEMPLATES
   const [templateone, setTemplateOne] = useState(true);
@@ -59,78 +68,58 @@ function Index() {
 
   const bulkCertDesignRef = useRef();
 
-  const handleClick = useCallback(() => {
+  const handleClick = async () => {
     if (!isAuntheticated) {
       setOpenModal(true);
       setModalMessage("You need to sign up or login to download bulk certificates");
       return;
     }
-    setLoading(true);
-    if (bulkCertDesignRef.current === null) {
-      setLoading(false);
-      return;
-    };
-    toPng(bulkCertDesignRef.current, { cacheBust: true, backgroundColor: "#f8fffe", canvasWidth: 388.5, canvasHeight: 299.4 })
-      .then(dataUrl => {
-        setLoading(false);
-        const link = document.createElement('a');
-        link.download = 'certgo.png';
-        link.href = dataUrl;
-        link.click();
-      })
-      .catch((err) => {
-        setLoading(false);
-        console.log(err)
-      })
-  }, [bulkCertDesignRef, isAuntheticated]);
 
-  const downloadMultiplePdfs = async () => {
-    if (!isAuntheticated) {
-      setOpenModal(true);
-      setModalMessage("You need to sign up or login to download bulk certificates");
-      return;
-    }
-    const doc = new jsPDF("p", "px", [339.4, 339.4]); // Initialize a new jsPDF instance
-    const elements = document.getElementsByClassName("multiple"); // Get all certificates as HTML Elements
-    setLoading(true);
-    await createPdf({ doc, elements });
-    setLoading(false);
-    doc.save(`certgo.pdf`); // Download generated pdf doc using jspdf's save() method
-  };
+    navigate("/comingsoon");
 
-  const createPdf = async ({ doc, elements }) => {
-    const padding = 10;
-    const marginTop = 20;
-    let top = marginTop;
-
-    for (let i = 0; i < elements.length; i++) {
-      const el = elements.item(i);
-      // Convert each HTML Element with certificate into image (with htmlToImage library)
-      const imgData = await htmlToImage.toPng(el);
-  
-      let elHeight = el.offsetHeight;
-      let elWidth = el.offsetWidth;
-  
-      const pageWidth = doc.internal.pageSize.getWidth();
-  
-      if (elWidth > pageWidth) {
-        const ratio = pageWidth / elWidth;
-        elHeight = elHeight * ratio - padding * 2;
-        elWidth = elWidth * ratio - padding * 2;
-      }
-  
-      const pageHeight = doc.internal.pageSize.getHeight();
-
-      // As we are adding multiple certificates, create a new pdf page when needed
-      if (top + elHeight > pageHeight) {
-        doc.addPage();
-        top = marginTop;
-      }
-      
-      // Add converted certificate image to the pdf doc with jsPDF's addImage() method
-      doc.addImage(imgData, "PNG", padding, top, elWidth, elHeight, `image${i}`); 
-      top += elHeight + marginTop;
-    }
+    // const elements = document.getElementsByClassName("multiple"); // Get all certificates as HTML Elements
+    // setLoading(true);
+    // setInteractiveModal(true);
+    // const zip = new JSZip();
+    // for (let i = 0; i < elements.length; i++) {
+    //   await htmlToImage.toPng(elements[i])
+    //     .then(dataUrl => {
+    //       console.log("Data", dataUrl);
+    //       download(dataUrl, `certgo${i}.png`);
+          // const img = new Image();
+          // img.src = dataUrl;
+          // document.body.appendChild(img);
+          // console.log("Image", document.body.appendChild(img));
+          // const pngs = zip.folder("certificates");
+          // pngs.file(`certgo${i}.png`, dataUrl.output('blob'));
+    //     })
+    //     .catch(function (error) {
+    //       console.error('oops, something went wrong!', error);
+    //     });
+    // }
+    // zip.generateAsync({ type: 'blob' }).then(function (content) {
+    //   saveAs(content, 'certificates.zip');
+    // })
+    // setLoading(false);
+    // setInteractiveModal(false);
+    
+    // setLoading(true);
+    // if (bulkCertDesignRef.current === null) {
+    //   setLoading(false);
+    //   return;
+    // };
+    // toPng(bulkCertDesignRef.current, { cacheBust: true, backgroundColor: "#f8fffe", canvasWidth: 388.5, canvasHeight: 299.4 })
+    //   .then(dataUrl => {
+    //     setLoading(false);
+    //     const link = document.createElement('a');
+    //     link.download = 'certgo.png';
+    //     link.href = dataUrl;
+    //     link.click();
+    //   })
+    //   .catch((err) => {
+    //     setLoading(false);
+    //     console.log(err)
+    //   })
   };
 
   // const Toast = Swal.mixin({
@@ -145,69 +134,171 @@ function Index() {
   //   }
   // });
 
-  // const handleSendCertificates = async e => {
-  //   try {
-  //     localStorage.getItem("userData")
-  //       ? setIsAuntheticated(true)
-  //       : setIsAuntheticated(false);
+  const downloadMultiplePdfs = async () => {
+    if (!isAuntheticated) {
+      setOpenModal(true);
+      setModalMessage("You need to sign up or login to download bulk certificates");
+      return;
+    }
+    const elements = document.getElementsByClassName("multiple"); // Get all certificates as HTML Elements
+    setLoading(true);
+    for (let i = 0; i < elements.length; i++) {
+      const doc = new jsPDF("p", "px", [339.4, 339.4]); // Initialize a new jsPDF instance
+      const item = elements[i];
+      setInteractiveModal(true);
+      await createPdf({ doc, item });
+      doc.save(`${names[i]}.pdf`); // Download generated pdf doc using jspdf's save() method
+    }
+    setLoading(false);
+    setInteractiveModal(false);
+  };
 
-  //     if (!isAuntheticated) {
-  //       setOpenModal(true);
-  //       setModalMessage("You need to sign up or login to download bulk certificates");
-  //       return;
-  //     }
+  const downloadZipPdf = async () => {
+    if (!isAuntheticated) {
+      setOpenModal(true);
+      setModalMessage("You need to sign up or login to download bulk certificates");
+      return;
+    }
+    const elements = document.getElementsByClassName("multiple"); // Get all certificates as HTML Elements
+    setLoading(true);
+    const zip = new JSZip();
+    for (let i = 0; i < elements.length; i++) {
+      const doc = new jsPDF("p", "px", [339.4, 339.4]); // Initialize a new jsPDF instance
+      const item = elements[i];
+      setInteractiveModal(true);
+      await createPdf({ doc, item });
 
-  //     const doc = new jsPDF("p", "px", [339.4, 339.4]); // Initialize a new jsPDF instance
-  //     const elements = document.getElementsByClassName("multiple"); // Get all certificates as HTML Elements
-  //     setEmailLoading(true);
-  //     await createPdf({ doc, elements });
-  //     const data = doc.save(`certgo.pdf`);
+      const pdfs = zip.folder("certificates");
+      pdfs.file(`${names[i]}.pdf`, doc.output('blob'));
+      //doc.save(`certgo${i}.pdf`); // Download generated pdf doc using jspdf's save() method
+    }
+    zip.generateAsync({ type: 'blob' }).then(function (content) {
+      saveAs(content, 'certificates.zip');
+    })
+    setLoading(false);
+    setInteractiveModal(false);
+  };
 
-  //     // get token from localstorage
-  //     const token = JSON.parse(localStorage.getItem("userData")).token;
+  // const createPdf = async ({ doc, elements }) => {
+  const createPdf = async ({ doc, item }) => {
+    const padding = 10;
+    const marginTop = 10;
+    let top = marginTop;
 
-  //     // create form data and add pdf
-  //     let formData = new FormData();
-  //     formData.append("file", data);
+    // for (let i = 0; i < elements.length; i++) {
+    // const el = elements.item(i);
+    const el = item;
+    // Convert each HTML Element with certificate into image (with htmlToImage library)
+    const imgData = await htmlToImage.toPng(el);
 
-  //     // send the form data
-  //     const uploadUrl = "/sendEmailNotifications";
-  //     let response = await axiosFormData.post(uploadUrl, formData, {
-  //       headers: {
-  //         Authorization: `Bearer ${token}`,
-  //         "Content-Type": "multipart/form-data"
-  //       }
-  //     });
-  //     // toast message
-  //     const dataMsg = response.data;
-  //     if (response.status === 200) {
-  //       setEmailLoading(false);
-  //       Toast.fire({
-  //         icon: "success",
-  //         title: dataMsg.message
-  //       });
-  //     } else if (response.status === 403) {
-  //       setEmailLoading(false);
-  //       Toast.fire({
-  //         icon: "error",
-  //         title: dataMsg.error
-  //       });
-  //     } else {
-  //       setEmailLoading(false);
-  //       Toast.fire({
-  //         icon: "error",
-  //         title: dataMsg.message
-  //       });
-  //       throw new Error(dataMsg.message);
-  //     }
-  //   } catch (error) {
-  //     setEmailLoading(false);
-  //     Toast.fire({
-  //       icon: "error",
-  //       title: "Internal Server Error"
-  //     });
-  //   }
-  // };
+    let elHeight = el.offsetHeight;
+    let elWidth = el.offsetWidth;
+
+    const pageWidth = doc.internal.pageSize.getWidth();
+
+    if (elWidth > pageWidth) {
+      const ratio = pageWidth / elWidth;
+      elHeight = elHeight * ratio - padding * 2;
+      elWidth = elWidth * ratio - padding * 2;
+    }
+
+    // const pageHeight = doc.internal.pageSize.getHeight();
+
+    // As we are adding multiple certificates, create a new pdf page when needed
+    // if (top + elHeight > pageHeight) {
+    //   doc.addPage();
+    //   top = marginTop;
+    // }
+
+    // Add converted certificate image to the pdf doc with jsPDF's addImage() method
+    doc.addImage(imgData, "PNG", padding, top, elWidth, elHeight, `image${item}`);
+    top += elHeight + marginTop;
+    // }
+  };
+
+  const handleSendCertificates = async e => {
+    try {
+      localStorage.getItem("userData")
+        ? setIsAuntheticated(true)
+        : setIsAuntheticated(false);
+
+      if (!isAuntheticated) {
+        setOpenModal(true);
+        setModalMessage("You need to sign up or login to download bulk certificates");
+        return;
+      }
+
+      navigate("/comingsoon");
+
+    //   const doc = new jsPDF("p", "px", [339.4, 339.4]); // Initialize a new jsPDF instance
+    //   const elements = document.getElementsByClassName("multiple"); // Get all certificates as HTML Elements
+    //   setEmailLoading(true);
+    //   await createPdf({ doc, elements });
+    //   const data = doc.save(`certgo.pdf`);
+
+    //   // get token from localstorage
+    //   const token = JSON.parse(localStorage.getItem("userData")).token;
+
+    //   // create form data and add pdf
+    //   let formData = new FormData();
+    //   formData.append("file", data);
+
+    //   // send the form data
+    //   const uploadUrl = "/sendEmailNotifications";
+    //   let response = await axiosFormData.post(uploadUrl, formData, {
+    //     headers: {
+    //       Authorization: `Bearer ${token}`,
+    //       "Content-Type": "multipart/form-data"
+    //     }
+    //   });
+    //   // toast message
+    //   const dataMsg = response.data;
+    //   if (response.status === 200) {
+    //     setEmailLoading(false);
+    //     Toast.fire({
+    //       icon: "success",
+    //       title: dataMsg.message
+    //     });
+    //   } else if (response.status === 403) {
+    //     setEmailLoading(false);
+    //     Toast.fire({
+    //       icon: "error",
+    //       title: dataMsg.error
+    //     });
+    //   } else {
+    //     setEmailLoading(false);
+    //     Toast.fire({
+    //       icon: "error",
+    //       title: dataMsg.message
+    //     });
+    //     throw new Error(dataMsg.message);
+    //   }
+    } catch (error) {
+      setEmailLoading(false);
+      // Toast.fire({
+      //   icon: "error",
+      //   title: "Internal Server Error"
+      // });
+    }
+  };
+
+//   const pageStyle = `
+//   @page {
+//     size: 80mm 50mm;
+//   }
+
+//   @media all {
+//     .pagebreak {
+//       display: none;
+//     }
+//   }
+
+//   @media print {
+//     .pagebreak {
+//       page-break-before: always;
+//     }
+//   }
+// `;
 
   return (
     <div id="bulk-preview">
@@ -218,6 +309,7 @@ function Index() {
         modalText={modalMessage}
         onClose={() => setOpenModal(false)}
       />
+      <InteractiveModal open={interactiveModal} onClose={() => setInteractiveModal(false)} />
       <section id="bulk-images-desktop">
         <Splide
           className="bulk-images-wrapper"
@@ -242,13 +334,13 @@ function Index() {
           {array.map((item, id) => (
             <SplideSlide key={id}>
               {templateone && (
-                <BulkCertDesign1 item={item} ref={bulkCertDesignRef} />
+                <BulkCertDesign1 item={item} ref={bulkCertDesignRef} className="page-break" />
               )}
               {templatetwo && (
-                <BulkCertDesign2 item={item} ref={bulkCertDesignRef} />
+                <BulkCertDesign2 item={item} ref={bulkCertDesignRef} className="page-break" />
               )}
               {templatethree && (
-                <BulkCertDesign3 item={item} ref={bulkCertDesignRef} />
+                <BulkCertDesign3 item={item} ref={bulkCertDesignRef} className="page-break" />
               )}
             </SplideSlide>
           ))}
@@ -270,13 +362,20 @@ function Index() {
               <Button name="Download Certificates" style={{ padding: "10px" }} />
               <div className="dropdown-content" style={{ marginTop: "0px" }}>
                 {/* <ReactToPrint
+                  pageStyle={pageStyle}
                   content={() => bulkCertDesignRef.current}
                   trigger={() => <Button name="PDF" style={{ padding: "10px", width: "120px" }} className="bulk_dropdown" />}
                 /> */}
                 <Button
-                  name="PDF"
+                  name="Separate PDFs"
                   style={{ padding: "10px", width: "120px" }}
                   onClick={downloadMultiplePdfs}
+                  className="bulk_dropdown"
+                />
+                <Button
+                  name="ZIP"
+                  style={{ padding: "10px", width: "120px" }}
+                  onClick={downloadZipPdf}
                   className="bulk_dropdown"
                 />
                 <Button
@@ -290,7 +389,7 @@ function Index() {
           )}
         </div>
         {/* <Button name="Download Certificates as PDF" style={{ padding: "10px" }} /> */}
-        {/* <div>
+        <div>
           {emailLoading ? (
             <div>
               <Button
@@ -307,7 +406,7 @@ function Index() {
               onClick={handleSendCertificates}
             />
           )}
-        </div> */}
+        </div>
       </div>
 
       {/* OTHER TEMPLATES TO CHOOSE FROM */}

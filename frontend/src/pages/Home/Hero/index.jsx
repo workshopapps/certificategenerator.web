@@ -1,11 +1,10 @@
 import React from "react";
 import {useRef} from 'react';
 
+import "./hero.style.scss";
+import Button from "../../../Component/button";
 import hero from "../../../assets/images/hero.png";
 import tick from "../../../assets/images/tick.png";
-import Button from "../../../Component/button";
-// import {Link} from "react-router-dom";
-import "./hero.style.scss";
 
 export default function Hero() {
   
@@ -20,10 +19,8 @@ export default function Hero() {
       <div className="center justify-between hero">
         <div className="hero-left">
           <p className="hero-text sora">
-            {/* Create and download your{" "}
-            <span className="emphasized">professional certificates</span> for
-            <span className="emphasized"> free</span> */}
-            <span className="emphasized">Certgo</span> - Create and Download
+            {/* <span className="emphasized hero-title">Certgo</span> -  */}
+            Create and Download
             <span className="emphasized"> Free Online Certificates</span>
           </p>
           <p className="work-sans line-height hero-caption">

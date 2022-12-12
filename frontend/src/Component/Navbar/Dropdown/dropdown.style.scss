@@ -3,10 +3,10 @@
     position: absolute;
     flex-direction: column;
     height: fit-content;
-    width: fit-content;
+    width: 120px;
     padding: 10px;
     gap: 15px;
-    display: none;
+    display: flex;
     transition: 300ms all;
 
     &__item {
@@ -50,8 +50,4 @@
 
 .none {
     display: none;
-}
-
-.caret-down {
-    transform: rotate(180deg);
 }

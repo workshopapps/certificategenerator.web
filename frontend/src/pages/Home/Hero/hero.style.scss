@@ -77,7 +77,7 @@ body {
 
   .hero-left {
     width: 100%;
-    text-align: left;
+    text-align: justify;
     margin-bottom: 1rem;
 
     .hero-text {
@@ -86,6 +86,11 @@ body {
       line-height: 60px;
       margin-bottom: 20px;
       margin-top: 0;
+      text-align: start;
+
+      .hero-title {
+        font-size: 64px;
+      }
     }
 
     .hero-caption {
@@ -156,9 +161,16 @@ body {
 @media screen and (max-width: 1300px) {
   .hero {
     .hero-left {
+      text-align: justify;
+
       .hero-text {
         font-size: 38px;
         line-height: 50px;
+        text-align: start;
+
+        .hero-title {
+          font-size: 51px;
+        }
       }
     }
   }
@@ -170,10 +182,17 @@ body {
     gap: 1rem;
 
     .hero-left {
+      text-align: justify;
+
       .hero-text {
         font-size: 32px;
         line-height: 40px;
         margin-bottom: 1rem;
+        text-align: start;
+
+        .hero-title {
+          font-size: 43px;
+        }
       }
 
       .hero-caption {
@@ -195,8 +214,15 @@ body {
 @media screen and (max-width: 778px) {
   .hero {
     .hero-left {
+      text-align: justify;
+
       .hero-text {
         font-size: 28px;
+        text-align: start;
+
+        .hero-title {
+          font-size: 37px;
+        }
       }
     }
 
@@ -218,9 +244,16 @@ body {
     gap: 1rem;
 
     .hero-left {
+      text-align: justify;
+
       .hero-text {
         font-size: 28px;
         line-height: 36px;
+        text-align: start;
+
+        .hero-title {
+          font-size: 37px;
+        }
       }
 
       .hero-caption {
@@ -253,7 +286,7 @@ body {
 
     .hero-left {
       width: 100%;
-      text-align: center;
+      text-align: justify;
 
       button {
         width: 100%;
@@ -272,12 +305,16 @@ body {
   .hero-text {
     font-size: 24px !important;
     line-height: 30px !important;
-    text-align: center;
+    text-align: start;
+
+    .hero-title {
+      font-size: 32px !important;
+    }
   }
 
   .hero-caption {
     font-size: 16px;
-    text-align: center;
+    text-align: justify;
   }
 
   .hero-button {

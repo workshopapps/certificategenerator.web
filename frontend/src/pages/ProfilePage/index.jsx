@@ -31,15 +31,13 @@ const userId = localStorage.getItem("user");
   const handleLogout = async(e) =>{
     setLoading(true);
       e.preventDefault();  
-         await axios.delete('https://certify-api.onrender.com/api/auth/logout')
+         await axios.delete('https://certgo.hng.tech/api/auth/logout')
           .then((res) => {       
-             if(res.status === 200){
-               console.log('logged out');
+               console.log('logged out:', res);
               setLoading(false);
               //navigate back to login
               navigate('/login') 
              localStorage.clear()
-             }
           }).catch(err =>{
             console.log(err || 'couldnt log out')
             setLoading(false)
