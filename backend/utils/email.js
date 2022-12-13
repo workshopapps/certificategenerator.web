@@ -1,6 +1,8 @@
 const {handleAsync, handleError,handleResponse,createApiError} = require("./helpers")
 const nodemailer = require("nodemailer");
 require("dotenv").config();
+const hbs = require('nodemailer-express-handlebars')
+const path = require('path')
 
 let transporter = nodemailer.createTransport({
   service: "gmail",
@@ -19,6 +21,18 @@ transporter.verify((error, success) => {
   }
 });
 
+const handlebarOptions = {
+  viewEngine:{
+    defaultLayout: false,
+    extName: '.handlebars',
+    partialsDir: path.resolve(__dirname, '..', 'email-templates')
+  },
+  viewPath: path.resolve(__dirname, '..', 'email-templates'),
+  extName: '.handlebars'
+}
+
+transporter.use('compile', hbs(handlebarOptions))
+
 //send Mailing email
 const sendMailingEmail = ({ email }, res) => {
   //mail options
@@ -26,9 +40,8 @@ const sendMailingEmail = ({ email }, res) => {
     from: process.env.AUTH_EMAIL,
     to: `${email}`,
     subject: `Certgo- You are on our Mailing List`,
-    html: `<p>Thank you for joining Certgo.</p>
-            <p>You will recieve other important Updates from us.</p>
-            `,
+    template: 'mailing',
+    
   };
 
   transporter.sendMail(mailOptions, function (error, info) {
@@ -50,11 +63,13 @@ const sendApplicationEmail = ({ email, name, role, location }, res) => {
     from: process.env.AUTH_EMAIL,
     to: `${email}`,
     subject: `Certgo- New Career Application`,
-    html: `<p>Dear ${name},</p>
-            <p>You have applied for the role of ${role} and your location is ${location}.</p>
-            <p>Expect update concerning your application from us,</p>
-            <p> From the "Certgo Career Team" </p>
-            `,
+    template: 'career',
+    context: {
+      name: `${name}`,
+      role : `${role}`,
+      location : `${location}`
+    }
+
   };
 
   transporter.sendMail(mailOptions, function (error, info) {
@@ -75,12 +90,10 @@ const sendChangePasswordEmail = ({ email, link }, res) => {
     from: process.env.AUTH_EMAIL,
     to: `${email}`,
     subject: `Certgo- Change Password`,
-    html: `
-        <h4>Hello</h4>
-        <p>Forgotten your password?</p>
-        <p>You have been sent this email because we received a request to reset the password to your account</p>
-        <p>Click the ${link} to reset your password</p>
-            `,
+    template: 'forgetpassword',
+    context: {
+      link 
+    }
   };
 
   transporter.sendMail(mailOptions, function (error, info) {
