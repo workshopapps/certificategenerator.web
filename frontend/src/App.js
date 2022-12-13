@@ -133,13 +133,8 @@ function App() {
               element={<ResetPassword />}
             />
             <Route path="/fff3" element={<ChangePassword />} />
-            <Route
-              path="/fff2
-            "
-              element={<PasswordLinkSent />}
-            />
+            <Route path="/fff2" element={<PasswordLinkSent />} />
             <Route path="/resetpassword" element={<ForgotPassword />} />
-
             <Route path="*" element={<Error />} />
           </Routes>
         </Layout>
