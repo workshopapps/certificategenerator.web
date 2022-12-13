@@ -294,14 +294,14 @@ const updateCertificateStatus = handleAsync(async (req, res) => {
 
 const downloadCertificates = handleAsync(async (req, res) => {
   const user = req.user;
-  const { certificateIds = [], template = 1, option = "pdf" } = req.body;
+  const { certificateIds = [], template = 1, format = "pdf" } = req.body;
 
   // I did this because I didn't want to rename user globally
   // and I wanted to avoid confusion
   const Certificate = User;
 
   // Invalid option provided
-  if (!["pdf", "img", "pdf-split"].includes(option.toLowerCase()))
+  if (!["pdf", "img", "pdf-split"].includes(format.toLowerCase()))
     throw createApiError(
       "Invalid option provided. Option must be one of 'pdf', 'img' and 'pdf-split'",
       400
@@ -342,7 +342,7 @@ const downloadCertificates = handleAsync(async (req, res) => {
   // Generate image for each certificate
   const paths = await convertCertificates(certsToConvert, template);
 
-  switch (option.toLowerCase()) {
+  switch (format.toLowerCase()) {
     case "pdf":
       return imageToPdf(paths, [1180, 760]).pipe(res);
 
