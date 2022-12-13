@@ -25,7 +25,7 @@ function Template3({
                     <img src={logo} style={{ width: "100px" }} alt="logo" />
                     <h1 style = {{color: 'green'}}>{certificateTitle}</h1>
 
-                    <p>THIS CERTIFIES THAT</p>
+                    <p>THIS CERTIFICATE IS AWARDED TO</p>
                     <h2>{awardeeName}</h2>
                     <h6>{message}</h6>
                   </div>
