@@ -14,12 +14,14 @@ const {
   updateCertificateDetails,
   updateCertificateStatus,
   verifyCertificate,
-  downloadCertificates
+  downloadCertificates,
+  downloadUnauthorised
 } = require("../controllers/userCertificateController");
 const authentication = require("../middleware/authentication");
 
 router.get("/issuedCertificates", authentication, getNoOfCertificatesIssued);
 router.post("/download", authentication, downloadCertificates);
+router.post("/download/unauthorised", downloadUnauthorised);
 router.get("/", authentication, getAllCertificates);
 router.get("/status", authentication, getCertificateStatus);
 router.post("/", authentication, fileExtLimiter, fileUpload(), addCertificate);

@@ -362,6 +362,47 @@ const downloadCertificates = handleAsync(async (req, res) => {
   }
 });
 
+const downloadUnauthorised = handleAsync(async (req, res) => {
+  const { certificates, template = 1, format = "pdf" } = req.body;
+
+  // Invalid option provided
+  if (!["pdf", "img", "pdf-split"].includes(format.toLowerCase()))
+    throw createApiError(
+      "Invalid option provided. Option must be one of 'pdf', 'img' and 'pdf-split'",
+      400
+    );
+
+  // Validate certificates input
+  if (!certificates && !Array.isArray(certificates))
+    throw createApiError("certificates is required and must be an array", 400);
+
+  // Validate template
+  if (typeof template !== "number")
+    throw createApiError("template must be a number", 400);
+
+  // Generate image for each certificate
+  const paths = await convertCertificates(certificates, template);
+
+  switch (format.toLowerCase()) {
+    case "pdf":
+      return imageToPdf(paths, [1180, 760]).pipe(res);
+
+    case "img":
+      const buffer = handleZip(paths);
+      res.attachment("certificate.zip");
+      return res.end(buffer);
+
+    case "pdf-split":
+      const t_buffer = await handleSplitPdf(paths);
+      res.attachment("certificate.zip");
+      return res.end(t_buffer);
+
+    default:
+      // Return certificate to frontend
+      return imageToPdf(paths, [1180, 760]).pipe(res);
+  }
+});
+
 module.exports = {
   getAllCertificates,
   addCertificate,
@@ -373,5 +414,6 @@ module.exports = {
   updateCertificateDetails,
   updateCertificateStatus,
   deleteUserCertificates,
-  downloadCertificates
+  downloadCertificates,
+  downloadUnauthorised
 };
