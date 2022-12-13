@@ -100,6 +100,7 @@ async function convertCertificate(certificate = {}) {
       nameoforganization: "Zuri"
     },
     puppeteerArgs: {
+      headless: true,
       args: ["--no-sandbox", "--disabled-setupid-sandbox"]
     }
   });
