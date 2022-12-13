@@ -165,12 +165,12 @@ const Dashboard = () => {
   };
   const getUserCertificates = async () => {
     try {
+      getUnauthUserCertificates();
+      if (localStorage.getItem("unauthData")) return
       const response = await axiosPrivate.get("/certificates");
       setPricing(sub);
 
       setData(response.data.data.certificates);
-      getUnauthUserCertificates();
-      if (localStorage.getItem("unauthData")) return
       updateCount(response.data.data.certificates);
     } catch (error) {
       console.error(error.message);
