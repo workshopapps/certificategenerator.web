@@ -103,7 +103,7 @@ function DeleteAllModal({
                 margin: "0"
               }}
               onClick={action}
-            >Delete All Certificates</Button>
+            >Delete</Button>
           </div>
         </div>
       </div>
