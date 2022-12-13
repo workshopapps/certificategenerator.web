@@ -7,7 +7,7 @@ import { gapi } from "gapi-script";
 import "./login.scss";
 import appleSVG from "./assets/apple.svg";
 import googleSVG from "./assets/google.svg";
-import cert from "./assets/certt.png";
+import cert from "./assets/Frame 427319608.svg";
 import { Toast } from "../../ToastAlert";
 import Input from "../../Input";
 import Button from "../../button";
