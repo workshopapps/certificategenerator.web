@@ -19,9 +19,9 @@ import Button from "../../Component/button";
 import BulkCertDesign1 from "./BulkCertDesign/BulkCertDesign1";
 import BulkCertDesign2 from "./BulkCertDesign/BulkCertDesign2";
 import BulkCertDesign3 from "./BulkCertDesign/BulkCertDesign3";
-import certificate2 from "../../assets/images/bulkPreview/template_two.png";
-import certificate3 from "../../assets/images/bulkPreview/template_three.png";
-import certificate from "../../assets/images/bulkPreview/Completion - Portrait (2).png";
+import certificate from "../../assets/images/SinglePreview/certTemplate (1).png";
+import certificate2 from "../../assets/images/SinglePreview/certTemplate (2).png";
+import certificate3 from "../../assets/images/SinglePreview/certTemplate (3).png";
 import InteractiveModal from "./interactiveModal";
 
 function Index() {
@@ -412,8 +412,8 @@ function Index() {
       {/* OTHER TEMPLATES TO CHOOSE FROM */}
       <h2>Even More Templates for you</h2>
       <div className="single-images" style={{ marginBottom: "50px" }}>
-        <img onClick={handleTemplate1} src={certificate} alt="templates" />
-        <img onClick={handleTemplate2} src={certificate2} alt="templates" />
+        <img onClick={handleTemplate1} src={certificate2} alt="templates" />
+        <img onClick={handleTemplate2} src={certificate} alt="templates" />
         <img onClick={handleTemplate3} src={certificate3} alt="templates" />
       </div>
     </div>
