@@ -3,6 +3,9 @@ const dotenv = require('dotenv');
 dotenv.config();
 // const config = require('../utils/config.js')
 const nodemailer = require('nodemailer');
+const hbs = require('nodemailer-express-handlebars')
+const path = require('path')
+
 
 // get all contacts
 const getContacts = async (req,res) => {
@@ -32,21 +35,27 @@ const sendContact =  async (req, res) => {
 
     newContact.save();
 
-    const mail = `
-    <p>Your message has been received.
-       You will receive a feedback from us soon</p>
-  `
+ 
     // Create Transporter
     let transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
         user: process.env.AUTH_EMAIL,
         pass: process.env.AUTH_PASS
-        // clientId: GOOGLE_CLIENT_ID,
-        // clientSecret: GOOGLE_CLIENT_SECRET
-        // refreshToken: GOOGLE_REFRESH_TOKEN
       }
     });
+
+    const handlebarOptions = {
+      viewEngine:{
+        defaultLayout: false,
+        extName: '.handlebars',
+        partialsDir: path.resolve(__dirname, '..', 'email-templates')
+      },
+      viewPath: path.resolve(__dirname, '..', 'email-templates'),
+      extName: '.handlebars'
+    }
+    
+    transporter.use('compile', hbs(handlebarOptions))
 
     // Mail Options To Website User
     let mailOptions = {
@@ -54,8 +63,11 @@ const sendContact =  async (req, res) => {
       to: `${req.body.email}`, // Receiver address
       subject: 'Hi From Certgo',
       text: 'Hi from Certgo',
-      html: mail
-    };
+      template: 'contact',
+        context: {
+          contactName: `${req.body.firstName}`+' ' +`${req.body.lastName}` 
+        }   
+   };
 
     transporter.sendMail(mailOptions, function(err, data) {
       if (err) {

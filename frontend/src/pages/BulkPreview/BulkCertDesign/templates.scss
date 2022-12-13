@@ -82,13 +82,13 @@
   width: 90%;
   margin: auto;
 border-radius: 5px;
-  border: 3px solid green;
+  border: 3px solid #264534;
   padding: 2px;
   background: #fff;
   max-width: 600px;
 
   #certificateWrapper3 {
-    border: 3px dotted green;
+    border: 3px dotted #264534;
     margin: 1px;
   }
 
@@ -109,11 +109,11 @@ border-radius: 5px;
   h6,
   p,
   .issue-by {
-    color: green !important;
+    color: #264534 !important;
   }
 
   #preview-text h2  {
-    border-bottom: 2px solid green!important;
+    border-bottom: 2px solid #264534!important;
    
   }
   #single-preview-card{
@@ -127,7 +127,7 @@ border-radius: 5px;
     margin: 20px 0px 15px 0px;
 
     .line {
-      border-bottom: 1px solid green !important;
+      border-bottom: 1px solid #264534 !important;
     }
   }
 }
@@ -138,7 +138,7 @@ border-radius: 5px;
         position: relative;
         width: 90%;
         margin: auto;
-        border: 3px solid green;
+        border: 3px solid #264534;
         padding: 2px;
         background: #fff;
         max-width: 700px;

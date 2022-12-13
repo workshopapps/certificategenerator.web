@@ -6,7 +6,7 @@ import { gapi } from "gapi-script";
 import "./signup.scss";
 import appleSVG from "./assets/apple.svg";
 import googleSVG from "./assets/google.svg";
-import cert from "./assets/Cert.png";
+import cert from "./assets/Frame 427319608.svg";
 import Input from "../../Input";
 import Button from "../../button";
 import { Toast } from "../../ToastAlert";
@@ -106,14 +106,14 @@ const Signup = () => {
           title: "Email already exists, login"
         });
         setLoading(false);
-        throw new Error("Page not found");
+        throw new Error("Email already exists, login");
       } else if (response.status === 400) {
         Toast.fire({
           icon: "error",
-          title: "Invalid Email, please try again"
+          title: "Name input required"
         });
         setLoading(false);
-        throw new Error("Invalid Email, please try again");
+        throw new Error("Name input required");
       } else if (response.status === 500) {
         Toast.fire({
           icon: "error",

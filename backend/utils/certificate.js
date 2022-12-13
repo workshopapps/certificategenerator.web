@@ -1,13 +1,17 @@
 const path = require("path");
 const nodeToImage = require("node-html-to-image");
-const fs = require("fs");
 const os = require("os");
+const fs = require("fs");
 const { createApiError } = require("./helpers");
+const { getTemplate } = require("./templates");
 const uuid = require("uuid").v4;
+const AdmZip = require("adm-zip");
+const imageToPdf = require("image-to-pdf");
+const PDFSIZE = [1180, 760];
 
-async function convertCertificates(certificates = []) {
+async function convertCertificates(certificates = [], templateId) {
   const promises = certificates.map(async certificate => {
-    const imgPath = await convertCertificate(certificate);
+    const imgPath = await convertCertificate(certificate, templateId);
     return imgPath;
   });
 
@@ -16,80 +20,13 @@ async function convertCertificates(certificates = []) {
   return imgPaths;
 }
 
-async function convertCertificate(certificate = {}) {
-  const template = `<html>
-	<head>
-		<style type='text/css'>
-			body, html {
-				margin: 0;
-				padding: 0;
-			}
-			body {
-				color: black;
-				display: table;
-				font-family: Georgia, serif;
-				font-size: 24px;
-				text-align: center;
-				width: 1180px;
-				height: 760px;
-			}
-			.container {
-				border: 20px solid tan;
-				width: 750px;
-				height: 563px;
-				display: table-cell;
-				vertical-align: middle;
-			}
-			.logo {
-				color: tan;
-			}
+async function convertCertificate(certificate = {}, templateId = 1) {
+  const template = getTemplate(templateId);
 
-			.marquee {
-				color: tan;
-				font-size: 48px;
-				margin: 20px;
-			}
-			.assignment {
-				margin: 20px;
-			}
-			.person {
-				border-bottom: 2px solid black;
-				font-size: 32px;
-				font-style: italic;
-				margin: 20px auto;
-				width: 400px;
-			}
-			.reason {
-				margin: 20px;
-			}
-		</style>
-	</head>
-	<body>
-		<div class="container">
-			<div class="logo">
-				{{nameoforganization}}
-			</div>
-
-			<div class="marquee">
-				Certificate of Completion
-			</div>
-
-			<div class="assignment">
-				This certificate is presented to
-			</div>
-
-			<div class="person">
-				{{name}}
-			</div>
-
-			<div class="reason">
-				{{award}}
-			</div>
-		</div>
-	</body>
-  </html>`;
-
-  const imgPath = path.resolve(os.tmpdir(), uuid() + ".png");
+  const imgPath = path.resolve(
+    os.tmpdir(),
+    formatCertificateFileName(certificate.name)
+  );
 
   await nodeToImage({
     html: template,
@@ -98,10 +35,75 @@ async function convertCertificate(certificate = {}) {
       name: certificate.name,
       award: certificate.award,
       nameoforganization: "Zuri"
+    },
+    puppeteerArgs: {
+      headless: true,
+      args: ["--no-sandbox", "--disabled-setupid-sandbox"]
     }
   });
 
   return imgPath;
 }
 
-module.exports = { convertCertificates };
+function handleZip(filePaths = []) {
+  var zip = new AdmZip();
+
+  // Add each image to the zip
+  filePaths.forEach((filePath, i) => {
+    // Format the name of each file in zip
+    const filename = filePath.split(path.sep).pop().slice(36);
+    zip.addLocalFile(filePath, undefined, `${i}-${filename}`);
+  });
+
+  // Convert the zip to a buffer
+  return zip.toBuffer();
+}
+
+function formatCertificateFileName(
+  name = "certificate",
+  type = FORMATTYPES.IMG
+) {
+  // Replace spaces with hypen e.g Awe Ayo = Awe-Ayo
+  let formattedName = name.replaceAll(".", " ").trim().replaceAll(" ", "-");
+
+  return `${uuid()}${formattedName}.${type}`;
+}
+
+async function handleSplitPdf(imagePaths = [], size = PDFSIZE) {
+  const pdfPromises = imagePaths.map(image => {
+    return new Promise((resolve, reject) => {
+      // Create path for pdf
+      const pdfPath = path.resolve(
+        os.tmpdir(),
+        formatCertificateFileName(getNameFromImgPath(image), FORMATTYPES.PDF)
+      );
+
+      // convert image to pdf
+      imageToPdf([image], PDFSIZE).pipe(
+        fs
+          .createWriteStream(pdfPath)
+          .on("finish", () => resolve(pdfPath))
+          .on("error", error => reject(error))
+      );
+    });
+  });
+
+  const pdfPaths = await Promise.all(pdfPromises);
+
+  return handleZip(pdfPaths);
+}
+
+const FORMATTYPES = {
+  PDF: "pdf",
+  IMG: "png"
+};
+
+function getNameFromImgPath(imgPath) {
+  if (!imgPath) throw createApiError("Something went wrong", 422);
+
+  // Get name of certificate holder from image url e.g john-champ
+  // from 'C:\Users\HPENVY\AppData\Local\Temp\83494492-02f3-4c45-be4b-5e992455f5c6john-champ.png
+  return imgPath.split(path.sep).pop().slice(36).split(".")[0];
+}
+
+module.exports = { convertCertificates, handleZip, handleSplitPdf };

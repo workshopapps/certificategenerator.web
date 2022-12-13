@@ -22,10 +22,10 @@ function Template1({
               <div id="single-preview-card">
                 <div id="single-preview-text">
                   <div id="preview-text">
-                    <img src={logo} style={{ width: "100px" }} alt="logo" />
+                    <img id = "container-logo" src={logo} style={{ width: "100px" }} alt="logo" />
                     <h1>{certificateTitle}</h1>
 
-                    <p>THIS CERTIFIES THAT</p>
+                    <p>THIS CERTIFICATE IS AWARDED TO</p>
                     <h2>{awardeeName}</h2>
                     <h6>{message}</h6>
                   </div>

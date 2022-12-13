@@ -139,7 +139,7 @@
 
   .sample,
   .sample3 {
-    background: #ac0423;
+    background: #1c3b73;
     position: relative;
     height: 50px;
     width: 20px;
@@ -150,7 +150,7 @@
   }
 
   .sample3:after {
-    background: #ac0423;
+    background: #1c3b73;
     content: "";
     height: 20px;
     position: absolute;
@@ -159,7 +159,7 @@
   }
 
   .sample:after {
-    background: #ac0423;
+    background: #1c3b73;
     content: "";
     height: 20px;
     position: absolute;
@@ -169,7 +169,7 @@
 
   .sample2 {
     opacity: 0.4;
-    background: #ac0423;
+    background: #1c3b73;
     width: 80px;
     height: 80px;
     border-radius: 50%;
@@ -180,18 +180,20 @@
   }
 
   #container-wrapper {
-    width: 90%;
+   width: 90%;
+   min-height:400px;
     margin: auto;
     padding: 10px;
-    max-width: 300px;
-    border-top: 4px solid #ac0423;
-    border-bottom: 4px solid #ac0423;
-    border-left: 4px solid #ac0423;
-    border-right: 4px solid #ac0423;
+   max-width: 300px;
+    border-top: 4px solid #1c3b73;
+    border-bottom: 4px solid #1c3b73;
+    border-left: 4px solid #1c3b73;
+    border-right: 4px solid #1c3b73;
   }
 
   #container-design {
-    border: 2px solid #ac0423;
+    border: 2px solid #1c3b73;
+    min-height:400px;
   }
 
   #single-preview-card {
@@ -204,25 +206,25 @@
 
     #preview-text {
       position: relative;
-      top: -15px;
+      top: -20px;
 
       h1 {
         font-size: 20px !important;
         margin: 0px !important;
-        color: #ac0423;
+        color: #1c3b73;
         font-weight: 450;
       }
 
       p {
         text-transform: uppercase;
         font-size: 13px !important;
-        color: #ac0423;
+        color: #1c3b73;
       }
 
       h2 {
-        color: #ac0423;
+        color: #1c3b73;
         font-size: 18px;
-        border-bottom: 2px solid #ac0423;
+        border-bottom: 2px solid #1c3b73;
         margin-bottom:20px!important;
         margin-top:20px!important;
       }
@@ -240,11 +242,12 @@
     justify-content: space-around;
     align-items: center;
     font-weight: bolder;
-    margin: 20px 0px 15px 0px;
-    color: #ac0423;
-
+    margin: 0px 0px 0px 0px;
+    color: #1c3b73;
+    position:relative;
+    top:35px!important;
     .line {
-      border-bottom: 1px solid #ac0423;
+      border-bottom: 1px solid #1c3b73;
     }
 
     p {
@@ -320,6 +323,12 @@
 
   //END OF DROPDOWN
 
+  #container-logo{height:80px!important;
+     width:80px!important;
+      border-radius:50%
+    !important}
+
+
   @media screen and (min-width: 500px) {
     .certificate-share-hero button {
       width: 160px;
@@ -347,7 +356,7 @@
 
     #container-wrapper {
       width: 100%;
-      max-width: 400px;
+     min-width: 450px;
     }
 
     .sample2 {
@@ -382,14 +391,17 @@
     }
 
     #container-wrapper {
-      width: 70%;
+      width: 90%;
       margin: auto;
       padding: 10px;
-      max-width: 600px;
+      min-width: 600px;
+      min-height:400px;
     }
 
     #container-design {
-      border: 2px solid #ac0423;
+      border: 2px solid #1c3b73;
+      min-height:400px;
+      
     }
 
     #single-preview-card {
@@ -414,7 +426,7 @@
 
         h2 {
           font-size: 26px !important;
-          border-bottom: 1px solid #ac0423;
+          border-bottom: 1px solid #1c3b73;
         }
 
         h6 {
@@ -426,9 +438,10 @@
 
     .single-preview-issue {
       margin: 20px 0px 15px 0px;
-
+      position:relative;
+      top:15px!important;
       .line {
-        border-bottom: 1px solid #ac0423;
+        border-bottom: 1px solid #1c3b73;
       }
 
       p {
@@ -472,12 +485,28 @@
   }
 
   @media screen and (min-width: 1024px) {
+
+    #container-wrapper {
+      width: 80%;
+      min-height:500px;
+      margin: auto;
+      padding: 10px;
+    max-width: 700px;
+    }
+    #container-design{
+      min-height:500px;
+    }
     .button-container button {
       font-size: 18px;
       width: 200px;
       height: 50px;
     }
 
+    #container-logo{height:100px!important;
+      width:100px!important;
+       border-radius:50%
+     !important}
+ 
     .certificate-share-hero button {
       font-size: 18px;
       width: 200px;
@@ -500,9 +529,28 @@
     .certificate-share-hero img {
       width: 100%;
       height: auto;
-      max-width: 700px;
+     // max-width: 700px;
     }
 
+    .single-preview-issue {
+      margin: 10px 0px 15px 0px;
+      position:relative;
+      top: 20px;
+
+    }
+    #single-preview-text {
+      position: relative;
+h6{
+  margin: 50px 50px 0px 50px!important;
+  
+}
+      #preview-text {
+        position: relative;
+        top: -20px;
+
+      }
+
+    }
     h2 {
       margin-top: 70px !important;
     }

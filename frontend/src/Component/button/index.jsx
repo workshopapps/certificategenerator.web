@@ -6,6 +6,7 @@ const Button = ({
   disabled,
   name,
   width,
+  type,
   className,
   onClick,
   style
@@ -15,6 +16,7 @@ const Button = ({
       disabled={disabled}
       className={`btn ${className} `}
       style={style}
+      type={type}
       onClick={onClick}
     >
       {children} {name}
