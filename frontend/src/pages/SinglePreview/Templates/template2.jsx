@@ -24,7 +24,7 @@ function Template2({
               <div id="single-preview-text">
                 <div id="preview-text" style = {{position : 'relative', top : '-10%'}}>
                  
-                    <img src={logo} style={{ width: "100px" }} alt="logo" />
+                    <img id = "container-logo" src={logo} style={{ width: "100px" }} alt="logo" />
                     <h1 style = {{color: '#19acbe'}}>{certificateTitle}</h1>
 
                     <p>THIS CERTIFICATE IS AWARDED TO</p>

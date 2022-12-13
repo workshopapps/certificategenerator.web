@@ -1,6 +1,9 @@
 
 //TEMPLATE TWO
-
+#container-logo{height:80px!important;
+  width:80px!important;
+   border-radius:50%
+ !important}
 #template2-wrapper {
   position: relative;
   width:90%;
@@ -79,6 +82,11 @@
 }
 
 @media screen and (min-width:1024px){
+
+  #container-logo{height:100px!important;
+    width:100px!important;
+     border-radius:50%
+   !important}
     #template2-wrapper {
         position: relative;
         width: 90%;
@@ -105,8 +113,15 @@ min-height: 500px!important;
 
 
 //TEMPLATE THREE
+#container-logo{height:80px!important;
+  width:80px!important;
+   border-radius:50%
+ !important}
 
+ 
 #template3-wrapper {
+
+  
   position: relative;
   width: 90%;
   margin: auto;
@@ -182,6 +197,10 @@ border-radius: 5px;
 }
 
 @media screen and (min-width:1024px){
+  #container-logo{height:100px!important;
+    width:100px!important;
+     border-radius:50%
+   !important}
     #template3-wrapper {
       min-height: 500px;
 }
