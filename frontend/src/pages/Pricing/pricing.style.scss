@@ -9,6 +9,12 @@ $text: "Work Sans", sans-serif;
 $featureBackground: #ffffff;
 $featureHeader: "Sora", sans-serif;
 
+.mobile-arrow {
+  @media screen and (min-width: 1024px) {
+    display: none;
+  }
+}
+
 main {
   margin-top: -70px;
 
@@ -491,7 +497,7 @@ main {
           height: fit-content;
           margin: auto;
           overflow-x: scroll;
-          width: 420px;
+          width: 72%;
 
           #slider {
             display: flex;
@@ -529,6 +535,7 @@ main {
 @media (max-width: 991px) {
   main {
     .feature {
+      padding-top: 30px;
       article {
         h3 {
           padding-top: 30px;
@@ -659,12 +666,15 @@ main {
 
         .sliderContainer {
           position: relative;
-          width: 348px;
+          // width: 348px;
           height: fit-content;
           margin: auto;
 
           #slider {
-            width: 327px;
+            width: 66.6rem;
+            @media screen and (max-width: 560px) {
+              width: 90%;
+            }
 
             article {
               width: 327px;
@@ -716,7 +726,7 @@ main {
 
   main .pricing .plans {
     max-width: 100%;
-    width: 90%;
+    width: inherit;
     margin-left: 0;
     margin-right: 0;
   }
