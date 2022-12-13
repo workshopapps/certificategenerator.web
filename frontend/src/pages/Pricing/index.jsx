@@ -159,7 +159,12 @@ function Pricing({ amountHandler }) {
           </div>
 
           <div className="sliderContainer">
-            <Slider value={value} />
+            <Slider
+              value={value}
+              disabledHandler={disabledHandler}
+              per={per}
+              access={access}
+            />
           </div>
         </article>
       </section>

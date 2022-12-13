@@ -906,3 +906,20 @@
     color: #cab3e1;
   }
 }
+
+@media (max-width: 1023.9px) {
+  #CheckoutMainLeft-btn {
+    font-family: "Work Sans";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    color: #ffffff;
+    background: #19a68e;
+    border-radius: 10px;
+    width: 100%;
+    height: 6vh;
+    border: none;
+    margin-top: 8vh;
+    margin-bottom: 6vh;
+  }
+}
