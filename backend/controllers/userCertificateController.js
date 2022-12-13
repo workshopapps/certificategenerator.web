@@ -344,7 +344,7 @@ const downloadCertificates = handleAsync(async (req, res) => {
 
   switch (format.toLowerCase()) {
     case "pdf":
-      return imageToPdf(paths, [1180, 760]).pipe(res);
+      return imageToPdf(paths, [931, 600]).pipe(res);
 
     case "img":
       const buffer = handleZip(paths);
