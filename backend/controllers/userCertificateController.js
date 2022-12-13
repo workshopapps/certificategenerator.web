@@ -1,6 +1,7 @@
 const User = require("../models/certificateModel");
 const UserBio = require("../models/userModel");
 const jwt = require("jsonwebtoken");
+const mongoose = require("mongoose");
 const csvToJson = require("csvtojson");
 const { v4 } = require("uuid");
 const { isValidJsonOutput } = require("../utils/validation");
@@ -9,7 +10,11 @@ const {
   createApiError,
   handleResponse
 } = require("../utils/helpers");
-const { convertCertificates } = require("../utils/certificate");
+const {
+  convertCertificates,
+  handleZip,
+  handleSplitPdf
+} = require("../utils/certificate");
 const imageToPdf = require("image-to-pdf");
 
 const addCertificate = handleAsync(async (req, res) => {
@@ -289,22 +294,72 @@ const updateCertificateStatus = handleAsync(async (req, res) => {
 
 const downloadCertificates = handleAsync(async (req, res) => {
   const user = req.user;
-  //const { certificates } = req.body;
+  const { certificateIds = [], template = 1, format = "pdf" } = req.body;
 
   // I did this because I didn't want to rename user globally
   // and I wanted to avoid confusion
   const Certificate = User;
 
-  // Validate certificates
+  // Invalid option provided
+  if (!["pdf", "img", "pdf-split"].includes(format.toLowerCase()))
+    throw createApiError(
+      "Invalid option provided. Option must be one of 'pdf', 'img' and 'pdf-split'",
+      400
+    );
+
+  // Validate certificates input
+  if (!Array.isArray(certificateIds))
+    throw createApiError("certificateId is required and must be an array", 400);
+
+  // Validate template
+  if (typeof template !== "number")
+    throw createApiError("template must be a number", 400);
 
   const collection = await Certificate.findOne({
     userId: user._id
   });
 
-  // Generate image for each certificate
-  const paths = await convertCertificates(collection.records);
+  // if no certificates return 404
+  if (!collection) throw createApiError("User has no certificates", 404);
 
-  imageToPdf(paths, [1180, 760]).pipe(res);
+  // if records are empty return 404
+  if (!collection.records || collection.records?.length === 0)
+    throw createApiError("User has no certificates", 404);
+
+  // filter out invalid certificate ids
+  const certIds = certificateIds.filter(certId =>
+    mongoose.isValidObjectId(certId)
+  );
+
+  // Get certificates that have ids in certIds
+  const certs = collection.records.filter(certificate =>
+    certIds.includes(certificate._id.toString())
+  );
+
+  // if certs is empty, convert all certificates in user records
+  const certsToConvert = certs.length > 0 ? certs : collection.records;
+
+  // Generate image for each certificate
+  const paths = await convertCertificates(certsToConvert, template);
+
+  switch (format.toLowerCase()) {
+    case "pdf":
+      return imageToPdf(paths, [1180, 760]).pipe(res);
+
+    case "img":
+      const buffer = handleZip(paths);
+      res.attachment("certificate.zip");
+      return res.end(buffer);
+
+    case "pdf-split":
+      const t_buffer = await handleSplitPdf(paths);
+      res.attachment("certificate.zip");
+      return res.end(t_buffer);
+
+    default:
+      // Return certificate to frontend
+      return imageToPdf(paths, [1180, 760]).pipe(res);
+  }
 });
 
 module.exports = {
