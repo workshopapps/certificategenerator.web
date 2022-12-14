@@ -63,7 +63,7 @@ function SinglePreview({
     setOpenModal(!openModal);
   }
 
-  const container = React.useRef(null);
+  // const container = React.useRef(null);
   const pdfExportComponent = React.useRef(null);
   
   // const exportPDFWithMethod = () => {
@@ -216,9 +216,9 @@ function SinglePreview({
          
           fileName={`${awardeeName}`}
           author="Certgo Team"
-          //scale = {0.6}
+    
         >
-          <div ref={container}>
+          <div>
               <Template1
             logo={logo}
             certificateTitle={certificateTitle}
@@ -239,7 +239,7 @@ function SinglePreview({
        author="Certgo Team"
        //scale = {0.6}
      >
-       <div ref={container}>
+       <div>
            <Template2
          logo={logo}
          certificateTitle={certificateTitle}
@@ -260,7 +260,7 @@ function SinglePreview({
       author="Certgo Team"
       //scale = {0.6}
     >
-      <div ref={container}>
+      <div>
           <Template3
         logo={logo}
         certificateTitle={certificateTitle}
@@ -295,7 +295,7 @@ function SinglePreview({
               <button
                 onClick={e => {
                   e.preventDefault();
-                  exportComponentAsPNG(certificateWrapper, {
+                  exportComponentAsPNG(pdfExportComponent, {
                     fileName: `${awardeeName}`,
                     html2CanvasOptions: { backgroundColor: "#fff" }
                   });
