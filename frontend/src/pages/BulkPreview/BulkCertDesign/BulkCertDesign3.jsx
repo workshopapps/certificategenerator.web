@@ -1,6 +1,6 @@
 import React from 'react'
 
-import "./templates.scss";
+import "./templates.style.scss";
 import "./bulkcertdesign.style.scss";
 
 const BulkCertDesign3 = React.forwardRef(({ item }, ref) => {  
@@ -12,15 +12,10 @@ const BulkCertDesign3 = React.forwardRef(({ item }, ref) => {
           <div id="certificateWrapper3">
             <div id="template3-container">
               <div id="template3-design">
-                {/* <div className="water-mark">
-                  <p>Certgo</p>
-                  <p>Certgo</p>
-                </div> */}
 
                 <div id="single-preview-card">
                   <div id="single-preview-text">
                     <div id="preview-text">
-                      {/* <img src={logo} style={{ width: "100px" }} alt="logo" /> */}
                       <h1 style = {{color: 'green'}}>{item.award}</h1>
 
                       <p>THIS CERTIFIES THAT</p>
