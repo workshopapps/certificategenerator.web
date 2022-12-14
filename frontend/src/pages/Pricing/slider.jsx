@@ -107,7 +107,7 @@ function Slider({ value, disabledHandler, per, access }) {
 
             {access ? (
               <Link
-                to={`${sub.subType !== "Basic" ? "/comingsoon" : ""}`}
+                to={`${sub.subType !== "Basic" ? "/payment" : ""}`}
                 style={sub.subType === "Basic" ? { display: "none" } : {}}
                 onClick={e =>
                   disabledHandler(
