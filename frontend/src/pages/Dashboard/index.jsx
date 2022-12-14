@@ -426,18 +426,6 @@ const Dashboard = () => {
             onClose={() => setOpenDeleteAllModal(false)}
             logo={logo}
             action={handleDeleteAll}
-            message={message}
-            setLogo={setLogo}
-            issuedBy={issuedBy}
-            issueDate={issueDate}
-            setMessage={setMessage}
-            awardeeName={awardeeName}
-            setIssuedBy={setIssuedBy}
-            setIssueDate={setIssueDate}
-            setAwardeeName={setAwardeeName}
-            certificateTitle={certificateTitle}
-            setCertificateTitle={setCertificateTitle}
-            getUserCertificates={getUserCertificates}
           />
           <div className="table">
             <table>
