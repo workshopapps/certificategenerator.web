@@ -5,16 +5,6 @@ import "./modal.style.scss";
 import Button from "../../../Component/button";
 
 function InteractiveModal({ open, onClose }) {
-  // const location = useLocation();
-
-  // // but you can use a location instead
-  // const loginLocation = {
-  //   pathname: "/login",
-  //   state: { fromDashboard: true, from: location }
-  // };
-  // const handleLoginBtn = () => {
-  //   console.log("login");
-  // };
   if (!open) return null;
   return (
     <div onClick={onClose} className="modal-wrapperx">
@@ -42,26 +32,18 @@ function InteractiveModal({ open, onClose }) {
         </div>
         <div>
           <h3 className="modal-containerx__header">
-            Your certificates are downloading...
+            Your certificates are being processed...
           </h3>
-          <p className="modal-containerx__text">            
+          <p className="modal-containerx__text">
             Do you want to do something else while waiting for your download?
           </p>
         </div>
         <div className="modal-containerx__btns">
           <Link to="/" target="_blank">
             <Button onClick={onClose} className="modal-containerx__btn">
-              Try something else
+              Continue exploring
             </Button>
           </Link>
-          {/* <Link to="/login" state={{ from: location }}>
-            <Button
-              onClick={handleLoginBtn}
-              className=" btnLight modal-containerx__btn modal-containerx__btn--signin"
-            >
-              Login
-            </Button>
-          </Link> */}
         </div>
       </div>
     </div>
