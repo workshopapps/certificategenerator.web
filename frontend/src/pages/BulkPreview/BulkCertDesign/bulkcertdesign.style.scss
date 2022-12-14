@@ -123,16 +123,18 @@
     align-items: center;
     font-weight: bolder;
     margin: 20px 0px 15px 0px;
-    color: #1c3b73;
+    color: #1c3b73!important;
     .line {
-      border-bottom: 1px solid #1c3b73;
+      border-bottom: 1px solid #1c3b73!important;
     }
   
     p {
       font-size: 12px;
+      color: #1c3b73!important;
     }
     h6 {
       font-size: 12px;
+      color: #1c3b73!important;
     }
   }
   

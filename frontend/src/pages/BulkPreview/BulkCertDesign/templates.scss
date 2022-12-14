@@ -3,7 +3,7 @@
 
 #template2-wrapper {
   position: relative;
-  width: 90%;
+  width: 98%;
   margin: auto;
 
   border: 3px solid #19acbe;
@@ -44,13 +44,15 @@
   }
   #single-preview-card{
     padding: 10px;
+    
   }
   #preview-text{
     margin-top: 20px;
   }
 
   .single-preview-issue {
-    margin: 20px 0px 15px 0px;
+    margin: 20px 0px 15px 10px;
+    
 
     .line {
       border-bottom: 1px solid #19acbe !important;
@@ -59,10 +61,44 @@
 }
 
 
+// @media screen and (min-width:312px){
+// #template2-wrapper{
+
+//   #single-preview-card{
+//     position:relative;
+//     top: 20px!important;
+//   }
+
+//   .single-preview-issue {
+    
+//     position:relative;
+//     top: 40px!important;
+
+//   }
+// }
+// }
+
+// @media screen and (min-width:400px){
+// #template2-wrapper{
+
+//   #single-preview-card{
+//     position:relative;
+//     top: 50px!important;
+//   }
+
+//   .single-preview-issue {
+//     position:relative;
+//     top: 50px!important;
+
+//   }
+// }
+// }
+
+
 @media screen and (min-width:768px){
     #template2-wrapper {
         position: relative;
-        width: 90%;
+        width: 98%;
         margin: auto;
       
         border: 3px solid #19acbe;
@@ -79,7 +115,7 @@
 
 #template3-wrapper {
   position: relative;
-  width: 90%;
+  width: 98%;
   margin: auto;
 border-radius: 5px;
   border: 3px solid #264534;
@@ -133,10 +169,44 @@ border-radius: 5px;
 }
 
 
+
+// @media screen and (min-width:312px){
+//   #template3-wrapper{
+  
+//     #single-preview-card{
+//       position:relative;
+//       top: 20px!important;
+//     }
+  
+//     .single-preview-issue {
+      
+//       position:relative;
+//       top: 40px!important;
+  
+//     }
+//   }
+//   }
+  
+//   @media screen and (min-width:400px){
+//   #template3-wrapper{
+  
+//     #single-preview-card{
+//       position:relative;
+//       top: 30px!important;
+//     }
+  
+//     .single-preview-issue {
+//       position:relative;
+//       top: 70px!important;
+  
+//     }
+//   }
+//   }
+
 @media screen and (min-width:768px){
     #template3-wrapper {
         position: relative;
-        width: 90%;
+        width: 98%;
         margin: auto;
         border: 3px solid #264534;
         padding: 2px;
