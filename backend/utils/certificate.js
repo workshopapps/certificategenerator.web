@@ -2,8 +2,9 @@ const path = require("path");
 const nodeToImage = require("node-html-to-image");
 const os = require("os");
 const fs = require("fs");
+const fsPromises = require("fs/promises");
 const { createApiError } = require("./helpers");
-const { getTemplate } = require("./templates");
+const { getTemplate, getSingleTemplate } = require("./templates");
 const uuid = require("uuid").v4;
 const AdmZip = require("adm-zip");
 const imageToPdf = require("image-to-pdf");
@@ -63,6 +64,49 @@ function handleZip(filePaths = []) {
   return zip.toBuffer();
 }
 
+async function convertSingleCertificate(
+  certificate = {},
+  templateId = 1,
+  logo
+) {
+  const template = getSingleTemplate(templateId);
+
+  const image = await fsPromises.readFile(logo);
+  const base64Image = new Buffer.from(image).toString("base64");
+  const dataURI = "data:image/jpeg;base64," + base64Image;
+
+  // nodeHtmlToImage({
+  //   output: './image.png',
+  //   html: '<html><body><img src="{{imageSource}}" /></body></html>',
+  //   content: { imageSource: dataURI }
+  // })
+
+  const imgPath = path.resolve(
+    os.tmpdir(),
+    formatCertificateFileName(certificate.name)
+  );
+
+  await nodeToImage({
+    html: template,
+    output: imgPath,
+    content: {
+      name: voca.titleCase(certificate.name),
+      award: voca.titleCase(certificate.award),
+      issuedBy: certificate.signed,
+      issueDate: certificate.date,
+      description: certificate.description,
+      nameoforganization: "Zuri",
+      logo: dataURI
+    },
+    puppeteerArgs: {
+      headless: true,
+      args: ["--no-sandbox", "--disabled-setupid-sandbox"]
+    }
+  });
+
+  return imgPath;
+}
+
 function formatCertificateFileName(
   name = "certificate",
   type = FORMATTYPES.IMG
@@ -110,4 +154,9 @@ function getNameFromImgPath(imgPath) {
   return imgPath.split(path.sep).pop().slice(36).split(".")[0];
 }
 
-module.exports = { convertCertificates, handleZip, handleSplitPdf };
+module.exports = {
+  convertCertificates,
+  handleZip,
+  handleSplitPdf,
+  convertSingleCertificate
+};
