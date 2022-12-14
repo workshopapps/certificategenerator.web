@@ -16,7 +16,6 @@ import Template2 from "./Templates/template2";
 import Template3 from "./Templates/template3";
 import { PDFExport, savePDF } from "@progress/kendo-react-pdf";
 
-
 function SinglePreview({
   logo,
   certificateTitle,
@@ -66,7 +65,7 @@ function SinglePreview({
 
   // const container = React.useRef(null);
   const pdfExportComponent = React.useRef(null);
-  
+
   // const exportPDFWithMethod = () => {
   //   let element = container.current || document.body;
   //   savePDF(element, {
@@ -100,7 +99,6 @@ function SinglePreview({
   //   pdf.save(`${awardeeName}.pdf`);
   // };
 
-  
   const Toast = Swal.mixin({
     toast: true,
     position: "top-end",
@@ -212,67 +210,63 @@ function SinglePreview({
       </div> */}
 
       {templateone && (
-          <PDFExport
+        <PDFExport
           ref={pdfExportComponent}
           paperSize="auto"
-         
           fileName={`${awardeeName}`}
           author="Certgo Team"
-    
         >
           <div>
-              <Template1
-            logo={logo}
-            certificateTitle={certificateTitle}
-            awardeeName={awardeeName}
-            message={message}
-            issuedBy={issuedBy}
-            issueDate={issueDate}
-          />
+            <Template1
+              logo={logo}
+              certificateTitle={certificateTitle}
+              awardeeName={awardeeName}
+              message={message}
+              issuedBy={issuedBy}
+              issueDate={issueDate}
+            />
           </div>
         </PDFExport>
       )}
       {templatetwo && (
-       <PDFExport
-       ref={pdfExportComponent}
-       paperSize="auto"
-      
-       fileName={`${awardeeName}`}
-       author="Certgo Team"
-       //scale = {0.6}
-     >
-       <div>
-           <Template2
-         logo={logo}
-         certificateTitle={certificateTitle}
-         awardeeName={awardeeName}
-         message={message}
-         issuedBy={issuedBy}
-         issueDate={issueDate}
-       />
-       </div>
-     </PDFExport>
+        <PDFExport
+          ref={pdfExportComponent}
+          paperSize="auto"
+          fileName={`${awardeeName}`}
+          author="Certgo Team"
+          //scale = {0.6}
+        >
+          <div>
+            <Template2
+              logo={logo}
+              certificateTitle={certificateTitle}
+              awardeeName={awardeeName}
+              message={message}
+              issuedBy={issuedBy}
+              issueDate={issueDate}
+            />
+          </div>
+        </PDFExport>
       )}
       {templatethree && (
-      <PDFExport
-      ref={pdfExportComponent}
-      paperSize="auto"
-     
-      fileName={`${awardeeName}`}
-      author="Certgo Team"
-      //scale = {0.6}
-    >
-      <div>
-          <Template3
-        logo={logo}
-        certificateTitle={certificateTitle}
-        awardeeName={awardeeName}
-        message={message}
-        issuedBy={issuedBy}
-        issueDate={issueDate}
-      />
-      </div>
-    </PDFExport>
+        <PDFExport
+          ref={pdfExportComponent}
+          paperSize="auto"
+          fileName={`${awardeeName}`}
+          author="Certgo Team"
+          //scale = {0.6}
+        >
+          <div>
+            <Template3
+              logo={logo}
+              certificateTitle={certificateTitle}
+              awardeeName={awardeeName}
+              message={message}
+              issuedBy={issuedBy}
+              issueDate={issueDate}
+            />
+          </div>
+        </PDFExport>
       )}
 
       {/* END OF CERTIFICATE */}
@@ -306,7 +300,7 @@ function SinglePreview({
               >
                 PNG
               </button>
-              <button   onClick={exportPDFWithComponent} className="pdf-button">
+              <button onClick={exportPDFWithComponent} className="pdf-button">
                 PDF
               </button>
             </div>

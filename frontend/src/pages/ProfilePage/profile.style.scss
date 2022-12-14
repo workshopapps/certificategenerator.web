@@ -1,13 +1,14 @@
 @import "../../Style/variables";
 
- @import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap");
 
-.parent{
-    display: flex;
-    margin-bottom: 130px;
-  
+.parent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 0;
 }
- .profile-page{
+.profile-page {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -15,186 +16,87 @@
   background-color: #ffffff;
   font-family: "Work Sans", sans-serif;
   width: 100vw;
- }
- .avatar-name{
+}
+.avatar-text {
   width: 100%;
   display: flex;
-  gap: 106px;
- }
- .avatar-job{
-  width: 100%;
-  display: flex;
-  gap: 118px;
- }
- .avatar-location{
-  width: 100%;
-  display: flex;
-  gap: 79px;
- }
- .avatar-email{
-  width: 100%;
-  display: flex;
-  gap: 35px;
- }
- .avatar-phone{
-  width: 100%;
-  display: flex;
-  gap: 35px;
- }
- .user-info{
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+
+  span {
+    font-size: 1rem;
+  }
+}
+.email {
+  width: auto;
+  color: #6c6c70;
+}
+
+.user-info {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   width: 50%;
- }
- .user-avatar {
-  width: 75%;
+}
+.user-avatar {
+  width: 320px;
+  height: 320px;
 
   img {
-    width: 320px;
-    height: 320px;
+    width: 100%;
+    height: 100%;
     border-radius: 50%;
   }
+  @media screen and (max-width: 750px) {
+    width: 160px;
+    height: 160px;
+  }
 }
-.form-details{
-  display: flex;
-  width: 100%;
-  justify-content: center;
-  align-items: center;
-}
-.profileFormCont{
+.profileFormCont {
   width: 100%;
 }
- .data-avatar{
+.data-avatar {
   display: flex;
   gap: 30px;
   margin-right: 50px;
-  font-family: 'Work Sans';
+  font-family: "Work Sans";
   font-style: normal;
   font-weight: 600;
   font-size: 14px;
   line-height: 16px;
   display: flex;
   align-items: center;
-  letter-spacing: -0.5px;  
-  color: #6C6C70;
- }
+  letter-spacing: -0.5px;
+  color: #6c6c70;
+}
 .line {
-  border-bottom: 0.2px solid  #E1E1E1;;
+  border-bottom: 0.2px solid #e1e1e1;
   width: 100%;
 }
- .button_profile {
+.button_profile {
   all: unset;
   background-color: #19a68e;
   width: 60%;
   color: #19a68e;
-  padding: .8rem 0;
+  padding: 0.8rem 0;
   border-radius: 10px;
-  cursor: pointer;  
-}
-.modal-page{
-  height: 100%;
-  width: 100%;
-  align-items:flex-start;
-  justify-content: center;
-  position: fixed;
-  display: flex;
-  z-index: 1000;
-  margin-top: 0px;
- }
-// .user_modal{
-//     display: flex;
-//     gap: 50px;
-//     background: white;
-// }
-.modal{
-  display: flex;
-  width: 810px;
-  position: absolute;
-  height: 700px;
-  background: white;
-  box-shadow: 0px 0px 31px 6px rgba(8, 55, 47, 0.13);
-  gap: 136px;
-  margin-top: 20px;
-}
-.form{
-  width: 40%;
-  margin-top: 50px;
-}
-.avatar-modal{
-  width: 242px;
-  height: 242px;
-  border-radius: 50%;
-  margin: 30px 0  0 50px;
-}
-.label-avatar{
-  color: #19a68e;
-}
-.uploadphoto{
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  width: 100%;    
-}
-.label-avatar:hover{
-  color: #1a6053;
-}
-.profileData{font-weight: 400; color:#222222; font-size: 18px;}
-.profile-editor{
-  display: flex;
-  height: 44px;
-  width: 70px;
-  border: 1px solid #19a68e;
-  justify-content: center;
-  align-items: center;
-  border-radius: 10px;
-  color: #19a68e;
-}
-.profile-editor:hover{
   cursor: pointer;
-  background-color: #19a68e;
-  color: #ffffff;
 }
-.save-btn{
+
+.edit {
   display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  margin-right: 15px;
   width: 100%;
-  justify-content: center;
-  gap: 10px;
+  color: #19a68e;
+  font-weight: 600;
+  cursor: pointer;
 }
-.submit-btn{
+.logout {
+  margin-top: 20px;
+
   display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 150px;
-  color: #ffffff;
-}
-
-
-@media all and (max-width:768px){
-  .modal{display:flex; flex-direction: column; width: 320px;height: 770px; gap:20px}
-  .form{width: 100%;}
-  .modal-page{position: absolute;}
-}
-
-@media  all and (max-width:480px) {
-  .user-avatar {
-    width: 75%;
-    
-  
-    img {
-      width: 242px;
-      height: 242px;
-      border-radius: 50%;
-    }
-  }
-  .user-info{width: 100%}
-  .profile-editor{margin: 50px}
-  .data-avatar{margin-left: 10px;}
-  .emailavatar{font-size: 12px;}
-  .modal{height: 870px;}
-  .save-btn{flex-direction: column}
-  .profile-editor{margin-left:100px; margin-bottom: 20px;}
-  .parent{overflow-y: auto;}
-  .modal-page{position: absolute;}
 }
