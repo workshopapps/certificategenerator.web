@@ -170,7 +170,7 @@ const Footer = () => {
       <div className="footer-copyright footer-container">
         <h3>
           &copy; Copyright {year}{" "}
-          <span className="headlight-text">Team Headlight</span>. All rights
+          <span className="headlight-text">CertGo</span>. All rights
           reserved.
         </h3>
       </div>
