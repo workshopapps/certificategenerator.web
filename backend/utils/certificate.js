@@ -8,6 +8,7 @@ const uuid = require("uuid").v4;
 const AdmZip = require("adm-zip");
 const imageToPdf = require("image-to-pdf");
 const PDFSIZE = [931, 600];
+const voca = require("voca");
 
 async function convertCertificates(certificates = [], templateId) {
   const promises = certificates.map(async certificate => {
@@ -32,10 +33,11 @@ async function convertCertificate(certificate = {}, templateId = 1) {
     html: template,
     output: imgPath,
     content: {
-      name: certificate.name,
-      award: certificate.award,
+      name: voca.titleCase(certificate.name),
+      award: voca.titleCase(certificate.award),
       issuedBy: certificate.signed,
       issueDate: certificate.date,
+      description: certificate.description,
       nameoforganization: "Zuri"
     },
     puppeteerArgs: {
