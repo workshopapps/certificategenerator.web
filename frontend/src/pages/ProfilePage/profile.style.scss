@@ -174,6 +174,7 @@
 @media all and (max-width:768px){
   .modal{display:flex; flex-direction: column; width: 320px;height: 770px; gap:20px}
   .form{width: 100%;}
+  .modal-page{position: absolute;}
 }
 
 @media  all and (max-width:480px) {
@@ -194,4 +195,6 @@
   .modal{height: 870px;}
   .save-btn{flex-direction: column}
   .profile-editor{margin-left:100px; margin-bottom: 20px;}
+  .parent{overflow-y: auto;}
+  .modal-page{position: absolute;}
 }
