@@ -106,7 +106,8 @@ const templates = {
 		  width: 400px;
 		}
 		.reason {
-		  margin: 20px;
+		  margin: 20px auto;
+		  max-width: 450px;
 		}
 		#container-wrapper {
 		  padding: 10px;
@@ -164,10 +165,10 @@ const templates = {
 	  <div id="container-wrapper">
 		<div id="container-design">
 		  <div class="content">
-			<div class="marquee">Certificate of Completion</div>
+			<div class="marquee">{{award}}</div>
 			<div class="assignment">This certificate is presented to</div>
 			<div class="person">{{name}}</div>
-			<div class="reason">{{award}}</div>
+			<div class="reason">{{description}}</div>
 			<div class="single-preview-issue">
 			  <div class="issue-by">
 				<h6>{{issuedBy}}</h6>
@@ -221,9 +222,10 @@ const templates = {
         margin: 20px auto;
         width: 400px;
       }
-      .reason {
-        margin: 20px;
-      }
+	  .reason {
+		margin: 20px auto;
+		max-width: 450px;
+	  }
 
       .line {
         border-bottom: 1px solid #264534;
@@ -302,10 +304,10 @@ const templates = {
       <div id="certificateWrapper3">
         <div id="template3-design">
           <div class="content">
-            <div class="marquee">Certificate of Completion</div>
+            <div class="marquee">{{award}}</div>
             <div class="assignment">This certificate is presented to</div>
             <div class="person">{{name}}</div>
-            <div class="reason">{{award}}</div>
+            <div class="reason">{{description}}</div>
 
             <div class="single-preview-issue">
               <div class="issue-by">
@@ -362,7 +364,8 @@ const templates = {
 	  width: 400px;
 	}
 	.reason {
-	  margin: 20px;
+		margin: 20px auto;
+		max-width: 450px;
 	}
 
 	.line {
@@ -443,10 +446,10 @@ p,
 	<div id="template2-container">
 	  <div id="template2-design">
 		<div class="content">
-		  <div class="marquee">Certificate of Completion</div>
+		  <div class="marquee">{{award}}</div>
 		  <div class="assignment">This certificate is presented to</div>
 		  <div class="person">{{name}}</div>
-		  <div class="reason">{{award}}</div>
+		  <div class="reason">{{description}}</div>
 
 		  <div class="single-preview-issue">
 			<div class="issue-by">
