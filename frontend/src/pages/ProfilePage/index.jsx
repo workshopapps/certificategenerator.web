@@ -9,6 +9,7 @@ import Loader from "../../Component/ButtonLoader";
 import { Toast } from "../../Component/ToastAlert";
 import Modalpro from "./EditModal";
 import { useEffect } from "react";
+import Button from "../../Component/button";
 
 const ProfilePage = () => {
   const navigate = useNavigate();
@@ -226,6 +227,17 @@ const ProfilePage = () => {
                 </span>
               </div>
             </form>
+          </div>
+          <div className="logout">
+            <Button
+              style={{
+                background: "transparent",
+                color: "red",
+                border: "1px solid red"
+              }}
+            >
+              Log out
+            </Button>
           </div>
         </div>
       </div>
