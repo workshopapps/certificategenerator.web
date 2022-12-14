@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import axios from 'axios';
-import {useNavigate} from 'react-router-dom';
+import {useNavigate,} from 'react-router-dom';
 import "./profile.style.scss";
 import Avatar from "../../assets/svgs/profileavatar.jpg";
 import Input from "../../Component/Input";
@@ -9,6 +9,7 @@ import { Toast } from '../../Component/ToastAlert';
 import { useEffect } from "react";
 
 const Modalpro = ({onClose}) => {
+    
   const navigate = useNavigate()
   const[loading, setLoading] = useState(false)
   const [isLoadingDelete, setIsLoadingDelete] = useState(false)
@@ -118,8 +119,7 @@ const userId = localStorage.getItem("user");
     } catch (error) {
       console.log(error);
     }
-    window.location.reload();
-    
+    window.location.reload();    
   };
 
   function handleDelete(){
@@ -183,13 +183,12 @@ async function uploadAvatar(image){
     <div className="modal">
     <div className="user-modal">
       <div className="user-avatar2">
-        {/* <label><i className ="fa fa-plus"></i> </label> */}
         <img src={myAvatar || Avatar} className="avatar-modal" alt="profile-pic"  />         
       </div>
         <form className="form-details">
-        <div style={{display:"flex", gap:"10px", cursor: "pointer", color:"#19a68e"}}>
+        <div className="uploadphoto">
           <label htmlFor="file" className="label-avatar">Upload Image</label>
-          <input type="file" style={{display: "none"}} id = "file" alt="pp" accept=".jpg, .png, .jpeg" className="avatar" onChange={handleUploadAvatar}></input>
+          <input type="file" style={{display: "none"}} id = "file" alt="pp" accept=".jpg, .png, .jpeg" className="avatar2" onChange={handleUploadAvatar}></input>
           {/* <div onClick={uploadAvatar} className="imgbtn" >save image</div> */}
         </div>         
         </form>
@@ -247,7 +246,7 @@ async function uploadAvatar(image){
               />
             <div className="save-btn">
           <div id="postbtnid" className="form-btn-wrapper">
-              <button className="submit-btn" onSubmit={Submit} >Save Changes</button>
+              <button className="submit-btn button_profile" onSubmit={Submit} >Save Changes</button>
           </div>
           <div className="profile-editor" onClick={onClose}>Cancel</div> 
           </div>

@@ -43,7 +43,8 @@
     "nodemailer-sendgrid-transport": "^0.2.0",
     "swagger-autogen": "^2.22.0",
     "swagger-ui-express": "^4.6.0",
-    "uuid": "^9.0.0"
+    "uuid": "^9.0.0",
+    "voca": "^1.4.0"
   },
   "devDependencies": {
     "jest": "^29.3.1",

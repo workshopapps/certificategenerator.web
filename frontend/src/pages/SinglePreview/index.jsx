@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Modal from "../../Component/Modal";
 import Button from "../../Component/button";
 import "./singlepreview.style.scss";
@@ -25,6 +25,7 @@ function SinglePreview({
   issuedBy,
   issueDate
 }) {
+  const navigate = useNavigate();
   //STATES FOR TEMPLATES
   const [templateone, setTemplateOne] = useState(true);
   const [templatetwo, setTemplateTwo] = useState(false);
@@ -63,7 +64,7 @@ function SinglePreview({
     setOpenModal(!openModal);
   }
 
-  const container = React.useRef(null);
+  // const container = React.useRef(null);
   const pdfExportComponent = React.useRef(null);
   
   // const exportPDFWithMethod = () => {
@@ -122,57 +123,58 @@ function SinglePreview({
         setModalMessage("You need to sign up to send certificate to your mail");
         return;
       }
-      const element = certificateWrapper.current;
-      const canvas = await html2canvas(element);
-      const data = canvas.toDataURL("image/png");
+      navigate("/comingsoon");
+      // const element = certificateWrapper.current;
+      // const canvas = await html2canvas(element);
+      // const data = canvas.toDataURL("image/png");
 
-      const pdf = new jsPDF({
-        orientation: "l",
-        unit: "pt",
-        format: [canvas.width, canvas.height]
-      });
-      pdf.addImage(data, "PNG", 0, 0, canvas.width, canvas.height);
+      // const pdf = new jsPDF({
+      //   orientation: "l",
+      //   unit: "pt",
+      //   format: [canvas.width, canvas.height]
+      // });
+      // pdf.addImage(data, "PNG", 0, 0, canvas.width, canvas.height);
 
       // get token from localstorage
-      const token = JSON.parse(localStorage.getItem("userData")).token;
+      // const token = JSON.parse(localStorage.getItem("userData")).token;
 
       // create form data and add pdf
-      let formData = new FormData();
-      formData.append("file", data);
+      // let formData = new FormData();
+      // formData.append("file", data);
 
       // send the form data
-      const uploadUrl = "/sendEmailNotifications";
-      let response = await axiosFormData.post(uploadUrl, formData, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "multipart/form-data"
-        }
-      });
+      // const uploadUrl = "/sendEmailNotifications";
+      // let response = await axiosFormData.post(uploadUrl, formData, {
+      //   headers: {
+      //     Authorization: `Bearer ${token}`,
+      //     "Content-Type": "multipart/form-data"
+      //   }
+      // });
       // toast message
-      const dataMsg = response.data;
-      if (response.status === 200) {
-        Toast.fire({
-          icon: "success",
-          title: dataMsg.message
-        });
-      } else if (response.status === 403) {
-        Toast.fire({
-          icon: "error",
-          title: dataMsg.error
-        });
-      } else {
-        Toast.fire({
-          icon: "error",
-          title: dataMsg.message
-        });
-        throw new Error(dataMsg.message);
-      }
+      // const dataMsg = response.data;
+      // if (response.status === 200) {
+      //   Toast.fire({
+      //     icon: "success",
+      //     title: dataMsg.message
+      //   });
+      // } else if (response.status === 403) {
+      //   Toast.fire({
+      //     icon: "error",
+      //     title: dataMsg.error
+      //   });
+      // } else {
+      //   Toast.fire({
+      //     icon: "error",
+      //     title: dataMsg.message
+      //   });
+      //   throw new Error(dataMsg.message);
+      // }
     } catch (error) {
-      console.log(error);
-      Toast.fire({
-        icon: "error",
-        title: "Internal Server Error"
-      });
+      // console.log(error);
+      // Toast.fire({
+      //   icon: "error",
+      //   title: "Internal Server Error"
+      // });
     }
   };
   return (
@@ -216,9 +218,9 @@ function SinglePreview({
          
           fileName={`${awardeeName}`}
           author="Certgo Team"
-          //scale = {0.6}
+    
         >
-          <div ref={container}>
+          <div>
               <Template1
             logo={logo}
             certificateTitle={certificateTitle}
@@ -239,7 +241,7 @@ function SinglePreview({
        author="Certgo Team"
        //scale = {0.6}
      >
-       <div ref={container}>
+       <div>
            <Template2
          logo={logo}
          certificateTitle={certificateTitle}
@@ -260,7 +262,7 @@ function SinglePreview({
       author="Certgo Team"
       //scale = {0.6}
     >
-      <div ref={container}>
+      <div>
           <Template3
         logo={logo}
         certificateTitle={certificateTitle}
@@ -295,7 +297,7 @@ function SinglePreview({
               <button
                 onClick={e => {
                   e.preventDefault();
-                  exportComponentAsPNG(certificateWrapper, {
+                  exportComponentAsPNG(pdfExportComponent, {
                     fileName: `${awardeeName}`,
                     html2CanvasOptions: { backgroundColor: "#fff" }
                   });

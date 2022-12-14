@@ -1,8 +1,16 @@
-const express = require('express');
-const { emailNotification } = require('../controllers/emailNotificationController');
+const express = require("express");
+const {
+  emailNotification
+} = require("../controllers/emailNotificationController");
 const Router = express.Router();
-const fileUpload = require('express-fileupload');
+const fileUpload = require("express-fileupload");
+const authentication = require("../middleware/authentication");
 
-Router.post("/", fileUpload({useTempFiles: true}), emailNotification)
+Router.post(
+  "/",
+  authentication,
+  fileUpload({ useTempFiles: true }),
+  emailNotification
+);
 
-module.exports = Router
+module.exports = Router;

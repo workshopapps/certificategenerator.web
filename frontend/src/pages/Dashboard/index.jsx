@@ -6,6 +6,7 @@ import { dummyData, nullDataIcon } from "./utils";
 import { Toast } from "../../Component/ToastAlert";
 import Button from "../../Component/button";
 import CreateCertificateModal from "./CreateCertificateModal";
+import DeleteAllModal from "./DeleteAllModal";
 import useAppProvider from "../../hooks/useAppProvider";
 import { Loader } from "../../Component";
 import TableRow from "./TableRow";
@@ -33,6 +34,7 @@ const Dashboard = () => {
   const [data, setData] = useState([]);
   const [cardData, setCardData] = useState([...dummyData]);
   const [openModal, setOpenModal] = useState(false);
+  const [openDeleteAllModal, setOpenDeleteAllModal] = useState(false);
   const [pricing, setPricing] = useState("");
   const [eventLink, setEventLink] = useState("");
   const baseURL = "https://certgo.hng.tech/api";
@@ -143,6 +145,7 @@ const Dashboard = () => {
     const res = await axiosPrivate.get("/certificates");
     setData(res.data.data.certificates);
   };
+  const [loading, setLoading] = useState(false);
 
   const handleDeleteAllCertificates = async () => {
     await axiosPrivate.delete(`/certificates`);
@@ -282,7 +285,13 @@ const Dashboard = () => {
 
   //DELETE ALL USER CERTIFICATES
   const handleDeleteAll = async () => {
-    handleDeleteAllCertificates();
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      handleDeleteAllCertificates();
+      setOpenDeleteAllModal(false);
+    }, 500);
+    
     // getUserCertificates()
     // setOpenOptions(!openOptions)
     // getUserCertificates();
@@ -379,7 +388,7 @@ const Dashboard = () => {
                     backgroundColor: "white",
                     color: "#19a68e"
                   }}
-                  onClick={handleDeleteAll}
+                  onClick={() => setOpenDeleteAllModal(true)}
                 >
                   Delete All
                 </Button>
@@ -411,6 +420,12 @@ const Dashboard = () => {
             certificateTitle={certificateTitle}
             setCertificateTitle={setCertificateTitle}
             getUserCertificates={getUserCertificates}
+          />
+          <DeleteAllModal
+            open={openDeleteAllModal}
+            onClose={() => setOpenDeleteAllModal(false)}
+            logo={logo}
+            action={handleDeleteAll}
           />
           <div className="table">
             <table>

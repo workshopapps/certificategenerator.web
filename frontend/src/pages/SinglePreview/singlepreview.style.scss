@@ -329,6 +329,13 @@
     !important}
 
 
+  @media screen and (min-width: 400px) {
+#container-wrapper{
+  width:100%;
+  min-width:350px;
+  max-width:400px;
+}
+    }
   @media screen and (min-width: 500px) {
     .certificate-share-hero button {
       width: 160px;

@@ -1,41 +1,41 @@
-
 //TEMPLATE TWO
-#container-logo{height:80px!important;
-  width:80px!important;
-   border-radius:50%
- !important}
+#container-logo {
+  width: 80px !important;
+  height: 80px !important;
+  border-radius: 50% !important
+}
+
 #template2-wrapper {
   position: relative;
-  width:90%;
-  //min-width: 100%;
+  width: 90%;
   margin: auto;
-  min-height: 400px;
-  border: 3px solid #19acbe;
   padding: 2px;
-  background: #eee;
   max-width: 600px;
+  min-height: 400px;
+  background: #eee;
+  border: 3px solid #19acbe;
 
   #certificateWrapper2 {
+    margin: 1px;
+    padding: 7px;
+    min-height: 400px;
     background: #19acbe;
     border: 2px solid #19acbe;
-    padding: 7px;
-    margin: 1px;
-    min-height: 400px;
   }
 
   #template2-container {
-    padding: 1px;
     margin: 5px;
+    padding: 1px;
+    min-height: 400px;
     background: #eee;
     border: 2px solid #19acbe;
-    min-height: 400px;
   }
 
   #template2-design {
-    border: 3px solid #19acbe;
-    background: white;
     margin: 1px;
     min-height: 400px;
+    background: white;
+    border: 3px solid #19acbe;
   }
 
   h2,
@@ -46,13 +46,14 @@
   }
 
   #preview-text h2 {
-    border-bottom: 2px solid  #19acbe !important;
-    
+    border-bottom: 2px solid #19acbe !important;
   }
-  #single-preview-card{
+
+  #single-preview-card {
     padding: 10px;
   }
-  #preview-text{
+
+  #preview-text {
     margin-top: 20px;
   }
 
@@ -65,90 +66,81 @@
   }
 }
 
-
-@media screen and (min-width:768px){
-    #template2-wrapper {
-        position: relative;
-        width: 90%;
-        margin: auto;
-      
-        border: 3px solid #19acbe;
-        padding: 2px;
-        background: #eee;
-        max-width: 700px;
-      
-
-}
+@media screen and (min-width:768px) {
+  #template2-wrapper {
+    width: 90%;
+    margin: auto;
+    padding: 2px;
+    max-width: 700px;
+    position: relative;
+    background: #eee;
+    border: 3px solid #19acbe;
+  }
 }
 
-@media screen and (min-width:1024px){
+@media screen and (min-width:1024px) {
 
-  #container-logo{height:100px!important;
-    width:100px!important;
-     border-radius:50%
-   !important}
-    #template2-wrapper {
-        position: relative;
-        width: 90%;
-        margin: auto;
-      
-        border: 3px solid #19acbe;
-        padding: 2px;
-        background: #eee;
-        max-width: 700px ;   
-        min-height: 500px;
+  #container-logo {
+    width: 100px !important;
+    height: 100px !important;
+    border-radius: 50% !important
+  }
+
+  #template2-wrapper {
+    width: 90%;
+    margin: auto;
+    padding: 2px;
+    max-width: 700px;
+    min-height: 500px;
+    position: relative;
+    background: #eee;
+    border: 3px solid #19acbe;
+  }
+
+  #certificateWrapper2,
+  #template2-container,
+  #template2-design {
+    min-height: 500px !important;
+  }
+
+  .single-preview-issue {
+    margin: 0px 0px 35px 0px !important;
+  }
 }
-
-#certificateWrapper2, #template2-container, #template2-design {
-
-min-height: 500px!important;
-}
-
-.single-preview-issue {
-  margin: 0px 0px 35px 0px!important;
-
-
-}
-}
-
 
 //TEMPLATE THREE
-#container-logo{height:80px!important;
-  width:80px!important;
-   border-radius:50%
- !important}
+#container-logo {
+  width: 80px !important;
+  height: 80px !important;
+  border-radius: 50% !important
+}
 
- 
 #template3-wrapper {
-
-  
-  position: relative;
   width: 90%;
   margin: auto;
-border-radius: 5px;
-  border: 3px solid #264534;
   padding: 2px;
-  background: #fff;
+  max-width: 600px;
   min-height: 400px;
-  max-width:600px;
+  position: relative;
+  border-radius: 5px;
+  background: #fff;
+  border: 3px solid #264534;
 
   #certificateWrapper3 {
-    border: 3px dotted #264534;
     margin: 1px;
     min-height: 400px;
+    border: 3px dotted #264534;
   }
 
   #template3-container {
-    padding: 1px;
     margin: 5px;
+    padding: 1px;
     background: #fff;
-    
   }
 
   #template3-design {
-   
-    background: white;
     margin: 1px;
+    background: white;
   }
 
   h2,
@@ -156,58 +148,58 @@ border-radius: 5px;
   h6,
   p,
   .issue-by {
-    color: #264534!important;
+    color: #264534 !important;
   }
 
-  #preview-text h2  {
-    border-bottom: 2px solid #264534!important;
-   
+  #preview-text h2 {
+    border-bottom: 2px solid #264534 !important;
   }
-  #single-preview-card{
+
+  #single-preview-card {
     padding: 10px;
   }
-  #preview-text{
+
+  #preview-text {
     margin-top: 20px;
-    position:relative;
-    top:0px!important;
+    position: relative;
+    top: 0px !important;
   }
 
   .single-preview-issue {
+    position: relative;
+    top: 35px !important;
     margin: 20px 0px 15px 0px;
-    position:relative;
-    top:35px!important;
+
     .line {
       border-bottom: 1px solid #264534 !important;
     }
   }
 }
 
-
-@media screen and (min-width:768px){
-    #template3-wrapper {
-        position: relative;
-        width: 90%;
-        margin: auto;
-        border: 3px solid #264534;
-        padding: 2px;
-        background: #fff;
-        max-width: 700px;
-      
-
-}
+@media screen and (min-width:768px) {
+  #template3-wrapper {
+    width: 90%;
+    margin: auto;
+    padding: 2px;
+    max-width: 700px;
+    position: relative;
+    background: #fff;
+    border: 3px solid #264534;
+  }
 }
 
-@media screen and (min-width:1024px){
-  #container-logo{height:100px!important;
-    width:100px!important;
-     border-radius:50%
-   !important}
-    #template3-wrapper {
-      min-height: 500px;
-}
+@media screen and (min-width:1024px) {
+  #container-logo {
+    width: 100px !important;
+    height: 100px !important;
+    border-radius: 50% !important
+  }
 
-#certificateWrapper3 {
+  #template3-wrapper {
+    min-height: 500px;
+  }
 
-  min-height: 500px!important;
-}
+  #certificateWrapper3 {
+    min-height: 500px !important;
+  }
 }

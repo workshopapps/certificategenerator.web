@@ -1,27 +1,22 @@
 import React from 'react'
 
-import "./templates.scss";
+import "./templates.style.scss";
 import "./bulkcertdesign.style.scss";
 
 const BulkCertDesign2 = React.forwardRef(({ item }, ref) => {        
   return (
-    <div ref={ref}>
+    <div id='bulk_cert' ref={ref}>
       {/* START OF CERTIFICATE */}
       <div id="downloadWrapper" className='multiple'>
         <div id ='template2-wrapper'>
           <div id="certificateWrapper2">
             <div id="template2-container">
               <div id="template2-design">
-                {/* <div className="water-mark">
-                  <p>Certgo</p>
-                  <p>Certgo</p>
-                </div> */}
               
                 <div id="single-preview-card" style = {{position : 'relative', top : '20%'}}>
-                <div id="single-preview-text">
-                  <div id="preview-text" style = {{position : 'relative', top : '-10%'}}>
-                    
-                      {/* <img src={logo} style={{ width: "100px" }} alt="logo" /> */}
+                  <div id="single-preview-text">
+                    <div id="preview-text" style = {{position : 'relative', top : '-10%'}}>
+
                       <h1 style = {{color: '#19acbe'}}>{item.award}</h1>
 
                       <p>THIS CERTIFIES THAT</p>
@@ -44,7 +39,6 @@ const BulkCertDesign2 = React.forwardRef(({ item }, ref) => {
                     </div>
                   </div>
                 </div>
-                {/* <div className="sample2"></div> */}
               </div>
             </div>
           </div>
