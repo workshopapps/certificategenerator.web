@@ -111,6 +111,7 @@ const Modalpro = ({ onClose }) => {
           icon: "success",
           title: "Changes saved"
         });
+        localStorage.setItem("profileName", JSON.stringify(data.name));
       } else {
         throw new Error(response.message);
       }

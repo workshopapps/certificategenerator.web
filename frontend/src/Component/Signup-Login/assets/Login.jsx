@@ -91,6 +91,7 @@ const Login = () => {
         subscription: response.data.data.subscription
       };
       localStorage.setItem("userData", JSON.stringify(userData));
+      localStorage.setItem("profileName", JSON.stringify(userData.name));
       console.log(userData);
     } catch (error) {
       console.log(error);
@@ -158,6 +159,7 @@ const Login = () => {
       subscription: response.data.data.subscription
     };
     localStorage.setItem("userData", JSON.stringify(userData));
+    localStorage.setItem("profileName", JSON.stringify(userData.name));
 
     if (location.state?.from.pathname) {
       navigate(location.state.from);
