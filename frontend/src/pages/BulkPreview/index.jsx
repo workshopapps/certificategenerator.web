@@ -150,6 +150,7 @@ function Index() {
       return;
     }
     setLoading(true);
+    setInteractiveModal(true);
     const res = await axiosPrivate.post("/certificates/download/unauthorised", {
       certificates: array,
       format: "pdf-split",
@@ -160,6 +161,7 @@ function Index() {
     const blob = new Blob([data], { type: "application/zip" });
     download(blob, "certificate.zip");
     setLoading(false);
+    setInteractiveModal(false);
   };
 
   const handlePng = async () => {
@@ -171,6 +173,7 @@ function Index() {
       return;
     }
     setLoading(true);
+    setInteractiveModal(true);
     const res = await axiosPrivate.post("/certificates/download/unauthorised", {
       certificates: array,
       format: "img",
@@ -181,6 +184,7 @@ function Index() {
     const blob = new Blob([data], { type: "application/zip" });
     download(blob, "certificate.zip");
     setLoading(false);
+    setInteractiveModal(false);
   };
 
   return (
