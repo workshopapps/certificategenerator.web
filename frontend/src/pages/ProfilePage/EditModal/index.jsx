@@ -1,16 +1,15 @@
 import React, { useState } from "react";
 import axios from "axios";
-import Modal from "../../Component/Modal";
 import { useNavigate } from "react-router-dom";
-import "./profile.style.scss";
-import Avatar from "./assets/default-avatar.svg";
-import Input from "../../Component/Input";
-import Loader from "../../Component/ButtonLoader";
-import { Toast } from "../../Component/ToastAlert";
-import Modalpro from "./EditModal";
+import "./editmodal.style.scss";
+import Avatar from "../assets/default-avatar.svg";
+import Input from "../../../Component/Input";
+import Loader from "../../../Component/ButtonLoader";
+import { Toast } from "../../../Component/ToastAlert";
 import { useEffect } from "react";
+import Inputfield from "../input";
 
-const ProfilePage = () => {
+const Modalpro = ({ onClose }) => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [isLoadingDelete, setIsLoadingDelete] = useState(false);
@@ -110,7 +109,7 @@ const ProfilePage = () => {
       if (response.status === 201) {
         Toast.fire({
           icon: "success",
-          title: response.message
+          title: "Changes saved"
         });
       } else {
         throw new Error(response.message);
@@ -118,6 +117,7 @@ const ProfilePage = () => {
     } catch (error) {
       console.log(error);
     }
+    window.location.reload();
   };
 
   function handleDelete() {
@@ -178,59 +178,115 @@ const ProfilePage = () => {
   }
 
   return (
-    <div className="parent">
-      {openModal && <Modalpro onClose={() => setOpenModal(false)} />}
-      <div className="profile-page">
-        <div className="user-info">
-          <div className="user-avatar">
-            <img src={myAvatar || Avatar} alt="profile-pic" />
+    <div className="modal-page">
+      <div className="modal">
+        <div className="user-modal">
+          <div className="user-avatar2">
+            <img
+              src={myAvatar || Avatar}
+              className="avatar-modal"
+              alt="profile-pic"
+            />
           </div>
-          <div className="edit" onClick={() => setOpenModal(!openModal)}>
-            Edit
-          </div>
+          <form className="form-details">
+            <div className="uploadphoto">
+              <label htmlFor="file" className="label-avatar">
+                <span
+                  style={{
+                    background: "transparent",
+                    padding: "10px 10px",
+                    borderRadius: "5px",
+                    color: "#19a68e",
+                    cursor: "pointer",
+                    border: "2px solid #19a68e"
+                  }}
+                >
+                  Upload Photo
+                </span>
+              </label>
+              <input
+                type="file"
+                style={{ display: "none" }}
+                id="file"
+                alt="pp"
+                accept=".jpg, .png, .jpeg"
+                className="avatar2"
+                onChange={handleUploadAvatar}
+              ></input>
+              {/* <div onClick={uploadAvatar} className="imgbtn" >save image</div> */}
+            </div>
+          </form>
 
-          <div className="profileFormCont">
-            <form className="data-avatar">
-              <div className="avatar-text">
-                <span>NAME:</span>
-                <span className="profileData name">
-                  {data.name || " Input your name"}
-                </span>
+          {/* <div className="btn-wrapper">
+        <button onClick={handleLogout} style={loading ? {background: '#f84343', cursor: 'not-allowed'} : {background: 'transparent', cursor: 'pointer'}}>{loading ? <Loader /> : <span>Log Out</span>}</button>
+        <button onClick={handleDelete} style={isLoadingDelete ? {background: '#f84343', cursor: 'not-allowed'} : {background: 'transparent', cursor: 'pointer'}}>{isLoadingDelete ? <Loader /> : <span>Delete Account</span>}</button>
+      </div> */}
+        </div>
+        <div className="form">
+          <form onSubmit={e => Submit(e)}>
+            <Inputfield
+              className="form-group"
+              label={"Name"}
+              callback={handleOnchange}
+              id="name"
+              type="text"
+              placeholder="Name"
+              value={data.name}
+            />
+            <Inputfield
+              className="form-group"
+              label={"Jobs"}
+              callback={handleOnchange}
+              id="job"
+              type="text"
+              placeholder="Job"
+              value={data.job}
+            />
+
+            <Inputfield
+              className="form-group"
+              label={"Location"}
+              callback={handleOnchange}
+              id="location"
+              type="text"
+              placeholder="Location"
+              value={data.location}
+            />
+
+            <Inputfield
+              className="form-group email"
+              style={{ color: "#6C6C70" }}
+              label={"Email"}
+              id="email"
+              type="email"
+              placeholder="E-mail"
+              value={data.email}
+            />
+
+            <Inputfield
+              className="form-group"
+              label={"Phone Number"}
+              callback={handleOnchange}
+              id="phoneNumber"
+              type="tel"
+              placeholder="Phone number"
+              value={data.phoneNumber}
+            />
+            <div className="save-btn">
+              <div id="postbtnid" className="form-btn-wrapper">
+                <button className="submit-btn button_profile" onSubmit={Submit}>
+                  Save Changes
+                </button>
               </div>
-              <div className="line"></div>
-              <div className="avatar-text">
-                <span>JOB:</span>
-                <span className="profileData">
-                  {data.job || " input your job "}
-                </span>
+              <div className="cancel" onClick={onClose}>
+                Cancel
               </div>
-              <div className="line"></div>
-              <div className="avatar-text">
-                <span>LOCATION:</span>{" "}
-                <span className="profileData">
-                  {data.location || "Input your location "}
-                </span>
-              </div>
-              <div className="line"></div>
-              <div className="avatar-text">
-                <span>EMAIL:</span>{" "}
-                <span className="profileData email">
-                  {data.email || "Input your email"}
-                </span>
-              </div>
-              <div className="line"></div>
-              <div className="avatar-text">
-                <span>PHONE NUMBER:</span>{" "}
-                <span className="profileData">
-                  {data.phoneNumber || "Input your number"}
-                </span>
-              </div>
-            </form>
-          </div>
+            </div>
+          </form>
         </div>
       </div>
     </div>
   );
 };
 
-export default ProfilePage;
+export default Modalpro;
