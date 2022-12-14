@@ -231,12 +231,13 @@ const ProfilePage = () => {
           <div className="logout">
             <Button
               style={{
-                background: "transparent",
+                background: "rgb(255, 0, 0,0.2)",
                 color: "red",
                 border: "1px solid red"
               }}
+              onClick={handleLogout}
             >
-              Log out
+              {loading ? <Loader /> : <span>Log out</span>}
             </Button>
           </div>
         </div>
