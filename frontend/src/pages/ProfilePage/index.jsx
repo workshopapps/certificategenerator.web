@@ -194,15 +194,15 @@ async function uploadAvatar(image){
         
       <div className="profileFormCont">          
         <form className="data-avatar">
-          <div className="avatar-name"><span>NAME:</span> <span className="profileData">{data.name || " Input your name"}</span></div>
+          <div className="avatar-name"><span className="profileData1">NAME:</span> <span className="profileData">{data.name || " Input your name"}</span></div>
           <div className="line"></div>
-          <div className="avatar-job" ><span>JOB:</span> <span className="profileData">{data.job || " input your job "}</span></div>
+          <div className="avatar-job" ><span className="profileData1">JOB:</span> <span className="profileData">{data.job || " Input your job "}</span></div>
           <div className="line"></div>
-          <div  className="avatar-location"><span>LOCATION:</span> <span className="profileData">{data.location || " put your location"}</span></div>
+          <div  className="avatar-location"><span className="profileData1">LOCATION:</span> <span className="profileData">{data.location || " Input your location"}</span></div>
           <div className="line"></div>
-          <div  className="avatar-email"><span>EMAIL ADDRESS:</span> <span className="profileData emailavatar">{data.email || " put your email"}</span></div>
+          <div  className="avatar-email"><span className="profileData1">EMAIL ADDRESS:</span> <span className="profileData emailavatar">{data.email || " Input your email"}</span></div>
           <div className="line"></div>
-          <div  className="avatar-phone"><span>PHONE NUMBER:</span> <span className="profileData">{data.phoneNumber || " put your hone number"}</span></div>
+          <div  className="avatar-phone"><span className="profileData1">PHONE NUMBER:</span> <span className="profileData">{data.phoneNumber || " Input your phone number"}</span></div>
         </form>                  
       </div>
       
