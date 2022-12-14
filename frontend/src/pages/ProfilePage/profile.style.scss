@@ -58,11 +58,9 @@
 }
 .form-details{
   display: flex;
-  width: 60%;
-  margin-top: 50px;
-  flex-direction: row;
-  justify-content: flex-end;
-  margin-bottom: 50px;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
 }
 .profileFormCont{
   width: 100%;
@@ -101,7 +99,6 @@
   justify-content: center;
   position: fixed;
   display: flex;
-  background: rgba(64, 64, 64, 0.3);
   z-index: 1000;
   margin-top: 0px;
  }
@@ -112,34 +109,39 @@
 // }
 .modal{
   display: flex;
-  width: 75%;
+  width: 810px;
   position: absolute;
-  height: 450px;
+  height: 700px;
   background: white;
+  box-shadow: 0px 0px 31px 6px rgba(8, 55, 47, 0.13);
   gap: 136px;
   margin-top: 20px;
 }
 .form{
   width: 40%;
-  margin-top: 20px;
+  margin-top: 50px;
 }
 .avatar-modal{
   width: 242px;
   height: 242px;
   border-radius: 50%;
-  margin-left: 20px;
+  margin: 30px 0  0 50px;
 }
 .label-avatar{
-  margin-left: 20px;
-  width: 150px;  
+  color: #19a68e;
+}
+.uploadphoto{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;    
 }
 .label-avatar:hover{
   color: #1a6053;
 }
+.profileData{font-weight: 400; color:#222222; font-size: 18px;}
 .profile-editor{
   display: flex;
-  //color: red;
-  //cursor: pointer;
   height: 44px;
   width: 70px;
   border: 1px solid #19a68e;
@@ -156,14 +158,39 @@
 .save-btn{
   display: flex;
   width: 100%;
-  justify-content: space-between;
-  align-items: center;
-  
+  justify-content: center;
+  gap: 10px;
 }
 .submit-btn{
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 162px;
+  width: 150px;
   color: #ffffff;
+}
+
+
+@media all and (max-width:768px){
+  .modal{display:flex; flex-direction: column; width: 320px;height: 770px; gap:20px}
+  .form{width: 100%;}
+}
+
+@media  all and (max-width:480px) {
+  .user-avatar {
+    width: 75%;
+    
+  
+    img {
+      width: 242px;
+      height: 242px;
+      border-radius: 50%;
+    }
+  }
+  .user-info{width: 100%}
+  .profile-editor{margin: 50px}
+  .data-avatar{margin-left: 10px;}
+  .emailavatar{font-size: 12px;}
+  .modal{height: 870px;}
+  .save-btn{flex-direction: column}
+  .profile-editor{margin-left:100px; margin-bottom: 20px;}
 }
