@@ -29,7 +29,7 @@ const Dashboard = () => {
     issuedBy,
     setIssuedBy,
     issueDate,
-    setIssueDate,
+    setIssueDate
   } = useAppProvider();
   const [data, setData] = useState([]);
   const [cardData, setCardData] = useState([...dummyData]);
@@ -161,15 +161,15 @@ const Dashboard = () => {
       localStorage.removeItem("unauthData");
       await axiosPrivate.post("/certificates", unauthArray);
       const res = await axiosPrivate.get("/certificates");
-      let allData = res.data.data.certificates
+      let allData = res.data.data.certificates;
       updateCount(allData);
-      setData(allData)
+      setData(allData);
     }
   };
   const getUserCertificates = async () => {
     try {
       getUnauthUserCertificates();
-      if (localStorage.getItem("unauthData")) return
+      if (localStorage.getItem("unauthData")) return;
       const response = await axiosPrivate.get("/certificates");
       setPricing(sub);
 
@@ -282,7 +282,6 @@ const Dashboard = () => {
     getEvents();
   };
 
-
   //DELETE ALL USER CERTIFICATES
   const handleDeleteAll = async () => {
     setLoading(true);
@@ -291,23 +290,22 @@ const Dashboard = () => {
       handleDeleteAllCertificates();
       setOpenDeleteAllModal(false);
     }, 500);
-    
+
     // getUserCertificates()
     // setOpenOptions(!openOptions)
     // getUserCertificates();
   };
 
-  var profileName = JSON.parse(localStorage.getItem("userData")).name;
+  var profileName = JSON.parse(localStorage.getItem("profileName"));
   console.log(profileName);
   let id = JSON.parse(localStorage.getItem("userData")).userId;
-  console.log(id.slice(19,24));
-  const ShortId = id.slice(19, 24)
+  console.log(id.slice(19, 24));
+  const ShortId = id.slice(19, 24);
 
   useEffect(() => {
-    if(sub !== "pricing"){
-
+    if (sub !== "pricing") {
     }
-  }, [])
+  }, []);
   return (
     <>
       <div className="dashboard">
@@ -339,7 +337,7 @@ const Dashboard = () => {
                 style={{ textTransform: "capitalize" }}
                 className="dashboard__title"
               >
-                {profileName ? profileName :  `user - ${ShortId}`}
+                {profileName ? profileName : `user - ${ShortId}`}
               </h2>
               <p className="dashboard__description">
                 Get a summary of all the Certificates here
