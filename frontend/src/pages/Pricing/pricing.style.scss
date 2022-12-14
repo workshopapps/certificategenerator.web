@@ -15,6 +15,23 @@ $featureHeader: "Sora", sans-serif;
   }
 }
 
+.plansContainer {
+  @media screen and (max-width: 350px) {
+    min-width: 370px;
+  }
+}
+
+#CheckoutMainLeft-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// #CheckoutMainLeft-icon-div img {
+//   width: 200rem;
+//   height: 200rem;
+// }
+
 main {
   margin-top: -70px;
 
@@ -497,7 +514,7 @@ main {
           height: fit-content;
           margin: auto;
           overflow-x: scroll;
-          width: 72%;
+          width: 100%;
 
           #slider {
             display: flex;
@@ -507,7 +524,10 @@ main {
             background: none;
             text-align: justify;
             padding-left: 20px;
-            margin: auto;
+            // @media screen and (max-width: 1024) {
+
+            // }
+            // margin: auto;
 
             article {
               width: 399px;
@@ -536,6 +556,7 @@ main {
   main {
     .feature {
       padding-top: 30px;
+      margin: 0 !important;
       article {
         h3 {
           padding-top: 30px;
