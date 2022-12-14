@@ -1,52 +1,8 @@
 import React from "react";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import "react-datepicker/dist/react-datepicker.css";
 import "./deletemodal.style.scss";
-import {ButtonLoader} from "../../../Component"
 import Button from "../../../Component/button";
 
-
-function DeleteAllModal({
-  open,
-  onClose,
-  action,
-  logo,
-  setLogo,
-  certificateTitle,
-  setCertificateTitle,
-  awardeeName,
-  setAwardeeName,
-  message,
-  setMessage,
-  issuedBy,
-  setIssuedBy,
-  issueDate,
-  setIssueDate,
-  getUserCertificates
-}) {
-  const [tab, setTab] = useState(false);
-  const [date, setDate] = useState(Date.now());
-  const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
-  const disabledButton =
-    !logo.trim() ||
-    !message.trim() ||
-    !certificateTitle.trim() ||
-    !awardeeName.trim() ||
-    !issuedBy.trim() ||
-    !issueDate.trim();
-
-  const handleSubmit = e => {
-    e.preventDefault();
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-      navigate("/preview");
-    }, 1500);
-    
-  };
-
+function DeleteAllModal({ open, onClose, action }) {
   if (!open) return null;
   return (
     <div onClick={onClose} className="modal-wrap">
@@ -74,9 +30,7 @@ function DeleteAllModal({
 
         <div className="modal_body">
           <div className="head">
-            <p>
-              Do you want to delete all your certificates?
-            </p>
+            <p>Do you want to delete all your certificates?</p>
           </div>
           {/* <br />
           <br /> */}
@@ -103,7 +57,9 @@ function DeleteAllModal({
                 margin: "0"
               }}
               onClick={action}
-            >Delete</Button>
+            >
+              Delete
+            </Button>
           </div>
         </div>
       </div>
