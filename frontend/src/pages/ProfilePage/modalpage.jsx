@@ -1,16 +1,15 @@
 import React, {useState} from "react";
-import axios from 'axios'
-import Modal from '../../Component/Modal'
-import {useNavigate} from 'react-router-dom';
+import axios from 'axios';
+import {useNavigate,} from 'react-router-dom';
 import "./profile.style.scss";
 import Avatar from "../../assets/svgs/profileavatar.jpg";
 import Input from "../../Component/Input";
 import Loader from "../../Component/ButtonLoader";
 import { Toast } from '../../Component/ToastAlert';
-import Modalpro from "./modalpage";
 import { useEffect } from "react";
 
-const ProfilePage = () => {
+const Modalpro = ({onClose}) => {
+    
   const navigate = useNavigate()
   const[loading, setLoading] = useState(false)
   const [isLoadingDelete, setIsLoadingDelete] = useState(false)
@@ -23,9 +22,7 @@ const ProfilePage = () => {
   location:"",
   phoneNumber:"",
   email:""
-})
-
-  
+}) 
   
 
 const userId = localStorage.getItem("user");
@@ -108,6 +105,7 @@ const userId = localStorage.getItem("user");
         {
           headers
         }
+        
       );
       console.log(response)
       if (response.status === 201) {
@@ -116,11 +114,12 @@ const userId = localStorage.getItem("user");
           title: response.message
         });
       } else {
-        throw new Error(response.message);
+        throw new Error(response.message);       
       }
     } catch (error) {
       console.log(error);
     }
+    window.location.reload();    
   };
 
   function handleDelete(){
@@ -180,38 +179,83 @@ async function uploadAvatar(image){
  }
 
  return (
-  <div className="parent">
-    {openModal && (<Modalpro onClose= {()=> setOpenModal(false)} />) }
-  <div className="profile-page">
-    <div className="user-info">      
-      <div className="user-avatar">
-        <label><i className ="fa fa-plus"></i> </label>
-        <img src={myAvatar || Avatar} className="avatar" alt="profile-pic"  />         
+  <div className="modal-page">
+    <div className="modal">
+    <div className="user-modal">
+      <div className="user-avatar2">
+        <img src={myAvatar || Avatar} className="avatar-modal" alt="profile-pic"  />         
       </div>
-        <form className="form-details">          
-        <div className="profile-editor" onClick={() => setOpenModal(!openModal)}>edit</div>         
+        <form className="form-details">
+        <div className="uploadphoto">
+          <label htmlFor="file" className="label-avatar">Upload Image</label>
+          <input type="file" style={{display: "none"}} id = "file" alt="pp" accept=".jpg, .png, .jpeg" className="avatar2" onChange={handleUploadAvatar}></input>
+          {/* <div onClick={uploadAvatar} className="imgbtn" >save image</div> */}
+        </div>         
         </form>
         
-      <div className="profileFormCont">          
-        <form className="data-avatar">
-          <div className="avatar-name"><span className="profileData1">NAME:</span> <span className="profileData">{data.name || " Input your name"}</span></div>
-          <div className="line"></div>
-          <div className="avatar-job" ><span className="profileData1">JOB:</span> <span className="profileData">{data.job || " Input your job "}</span></div>
-          <div className="line"></div>
-          <div  className="avatar-location"><span className="profileData1">LOCATION:</span> <span className="profileData">{data.location || " Input your location"}</span></div>
-          <div className="line"></div>
-          <div  className="avatar-email"><span className="profileData1">EMAIL ADDRESS:</span> <span className="profileData emailavatar">{data.email || " Input your email"}</span></div>
-          <div className="line"></div>
-          <div  className="avatar-phone"><span className="profileData1">PHONE NUMBER:</span> <span className="profileData">{data.phoneNumber || " Input your phone number"}</span></div>
-        </form>                  
-      </div>
-      
+  
+      {/* <div className="btn-wrapper">
+        <button onClick={handleLogout} style={loading ? {background: '#f84343', cursor: 'not-allowed'} : {background: 'transparent', cursor: 'pointer'}}>{loading ? <Loader /> : <span>Log Out</span>}</button>
+        <button onClick={handleDelete} style={isLoadingDelete ? {background: '#f84343', cursor: 'not-allowed'} : {background: 'transparent', cursor: 'pointer'}}>{isLoadingDelete ? <Loader /> : <span>Delete Account</span>}</button>
+      </div> */}
     </div>
+ <div className="form">
+      <form onSubmit={(e)=>Submit(e)} >
+          <Input className="form-group"
+            //label={"Name"}
+              callback={handleOnchange}
+              id="name" 
+              type="text" 
+              placeholder="Name"
+              value={data.name}
+              />
+          <Input className="form-group"
+            //label={"Jobs"}
+           callback={handleOnchange} 
+              id="job" 
+              type="text" 
+              placeholder="Job"
+              value={data.job}
+              />
+
+            <Input className="form-group"
+              //label={"Location"}
+              callback={handleOnchange} 
+              id="location" 
+              type="text" 
+              placeholder="Location"
+              value={data.location}
+              />
+
+          <Input className="form-group"
+              //label={"Email"}
+              
+              id="email" 
+              type="email" 
+              placeholder="E-mail"
+              value={data.email}
+              />
+
+          <Input className="form-group"
+              //label={"Phone Number"}
+              callback={handleOnchange} 
+              id="phoneNumber" 
+              type="tel" 
+              placeholder="Phone number"
+              value={data.phoneNumber}
+              />
+            <div className="save-btn">
+          <div id="postbtnid" className="form-btn-wrapper">
+              <button className="submit-btn" onSubmit={Submit} >Save Changes</button>
+          </div>
+          <div className="profile-editor" onClick={onClose}>Cancel</div> 
+          </div>
+      </form>
+    </div>
+   </div>
     
-    
-  </div>
   </div>
 );
 };
 
-export default ProfilePage;
+export default Modalpro;
