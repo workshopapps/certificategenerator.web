@@ -199,29 +199,29 @@ const ProfilePage = () => {
                 </span>
               </div>
               <div className="line"></div>
-              <div className="avatar-text">
+              <div className="avatar-text1">
                 <span>JOB:</span>
                 <span className="profileData">
-                  {data.job || " input your job "}
+                  {data.job || " Input your job "}
                 </span>
               </div>
               <div className="line"></div>
-              <div className="avatar-text">
+              <div className="avatar-text2">
                 <span>LOCATION:</span>{" "}
                 <span className="profileData">
                   {data.location || "Input your location "}
                 </span>
               </div>
               <div className="line"></div>
-              <div className="avatar-text">
+              <div className="avatar-text3">
                 <span>EMAIL:</span>{" "}
                 <span className="profileData email">
                   {data.email || "Input your email"}
                 </span>
               </div>
               <div className="line"></div>
-              <div className="avatar-text">
-                <span>PHONE NUMBER:</span>{" "}
+              <div className="avatar-text4">
+                <span className="phone">PHONE NUMBER:</span>{" "}
                 <span className="profileData">
                   {data.phoneNumber || "Input your number"}
                 </span>
