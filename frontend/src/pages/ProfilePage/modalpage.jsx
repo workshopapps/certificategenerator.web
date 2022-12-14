@@ -246,7 +246,7 @@ async function uploadAvatar(image){
               />
             <div className="save-btn">
           <div id="postbtnid" className="form-btn-wrapper">
-              <button className="submit-btn" onSubmit={Submit} >Save Changes</button>
+              <button className="submit-btn button_profile" onSubmit={Submit} >Save Changes</button>
           </div>
           <div className="profile-editor" onClick={onClose}>Cancel</div> 
           </div>

@@ -1,6 +1,7 @@
 @import "../../Style/variables";
 
  @import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap");
+
 .parent{
     display: flex;
     margin-bottom: 130px;
@@ -83,7 +84,7 @@
   border-bottom: 0.2px solid  #E1E1E1;;
   width: 100%;
 }
- button {
+ .button_profile {
   all: unset;
   background-color: #19a68e;
   width: 60%;
