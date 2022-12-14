@@ -2,10 +2,10 @@ const express = require("express")
 const router = express.Router()
 const { 
     updateUserPlan, 
-} = require("../controllers/pricingPlanController")
+} = require("../controllers/pricingPlanController");
+const authentication = require("../middleware/authentication");
 
 
-router.route("/:id")
-    .put(updateUserPlan)
+router.put('/', authentication, updateUserPlan)
 
-module.exports = router
+module.exports = router;
