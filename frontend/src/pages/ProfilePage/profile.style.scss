@@ -22,12 +22,55 @@
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  gap: 10px;
+  gap: 98px;
 
   span {
     font-size: 1rem;
   }
 }
+.avatar-text1{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 107px;
+  span{
+    font-size: 1rem;
+  }
+}
+
+.avatar-text2{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 60px;
+  span{
+    font-size: 1rem;
+  }
+}
+.avatar-text3{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 90px;
+  span{
+    font-size: 1rem;
+  }
+}
+.avatar-text4{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  span{
+    font-size: 1rem;
+  }
+}
+
+
 .email {
   width: auto;
   color: #6c6c70;
@@ -53,6 +96,15 @@
     width: 160px;
     height: 160px;
   }
+ 
+}
+@media screen and (max-width: 480px) {
+  .phone{width: 80px;}
+  .avatar-text4,.avatar-text2{gap: 20px}
+  .avatar-text3{gap:50px}
+  .avatar-text1{gap: 66px}
+  .avatar-text{gap: 50px}
+  
 }
 .profileFormCont {
   width: 100%;
