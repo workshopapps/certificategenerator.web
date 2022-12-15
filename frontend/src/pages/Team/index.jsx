@@ -3,14 +3,22 @@ import React from "react";
 import "./team.style.scss";
 // pictures
 import Joy from "../../assets/images/team/joy.svg";
+import Zed from "../../assets/images/team/zed.svg";
 import Ben from "../../assets/images/team/ben.svg";
-import Ehis from "../../assets/images/team/ehis.svg";
-import John from "../../assets/images/team/john.jpg";
 import Moyo from "../../assets/images/team/moyo.svg";
+import Ehis from "../../assets/images/team/ehis.svg";
+import Anees from "../../assets/images/team/anees.svg";
 import Ajayi from "../../assets/images/team/ajayi.svg";
+import Rhoda from "../../assets/images/team/rhoda.svg";
 import Samuel from "../../assets/images/team/samuel.svg";
+import Abiola from "../../assets/images/team/abiola.svg";
 import Joseph from "../../assets/images/team/joseph.svg";
 import Luqman from "../../assets/images/team/luqman.svg";
+import Asanze from "../../assets/images/team/asanze.svg";
+import Andrew from "../../assets/images/team/andrew.svg";
+import Prosper from "../../assets/images/team/prosper.svg";
+import Muminat from "../../assets/images/team/muminat.svg";
+// import Henzyd from "../../assets/images/team/henzyd.svg";
 // icons
 import Web from "../../assets/images/team/web.svg";
 import Github from "../../assets/images/team/github.svg";
@@ -18,9 +26,20 @@ import Twitter from "../../assets/images/team/twitter.svg";
 import Behance from "../../assets/images/team/behance.svg";
 import LinkedIn from "../../assets/images/team/linkedin.svg";
 import Facebook from "../../assets/images/team/facebook.svg";
+import Instagram from "../../assets/images/team/instagram.svg";
+import ArrowDown from "../../assets/images/team/arrow_down.svg";
+import Button from "../../Component/button";
 
 // members data
 const members = [
+  {
+    picture: Anees,
+    name: "Anees Adeyinka",
+    title: "Product designer",
+    socialMediaIcon1: Web,
+    socialMediaIcon2: LinkedIn,
+    socialMediaIcon3: Twitter
+  },
   {
     picture: Ajayi,
     name: "Ajayi Abiola",
@@ -38,12 +57,28 @@ const members = [
     socialMediaIcon3: Twitter
   },
   {
+    picture: Prosper,
+    name: "Prosper Gabriel",
+    title: "Product designer",
+    socialMediaIcon1: Web,
+    socialMediaIcon2: LinkedIn,
+    socialMediaIcon3: Twitter
+  },
+  {
     picture: Moyo,
     name: "Moyo",
     title: "Product designer",
     socialMediaIcon1: LinkedIn,
     socialMediaIcon2: Twitter,
     socialMediaIcon3: Behance
+  },
+  {
+    picture: Muminat,
+    name: "Muminat",
+    title: "Product designer",
+    socialMediaIcon1: Web,
+    socialMediaIcon2: Instagram,
+    socialMediaIcon3: Twitter
   },
   {
     picture: Samuel,
@@ -54,12 +89,36 @@ const members = [
     socialMediaIcon3: Github
   },
   {
+    picture: Abiola,
+    name: "Abiola Olanrewaju",
+    title: "Product designer",
+    socialMediaIcon1: Web,
+    socialMediaIcon2: LinkedIn,
+    socialMediaIcon3: Github
+  },
+  {
+    picture: Rhoda,
+    name: "Folayemi Rhoda",
+    title: "Product designer",
+    socialMediaIcon1: Web,
+    socialMediaIcon2: Instagram,
+    socialMediaIcon3: LinkedIn
+  },
+  {
     picture: Ehis,
     name: "Aigbiluese Ehidiamhen",
     title: "Frontend developer",
     socialMediaIcon1: LinkedIn,
     socialMediaIcon2: Twitter,
     socialMediaIcon3: Web
+  },
+  {
+    picture: Zed,
+    name: "Zedekiah Ambogo",
+    title: "Product designer",
+    socialMediaIcon1: Web,
+    socialMediaIcon2: LinkedIn,
+    socialMediaIcon3: Twitter
   },
   {
     picture: Joseph,
@@ -78,21 +137,37 @@ const members = [
     socialMediaIcon3: Github
   },
   {
-    picture: Ben,
-    name: "Bennett Ben",
+    picture: Asanze,
+    name: "Asanze",
+    title: "Product designer",
+    socialMediaIcon1: LinkedIn,
+    socialMediaIcon2: Twitter,
+    socialMediaIcon3: Web
+  },
+  {
+    picture: Andrew,
+    name: "Andrew Alalibo",
     title: "Product designer",
     socialMediaIcon1: Web,
     socialMediaIcon2: LinkedIn,
     socialMediaIcon3: Twitter
   },
   {
-    picture: John,
-    name: "John Alafitayo",
-    title: "Backend developer",
-    socialMediaIcon1: Github,
+    picture: Ben,
+    name: "Bennett Ben",
+    title: "Product designer",
+    socialMediaIcon1: Web,
     socialMediaIcon2: LinkedIn,
     socialMediaIcon3: Twitter
   }
+  // {
+  //   picture: Henzyd,
+  //   name: "Uchechukwu Anachuna",
+  //   title: "Frontend developer",
+  //   socialMediaIcon1: Web,
+  //   socialMediaIcon2: LinkedIn,
+  //   socialMediaIcon3: Twitter
+  // }
 ];
 
 const Team = () => {
@@ -138,6 +213,8 @@ const Team = () => {
           </figure>
         ))}
       </div>
+      {/* button */}
+      {/* <Button name={"View more"} type="button" className="view"></Button> */}
     </section>
   );
 };
