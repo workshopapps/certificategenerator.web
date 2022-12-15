@@ -185,7 +185,7 @@ const Team = () => {
       <div className="containers">
         {members.map((member, id) => (
           <figure className="figures" key={id}>
-            <img src={member.picture} alt="A team member photograph" />
+            <img src={member.picture} alt="A team member photograph" width="82px" height="82px" style={{ borderRadius: "10px" }} />
             <figcaption className="name">{member.name}</figcaption>
             <figcaption className="title">{member.title}</figcaption>
             <div className="icon">
