@@ -8,6 +8,7 @@ import Ehis from "../../assets/images/team/ehis.svg";
 import John from "../../assets/images/team/john.jpg";
 import Moyo from "../../assets/images/team/moyo.svg";
 import Ajayi from "../../assets/images/team/ajayi.svg";
+import Henry from "../../assets/images/team/henry.jpg";
 import Joseph from "../../assets/images/team/joseph.svg";
 import Luqman from "../../assets/images/team/luqman.svg";
 import Samuel from "../../assets/images/team/samuel.svg";
@@ -92,6 +93,14 @@ const members = [
     socialMediaIcon1: Github,
     socialMediaIcon2: LinkedIn,
     socialMediaIcon3: Twitter
+  },
+  {
+    picture: Henry,
+    name: "Uchechukwu Henry Anachuna",
+    title: "Frontend developer",
+    socialMediaIcon1: Github,
+    socialMediaIcon2: LinkedIn,
+    socialMediaIcon3: Web
   }
 ];
 
