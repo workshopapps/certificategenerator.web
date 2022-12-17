@@ -16,8 +16,6 @@ function SectionCarousel() {
     } else {
       setcurrentImageIndex(currentImageIndex + 1);
     }
-
-    console.log("next");
   };
   const prev = e => {
     e.preventDefault();
@@ -26,8 +24,6 @@ function SectionCarousel() {
     } else {
       setcurrentImageIndex(currentImageIndex + 1);
     }
-
-    console.log("prev");
   };
   // const { currentImageIndex } = state;
   return (
