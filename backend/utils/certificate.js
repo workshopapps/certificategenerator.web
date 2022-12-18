@@ -110,4 +110,10 @@ function getNameFromImgPath(imgPath) {
   return imgPath.split(path.sep).pop().slice(36).split(".")[0];
 }
 
-module.exports = { convertCertificates, handleZip, handleSplitPdf };
+module.exports = {
+  convertCertificates,
+  handleZip,
+  handleSplitPdf,
+  convertCertificate,
+  PDFSIZE
+};

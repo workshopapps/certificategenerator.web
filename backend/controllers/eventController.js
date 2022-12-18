@@ -9,6 +9,8 @@ const {
   handleResponse,
   createApiError
 } = require("../utils/helpers");
+const imageToPdf = require("image-to-pdf");
+const { convertCertificate, PDFSIZE } = require("../utils/certificate");
 
 const getAllEvents = handleAsync(async (req, res) => {
   // Get logged in user from req.user via auth middleware
@@ -137,7 +139,7 @@ const editEvent = handleAsync(async (req, res) => {
 
 const getCertificateByEmail = handleAsync(async (req, res) => {
   const { eventId } = req.params;
-  const { email } = req.body;
+  const { email, template = 3 } = req.body;
   const query = {};
 
   // Email is required
@@ -171,7 +173,11 @@ const getCertificateByEmail = handleAsync(async (req, res) => {
 
   if (!certificate) throw createApiError("Certificate Not Found", 404);
 
-  res.status(200).json(handleResponse({ certificate }));
+  // Convert certificate to image
+  const imgPath = await convertCertificate(certificate, template);
+
+  // Generate pdf from image and send pdf as response
+  imageToPdf([imgPath], PDFSIZE).pipe(res);
 });
 
 const validateCustomURI = handleAsync(async (req, res) => {
