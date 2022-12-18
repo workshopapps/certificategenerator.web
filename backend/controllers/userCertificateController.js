@@ -352,7 +352,8 @@ const downloadCertificates = handleAsync(async (req, res) => {
       return res.end(buffer);
 
     case "pdf-split":
-      const t_buffer = await handleSplitPdf(paths);
+      const pdfPaths = await handleSplitPdf(paths);
+      const t_buffer = handleZip(pdfPaths);
       res.attachment("certificate.zip");
       return res.end(t_buffer);
 
@@ -393,7 +394,8 @@ const downloadUnauthorised = handleAsync(async (req, res) => {
       return res.end(buffer);
 
     case "pdf-split":
-      const t_buffer = await handleSplitPdf(paths);
+      const pdfPaths = await handleSplitPdf(paths);
+      const t_buffer = handleZip(pdfPaths);
       res.attachment("certificate.zip");
       return res.end(t_buffer);
 
