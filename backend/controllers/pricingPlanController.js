@@ -1,27 +1,42 @@
 const User = require("../models/userModel");
+const {
+  handleAsync,
+  createApiError,
+  handleResponse
+} = require("../utils/helpers");
 
+const updateUserPlan = handleAsync(async (req, res) => {
+  const userId = req.user._id;
+  const payload = req.body;
 
-const updateUserPlan = async (req, res) => {
-  const { 
-    body: { plan }, 
-    params: { id } } = req
-    if(!plan || !id) {
-        return res.status(400).json({ "error": "All fields are required"})
-    }
-    if (!id.match(/^[0-9a-fA-F]{24}$/)) {
-        return res.status(403).json({ error: "Not a valid user ID" });
-      }
-  const foundUser = await User.findById(id).exec()
-  if (!foundUser) {
-      return res.status(400).json({ message: `No user found with id ${id}`})
+  if (!payload) {
+    throw createApiError("Bad request", 400);
   }
-  foundUser.subscription = plan
-  const update = await foundUser.save()
-  res.status(200).json({ update })
-}
 
+  const user = await User.findOne({ _id: userId }).exec();
 
+  if (!user) {
+    throw createApiError("user does not exist", 400);
+  }
+
+  const newPlan = payload.plan.toLowerCase();
+
+  const pricingPlanTest = ["basic", "standard", "premium"].some(value => {
+    return value === newPlan;
+  });
+
+  if (!pricingPlanTest) {
+    throw createApiError("invalid plan", 400);
+  }
+
+  user.subscription = newPlan;
+  await user.save();
+
+  res
+    .status(200)
+    .json(handleResponse(`${user.name} plan upgraded to ${newPlan}`));
+});
 
 module.exports = {
-    updateUserPlan,
-}
+  updateUserPlan
+};

@@ -5,7 +5,7 @@ import "./bulkcertdesign.style.scss";
 
 const BulkCertDesign3 = React.forwardRef(({ item }, ref) => {  
   return (
-    <div ref={ref}>
+    <div id='bulk_cert' ref={ref}>
       {/* START OF CERTIFICATE */}
       <div id="downloadWrapper" className='multiple'>
         <div id ='template3-wrapper'>

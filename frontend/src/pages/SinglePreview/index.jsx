@@ -16,7 +16,6 @@ import Template2 from "./Templates/template2";
 import Template3 from "./Templates/template3";
 import { PDFExport, savePDF } from "@progress/kendo-react-pdf";
 
-
 function SinglePreview({
   logo,
   certificateTitle,
@@ -66,7 +65,7 @@ function SinglePreview({
 
   // const container = React.useRef(null);
   const pdfExportComponent = React.useRef(null);
-  
+
   // const exportPDFWithMethod = () => {
   //   let element = container.current || document.body;
   //   savePDF(element, {
@@ -100,7 +99,6 @@ function SinglePreview({
   //   pdf.save(`${awardeeName}.pdf`);
   // };
 
-  
   const Toast = Swal.mixin({
     toast: true,
     position: "top-end",
@@ -123,58 +121,58 @@ function SinglePreview({
         setModalMessage("You need to sign up to send certificate to your mail");
         return;
       }
-      navigate("/comingsoon");
-      // const element = certificateWrapper.current;
-      // const canvas = await html2canvas(element);
-      // const data = canvas.toDataURL("image/png");
+      // navigate("/comingsoon");
+      const element = certificateWrapper.current;
+      const canvas = await html2canvas(element);
+      const data = canvas.toDataURL("image/png");
 
-      // const pdf = new jsPDF({
-      //   orientation: "l",
-      //   unit: "pt",
-      //   format: [canvas.width, canvas.height]
-      // });
-      // pdf.addImage(data, "PNG", 0, 0, canvas.width, canvas.height);
+      const pdf = new jsPDF({
+        orientation: "l",
+        unit: "pt",
+        format: [canvas.width, canvas.height]
+      });
+      pdf.addImage(data, "PNG", 0, 0, canvas.width, canvas.height);
 
       // get token from localstorage
-      // const token = JSON.parse(localStorage.getItem("userData")).token;
+      const token = JSON.parse(localStorage.getItem("userData")).token;
 
       // create form data and add pdf
-      // let formData = new FormData();
-      // formData.append("file", data);
+      let formData = new FormData();
+      formData.append("file", data);
 
       // send the form data
-      // const uploadUrl = "/sendEmailNotifications";
-      // let response = await axiosFormData.post(uploadUrl, formData, {
-      //   headers: {
-      //     Authorization: `Bearer ${token}`,
-      //     "Content-Type": "multipart/form-data"
-      //   }
-      // });
+      const uploadUrl = "/sendEmailNotifications";
+      let response = await axiosFormData.post(uploadUrl, formData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "multipart/form-data"
+        }
+      });
       // toast message
-      // const dataMsg = response.data;
-      // if (response.status === 200) {
-      //   Toast.fire({
-      //     icon: "success",
-      //     title: dataMsg.message
-      //   });
-      // } else if (response.status === 403) {
-      //   Toast.fire({
-      //     icon: "error",
-      //     title: dataMsg.error
-      //   });
-      // } else {
-      //   Toast.fire({
-      //     icon: "error",
-      //     title: dataMsg.message
-      //   });
-      //   throw new Error(dataMsg.message);
-      // }
+      const dataMsg = response.data;
+      if (response.status === 200) {
+        Toast.fire({
+          icon: "success",
+          title: dataMsg.message
+        });
+      } else if (response.status === 403) {
+        Toast.fire({
+          icon: "error",
+          title: dataMsg.error
+        });
+      } else {
+        Toast.fire({
+          icon: "error",
+          title: dataMsg.message
+        });
+        throw new Error(dataMsg.message);
+      }
     } catch (error) {
-      // console.log(error);
-      // Toast.fire({
-      //   icon: "error",
-      //   title: "Internal Server Error"
-      // });
+      console.log(error);
+      Toast.fire({
+        icon: "error",
+        title: "Internal Server Error"
+      });
     }
   };
   return (
@@ -212,67 +210,63 @@ function SinglePreview({
       </div> */}
 
       {templateone && (
-          <PDFExport
+        <PDFExport
           ref={pdfExportComponent}
           paperSize="auto"
-         
           fileName={`${awardeeName}`}
           author="Certgo Team"
-    
         >
-          <div>
-              <Template1
-            logo={logo}
-            certificateTitle={certificateTitle}
-            awardeeName={awardeeName}
-            message={message}
-            issuedBy={issuedBy}
-            issueDate={issueDate}
-          />
+          <div ref={certificateWrapper}>
+            <Template1
+              logo={logo}
+              certificateTitle={certificateTitle}
+              awardeeName={awardeeName}
+              message={message}
+              issuedBy={issuedBy}
+              issueDate={issueDate}
+            />
           </div>
         </PDFExport>
       )}
       {templatetwo && (
-       <PDFExport
-       ref={pdfExportComponent}
-       paperSize="auto"
-      
-       fileName={`${awardeeName}`}
-       author="Certgo Team"
-       //scale = {0.6}
-     >
-       <div>
-           <Template2
-         logo={logo}
-         certificateTitle={certificateTitle}
-         awardeeName={awardeeName}
-         message={message}
-         issuedBy={issuedBy}
-         issueDate={issueDate}
-       />
-       </div>
-     </PDFExport>
+        <PDFExport
+          ref={pdfExportComponent}
+          paperSize="auto"
+          fileName={`${awardeeName}`}
+          author="Certgo Team"
+          //scale = {0.6}
+        >
+          <div ref={certificateWrapper}>
+            <Template2
+              logo={logo}
+              certificateTitle={certificateTitle}
+              awardeeName={awardeeName}
+              message={message}
+              issuedBy={issuedBy}
+              issueDate={issueDate}
+            />
+          </div>
+        </PDFExport>
       )}
       {templatethree && (
-      <PDFExport
-      ref={pdfExportComponent}
-      paperSize="auto"
-     
-      fileName={`${awardeeName}`}
-      author="Certgo Team"
-      //scale = {0.6}
-    >
-      <div>
-          <Template3
-        logo={logo}
-        certificateTitle={certificateTitle}
-        awardeeName={awardeeName}
-        message={message}
-        issuedBy={issuedBy}
-        issueDate={issueDate}
-      />
-      </div>
-    </PDFExport>
+        <PDFExport
+          ref={pdfExportComponent}
+          paperSize="auto"
+          fileName={`${awardeeName}`}
+          author="Certgo Team"
+          //scale = {0.6}
+        >
+          <div ref={certificateWrapper}>
+            <Template3
+              logo={logo}
+              certificateTitle={certificateTitle}
+              awardeeName={awardeeName}
+              message={message}
+              issuedBy={issuedBy}
+              issueDate={issueDate}
+            />
+          </div>
+        </PDFExport>
       )}
 
       {/* END OF CERTIFICATE */}
@@ -306,7 +300,7 @@ function SinglePreview({
               >
                 PNG
               </button>
-              <button   onClick={exportPDFWithComponent} className="pdf-button">
+              <button onClick={exportPDFWithComponent} className="pdf-button">
                 PDF
               </button>
             </div>

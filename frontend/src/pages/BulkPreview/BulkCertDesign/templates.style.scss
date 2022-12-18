@@ -1,137 +1,212 @@
-//TEMPLATE TWO
-#template2-wrapper {
-  width: 98%;
-  margin: auto;
-  padding: 2px;
-  max-width: 600px;
-  position: relative;
-  background: #eee;
-  border: 3px solid #19acbe;
-
-  #certificateWrapper2 {
-    margin: 1px;
-    padding: 7px;
-    background: #19acbe;
-    border: 2px solid #19acbe;
+#bulk_cert {
+  //TEMPLATE TWO
+  #container-logo {
+    width: 80px !important;
+    height: 80px !important;
+    border-radius: 50% !important
   }
 
-  #template2-container {
-    margin: 5px;
-    padding: 1px;
-    background: #eee;
-    border: 2px solid #19acbe;
-  }
-
-  #template2-design {
-    margin: 1px;
-    background: white;
-    border: 3px solid #19acbe;
-  }
-
-  h2,
-  h6,
-  p,
-  .issue-by {
-    color: #19acbe !important;
-  }
-
-  #preview-text h2 {
-    border-bottom: 2px solid #19acbe !important;
-  }
-
-  #single-preview-card {
-    padding: 10px;
-
-  }
-
-  #preview-text {
-    margin-top: 20px;
-  }
-
-  .single-preview-issue {
-    margin: 20px 0px 15px 10px;
-
-    .line {
-      border-bottom: 1px solid #19acbe !important;
-    }
-  }
-}
-
-@media screen and (min-width:768px) {
   #template2-wrapper {
-    width: 98%;
+    width: 90%;
     margin: auto;
     padding: 2px;
-    max-width: 700px;
+    max-width: 600px;
     position: relative;
     background: #eee;
+    min-height: fit-content;
     border: 3px solid #19acbe;
-  }
-}
 
-//TEMPLATE THREE
-#template3-wrapper {
-  width: 98%;
-  margin: auto;
-  padding: 2px;
-  max-width: 600px;
-  position: relative;
-  border-radius: 5px;
-  background: #fff;
-  border: 3px solid #264534;
+    #certificateWrapper2 {
+      margin: 1px;
+      padding: 7px;
+      background: #19acbe;
+      border: 2px solid #19acbe;
+      min-height: fit-content !important;
+    }
 
-  #certificateWrapper3 {
-    margin: 1px;
-    border: 3px dotted #264534;
-  }
+    #template2-container {
+      margin: 5px;
+      padding: 1px;
+      background: #eee;
+      min-height: fit-content;
+      border: 2px solid #19acbe;
+    }
 
-  #template3-container {
-    margin: 5px;
-    padding: 1px;
-    background: #fff;
-  }
+    #template2-design {
+      margin: 1px;
+      background: white;
+      min-height: fit-content;
+      border: 3px solid #19acbe;
+    }
 
-  #template3-design {
-    margin: 1px;
-    background: white;
-  }
+    h2,
+    h6,
+    p,
+    .issue-by {
+      color: #19acbe !important;
+    }
 
-  h2,
-  h6,
-  p,
-  .issue-by {
-    color: #264534 !important;
-  }
+    #preview-text h2 {
+      border-bottom: 2px solid #19acbe !important;
+    }
 
-  #preview-text h2 {
-    border-bottom: 2px solid #264534 !important;
-  }
+    #single-preview-card {
+      padding: 10px;
+    }
 
-  #single-preview-card {
-    padding: 10px;
-  }
+    #preview-text {
+      margin-top: 20px;
+    }
 
-  #preview-text {
-    margin-top: 20px;
-  }
+    .single-preview-issue {
+      margin: 20px 0px 15px 0px;
 
-  .single-preview-issue {
-    margin: 20px 0px 15px 0px;
-
-    .line {
-      border-bottom: 1px solid #264534 !important;
+      .line {
+        border-bottom: 1px solid #19acbe !important;
+      }
     }
   }
-}
 
-@media screen and (min-width:768px) {
+  @media screen and (min-width:768px) {
+    #template2-wrapper {
+      width: 90%;
+      margin: auto;
+      padding: 2px;
+      max-width: 700px;
+      position: relative;
+      background: #eee;
+      min-height: fit-content;
+      border: 3px solid #19acbe;
+    }
+  }
+
+  @media screen and (min-width:1024px) {
+
+    #container-logo {
+      width: 100px !important;
+      height: 100px !important;
+      border-radius: 50% !important
+    }
+
+    #template2-wrapper {
+      width: 90%;
+      margin: auto;
+      padding: 2px;
+      max-width: 700px;
+      position: relative;
+      background: #eee;
+      min-height: fit-content;
+      border: 3px solid #19acbe;
+    }
+
+    #certificateWrapper2,
+    #template2-container,
+    #template2-design {
+      min-height: fit-content !important;
+    }
+
+    .single-preview-issue {
+      margin: 0px 0px 35px 0px !important;
+    }
+  }
+
+  //TEMPLATE THREE
+  #container-logo {
+    width: 80px !important;
+    height: 80px !important;
+    border-radius: 50% !important
+  }
+
   #template3-wrapper {
-    width: 98%;
+
+    position: relative;
+    width: 90%;
     margin: auto;
     padding: 2px;
-    max-width: 700px;
-    position: relative;
+    max-width: 600px;
+    border-radius: 5px;
     background: #fff;
+    min-height: fit-content;
     border: 3px solid #264534;
+
+    #certificateWrapper3 {
+      margin: 1px;
+      border: 3px dotted #264534;
+      min-height: fit-content !important;
+    }
+
+    #template3-container {
+      margin: 5px;
+      padding: 1px;
+      min-height: 260px;
+      background: #fff;
+    }
+
+    #template3-design {
+      margin: 1px;
+      min-height: 260px;
+      background: white;
+    }
+
+    h2,
+    h1,
+    h6,
+    p,
+    .issue-by {
+      color: #264534 !important;
+    }
+
+    #preview-text h2 {
+      border-bottom: 2px solid #264534 !important;
+    }
+
+    #single-preview-card {
+      padding: 10px;
+    }
+
+    #preview-text {
+      margin-top: 20px;
+      position: relative;
+      top: 0px !important;
+    }
+
+    .single-preview-issue {
+      position: relative;
+      top: 35px !important;
+      margin: 0px 0px 50px 0px;
+
+      .line {
+        border-bottom: 1px solid #264534 !important;
+      }
+    }
+  }
+
+  @media screen and (min-width:768px) {
+    #template3-wrapper {
+      width: 90%;
+      margin: auto;
+      padding: 2px;
+      max-width: 700px;
+      position: relative;
+      background: #fff;
+      min-height: fit-content;
+      border: 3px solid #264534;
+    }
+  }
+
+  @media screen and (min-width:1024px) {
+    #container-logo {
+      width: 100px !important;
+      height: 100px !important;
+      border-radius: 50% !important
+    }
+
+    #template3-wrapper {
+      min-height: fit-content;
+    }
+
+    #certificateWrapper3 {
+      min-height: fit-content !important;
+    }
   }
 }

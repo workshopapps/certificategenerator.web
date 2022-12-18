@@ -44,8 +44,8 @@ export const data = [
           header: "More features customised for you",
           amount: "$2.99",
           text: "Everything in Basic +",
-          linkTo: "/signup",
-          AfterLogin: "/payment",
+          linkTo: "/comingsoon",
+          AfterLogin: "/comingsoon",
           linkText: "Choose plan",
           subText: [
             {
@@ -88,8 +88,8 @@ export const data = [
           header: "Best for professionals",
           amount: "$6.99",
           text: "Everything in Standard +",
-          AfterLogin: "/payment",
-          linkTo: "/signup",
+          AfterLogin: "/comingsoon",
+          linkTo: "/comingsoon",
           linkText: "Choose plan",
           subText: [
             {
@@ -178,8 +178,8 @@ export const data = [
           header: "More features customised for you",
           amount: "$14.99",
           text: "Everything in Basic +",
-          linkTo: "/payment",
-          AfterLogin: "/payment",
+          linkTo: "/comingsoon",
+          AfterLogin: "/comingsoon",
           linkText: "Choose plan",
           subText: [
             {
@@ -222,8 +222,8 @@ export const data = [
           header: "Best for professionals",
           amount: "$74.99",
           text: "Everything in Standard +",
-          linkTo: "/payment",
-          AfterLogin: "/payment",
+          linkTo: "/comingsoon",
+          AfterLogin: "/comingsoon",
           linkText: "Choose plan",
           subText: [
             {

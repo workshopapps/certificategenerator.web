@@ -138,7 +138,7 @@ async function handleSplitPdf(imagePaths = [], size = PDFSIZE) {
 
   const pdfPaths = await Promise.all(pdfPromises);
 
-  return handleZip(pdfPaths);
+  return pdfPaths;
 }
 
 const FORMATTYPES = {
@@ -158,5 +158,7 @@ module.exports = {
   convertCertificates,
   handleZip,
   handleSplitPdf,
-  convertSingleCertificate
+  convertSingleCertificate,
+  convertCertificate,
+  PDFSIZE
 };

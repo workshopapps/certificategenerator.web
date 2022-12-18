@@ -6,35 +6,35 @@
 }
 
 #template2-wrapper {
+  position: relative;
   width: 90%;
   margin: auto;
   padding: 2px;
   max-width: 600px;
-  position: relative;
+  min-height: 400px;
   background: #eee;
-  min-height: fit-content;
   border: 3px solid #19acbe;
 
   #certificateWrapper2 {
     margin: 1px;
     padding: 7px;
+    min-height: 400px;
     background: #19acbe;
     border: 2px solid #19acbe;
-    min-height: fit-content !important;
   }
 
   #template2-container {
     margin: 5px;
     padding: 1px;
+    min-height: 400px;
     background: #eee;
-    min-height: fit-content;
     border: 2px solid #19acbe;
   }
 
   #template2-design {
     margin: 1px;
+    min-height: 400px;
     background: white;
-    min-height: fit-content;
     border: 3px solid #19acbe;
   }
 
@@ -74,7 +74,6 @@
     max-width: 700px;
     position: relative;
     background: #eee;
-    min-height: fit-content;
     border: 3px solid #19acbe;
   }
 }
@@ -92,16 +91,16 @@
     margin: auto;
     padding: 2px;
     max-width: 700px;
+    min-height: 500px;
     position: relative;
     background: #eee;
-    min-height: fit-content;
     border: 3px solid #19acbe;
   }
 
   #certificateWrapper2,
   #template2-container,
   #template2-design {
-    min-height: fit-content !important;
+    min-height: 500px !important;
   }
 
   .single-preview-issue {
@@ -117,33 +116,30 @@
 }
 
 #template3-wrapper {
-
-  position: relative;
   width: 90%;
   margin: auto;
   padding: 2px;
   max-width: 600px;
+  min-height: 400px;
+  position: relative;
   border-radius: 5px;
   background: #fff;
-  min-height: fit-content;
   border: 3px solid #264534;
 
   #certificateWrapper3 {
     margin: 1px;
+    min-height: 400px;
     border: 3px dotted #264534;
-    min-height: fit-content !important;
   }
 
   #template3-container {
     margin: 5px;
     padding: 1px;
-    min-height: 260px;
     background: #fff;
   }
 
   #template3-design {
     margin: 1px;
-    min-height: 260px;
     background: white;
   }
 
@@ -188,7 +184,6 @@
     max-width: 700px;
     position: relative;
     background: #fff;
-    min-height: fit-content;
     border: 3px solid #264534;
   }
 }
@@ -201,10 +196,10 @@
   }
 
   #template3-wrapper {
-    min-height: fit-content;
+    min-height: 500px;
   }
 
   #certificateWrapper3 {
-    min-height: fit-content !important;
+    min-height: 500px !important;
   }
 }
