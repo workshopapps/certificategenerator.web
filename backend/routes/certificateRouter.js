@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const fileExtLimiter = require("../middleware/fileExtLimiter");
 const fileUpload = require("express-fileupload");
+const upload = require("multer");
 
 const {
   getAllCertificates,
@@ -15,12 +16,27 @@ const {
   updateCertificateStatus,
   verifyCertificate,
   downloadCertificates,
-  downloadUnauthorised
+  downloadUnauthorised,
+  downloadSingleCertificate,
+  downloadSingleCertificateUnauthorised
 } = require("../controllers/userCertificateController");
 const authentication = require("../middleware/authentication");
+const os = require("os");
+const multer = require("multer");
 
 router.get("/issuedCertificates", authentication, getNoOfCertificatesIssued);
 router.post("/download", authentication, downloadCertificates);
+router.post(
+  "/download/single",
+  authentication,
+  upload({ dest: os.tmpdir() }).single("logo"),
+  downloadSingleCertificate
+);
+router.post(
+  "/download/unauthorised/single",
+  upload({ dest: os.tmpdir() }).single("logo"),
+  downloadSingleCertificateUnauthorised
+);
 router.post("/download/unauthorised", downloadUnauthorised);
 router.get("/", authentication, getAllCertificates);
 router.get("/status", authentication, getCertificateStatus);

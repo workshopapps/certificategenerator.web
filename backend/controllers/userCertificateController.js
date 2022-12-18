@@ -13,7 +13,8 @@ const {
 const {
   convertCertificates,
   handleZip,
-  handleSplitPdf
+  handleSplitPdf,
+  convertSingleCertificate
 } = require("../utils/certificate");
 const imageToPdf = require("image-to-pdf");
 
@@ -405,6 +406,127 @@ const downloadUnauthorised = handleAsync(async (req, res) => {
   }
 });
 
+const downloadSingleCertificate = handleAsync(async (req, res) => {
+  const user = req.user;
+  const { certificateId, template = 1, format = "pdf" } = req.body;
+
+  // I did this because I didn't want to rename user globally
+  // and I wanted to avoid confusion
+  const Certificate = User;
+
+  // Invalid option provided
+  if (!["pdf", "img", "pdf-split"].includes(format.toLowerCase()))
+    throw createApiError(
+      "Invalid option provided. Option must be one of 'pdf', 'img' and 'pdf-split'",
+      400
+    );
+
+  // Validate certificates input
+  if (!mongoose.isValidObjectId(certificateId))
+    throw createApiError("Invalid certificate Id", 400);
+
+  // Validate template
+  if (typeof Number(template) !== "number")
+    throw createApiError("template must be a number", 400);
+
+  const collection = await Certificate.findOne({
+    userId: user._id
+  });
+
+  // if no certificates return 404
+  if (!collection) throw createApiError("Certificate Not Found", 404);
+
+  // if records are empty return 404
+  if (!collection.records || collection.records?.length === 0)
+    throw createApiError("Certificate Not Found", 404);
+
+  // Get certificates that have ids in certIds
+  const cert = collection.records.find(
+    certificate => certificate._id.toString() === certificateId
+  );
+
+  if (!cert) throw createApiError("Certificate Not Found", 404);
+
+  // Generate image for each certificate
+  const paths = await convertSingleCertificate(cert, Number(template), logo);
+
+  switch (format.toLowerCase()) {
+    case "pdf":
+      return imageToPdf([paths], [931, 600]).pipe(res);
+
+    case "img":
+      res.attachment("certificate.img");
+      return res.download(paths);
+
+    default:
+      // Return certificate to frontend
+      return imageToPdf([paths], [1180, 760]).pipe(res);
+  }
+});
+
+const downloadSingleCertificateUnauthorised = handleAsync(async (req, res) => {
+  const {
+    template = 1,
+    format = "pdf",
+    name,
+    award,
+    signed,
+    date,
+    description,
+    nameoforganization
+  } = req.body;
+
+  const certificate = {
+    name,
+    award,
+    signed,
+    date,
+    description,
+    nameoforganization
+  };
+
+  const logo = req.file.path;
+
+  console.log(req.file);
+
+  // I did this because I didn't want to rename user globally
+  // and I wanted to avoid confusion
+
+  // Invalid option provided
+  if (!["pdf", "img"].includes(format.toLowerCase()))
+    throw createApiError(
+      "Invalid option provided. Option must be one of 'pdf', 'img' and 'pdf-split'",
+      400
+    );
+
+  // Validate certificates input
+  if (!certificate) throw createApiError("Invalid certificate Id", 400);
+
+  // Validate template
+  if (typeof Number(template) !== "number")
+    throw createApiError("template must be a number", 400);
+
+  // Generate image for each certificate
+  const paths = await convertSingleCertificate(
+    certificate,
+    Number(template),
+    logo
+  );
+
+  switch (format.toLowerCase()) {
+    case "pdf":
+      return imageToPdf([paths], [931, 600]).pipe(res);
+
+    case "img":
+      res.attachment("certificate.img");
+      return res.download(paths);
+
+    default:
+      // Return certificate to frontend
+      return imageToPdf([paths], [1180, 760]).pipe(res);
+  }
+});
+
 module.exports = {
   getAllCertificates,
   addCertificate,
@@ -417,5 +539,7 @@ module.exports = {
   updateCertificateStatus,
   deleteUserCertificates,
   downloadCertificates,
-  downloadUnauthorised
+  downloadUnauthorised,
+  downloadSingleCertificate,
+  downloadSingleCertificateUnauthorised
 };
