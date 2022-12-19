@@ -7,6 +7,8 @@ import Avatar from "../../../assets/svgs/default-brandkit.svg";
 import CaretUp from "../../../assets/svgs/caret-up.svg";
 import CaretDown from "../../../assets/svgs/caret-down.svg";
 import Logout from "../assets/logout.svg";
+import Profile from "../assets/profile-circle.svg";
+import DashboardIcon from "../assets/dashboard-icon.svg";
 
 function DropDown() {
   const accessToken = JSON.parse(localStorage.getItem("userData")).token;
@@ -74,17 +76,23 @@ function DropDown() {
       </div>
       {isOpen && (
         <div className="drop" onClick={() => setIsOpen(false)}>
-          <Link to="/dashboard">
-            <span className="drop__item">Dashboard</span>
+          <Link to="/dashboard" className="drop__item">
+            <span>
+              <img src={DashboardIcon} alt="logout-icon" />
+            </span>
+            <span>Dashboard</span>
           </Link>
-          <Link to="/profile">
-            <span className="drop__item">View Profile</span>{" "}
+          <Link to="/profile" className="drop__item">
+            <span>
+              <img src={Profile} alt="logout-icon" />
+            </span>
+            <span>View Profile</span>{" "}
           </Link>
           <span className="drop__item" onClick={handleLogout}>
             <span>
               <img src={Logout} alt="logout-icon" />
-            </span>{" "}
-            <span>Log out</span>
+            </span>
+            <span id="logout">Log out</span>
           </span>
         </div>
       )}
