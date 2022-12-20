@@ -29,35 +29,37 @@ export default function DeleteModal({ onClose }) {
   }
 
   return (
-    <div className="deletemodal">
-      <div
-        className="deletemodal__container"
-        onClick={e => e.stopPropagation()}
-      >
-        <h4>Are you sure you want to delete your account?</h4>
-        <div className="delete-actions">
-          <Button
-            style={{
-              background: "#F84343",
-              color: "#FFFFFF",
-              border: "1px solid #F84343",
-              width: "76px"
-            }}
-            onClick={handleDelete}
-          >
-            Yes
-          </Button>
-          <Button
-            style={{
-              background: "transparent",
-              color: "#F84343",
-              border: "1px solid #F84343",
-              width: "76px"
-            }}
-            onClick={onClose}
-          >
-            No
-          </Button>
+    <div className="deleteconfirm">
+      <div className="deletemodal">
+        <div
+          className="deletemodal__container"
+          onClick={e => e.stopPropagation()}
+        >
+          <h4>Are you sure you want to delete your account?</h4>
+          <div className="delete-actions">
+            <Button
+              style={{
+                background: "#F84343",
+                color: "#FFFFFF",
+                border: "1px solid #F84343",
+                width: "76px"
+              }}
+              onClick={handleDelete}
+            >
+              Yes
+            </Button>
+            <Button
+              style={{
+                background: "transparent",
+                color: "#F84343",
+                border: "1px solid #F84343",
+                width: "76px"
+              }}
+              onClick={onClose}
+            >
+              No
+            </Button>
+          </div>
         </div>
       </div>
     </div>
