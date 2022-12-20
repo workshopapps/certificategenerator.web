@@ -25,7 +25,7 @@ function Index() {
   const [emailLoading, setEmailLoading] = useState(false);
   const [isAuntheticated, setIsAuntheticated] = useState(false);
   const [interactiveModal, setInteractiveModal] = useState(false);
-  const baseURL = "https://certgo.hng.tech/api";
+  const baseURL = "https://api.certgo.app/api";
   axios.create({
     baseURL
   });
