@@ -15,7 +15,7 @@ const EditModal = ({ open, onClose, getUserCertificates, editData }) => {
   const [signed, setSigned] = useState(editData.signed);
   const [email, setEmail] = useState(editData.email);
   const [loading, setLoading] = useState(false);
-  const baseURL = "https://certgo.hng.tech/api";
+  const baseURL = "https://api.certgo.app/api";
   const accessToken = JSON.parse(localStorage.getItem("userData")).token;
 
 console.log(name);

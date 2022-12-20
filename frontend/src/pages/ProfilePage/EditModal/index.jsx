@@ -51,7 +51,7 @@ const Modalpro = ({ onClose }) => {
       });
   };
 
-  const url = "https://certgo.hng.tech/api/profile";
+  const url = "https://api.certgo.app/api/profile";
   const handleOnchange = e => {
     const newdata = { ...data };
     newdata[e.target.id] = e.target.value;
@@ -159,7 +159,7 @@ const Modalpro = ({ onClose }) => {
       setMyAvatar(URL.createObjectURL(image));
       console.log(formData);
       const response = await fetch(
-        "https://certgo.hng.tech/api/profile/avatar",
+        "https://api.certgo.app/api/profile/avatar",
         {
           headers: {
             //"Content-Type": "multipart/form-data",

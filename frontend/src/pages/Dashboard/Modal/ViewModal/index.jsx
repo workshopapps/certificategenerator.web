@@ -22,7 +22,8 @@ function ViewModal({ open, onClose, getUserCertificates, viewData }) {
   const [template, setTemplate] = useState(2)
   const [loading, setLoading] = useState(false)
   const [drop, setDrop] = useState(false)
-  const baseURL = "https://certgo.hng.tech/api";
+
+  const baseURL = "https://api.certgo.app/api";
   axios.create({
     baseURL
   });
@@ -88,6 +89,21 @@ function ViewModal({ open, onClose, getUserCertificates, viewData }) {
     download(blob, "certificate.zip");
     setLoading(false);
   }
+  // const handleSendMail = async (id) => {
+  // const handleSendMail = async (id) => {
+  //   console.log(id);
+  //   setLoading(true);
+  //   const res = await axiosPrivate.post("/certificates/download", {
+  //     certificateIds: [id],
+  //     format: "pdf",
+  //     template: template
+  //   });
+  //   const data = res.data;
+  //   if (!(data instanceof Blob)) return;
+  //   const blob = new Blob([data], { type: "application/pdf" });
+  //   // download(blob, "certificate.pdf");
+  //   setLoading(false);
+  // }
   if (!open) return null;
   return (
     <div onClick={onClose} className="view-modal-wrapper">
@@ -98,16 +114,25 @@ function ViewModal({ open, onClose, getUserCertificates, viewData }) {
         </div>
         <div className="modal-container__body">
           <div>
-            
-
-             {templateone && <BulkCertDesign1 item={viewData}/>}
-             {templatetwo && <BulkCertDesign2 item={viewData}/>}
-             {templatethree && <BulkCertDesign3 item={viewData}/>}
-              
-            
+            {templateone && <BulkCertDesign1 item={viewData} />}
+            {templatetwo && <BulkCertDesign2 item={viewData} />}
+            {templatethree && <BulkCertDesign3 item={viewData} />}
           </div>
-          <div className="center" >
-          {/* {loading ? (
+          <div className="center">
+            {loading ? (
+              <Button
+                name="Sending certificates..."
+                style={{ padding: "10px", marginTop: "1rem" }}
+              />
+            ) : (
+              <Button
+                name="Send certificates"
+                // onClick={handleSendMail(viewData._id)}
+                style={{ padding: "10px", marginTop: "1rem" }}
+              />
+            )}
+            {/* <Button name="Send certificates" style={{ padding: "10px", marginTop: "1rem" }} /> */}
+            {/* {loading ? (
             <div>
               <button
                 className="loading"
@@ -132,9 +157,9 @@ function ViewModal({ open, onClose, getUserCertificates, viewData }) {
               </div>}
             </>
           )} */}
-          <p style={{marginTop: '1rem'}}>More Templates for you</p>
+            <p style={{ marginTop: "1rem" }}>More Templates for you</p>
           </div>
-          <div className="template-images" >
+          <div className="template-images">
             <img onClick={handleTemplate1} src={certificate2} alt="templates" />
             <img onClick={handleTemplate2} src={certificate} alt="templates" />
             <img onClick={handleTemplate3} src={certificate3} alt="templates" />

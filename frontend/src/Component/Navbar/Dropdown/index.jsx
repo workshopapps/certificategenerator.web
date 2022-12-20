@@ -13,7 +13,7 @@ import DashboardIcon from "../assets/dashboard-icon.svg";
 function DropDown() {
   const accessToken = JSON.parse(localStorage.getItem("userData")).token;
   const [profilePic, setProfilePic] = useState(null);
-  const baseURL = "https://certgo.hng.tech/api";
+  const baseURL = "https://api.certgo.app/api";
   const axiosPrivate = axios.create({
     baseURL,
     headers: {

@@ -18,7 +18,7 @@ const UploadCsv = ({ getUserCertificates, onClose }) => {
   const [loading, setLoading] = useState(false);
   const [file, setFile] = useState("");
   const accessToken = JSON.parse(localStorage.getItem("userData")).token;
-  const baseURL = "https://certgo.hng.tech/api";
+  const baseURL = "https://api.certgo.app/api";
 
   const axiosFormData = axios.create({
     baseURL,

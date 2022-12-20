@@ -16,7 +16,7 @@ function Comingsoon () {
       e.preventDefault();
      setLoading(true)
     try {
-      const res = await axios.post("https://certgo.hng.tech/api/mailinglists", {email});
+      const res = await axios.post("https://api.certgo.app/api/mailinglists", {email});
       Toast.fire({
         icon: "success",
         title: "Success! You will be mailed once we're done"
