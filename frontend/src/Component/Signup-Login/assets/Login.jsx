@@ -95,20 +95,20 @@ const Login = () => {
       console.log(userData);
     } catch (error) {
       console.log(error);
-      if (error.response.status === 400) {
+      if (error.status === 400) {
         Toast.fire({
           icon: "error",
           title: "A user for this email could not be found"
         });
 
         setLoading(false);
-      } else if (error.response.status === 401) {
+      } else if (error.status === 401) {
         Toast.fire({
           icon: "error",
           title: "Invalid password, please try again"
         });
         setLoading(false);
-      } else if (error.response.status === 500) {
+      } else if (error.status === 500) {
         Toast.fire({
           icon: "error",
           title: "Internal server Error"

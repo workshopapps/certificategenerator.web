@@ -48,7 +48,7 @@ function Generate() {
     e.preventDefault();
     setLoading(true);
     try {
-      fetch(`https://certgo.hng.tech/api/events/${userEventId}/certificates`, {
+      fetch(`https://api.certgo.app/api/events/${userEventId}/certificates`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,

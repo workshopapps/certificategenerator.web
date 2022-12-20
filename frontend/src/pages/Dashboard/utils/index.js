@@ -165,5 +165,5 @@ export const certificates = {
   email: "tuchel@gmail.com",
   date: "13/02/2022",
   uuid: "121ae02a-b6f0-473b-a2ee-3547d55826f0",
-  link: "https://certgo.hng.tech/single_preview?uuid=121ae02a-b6f0-473b-a2ee-3547d55826f0"
+  link: "https://api.certgo.app/single_preview?uuid=121ae02a-b6f0-473b-a2ee-3547d55826f0"
 }

@@ -62,7 +62,7 @@ const Signup = () => {
   async function createNewUser(email, password, name, checkbox) {
     console.log(email, password, name, checkbox);
     // return axios.post("/auth/signup", { email: email, password: password, name: name, checkbox: checkbox });
-    return fetch(`https://certgo.hng.tech/api/auth/signup`, {
+    return fetch(`https://api.certgo.app/api/auth/signup`, {
       method: "POST",
       headers: {
         "Content-type": "application/json",
@@ -175,7 +175,7 @@ const Signup = () => {
 
   // Send access token to backend
   async function createNewUserGoogle(token) {
-    const response = await fetch("https://certgo.hng.tech/api/auth/signup", {
+    const response = await fetch("https://api.certgo.app/api/auth/signup", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"

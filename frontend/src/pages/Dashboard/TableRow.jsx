@@ -14,7 +14,7 @@ const TableRow = ({item, handleChangeCertificateStatus, handleDeleteCertificate,
   const [openEditModal, setOpenEditModal] = useState(false);
   const [viewData, setViewData] = useState("")
   const [editData, setEditData] = useState("")
-  const baseURL = "https://certgo.hng.tech/api";
+  const baseURL = "https://api.certgo.app/api";
   const accessToken = JSON.parse(localStorage.getItem("userData")).token
   const drop = useRef()
 
