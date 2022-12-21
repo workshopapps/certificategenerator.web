@@ -12,6 +12,7 @@ const {
 } = require("../utils/helpers");
 const {
   convertCertificates,
+  convertCertificate,
   handleZip,
   handleSplitPdf,
   convertSingleCertificate
@@ -411,38 +412,14 @@ const sendCertificates = handleAsync(async (req, res) => {
 
   // if certs is empty, convert all certificates in user records
   const certsToConvert = certs.length > 0 ? certs : collection.records;
-  certsMail = certsToConvert.email
-  console.log(certsMail)
+  certsToConvert.map(async (item) => {
+    const path = await convertCertificate(item, template);
+    const filePath = await handleSplitPdf([path])
+    const email = item.email
+    await sendCertificate(email, filePath[0])
+  })
 
-  // Generate image for each certificate
-  const paths = await convertCertificates(certsToConvert, template);
 
-  for (let i = 0; i < paths.length; i++) {
-    const filePath = handleSplitPdf([paths[i]])
-    const email = certsMail[i]
-
-    await sendCertificate(email, filePath)
-  }
-
-  // switch (format.toLowerCase()) {
-  //   case "pdf":
-  //     return imageToPdf(paths, [931, 600]).pipe(res);
-
-  //   case "img":
-  //     const buffer = handleZip(paths);
-  //     res.attachment("certificate.zip");
-  //     return res.end(buffer);
-
-  //   case "pdf-split":
-  //     const pdfPaths = await handleSplitPdf(paths);
-  //     const t_buffer = handleZip(pdfPaths);
-  //     res.attachment("certificate.zip");
-  //     return res.end(t_buffer);
-
-  //   default:
-  //     // Return certificate to frontend
-  //     return imageToPdf(paths, [1180, 760]).pipe(res);
-  // }
 })
 
 const downloadUnauthorised = handleAsync(async (req, res) => {

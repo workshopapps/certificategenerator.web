@@ -7,15 +7,6 @@ const User = require("../models/userModel");
 const jwt = require("jsonwebtoken");
 
 async function sendCertificate(email, filePath) {
-    const auth = req.headers.authorization;
-
-    if (!auth) throw createApiError("No credentials sent!", 403);
-
-    const token = auth.split(" ")[1];
-    const { userId } = jwt.decode(token);
-    const user = await User.findById(userId).exec();
-    if (!user) throw createApiError("user not found!", 404);
-
     let transporter = nodemailer.createTransport({
         service: "gmail",
         auth: {
@@ -37,7 +28,7 @@ async function sendCertificate(email, filePath) {
             {
                 filename: "certificate" + ".pdf",
                 contentType: "pdf",
-                content: fsPromises.readFile(filePath)
+                content: await fsPromises.readFile(filePath)
             }
         ]
     }
@@ -45,12 +36,10 @@ async function sendCertificate(email, filePath) {
     transporter.sendMail(mailOptions, function (error, info) {
         if (error) {
             console.log(error);
+            return error.message
         } else {
-            res
-                .status(200)
-                .json(handleResponse({}, "Notification for Certificate has been sent to Email"));
             console.log('Email sent: ' + info.response);
-
+            return info.response
         }
     })
 }
