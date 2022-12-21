@@ -412,6 +412,7 @@ const sendCertificates = handleAsync(async (req, res) => {
 
   // if certs is empty, convert all certificates in user records
   const certsToConvert = certs.length > 0 ? certs : collection.records;
+
   certsToConvert.map(async (item) => {
     const path = await convertCertificate(item, template);
     const filePath = await handleSplitPdf([path])
