@@ -18,7 +18,16 @@ const {
 } = require("../utils/certificate");
 const imageToPdf = require("image-to-pdf");
 
-const addCertificate = handleAsync(async (req, res) => {
+// const findUser = async (req, id) => {
+//   const userId = req.user._id
+
+//     const user = await User.findOne({ userId }).exec();
+//   if (!user) throw createApiError("user not found", 404);
+
+//   return { user}
+// }
+
+const addCollection = handleAsync(async (req, res) => {
   const uuidv4 = v4();
   const userId = req.user._id;
   const files = req.files;
@@ -50,7 +59,7 @@ const addCertificate = handleAsync(async (req, res) => {
   } else if (Array.isArray(payload)) {
     certificateData = payload.map(item => ({
       name: item.name,
-      nameOfOrganization: item.nameOfOrganization,
+      nameoforganization: item.nameoforganization,
       award: item.award,
       email: item.email,
       description: item.description,
@@ -63,7 +72,149 @@ const addCertificate = handleAsync(async (req, res) => {
     certificateData = [
       {
         name: payload.name,
-        nameOfOrganization: payload.nameOfOrganization,
+        nameoforganization: payload.nameoforganization,
+        award: payload.award,
+        email: payload.email,
+        description: payload.description,
+        date: payload.date,
+        signed: payload.signed,
+        uuid: uuidv4,
+        link: `https://certgo.hng.tech/single_preview?uuid=${uuidv4}`
+      }
+    ];
+  } else throw createApiError("bad request", 400);
+  const user = await User.findOne({ userId }).exec();
+
+  if (!user) {
+    await User.create({
+      userId: userId,
+      collections: [
+        {
+          records: certificateData
+        }
+      ]
+    });
+  } else {
+    user.collections = [
+      ...user.collections,
+      {
+        records: certificateData
+      }
+    ];
+    await user.save();
+  }
+
+  res
+    .status(201)
+    .json(
+      handleResponse({ certificateData }, "Successfully updated certificate")
+    );
+});
+
+const getAllCollections = handleAsync(async (req, res) => {
+  const userId = req.user._id;
+
+  const user = await User.findOne({ userId }).exec();
+  if (!user) throw createApiError("user not found", 404);
+
+  const collections = user.collections;
+  res.status(200).json(handleResponse({ collections }));
+});
+
+const getCollection = handleAsync(async (req, res) => {
+  const userId = req.user._id;
+
+  const user = await User.findOne({ userId });
+  if (!user) throw createApiError("user not found", 404);
+
+  const collectionId = req.params.collectionId;
+  const collection = user.collections.find(
+    certCollection => collectionId == certCollection._id
+  );
+
+  if (!collection) {
+    throw createApiError("collection not found", 404);
+  }
+
+  return res.status(200).json(handleResponse({ collection }));
+});
+
+const getCertificateInCollection = handleAsync(async (req, res) => {
+  const userId = req.user._id;
+  const collectionId = req.params.collectionId;
+  const certificateId = req.params.certificateId;
+
+  const user = await User.findOne({ userId }).exec();
+  if (!user) throw createApiError("user not found", 404);
+
+  const collection = user.collections.find(
+    certCollection => collectionId == certCollection._id
+  );
+  if (!collection) throw createApiError("collection not found", 404);
+
+  const certificate = collection.records.find(
+    cert => certificateId == cert._id
+  );
+  if (!certificate) throw createApiError("certificate not found", 404);
+
+  return res.status(200).json(handleResponse({ certificate }));
+});
+
+const addCertficatesToCollection = handleAsync(async (req, res) => {
+  const userId = req.user._id;
+  const uuidv4 = v4();
+  const files = req.files;
+  const payload = req.body;
+  const collectionId = req.params.collectionId;
+
+  const user = await User.findOne({ userId }).exec();
+  if (!user) throw createApiError("user not found", 404);
+
+  const collection = user.collections.find(
+    certCollection => collectionId == certCollection._id
+  );
+  if (!collection) throw createApiError("collection not found", 404);
+
+  if (!files && Object.keys(payload).length === 0) {
+    throw createApiError("bad request", 400);
+  }
+
+  let certificateData;
+  if (files) {
+    const csvFile = files.file.data;
+    const csvData = Buffer.from(csvFile).toString();
+    certificateData = await csvToJson().fromString(csvData);
+
+    if (!isValidJsonOutput(certificateData)) {
+      throw createApiError("Invalid input from uploaded csv file", 400);
+    }
+
+    //append uuid and link to the certificate object
+    certificateData = certificateData.map(data => {
+      let id = v4();
+      return {
+        ...data,
+        uuid: id,
+        link: `https://certgo.hng.tech/single_preview?uuid=${id}`
+      };
+    });
+  } else if (Array.isArray(payload)) {
+    certificateData = payload.map(item => ({
+      name: item.name,
+      nameoforganization: item.nameoforganization,
+      award: item.award,
+      email: item.email,
+      description: item.description,
+      date: item.date,
+      signed: item.signed,
+      uuid: uuidv4,
+      link: `https://certgo.hng.tech/single_preview?uuid=${uuidv4}`
+    }));
+  } else if (payload) {
+    certificateData = [
+      {
+        name: payload.name,
+        nameoforganization: payload.nameoforganization,
         award: payload.award,
         email: payload.email,
         description: payload.description,
@@ -75,18 +226,8 @@ const addCertificate = handleAsync(async (req, res) => {
     ];
   } else throw createApiError("bad request", 400);
 
-  const user = await User.findOne({ userId }).exec();
-
-  if (!user) {
-    await User.create({
-      userId: userId,
-      records: [...certificateData]
-    });
-  } else {
-    user.records = [...user.records, ...certificateData];
-    await user.save();
-  }
-
+  collection.records = [...collection.records, ...certificateData];
+  await user.save();
   res
     .status(201)
     .json(
@@ -103,33 +244,7 @@ const deleteUserCertificates = handleAsync(async (req, res) => {
   await User.deleteMany({ userId });
   res.status(204).json(handleResponse("Successfully deleted certificated"));
 });
-
-const getAllCertificates = handleAsync(async (req, res) => {
-  const userId = req.user._id;
-
-  const user = await User.findOne({ userId }).exec();
-  if (!user) throw createApiError("user not found", 404);
-
-  const certificates = user.records;
-  res.status(200).json(handleResponse({ certificates }));
-});
-
 //This is for getting one certificate
-const getCertificate = handleAsync(async (req, res) => {
-  const userId = req.user._id;
-
-  const user = await User.findOne({ userId });
-  if (!user) throw createApiError("user not found", 404);
-
-  const certificateId = req.params.id;
-  const certificate = user.records.find(cert => certificateId == cert._id);
-
-  if (!certificate) {
-    throw createApiError("Certificate not found", 404);
-  }
-
-  return res.status(200).json(handleResponse({ certificate }));
-});
 
 const getNoOfCertificatesIssued = handleAsync(async (req, res) => {
   const userId = req.user._id;
@@ -203,7 +318,7 @@ const getCertificateStatus = handleAsync(async (req, res) => {
 const updateCertificateDetails = handleAsync(async (req, res) => {
   const userId = req.user._id;
   const { id: certificateId } = req.params;
-  const { name, nameOfOrganization, award, description, date, signed, email } =
+  const { name, nameoforganization, award, description, date, signed, email } =
     req.body;
 
   //validate and check certificateId is provided
@@ -217,7 +332,7 @@ const updateCertificateDetails = handleAsync(async (req, res) => {
   //validate certificate data to be updated
   if (
     name == undefined ||
-    nameOfOrganization == undefined ||
+    nameoforganization == undefined ||
     award == undefined ||
     description == undefined ||
     date == undefined ||
@@ -225,7 +340,7 @@ const updateCertificateDetails = handleAsync(async (req, res) => {
     email == undefined
   ) {
     throw createApiError(
-      "Please enter valid certificate details: name, nameOfOrganization, award, description, date, signed, email",
+      "Please enter valid certificate details: name, nameoforganization, award, description, date, signed, email",
       403
     );
   }
@@ -236,7 +351,7 @@ const updateCertificateDetails = handleAsync(async (req, res) => {
     {
       $set: {
         "records.$.name": name,
-        "records.$.nameoforganization": nameOfOrganization,
+        "records.$.nameoforganization": nameoforganization,
         "records.$.award": award,
         "records.$.description": description,
         "records.$.date": date,
@@ -528,9 +643,11 @@ const downloadSingleCertificateUnauthorised = handleAsync(async (req, res) => {
 });
 
 module.exports = {
-  getAllCertificates,
-  addCertificate,
-  getCertificate,
+  getAllCollections,
+  addCollection,
+  getCollection,
+  getCertificateInCollection,
+  addCertficatesToCollection,
   getNoOfCertificatesIssued,
   deleteCertificate,
   verifyCertificate,

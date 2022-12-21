@@ -44,6 +44,7 @@ const userExist = async _email => {
 
 const userSignup = handleAsync(async (req, res, next) => {
   let { accessToken, name, email, password, subscriptionPlan } = req.body;
+ 
 
   //google signup
   if (req.body.accessToken) {
@@ -82,16 +83,17 @@ const userSignup = handleAsync(async (req, res, next) => {
 
   //Form signup
   const errors = validationResult(req);
-
+  
   if (!errors.isEmpty())
-    throw createApiError("user validation failed", 422, errors.array);
-
+  throw createApiError("user validation failed", 422, errors.array);
+  
   if (!name) throw createApiError("name is required", 400);
-
+  
   if (await userExist(email)) throw createApiError("email already in use", 401);
-
+  console.log('i got here');
+  
   const hash = await bcrypt.hash(password, 10);
-
+  
   const newUser = new User({
     name: name,
     email: email,

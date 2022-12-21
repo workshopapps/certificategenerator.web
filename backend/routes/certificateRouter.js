@@ -5,9 +5,11 @@ const fileUpload = require("express-fileupload");
 const upload = require("multer");
 
 const {
-  getAllCertificates,
-  addCertificate,
-  getCertificate,
+  getAllCollections,
+  addCollection,
+  getCollection,
+  getCertificateInCollection,
+  addCertficatesToCollection,
   getNoOfCertificatesIssued,
   deleteCertificate,
   deleteUserCertificates,
@@ -37,11 +39,13 @@ router.post(
   upload({ dest: os.tmpdir() }).single("logo"),
   downloadSingleCertificateUnauthorised
 );
+router.get("/", authentication, getAllCollections);
+router.post("/", authentication, fileExtLimiter, fileUpload(), addCollection);
+router.get("/:collectionId", authentication, getCollection);
+router.post("/:collectionId", authentication, addCertficatesToCollection)
+router.get("/:certificateId/collection/:collectionId", authentication, getCertificateInCollection)
 router.post("/download/unauthorised", downloadUnauthorised);
-router.get("/", authentication, getAllCertificates);
 router.get("/status", authentication, getCertificateStatus);
-router.post("/", authentication, fileExtLimiter, fileUpload(), addCertificate);
-router.get("/:id", authentication, getCertificate);
 router.put("/:id", authentication, updateCertificateDetails);
 router.delete("/:id", authentication, deleteCertificate);
 router.get("verify/:id", verifyCertificate);
