@@ -85,30 +85,38 @@ const addCollection = handleAsync(async (req, res) => {
   } else throw createApiError("bad request", 400);
   const user = await User.findOne({ userId }).exec();
 
+  const collectionNameExist = user.collections.find(
+    item => item.collectionName == payload.collectionName
+  );
+
+  if (collectionNameExist) throw createApiError("collection name exist", 400);
+
+  let newCollection;
+  if (Array.isArray(payload)) {
+    newCollection = {
+      collectionName: payload[0].collectionName,
+      records: certificateData
+    };
+  } else {
+    newCollection = {
+      collectionName: payload.collectionName,
+      records: certificateData
+    };
+  }
+
   if (!user) {
     await User.create({
       userId: userId,
-      collections: [
-        {
-          records: certificateData
-        }
-      ]
+      collections: [newCollection]
     });
   } else {
-    user.collections = [
-      ...user.collections,
-      {
-        records: certificateData
-      }
-    ];
+    user.collections = [...user.collections, newCollection];
     await user.save();
   }
 
   res
     .status(201)
-    .json(
-      handleResponse({ certificateData }, "Successfully updated certificate")
-    );
+    .json(handleResponse(newCollection, "Successfully updated certificate"));
 });
 
 const getAllCollections = handleAsync(async (req, res) => {

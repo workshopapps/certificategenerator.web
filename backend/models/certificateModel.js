@@ -4,10 +4,11 @@ const { Schema } = require("mongoose");
 const CertificateSchema = new mongoose.Schema({
   collections: [
     {
-      // collectionName: {
-      //   type: String,
-      //   required: true
-      // },
+      collectionName: {
+        type: String,
+        required: true,
+        unique: true
+      },
       records: [
         {
           name: {
@@ -29,7 +30,8 @@ const CertificateSchema = new mongoose.Schema({
             type: String
           },
           email: {
-            type: String
+            type: String,
+            required: true,
           },
           date: {
             type: String,
