@@ -150,7 +150,7 @@ function ViewModal({ open, onClose, getUserCertificates, viewData }) {
                     >
                       Download Certificate
                     </button>
-                    <div id="dropdown-content">
+                    <div className="dropdown-content">
                       <button
                         className="bulk_dropdown"
                         onClick={() => handlePdf(viewData._id)}
