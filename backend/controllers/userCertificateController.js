@@ -420,6 +420,11 @@ const sendCertificates = handleAsync(async (req, res) => {
     await sendCertificate(email, filePath[0])
   })
 
+  res
+    .status(201)
+    .json(
+      { message: "Successfully Sent certificate" }
+    );
 
 })
 
