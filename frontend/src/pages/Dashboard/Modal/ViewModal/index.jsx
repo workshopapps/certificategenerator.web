@@ -182,3 +182,4 @@ function ViewModal({ open, onClose, getUserCertificates, viewData }) {
 }
 
 export default ViewModal;
+
