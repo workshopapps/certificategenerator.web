@@ -1,5 +1,4 @@
 const User = require("../models/certificateModel");
-const UserBio = require("../models/userModel");
 const jwt = require("jsonwebtoken");
 const mongoose = require("mongoose");
 const csvToJson = require("csvtojson");
@@ -83,13 +82,6 @@ const addCollection = handleAsync(async (req, res) => {
       }
     ];
   } else throw createApiError("bad request", 400);
-  const user = await User.findOne({ userId }).exec();
-
-  const collectionNameExist = user.collections.find(
-    item => item.collectionName == payload.collectionName
-  );
-
-  if (collectionNameExist) throw createApiError("collection name exist", 400);
 
   let newCollection;
   if (Array.isArray(payload)) {
@@ -104,68 +96,24 @@ const addCollection = handleAsync(async (req, res) => {
     };
   }
 
+  const user = await User.findOne({ userId }).exec();
+
   if (!user) {
     await User.create({
       userId: userId,
-      collections: [newCollection]
+      collections: newCollection
     });
   } else {
+    const collectionNameExist = user.collections.find(
+      item => item.collectionName == payload.collectionName
+    );
+    if (collectionNameExist) throw createApiError("collection name already exist", 400);
     user.collections = [...user.collections, newCollection];
     await user.save();
   }
-
   res
     .status(201)
     .json(handleResponse(newCollection, "Successfully updated certificate"));
-});
-
-const getAllCollections = handleAsync(async (req, res) => {
-  const userId = req.user._id;
-
-  const user = await User.findOne({ userId }).exec();
-  if (!user) throw createApiError("user not found", 404);
-
-  const collections = user.collections;
-  res.status(200).json(handleResponse({ collections }));
-});
-
-const getCollection = handleAsync(async (req, res) => {
-  const userId = req.user._id;
-
-  const user = await User.findOne({ userId });
-  if (!user) throw createApiError("user not found", 404);
-
-  const collectionId = req.params.collectionId;
-  const collection = user.collections.find(
-    certCollection => collectionId == certCollection._id
-  );
-
-  if (!collection) {
-    throw createApiError("collection not found", 404);
-  }
-
-  return res.status(200).json(handleResponse({ collection }));
-});
-
-const getCertificateInCollection = handleAsync(async (req, res) => {
-  const userId = req.user._id;
-  const collectionId = req.params.collectionId;
-  const certificateId = req.params.certificateId;
-
-  const user = await User.findOne({ userId }).exec();
-  if (!user) throw createApiError("user not found", 404);
-
-  const collection = user.collections.find(
-    certCollection => collectionId == certCollection._id
-  );
-  if (!collection) throw createApiError("collection not found", 404);
-
-  const certificate = collection.records.find(
-    cert => certificateId == cert._id
-  );
-  if (!certificate) throw createApiError("certificate not found", 404);
-
-  return res.status(200).json(handleResponse({ certificate }));
 });
 
 const addCertficatesToCollection = handleAsync(async (req, res) => {
@@ -243,26 +191,69 @@ const addCertficatesToCollection = handleAsync(async (req, res) => {
     );
 });
 
-const deleteUserCertificates = handleAsync(async (req, res) => {
+const getAllCollections = handleAsync(async (req, res) => {
   const userId = req.user._id;
-  const user = await UserBio.findById(userId).exec();
 
+  const user = await User.findOne({ userId }).exec();
+  if (!user) throw createApiError("No collection found", 404);
+
+  const collections = user.collections;
+  res.status(200).json(handleResponse({ collections }));
+});
+
+const getCollection = handleAsync(async (req, res) => {
+  const userId = req.user._id;
+
+  const user = await User.findOne({ userId });
+  if (!user) throw createApiError("No collection found", 404);
+
+  const collectionId = req.params.collectionId;
+  const collection = user.collections.find(
+    certCollection => collectionId == certCollection._id
+  );
+
+  if (!collection) {
+    throw createApiError("collection not found", 404);
+  }
+
+  return res.status(200).json(handleResponse({ collection }));
+});
+
+const getCertificateInCollection = handleAsync(async (req, res) => {
+  const userId = req.user._id;
+  const collectionId = req.params.collectionId;
+  const certificateId = req.params.certificateId;
+
+  const user = await User.findOne({ userId }).exec();
+  if (!user) throw createApiError("No collection found", 404);
+
+  const collection = user.collections.find(
+    certCollection => collectionId == certCollection._id
+  );
+  if (!collection) throw createApiError("collection not found", 404);
+
+  const certificate = collection.records.find(
+    cert => certificateId == cert._id
+  );
+  if (!certificate) throw createApiError("certificate not found", 404);
+
+  return res.status(200).json(handleResponse({ certificate }));
+});
+
+const deleteAllCollections = handleAsync(async (req, res) => {
+  const userId = req.user._id;
+
+  const user = await User.findOne({ userId }).exec();
   if (!user) throw createApiError("user not found", 404);
 
-  await User.deleteMany({ userId });
-  res.status(204).json(handleResponse("Successfully deleted certificated"));
+  const collections = user.collections;
+
+  user.remove({ collections });
+  res.status(204).json(handleResponse({message: "Successfully deleted certificated"}));
 });
 //This is for getting one certificate
 
-const getNoOfCertificatesIssued = handleAsync(async (req, res) => {
-  const userId = req.user._id;
-  const user = await User.findOne({ userId }).exec();
-  const certificates = user.records;
 
-  return res
-    .status(200)
-    .json(handleResponse({ issuedCertificates: certificates.length }));
-});
 
 const deleteCertificate = handleAsync(async (req, res) => {
   const { id: certificateID } = req.params;
@@ -656,13 +647,12 @@ module.exports = {
   getCollection,
   getCertificateInCollection,
   addCertficatesToCollection,
-  getNoOfCertificatesIssued,
+  deleteAllCollections,
   deleteCertificate,
   verifyCertificate,
   getCertificateStatus,
   updateCertificateDetails,
   updateCertificateStatus,
-  deleteUserCertificates,
   downloadCertificates,
   downloadUnauthorised,
   downloadSingleCertificate,

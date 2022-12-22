@@ -3,7 +3,8 @@ const Profile = require("./profileModel");
 
 const UserSchema = new mongoose.Schema({
   name: {
-    type: String
+    type: String,
+    required: true
   },
   email: {
     type: String,

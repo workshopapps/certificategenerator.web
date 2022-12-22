@@ -10,9 +10,8 @@ const {
   getCollection,
   getCertificateInCollection,
   addCertficatesToCollection,
-  getNoOfCertificatesIssued,
+  deleteAllCollections,
   deleteCertificate,
-  deleteUserCertificates,
   getCertificateStatus,
   updateCertificateDetails,
   updateCertificateStatus,
@@ -26,7 +25,6 @@ const authentication = require("../middleware/authentication");
 const os = require("os");
 const multer = require("multer");
 
-router.get("/issuedCertificates", authentication, getNoOfCertificatesIssued);
 router.post("/download", authentication, downloadCertificates);
 router.post(
   "/download/single",
@@ -49,6 +47,6 @@ router.get("/status", authentication, getCertificateStatus);
 router.put("/:id", authentication, updateCertificateDetails);
 router.delete("/:id", authentication, deleteCertificate);
 router.get("verify/:id", verifyCertificate);
-router.delete("/", authentication, deleteUserCertificates);
+router.delete("/", authentication, deleteAllCollections);
 router.patch("/status/:id", authentication, updateCertificateStatus);
 module.exports = router;
