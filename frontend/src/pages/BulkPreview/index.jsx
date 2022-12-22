@@ -29,11 +29,20 @@ function Index() {
   axios.create({
     baseURL
   });
-  const axiosPrivate = axios.create({
+  const accessToken = JSON.parse(localStorage.getItem("userData")).token;
+  const axiosUnauth = axios.create({
     baseURL,
     responseType: "blob",
     headers: {
       "Content-Type": "application/json"
+    }
+  });
+  const axiosPrivate = axios.create({
+    baseURL,
+    responseType: "blob",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${accessToken}`
     }
   });
   useEffect(() => {
@@ -44,6 +53,7 @@ function Index() {
   // Getting the file data from the local storage and parsing its values
   const savedData = localStorage.getItem("dataKey");
   const array = JSON.parse(savedData);
+  const arrayIds = array.map(item => item.uuid);
 
   //STATES FOR TEMPLATES
   const [templateone, setTemplateOne] = useState(true);
@@ -87,7 +97,13 @@ function Index() {
         return;
       }
 
-      navigate("/comingsoon");
+      // navigate("/comingsoon");
+
+      const res = await axiosPrivate.post("/certificates/sendBulkCertificates", {
+        certificateIds: arrayIds,
+        template: template,
+        format: "pdf"
+      });
 
       //   const doc = new jsPDF("p", "px", [339.4, 339.4]); // Initialize a new jsPDF instance
       //   const elements = document.getElementsByClassName("multiple"); // Get all certificates as HTML Elements
@@ -151,7 +167,7 @@ function Index() {
     }
     setLoading(true);
     setInteractiveModal(true);
-    const res = await axiosPrivate.post("/certificates/download/unauthorised", {
+    const res = await axiosUnauth.post("/certificates/download/unauthorised", {
       certificates: array,
       format: "pdf-split",
       template: template
@@ -174,7 +190,7 @@ function Index() {
     }
     setLoading(true);
     setInteractiveModal(true);
-    const res = await axiosPrivate.post("/certificates/download/unauthorised", {
+    const res = await axiosUnauth.post("/certificates/download/unauthorised", {
       certificates: array,
       format: "img",
       template: template
