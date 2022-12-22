@@ -1,27 +1,25 @@
 import axios from "axios";
 import download from "downloadjs";
-import React from "react";
-import { useState } from "react";
-import { certificates, dummyData } from "../../utils";
+import React, { useState } from "react";
+
+import "./view.style.scss";
+import Button from "../../../../Component/button";
 import { ReactComponent as CloseIcon } from "../../assets/close.svg";
 import BulkCertDesign2 from "../../../BulkPreview/BulkCertDesign/BulkCertDesign2";
 import BulkCertDesign3 from "../../../BulkPreview/BulkCertDesign/BulkCertDesign3";
-import BulkCertDesign1 from "../../../BulkPreview/BulkCertDesign/BulkCertDesign1"
+import BulkCertDesign1 from "../../../BulkPreview/BulkCertDesign/BulkCertDesign1";
 import certificate from "../../../../assets/images/SinglePreview/certTemplate (1).png";
 import certificate2 from "../../../../assets/images/SinglePreview/certTemplate (2).png";
 import certificate3 from "../../../../assets/images/SinglePreview/certTemplate (3).png";
-// import certificate3 from "../../../../";
-import "./view.style.scss";
-import Button from "../../../../Component/button";
 
 function ViewModal({ open, onClose, getUserCertificates, viewData }) {
   console.log(viewData);
   const [templateone, setTemplateOne] = useState(true);
   const [templatetwo, setTemplateTwo] = useState(false);
   const [templatethree, setTemplateThree] = useState(false);
-  const [template, setTemplate] = useState(2)
-  const [loading, setLoading] = useState(false)
-  const [drop, setDrop] = useState(false)
+  const [template, setTemplate] = useState(2);
+  const [loading, setLoading] = useState(false);
+  const [drop, setDrop] = useState(false);
 
   const baseURL = "https://api.certgo.app/api";
   axios.create({
@@ -89,21 +87,17 @@ function ViewModal({ open, onClose, getUserCertificates, viewData }) {
     download(blob, "certificate.zip");
     setLoading(false);
   }
-  // const handleSendMail = async (id) => {
-  // const handleSendMail = async (id) => {
-  //   console.log(id);
-  //   setLoading(true);
-  //   const res = await axiosPrivate.post("/certificates/download", {
-  //     certificateIds: [id],
-  //     format: "pdf",
-  //     template: template
-  //   });
-  //   const data = res.data;
-  //   if (!(data instanceof Blob)) return;
-  //   const blob = new Blob([data], { type: "application/pdf" });
-  //   // download(blob, "certificate.pdf");
-  //   setLoading(false);
-  // }
+  // Function to send certificate to recepient email address
+  const handleSendMail = async (id) => {
+    // setLoading(true);
+    const res = await axiosPrivate.post("/certificates/sendBulkCertificates", {
+      certificateIds: [id],
+      template: template,
+      format: "pdf"
+    });
+    // console.log("Response", res);
+    // setLoading(false);
+  }
   if (!open) return null;
   return (
     <div onClick={onClose} className="view-modal-wrapper">
@@ -127,7 +121,7 @@ function ViewModal({ open, onClose, getUserCertificates, viewData }) {
             ) : (
               <Button
                 name="Send certificates"
-                // onClick={handleSendMail(viewData._id)}
+                onClick={() => handleSendMail(viewData._id)}
                 style={{ padding: "10px", marginTop: "1rem" }}
               />
             )}
