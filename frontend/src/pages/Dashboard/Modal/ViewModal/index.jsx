@@ -87,7 +87,7 @@ function ViewModal({ open, onClose, getUserCertificates, viewData }) {
     download(blob, "certificate.zip");
     setLoading(false);
   }
-  // Function to send certificate to receipient email address
+  // Function to send certificate to recepient email address
   const handleSendMail = async (id) => {
     // setLoading(true);
     const res = await axiosPrivate.post("/certificates/sendBulkCertificates", {
