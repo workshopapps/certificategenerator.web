@@ -1,9 +1,8 @@
 import axios from "axios";
 import download from "downloadjs";
-import React, { useState } from "react";
-
-import "./view.style.scss";
-import Button from "../../../../Component/button";
+import React from "react";
+import { useState } from "react";
+import { certificates, dummyData } from "../../utils";
 import { ReactComponent as CloseIcon } from "../../assets/close.svg";
 import BulkCertDesign2 from "../../../BulkPreview/BulkCertDesign/BulkCertDesign2";
 import BulkCertDesign3 from "../../../BulkPreview/BulkCertDesign/BulkCertDesign3";
@@ -11,6 +10,9 @@ import BulkCertDesign1 from "../../../BulkPreview/BulkCertDesign/BulkCertDesign1
 import certificate from "../../../../assets/images/SinglePreview/certTemplate (1).png";
 import certificate2 from "../../../../assets/images/SinglePreview/certTemplate (2).png";
 import certificate3 from "../../../../assets/images/SinglePreview/certTemplate (3).png";
+// import certificate3 from "../../../../";
+import "./view.style.scss";
+import Button from "../../../../Component/button";
 
 function ViewModal({ open, onClose, getUserCertificates, viewData }) {
   console.log(viewData);
@@ -19,7 +21,8 @@ function ViewModal({ open, onClose, getUserCertificates, viewData }) {
   const [templatethree, setTemplateThree] = useState(false);
   const [template, setTemplate] = useState(2);
   const [loading, setLoading] = useState(false);
-  const [drop, setDrop] = useState(false);
+  const [downloadLoading, setDownloadLoading] = useState(false);
+  // const [drop, setDrop] = useState(false);
 
   const baseURL = "https://api.certgo.app/api";
   axios.create({
@@ -31,10 +34,10 @@ function ViewModal({ open, onClose, getUserCertificates, viewData }) {
     responseType: "blob",
     headers: {
       "Content-Type": "application/json",
-      "Authorization": `Bearer ${accessToken}`
+      Authorization: `Bearer ${accessToken}`
     }
   });
-  
+
   const handleTemplate1 = () => {
     setTemplate(2);
     setTemplateOne(true);
@@ -54,15 +57,15 @@ function ViewModal({ open, onClose, getUserCertificates, viewData }) {
     setTemplateThree(true);
   };
 
-  const handleMouseEnter = () => {
-    setDrop(true)
-  }
-  const handleMouseLeave = () => {
-    setDrop(false)
-  }
-  const handlePdf = async (id) => {
+  // const handleMouseEnter = () => {
+  //   setDrop(true);
+  // };
+  // const handleMouseLeave = () => {
+  //   setDrop(false);
+  // };
+  const handlePdf = async id => {
     console.log(id);
-    setLoading(true);
+    setDownloadLoading(true);
     const res = await axiosPrivate.post("/certificates/download", {
       certificateIds: [id],
       format: "pdf",
@@ -72,10 +75,10 @@ function ViewModal({ open, onClose, getUserCertificates, viewData }) {
     if (!(data instanceof Blob)) return;
     const blob = new Blob([data], { type: "application/pdf" });
     download(blob, "certificate.pdf");
-    setLoading(false);
-  }
-  const handlePng = async (id) => {
-    setLoading(true);
+    setDownloadLoading(false);
+  };
+  const handlePng = async id => {
+    setDownloadLoading(true);
     const res = await axiosPrivate.post("/certificates/download", {
       certificateIds: [id],
       format: "img",
@@ -85,19 +88,23 @@ function ViewModal({ open, onClose, getUserCertificates, viewData }) {
     if (!(data instanceof Blob)) return;
     const blob = new Blob([data], { type: "application/zip" });
     download(blob, "certificate.zip");
-    setLoading(false);
-  }
-  // Function to send certificate to recepient email address
-  const handleSendMail = async (id) => {
-    // setLoading(true);
-    const res = await axiosPrivate.post("/certificates/sendBulkCertificates", {
-      certificateIds: [id],
-      template: template,
-      format: "pdf"
-    });
-    // console.log("Response", res);
-    // setLoading(false);
-  }
+    setDownloadLoading(false);
+  };
+  // const handleSendMail = async (id) => {
+  // const handleSendMail = async (id) => {
+  //   console.log(id);
+  //   setLoading(true);
+  //   const res = await axiosPrivate.post("/certificates/download", {
+  //     certificateIds: [id],
+  //     format: "pdf",
+  //     template: template
+  //   });
+  //   const data = res.data;
+  //   if (!(data instanceof Blob)) return;
+  //   const blob = new Blob([data], { type: "application/pdf" });
+  //   // download(blob, "certificate.pdf");
+  //   setLoading(false);
+  // }
   if (!open) return null;
   return (
     <div onClick={onClose} className="view-modal-wrapper">
@@ -113,44 +120,54 @@ function ViewModal({ open, onClose, getUserCertificates, viewData }) {
             {templatethree && <BulkCertDesign3 item={viewData} />}
           </div>
           <div className="center">
-            {loading ? (
-              <Button
-                name="Sending certificates..."
-                style={{ padding: "10px", marginTop: "1rem" }}
-              />
-            ) : (
-              <Button
-                name="Send certificates"
-                onClick={() => handleSendMail(viewData._id)}
-                style={{ padding: "10px", marginTop: "1rem" }}
-              />
-            )}
-            {/* <Button name="Send certificates" style={{ padding: "10px", marginTop: "1rem" }} /> */}
-            {/* {loading ? (
-            <div>
-              <button
-                className="loading"
-                style={{ padding: "10px" }}
-              >Certificate downloading...</button>
+            <div className="center__action-buttons">
+              {loading ? (
+                <Button
+                  name="Sending certificates..."
+                  style={{ padding: "10px" }}
+                />
+              ) : (
+                <Button
+                  name="Send certificates"
+                  // onClick={handleSendMail(viewData._id)}
+                  style={{ padding: "10px" }}
+                />
+              )}
+              {/* <Button name="Send certificates" style={{ padding: "10px", marginTop: "1rem" }} /> */}
+              {downloadLoading ? (
+                <div>
+                  <button id="dropdown-container" style={{ padding: "10px" }}>
+                    Certificate downloading...
+                  </button>
+                </div>
+              ) : (
+                <>
+                  <div className="drop-download">
+                    <button
+                      id="dropdown-container"
+                      style={{ padding: "10px" }}
+                      // onMouseEnter={handleMouseEnter}
+                    >
+                      Download Certificate
+                    </button>
+                    <div className="dropdown-content">
+                      <button
+                        className="bulk_dropdown"
+                        onClick={() => handlePdf(viewData._id)}
+                      >
+                        PDF
+                      </button>
+                      <button
+                        onClick={() => handlePng(viewData._id)}
+                        className="bulk_dropdown"
+                      >
+                        PNG
+                      </button>
+                    </div>
+                  </div>
+                </>
+              )}
             </div>
-          ) : (
-            <>
-              <button
-                id="dropdown-container"
-                onMouseEnter={handleMouseEnter}
-              >Download Certificate</button>
-              {drop && <div id="dropdown-content" >
-                <button
-                  className="bulk_dropdown"
-                  onClick={() => handlePdf(viewData._id)}
-                >PDF</button>
-                <button
-                  onClick={()=>handlePng(viewData._id)}
-                  className="bulk_dropdown"
-                >PNG</button>
-              </div>}
-            </>
-          )} */}
             <p style={{ marginTop: "1rem" }}>More Templates for you</p>
           </div>
           <div className="template-images">
@@ -165,3 +182,4 @@ function ViewModal({ open, onClose, getUserCertificates, viewData }) {
 }
 
 export default ViewModal;
+
