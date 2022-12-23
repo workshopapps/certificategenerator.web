@@ -1,4 +1,5 @@
 import axios from "axios";
+import Swal from "sweetalert2";
 import download from "downloadjs";
 import { useNavigate } from "react-router-dom";
 import React, { useRef, useState, useEffect } from "react";
@@ -83,6 +84,18 @@ function Index() {
 
   const bulkCertDesignRef = useRef();
 
+  const Toast = Swal.mixin({
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: toast => {
+      toast.addEventListener("mouseenter", Swal.stopTimer);
+      toast.addEventListener("mouseleave", Swal.resumeTimer);
+    }
+  });
+
   // Function to send certificate to recepients email addresses
   const handleSendCertificates = async e => {
     try {
@@ -97,13 +110,25 @@ function Index() {
         );
         return;
       }
+      setEmailLoading(true);
       const res = await axiosPrivate.post("/certificates/sendBulkCertificates", {
         certificateIds: arrayIds,
         template: template,
         format: "pdf"
       });
+      if (res.status === 200 || res.status === 201 || res.status === 204) {
+        setEmailLoading(false);
+        Toast.fire({
+          icon: "success",
+          title: "Successfully Sent certificates"
+        });
+      }
     } catch (error) {
       setEmailLoading(false);
+      Toast.fire({
+        icon: "success",
+        title: error.message
+      });
     }
   };
 
