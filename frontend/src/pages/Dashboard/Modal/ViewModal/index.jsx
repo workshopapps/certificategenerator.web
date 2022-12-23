@@ -1,8 +1,10 @@
 import axios from "axios";
+import Swal from "sweetalert2";
 import download from "downloadjs";
-import React from "react";
-import { useState } from "react";
-import { certificates, dummyData } from "../../utils";
+import React, { useState } from "react";
+
+import "./view.style.scss";
+import Button from "../../../../Component/button";
 import { ReactComponent as CloseIcon } from "../../assets/close.svg";
 import BulkCertDesign2 from "../../../BulkPreview/BulkCertDesign/BulkCertDesign2";
 import BulkCertDesign3 from "../../../BulkPreview/BulkCertDesign/BulkCertDesign3";
@@ -10,9 +12,6 @@ import BulkCertDesign1 from "../../../BulkPreview/BulkCertDesign/BulkCertDesign1
 import certificate from "../../../../assets/images/SinglePreview/certTemplate (1).png";
 import certificate2 from "../../../../assets/images/SinglePreview/certTemplate (2).png";
 import certificate3 from "../../../../assets/images/SinglePreview/certTemplate (3).png";
-// import certificate3 from "../../../../";
-import "./view.style.scss";
-import Button from "../../../../Component/button";
 
 function ViewModal({ open, onClose, getUserCertificates, viewData }) {
   console.log(viewData);
@@ -22,7 +21,6 @@ function ViewModal({ open, onClose, getUserCertificates, viewData }) {
   const [template, setTemplate] = useState(2);
   const [loading, setLoading] = useState(false);
   const [downloadLoading, setDownloadLoading] = useState(false);
-  // const [drop, setDrop] = useState(false);
 
   const baseURL = "https://api.certgo.app/api";
   axios.create({
@@ -57,12 +55,6 @@ function ViewModal({ open, onClose, getUserCertificates, viewData }) {
     setTemplateThree(true);
   };
 
-  // const handleMouseEnter = () => {
-  //   setDrop(true);
-  // };
-  // const handleMouseLeave = () => {
-  //   setDrop(false);
-  // };
   const handlePdf = async id => {
     console.log(id);
     setDownloadLoading(true);
@@ -90,21 +82,42 @@ function ViewModal({ open, onClose, getUserCertificates, viewData }) {
     download(blob, "certificate.zip");
     setDownloadLoading(false);
   };
-  // const handleSendMail = async (id) => {
-  // const handleSendMail = async (id) => {
-  //   console.log(id);
-  //   setLoading(true);
-  //   const res = await axiosPrivate.post("/certificates/download", {
-  //     certificateIds: [id],
-  //     format: "pdf",
-  //     template: template
-  //   });
-  //   const data = res.data;
-  //   if (!(data instanceof Blob)) return;
-  //   const blob = new Blob([data], { type: "application/pdf" });
-  //   // download(blob, "certificate.pdf");
-  //   setLoading(false);
-  // }
+
+  const Toast = Swal.mixin({
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: toast => {
+      toast.addEventListener("mouseenter", Swal.stopTimer);
+      toast.addEventListener("mouseleave", Swal.resumeTimer);
+    }
+  });
+
+  // Function to send certificate to recepient email address
+  const handleSendMail = async (id) => {
+    setLoading(true);
+    const res = await axiosPrivate.post("/certificates/sendBulkCertificates", {
+      certificateIds: [id],
+      template: template,
+      format: "pdf"
+    });
+    if (res.status === 200 || res.status === 201 || res.status === 204) {
+      setLoading(false);
+      Toast.fire({
+        icon: "success",
+        title: "Successfully Sent certificate"
+      });
+    }
+    else {
+      setLoading(false);
+      Toast.fire({
+        icon: "error",
+        title: "Certificate not sent"
+      });
+    }
+  }
   if (!open) return null;
   return (
     <div onClick={onClose} className="view-modal-wrapper">
@@ -123,17 +136,16 @@ function ViewModal({ open, onClose, getUserCertificates, viewData }) {
             <div className="center__action-buttons">
               {loading ? (
                 <Button
-                  name="Sending certificates..."
+                  name="Sending certificate..."
                   style={{ padding: "10px" }}
                 />
               ) : (
                 <Button
-                  name="Send certificates"
-                  // onClick={handleSendMail(viewData._id)}
+                  name="Send certificate"
+                  onClick={() => handleSendMail(viewData._id)}
                   style={{ padding: "10px" }}
                 />
               )}
-              {/* <Button name="Send certificates" style={{ padding: "10px", marginTop: "1rem" }} /> */}
               {downloadLoading ? (
                 <div>
                   <button id="dropdown-container" style={{ padding: "10px" }}>
