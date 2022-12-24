@@ -37,7 +37,7 @@ const Dashboard = () => {
   const [openDeleteAllModal, setOpenDeleteAllModal] = useState(false);
   const [pricing, setPricing] = useState("");
   const [eventLink, setEventLink] = useState("");
-  const baseURL = "https://certgo.hng.tech/api";
+  const baseURL = "https://api.certgo.app/api";
   const accessToken = JSON.parse(localStorage.getItem("userData")).token;
   const [file, setFile] = useState("");
   let navigate = useNavigate();
@@ -225,7 +225,7 @@ const Dashboard = () => {
   //GET EVENTS
   const getEvents = async () => {
     try {
-      return fetch("https://certgo.hng.tech/api/events", {
+      return fetch("https://api.certgo.app/api/events", {
         method: "GET",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -235,7 +235,7 @@ const Dashboard = () => {
         const result = await response.json();
 
         var link = result.data.events[0]._id;
-        setEventLink(`https://certgo.hng.tech/generate/:${link}`);
+        setEventLink(`https://api.certgo.app/generate/:${link}`);
 
         if (response.status === 200 || response.status === 201) {
           Toast.fire({
@@ -266,7 +266,7 @@ const Dashboard = () => {
   var token = getToken.token;
 
   const handleGenerate = async () => {
-    fetch("https://certgo.hng.tech/api/events", {
+    fetch("https://api.certgo.app/api/events", {
       method: "POST",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -296,8 +296,8 @@ const Dashboard = () => {
     // getUserCertificates();
   };
 
-  var profileName = JSON.parse(localStorage.getItem("profileName"));
-  console.log(profileName);
+  // var profileName = JSON.parse(localStorage.getItem("profileName"));
+  // console.log(profileName);
   let id = JSON.parse(localStorage.getItem("userData")).userId;
   console.log(id.slice(19, 24));
   const ShortId = id.slice(19, 24);
@@ -337,7 +337,8 @@ const Dashboard = () => {
                 style={{ textTransform: "capitalize" }}
                 className="dashboard__title"
               >
-                {profileName ? profileName : `user - ${ShortId}`}
+                {/* {profileName ? profileName : `user - ${ShortId}`} */}
+                { `user - ${ShortId}`}
               </h2>
               <p className="dashboard__description">
                 Get a summary of all the Certificates here

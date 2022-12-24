@@ -11,10 +11,12 @@ const {
 } = require("../utils/helpers");
 const {
   convertCertificates,
+  convertCertificate,
   handleZip,
   handleSplitPdf,
   convertSingleCertificate
 } = require("../utils/certificate");
+const { sendCertificate } = require("../utils/mailing")
 const imageToPdf = require("image-to-pdf");
 
 const addCollection = handleAsync(async (req, res) => {
@@ -509,6 +511,68 @@ const downloadCertificates = handleAsync(async (req, res) => {
   }
 });
 
+const sendCertificates = handleAsync(async (req, res) => {
+  const user = req.user;
+  const { certificateIds = [], template = 2, format = "pdf" } = req.body;
+
+  // I did this because I didn't want to rename user globally
+  // and I wanted to avoid confusion
+  const Certificate = User;
+
+  // Invalid option provided
+  if (!["pdf", "img", "pdf-split"].includes(format.toLowerCase()))
+    throw createApiError(
+      "Invalid option provided. Option must be one of 'pdf', 'img' and 'pdf-split'",
+      400
+    );
+
+  // Validate certificates input
+  if (!Array.isArray(certificateIds))
+    throw createApiError("certificateId is required and must be an array", 400);
+
+  // Validate template
+  if (typeof template !== "number")
+    throw createApiError("template must be a number", 400);
+
+  const collection = await Certificate.findOne({
+    userId: user._id
+  });
+
+  // if no certificates return 404
+  if (!collection) throw createApiError("User has no certificates", 404);
+
+  // if records are empty return 404
+  if (!collection.records || collection.records?.length === 0)
+    throw createApiError("User has no certificates", 404);
+
+  // filter out invalid certificate ids
+  const certIds = certificateIds.filter(certId =>
+    mongoose.isValidObjectId(certId)
+  );
+
+  // Get certificates that have ids in certIds
+  const certs = collection.records.filter(certificate =>
+    certIds.includes(certificate._id.toString())
+  );
+
+  // if certs is empty, convert all certificates in user records
+  const certsToConvert = certs.length > 0 ? certs : collection.records;
+
+  certsToConvert.map(async (item) => {
+    const path = await convertCertificate(item, template);
+    const filePath = await handleSplitPdf([path])
+    const email = item.email
+    await sendCertificate(email, filePath[0])
+  })
+
+  res
+    .status(201)
+    .json(
+      { message: "Successfully Sent certificate" }
+    );
+
+})
+
 const downloadUnauthorised = handleAsync(async (req, res) => {
   const { certificates, template = 1, format = "pdf" } = req.body;
 
@@ -686,6 +750,7 @@ module.exports = {
   deleteCertificateInCollection,
   verifyCertificate,
   downloadCertificates,
+  sendCertificates,
   downloadUnauthorised,
   downloadSingleCertificate,
   downloadSingleCertificateUnauthorised

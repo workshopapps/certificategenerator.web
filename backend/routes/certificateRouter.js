@@ -23,6 +23,7 @@ const {
   deleteCertificateInCollection,
   verifyCertificate,
   downloadCertificates,
+  sendCertificates,
   downloadUnauthorised,
   downloadSingleCertificate,
   downloadSingleCertificateUnauthorised
@@ -51,7 +52,11 @@ router.post(
 );
 router.post("/collection/:collectionId", authentication, fileUpload(), addCertficatesToCollection);
 router.post("/download", authentication, downloadCertificates);
+
 router.post("/download/unauthorised", downloadUnauthorised);
+
+router.post("/sendBulkCertificates", authentication, sendCertificates);
+
 router.post(
   "/download/single",
   authentication,

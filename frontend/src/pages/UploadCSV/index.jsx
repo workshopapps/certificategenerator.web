@@ -111,7 +111,7 @@ const UploadCSV = () => {
     setLoading(true);
     try {
       const res = await axios.post(
-        "https://certgo.hng.tech/api/upload/csv",
+        "https://api.certgo.app/api/upload/csv",
         formData
       );
       if (res.status === 200) {
