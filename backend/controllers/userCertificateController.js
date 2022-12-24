@@ -17,24 +17,20 @@ const {
 } = require("../utils/certificate");
 const imageToPdf = require("image-to-pdf");
 
-// const findUser = async (req, id) => {
-//   const userId = req.user._id
-
-//     const user = await User.findOne({ userId }).exec();
-//   if (!user) throw createApiError("user not found", 404);
-
-//   return { user}
-// }
-
 const addCollection = handleAsync(async (req, res) => {
   const uuidv4 = v4();
   const userId = req.user._id;
   const files = req.files;
   const payload = req.body;
 
+  if (files && files == undefined) throw createApiError("bad request", 400);
+
   if (!files && Object.keys(payload).length === 0) {
     throw createApiError("bad request", 400);
   }
+
+  if (!payload.collectionName)
+    throw createApiError("Collection Name required", 400);
 
   let certificateData;
   if (files) {
@@ -105,15 +101,18 @@ const addCollection = handleAsync(async (req, res) => {
     });
   } else {
     const collectionNameExist = user.collections.find(
-      item => item.collectionName == payload.collectionName
+      item =>
+        item.collectionName.toLowerCase() ==
+        payload.collectionName.toLowerCase()
     );
-    if (collectionNameExist) throw createApiError("collection name already exist", 400);
+    if (collectionNameExist)
+      throw createApiError("collection name already exist", 400);
     user.collections = [...user.collections, newCollection];
     await user.save();
   }
   res
     .status(201)
-    .json(handleResponse(newCollection, "Successfully updated certificate"));
+    .json(handleResponse(newCollection, "Successfully uploaded collection"));
 });
 
 const addCertficatesToCollection = handleAsync(async (req, res) => {
@@ -131,9 +130,17 @@ const addCertficatesToCollection = handleAsync(async (req, res) => {
   );
   if (!collection) throw createApiError("collection not found", 404);
 
+  if (files && files == undefined) throw createApiError("No csv uploaded", 400);
+
   if (!files && Object.keys(payload).length === 0) {
     throw createApiError("bad request", 400);
   }
+
+  if (
+    payload.collectionName &&
+    payload.collectionName.toLowerCase() != collection.collectionName.toLowerCase()
+  )
+    throw createApiError("Invalid collection name", 400);
 
   let certificateData;
   if (files) {
@@ -240,6 +247,123 @@ const getCertificateInCollection = handleAsync(async (req, res) => {
   return res.status(200).json(handleResponse({ certificate }));
 });
 
+const updateCollectionName = handleAsync(async (req, res) => {
+  const userId = req.user._id;
+  const collectionId = req.params.collectionId;
+  const payload = req.body;
+
+  const user = await User.findOne({ userId });
+  if (!user) throw createApiError("No collection found", 404);
+
+  const collection = user.collections.find(item => collectionId == item._id);
+
+  if (!collection) {
+    throw createApiError("collection not found", 404);
+  }
+
+  const newCollectionName = payload.collectionName;
+  collection.collectionName = newCollectionName;
+  await user.save();
+
+  return res
+    .status(200)
+    .json(handleResponse({ message: "collection name successfully updated" }));
+});
+
+const updateCertificateDetails = handleAsync(async (req, res) => {
+  const userId = req.user._id;
+  const collectionId = req.params.collectionId;
+  const certificateId = req.params.certificateId;
+  const payload = req.body;
+
+  const validateCertificateBody = [
+    payload.name,
+    payload.nameoforganization,
+    payload.award,
+    payload.description,
+    payload.date,
+    payload.signed,
+    payload.email
+  ].every(item => item == undefined || item == null);
+
+  if (validateCertificateBody)
+    throw createApiError("Fill all required fields", 422);
+
+  const user = await User.findOne({ userId }).exec();
+  if (!user) throw createApiError("No collection found", 404);
+
+  const collection = user.collections.find(
+    certCollection => collectionId == certCollection._id
+  );
+  if (!collection) throw createApiError("collection not found", 404);
+
+  const certificate = collection.records.find(
+    cert => certificateId == cert._id
+  );
+  if (!certificate) throw createApiError("certificate not found", 404);
+  
+
+  
+  certificate.update({
+    name: payload.name,
+    nameoforganization: payload.nameoforganization,
+    award: payload.award,
+    description: payload.description,
+    date: payload.date,
+    signed: payload.signed,
+    email: payload.email
+  })
+  await user.save();
+  console.log('i got here')
+
+  return res.status(200).json(
+    handleResponse({
+      message: `Certificate ID ${certificateId} has been updated`
+    })
+  );
+});
+
+const updateCertificateStatus = handleAsync(async (req, res) => {
+  const userId = req.user._id;
+  const collectionId = req.params.collectionId;
+  const certificateId = req.params.certificateId;
+  const payload = req.body;
+
+  const user = await User.findOne({ userId }).exec();
+  if (!user) throw createApiError("No collection found", 404);
+
+  const collection = user.collections.find(
+    certCollection => collectionId == certCollection._id
+  );
+  if (!collection) throw createApiError("collection not found", 404);
+
+  const certificate = collection.records.find(
+    cert => certificateId == cert._id
+  );
+  if (!certificate) throw createApiError("certificate not found", 404);
+
+  const certificateStatus = payload.status.toLowerCase();
+
+  const certifiCateStatusTest = ["pending", "issued", "canceled"].some(
+    value => {
+      return value === certificateStatus;
+    }
+  );
+
+  if (!certifiCateStatusTest) {
+    throw createApiError("invalid status", 400);
+  }
+
+  certificate.status = payload.status;
+  await user.save();
+
+  return res.status(200).json(
+    handleResponse({
+      message: `${certificate.name} status set to ${certificateStatus}`
+    })
+  );
+});
+
 const deleteAllCollections = handleAsync(async (req, res) => {
   const userId = req.user._id;
 
@@ -249,34 +373,51 @@ const deleteAllCollections = handleAsync(async (req, res) => {
   const collections = user.collections;
 
   user.remove({ collections });
-  res.status(204).json(handleResponse({message: "Successfully deleted certificated"}));
+  res
+    .status(204)
+    .json(handleResponse({ message: "Successfully deleted all collections" }));
 });
-//This is for getting one certificate
 
-
-
-const deleteCertificate = handleAsync(async (req, res) => {
-  const { id: certificateID } = req.params;
+const deleteCollection = handleAsync(async (req, res) => {
   const userId = req.user._id;
+  const collectionId = req.params.collectionId;
 
-  //validate param ID
-  if (!certificateID.match(/^[0-9a-fA-F]{24}$/)) {
-    throw createApiError("Not a valid certificate ID", 403);
-  }
+  const user = await User.findOne({ userId }).exec();
+  if (!user) throw createApiError("user not found", 404);
 
-  //delete certificate by ID
-  const cert = await User.updateOne(
-    { userId: userId },
-    { $pull: { records: { _id: certificateID } } },
-    { safe: true }
+  const collection = user.collections.find(item => item._id == collectionId);
+  if (!collection) throw createApiError("collection not found", 404);
+
+  user.collections.remove({ collection });
+  await user.save();
+
+  res
+    .status(204)
+    .json(handleResponse({ message: "Successfully deleted collection" }));
+});
+
+const deleteCertificateInCollection = handleAsync(async (req, res) => {
+  const userId = req.user._id;
+  const collectionId = req.params.collectionId;
+  const certificateId = req.params.certificateId;
+
+  const user = await User.findOne({ userId }).exec();
+  if (!user) throw createApiError("user not found", 404);
+
+  const collection = user.collections.find(item => item._id == collectionId);
+  if (!collection) throw createApiError("collection not found", 404);
+
+  const certificate = collection.records.find(
+    item => item._id == certificateId
   );
+  if (!certificate) throw createApiError("certificate not found", 404);
 
-  if (!cert) {
-    throw createApiError(`No Certificate with id ${certificateID}`, 404);
-  }
-  return res
-    .status(200)
-    .json(handleResponse({ message: `Certificate has been Deleted` }));
+  collection.records.remove({ certificate });
+  await user.save();
+
+  res
+    .status(204)
+    .json(handleResponse({ message: "Successfully deleted certificate" }));
 });
 
 const verifyCertificate = handleAsync(async (req, res) => {
@@ -295,116 +436,6 @@ const verifyCertificate = handleAsync(async (req, res) => {
   return res
     .status(200)
     .json(handleResponse({ message: `Certificate Is Valid` }));
-});
-
-const getCertificateStatus = handleAsync(async (req, res) => {
-  const userId = req.user._id;
-
-  const user = await User.findOne({ userId });
-  if (!user) throw createApiError("user not found", 404);
-
-  const certificateId = req.params.id;
-  const certificate = user.records.find(cert => cert._id !== certificateId);
-
-  if (!certificate) {
-    throw createApiError(`Certificate not found`, 404);
-  }
-
-  const certificateStatus = certificate.status;
-  return res.status(200).json(handleResponse({ status: certificateStatus }));
-});
-
-const updateCertificateDetails = handleAsync(async (req, res) => {
-  const userId = req.user._id;
-  const { id: certificateId } = req.params;
-  const { name, nameoforganization, award, description, date, signed, email } =
-    req.body;
-
-  //validate and check certificateId is provided
-  if (!certificateId.match(/^[0-9a-fA-F]{24}$/)) {
-    throw createApiError(
-      "Please provide a valid certificateId as path parameter",
-      403
-    );
-  }
-
-  //validate certificate data to be updated
-  if (
-    name == undefined ||
-    nameoforganization == undefined ||
-    award == undefined ||
-    description == undefined ||
-    date == undefined ||
-    signed == undefined ||
-    email == undefined
-  ) {
-    throw createApiError(
-      "Please enter valid certificate details: name, nameoforganization, award, description, date, signed, email",
-      403
-    );
-  }
-
-  //update mongodb
-  const cert = await User.updateOne(
-    { userId: userId, "records._id": certificateId },
-    {
-      $set: {
-        "records.$.name": name,
-        "records.$.nameoforganization": nameoforganization,
-        "records.$.award": award,
-        "records.$.description": description,
-        "records.$.date": date,
-        "records.$.signed": signed,
-        "records.$.email": email
-      }
-    }
-  );
-
-  if (!cert) {
-    throw createApiError(`No Certificate with id ${certificateId}`, 404);
-  }
-
-  return res.status(200).json(
-    handleResponse({
-      message: `Certificate ID ${certificateId} has been updated`
-    })
-  );
-});
-
-const updateCertificateStatus = handleAsync(async (req, res) => {
-  const userId = req.user._id;
-  const payload = req.body;
-
-  const user = await User.findOne({ userId });
-  if (!user) throw createApiError("user not found", 404);
-
-  const certificateId = req.params.id;
-  const certificate = user.records.find(cert => certificateId == cert._id);
-
-  if (!certificate) {
-    throw createApiError(`Certificate not found`, 404);
-  }
-
-  const certificateStatus = payload.status.toLowerCase();
-
-  const certifiCateStatusTest = ["pending", "issued", "canceled"].some(
-    value => {
-      return value === certificateStatus;
-    }
-  );
-
-  if (!certifiCateStatusTest) {
-    throw createApiError("invalid status", 400);
-  }
-
-  certificate.status = certificateStatus;
-  await user.save();
-
-  return res.status(200).json(
-    handleResponse({
-      message: `${certificate.name} status set to ${certificateStatus}`
-    })
-  );
 });
 
 const downloadCertificates = handleAsync(async (req, res) => {
@@ -642,17 +673,18 @@ const downloadSingleCertificateUnauthorised = handleAsync(async (req, res) => {
 });
 
 module.exports = {
-  getAllCollections,
   addCollection,
+  addCertficatesToCollection,
+  getAllCollections,
   getCollection,
   getCertificateInCollection,
-  addCertficatesToCollection,
-  deleteAllCollections,
-  deleteCertificate,
-  verifyCertificate,
-  getCertificateStatus,
+  updateCollectionName,
   updateCertificateDetails,
   updateCertificateStatus,
+  deleteAllCollections,
+  deleteCollection,
+  deleteCertificateInCollection,
+  verifyCertificate,
   downloadCertificates,
   downloadUnauthorised,
   downloadSingleCertificate,

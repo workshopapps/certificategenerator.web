@@ -1,31 +1,57 @@
+//modules
 const express = require("express");
-const router = express.Router();
+const os = require("os");
+
+//middlewares
 const fileExtLimiter = require("../middleware/fileExtLimiter");
 const fileUpload = require("express-fileupload");
 const upload = require("multer");
+const authentication = require("../middleware/authentication");
 
+//controllers
 const {
-  getAllCollections,
   addCollection,
+  addCertficatesToCollection,
+  getAllCollections,
   getCollection,
   getCertificateInCollection,
-  addCertficatesToCollection,
-  deleteAllCollections,
-  deleteCertificate,
-  getCertificateStatus,
+  updateCollectionName,
   updateCertificateDetails,
   updateCertificateStatus,
+  deleteAllCollections,
+  deleteCollection,
+  deleteCertificateInCollection,
   verifyCertificate,
   downloadCertificates,
   downloadUnauthorised,
   downloadSingleCertificate,
   downloadSingleCertificateUnauthorised
 } = require("../controllers/userCertificateController");
-const authentication = require("../middleware/authentication");
-const os = require("os");
-const multer = require("multer");
 
+//routes
+const router = express.Router();
+
+//get reqs
+router.get("/", authentication, getAllCollections);
+router.get("/collection/:collectionId", authentication, getCollection);
+router.get(
+  "/:certificateId/collection/:collectionId",
+  authentication,
+  getCertificateInCollection
+);
+router.get("verify/:id", verifyCertificate);
+
+//post reqs
+router.post(
+  "/collection",
+  authentication,
+  fileExtLimiter,
+  fileUpload(),
+  addCollection
+);
+router.post("/collection/:collectionId", authentication, fileUpload(), addCertficatesToCollection);
 router.post("/download", authentication, downloadCertificates);
+router.post("/download/unauthorised", downloadUnauthorised);
 router.post(
   "/download/single",
   authentication,
@@ -37,16 +63,27 @@ router.post(
   upload({ dest: os.tmpdir() }).single("logo"),
   downloadSingleCertificateUnauthorised
 );
-router.get("/", authentication, getAllCollections);
-router.post("/", authentication, fileExtLimiter, fileUpload(), addCollection);
-router.get("/:collectionId", authentication, getCollection);
-router.post("/:collectionId", authentication, addCertficatesToCollection)
-router.get("/:certificateId/collection/:collectionId", authentication, getCertificateInCollection)
-router.post("/download/unauthorised", downloadUnauthorised);
-router.get("/status", authentication, getCertificateStatus);
-router.put("/:id", authentication, updateCertificateDetails);
-router.delete("/:id", authentication, deleteCertificate);
-router.get("verify/:id", verifyCertificate);
+
+//put/patch reqs
+router.put("/collection/:collectionId", authentication, updateCollectionName);
+router.put(
+  "/:certificateId/collection/:collectionId",
+  authentication,
+  updateCertificateDetails
+);
+router.patch(
+  "/status/:certificateId/collection/:collectionId",
+  authentication,
+  updateCertificateStatus
+);
+
+//delete reqs
 router.delete("/", authentication, deleteAllCollections);
-router.patch("/status/:id", authentication, updateCertificateStatus);
+router.delete("/collection/:collectionId", authentication, deleteCollection);
+router.delete(
+  "/:certificateId/collection/:collectionId",
+  authentication,
+  deleteCertificateInCollection
+);
+
 module.exports = router;

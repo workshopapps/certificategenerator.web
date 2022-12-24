@@ -6,8 +6,7 @@ const CertificateSchema = new mongoose.Schema({
     {
       collectionName: {
         type: String,
-        required: true,
-        unique: true
+        required: true
       },
       records: [
         {
