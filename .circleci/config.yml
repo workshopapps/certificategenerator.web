@@ -110,8 +110,8 @@ jobs:
             sudo docker pull codak77/certificategeneratorwebbackend:backend
             sudo docker run -d -p 3000:3000 --name frontend codak77/certificategeneratorwebfrontend:frontend
             sudo docker run -d -p 5000:5000 --name backend codak77/certificategeneratorwebbackend:backend
-            sudo docker system prune -af
-            sudo docker builder prune -af && exit"
+            sudo docker builder prune -af
+            sudo docker system prune -af && exit"
       - run:
           name: Deploy Failure
           when: on_fail
