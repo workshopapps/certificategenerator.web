@@ -10,6 +10,7 @@ pipeline {
 			steps {
 				sh "cd frontend"
 				sh "cd frontend && npm i --force && CI=false npm run build"
+				sh "cd frontend && rm -rf node_modules
 			} 
         }
         stage("build backend"){
