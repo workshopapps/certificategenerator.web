@@ -125,13 +125,11 @@ workflows:
           filters:
             branches:
               only:
-                - dev
                 - staging
       - build-backend:
           filters:
             branches:
               only:
-                - dev
                 - staging
       - continous-deployment:
           requires:
@@ -140,5 +138,4 @@ workflows:
           filters:
             branches:
               only:
-                - dev
                 - staging
