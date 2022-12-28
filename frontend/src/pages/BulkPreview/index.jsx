@@ -1,4 +1,5 @@
 import axios from "axios";
+import Swal from "sweetalert2";
 import download from "downloadjs";
 import { useNavigate } from "react-router-dom";
 import React, { useRef, useState, useEffect } from "react";
@@ -25,15 +26,24 @@ function Index() {
   const [emailLoading, setEmailLoading] = useState(false);
   const [isAuntheticated, setIsAuntheticated] = useState(false);
   const [interactiveModal, setInteractiveModal] = useState(false);
-  const baseURL = "https://certgo.hng.tech/api";
+  const baseURL = "https://api.certgo.app/api";
   axios.create({
     baseURL
+  });
+  const accessToken = JSON.parse(localStorage.getItem("userData")).token;
+  const axiosUnauth = axios.create({
+    baseURL,
+    responseType: "blob",
+    headers: {
+      "Content-Type": "application/json"
+    }
   });
   const axiosPrivate = axios.create({
     baseURL,
     responseType: "blob",
     headers: {
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${accessToken}`
     }
   });
   useEffect(() => {
@@ -44,6 +54,7 @@ function Index() {
   // Getting the file data from the local storage and parsing its values
   const savedData = localStorage.getItem("dataKey");
   const array = JSON.parse(savedData);
+  const arrayIds = array.map(item => item.uuid);
 
   //STATES FOR TEMPLATES
   const [templateone, setTemplateOne] = useState(true);
@@ -73,6 +84,19 @@ function Index() {
 
   const bulkCertDesignRef = useRef();
 
+  const Toast = Swal.mixin({
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: toast => {
+      toast.addEventListener("mouseenter", Swal.stopTimer);
+      toast.addEventListener("mouseleave", Swal.resumeTimer);
+    }
+  });
+
+  // Function to send certificate to recepients email addresses
   const handleSendCertificates = async e => {
     try {
       localStorage.getItem("userData")
@@ -86,58 +110,25 @@ function Index() {
         );
         return;
       }
-
-      navigate("/comingsoon");
-
-      //   const doc = new jsPDF("p", "px", [339.4, 339.4]); // Initialize a new jsPDF instance
-      //   const elements = document.getElementsByClassName("multiple"); // Get all certificates as HTML Elements
-      //   setEmailLoading(true);
-      //   await createPdf({ doc, elements });
-      //   const data = doc.save(`certgo.pdf`);
-
-      //   // get token from localstorage
-      //   const token = JSON.parse(localStorage.getItem("userData")).token;
-
-      //   // create form data and add pdf
-      //   let formData = new FormData();
-      //   formData.append("file", data);
-
-      //   // send the form data
-      //   const uploadUrl = "/sendEmailNotifications";
-      //   let response = await axiosFormData.post(uploadUrl, formData, {
-      //     headers: {
-      //       Authorization: `Bearer ${token}`,
-      //       "Content-Type": "multipart/form-data"
-      //     }
-      //   });
-      //   // toast message
-      //   const dataMsg = response.data;
-      //   if (response.status === 200) {
-      //     setEmailLoading(false);
-      //     Toast.fire({
-      //       icon: "success",
-      //       title: dataMsg.message
-      //     });
-      //   } else if (response.status === 403) {
-      //     setEmailLoading(false);
-      //     Toast.fire({
-      //       icon: "error",
-      //       title: dataMsg.error
-      //     });
-      //   } else {
-      //     setEmailLoading(false);
-      //     Toast.fire({
-      //       icon: "error",
-      //       title: dataMsg.message
-      //     });
-      //     throw new Error(dataMsg.message);
-      //   }
+      setEmailLoading(true);
+      const res = await axiosPrivate.post("/certificates/sendBulkCertificates", {
+        certificateIds: arrayIds,
+        template: template,
+        format: "pdf"
+      });
+      if (res.status === 200 || res.status === 201 || res.status === 204) {
+        setEmailLoading(false);
+        Toast.fire({
+          icon: "success",
+          title: "Successfully Sent certificates"
+        });
+      }
     } catch (error) {
       setEmailLoading(false);
-      // Toast.fire({
-      //   icon: "error",
-      //   title: "Internal Server Error"
-      // });
+      Toast.fire({
+        icon: "success",
+        title: error.message
+      });
     }
   };
 
@@ -151,7 +142,7 @@ function Index() {
     }
     setLoading(true);
     setInteractiveModal(true);
-    const res = await axiosPrivate.post("/certificates/download/unauthorised", {
+    const res = await axiosUnauth.post("/certificates/download/unauthorised", {
       certificates: array,
       format: "pdf-split",
       template: template
@@ -174,7 +165,7 @@ function Index() {
     }
     setLoading(true);
     setInteractiveModal(true);
-    const res = await axiosPrivate.post("/certificates/download/unauthorised", {
+    const res = await axiosUnauth.post("/certificates/download/unauthorised", {
       certificates: array,
       format: "img",
       template: template

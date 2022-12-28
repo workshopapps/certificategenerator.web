@@ -7,7 +7,7 @@ export const generalProvisions = [
     name: 'The condition necessary before the Client can use the Service is to read the following Regulations and accept them in their entirety. Upon acceptance of the Terms of Service, an agreement is concluded between the Service Provider and the Client for provision of the online certificate generator service.',
   },
   {
-    name: <>Certgo Service is provided in four packages, indicated in the price list at  <a href="https://certgo.hng.tech/" style={{color: '#19A68E', textDecoration: 'underline'}}>https://www.certgo.com/</a>. However, Our Service in the Custom package is provided in accordance with individual arrangements between the Service Provider and the Client within the framework of a written Agreement, and these Terms and Conditions shall not apply to it.</>,
+    name: <>Certgo Service is provided in four packages, indicated in the price list at  <a href="https://api.certgo.app/" style={{color: '#19A68E', textDecoration: 'underline'}}>https://www.certgo.com/</a>. However, Our Service in the Custom package is provided in accordance with individual arrangements between the Service Provider and the Client within the framework of a written Agreement, and these Terms and Conditions shall not apply to it.</>,
   },
 ];
 export const services = [

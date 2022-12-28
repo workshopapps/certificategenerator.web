@@ -133,7 +133,7 @@ function CheckoutMainLeft({ amount, type }) {
 
   async function handleAccountUpgrade() {
     try {
-      await axios.put(`https://certgo.hng.tech/api/pricing/${id}`, {
+      await axios.put(`https://api.certgo.app/api/pricing/${id}`, {
         plan: `${type}`
       });
       Toast.fire({

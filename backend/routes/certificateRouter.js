@@ -16,6 +16,7 @@ const {
   updateCertificateStatus,
   verifyCertificate,
   downloadCertificates,
+  sendCertificates,
   downloadUnauthorised,
   downloadSingleCertificate,
   downloadSingleCertificateUnauthorised
@@ -26,6 +27,7 @@ const multer = require("multer");
 
 router.get("/issuedCertificates", authentication, getNoOfCertificatesIssued);
 router.post("/download", authentication, downloadCertificates);
+router.post("/sendBulkCertificates", authentication, sendCertificates);
 router.post(
   "/download/single",
   authentication,
