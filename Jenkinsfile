@@ -10,7 +10,7 @@ pipeline {
 			steps {
 				sh "cd frontend"
 				sh "cd frontend && npm i --force && CI=false npm run build"
-				sh "cd frontend && rm -rf node_modules"
+				//sh "cd frontend && rm -rf node_modules"
 			} 
         }
         stage("build backend"){
@@ -29,6 +29,7 @@ pipeline {
 				//sh "pm2 delete certgo"
 				sh "sudo pm2 start /home/sean/certgo/backend/ecosystem.config.js"
 				sh "sudo pm2 save"
+				sh "sudo rm -rf ${WORKSPACE}"
 			}
 			
 		}
