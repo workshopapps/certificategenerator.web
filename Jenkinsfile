@@ -29,10 +29,10 @@ pipeline {
 				//sh "pm2 delete certgo"
 				sh "sudo pm2 start /home/sean/certgo/backend/ecosystem.config.js"
 				sh "sudo pm2 save"
-				sh "sudo rm -rf *"
 			}
 			
 		}
+		
 
 		stage("Performance test"){
 
@@ -46,9 +46,16 @@ pipeline {
                 sh 'k6 run Performance_Test_Certgof.js'
 			}
 		}
+		
+		
+	stage("remove files") {
+			
+		steps {
+				sh "sudo rm -rf *"
+			}
+		}
 
-
-	}
+}
 	post{
         failure{
             emailext attachLog: true, 
