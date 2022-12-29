@@ -10,14 +10,13 @@ const {
   handleResponse
 } = require("../utils/helpers");
 const {
-  convertCertificates,
-  convertCertificate,
   handleZip,
-  handleSplitPdf,
-  convertSingleCertificate
+  GenerateCertificateImages,
+  GenerateCertificatePdfs
 } = require("../utils/certificate");
-const { sendCertificate } = require("../utils/mailing")
-const imageToPdf = require("image-to-pdf");
+const { sendCertificate } = require("../utils/mailing");
+const Template = require("../models/templateModel");
+const Joi = require("joi");
 
 const addCollection = handleAsync(async (req, res) => {
   const uuidv4 = v4();
@@ -140,7 +139,8 @@ const addCertficatesToCollection = handleAsync(async (req, res) => {
 
   if (
     payload.collectionName &&
-    payload.collectionName.toLowerCase() != collection.collectionName.toLowerCase()
+    payload.collectionName.toLowerCase() !=
+      collection.collectionName.toLowerCase()
   )
     throw createApiError("Invalid collection name", 400);
 
@@ -303,9 +303,7 @@ const updateCertificateDetails = handleAsync(async (req, res) => {
     cert => certificateId == cert._id
   );
   if (!certificate) throw createApiError("certificate not found", 404);
-  
 
-  
   certificate.update({
     name: payload.name,
     nameoforganization: payload.nameoforganization,
@@ -314,9 +312,9 @@ const updateCertificateDetails = handleAsync(async (req, res) => {
     date: payload.date,
     signed: payload.signed,
     email: payload.email
-  })
+  });
   await user.save();
-  console.log('i got here')
+  console.log("i got here");
 
   return res.status(200).json(
     handleResponse({
@@ -442,72 +440,56 @@ const verifyCertificate = handleAsync(async (req, res) => {
 
 const downloadCertificates = handleAsync(async (req, res) => {
   const user = req.user;
-  const { certificateIds = [], template = 1, format = "pdf" } = req.body;
+  const { templateId, format } = req.body;
+  const { collectionId } = req.params;
 
   // I did this because I didn't want to rename user globally
   // and I wanted to avoid confusion
   const Certificate = User;
 
-  // Invalid option provided
-  if (!["pdf", "img", "pdf-split"].includes(format.toLowerCase()))
-    throw createApiError(
-      "Invalid option provided. Option must be one of 'pdf', 'img' and 'pdf-split'",
-      400
-    );
-
-  // Validate certificates input
-  if (!Array.isArray(certificateIds))
-    throw createApiError("certificateId is required and must be an array", 400);
-
   // Validate template
-  if (typeof template !== "number")
-    throw createApiError("template must be a number", 400);
+  if (!mongoose.isValidObjectId(templateId))
+    throw createApiError("Invalid templateId", 400);
 
-  const collection = await Certificate.findOne({
+  const certificates = await Certificate.findOne({
     userId: user._id
   });
 
   // if no certificates return 404
-  if (!collection) throw createApiError("User has no certificates", 404);
-
-  // if records are empty return 404
-  if (!collection.records || collection.records?.length === 0)
+  if (!certificates || !certificates.collections)
     throw createApiError("User has no certificates", 404);
 
-  // filter out invalid certificate ids
-  const certIds = certificateIds.filter(certId =>
-    mongoose.isValidObjectId(certId)
+  const collection = certificates.collections.find(
+    value => value._id.toString() == collectionId
   );
 
-  // Get certificates that have ids in certIds
-  const certs = collection.records.filter(certificate =>
-    certIds.includes(certificate._id.toString())
-  );
+  // if no certificates return 404
+  if (!collection) throw createApiError("Collection Not Found", 404);
 
-  // if certs is empty, convert all certificates in user records
-  const certsToConvert = certs.length > 0 ? certs : collection.records;
+  const template = await Template.findById(templateId);
 
-  // Generate image for each certificate
-  const paths = await convertCertificates(certsToConvert, template);
+  if (!template) throw createApiError("Invalid template id", 400);
 
   switch (format.toLowerCase()) {
-    case "pdf":
-      return imageToPdf(paths, [931, 600]).pipe(res);
-
     case "img":
+      // Generate image for each certificate
+      const paths = await GenerateCertificateImages(
+        collection.records,
+        template.raw
+      );
       const buffer = handleZip(paths);
       res.attachment("certificate.zip");
       return res.end(buffer);
 
-    case "pdf-split":
-      const pdfPaths = await handleSplitPdf(paths);
+    case "pdf":
+    default:
+      const pdfPaths = await GenerateCertificatePdfs(
+        collection.records,
+        template.raw
+      );
       const t_buffer = handleZip(pdfPaths);
       res.attachment("certificate.zip");
       return res.end(t_buffer);
-
-    default:
-      // Return certificate to frontend
-      return imageToPdf(paths, [1180, 760]).pipe(res);
   }
 });
 
@@ -558,181 +540,176 @@ const sendCertificates = handleAsync(async (req, res) => {
   // if certs is empty, convert all certificates in user records
   const certsToConvert = certs.length > 0 ? certs : collection.records;
 
-  certsToConvert.map(async (item) => {
+  certsToConvert.map(async item => {
     const path = await convertCertificate(item, template);
-    const filePath = await handleSplitPdf([path])
-    const email = item.email
-    await sendCertificate(email, filePath[0])
-  })
+    const filePath = await handleSplitPdf([path]);
+    const email = item.email;
+    await sendCertificate(email, filePath[0]);
+  });
 
-  res
-    .status(201)
-    .json(
-      { message: "Successfully Sent certificate" }
-    );
-
-})
+  res.status(201).json({ message: "Successfully Sent certificate" });
+});
 
 const downloadUnauthorised = handleAsync(async (req, res) => {
-  const { certificates, template = 1, format = "pdf" } = req.body;
+  const { certificates, templateId, format } = req.body;
 
-  // Invalid option provided
-  if (!["pdf", "img", "pdf-split"].includes(format.toLowerCase()))
-    throw createApiError(
-      "Invalid option provided. Option must be one of 'pdf', 'img' and 'pdf-split'",
-      400
-    );
+  const schema = Joi.object({
+    format: Joi.string().allow("pdf", "img").only().default("pdf"),
+    templateId: Joi.string().required(),
+    certificates: Joi.array()
+      .min(1)
+      .items(
+        Joi.object({
+          name: Joi.string().required(),
+          award: Joi.string().required(),
+          signed: Joi.string().required(),
+          date: Joi.string().required(),
+          email: Joi.string().email(),
+          description: Joi.string().required(),
+          nameoforganization: Joi.string().required()
+        })
+      )
+      .required()
+  });
 
-  // Validate certificates input
-  if (!certificates && !Array.isArray(certificates))
-    throw createApiError("certificates is required and must be an array", 400);
+  // Validate inputs
+  const { error } = schema.validate(req.body);
 
-  // Validate template
-  if (typeof template !== "number")
-    throw createApiError("template must be a number", 400);
+  if (error) throw createApiError(error.message, 400);
 
-  // Generate image for each certificate
-  const paths = await convertCertificates(certificates, template);
+  const template = await Template.findById(templateId);
+
+  if (!template) throw createApiError("Invalid template id", 400);
 
   switch (format.toLowerCase()) {
-    case "pdf":
-      return imageToPdf(paths, [1180, 760]).pipe(res);
-
     case "img":
+      // Generate image for each certificate
+      const paths = await GenerateCertificateImages(certificates, template.raw);
       const buffer = handleZip(paths);
-      res.attachment("certificate.zip");
       return res.end(buffer);
 
-    case "pdf-split":
-      const pdfPaths = await handleSplitPdf(paths);
-      const t_buffer = handleZip(pdfPaths);
-      res.attachment("certificate.zip");
-      return res.end(t_buffer);
-
+    case "pdf":
     default:
-      // Return certificate to frontend
-      return imageToPdf(paths, [1180, 760]).pipe(res);
+      const pdfPaths = await GenerateCertificatePdfs(
+        certificates,
+        template.raw
+      );
+      const t_buffer = handleZip(pdfPaths);
+      return res.end(t_buffer);
   }
 });
 
 const downloadSingleCertificate = handleAsync(async (req, res) => {
   const user = req.user;
-  const { certificateId, template = 1, format = "pdf" } = req.body;
+  const { certificateId, collectionId } = req.params;
+
+  const { templateId, format = "pdf" } = req.body;
 
   // I did this because I didn't want to rename user globally
   // and I wanted to avoid confusion
   const Certificate = User;
 
-  // Invalid option provided
-  if (!["pdf", "img", "pdf-split"].includes(format.toLowerCase()))
+  // Invalid format provided
+  if (!["pdf", "img"].includes(format.toLowerCase()))
     throw createApiError(
-      "Invalid option provided. Option must be one of 'pdf', 'img' and 'pdf-split'",
+      "Invalid format provided. Option must be one of 'pdf', 'img'",
       400
     );
 
   // Validate certificates input
-  if (!mongoose.isValidObjectId(certificateId))
-    throw createApiError("Invalid certificate Id", 400);
+  if (!mongoose.isValidObjectId(templateId))
+    throw createApiError("Invalid template Id", 400);
 
-  // Validate template
-  if (typeof Number(template) !== "number")
-    throw createApiError("template must be a number", 400);
-
-  const collection = await Certificate.findOne({
+  const certificates = await Certificate.findOne({
     userId: user._id
   });
 
   // if no certificates return 404
-  if (!collection) throw createApiError("Certificate Not Found", 404);
+  if (!certificates || !certificates.collections)
+    throw createApiError("User has no certificates", 404);
 
-  // if records are empty return 404
-  if (!collection.records || collection.records?.length === 0)
-    throw createApiError("Certificate Not Found", 404);
-
-  // Get certificates that have ids in certIds
-  const cert = collection.records.find(
-    certificate => certificate._id.toString() === certificateId
+  const collection = certificates.collections.find(
+    certCollection => collectionId == certCollection._id
   );
 
-  if (!cert) throw createApiError("Certificate Not Found", 404);
+  if (!collection) throw createApiError("collection not found", 404);
+
+  const certificate = collection.records.find(
+    cert => certificateId == cert._id
+  );
+
+  if (!certificate) throw createApiError("certificate not found", 404);
+
+  const template = await Template.findById(templateId);
+
+  if (!template) throw createApiError("Invalid template id", 400);
 
   // Generate image for each certificate
-  const paths = await convertSingleCertificate(cert, Number(template), logo);
-
   switch (format.toLowerCase()) {
-    case "pdf":
-      return imageToPdf([paths], [931, 600]).pipe(res);
-
     case "img":
-      res.attachment("certificate.img");
-      return res.download(paths);
+      // Generate image for each certificate
+      const path = await GenerateCertificateImages(
+        certificate,
+        template.raw,
+        req.user.avatar
+      );
+      return res.download(path);
 
+    case "pdf":
     default:
-      // Return certificate to frontend
-      return imageToPdf([paths], [1180, 760]).pipe(res);
+      const pdfPath = await GenerateCertificatePdfs(
+        certificate,
+        template.raw,
+        req.user.avatar
+      );
+      return res.download(pdfPath);
   }
 });
 
 const downloadSingleCertificateUnauthorised = handleAsync(async (req, res) => {
-  const {
-    template = 1,
-    format = "pdf",
-    name,
-    award,
-    signed,
-    date,
-    description,
-    nameoforganization
-  } = req.body;
+  const logo = req.file?.path;
 
-  const certificate = {
-    name,
-    award,
-    signed,
-    date,
-    description,
-    nameoforganization
-  };
+  const schema = Joi.object({
+    templateId: Joi.string().required(),
+    format: Joi.string().allow("pdf", "img").only().default("pdf"),
+    name: Joi.string().required(),
+    award: Joi.string().required(),
+    signed: Joi.string().required(),
+    date: Joi.string().required(),
+    email: Joi.string().email().required(),
+    description: Joi.string().required(),
+    nameoforganization: Joi.string().required()
+  });
 
-  const logo = req.file.path;
+  // Validate inputs against mongoose schema
+  const { error } = schema.validate(req.body);
 
-  console.log(req.file);
+  if (error) throw createApiError(error.message, 400);
 
-  // I did this because I didn't want to rename user globally
-  // and I wanted to avoid confusion
+  const { templateId, format, ...certificate } = req.body;
 
-  // Invalid option provided
-  if (!["pdf", "img"].includes(format.toLowerCase()))
-    throw createApiError(
-      "Invalid option provided. Option must be one of 'pdf', 'img' and 'pdf-split'",
-      400
-    );
+  const template = await Template.findById(templateId);
 
-  // Validate certificates input
-  if (!certificate) throw createApiError("Invalid certificate Id", 400);
-
-  // Validate template
-  if (typeof Number(template) !== "number")
-    throw createApiError("template must be a number", 400);
-
-  // Generate image for each certificate
-  const paths = await convertSingleCertificate(
-    certificate,
-    Number(template),
-    logo
-  );
+  if (!template) throw createApiError("Invalid template Id", 400);
 
   switch (format.toLowerCase()) {
-    case "pdf":
-      return imageToPdf([paths], [931, 600]).pipe(res);
-
     case "img":
-      res.attachment("certificate.img");
-      return res.download(paths);
+      // Generate image for each certificate
+      const path = await GenerateCertificateImages(
+        certificate,
+        template.raw,
+        logo
+      );
+      return res.download(path);
 
+    case "pdf":
     default:
-      // Return certificate to frontend
-      return imageToPdf([paths], [1180, 760]).pipe(res);
+      const pdfPath = await GenerateCertificatePdfs(
+        certificate,
+        template.raw,
+        logo
+      );
+      return res.download(pdfPath);
   }
 });
 
