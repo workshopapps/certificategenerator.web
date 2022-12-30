@@ -1,5 +1,5 @@
-// import CheckoutMainLeft from "./CheckoutMainLeft";
-import CheckoutMainLeft from "../NewDesign/CheckoutMainLeft";
+import CheckoutMainLeft from "./CheckoutMainLeft";
+// import CheckoutMainLeft from "../NewDesign/CheckoutMainLeft";
 import CheckoutMainRight from "./CheckoutMainRight";
 
 function CheckoutMain({ type, amount, per, header, text, subText }) {
@@ -8,8 +8,8 @@ function CheckoutMain({ type, amount, per, header, text, subText }) {
       <h4 id="CheckoutMain-text">Checkout</h4>
 
       <div className="row" id="CheckoutMain-row">
-        {/* <CheckoutMainLeft amount={amount} type={type} /> */}
-        <CheckoutMainLeft />
+        <CheckoutMainLeft amount={amount} type={type} />
+        {/* <CheckoutMainLeft /> */}
 
         <CheckoutMainRight
           type={type}
