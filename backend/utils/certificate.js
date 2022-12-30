@@ -204,7 +204,6 @@ const extractCertificatesFromReq = async (files, payload) => {
         link: `https://certgo.hng.tech/single_preview?uuid=${uuidv4}`
       }
     ];
-    // } else throw createApiError("bad request", 400);
   } else return { certificates: "", error: "bad request", errorStatus: 400 };
 
   return { certificates, error: null, errorStatus: null };

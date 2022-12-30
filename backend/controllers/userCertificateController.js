@@ -210,22 +210,20 @@ const updateCertificateDetails = handleAsync(async (req, res) => {
     certCollection => collectionId == certCollection._id
   );
   if (!collection) throw createApiError("collection not found", 404);
-
+  
   const certificate = collection.records.find(
-    cert => certificateId == cert._id
-  );
-  if (!certificate) throw createApiError("certificate not found", 404);
+      cert => certificateId == cert._id
+    );
+    if (!certificate) throw createApiError("certificate not found", 404);
 
-  certificate.update({
-    name,
-    nameoforganization,
-    award,
-    description,
-    date,
-    signed,
-    email
-  });
-  await user.save();
+    certificate.name = name;
+    certificate.nameoforganization = nameoforganization,
+    certificate.award = award,
+    certificate.description = description,
+    certificate.date = date,
+    certificate.signed = signed,
+    certificate.email = email
+    await user.save();
 
   return res.status(200).json(
     handleResponse({
