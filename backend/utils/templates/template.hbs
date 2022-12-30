@@ -1,0 +1,93 @@
+<html lang="en">
+  <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="{{fontUrl}}" />
+
+    <style>
+      #bg { height: 100%; } html,body { margin: 0; width: fit-content; }
+      .container { position: relative; height: 720px; line-height: normal;
+      width: fit-content; } h2{margin: 0;}
+
+      {{#each texts}}
+        #text-{{_id}}
+        { position: absolute; top:
+        {{this.top}}%; left:
+        {{this.left}}%; font-size:
+        {{this.fontSize}}em; font-family: "{{this.fontFamily}}";
+
+        {{#if this.fontWeight}}
+          font-weight:
+          {{this.fontWeight}};
+        {{/if}}
+
+        {{#if this.color}}
+          color:
+          {{this.color}};
+        {{/if}}
+
+        {{#if this.width}}
+          width:
+          {{this.width}}%;
+        {{/if}}
+
+        }
+      {{/each}}
+
+      {{#each elements}}
+        #element-{{_id}}
+        { position: absolute; top:
+        {{this.top}}%; left:
+        {{this.left}}%;
+
+        {{#if this.color}}
+          color:
+          {{this.color}};
+        {{/if}}
+
+        {{#if this.width}}
+          width:
+          {{this.width}}%;
+        {{/if}}
+
+        {{#if this.height}}
+          height:
+          {{this.height}}%;
+        {{/if}}
+
+        }
+      {{/each}}
+
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <img src="{{backgroundImage}}" id="bg" alt="" />
+
+      {{#each texts}}
+
+        {{#if this.isAttribute}}
+          <h2 id="text-{{this._id}}">{{wrap this.attribute}}</h2>
+        {{/if}}
+
+        {{#unless this.isAttribute}}
+          <h2 id="text-{{this._id}}">{{this.text}}</h2>
+        {{/unless}}
+
+      {{/each}}
+
+      {{#each elements}}
+
+        {{#if this.isLogo}}
+          <img id="element-{{this._id}}" src="{{wrap 'logo'}}" />
+        {{/if}}
+
+        {{#unless this.isLogo}}
+          <img id="element-{{this._id}}" src="{{this.url}}" />
+        {{/unless}}
+
+      {{/each}}
+
+    </div>
+  </body>
+</html>
