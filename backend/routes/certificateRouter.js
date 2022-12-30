@@ -50,21 +50,31 @@ router.post(
   fileUpload(),
   addCollection
 );
-router.post("/collection/:collectionId", authentication, fileUpload(), addCertficatesToCollection);
-router.post("/download", authentication, downloadCertificates);
+router.post(
+  "/collection/:collectionId",
+  authentication,
+  fileUpload(),
+  addCertficatesToCollection
+);
 
-router.post("/download/unauthorised", downloadUnauthorised);
+router.post(
+  "/collection/:collectionId/download",
+  authentication,
+  downloadCertificates
+);
+
+router.post("/download", downloadUnauthorised);
 
 router.post("/sendBulkCertificates", authentication, sendCertificates);
 
 router.post(
-  "/download/single",
+  "/:certificateId/collection/:collectionId/download",
   authentication,
-  upload({ dest: os.tmpdir() }).single("logo"),
   downloadSingleCertificate
 );
+
 router.post(
-  "/download/unauthorised/single",
+  "/single/download",
   upload({ dest: os.tmpdir() }).single("logo"),
   downloadSingleCertificateUnauthorised
 );
