@@ -10,7 +10,7 @@ pipeline {
 			steps {
 				sh "cd frontend"
 				sh "cd frontend && npm i --force && CI=false npm run build"
-				sh "cd frontend && rm -rf node_modules"
+				//sh "cd frontend && rm -rf node_modules"
 			} 
         }
         stage("build backend"){
@@ -32,6 +32,7 @@ pipeline {
 			}
 			
 		}
+		
 
 		stage("Performance test"){
 
@@ -45,9 +46,16 @@ pipeline {
                 sh 'k6 run Performance_Test_Certgof.js'
 			}
 		}
+		
+		
+	stage("remove files") {
+			
+		steps {
+				sh "sudo rm -rf *"
+			}
+		}
 
-
-	}
+}
 	post{
         failure{
             emailext attachLog: true, 
