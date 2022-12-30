@@ -33,7 +33,10 @@ const addCollection = handleAsync(async (req, res) => {
   if (!payload.collectionName)
     throw createApiError("Collection Name required", 400);
 
-  const { certificates, error, errorStatus } = await extractCertificatesFromReq(files, payload);
+  const { certificates, error, errorStatus } = await extractCertificatesFromReq(
+    files,
+    payload
+  );
 
   if (error) {
     throw createApiError(error, errorStatus);
@@ -94,19 +97,20 @@ const addCertficatesToCollection = handleAsync(async (req, res) => {
   )
     throw createApiError("Invalid collection name", 400);
 
-    const { certificates, error, errorStatus } = await extractCertificatesFromReq(files, payload);
+  const { certificates, error, errorStatus } = await extractCertificatesFromReq(
+    files,
+    payload
+  );
 
-    if (error) {
-      throw createApiError(error, errorStatus);
-    }
+  if (error) {
+    throw createApiError(error, errorStatus);
+  }
 
   collection.records = [...collection.records, ...certificates];
   await user.save();
   res
     .status(201)
-    .json(
-      handleResponse({ certificates }, "Successfully updated certificate")
-    );
+    .json(handleResponse({ certificates }, "Successfully updated certificate"));
 });
 
 const getAllCollections = handleAsync(async (req, res) => {
@@ -182,18 +186,18 @@ const updateCollectionName = handleAsync(async (req, res) => {
 
 const updateCertificateDetails = handleAsync(async (req, res) => {
   const userId = req.user._id;
-  const collectionId = req.params.collectionId;
-  const certificateId = req.params.certificateId;
-  const payload = req.body;
+  const { collectionId, certificateId } = req.params;
+  const { name, nameoforganization, award, description, date, signed, email } =
+    req.body;
 
   const validateCertificateBody = [
-    payload.name,
-    payload.nameoforganization,
-    payload.award,
-    payload.description,
-    payload.date,
-    payload.signed,
-    payload.email
+    name,
+    nameoforganization,
+    award,
+    description,
+    date,
+    signed,
+    email
   ].every(item => item == undefined || item == null);
 
   if (validateCertificateBody)
@@ -213,16 +217,15 @@ const updateCertificateDetails = handleAsync(async (req, res) => {
   if (!certificate) throw createApiError("certificate not found", 404);
 
   certificate.update({
-    name: payload.name,
-    nameoforganization: payload.nameoforganization,
-    award: payload.award,
-    description: payload.description,
-    date: payload.date,
-    signed: payload.signed,
-    email: payload.email
+    name,
+    nameoforganization,
+    award,
+    description,
+    date,
+    signed,
+    email
   });
   await user.save();
-  console.log("i got here");
 
   return res.status(200).json(
     handleResponse({
@@ -233,9 +236,8 @@ const updateCertificateDetails = handleAsync(async (req, res) => {
 
 const updateCertificateStatus = handleAsync(async (req, res) => {
   const userId = req.user._id;
-  const collectionId = req.params.collectionId;
-  const certificateId = req.params.certificateId;
-  const payload = req.body;
+  const { collectionId, certificateId } = req.params;
+  const { status } = req.body;
 
   const user = await User.findOne({ userId }).exec();
   if (!user) throw createApiError("No collection found", 404);
@@ -250,7 +252,7 @@ const updateCertificateStatus = handleAsync(async (req, res) => {
   );
   if (!certificate) throw createApiError("certificate not found", 404);
 
-  const certificateStatus = payload.status.toLowerCase();
+  const certificateStatus = status.toLowerCase();
 
   const certifiCateStatusTest = ["pending", "issued", "canceled"].some(
     value => {
@@ -262,7 +264,7 @@ const updateCertificateStatus = handleAsync(async (req, res) => {
     throw createApiError("invalid status", 400);
   }
 
-  certificate.status = payload.status;
+  certificate.status = status;
   await user.save();
 
   return res.status(200).json(
@@ -306,8 +308,7 @@ const deleteCollection = handleAsync(async (req, res) => {
 
 const deleteCertificateInCollection = handleAsync(async (req, res) => {
   const userId = req.user._id;
-  const collectionId = req.params.collectionId;
-  const certificateId = req.params.certificateId;
+  const { collectionId, certificateId } = req.params;
 
   const user = await User.findOne({ userId }).exec();
   if (!user) throw createApiError("user not found", 404);
