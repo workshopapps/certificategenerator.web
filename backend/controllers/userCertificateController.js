@@ -1,9 +1,7 @@
 const User = require("../models/certificateModel");
 const jwt = require("jsonwebtoken");
 const mongoose = require("mongoose");
-const csvToJson = require("csvtojson");
-const { v4 } = require("uuid");
-const { isValidJsonOutput } = require("../utils/validation");
+
 const {
   handleAsync,
   createApiError,
@@ -12,69 +10,12 @@ const {
 const {
   handleZip,
   GenerateCertificateImages,
-  GenerateCertificatePdfs
+  GenerateCertificatePdfs,
+  extractCertificatesFromReq
 } = require("../utils/certificate");
 const { sendCertificate } = require("../utils/mailing");
 const Template = require("../models/templateModel");
 const Joi = require("joi");
-
-const extractCertificatesFromReq = async (files, payload) => {
-  const uuidv4 = v4();
-  let certificates;
-
-  if (files) {
-    const csvFile = files.file.data;
-    const csvData = Buffer.from(csvFile).toString();
-    certificates = await csvToJson().fromString(csvData);
-
-    if (!isValidJsonOutput(certificates)) {
-      // throw createApiError("Invalid input from uploaded csv file", 400);
-      return {
-        certificates: "",
-        error: "Invalid input from uploaded csv file",
-        errorStatus: 400
-      };
-    }
-
-    //append uuid and link to the certificate object
-    certificates = certificates.map(data => {
-      let id = v4();
-      return {
-        ...data,
-        uuid: id,
-        link: `https://certgo.hng.tech/single_preview?uuid=${id}`
-      };
-    });
-  } else if (payload) {
-    if (
-      !payload.name ||
-      !payload.nameoforganization ||
-      !payload.award ||
-      !payload.email ||
-      !payload.description ||
-      !payload.date ||
-      !payload.signed
-    )
-      return { certificates: "", error: "Invalid payload", errorStatus: 400 };
-
-    certificates = [
-      {
-        name: payload.name,
-        nameoforganization: payload.nameoforganization,
-        award: payload.award,
-        email: payload.email,
-        description: payload.description,
-        date: payload.date,
-        signed: payload.signed,
-        uuid: uuidv4,
-        link: `https://certgo.hng.tech/single_preview?uuid=${uuidv4}`
-      }
-    ];
-    // } else throw createApiError("bad request", 400);
-  } else return { certificates: "", error: "bad request", errorStatus: 400 };
-
-  return { certificates, error: null, errorStatus: null };
-};
 
 const addCollection = handleAsync(async (req, res) => {
   const userId = req.user._id;
