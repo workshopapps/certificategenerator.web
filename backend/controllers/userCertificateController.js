@@ -18,33 +18,26 @@ const { sendCertificate } = require("../utils/mailing");
 const Template = require("../models/templateModel");
 const Joi = require("joi");
 
-const addCollection = handleAsync(async (req, res) => {
+const extractCertificatesFromReq = async (files, payload) => {
   const uuidv4 = v4();
-  const userId = req.user._id;
-  const files = req.files;
-  const payload = req.body;
+  let certificates;
 
-  if (files && files == undefined) throw createApiError("bad request", 400);
-
-  if (!files && Object.keys(payload).length === 0) {
-    throw createApiError("bad request", 400);
-  }
-
-  if (!payload.collectionName)
-    throw createApiError("Collection Name required", 400);
-
-  let certificateData;
   if (files) {
     const csvFile = files.file.data;
     const csvData = Buffer.from(csvFile).toString();
-    certificateData = await csvToJson().fromString(csvData);
+    certificates = await csvToJson().fromString(csvData);
 
-    if (!isValidJsonOutput(certificateData)) {
-      throw createApiError("Invalid input from uploaded csv file", 400);
+    if (!isValidJsonOutput(certificates)) {
+      // throw createApiError("Invalid input from uploaded csv file", 400);
+      return {
+        certificates: "",
+        error: "Invalid input from uploaded csv file",
+        errorStatus: 400
+      };
     }
 
     //append uuid and link to the certificate object
-    certificateData = certificateData.map(data => {
+    certificates = certificates.map(data => {
       let id = v4();
       return {
         ...data,
@@ -52,20 +45,19 @@ const addCollection = handleAsync(async (req, res) => {
         link: `https://certgo.hng.tech/single_preview?uuid=${id}`
       };
     });
-  } else if (Array.isArray(payload)) {
-    certificateData = payload.map(item => ({
-      name: item.name,
-      nameoforganization: item.nameoforganization,
-      award: item.award,
-      email: item.email,
-      description: item.description,
-      date: item.date,
-      signed: item.signed,
-      uuid: uuidv4,
-      link: `https://certgo.hng.tech/single_preview?uuid=${uuidv4}`
-    }));
   } else if (payload) {
-    certificateData = [
+    if (
+      !payload.name ||
+      !payload.nameoforganization ||
+      !payload.award ||
+      !payload.email ||
+      !payload.description ||
+      !payload.date ||
+      !payload.signed
+    )
+      return { certificates: "", error: "Invalid payload", errorStatus: 400 };
+
+    certificates = [
       {
         name: payload.name,
         nameoforganization: payload.nameoforganization,
@@ -78,20 +70,38 @@ const addCollection = handleAsync(async (req, res) => {
         link: `https://certgo.hng.tech/single_preview?uuid=${uuidv4}`
       }
     ];
-  } else throw createApiError("bad request", 400);
+    // } else throw createApiError("bad request", 400);
+  } else return { certificates: "", error: "bad request", errorStatus: 400 };
 
-  let newCollection;
-  if (Array.isArray(payload)) {
-    newCollection = {
-      collectionName: payload[0].collectionName,
-      records: certificateData
-    };
-  } else {
-    newCollection = {
-      collectionName: payload.collectionName,
-      records: certificateData
-    };
+  return { certificates, error: null, errorStatus: null };
+};
+
+const addCollection = handleAsync(async (req, res) => {
+  const userId = req.user._id;
+  const files = req.files;
+  const payload = req.body;
+
+  if (files && files == undefined) {
+    throw createApiError("bad request", 400);
   }
+
+  if (!files && Object.keys(payload).length === 0) {
+    throw createApiError("bad request", 400);
+  }
+
+  if (!payload.collectionName)
+    throw createApiError("Collection Name required", 400);
+
+  const { certificates, error, errorStatus } = await extractCertificatesFromReq(files, payload);
+
+  if (error) {
+    throw createApiError(error, errorStatus);
+  }
+
+  const newCollection = {
+    collectionName: payload.collectionName,
+    records: certificates
+  };
 
   const user = await User.findOne({ userId }).exec();
 
@@ -118,7 +128,6 @@ const addCollection = handleAsync(async (req, res) => {
 
 const addCertficatesToCollection = handleAsync(async (req, res) => {
   const userId = req.user._id;
-  const uuidv4 = v4();
   const files = req.files;
   const payload = req.body;
   const collectionId = req.params.collectionId;
@@ -144,59 +153,18 @@ const addCertficatesToCollection = handleAsync(async (req, res) => {
   )
     throw createApiError("Invalid collection name", 400);
 
-  let certificateData;
-  if (files) {
-    const csvFile = files.file.data;
-    const csvData = Buffer.from(csvFile).toString();
-    certificateData = await csvToJson().fromString(csvData);
+    const { certificates, error, errorStatus } = await extractCertificatesFromReq(files, payload);
 
-    if (!isValidJsonOutput(certificateData)) {
-      throw createApiError("Invalid input from uploaded csv file", 400);
+    if (error) {
+      throw createApiError(error, errorStatus);
     }
 
-    //append uuid and link to the certificate object
-    certificateData = certificateData.map(data => {
-      let id = v4();
-      return {
-        ...data,
-        uuid: id,
-        link: `https://certgo.hng.tech/single_preview?uuid=${id}`
-      };
-    });
-  } else if (Array.isArray(payload)) {
-    certificateData = payload.map(item => ({
-      name: item.name,
-      nameoforganization: item.nameoforganization,
-      award: item.award,
-      email: item.email,
-      description: item.description,
-      date: item.date,
-      signed: item.signed,
-      uuid: uuidv4,
-      link: `https://certgo.hng.tech/single_preview?uuid=${uuidv4}`
-    }));
-  } else if (payload) {
-    certificateData = [
-      {
-        name: payload.name,
-        nameoforganization: payload.nameoforganization,
-        award: payload.award,
-        email: payload.email,
-        description: payload.description,
-        date: payload.date,
-        signed: payload.signed,
-        uuid: uuidv4,
-        link: `https://certgo.hng.tech/single_preview?uuid=${uuidv4}`
-      }
-    ];
-  } else throw createApiError("bad request", 400);
-
-  collection.records = [...collection.records, ...certificateData];
+  collection.records = [...collection.records, ...certificates];
   await user.save();
   res
     .status(201)
     .json(
-      handleResponse({ certificateData }, "Successfully updated certificate")
+      handleResponse({ certificates }, "Successfully updated certificate")
     );
 });
 
@@ -212,11 +180,11 @@ const getAllCollections = handleAsync(async (req, res) => {
 
 const getCollection = handleAsync(async (req, res) => {
   const userId = req.user._id;
+  const collectionId = req.params.collectionId;
 
   const user = await User.findOne({ userId });
   if (!user) throw createApiError("No collection found", 404);
 
-  const collectionId = req.params.collectionId;
   const collection = user.collections.find(
     certCollection => collectionId == certCollection._id
   );
@@ -230,8 +198,7 @@ const getCollection = handleAsync(async (req, res) => {
 
 const getCertificateInCollection = handleAsync(async (req, res) => {
   const userId = req.user._id;
-  const collectionId = req.params.collectionId;
-  const certificateId = req.params.certificateId;
+  const { collectionId, certificateId } = req.params;
 
   const user = await User.findOne({ userId }).exec();
   if (!user) throw createApiError("No collection found", 404);
