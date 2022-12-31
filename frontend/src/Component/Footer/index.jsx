@@ -116,6 +116,7 @@ const Footer = () => {
                 <Button onClick={handleSubmit}>Subscribe</Button>
               </div>
               <p
+                style={{ paddingTop: "18px" }}
                 className={`error-msg ${
                   message === successMSG && "colorChange"
                 }`}
@@ -169,9 +170,8 @@ const Footer = () => {
       </div>
       <div className="footer-copyright footer-container">
         <h3>
-          &copy; Copyright {year}{" "}
-          <span className="headlight-text">CertGo</span>. All rights
-          reserved.
+          &copy; Copyright {year} <span className="headlight-text">CertGo</span>
+          . All rights reserved.
         </h3>
       </div>
     </div>

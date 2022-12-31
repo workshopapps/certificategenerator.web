@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 
 import "./team.style.scss";
 // pictures
@@ -106,48 +106,57 @@ const members = [
 
 const Team = () => {
   return (
-    <section className="teamContainer" style={{ marginBottom: "2rem" }}>
-      {/* title */}
-      <div className="team">Our Team</div>
-      <div className="meet">
-        Experience, skill and creativity all come together to build our software
-        - one that's innovative, visionary, and inclusive. We are a team of
-        talented and passionate designers, managers, developers and marketers
-        dedicated to creating the best certificate generator on the planet.
-      </div>
-      {/* members */}
-      <div className="containers">
-        {members.map((member, id) => (
-          <figure className="figures" key={id}>
-            <img src={member.picture} alt="A team member photograph" width="82px" height="82px" style={{ borderRadius: "10px" }} />
-            <figcaption className="name">{member.name}</figcaption>
-            <figcaption className="title">{member.title}</figcaption>
-            <div className="icon">
+    <Suspense>
+      <section className="teamContainer" style={{ marginBottom: "2rem" }}>
+        {/* title */}
+        <div className="team">Our Team</div>
+        <div className="meet">
+          Experience, skill and creativity all come together to build our
+          software - one that's innovative, visionary, and inclusive. We are a
+          team of talented and passionate designers, managers, developers and
+          marketers dedicated to creating the best certificate generator on the
+          planet.
+        </div>
+        {/* members */}
+        <div className="containers">
+          {members.map((member, id) => (
+            <figure className="figures" key={id}>
               <img
-                src={member.socialMediaIcon1}
-                alt="Social media icon 1"
-                height="19.94px"
-                width="19.96px"
-                className="right_margin"
+                src={member.picture}
+                alt="A team member photograph"
+                width="82px"
+                height="82px"
+                style={{ borderRadius: "10px" }}
               />
-              <img
-                src={member.socialMediaIcon2}
-                alt="Social media icon 2"
-                height="19.94px"
-                width="19.96px"
-                className="right_margin"
-              />
-              <img
-                src={member.socialMediaIcon3}
-                alt="Social media icon 3"
-                height="19.94px"
-                width="19.96px"
-              />
-            </div>
-          </figure>
-        ))}
-      </div>
-    </section>
+              <figcaption className="name">{member.name}</figcaption>
+              <figcaption className="title">{member.title}</figcaption>
+              <div className="icon">
+                <img
+                  src={member.socialMediaIcon1}
+                  alt="Social media icon 1"
+                  height="19.94px"
+                  width="19.96px"
+                  className="right_margin"
+                />
+                <img
+                  src={member.socialMediaIcon2}
+                  alt="Social media icon 2"
+                  height="19.94px"
+                  width="19.96px"
+                  className="right_margin"
+                />
+                <img
+                  src={member.socialMediaIcon3}
+                  alt="Social media icon 3"
+                  height="19.94px"
+                  width="19.96px"
+                />
+              </div>
+            </figure>
+          ))}
+        </div>
+      </section>
+    </Suspense>
   );
 };
 
