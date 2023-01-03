@@ -19,20 +19,20 @@ const {
 } = require("../utils/helpers");
 
 
-
+const baseUrl = process.env.BASE_URL;
 const clientId = process.env.GOOGLE_CLIENTID;
 const clientSecret = process.env.GOOGLE_CLIENT_SECRET;
-let redirectUrl = 'http://localhost:1234';
+let redirectUrl;
 const SCOPES = ["email", "profile", "https://www.googleapis.com/auth/userinfo.profile", "https://www.googleapis.com/auth/userinfo.email", "openid"];
 let client;
 
 
 const generateClient = (_authType) => {
   if (_authType === "login") {
-    redirectUrl = `http://localhost:1234/login`
+    redirectUrl = `${baseUrl}/login`
     return new google.auth.OAuth2(clientId, clientSecret, redirectUrl, SCOPES);
   } else if (_authType === "signup") {
-    redirectUrl = `http://localhost:1234/signup`
+    redirectUrl = `${baseUrl}/signup`
     return new google.auth.OAuth2(clientId, clientSecret, redirectUrl, SCOPES);
   }
 }
