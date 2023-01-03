@@ -8,6 +8,7 @@ const {
   userLogout,
   forgotPassword,
   changePassword,
+  getAuthUrl
 } = require("../controllers/authController");
 const validateSignUp = require("../middleware/authValidators");
 
@@ -15,6 +16,7 @@ const validateSignUp = require("../middleware/authValidators");
 // router.post("/signin", )
 
 //user sign up
+router.post("/getAuthUrl", getAuthUrl)
 router.post("/signup", validateSignUp, userSignup);
 router.post("/login", validateSignUp, userLogin);
 router.post("/refreshToken", refreshToken);
