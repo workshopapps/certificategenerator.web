@@ -44,7 +44,7 @@ export const data = [
           header: "More features customised for you",
           amount: "$2.99",
           text: "Everything in Basic +",
-          linkTo: "/comingsoon",
+          linkTo: "/signup",
           AfterLogin: "/comingsoon",
           linkText: "Choose plan",
           subText: [
@@ -89,7 +89,7 @@ export const data = [
           amount: "$6.99",
           text: "Everything in Standard +",
           AfterLogin: "/comingsoon",
-          linkTo: "/comingsoon",
+          linkTo: "/signup",
           linkText: "Choose plan",
           subText: [
             {
