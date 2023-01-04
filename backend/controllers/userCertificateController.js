@@ -1,9 +1,7 @@
 const User = require("../models/certificateModel");
 const jwt = require("jsonwebtoken");
 const mongoose = require("mongoose");
-const csvToJson = require("csvtojson");
-const { v4 } = require("uuid");
-const { isValidJsonOutput } = require("../utils/validation");
+
 const {
   handleAsync,
   createApiError,
@@ -12,19 +10,21 @@ const {
 const {
   handleZip,
   GenerateCertificateImages,
-  GenerateCertificatePdfs
+  GenerateCertificatePdfs,
+  extractCertificatesFromReq
 } = require("../utils/certificate");
 const { sendCertificate } = require("../utils/mailing");
 const Template = require("../models/templateModel");
 const Joi = require("joi");
 
 const addCollection = handleAsync(async (req, res) => {
-  const uuidv4 = v4();
   const userId = req.user._id;
   const files = req.files;
   const payload = req.body;
 
-  if (files && files == undefined) throw createApiError("bad request", 400);
+  if (files && files == undefined) {
+    throw createApiError("bad request", 400);
+  }
 
   if (!files && Object.keys(payload).length === 0) {
     throw createApiError("bad request", 400);
@@ -33,65 +33,19 @@ const addCollection = handleAsync(async (req, res) => {
   if (!payload.collectionName)
     throw createApiError("Collection Name required", 400);
 
-  let certificateData;
-  if (files) {
-    const csvFile = files.file.data;
-    const csvData = Buffer.from(csvFile).toString();
-    certificateData = await csvToJson().fromString(csvData);
+  const { certificates, error, errorStatus } = await extractCertificatesFromReq(
+    files,
+    payload
+  );
 
-    if (!isValidJsonOutput(certificateData)) {
-      throw createApiError("Invalid input from uploaded csv file", 400);
-    }
-
-    //append uuid and link to the certificate object
-    certificateData = certificateData.map(data => {
-      let id = v4();
-      return {
-        ...data,
-        uuid: id,
-        link: `https://certgo.hng.tech/single_preview?uuid=${id}`
-      };
-    });
-  } else if (Array.isArray(payload)) {
-    certificateData = payload.map(item => ({
-      name: item.name,
-      nameoforganization: item.nameoforganization,
-      award: item.award,
-      email: item.email,
-      description: item.description,
-      date: item.date,
-      signed: item.signed,
-      uuid: uuidv4,
-      link: `https://certgo.hng.tech/single_preview?uuid=${uuidv4}`
-    }));
-  } else if (payload) {
-    certificateData = [
-      {
-        name: payload.name,
-        nameoforganization: payload.nameoforganization,
-        award: payload.award,
-        email: payload.email,
-        description: payload.description,
-        date: payload.date,
-        signed: payload.signed,
-        uuid: uuidv4,
-        link: `https://certgo.hng.tech/single_preview?uuid=${uuidv4}`
-      }
-    ];
-  } else throw createApiError("bad request", 400);
-
-  let newCollection;
-  if (Array.isArray(payload)) {
-    newCollection = {
-      collectionName: payload[0].collectionName,
-      records: certificateData
-    };
-  } else {
-    newCollection = {
-      collectionName: payload.collectionName,
-      records: certificateData
-    };
+  if (error) {
+    throw createApiError(error, errorStatus);
   }
+
+  const newCollection = {
+    collectionName: payload.collectionName,
+    records: certificates
+  };
 
   const user = await User.findOne({ userId }).exec();
 
@@ -118,7 +72,6 @@ const addCollection = handleAsync(async (req, res) => {
 
 const addCertficatesToCollection = handleAsync(async (req, res) => {
   const userId = req.user._id;
-  const uuidv4 = v4();
   const files = req.files;
   const payload = req.body;
   const collectionId = req.params.collectionId;
@@ -144,60 +97,20 @@ const addCertficatesToCollection = handleAsync(async (req, res) => {
   )
     throw createApiError("Invalid collection name", 400);
 
-  let certificateData;
-  if (files) {
-    const csvFile = files.file.data;
-    const csvData = Buffer.from(csvFile).toString();
-    certificateData = await csvToJson().fromString(csvData);
+  const { certificates, error, errorStatus } = await extractCertificatesFromReq(
+    files,
+    payload
+  );
 
-    if (!isValidJsonOutput(certificateData)) {
-      throw createApiError("Invalid input from uploaded csv file", 400);
-    }
+  if (error) {
+    throw createApiError(error, errorStatus);
+  }
 
-    //append uuid and link to the certificate object
-    certificateData = certificateData.map(data => {
-      let id = v4();
-      return {
-        ...data,
-        uuid: id,
-        link: `https://certgo.hng.tech/single_preview?uuid=${id}`
-      };
-    });
-  } else if (Array.isArray(payload)) {
-    certificateData = payload.map(item => ({
-      name: item.name,
-      nameoforganization: item.nameoforganization,
-      award: item.award,
-      email: item.email,
-      description: item.description,
-      date: item.date,
-      signed: item.signed,
-      uuid: uuidv4,
-      link: `https://certgo.hng.tech/single_preview?uuid=${uuidv4}`
-    }));
-  } else if (payload) {
-    certificateData = [
-      {
-        name: payload.name,
-        nameoforganization: payload.nameoforganization,
-        award: payload.award,
-        email: payload.email,
-        description: payload.description,
-        date: payload.date,
-        signed: payload.signed,
-        uuid: uuidv4,
-        link: `https://certgo.hng.tech/single_preview?uuid=${uuidv4}`
-      }
-    ];
-  } else throw createApiError("bad request", 400);
-
-  collection.records = [...collection.records, ...certificateData];
+  collection.records = [...collection.records, ...certificates];
   await user.save();
   res
     .status(201)
-    .json(
-      handleResponse({ certificateData }, "Successfully updated certificate")
-    );
+    .json(handleResponse({ certificates }, "Successfully updated certificate"));
 });
 
 const getAllCollections = handleAsync(async (req, res) => {
@@ -212,11 +125,11 @@ const getAllCollections = handleAsync(async (req, res) => {
 
 const getCollection = handleAsync(async (req, res) => {
   const userId = req.user._id;
+  const collectionId = req.params.collectionId;
 
   const user = await User.findOne({ userId });
   if (!user) throw createApiError("No collection found", 404);
 
-  const collectionId = req.params.collectionId;
   const collection = user.collections.find(
     certCollection => collectionId == certCollection._id
   );
@@ -230,8 +143,7 @@ const getCollection = handleAsync(async (req, res) => {
 
 const getCertificateInCollection = handleAsync(async (req, res) => {
   const userId = req.user._id;
-  const collectionId = req.params.collectionId;
-  const certificateId = req.params.certificateId;
+  const { collectionId, certificateId } = req.params;
 
   const user = await User.findOne({ userId }).exec();
   if (!user) throw createApiError("No collection found", 404);
@@ -274,18 +186,18 @@ const updateCollectionName = handleAsync(async (req, res) => {
 
 const updateCertificateDetails = handleAsync(async (req, res) => {
   const userId = req.user._id;
-  const collectionId = req.params.collectionId;
-  const certificateId = req.params.certificateId;
-  const payload = req.body;
+  const { collectionId, certificateId } = req.params;
+  const { name, nameoforganization, award, description, date, signed, email } =
+    req.body;
 
   const validateCertificateBody = [
-    payload.name,
-    payload.nameoforganization,
-    payload.award,
-    payload.description,
-    payload.date,
-    payload.signed,
-    payload.email
+    name,
+    nameoforganization,
+    award,
+    description,
+    date,
+    signed,
+    email
   ].every(item => item == undefined || item == null);
 
   if (validateCertificateBody)
@@ -298,23 +210,20 @@ const updateCertificateDetails = handleAsync(async (req, res) => {
     certCollection => collectionId == certCollection._id
   );
   if (!collection) throw createApiError("collection not found", 404);
-
+  
   const certificate = collection.records.find(
-    cert => certificateId == cert._id
-  );
-  if (!certificate) throw createApiError("certificate not found", 404);
+      cert => certificateId == cert._id
+    );
+    if (!certificate) throw createApiError("certificate not found", 404);
 
-  certificate.update({
-    name: payload.name,
-    nameoforganization: payload.nameoforganization,
-    award: payload.award,
-    description: payload.description,
-    date: payload.date,
-    signed: payload.signed,
-    email: payload.email
-  });
-  await user.save();
-  console.log("i got here");
+    certificate.name = name;
+    certificate.nameoforganization = nameoforganization,
+    certificate.award = award,
+    certificate.description = description,
+    certificate.date = date,
+    certificate.signed = signed,
+    certificate.email = email
+    await user.save();
 
   return res.status(200).json(
     handleResponse({
@@ -325,9 +234,8 @@ const updateCertificateDetails = handleAsync(async (req, res) => {
 
 const updateCertificateStatus = handleAsync(async (req, res) => {
   const userId = req.user._id;
-  const collectionId = req.params.collectionId;
-  const certificateId = req.params.certificateId;
-  const payload = req.body;
+  const { collectionId, certificateId } = req.params;
+  const { status } = req.body;
 
   const user = await User.findOne({ userId }).exec();
   if (!user) throw createApiError("No collection found", 404);
@@ -342,7 +250,7 @@ const updateCertificateStatus = handleAsync(async (req, res) => {
   );
   if (!certificate) throw createApiError("certificate not found", 404);
 
-  const certificateStatus = payload.status.toLowerCase();
+  const certificateStatus = status.toLowerCase();
 
   const certifiCateStatusTest = ["pending", "issued", "canceled"].some(
     value => {
@@ -354,7 +262,7 @@ const updateCertificateStatus = handleAsync(async (req, res) => {
     throw createApiError("invalid status", 400);
   }
 
-  certificate.status = payload.status;
+  certificate.status = status;
   await user.save();
 
   return res.status(200).json(
@@ -398,8 +306,7 @@ const deleteCollection = handleAsync(async (req, res) => {
 
 const deleteCertificateInCollection = handleAsync(async (req, res) => {
   const userId = req.user._id;
-  const collectionId = req.params.collectionId;
-  const certificateId = req.params.certificateId;
+  const { collectionId, certificateId } = req.params;
 
   const user = await User.findOne({ userId }).exec();
   if (!user) throw createApiError("user not found", 404);

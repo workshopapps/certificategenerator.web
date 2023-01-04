@@ -5,6 +5,9 @@ const AdmZip = require("adm-zip");
 const PDFSIZE = { width: 1016, height: 720 };
 const puppeteer = require("puppeteer");
 const Handlebars = require("handlebars");
+const csvToJson = require("csvtojson");
+const { v4 } = require("uuid");
+const { isValidJsonOutput } = require("../utils/validation");
 
 function handleZip(filePaths = []) {
   var zip = new AdmZip();
@@ -149,9 +152,67 @@ const FORMATTYPES = {
   IMG: "png"
 };
 
+const extractCertificatesFromReq = async (files, payload) => {
+  const uuidv4 = v4();
+  let certificates;
+
+  if (files) {
+    const csvFile = files.file.data;
+    const csvData = Buffer.from(csvFile).toString();
+    certificates = await csvToJson().fromString(csvData);
+
+    if (!isValidJsonOutput(certificates)) {
+      // throw createApiError("Invalid input from uploaded csv file", 400);
+      return {
+        certificates: "",
+        error: "Invalid input from uploaded csv file",
+        errorStatus: 400
+      };
+    }
+
+    //append uuid and link to the certificate object
+    certificates = certificates.map(data => {
+      let id = v4();
+      return {
+        ...data,
+        uuid: id,
+        link: `https://certgo.hng.tech/single_preview?uuid=${id}`
+      };
+    });
+  } else if (payload) {
+    if (
+      !payload.name ||
+      !payload.nameoforganization ||
+      !payload.award ||
+      !payload.email ||
+      !payload.description ||
+      !payload.date ||
+      !payload.signed
+    )
+      return { certificates: "", error: "Invalid payload", errorStatus: 400 };
+
+    certificates = [
+      {
+        name: payload.name,
+        nameoforganization: payload.nameoforganization,
+        award: payload.award,
+        email: payload.email,
+        description: payload.description,
+        date: payload.date,
+        signed: payload.signed,
+        uuid: uuidv4,
+        link: `https://certgo.hng.tech/single_preview?uuid=${uuidv4}`
+      }
+    ];
+  } else return { certificates: "", error: "bad request", errorStatus: 400 };
+
+  return { certificates, error: null, errorStatus: null };
+};
+
 module.exports = {
   handleZip,
   PDFSIZE,
   GenerateCertificateImages,
-  GenerateCertificatePdfs
+  GenerateCertificatePdfs,
+  extractCertificatesFromReq
 };

@@ -1,7 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Sora:wght@600&family=Work+Sans:wght@400;500&display=swap");
 
 #nav {
-
   .navbar {
     margin-bottom: 1rem;
     text-align: start;
@@ -177,7 +176,6 @@
         width: 100%;
       }
     }
-
   }
 
   // .dropdown-tab {
@@ -187,7 +185,7 @@
   @media only screen and (max-width: 1021px) {
     .dropdown-wrapper {
       position: absolute;
-      top: 28px;
+      top: 5px;
       right: 6rem;
     }
 
@@ -199,7 +197,7 @@
   @media only screen and (max-width: 500px) {
     .dropdown-wrapper {
       position: absolute;
-      top: 28px;
+      top: 6px;
       right: 4rem;
     }
   }
@@ -217,7 +215,6 @@
       }
     }
 
-
     .button-container {
       display: none;
     }
@@ -230,7 +227,6 @@
   @media only screen and (min-width: 1024px) {
     .nav-header {
       .nav-click {
-
         .bars,
         .btn,
         .times {
