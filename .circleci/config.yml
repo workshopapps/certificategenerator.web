@@ -1,12 +1,12 @@
 version: 2.1
-orbs:
-  node: circleci/node@5.0.2
+# orbs:
+#  node: circleci/node@5.0.2
 
 jobs:
   build-frontend:
-    executor: node/default
-#     docker:
-#       - image: circleci/node:16.10.0
+#    executor: node/default
+    docker:
+      - image: circleci/node:16.10.0
 #       - image: docker:17.09.1-ce-git
     steps:
       - checkout # pulls code from github repo
@@ -45,9 +45,9 @@ jobs:
 #             echo "ERROR building certificategeneratorwebfrontend:frontend"
 
   build-backend:
-    executor: node/default
-#     docker:
-#       - image: circleci/node:16.10.0
+#    executor: node/default
+    docker:
+      - image: circleci/node:16.10.0
 #       - image: docker:17.09.1-ce-git
     steps:
       - checkout # pulls code from github repo
