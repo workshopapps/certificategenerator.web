@@ -64,7 +64,7 @@ jobs:
           command: |
             cd backend
             npm cache clear --force
-            sudo npm install
+            sudo npm install -g --unsafe-perm=true --allow-root
       - save_cache:
           key: dependency-cache-{{ checksum "./backend/package.json" }}
           paths:
