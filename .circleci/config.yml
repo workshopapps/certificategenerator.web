@@ -107,7 +107,7 @@ jobs:
           name: Deploy success
           command: |
             ssh -o "StrictHostKeyChecking no" root@65.108.237.42 "\
-            sudo su sean && whoami
+            whoami
             cd && ls
             git clone https://github.com/workshopapps/certificategenerator.web.git
             cd certificategenerator.web
