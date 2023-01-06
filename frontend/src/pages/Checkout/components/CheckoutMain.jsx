@@ -1,4 +1,5 @@
 import CheckoutMainLeft from "./CheckoutMainLeft";
+// import CheckoutMainLeft from "../NewDesign/CheckoutMainLeft";
 import CheckoutMainRight from "./CheckoutMainRight";
 
 function CheckoutMain({ type, amount, per, header, text, subText }) {
@@ -8,6 +9,7 @@ function CheckoutMain({ type, amount, per, header, text, subText }) {
 
       <div className="row" id="CheckoutMain-row">
         <CheckoutMainLeft amount={amount} type={type} />
+        {/* <CheckoutMainLeft /> */}
 
         <CheckoutMainRight
           type={type}

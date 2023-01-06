@@ -37,7 +37,9 @@ function CheckoutMainLeft({ amount, type }) {
   const [paymentBorderCard, setPaymentBorderCard] =
     useState("4px solid #01AA6E");
   const [paymentBorderBank, setPaymentBorderBank] = useState("");
-  const id = JSON.parse(localStorage.getItem("userData")).userId;
+  // const id = JSON.parse(localStorage.getItem("userData")).userId;
+  const id = JSON.parse(localStorage.getItem("userData"));
+  console.log(id);
   const userData = JSON.parse(localStorage.getItem("userData"));
 
   function firstNamef(value) {
