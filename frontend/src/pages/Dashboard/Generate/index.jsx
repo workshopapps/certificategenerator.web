@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from "react";
-import "./Generate.scss";
-import Button from "../../../Component/button";
-import logo from "../../../assets/images/navbarIcon.png";
-import html2canvas from "html2canvas";
 import { jsPDF } from "jspdf";
-import { Toast } from "../../../Component/ToastAlert";
+import html2canvas from "html2canvas";
+import React, { useState, useEffect } from "react";
+
+import "./Generate.scss";
+import { baseURL } from "../../../api/axios";
+import Button from "../../../Component/button";
 import {ButtonLoader} from "../../../Component";
+import { Toast } from "../../../Component/ToastAlert";
+import logo from "../../../assets/images/navbarIcon.png";
 
 function Generate() {
   const [email, setEmail] = useState("");
@@ -48,7 +50,7 @@ function Generate() {
     e.preventDefault();
     setLoading(true);
     try {
-      fetch(`https://api.certgo.app/api/events/${userEventId}/certificates`, {
+      fetch(`${baseURL}/events/${userEventId}/certificates`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,

@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import logo from "../../assets/images/footerIcon.png";
+
 import "./footer.style.scss";
-import { BsInstagram, BsLinkedin, BsTwitter, BsGithub } from "react-icons/bs";
-import { useEffect } from "react";
 import Button from "../button";
+import { baseURL } from "../../api/axios";
+import logo from "../../assets/images/footerIcon.png";
+import { BsInstagram, BsLinkedin, BsTwitter, BsGithub } from "react-icons/bs";
 
 const Footer = () => {
   const year = new Date().getFullYear();
@@ -35,7 +36,7 @@ const Footer = () => {
 
   function onSubscribe() {
     let data = { email: email };
-    fetch("https://api.certgo.app/api/mailinglists", {
+    fetch(`${baseURL}/mailinglists`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data)

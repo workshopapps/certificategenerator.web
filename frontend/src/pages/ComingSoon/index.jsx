@@ -1,13 +1,15 @@
+import axios from 'axios';
 import React, {useState} from "react";
-import "./Comingsoon.scss";
-import axios from 'axios'
 import { Link } from "react-router-dom";
-import under_construction from "./images/under_construction.png";
 import { AiOutlineArrowLeft } from "react-icons/ai";
+
+import "./Comingsoon.scss";
 import Input from "../../Component/Input";
+import { baseURL } from "../../api/axios";
 import Button from "../../Component/button";
 import {Toast} from '../../Component/ToastAlert'
 import Loader from "../../Component/ButtonLoader";
+import under_construction from "./images/under_construction.png";
 
 function Comingsoon () {
   const [email, setEmail] = useState()
@@ -16,7 +18,7 @@ function Comingsoon () {
       e.preventDefault();
      setLoading(true)
     try {
-      const res = await axios.post("https://api.certgo.app/api/mailinglists", {email});
+      const res = await axios.post(`${baseURL}/mailinglists`, {email});
       Toast.fire({
         icon: "success",
         title: "Success! You will be mailed once we're done"
