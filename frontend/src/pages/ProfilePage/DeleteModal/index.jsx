@@ -1,13 +1,14 @@
 import React from "react";
-import "./deletemodal.style.scss";
-import axiosPrivate from "../../../api/axios";
 import { useNavigate } from "react-router-dom";
+
+import "./deletemodal.style.scss";
+import { baseURL } from "../../../api/axios";
 import Button from "../../../Component/button";
 
 export default function DeleteModal({ onClose }) {
   const navigate = useNavigate();
   function handleDelete() {
-    const url = "https://api.certgo.app/api/profile";
+    const url = `${baseURL}/profile`;
     const userToken = JSON.parse(localStorage.getItem("userData")).token;
     const headers = {
       Authorization: `Bearer ${userToken}`,
@@ -19,9 +20,6 @@ export default function DeleteModal({ onClose }) {
     })
       .then(res => res.json())
       .then(res => {
-        //setData(res.data.profile)
-        console.log(res.data);
-        console.log("Account deleted");
         navigate("/signup");
         localStorage.clear();
       })

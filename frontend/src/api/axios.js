@@ -1,7 +1,6 @@
 import axios from "axios";
 
 const baseURL = process.env.REACT_APP_API_URL;
-// const userData = JSON.parse(localStorage.getItem('token'));
 const token = localStorage.getItem("token");
 
 export default axios.create({
@@ -24,4 +23,4 @@ const axiosFormData = axios.create({
   }
 });
 
-export { axiosPrivate, axiosFormData };
+export { axiosPrivate, axiosFormData, baseURL };

@@ -1,10 +1,10 @@
-import React from "react";
 import axios from "axios";
-import { useRef } from "react";
-import { useState, useEffect } from "react";
-import { ReactComponent as CloseIcon } from "../../assets/close.svg";
-import "./edit.style.scss";
 import Swal from "sweetalert2";
+import React, { useState, } from "react";
+
+import "./edit.style.scss";
+import { baseURL } from "../../../../api/axios";
+import { ReactComponent as CloseIcon } from "../../assets/close.svg";
 
 const EditModal = ({ open, onClose, getUserCertificates, editData }) => {
   const [name, setName] = useState(editData.name);
@@ -15,10 +15,8 @@ const EditModal = ({ open, onClose, getUserCertificates, editData }) => {
   const [signed, setSigned] = useState(editData.signed);
   const [email, setEmail] = useState(editData.email);
   const [loading, setLoading] = useState(false);
-  const baseURL = "https://api.certgo.app/api";
   const accessToken = JSON.parse(localStorage.getItem("userData")).token;
 
-console.log(name);
   const axiosPrivate = axios.create({
     baseURL,
     headers: {
@@ -37,7 +35,7 @@ console.log(name);
       toast.addEventListener("mouseleave", Swal.resumeTimer);
     }
   });
-  // const nameRef = useRef()
+
   const formData = {
     name: name,
     nameOfOrganization : nameOfOrganization,
@@ -48,16 +46,13 @@ console.log(name);
     email: email
     
   }
-  const data = JSON.stringify(formData)
+
   const handleSubmit = async (e) => {
-    console.log(formData);
     e.preventDefault()
     try {
       const res = await axiosPrivate.put(`/certificates/${editData._id}`, formData);
-      console.log(res);
       if (res.status === 403) {
         setLoading(false);
-        console.log("load");
         Toast.fire({
           icon: "error",
           title: "Bad Request"
@@ -93,7 +88,6 @@ console.log(name);
         </div>
         <div className="modal-container__body">
           <form onSubmit={handleSubmit}>
-            {console.log(name)}
             <div className="form-group">
               <label htmlFor="">Name</label>
               <input

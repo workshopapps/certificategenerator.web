@@ -1,19 +1,20 @@
-import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Toast } from "../../ToastAlert";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
+
 import "./dropdown.style.scss";
-import Avatar from "../../../assets/svgs/default-brandkit.svg";
-import CaretUp from "../../../assets/svgs/caret-up.svg";
-import CaretDown from "../../../assets/svgs/caret-down.svg";
+import { Toast } from "../../ToastAlert";
 import Logout from "../assets/logout.svg";
+import { baseURL } from "../../../api/axios";
 import Profile from "../assets/profile-circle.svg";
+import CaretUp from "../../../assets/svgs/caret-up.svg";
 import DashboardIcon from "../assets/dashboard-icon.svg";
+import CaretDown from "../../../assets/svgs/caret-down.svg";
+import Avatar from "../../../assets/svgs/default-brandkit.svg";
 
 function DropDown() {
   const accessToken = JSON.parse(localStorage.getItem("userData")).token;
   const [profilePic, setProfilePic] = useState(null);
-  const baseURL = "https://api.certgo.app/api";
   const axiosPrivate = axios.create({
     baseURL,
     headers: {
@@ -34,11 +35,9 @@ function DropDown() {
       .then(res => {
         //navigate back to login
         navigate("/login");
-        console.log("logged out", res);
         localStorage.clear();
       })
       .catch(err => {
-        console.log(err || "couldnt log out");
         Toast.fire({
           icon: "error",
           title: "Error logging out"
@@ -49,7 +48,6 @@ function DropDown() {
     const getImage = async () => {
       const res = await axiosPrivate.get("/profile/avatar");
       setProfilePic(res.data.data.avatar);
-      console.log("Avatar", res.data.data.avatar);
     };
     getImage();
   }, []);
