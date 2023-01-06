@@ -1,19 +1,20 @@
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 import React, { useEffect, useState } from "react";
-
+import Swal from "sweetalert2";
 import Card from "./Card";
-import "./dashboard.style.scss";
-import TableRow from "./TableRow";
-import { baseURL } from "../../api/axios";
-import Button from "../../Component/button";
-import DeleteAllModal from "./DeleteAllModal";
 import { dummyData, nullDataIcon } from "./utils";
 import { Toast } from "../../Component/ToastAlert";
-import useAppProvider from "../../hooks/useAppProvider";
+import Button from "../../Component/button";
 import CreateCertificateModal from "./CreateCertificateModal";
+import DeleteAllModal from "./DeleteAllModal";
+import useAppProvider from "../../hooks/useAppProvider";
+import { Loader } from "../../Component";
+import TableRow from "./TableRow";
 import profilePic from "../../assets/svgs/default-brandkit.svg";
 import UploadVector from "../../assets/images/uploadPage/uploadVector.svg";
+import Ellipse from "../../assets/svgs/hor-ellipse.svg";
+import "./dashboard.style.scss";
+import { useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
   const {
@@ -35,6 +36,8 @@ const Dashboard = () => {
   const [openModal, setOpenModal] = useState(false);
   const [openDeleteAllModal, setOpenDeleteAllModal] = useState(false);
   const [pricing, setPricing] = useState("");
+  const [eventLink, setEventLink] = useState("");
+  const baseURL = "https://api.certgo.app/api";
   const accessToken = JSON.parse(localStorage.getItem("userData")).token;
   const [file, setFile] = useState("");
   let navigate = useNavigate();
@@ -54,6 +57,7 @@ const Dashboard = () => {
   const axiosPrivateKit = axios.create({
     baseURL,
     headers: {
+      // "Content-Type": "multipart/form-data",
       Authorization: `Bearer ${accessToken}`
     }
   });
@@ -63,8 +67,11 @@ const Dashboard = () => {
   const onUpdate = async image => {
     const formData = new FormData();
     formData.append("file", image);
+    console.log(image);
+    console.log(formData);
     try {
       const response = await axiosPrivateKit.put("/users/brand-kit", formData);
+      console.log("Response", response);
       if (response.status === 404) {
         Toast.fire({
           icon: "error",
@@ -82,6 +89,7 @@ const Dashboard = () => {
         });
       } else {
         setFile(response.data.brandkit);
+        console.log(response.data.brandkit);
       }
     } catch (error) {
       console.log(error.message);
@@ -96,6 +104,7 @@ const Dashboard = () => {
   useEffect(() => {
     const getFile = async e => {
       const res = await axiosPrivate.get("/users/brand-kit");
+      console.log("Brand kit", res.data.brandkit);
       setFile(res.data.brandkit);
     };
     getFile();
@@ -127,6 +136,7 @@ const Dashboard = () => {
   };
 
   const handleDeleteCertificate = async id => {
+    console.log(id);
     await axiosPrivate.delete(`/certificates/${id}`);
     Toast.fire({
       icon: "success",
@@ -212,6 +222,66 @@ const Dashboard = () => {
     getUserCertificates();
   }, []);
 
+  //GET EVENTS
+  const getEvents = async () => {
+    try {
+      return fetch("https://api.certgo.app/api/events", {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json"
+        }
+      }).then(async response => {
+        const result = await response.json();
+
+        var link = result.data.events[0]._id;
+        setEventLink(`https://api.certgo.app/generate/:${link}`);
+
+        if (response.status === 200 || response.status === 201) {
+          Toast.fire({
+            icon: "success",
+            title: "Link Generated"
+          });
+        } else if (response.status === 401 || response.status === 400) {
+          Toast.fire({
+            icon: "error",
+            title: "Email not found"
+          });
+        } else if (response.status === 500) {
+          Toast.fire({
+            icon: "error",
+            title: "Internal Server Error"
+          });
+        }
+      });
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
+
+  //GENERATE LINK
+  const title = "Fela Music School";
+  const getToken = JSON.parse(localStorage.getItem("userData"));
+
+  var token = getToken.token;
+
+  const handleGenerate = async () => {
+    fetch("https://api.certgo.app/api/events", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ title: title })
+    }).then(async response => {
+      const result = await response.json();
+      localStorage.setItem("_id", result.data.event._id);
+      localStorage.setItem("eventTitle", result.data.event.title);
+      localStorage.setItem("eventCustomURI", result.data.event.customURI);
+    });
+    getEvents();
+  };
+
   //DELETE ALL USER CERTIFICATES
   const handleDeleteAll = async () => {
     setLoading(true);
@@ -220,16 +290,22 @@ const Dashboard = () => {
       handleDeleteAllCertificates();
       setOpenDeleteAllModal(false);
     }, 500);
+
+    // getUserCertificates()
+    // setOpenOptions(!openOptions)
+    // getUserCertificates();
   };
 
+  // var profileName = JSON.parse(localStorage.getItem("profileName"));
+  // console.log(profileName);
   let id = JSON.parse(localStorage.getItem("userData")).userId;
+  console.log(id.slice(19, 24));
   const ShortId = id.slice(19, 24);
 
   useEffect(() => {
     if (sub !== "pricing") {
     }
   }, []);
-
   return (
     <>
       <div className="dashboard">
@@ -238,6 +314,9 @@ const Dashboard = () => {
             <span className="dashboard__profile-pic">
               <img src={file || profilePic} alt="brand-kit" />
             </span>
+            {/* <div className="ellipses" onClick={handleToggle}>
+              <img src={Ellipse} alt="upload-icon" />
+            </div> */}
             <div className="brandkit-upload">
               <label htmlFor="file" className="dashboard__upload-label">
                 <img src={UploadVector} alt="upload" />

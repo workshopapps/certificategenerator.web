@@ -1,13 +1,13 @@
 import axios from "axios";
 import Swal from "sweetalert2";
 import download from "downloadjs";
+import { useNavigate } from "react-router-dom";
 import React, { useRef, useState, useEffect } from "react";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 
 import "./bulk.style.scss";
 import "@splidejs/react-splide/css";
 import Modal from "../../Component/Modal";
-import { baseURL } from "../../api/axios";
 import Button from "../../Component/button";
 import InteractiveModal from "./interactiveModal";
 import BulkCertDesign1 from "./BulkCertDesign/BulkCertDesign1";
@@ -18,6 +18,7 @@ import certificate2 from "../../assets/images/SinglePreview/certTemplate (2).png
 import certificate3 from "../../assets/images/SinglePreview/certTemplate (3).png";
 
 function Index() {
+  const navigate = useNavigate();
   const [template, setTemplate] = useState(2);
   const [loading, setLoading] = useState(false);
   const [openModal, setOpenModal] = useState(false);
@@ -25,6 +26,7 @@ function Index() {
   const [emailLoading, setEmailLoading] = useState(false);
   const [isAuntheticated, setIsAuntheticated] = useState(false);
   const [interactiveModal, setInteractiveModal] = useState(false);
+  const baseURL = "https://api.certgo.app/api";
   axios.create({
     baseURL
   });

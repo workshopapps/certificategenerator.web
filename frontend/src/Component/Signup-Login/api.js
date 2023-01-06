@@ -1,10 +1,9 @@
 import axios from "axios";
-import { baseURL } from "../../api/axios";
 
-const baseUrl = `${baseURL}/auth`;
+const baseURL = "https://api.certgo.app/api/auth";
 
 const axiosInstance = axios.create({
-  baseUrl,
+  baseURL,
   headers: { "Content-Type": "application/json" }
 });
 

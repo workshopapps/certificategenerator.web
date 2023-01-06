@@ -1,18 +1,19 @@
-import { useState } from "react";
-import { gapi } from "gapi-script";
 import React, { useEffect } from "react";
-import { GoogleLogin } from "react-google-login";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { GoogleLogin } from "react-google-login";
+import { gapi } from "gapi-script";
 
 import "./login.scss";
-import Input from "../../Input";
-import Button from "../../button";
-import axios from "../../../api/axios";
-import Loader from "../../ButtonLoader";
-import { Toast } from "../../ToastAlert";
+import appleSVG from "./assets/apple.svg";
 import googleSVG from "./assets/google.svg";
 import cert from "./assets/Frame 427319608.svg";
+import { Toast } from "../../ToastAlert";
+import Input from "../../Input";
+import Button from "../../button";
 import useAppProvider from "../../../hooks/useAppProvider";
+import axios from "../../../api/axios";
+import Loader from "../../ButtonLoader";
 
 const Login = () => {
   const { setAccess } = useAppProvider();
@@ -55,8 +56,10 @@ const Login = () => {
   const handleSubmit = async e => {
     e.preventDefault();
     setLoading(true);
+    // console.log(location.state.from.pathname);
     try {
       const response = await loginUser(useremail, password);
+      console.log(response);
 
       if (response.status === 200 || response.status === 201) {
         Toast.fire({
@@ -89,7 +92,9 @@ const Login = () => {
       };
       localStorage.setItem("userData", JSON.stringify(userData));
       localStorage.setItem("profileName", JSON.stringify(userData.name));
+      console.log(userData);
     } catch (error) {
+      console.log(error);
       if (error.status === 400) {
         Toast.fire({
           icon: "error",

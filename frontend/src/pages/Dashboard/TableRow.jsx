@@ -1,26 +1,49 @@
+import React, { useState } from 'react'
+import { useRef } from 'react';
+import { useEffect } from 'react';
+import axios from 'axios';
 import { BsCaretDownFill } from 'react-icons/bs';
-import React, { useState, useRef, useEffect } from 'react';
-
-import "./dashboard.style.scss"
-import ViewModal from './Modal/ViewModal';
 import { ReactComponent as ActionIcon } from "./assets/actionIcon.svg";
+import ViewModal from './Modal/ViewModal';
+import "./dashboard.style.scss"
 
 const TableRow = ({item, handleChangeCertificateStatus, handleDeleteCertificate, getUserCertificates }) => {
   const [openOptions, setOpenOptions] = useState(false);
   const [openStatus, setOpenStatus] = useState(false);
   const [openViewModal, setOpenViewModal] = useState(false);
-  const [viewData, setViewData] = useState("");
-  const drop = useRef();
+  const [openEditModal, setOpenEditModal] = useState(false);
+  const [viewData, setViewData] = useState("")
+  const [editData, setEditData] = useState("")
+  const baseURL = "https://api.certgo.app/api";
+  const accessToken = JSON.parse(localStorage.getItem("userData")).token
+  const drop = useRef()
 
+  const axiosPrivate = axios.create({
+    baseURL,
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${accessToken}`
+    }
+  });
   const viewCertificate = async (item) => {
     setViewData(item);
   }
+  // const editCertificate = (item) => {
+  //     console.log(item._id);
+  //     setEditData(item);
+  //   // const res = await axiosPrivate.get(`/certificates/${id}`);
+  // }
   const handleViewModal = (id) => {
     setOpenViewModal(true)
     viewCertificate(id)
   }
+  // const handleEditModal = (id) => {
+  //   setOpenEditModal(true)
+  //   editCertificate(id)
+  // }
   const handleDelete = async (id) => {
     await handleDeleteCertificate(id)
+    // getUserCertificates()
     setOpenOptions(!openOptions)
     getUserCertificates()
   }
