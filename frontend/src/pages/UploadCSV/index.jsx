@@ -139,7 +139,6 @@ const UploadCSV = () => {
       setLoading(false);
       Toast.fire({
         icon: "error",
-        // title: error.message
         title: "Upload failed due to invalid field(s)"
       });
     }
@@ -152,31 +151,64 @@ const UploadCSV = () => {
       <div className="CSVSample">
         <img src={CSVSample} alt="CSV sample" />
       </div>
-      {/* Button to download sample CSV */}
-      <Button className="Submitcsv" style={{ margin: "1em auto", width: "200px" }}>
-        <CSVLink data={csvDataSample} headers={headers} filename="sample.csv" style={{ color: "white" }}>
-          Download sample
-        </CSVLink>
-      </Button>
+      {/* Link to download sample CSV */}
+      <CSVLink
+        data={csvDataSample}
+        headers={headers}
+        filename="sample.csv"
+        style={{ color: "#19A68E" }}
+      >
+        Download sample
+      </CSVLink>
       <div className="dragBox">
         <div className="dragboxContainer">
-          <i>
-            <img src={UploadVector} alt="upload icon" />
-          </i>
-          <span>
+          <div style={{ marginTop: "54px" }}>
+            <img src={UploadVector} alt="upload" />
+          </div>
+          <p
+            style={{
+              color: "#19A68E",
+              fontWeight: "500",
+              lineHeight: "16px",
+              fontSize: "10.5931px",
+            }}
+          >
             Drag and drop your CSV file here
-            <br /> or <br />
-            <label htmlFor="uploadCSV" className="fileUpload CSVupload">
-              <input
-                type="file"
-                id="uploadCSV"
-                name="uploadCSV"
-                accept=".csv"
-                className="box"
-                onChange={e => validateInput(e)}
-              />
+          </p>
+          <div style={{ marginBottom: "54.08px" }}>
+            <span
+              style={{
+                color: "#19A68E",
+                fontWeight: "500",
+                lineHeight: "16px",
+                fontSize: "10.5931px",
+              }}
+            >
+              or
+            </span>
+            <input
+              id="files"
+              type="file"
+              accept=".csv"
+              className="file-upload"
+              onChange={e => validateInput(e)}
+            />
+            <label
+              htmlFor="files"
+              style={{
+                color: "#19A68E",
+                fontWeight: "500",
+                lineHeight: "16px",
+                fontSize: "10.5931px",
+                borderBottom: "0.662069px solid #19A68E"
+              }}
+            >
+              Browse computer
             </label>
-          </span>
+            <div>
+              <span>{file.name}</span>
+            </div>
+          </div>
         </div>
         {errorFile && (
           <div className="messagecsv">Invalid file!! submit only csv files</div>
