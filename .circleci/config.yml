@@ -124,7 +124,7 @@ jobs:
             cd ..
             cd backend && npm i --force
             pm2 stop certgo-staging
-            pm2 start /home/sean/certgo/backend/ecosystem.config.js
+            pm2 start /home/sean/certgo-staging/backend/ecosystem.config.js
             sudo pm2 save
             rm -rf /home/sean/certificategenerator.web && exit"
               
