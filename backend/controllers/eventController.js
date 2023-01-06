@@ -2,6 +2,7 @@ require("dotenv").config();
 const Event = require("../models/eventModel");
 const mongoose = require("mongoose");
 const Certificate = require("../models/certificateModel");
+const Template = require("../models/templateModel");
 const Joi = require("joi");
 const crypto = require("crypto");
 const {
@@ -9,8 +10,7 @@ const {
   handleResponse,
   createApiError
 } = require("../utils/helpers");
-const imageToPdf = require("image-to-pdf");
-const { convertCertificate, PDFSIZE } = require("../utils/certificate");
+const { GenerateCertificatePdfs } = require("../utils/certificate");
 
 const getAllEvents = handleAsync(async (req, res) => {
   // Get logged in user from req.user via auth middleware
@@ -139,7 +139,7 @@ const editEvent = handleAsync(async (req, res) => {
 
 const getCertificateByEmail = handleAsync(async (req, res) => {
   const { eventId } = req.params;
-  const { email, template = 3 } = req.body;
+  const { email, templateId } = req.body;
   const query = {};
 
   // Email is required
@@ -173,11 +173,15 @@ const getCertificateByEmail = handleAsync(async (req, res) => {
 
   if (!certificate) throw createApiError("Certificate Not Found", 404);
 
-  // Convert certificate to image
-  const imgPath = await convertCertificate(certificate, template);
+  const template = await Template.findById(templateId);
 
-  // Generate pdf from image and send pdf as response
-  imageToPdf([imgPath], PDFSIZE).pipe(res);
+  if (!template) throw createApiError("Template not found", 400);
+
+  // Convert certificate to PDF
+  const pdfPath = await GenerateCertificatePdfs(certificate, template.raw);
+
+  // Send pdf as response
+  res.download(pdfPath);
 });
 
 const validateCustomURI = handleAsync(async (req, res) => {

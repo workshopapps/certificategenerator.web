@@ -380,7 +380,21 @@ function App() {
             <Route
               path="/bulk_step"
               element={
-                <Suspense>
+                <Suspense
+                  fallback={
+                    <div
+                      style={{
+                        width: "100%",
+                        height: "70vh",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center"
+                      }}
+                    >
+                      <Loader />
+                    </div>
+                  }
+                >
                   <BulkStep />
                 </Suspense>
               }
@@ -388,7 +402,21 @@ function App() {
             <Route
               path="/edit_bulk"
               element={
-                <Suspense>
+                <Suspense
+                  fallback={
+                    <div
+                      style={{
+                        width: "100%",
+                        height: "70vh",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center"
+                      }}
+                    >
+                      <Loader />
+                    </div>
+                  }
+                >
                   <EditBulk />
                 </Suspense>
               }
@@ -396,7 +424,21 @@ function App() {
             <Route
               path="/bulk_preview"
               element={
-                <Suspense>
+                <Suspense
+                  fallback={
+                    <div
+                      style={{
+                        width: "100%",
+                        height: "70vh",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center"
+                      }}
+                    >
+                      <Loader />
+                    </div>
+                  }
+                >
                   <BulkPreview />
                 </Suspense>
               }
@@ -404,7 +446,21 @@ function App() {
             <Route
               path="/pricing"
               element={
-                <Suspense>
+                <Suspense
+                  fallback={
+                    <div
+                      style={{
+                        width: "100%",
+                        height: "70vh",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center"
+                      }}
+                    >
+                      <Loader />
+                    </div>
+                  }
+                >
                   <Pricing amountHandler={amountHandler} />
                 </Suspense>
               }
@@ -412,7 +468,21 @@ function App() {
             <Route
               path="/contact-us"
               element={
-                <Suspense>
+                <Suspense
+                  fallback={
+                    <div
+                      style={{
+                        width: "100%",
+                        height: "70vh",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center"
+                      }}
+                    >
+                      <Loader />
+                    </div>
+                  }
+                >
                   <ContactUs />
                 </Suspense>
               }
@@ -420,14 +490,30 @@ function App() {
             <Route
               path="/payment"
               element={
-                <Checkout
-                  type={type}
-                  amount={amount}
-                  per={per}
-                  header={header}
-                  text={text}
-                  subText={subText}
-                />
+                <Suspense
+                  fallback={
+                    <div
+                      style={{
+                        width: "100%",
+                        height: "70vh",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center"
+                      }}
+                    >
+                      <Loader />
+                    </div>
+                  }
+                >
+                  <Checkout
+                    type={type}
+                    amount={amount}
+                    per={per}
+                    header={header}
+                    text={text}
+                    subText={subText}
+                  />
+                </Suspense>
               }
             />
             <Route

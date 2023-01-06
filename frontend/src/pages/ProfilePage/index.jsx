@@ -1,15 +1,15 @@
-import React, { useState } from "react";
-import axios from "axios";
-import axiosPrivate from "../../api/axios";
 import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+
 import "./profile.style.scss";
+import Modalpro from "./EditModal";
+import DeleteModal from "./DeleteModal";
+import { baseURL } from "../../api/axios";
+import axiosPrivate from "../../api/axios";
+import Button from "../../Component/button";
 import Avatar from "./assets/default-avatar.svg";
 import Loader from "../../Component/ButtonLoader";
 import { Toast } from "../../Component/ToastAlert";
-import Modalpro from "./EditModal";
-import { useEffect } from "react";
-import Button from "../../Component/button";
-import DeleteModal from "./DeleteModal";
 
 const ProfilePage = () => {
   const navigate = useNavigate();
@@ -26,7 +26,6 @@ const ProfilePage = () => {
   });
   window.addEventListener("click", () => {
     setOpenDeleteModal(false);
-    // setOpenModal(false);
   });
   const handleLogout = async e => {
     setLoading(true);
@@ -37,11 +36,9 @@ const ProfilePage = () => {
         //navigate back to login
         navigate("/login");
         setLoading(false);
-        console.log("logged out", res);
         localStorage.clear();
       })
       .catch(err => {
-        console.log(err || "couldnt log out");
         Toast.fire({
           icon: "error",
           title: "Error logging out"
@@ -50,7 +47,7 @@ const ProfilePage = () => {
       });
   };
 
-  const url = "https://api.certgo.app/api/profile";
+  const url = `${baseURL}/profile`;
 
   const userToken = JSON.parse(localStorage.getItem("userData")).token;
   const headers = {

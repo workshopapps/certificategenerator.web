@@ -4,6 +4,7 @@ import download from "downloadjs";
 import React, { useState } from "react";
 
 import "./view.style.scss";
+import { baseURL } from "../../../../api/axios";
 import Button from "../../../../Component/button";
 import { ReactComponent as CloseIcon } from "../../assets/close.svg";
 import BulkCertDesign2 from "../../../BulkPreview/BulkCertDesign/BulkCertDesign2";
@@ -14,7 +15,6 @@ import certificate2 from "../../../../assets/images/SinglePreview/certTemplate (
 import certificate3 from "../../../../assets/images/SinglePreview/certTemplate (3).png";
 
 function ViewModal({ open, onClose, getUserCertificates, viewData }) {
-  console.log(viewData);
   const [templateone, setTemplateOne] = useState(true);
   const [templatetwo, setTemplateTwo] = useState(false);
   const [templatethree, setTemplateThree] = useState(false);
@@ -22,7 +22,6 @@ function ViewModal({ open, onClose, getUserCertificates, viewData }) {
   const [loading, setLoading] = useState(false);
   const [downloadLoading, setDownloadLoading] = useState(false);
 
-  const baseURL = "https://api.certgo.app/api";
   axios.create({
     baseURL
   });
@@ -56,7 +55,6 @@ function ViewModal({ open, onClose, getUserCertificates, viewData }) {
   };
 
   const handlePdf = async id => {
-    console.log(id);
     setDownloadLoading(true);
     const res = await axiosPrivate.post("/certificates/download", {
       certificateIds: [id],

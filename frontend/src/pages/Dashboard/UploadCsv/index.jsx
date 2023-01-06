@@ -1,16 +1,16 @@
 import axios from "axios";
-import { useState, useContext, useEffect } from "react";
-import Swal from "sweetalert2";
-import CSVSample from "../../../assets/images/CSV-sample.png";
-import { CSVLink } from "react-csv";
-import UploadVector from "../../../assets/images/uploadPage/uploadVector.svg";
-import useAppProvider from "../../../hooks/useAppProvider";
-import { axiosFormData } from "../../../api/axios";
-import { ButtonLoader } from "../../../Component";
+import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import AppContext from "../../../contexts/AppProvider";
+
+import Swal from "sweetalert2";
 import "./uploadcsv.style.scss";
+import { CSVLink } from "react-csv";
+import { baseURL } from "../../../api/axios";
 import Button from "../../../Component/button";
+import { ButtonLoader } from "../../../Component";
+import AppContext from "../../../contexts/AppProvider";
+import CSVSample from "../../../assets/images/CSV-sample.png";
+import UploadVector from "../../../assets/images/uploadPage/uploadVector.svg";
 
 const UploadCsv = ({ getUserCertificates, onClose }) => {
   const { array, setArray } = useContext(AppContext);
@@ -18,7 +18,6 @@ const UploadCsv = ({ getUserCertificates, onClose }) => {
   const [loading, setLoading] = useState(false);
   const [file, setFile] = useState("");
   const accessToken = JSON.parse(localStorage.getItem("userData")).token;
-  const baseURL = "https://api.certgo.app/api";
 
   const axiosFormData = axios.create({
     baseURL,
@@ -28,11 +27,8 @@ const UploadCsv = ({ getUserCertificates, onClose }) => {
     }
   });
 
-  // let formData = new FormData();
-
   const onFileChange = e => {
     if (e.target && e.target.files[0]) {
-      // formData.append("file", e.target.files[0]);
       setFile(e.target.files[0])
     }
   };
@@ -49,13 +45,10 @@ const UploadCsv = ({ getUserCertificates, onClose }) => {
     }
   });
   const handleUpload = async e => {
-    console.log("i got here");
     e.preventDefault();
     setLoading(true);
     try {
       const res = await axiosFormData.post("/certificates", {file: file});
-      console.log(res);
-
       setLoading(false);
       setArray(res.data.data.certificateData);
       localStorage.setItem(

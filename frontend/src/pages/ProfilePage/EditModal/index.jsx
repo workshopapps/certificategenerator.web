@@ -1,21 +1,16 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+
 import "./editmodal.style.scss";
-import Avatar from "../assets/default-avatar.svg";
-import Input from "../../../Component/Input";
-import Loader from "../../../Component/ButtonLoader";
-import { Toast } from "../../../Component/ToastAlert";
 import { useEffect } from "react";
 import Inputfield from "../input";
+import { baseURL } from "../../../api/axios";
+import Avatar from "../assets/default-avatar.svg";
+import { Toast } from "../../../Component/ToastAlert";
 
 const Modalpro = ({ onClose }) => {
-  const navigate = useNavigate();
-  const [loading, setLoading] = useState(false);
-  const [isLoadingDelete, setIsLoadingDelete] = useState(false);
   const [profileavatar, setprofileAvatar] = useState(null);
   const [myAvatar, setMyAvatar] = useState(null);
-  const [openModal, setOpenModal] = useState(false);
   const [data, setData] = useState({
     name: "",
     job: "",
@@ -24,39 +19,11 @@ const Modalpro = ({ onClose }) => {
     email: ""
   });
 
-  const userId = localStorage.getItem("user");
-
-  // Handle user Logout
-  const handleLogout = async e => {
-    setLoading(true);
-    e.preventDefault();
-    await axios
-      .delete("https://certify-api.onrender.com/api/auth/logout")
-      .then(res => {
-        if (res.status === 200) {
-          console.log("logged out");
-          setLoading(false);
-          //navigate back to login
-          navigate("/login");
-          localStorage.clear();
-        }
-      })
-      .catch(err => {
-        console.log(err || "couldnt log out");
-        setLoading(false);
-        Toast.fire({
-          icon: "error",
-          title: "Error logging out"
-        });
-      });
-  };
-
-  const url = "https://api.certgo.app/api/profile";
+  const url = `${baseURL}/profile`;
   const handleOnchange = e => {
     const newdata = { ...data };
     newdata[e.target.id] = e.target.value;
     setData(newdata);
-    //console.log(e)
   };
 
   const userData = JSON.parse(localStorage.getItem("userData"));
@@ -85,13 +52,11 @@ const Modalpro = ({ onClose }) => {
 
     const userData = JSON.parse(localStorage.getItem("userData"));
     const token = userData.token;
-    //console.log(token)
     try {
       const headers = {
         Authorization: `Bearer ${token}`,
         "Content-Type": "application/json"
       };
-      //console.log(token)
       const response = await axios.patch(
         url,
         {
@@ -105,7 +70,6 @@ const Modalpro = ({ onClose }) => {
           headers
         }
       );
-      console.log(response);
       if (response.status === 201) {
         Toast.fire({
           icon: "success",
@@ -121,30 +85,6 @@ const Modalpro = ({ onClose }) => {
     window.location.reload();
   };
 
-  function handleDelete() {
-    const userData = JSON.parse(localStorage.getItem("userData"));
-    const token = userData.token;
-    const headers = {
-      Authorization: `Bearer ${token}`,
-      "Content-Type": "application/json"
-    };
-    setIsLoadingDelete(true);
-    fetch(url, {
-      method: "DELETE",
-      headers
-    })
-      .then(res => res.json())
-      .then(res => {
-        //setData(res.data.profile)
-        console.log(res.data);
-        console.log("Account deleted");
-        navigate("/signup");
-        localStorage.clear();
-      })
-      .catch(err => console.log(console.error()))
-      .finally(() => setIsLoadingDelete(false));
-  }
-
   function handleUploadAvatar(e) {
     setprofileAvatar(e.target.files[0]);
     setMyAvatar(URL.createObjectURL(e.target.files[0]));
@@ -152,30 +92,23 @@ const Modalpro = ({ onClose }) => {
   }
 
   async function uploadAvatar(image) {
-    //image.preventDefault()
     if (image) {
       let formData = new FormData();
       formData.append("avatar", image);
       setMyAvatar(URL.createObjectURL(image));
-      console.log(formData);
       const response = await fetch(
-        "https://api.certgo.app/api/profile/avatar",
+        `${baseURL}/profile/avatar`,
         {
           headers: {
-            //"Content-Type": "multipart/form-data",
             Authorization: `Bearer ${token}`
           },
           method: "POST",
           body: formData
         }
       );
-      console.log(formData);
       const data = await response.json();
       setMyAvatar(data.data.avatar);
-
-      console.log(data);
     }
-    //console.log(profileavatar)
   }
 
   return (
