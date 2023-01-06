@@ -8,8 +8,6 @@ const UserToken = require("../models/UserToken");
 const { generateTokens } = require("../utils/generateToken");
 const { sendChangePasswordEmail } = require("../utils/email");
 const { verifyRefreshToken } = require("../middleware/verifyRefreshToken");
-const { google } = require('googleapis');
-
 
 const { OAuth2Client } = require("google-auth-library");
 const {
@@ -17,50 +15,9 @@ const {
   createApiError,
   handleResponse
 } = require("../utils/helpers");
-
-
-const baseUrl = process.env.BASE_URL;
-const clientId = process.env.GOOGLE_CLIENTID;
-const clientSecret = process.env.GOOGLE_CLIENT_SECRET;
-let redirectUrl;
-const SCOPES = ["email", "profile", "https://www.googleapis.com/auth/userinfo.profile", "https://www.googleapis.com/auth/userinfo.email", "openid"];
-let client;
-
-
-const generateClient = (_authType) => {
-  if (_authType === "login") {
-    redirectUrl = `${baseUrl}/login`
-    return new google.auth.OAuth2(clientId, clientSecret, redirectUrl, SCOPES);
-  } else if (_authType === "signup") {
-    redirectUrl = `${baseUrl}/signup`
-    return new google.auth.OAuth2(clientId, clientSecret, redirectUrl, SCOPES);
-  }
-}
-
-const getAuthUrl = (req, res, next) => {
-  try {
-    const authType = req.body.authType;
-    client = generateClient(authType)
-    const authUrl = client.generateAuthUrl({
-        access_type: 'offline',
-        scope: SCOPES,
-    });
-    res.status(200).json({
-      urlAuth: authUrl
-    });
-  } catch (error) {
-    throw createApiError("could not connect to google servers, please try again later", 401);
-  }
-}
-
-const getAccessToken = async (code) => {
-  try {   
-    const { tokens } = await client.getToken(code);
-    return tokens.id_token;
-  } catch (error) {
-    throw createApiError("It seems you refreshed the page during the process, please restart the authentication process", 401);
-  } 
-}
+const client = new OAuth2Client(
+  "52168821352-4sc11trj4qtq95051mrnrbinfgmla3ai.apps.googleusercontent.com"
+);
 
 //function to verify user google access token
 async function verify(_token) {
@@ -68,7 +25,7 @@ async function verify(_token) {
     const ticket = await client.verifyIdToken({
       idToken: _token,
       audience:
-       clientId
+        "52168821352-4sc11trj4qtq95051mrnrbinfgmla3ai.apps.googleusercontent.com"
     });
     return ticket.getPayload();
   } catch (error) {
@@ -86,13 +43,11 @@ const userExist = async _email => {
 };
 
 const userSignup = handleAsync(async (req, res, next) => {
-  let { code, name, email, password, subscriptionPlan } = req.body;
- 
+  let { accessToken, name, email, password, subscriptionPlan } = req.body;
 
   //google signup
-  if (code) {
-    const tokenId = await getAccessToken(req.body.code)
-    const payload = await verify(tokenId);
+  if (req.body.accessToken) {
+    const payload = await verify(accessToken);
     const googleUserId = payload["sub"];
     email = payload["email"];
 
@@ -127,16 +82,16 @@ const userSignup = handleAsync(async (req, res, next) => {
 
   //Form signup
   const errors = validationResult(req);
-  
+
   if (!errors.isEmpty())
-  throw createApiError("user validation failed", 422, errors.array);
-  
+    throw createApiError("user validation failed", 422, errors.array);
+
   if (!name) throw createApiError("name is required", 400);
-  
+
   if (await userExist(email)) throw createApiError("email already in use", 401);
-  
+
   const hash = await bcrypt.hash(password, 10);
-  
+
   const newUser = new User({
     name: name,
     email: email,
@@ -162,11 +117,10 @@ const userSignup = handleAsync(async (req, res, next) => {
 });
 
 const userLogin = handleAsync(async (req, res, next) => {
-  var { email, password, code } = req.body;
+  var { email, password } = req.body;
 
-  if (code) {
-    const tokenId = await getAccessToken(code)
-    const payload = await verify(tokenId);
+  if (req.body.accessToken) {
+    const payload = await verify(req.body.accessToken);
 
     const googleUserId = payload["sub"];
 
@@ -294,6 +248,5 @@ module.exports = {
   refreshToken,
   userLogout,
   forgotPassword,
-  changePassword,
-  getAuthUrl
+  changePassword
 };

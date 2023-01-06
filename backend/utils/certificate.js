@@ -1,13 +1,54 @@
 const path = require("path");
+const nodeToImage = require("node-html-to-image");
 const os = require("os");
+const fs = require("fs");
+const fsPromises = require("fs/promises");
+const { createApiError } = require("./helpers");
+const { getTemplate, getSingleTemplate } = require("./templates");
 const uuid = require("uuid").v4;
 const AdmZip = require("adm-zip");
-const PDFSIZE = { width: 1016, height: 720 };
-const puppeteer = require("puppeteer");
-const Handlebars = require("handlebars");
-const csvToJson = require("csvtojson");
-const { v4 } = require("uuid");
-const { isValidJsonOutput } = require("../utils/validation");
+const imageToPdf = require("image-to-pdf");
+const PDFSIZE = [931, 600];
+const voca = require("voca");
+
+async function convertCertificates(certificates = [], templateId) {
+  const promises = certificates.map(async certificate => {
+    const imgPath = await convertCertificate(certificate, templateId);
+    return imgPath;
+  });
+
+  const imgPaths = await Promise.all(promises);
+
+  return imgPaths;
+}
+
+async function convertCertificate(certificate = {}, templateId = 1) {
+  const template = getTemplate(templateId);
+
+  const imgPath = path.resolve(
+    os.tmpdir(),
+    formatCertificateFileName(certificate.name)
+  );
+
+  await nodeToImage({
+    html: template,
+    output: imgPath,
+    content: {
+      name: voca.titleCase(certificate.name),
+      award: voca.titleCase(certificate.award),
+      issuedBy: certificate.signed,
+      issueDate: certificate.date,
+      description: certificate.description,
+      nameoforganization: "Zuri"
+    },
+    puppeteerArgs: {
+      headless: true,
+      args: ["--no-sandbox", "--disabled-setupid-sandbox"]
+    }
+  });
+
+  return imgPath;
+}
 
 function handleZip(filePaths = []) {
   var zip = new AdmZip();
@@ -23,6 +64,49 @@ function handleZip(filePaths = []) {
   return zip.toBuffer();
 }
 
+async function convertSingleCertificate(
+  certificate = {},
+  templateId = 1,
+  logo
+) {
+  const template = getSingleTemplate(templateId);
+
+  const image = await fsPromises.readFile(logo);
+  const base64Image = new Buffer.from(image).toString("base64");
+  const dataURI = "data:image/jpeg;base64," + base64Image;
+
+  // nodeHtmlToImage({
+  //   output: './image.png',
+  //   html: '<html><body><img src="{{imageSource}}" /></body></html>',
+  //   content: { imageSource: dataURI }
+  // })
+
+  const imgPath = path.resolve(
+    os.tmpdir(),
+    formatCertificateFileName(certificate.name)
+  );
+
+  await nodeToImage({
+    html: template,
+    output: imgPath,
+    content: {
+      name: voca.titleCase(certificate.name),
+      award: voca.titleCase(certificate.award),
+      issuedBy: certificate.signed,
+      issueDate: certificate.date,
+      description: certificate.description,
+      nameoforganization: "Zuri",
+      logo: dataURI
+    },
+    puppeteerArgs: {
+      headless: true,
+      args: ["--no-sandbox", "--disabled-setupid-sandbox"]
+    }
+  });
+
+  return imgPath;
+}
+
 function formatCertificateFileName(
   name = "certificate",
   type = FORMATTYPES.IMG
@@ -33,118 +117,28 @@ function formatCertificateFileName(
   return `${uuid()}${formattedName}.${type}`;
 }
 
-// Generates image for one or more certificates
-async function GenerateCertificateImages(data, template, logo) {
-  // Launch puppeter browser
-  const browser = await puppeteer.launch({
-    headless: true,
-    args: ["--no-sandbox", "--disabled-setupid-sandbox"]
-  });
-
-  const hbs = Handlebars.compile(template);
-
-  // Handle multiple certificates i.e array of certificates
-  if (Array.isArray(data)) {
-    const imagePaths = [];
-
-    for (let certificate of data) {
-      // Set logo
-      certificate.logo = logo;
-
-      // Generate image for the current certificate
-      const imagePath = await GenerateCertificate(
-        hbs,
-        certificate,
-        browser,
-        FORMATTYPES.IMG
+async function handleSplitPdf(imagePaths = [], size = PDFSIZE) {
+  const pdfPromises = imagePaths.map(image => {
+    return new Promise((resolve, reject) => {
+      // Create path for pdf
+      const pdfPath = path.resolve(
+        os.tmpdir(),
+        formatCertificateFileName(getNameFromImgPath(image), FORMATTYPES.PDF)
       );
 
-      // Add path to list of paths
-      imagePaths.push(imagePath);
-    }
-
-    await browser.close();
-    return imagePaths;
-  } else {
-    // Set logo
-    data.logo = logo;
-
-    // Generate image for single certificate
-    const imagePath = await GenerateCertificate(
-      hbs,
-      data,
-      browser,
-      FORMATTYPES.IMG
-    );
-
-    // Close browser
-    await browser.close();
-    return imagePath;
-  }
-}
-
-async function GenerateCertificatePdfs(data, template, logo) {
-  // Launch browser
-  const browser = await puppeteer.launch({
-    headless: true,
-    args: ["--no-sandbox", "--disabled-setupid-sandbox"]
+      // convert image to pdf
+      imageToPdf([image], PDFSIZE).pipe(
+        fs
+          .createWriteStream(pdfPath)
+          .on("finish", () => resolve(pdfPath))
+          .on("error", error => reject(error))
+      );
+    });
   });
 
-  const hbs = Handlebars.compile(template);
+  const pdfPaths = await Promise.all(pdfPromises);
 
-  // Handle multiple certificates i.e array of certificates
-  if (Array.isArray(data)) {
-    const pdfPaths = [];
-
-    for (let certificate of data) {
-      // Set logo
-      certificate.logo = logo;
-
-      // Generate pdf for the current certificate
-      const pdfPath = await GenerateCertificate(hbs, certificate, browser);
-
-      pdfPaths.push(pdfPath);
-    }
-
-    await browser.close();
-    return pdfPaths;
-  } else {
-    // Set logo
-    data.logo = logo;
-
-    // Generate pdf for single certificate
-    const pdfPath = await GenerateCertificate(hbs, data, browser);
-
-    // Close browser
-    await browser.close();
-    return pdfPath;
-  }
-}
-
-async function GenerateCertificate(hbs, certificate, browser, type) {
-  const page = await browser.newPage();
-
-  // Set page content to handlebars template
-  await page.setContent(
-    hbs(certificate, {
-      allowProtoPropertiesByDefault: true
-    })
-  );
-
-  // Generate temporary file path
-  const filePath = path.resolve(
-    os.tmpdir(),
-    formatCertificateFileName(certificate.name, type || FORMATTYPES.PDF)
-  );
-
-  // Generate pdf or image based on the specified format type
-  if (type == FORMATTYPES.IMG)
-    await page.screenshot({ path: filePath, fullPage: true });
-  else await page.pdf({ path: filePath, ...PDFSIZE });
-
-  await page.close();
-
-  return filePath;
+  return pdfPaths;
 }
 
 const FORMATTYPES = {
@@ -152,67 +146,19 @@ const FORMATTYPES = {
   IMG: "png"
 };
 
-const extractCertificatesFromReq = async (files, payload) => {
-  const uuidv4 = v4();
-  let certificates;
+function getNameFromImgPath(imgPath) {
+  if (!imgPath) throw createApiError("Something went wrong", 422);
 
-  if (files) {
-    const csvFile = files.file.data;
-    const csvData = Buffer.from(csvFile).toString();
-    certificates = await csvToJson().fromString(csvData);
-
-    if (!isValidJsonOutput(certificates)) {
-      // throw createApiError("Invalid input from uploaded csv file", 400);
-      return {
-        certificates: "",
-        error: "Invalid input from uploaded csv file",
-        errorStatus: 400
-      };
-    }
-
-    //append uuid and link to the certificate object
-    certificates = certificates.map(data => {
-      let id = v4();
-      return {
-        ...data,
-        uuid: id,
-        link: `https://certgo.hng.tech/single_preview?uuid=${id}`
-      };
-    });
-  } else if (payload) {
-    if (
-      !payload.name ||
-      !payload.nameoforganization ||
-      !payload.award ||
-      !payload.email ||
-      !payload.description ||
-      !payload.date ||
-      !payload.signed
-    )
-      return { certificates: "", error: "Invalid payload", errorStatus: 400 };
-
-    certificates = [
-      {
-        name: payload.name,
-        nameoforganization: payload.nameoforganization,
-        award: payload.award,
-        email: payload.email,
-        description: payload.description,
-        date: payload.date,
-        signed: payload.signed,
-        uuid: uuidv4,
-        link: `https://certgo.hng.tech/single_preview?uuid=${uuidv4}`
-      }
-    ];
-  } else return { certificates: "", error: "bad request", errorStatus: 400 };
-
-  return { certificates, error: null, errorStatus: null };
-};
+  // Get name of certificate holder from image url e.g john-champ
+  // from 'C:\Users\HPENVY\AppData\Local\Temp\83494492-02f3-4c45-be4b-5e992455f5c6john-champ.png
+  return imgPath.split(path.sep).pop().slice(36).split(".")[0];
+}
 
 module.exports = {
+  convertCertificates,
   handleZip,
-  PDFSIZE,
-  GenerateCertificateImages,
-  GenerateCertificatePdfs,
-  extractCertificatesFromReq
+  handleSplitPdf,
+  convertSingleCertificate,
+  convertCertificate,
+  PDFSIZE
 };

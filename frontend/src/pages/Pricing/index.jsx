@@ -125,8 +125,10 @@ function Pricing({ amountHandler }) {
 
                   {access ? (
                     <Link
-                      to={`${sub.subType !== "Basic" ? "/payment" : ""}`}
-                      style={sub.subType === "Basic" ? { display: "none" } : {}}
+                      to={`${sub.subType !== "Basic" ? "/comingsoon" : ""}`}
+                      style={
+                        sub.subType === "Basic" ? { display: "none" } : {}
+                      }
                       onClick={e =>
                         disabledHandler(
                           e,

@@ -380,21 +380,7 @@ function App() {
             <Route
               path="/bulk_step"
               element={
-                <Suspense
-                  fallback={
-                    <div
-                      style={{
-                        width: "100%",
-                        height: "70vh",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center"
-                      }}
-                    >
-                      <Loader />
-                    </div>
-                  }
-                >
+                <Suspense>
                   <BulkStep />
                 </Suspense>
               }
@@ -402,21 +388,7 @@ function App() {
             <Route
               path="/edit_bulk"
               element={
-                <Suspense
-                  fallback={
-                    <div
-                      style={{
-                        width: "100%",
-                        height: "70vh",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center"
-                      }}
-                    >
-                      <Loader />
-                    </div>
-                  }
-                >
+                <Suspense>
                   <EditBulk />
                 </Suspense>
               }
@@ -424,21 +396,7 @@ function App() {
             <Route
               path="/bulk_preview"
               element={
-                <Suspense
-                  fallback={
-                    <div
-                      style={{
-                        width: "100%",
-                        height: "70vh",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center"
-                      }}
-                    >
-                      <Loader />
-                    </div>
-                  }
-                >
+                <Suspense>
                   <BulkPreview />
                 </Suspense>
               }
@@ -446,21 +404,7 @@ function App() {
             <Route
               path="/pricing"
               element={
-                <Suspense
-                  fallback={
-                    <div
-                      style={{
-                        width: "100%",
-                        height: "70vh",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center"
-                      }}
-                    >
-                      <Loader />
-                    </div>
-                  }
-                >
+                <Suspense>
                   <Pricing amountHandler={amountHandler} />
                 </Suspense>
               }
@@ -468,21 +412,7 @@ function App() {
             <Route
               path="/contact-us"
               element={
-                <Suspense
-                  fallback={
-                    <div
-                      style={{
-                        width: "100%",
-                        height: "70vh",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center"
-                      }}
-                    >
-                      <Loader />
-                    </div>
-                  }
-                >
+                <Suspense>
                   <ContactUs />
                 </Suspense>
               }
@@ -490,30 +420,14 @@ function App() {
             <Route
               path="/payment"
               element={
-                <Suspense
-                  fallback={
-                    <div
-                      style={{
-                        width: "100%",
-                        height: "70vh",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center"
-                      }}
-                    >
-                      <Loader />
-                    </div>
-                  }
-                >
-                  <Checkout
-                    type={type}
-                    amount={amount}
-                    per={per}
-                    header={header}
-                    text={text}
-                    subText={subText}
-                  />
-                </Suspense>
+                <Checkout
+                  type={type}
+                  amount={amount}
+                  per={per}
+                  header={header}
+                  text={text}
+                  subText={subText}
+                />
               }
             />
             <Route

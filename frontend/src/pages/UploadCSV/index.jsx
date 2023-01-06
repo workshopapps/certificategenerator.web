@@ -7,9 +7,8 @@ import { useState, useContext, useEffect } from "react";
 
 import "./uploadCSV.style.scss";
 // component
-import { baseURL } from "../../api/axios";
-import Button from "../../Component/button";
 import {ButtonLoader} from "../../Component";
+import Button from "../../Component/button";
 import AppContext from "../../contexts/AppProvider";
 // img
 import CSVSample from "../../assets/images/CSV-sample.png";
@@ -112,7 +111,7 @@ const UploadCSV = () => {
     setLoading(true);
     try {
       const res = await axios.post(
-        `${baseURL}/upload/csv`,
+        "https://api.certgo.app/api/upload/csv",
         formData
       );
       if (res.status === 200) {

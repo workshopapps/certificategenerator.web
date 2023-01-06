@@ -1,17 +1,18 @@
-import { gapi } from "gapi-script";
-import { GoogleLogin } from "react-google-login";
 import React, { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { GoogleLogin } from "react-google-login";
+import { gapi } from "gapi-script";
 
 import "./signup.scss";
+import appleSVG from "./assets/apple.svg";
+import googleSVG from "./assets/google.svg";
+import cert from "./assets/Frame 427319608.svg";
 import Input from "../../Input";
 import Button from "../../button";
-import Loader from "../../ButtonLoader";
 import { Toast } from "../../ToastAlert";
-import googleSVG from "./assets/google.svg";
-import { baseURL } from "../../../api/axios";
-import cert from "./assets/Frame 427319608.svg";
 import useAppProvider from "../../../hooks/useAppProvider";
+import Loader from "../../ButtonLoader";
+import axios from "../../../api/axios";
 
 const Signup = () => {
   const { setAccess } = useAppProvider();
@@ -40,6 +41,14 @@ const Signup = () => {
     accessToken: ""
   });
 
+  //   const handleToggle = () => {
+  //   if (type === "password") {
+  //     setType("text");
+  //   } else {
+  //     setType("password");
+  //   }
+  // };
+
   function handleChange(event) {
     const { name, value, type, checked } = event.target;
     setFormData(prevFormData => {
@@ -51,11 +60,14 @@ const Signup = () => {
   }
 
   async function createNewUser(email, password, name, checkbox) {
-    return fetch(`${baseURL}/auth/signup`, {
+    console.log(email, password, name, checkbox);
+    // return axios.post("/auth/signup", { email: email, password: password, name: name, checkbox: checkbox });
+    return fetch(`https://api.certgo.app/api/auth/signup`, {
       method: "POST",
       headers: {
         "Content-type": "application/json",
         "Access-Control-Allow-Origin": "*"
+        // "Access-Control-Allow-Methods": "POST",
       },
       body: JSON.stringify({
         email: email,
@@ -119,8 +131,11 @@ const Signup = () => {
       }
       const token = response.data.token;
       localStorage.setItem("token", token);
+      // localStorage.setItem("user", response.userId);
     } catch (error) {
+      // setError(true);
       setLoading(false);
+      console.log(error.message);
     }
   };
 
@@ -137,6 +152,16 @@ const Signup = () => {
 
   const onSuccess = res => {
     setToken({ accessToken: res.tokenId });
+    console.log(res.tokenID);
+
+    // User details from Google
+    // const userProfile = {
+    //   email: res.profileObj.email,
+    //   fullName: res.profileObj.name,
+    //   userProfile: res.profileObj.imageUrl,
+    //   userId: res.profileObj.googleId,
+    //   accessToken: res.accessToken
+    // };
 
     if (token.accessToken) createNewUserGoogle(token);
 
@@ -150,13 +175,15 @@ const Signup = () => {
 
   // Send access token to backend
   async function createNewUserGoogle(token) {
-    const response = await fetch(`${baseURL}/auth/signup`, {
+    const response = await fetch("https://api.certgo.app/api/auth/signup", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
       body: JSON.stringify(token)
     });
+
+    console.log(response);
 
     if (response.status === 200 || response.status === 201) {
       // route user to dashboard after successful login
@@ -166,6 +193,7 @@ const Signup = () => {
         icon: "error",
         title: "Email already in use"
       });
+      console.log("in use");
     } else {
       navigate("/signup");
     }

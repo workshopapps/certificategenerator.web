@@ -1,16 +1,15 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-
-import Card from "../icons/Card.svg";
-import axios from "../../../api/axios";
-import PaymentSwitch from "./PaymentSwitch";
-import { baseURL } from "../../../api/axios";
 import SecurePay from "../icons/Secure Pay.svg";
 import CreditCard from "../icons/Credit Card.svg";
 import BankTransfer from "../icons/Bank Transfer.svg";
-import { Toast } from "../../../Component/ToastAlert";
-import CheckoutMainLeftComp from "./CheckoutMainLeftComp";
+import Card from "../icons/Card.svg";
 import CheckoutMainLeftInput from "./CheckoutMainLeftInput";
+import CheckoutMainLeftComp from "./CheckoutMainLeftComp";
+import { useState } from "react";
+import PaymentSwitch from "./PaymentSwitch";
+// import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { Toast } from "../../../Component/ToastAlert";
+import axios from "../../../api/axios";
 
 function CheckoutMainLeft({ amount, type }) {
   const [firstName, setFirstName] = useState("");
@@ -38,7 +37,7 @@ function CheckoutMainLeft({ amount, type }) {
   const [paymentBorderCard, setPaymentBorderCard] =
     useState("4px solid #01AA6E");
   const [paymentBorderBank, setPaymentBorderBank] = useState("");
-  const id = JSON.parse(localStorage.getItem("userData"));
+  const id = JSON.parse(localStorage.getItem("userData")).userId;
   const userData = JSON.parse(localStorage.getItem("userData"));
 
   function firstNamef(value) {
@@ -134,7 +133,7 @@ function CheckoutMainLeft({ amount, type }) {
 
   async function handleAccountUpgrade() {
     try {
-      await axios.put(`${baseURL}/pricing/${id}`, {
+      await axios.put(`https://api.certgo.app/api/pricing/${id}`, {
         plan: `${type}`
       });
       Toast.fire({
@@ -146,6 +145,7 @@ function CheckoutMainLeft({ amount, type }) {
         navigate("/dashboard");
       }, 3500);
     } catch (err) {
+      console.log(err);
       Toast.fire({
         icon: "error",
         title: "Something went wrong, please try again"
