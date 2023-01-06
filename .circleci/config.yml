@@ -108,20 +108,23 @@ jobs:
           command: |
             ssh -o "StrictHostKeyChecking no" root@65.108.237.42 "\
             whoami
-            cd && ls
+            cd /home/sean
             git clone https://github.com/workshopapps/certificategenerator.web.git
             cd certificategenerator.web
             git checkout staging && git status && git pull
-            cd frontend && npm i --force && npm run build
+            cd frontend 
+            cp -rf * /home/sean/certgo-staging/frontend
+            cd ..
+            cd backend
+            cp -rf * /home/sean/certgo-staging/backend
+            cd /home/sean/certgo-staging/frontend && npm i --force && npm run build:staging && rm -rf node_modules
             sudo cp -fr build/* /var/www/certgo.hng.tech/html2
             cd ..
             cd backend && npm i --force
-            cp -rf * /home/sean/certgo-staging/backend
             pm2 stop certgo-staging
-            pm2 start /home/sean/certgo-staging/backend/ecosystem.config.js
+            pm2 start ecosystem.config.js
             sudo pm2 save 
-            cd ../..
-            rm -rf certificategenerator.web && exit"
+            rm -rf /home/sean/certificategenerator.web && exit"
               
 #             ssh -o "StrictHostKeyChecking no" ubuntu@ec2-34-195-230-138.compute-1.amazonaws.com "\
 #             sudo su

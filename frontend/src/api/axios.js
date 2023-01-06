@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseURL = "https://api.certgo.app/api";
+const baseURL = process.env.REACT_APP_API_URL;
 // const userData = JSON.parse(localStorage.getItem('token'));
 const token = localStorage.getItem("token");
 
