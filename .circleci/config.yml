@@ -65,7 +65,7 @@ jobs:
             cd backend
             npm cache clear --force
             sudo npm install -g --unsafe-perm=true --allow-root
-            node index.js
+#            node index.js
       - save_cache:
           key: dependency-cache-{{ checksum "./backend/package.json" }}
           paths:
