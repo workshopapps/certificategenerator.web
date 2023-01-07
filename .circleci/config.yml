@@ -123,7 +123,6 @@ jobs:
             sudo cp -fr build/* /var/www/certgo.hng.tech/html2
             cd ..
             cd backend && npm i --force
- #           pm2 stop certgo-staging
             pm2 start /home/sean/certgo-staging/backend/ecosystem.config.js
             sudo pm2 save
             rm -rf /home/sean/certificategenerator.web && exit"
