@@ -102,7 +102,6 @@ const userSignup = handleAsync(async (req, res, next) => {
 
     //if not create new user
     const newUser = new User({
-      name: payload.name,
       email: email,
       authenticationType: {
         google: {
@@ -131,14 +130,12 @@ const userSignup = handleAsync(async (req, res, next) => {
   if (!errors.isEmpty())
   throw createApiError("user validation failed", 422, errors.array);
   
-  if (!name) throw createApiError("name is required", 400);
   
   if (await userExist(email)) throw createApiError("email already in use", 401);
   
   const hash = await bcrypt.hash(password, 10);
   
   const newUser = new User({
-    name: name,
     email: email,
     authenticationType: {
       form: {

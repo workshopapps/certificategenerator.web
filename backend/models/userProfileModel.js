@@ -8,7 +8,6 @@ const ProfileSchema = new Schema({
   },
   name: {
     type: String,
-    required: true
   },
   job: {
     type: String,

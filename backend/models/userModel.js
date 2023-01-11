@@ -4,7 +4,6 @@ const Profile = require("./profileModel");
 const UserSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: true
   },
   email: {
     type: String,
@@ -69,7 +68,6 @@ UserSchema.pre("save", async function (next) {
     await Profile.create({
       email: this.email,
       user: this._id,
-      name: this.name
     });
 
     next();
